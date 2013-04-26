@@ -1,10 +1,15 @@
 LspAlpha::Application.routes.draw do
 
   resource :account, :controller => "users"
-  resources :users
-  resource :user_session
 
-  root :controller => "users", :action => "new"
+  resources :users
+  resources :user_sessions
+
+  match '/home' => 'home#index'
+
+  match "logout" => 'user_sessions#destroy'
+
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
