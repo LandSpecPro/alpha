@@ -1,0 +1,27 @@
+<h1>Register</h1>
+
+<% form_for @user, :url => users_path do |f| %>
+  
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Register" %>
+<% end %>
+
+<!--
+	<%= form_for @user, :url => account_path do |f| %>
+	<%= f.label "Username" %> <%= f.text_field :login %>
+	<%= f.label "Email" %> <%= f.text_field :email %>
+	<%= f.label "Password" %> <%= f.password_field :password %>
+	<%= f.submit "Register" %>
+<% end %>
+-->
+
+
+
+<!--
+	COMMENTS:
+		This does not work. It should work, but for some reason the form doesn't
+		show up. I stopped here, but getting the form working shouldn't be TOO hard
+		just by googling the problem. Almost finished in this initial authlogic
+		process. Harder than I wanted it to be, but I got a lot of stuff done/learned
+		today.
+-->
