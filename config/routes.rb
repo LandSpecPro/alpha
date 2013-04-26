@@ -2,6 +2,8 @@ LspAlpha::Application.routes.draw do
   
   root :to => 'home#index'
 
+  resources :user_session
+  resources :user
 
 
 
