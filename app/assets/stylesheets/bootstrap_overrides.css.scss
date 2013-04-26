@@ -1,0 +1,17 @@
+@import "bootstrap";
+@import "flat-ui";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+
+.navbar .navbar-inner {
+	background: none;
+	background-image: none;
+	background-color: #537724;
+}
+
+#brand-image{
+	max-height: 32px;
+	margin-top: -8px;
+	margin-bottom: -4px;
+	padding-right: 5px;
+}
