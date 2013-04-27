@@ -5,9 +5,12 @@ LspAlpha::Application.routes.draw do
   resources :users
   resources :user_sessions
 
-  match '/home' => 'home#index'
+  match 'home' => 'home#index'
 
   match "logout" => 'user_sessions#destroy'
+
+  get 'home/about'
+  get 'home/contact'
 
   root :to => 'home#index'
 

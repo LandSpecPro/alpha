@@ -16,9 +16,13 @@
 	    		<span class="icon-bar"></span>
 	    		<span class="icon-bar"></span>
 	    	</button>
-	    	<ul class="nav"><li>
-	    		<a class="brand" href="#"><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
-	    	</li></ul>
+	    	<ul class="nav">
+	    		<li>
+	    			<a class="brand" href="/home"><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
+	    		</li>
+	    		<li><%= link_to "About", :controller => "home", :action => "about" %></li>
+	    		<li><%= link_to "Contact Us", :controller => "home", :action => "contact" %></li>
+	    	</ul>
 
 	    	<div class="nav-collapse collapse">
 	    		<ul class="nav pull-right">
