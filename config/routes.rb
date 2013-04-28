@@ -11,8 +11,8 @@ LspAlpha::Application.routes.draw do
   match "home" => 'home#index'
   match "about" => 'home#about'
   match "contact" => 'home#contact'
-  match "register" => 'user_sessions#new'
-  match "login" => 'users#new'
+  match "register" => 'users#new'
+  match "login" => 'user_sessions#new'
   match "logout" => 'user_sessions#destroy'
 
   match "business/vendor/show" => 'bus_vendors#show'
