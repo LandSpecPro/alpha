@@ -1,9 +1,12 @@
 LspAlpha::Application.routes.draw do
 
+  get "business/create"
+
   resource :account, :controller => "users"
 
   resources :users
   resources :user_sessions
+  resources :bus_vendors
 
   match 'home' => 'home#index'
 
@@ -11,6 +14,9 @@ LspAlpha::Application.routes.draw do
 
   get 'home/about'
   get 'home/contact'
+  get 'business/new'
+  get 'business/showall'
+  match 'bus_vendors/new' => 'bus_vendors#new'
 
   root :to => 'home#index'
 

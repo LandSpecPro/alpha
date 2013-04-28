@@ -41,8 +41,10 @@
 					<%= f.radio_button :userType, STRING_VENDOR %> <%= f.label "Vendor" %>
 					<%= f.radio_button :userType, STRING_BUYER %> <%= f.label "Buyer" %>
 				</div>
+			</div>
+			<div class="control-group">
 				<div class="controls">
-					<%= f.submit "Submit" %>
+					<%= f.submit "Submit", class: "btn btn-primary" %>
 				</div>
 			</div>
 

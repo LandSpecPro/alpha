@@ -12,6 +12,7 @@ gem "authlogic"
 gem 'dynamic_form'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'figaro' #setting environment variables
 
 # Gems used only for assets and not required
 # in production environments by default.

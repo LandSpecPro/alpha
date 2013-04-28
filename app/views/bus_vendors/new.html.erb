@@ -1,0 +1,27 @@
+<div class="container">
+	<h1>Your Company</h1>
+<%= form_for(@bus_vendor) do |f| %>
+  <% if @bus_vendor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bus_vendor.errors.count, "error") %> prohibited this bus_vendor from being saved:</h2>
+
+      <ul>
+      <% @bus_vendor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :busName %>
+    <%= f.text_field :busName %>
+  </div>
+  <div class="field">
+    <%= f.label :logo %>
+    <%= f.file_field :logo %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>
