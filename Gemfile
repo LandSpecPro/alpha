@@ -10,6 +10,8 @@ gem 'bootstrap-sass'
 gem "flat-ui-rails"
 gem "authlogic"
 gem 'dynamic_form'
+gem 'paperclip'
+gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.

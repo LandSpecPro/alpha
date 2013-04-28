@@ -1,6 +1,16 @@
 LspAlpha::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Settings for Paperclip
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['landspecpro-images'],
+      :access_key_id => ENV['AKIAIZZ4VFNJH5J6FMXA'],
+      :secret_access_key => ENV['IUxXXYn8h0UivtvWZn1DhztJGRPj1ssgT3xZa/4N']
+    }
+  }
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
