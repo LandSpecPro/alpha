@@ -20,22 +20,22 @@
 	    		<li>
 	    			<a class="brand" href="/home"><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
 	    		</li>
-	    		<li><%= link_to "About", :controller => "home", :action => "about" %></li>
-	    		<li><%= link_to "Contact Us", :controller => "home", :action => "contact" %></li>
+	    		<li><%= link_to "About", about_url %></li>
+	    		<li><%= link_to "Contact Us", contact_url %></li>
 	    	</ul>
 
 	    	<div class="nav-collapse collapse">
 	    		<ul class="nav pull-right">
 	    			<% if current_user.nil? %>
-	    				<li><%= link_to "Register", :controller => "users", :action => "new" %></li>
-	    				<li><%= link_to "Login", :controller => "user_sessions", :action => "new" %></li>
+	    				<li><%= link_to "Register", register_url %></li>
+	    				<li><%= link_to "Login", login_url %></li>
 	    			<% end %>
 	    			<% if current_user %>
 	    				<li class="dropdown">
 	    					<a href="" class="dropdown-toggle" data-toggle="dropdown">
 	    						<%= current_user.login %> <b class="caret"></b></a>
 	    					<ul class="dropdown-menu">
-	    						<li><%= link_to "Logout", logout_path %></li>
+	    						<li><%= link_to "Logout", logout_url %></li>
 	    					</ul>
 	    				</li>
 	    			<% end %>

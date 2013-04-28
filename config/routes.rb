@@ -8,15 +8,15 @@ LspAlpha::Application.routes.draw do
   resources :user_sessions
   resources :bus_vendors
 
-  match 'home' => 'home#index'
-
+  match "home" => 'home#index'
+  match "about" => 'home#about'
+  match "contact" => 'home#contact'
+  match "register" => 'user_sessions#new'
+  match "login" => 'users#new'
   match "logout" => 'user_sessions#destroy'
 
-  get 'home/about'
-  get 'home/contact'
-  get 'business/new'
-  get 'business/showall'
-  match 'bus_vendors/new' => 'bus_vendors#new'
+  match "business/vendor/show" => 'bus_vendors#show'
+  match "business/vendor/new" => 'bus_vendors#new'
 
   root :to => 'home#index'
 
