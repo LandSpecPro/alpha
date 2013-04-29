@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428012953) do
+ActiveRecord::Schema.define(:version => 20130428222816) do
 
   create_table "bus_vendors", :force => true do |t|
     t.string   "busName",           :null => false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130428012953) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "user_id"
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130428012953) do
     t.string   "current_login_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "bus_vendor_id"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

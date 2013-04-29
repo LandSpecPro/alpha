@@ -1,28 +1,51 @@
 <div class="container center">
- 	<h1>Login</h1>
+ 	
+	
 
- 		<%= form_for @user_session, :html => {:class => 'form-horizontal center inline'} do |f| %>
-			<%= f.error_messages %>
 
-      			<div class="control-group">
-					<div class="control-label">
-						<%= f.label "Username" %> 
-					</div>
-					<div class="controls">
-						<%= f.text_field :login %>
-					</div>
-				</div>
 
-				<div class="control-group">
-					<div class="control-label">
-						<%= f.label "Password" %>
-					</div>
-					<div class="controls">
-						<%= f.password_field :password %>
-					</div>
-				</div>
-				<div class="control-group">
-      				<%= f.submit "Submit", class: "btn btn-primary" %>
-      			</div>
-  <% end %>
+	<%= form_for @user_session, :html => {:class => 'form-horizontal center inline'} do |f| %>
+
+		<h1>Login</h1>
+
+		<!-- Display a login error here if redirected because not logged in -->
+	 	<% if @login_error %>
+		 	<div class="alert alert-error">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Error!</strong> You must be logged in to do that.
+			</div>
+		<% end %>
+
+		<!-- Display error messages as alerts -->
+		<% @user_session.errors.full_messages.each do |msg| %>
+			<div class="alert alert-error">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Error! </strong> <%= msg %>
+			</div>
+		<% end %>
+
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Username" %> 
+			</div>
+			<div class="controls">
+				<%= f.text_field :login %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Password" %>
+			</div>
+			<div class="controls">
+				<%= f.password_field :password %>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<%= f.submit "Submit", class: "btn btn-primary" %>
+		</div>
+
+	<% end %>
+
 </div>

@@ -4,9 +4,11 @@ LspAlpha::Application.routes.draw do
 
   resource :account, :controller => "users"
 
-  resources :users
+  resources :users do
+    resources :bus_vendors
+  end
+
   resources :user_sessions
-  resources :bus_vendors
 
   match "home" => 'home#index'
   match "about" => 'home#about'

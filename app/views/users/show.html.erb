@@ -1,5 +1,10 @@
-<h1>Showing a person now</h1>
+<div class="container">
 
-<p>Username: <%= @user.login %> </p>
-<p>Email: <%= @user.email %> </p>
-<p>Password: <%= @user.crypted_password %> </p>
+	<h1>Showing a person now</h1>
+
+	<p>Username: <%= @user.login %> </p>
+	<p>Email: <%= @user.email %> </p><br/>
+	<p>Business Name: <%= @user.bus_vendor.busName %></p>
+	<p>Business Logo: <br/><%= image_tag @user.bus_vendor.logo.url(:thumb) %></p>
+
+</div>

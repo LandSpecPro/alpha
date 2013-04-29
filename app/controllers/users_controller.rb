@@ -10,7 +10,13 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Account registered!"
-      redirect_to business_vendor_new_url
+
+      if @user.userType == STRING_VENDOR
+        redirect_to business_vendor_new_url
+      else
+        redirect_to home_url
+      end
+
     else
       flash[:notice] = "Not successful!"
       render :action => :new

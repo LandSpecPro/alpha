@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   	unless current_user
   		store_location
   		flash[:notice] = "You must be logged in to access this page"
-  		redirect_to new_user_session_url
+  		redirect_to login_url(:login_error => true)
   		return false
   	end
   end
@@ -30,6 +30,24 @@ class ApplicationController < ActionController::Base
   		flash[:notice] = "You must be logged out to access this page"
   		return false
   	end
+  end
+
+  def require_business
+    if current_user.bus_vendor_id.nil? #and current_user.bus_buyer_id.nil?
+      store_location
+      flash[:notice] = "You must add a company before you can do anything else!"
+      redirect_to business_vendor_new_url(:no_company => true)
+      return false
+    end
+  end
+
+  def require_user_is_vendor
+    if current_user.userType != STRING_VENDOR
+      store_location
+      flash[:notice] = "You must be a vendor to access this page."
+      redirect_to home_url
+      return false
+    end
   end
 
   def store_location

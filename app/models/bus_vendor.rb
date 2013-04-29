@@ -1,5 +1,6 @@
 class BusVendor < ActiveRecord::Base
-	attr_accessible :busName, :logo
+	attr_accessible :busName, :logo, :id
+	belongs_to :user
 
 	# This method associates the attribute ":logo" with a file attachment
 	has_attached_file :logo, styles: {
