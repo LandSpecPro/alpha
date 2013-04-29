@@ -1,26 +1,44 @@
 LspAlpha::Application.routes.draw do
 
-  get "business/create"
+  # Root application page
+  root :to => 'home#index'
 
-  resource :account, :controller => "users"
-
+  # Resource routes for models
+  resources :user_sessions
   resources :users do
     resources :bus_vendors
+    resources :bus_buyers
   end
 
-  resources :user_sessions
-
+  # For home controller
   match "home" => 'home#index'
   match "about" => 'home#about'
   match "contact" => 'home#contact'
+
+  # For account register, login, logout, etc.
   match "register" => 'users#new'
   match "login" => 'user_sessions#new'
   match "logout" => 'user_sessions#destroy'
 
+  # For dealing with account once registered and logged in
+  match "account" => 'account#view'
+  match "account/view" => 'account#view'
+  match "account/edit" => 'account#edit'
+
+  # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
+  match "business/vendor/account" => 'account#view'
+  match "business/vendor/account/view" => 'account#view'
+  #match "business/vendor/profile/edit" => 'bus_vendors#profile_edit'
+  match "business/vendor/account/edit" => 'account#edit'
 
-  root :to => 'home#index'
+  # Routes for buyer's businesses
+  match "business/buyer/show" => 'bus_buyers#show'
+  match "business/buyer/new" => 'bus_buyers#new'
+  match "business/buyer/account" => 'account#view'
+  match "business/buyer/account/view" => 'account#view'
+  match "business/buyer/account/edit" => 'account#edit'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

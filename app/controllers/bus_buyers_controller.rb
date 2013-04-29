@@ -1,23 +1,23 @@
-class BusVendorsController < ApplicationController
+class BusBuyersController < ApplicationController
 	before_filter :require_user
-	before_filter :require_user_is_vendor
+	before_filter :require_user_is_buyer
 	before_filter :require_business, :only => [:show]
 	before_filter :require_no_business, :only => [:new, :create]
 
 	def new
 		@no_company = params[:no_company]
 		@user = current_user
-		@busvendor = current_user.build_bus_vendor
+		@busbuyer = current_user.build_bus_buyer
 	end
 
 	def create
 		@user = current_user
-		@busvendor = @user.create_bus_vendor(params[:bus_vendor])
+		@busbuyer = @user.create_bus_buyer(params[:bus_buyer])
 
-		# Update current_users Business-Vendor id
-		@user.update_attribute(:bus_vendor_id, @busvendor.id)
+		# Update current_users Business-Buyer id
+		@user.update_attribute(:bus_buyer_id, @busbuyer.id)
 
-	    if @busvendor.save
+	    if @busbuyer.save
 	      flash[:notice] = "Account registered!"
 	      redirect_to account_url
 	    else
@@ -27,7 +27,7 @@ class BusVendorsController < ApplicationController
 	end
 
 	def show
-		@vendors = BusVendor.all
+		@buyers = BusBuyer.all
 	end
 
 	def account_edit
@@ -37,5 +37,4 @@ class BusVendorsController < ApplicationController
 	def profile_edit
 
 	end
-
 end

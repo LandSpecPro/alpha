@@ -33,19 +33,51 @@ class ApplicationController < ActionController::Base
   end
 
   def require_business
-    if current_user.bus_vendor_id.nil? #and current_user.bus_buyer_id.nil?
+    if current_user.bus_vendor_id.nil? and current_user.bus_buyer_id.nil?
       store_location
       flash[:notice] = "You must add a company before you can do anything else!"
-      redirect_to business_vendor_new_url(:no_company => true)
+      if current_user.userType == STRING_VENDOR
+        redirect_to business_vendor_new_url(:no_company => true)
+      elsif current_user.userType == STRING_BUYER
+        redirect_to business_buyer_new_url(:no_company => true)
+      else
+        redirect_to home_url
+      end
       return false
+    end
+  end
+
+  #Should redirect to the edit account/edit profile page, depending on userType
+  def require_no_business
+    if current_user.userType == STRING_VENDOR
+      unless current_user.bus_vendor_id.nil?
+        store_location
+        flash[:notice] = "Redirecting to account page."
+        redirect_to account_url
+        return false
+      end
+    elsif current_user.userType == STRING_BUYER
+      unless current_user.bus_buyer_id.nil?
+        store_location
+        flash[:notice] = "Redirecting to account page."
+        redirect_to account_url
+        return false
+      end
     end
   end
 
   def require_user_is_vendor
     if current_user.userType != STRING_VENDOR
-      store_location
       flash[:notice] = "You must be a vendor to access this page."
-      redirect_to home_url
+      redirect_back_or_default(home_url)
+      return false
+    end
+  end
+
+  def require_user_is_buyer
+    if current_user.userType != STRING_BUYER
+      flash[:notice] = "You must be a buyer to access this page."
+      redirect_back_or_default(home_url)
       return false
     end
   end

@@ -1,0 +1,9 @@
+<!-- THIS IS A TEST PAGE -->
+
+<div class="container">
+  <div class="hero-unit">
+    <% @buyers.each do |buyers| %>
+    	<%= image_tag buyers.profileImage.url(:thumb) %>
+    <% end %>
+  </div>
+</div>

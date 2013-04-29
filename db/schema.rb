@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428222816) do
+ActiveRecord::Schema.define(:version => 20130429021639) do
+
+  create_table "bus_buyers", :force => true do |t|
+    t.string   "busName",                   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "profileImage_file_name"
+    t.string   "profileImage_content_type"
+    t.integer  "profileImage_file_size"
+    t.datetime "profileImage_updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "bus_vendors", :force => true do |t|
     t.string   "busName",           :null => false
@@ -50,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20130428222816) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "bus_vendor_id"
+    t.integer  "bus_buyer_id"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

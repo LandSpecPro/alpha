@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 
       if @user.userType == STRING_VENDOR
         redirect_to business_vendor_new_url
+      elsif @user.userType == STRING_BUYER
+        redirect_to business_buyer_new_url
       else
         redirect_to home_url
       end

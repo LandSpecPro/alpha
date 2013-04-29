@@ -1,0 +1,25 @@
+<div class="container center">
+	<h1>Your Company</h1>
+<%= form_for([@user, @user.build_bus_buyer]) do |f| %>
+
+    <% if @no_company %>
+      <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> You must add a business!
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label "Business Name:" %>
+      <%= f.text_field :busName %>
+    </div>
+    <div class="field">
+      <%= f.label "Profile Image:" %>
+      <%= f.file_field :profileImage %>
+    </div>
+
+  <div class="actions">
+      <%= f.submit 'Create' %>
+  </div>
+
+<% end %>
