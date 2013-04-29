@@ -11,41 +11,50 @@
 	<div class="navbar navbar-fixed-top navbar-inverse">
 	  <div class="navbar-inner">
 	    <div class="container">
-	    	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	    		<span class="icon-bar"></span>
-	    		<span class="icon-bar"></span>
-	    		<span class="icon-bar"></span>
-	    	</button>
 	    	<ul class="nav">
 	    		<li>
-	    			<a class="brand" href="/home"><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
+	    			<a class="brand" href=<%= root_url %>><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
 	    		</li>
-	    		<li><%= link_to "Contact Us", contact_url %></li>
-	    		<li><%= link_to "About", about_url %></li>
 	    	</ul>
 
-	    	<div class="nav-collapse collapse">
+    		<% if current_user.nil? %>
 	    		<ul class="nav pull-right">
-	    			<% if current_user.nil? %>
-	    				<li><%= link_to "Register", register_url %></li>
-	    				<li><%= link_to "Login", login_url %></li>
-	    			<% end %>
-	    			<% if current_user %>
-	    				<li class="dropdown">
-	    					<a href="" class="dropdown-toggle" data-toggle="dropdown">
-	    						<%= current_user.login %> <b class="caret"></b></a>
-	    					<ul class="dropdown-menu">
-	    						<li><%= link_to "Account", account_url %></li>
-	    						<li><%= link_to "Logout", logout_url %></li>
-	    					</ul>
-	    				</li>
-	    			<% end %>
-
+	    			<li><%= link_to "Register", register_url %></li>
+	    			<li><%= link_to "Login", login_url %></li>
 	    		</ul>
-	    	</div>
+	    	<% end %>
+
+	    	<% if current_user %>
+	    		<ul class="nav pull-right">
+					<li class="dropdown" id="account-dropdown">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown">
+							<%= current_user.login %> <b class="caret"></b></a>
+
+
+							<!-- add back in class="dropdown-menu" to the <ul> tag here.
+								This makes it so you have to click, right now it's hover in that area -->
+						<ul class="dropdown-menu">
+							<li><%= link_to "Account", account_url %></li>
+							<li><%= link_to "Logout", logout_url %></li>
+							<!--<li class="divider"></li>-->
+						</ul>
+					</li>
+				</ul>
+			<% end %>
 
 	    </div>
 	  </div>
+	</div>
+
+	<div class="navbar navbar-fixed-bottom navbar-inverse center">
+		<div class="navbar-inner">
+	    	<div class="container">
+	    		<ul class="nav pull-right">
+	    			<li><%= link_to "Contact Us", contact_url %></li>
+	    			<li><%= link_to "About", about_url %></li>
+	    		</ul>
+	    	</div>
+	    </div>
 	</div>
 
 <%= yield %>

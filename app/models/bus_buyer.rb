@@ -6,6 +6,6 @@ class BusBuyer < ActiveRecord::Base
 	has_attached_file :profileImage, styles: {
 		thumb: '100x100>',
 		square: '200x200#',
-		medium: '300x300>'
-	}
+		medium: '300x300>'},
+		:default_style => :square
 end

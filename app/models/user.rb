@@ -35,5 +35,14 @@ class User < ActiveRecord::Base
   			return false
   		end
   	end
-  	
+
+    def get_logo_or_profile_image
+      if self.is_vendor
+        return self.bus_vendor.logo
+      elsif self.is_buyer
+        return self.bus_buyer.profileImage
+      else
+        return nil
+      end
+    end  	
 end

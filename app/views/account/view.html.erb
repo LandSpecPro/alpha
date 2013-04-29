@@ -6,9 +6,12 @@
 		<h3>Email: <%= @user.email %></h3>
 		<h3>User Type: <%= @user.userType %></h3>
 		<h3>Company Name: <%= @user.get_bus_name %></h3>
-
-
-
+		<% if @user.is_vendor %>
+			<h3>Logo:</h3>
+		<% elsif @user.is_buyer %>
+			<h3>Profile Image:</h3>
+		<% end %>
+		<%= image_tag @user.get_logo_or_profile_image.url %>
 	</div>
 
 

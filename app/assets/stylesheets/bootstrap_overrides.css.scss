@@ -3,13 +3,48 @@
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
-/*
+.center{
+	text-align: center;
+}
+
+/* COLORS TRIED
+ #537724
+ #5fbf6a
+*/
+/****** STYLES FOR NAVBAR AND NAVBAR-DROPDOWN PROPERTIES *******/
+/* Change background color of entire navbar */
 .navbar .navbar-inner {
 	background: none;
 	background-image: none;
-	background-color: #537724;
+	background-color: #4d9e57;
 }
-*/
+
+/* Change background color of dropdown menu items in navbar */
+.navbar .nav ul li {
+	background-color: #4d9e57;
+}
+
+/* Change background color of dropdown menu in navbar */
+.navbar .nav > li > ul {
+	background-color: #4d9e57;
+}
+
+/* Change color of links on hover in navbars */
+.navbar .nav > li > a:hover{
+	color: #d9d9d9;
+}
+
+/* Change color of links on hover in navbar dropdown menu. This color simply matches the
+   default for flatui until I can figure out how to override it. */
+.navbar .nav ul a:hover{
+	background-color: #0088cc;
+}
+
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{
+	border-top-color: white;
+	border-bottom-color: white;
+}
+
 #brand-image{
 	max-height: 32px;
 	margin-top: -8px;
@@ -17,10 +52,42 @@ body { padding-top: 60px; }
 	padding-right: 5px;
 }
 
-.center{
-	text-align: center;
+.pull-right .dropdown-menu:after {
+    left: auto;
+    right: 13px;
+}
+.pull-right .dropdown-menu {
+    left: auto;
+    right: 0;
 }
 
 .inline{
 	display:inline-block;
 }
+
+.navbar .nav ul{
+	width: 0;
+}
+
+.dropdown-menu{
+	margin-top: 0;
+}
+.dropdown-menu .divider {
+	margin: 0;
+	margin-bottom: 5px;
+	height: 0;
+	border-bottom: 2px solid white;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+	display: inherit;
+}
+
+/* Removes caret that appears above dropdown list */
+.navbar .nav > li > .dropdown-menu:after{
+	content: none;
+}
+.navbar .nav > li > .dropdown-menu:before{
+	content: none;
+}
+/*********************************END NAVBAR STYLES********************************/
