@@ -11,9 +11,20 @@
 		<% elsif @user.is_buyer %>
 			<h3>Profile Image:</h3>
 		<% end %>
-		<%= image_tag @user.get_logo_or_profile_image.url %>
+		<%= image_tag @user.get_logo.url %>
 	</div>
 
+
+
+	<!-- Remove this later, but it is a good example -->
+	<h3><%= link_to "Search for cats", account_cat_url %></h3>
+	<h3><%= link_to "Search for:", account_search_url %> 
+		<%= text_field_tag 'search'%></h3>
+	<% @user.search_logs.each do |s| %>
+		<p><%= s.searchTerm %></p>
+	<% end %>
+
+	<!-- REMOVE THIS LATER -->
 
 
 </div>

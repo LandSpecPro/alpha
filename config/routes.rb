@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+  get "profile/edit"
+
+  get "profile/view"
+
   # Root application page
   root :to => 'home#index'
 
@@ -8,6 +12,7 @@ LspAlpha::Application.routes.draw do
   resources :users do
     resources :bus_vendors
     resources :bus_buyers
+    resources :search_logs
   end
 
   # For home controller
@@ -24,6 +29,9 @@ LspAlpha::Application.routes.draw do
   match "account" => 'account#view'
   match "account/view" => 'account#view'
   match "account/edit" => 'account#edit'
+
+  match "account/cat" => 'account#search_cat'
+  match "account/search" => 'account#search'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
