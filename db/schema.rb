@@ -46,9 +46,10 @@ ActiveRecord::Schema.define(:version => 20130429021639) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "login",                                  :null => false
     t.string   "email",                                  :null => false
-    t.string   "userType",          :default => "buyer", :null => false
     t.string   "crypted_password",                       :null => false
     t.string   "password_salt",                          :null => false
     t.string   "persistence_token",                      :null => false
@@ -58,8 +59,7 @@ ActiveRecord::Schema.define(:version => 20130429021639) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.string   "userType",          :default => "buyer", :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
   end

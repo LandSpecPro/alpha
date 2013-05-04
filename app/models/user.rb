@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
 	attr_accessible :login, :email, :password, :password_confirmation, :userType, :bus_vendor_attributes, :bus_buyer_attributes
 
-	has_one :bus_vendor
+	has_one :bus_vendor, :dependent => :destroy
 	accepts_nested_attributes_for :bus_vendor
-	has_one :bus_buyer
+	has_one :bus_buyer, :dependent => :destroy
 	accepts_nested_attributes_for :bus_buyer
 
   	acts_as_authentic do |c|
