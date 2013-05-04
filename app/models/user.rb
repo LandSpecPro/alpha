@@ -1,48 +1,57 @@
 class User < ActiveRecord::Base
-	attr_accessible :login, :email, :password, :password_confirmation, :userType, :bus_vendor_attributes, :bus_buyer_attributes
+	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes
 
 	has_one :bus_vendor, :dependent => :destroy
 	accepts_nested_attributes_for :bus_vendor
 	has_one :bus_buyer, :dependent => :destroy
 	accepts_nested_attributes_for :bus_buyer
+	has_many :search_logs
+	accepts_nested_attributes_for :search_logs
 
-  	acts_as_authentic do |c|
-  		# Configuration options go here
-  	end
+  # This method associates the attribute ":profileImage" with a file attachment
+  has_attached_file :profileImage, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'},
+    :default_style => :square
 
-  	def get_bus_name
-  		if self.is_vendor
-  			return self.bus_vendor.busName
-  		elsif self.is_buyer
-  			return self.bus_buyer.busName
-  		else
-  			return nil
-  		end
-  	end
+	acts_as_authentic do |c|
+		# Configuration options go here
+	end
 
-  	def is_vendor
-  		if self.userType == STRING_VENDOR
-  			return true
-  		else
-  			return false
-  		end
-  	end
+	def get_bus_name
+		if self.is_vendor
+			return self.bus_vendor.busName
+		elsif self.is_buyer
+			return self.bus_buyer.busName
+		else
+			return nil
+		end
+	end
 
-  	def is_buyer
-  		if self.userType == STRING_BUYER
-  			return true
-  		else
-  			return false
-  		end
-  	end
+	def is_vendor
+		if self.userType == STRING_VENDOR
+			return true
+		else
+			return false
+		end
+	end
 
-    def get_logo_or_profile_image
-      if self.is_vendor
-        return self.bus_vendor.logo
-      elsif self.is_buyer
-        return self.bus_buyer.profileImage
-      else
-        return nil
-      end
-    end  	
+	def is_buyer
+		if self.userType == STRING_BUYER
+			return true
+		else
+			return false
+		end
+	end
+
+  def get_logo
+    if self.is_vendor
+      return self.bus_vendor.logo
+    elsif self.is_buyer
+      return self.bus_buyer.logo
+    else
+      return nil
+    end
+  end  	
 end
