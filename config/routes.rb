@@ -1,14 +1,8 @@
 LspAlpha::Application.routes.draw do
 
-  get "location/new"
-
-  get "location/create"
-
   get "location/edit"
 
-  get "location/show"
-
-  get "location/update"
+  get "locations/show"
 
   get "location/search"
 
@@ -18,13 +12,9 @@ LspAlpha::Application.routes.draw do
 
   get "product/new"
 
-  get "product/create"
-
   get "product/edit"
 
   get "product/show"
-
-  get "product/update"
 
   get "product/search"
 
@@ -36,18 +26,15 @@ LspAlpha::Application.routes.draw do
 
   get "profile/view"
 
+  match "business/locations/new" => 'locations#new'
+
   # Root application page
   root :to => 'home#index'
 
   # Resource routes for models
   resources :user_sessions
   resources :users do
-    resources :bus_vendors do
-      resources :locations do
-        resources :featured_items
-        resources :contacts
-      end
-    end
+    resources :bus_vendors
     resources :bus_buyers
     resources :search_logs
     resources :fav_locations
@@ -56,6 +43,12 @@ LspAlpha::Application.routes.draw do
   resources :products do
     resources :product_images
   end
+  resources :locations
+
+#  resources :locations do
+#    resources :featured_items
+#    resources :contacts
+#  end
 
   resources :product_categories
 

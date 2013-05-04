@@ -1,0 +1,142 @@
+<div class="container center">
+
+	<%= form_for @location, :html => {:class => 'form-horizontal center inline'} do |f| %>
+		<h1>Add a new location</h1>
+
+		<!-- Display error messages as alerts -->
+		<% @location.errors.full_messages.each do |msg| %>
+			<div class="alert alert-error">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Error! </strong> <%= msg %>
+			</div>
+		<% end %>
+
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Location Name*" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :locName %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Primary Phone" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :primaryPhone %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Secondary Phone" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :secondaryPhone %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Fax" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :fax %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Address 1" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :address1 %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Address 2" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :address2 %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "City" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :city %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "State" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :state %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Zip Code" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :zip %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Primary Email" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :primaryEmail %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Secondary Email" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :secondaryEmail %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Website" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :websiteLink %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Facebook Link" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :facebookLink %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Twitter Link" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :twitterLink %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Google+ Link" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :googleLink %>
+			</div>
+		</div>		
+		
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit "Submit", class: "btn btn-primary" %>
+			</div>
+		</div>
+
+	<% end %>
+</div>

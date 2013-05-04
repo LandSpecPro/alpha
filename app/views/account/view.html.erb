@@ -18,9 +18,11 @@
 	<div class="center">
 		<br/><br/>
 		<!-- Remove this later, but it is a good example -->
-		<h3><%= link_to "Add a new location", account_location_new_url %></h3>
-		<form action = "account/search" >
-			<input type="text" name="searchfor"> <input type="submit" value="Search" class="btn btn-primary"/>
+		<% if @user.is_vendor %>
+			<h3><%= link_to "Add a new location", business_locations_new_url %></h3>
+		<% end %>
+		<form action = <%= account_search_url %> >
+			<input type="text" name="searchfor"> <button type="submit" class="btn btn-primary">Search</button>
 		</form>
 		<br/>
 		<h3>Search Log:</h3>
@@ -58,4 +60,5 @@
 					<td><%= l.secondaryEmail %></td>
 				</tr>
 			<% end %>
+		</table>
 </div>
