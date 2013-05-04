@@ -8,13 +8,9 @@ class CreateSearchLogs < ActiveRecord::Migration
 		t.timestamps
     end
 
-  	add_column :users, :search_log_id, :integer
-
   end
 
   def down
-
-  	remove_column :users, :search_log_id, :integer
 
   	drop_table :search_logs
 

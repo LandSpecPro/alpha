@@ -15,16 +15,47 @@
 	</div>
 
 
-
-	<!-- Remove this later, but it is a good example -->
-	<h3><%= link_to "Search for cats", account_cat_url %></h3>
-	<h3><%= link_to "Search for:", account_search_url %> 
-		<%= text_field_tag 'search'%></h3>
-	<% @user.search_logs.each do |s| %>
-		<p><%= s.searchTerm %></p>
-	<% end %>
-
-	<!-- REMOVE THIS LATER -->
-
-
+	<div class="center">
+		<br/><br/>
+		<!-- Remove this later, but it is a good example -->
+		<h3><%= link_to "Add a new location", account_location_new_url %></h3>
+		<form action = "account/search" >
+			<input type="text" name="searchfor"> <input type="submit" value="Search" class="btn btn-primary"/>
+		</form>
+		<br/>
+		<h3>Search Log:</h3>
+		<% @user.search_logs.each do |s| %>
+			<p><%= s.searchTerm %></p>
+		<% end %>
+		<br/>
+		<h3>Locations:</h3>
+		<table border="1">
+			<tr>
+				<th>Location Name</th>
+				<th>Primary Phone</th>
+				<th>Secondary Phone</th>
+				<th>Fax</th>
+				<th>Address 1</th>
+				<th>Address 2</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zip</th>
+				<th>Primary Email</th>
+				<th>Secondary Email</th>
+			</tr>
+			<% @user.bus_vendor.locations.each do |l| %>
+				<tr>
+					<td><%= l.locName %></td>
+					<td><%= l.primaryPhone %></td>
+					<td><%= l.secondaryPhone %></td>
+					<td><%= l.fax %></td>
+					<td><%= l.address1 %></td>
+					<td><%= l.address2 %></td>
+					<td><%= l.city %></td>
+					<td><%= l.state %></td>
+					<td><%= l.zip %></td>
+					<td><%= l.primaryEmail %></td>
+					<td><%= l.secondaryEmail %></td>
+				</tr>
+			<% end %>
 </div>

@@ -1,5 +1,37 @@
 LspAlpha::Application.routes.draw do
 
+  get "location/new"
+
+  get "location/create"
+
+  get "location/edit"
+
+  get "location/show"
+
+  get "location/update"
+
+  get "location/search"
+
+  get "location/browse"
+
+  get "location/favorite"
+
+  get "product/new"
+
+  get "product/create"
+
+  get "product/edit"
+
+  get "product/show"
+
+  get "product/update"
+
+  get "product/search"
+
+  get "product/browse"
+
+  get "product/favorite"
+
   get "profile/edit"
 
   get "profile/view"
@@ -10,10 +42,22 @@ LspAlpha::Application.routes.draw do
   # Resource routes for models
   resources :user_sessions
   resources :users do
-    resources :bus_vendors
+    resources :bus_vendors do
+      resources :locations do
+        resources :featured_items
+        resources :contacts
+      end
+    end
     resources :bus_buyers
     resources :search_logs
+    resources :fav_locations
+    resources :fav_products
   end
+  resources :products do
+    resources :product_images
+  end
+
+  resources :product_categories
 
   # For home controller
   match "home" => 'home#index'
@@ -30,8 +74,8 @@ LspAlpha::Application.routes.draw do
   match "account/view" => 'account#view'
   match "account/edit" => 'account#edit'
 
-  match "account/cat" => 'account#search_cat'
   match "account/search" => 'account#search'
+  match "account/location/new" => 'account#newloc'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
