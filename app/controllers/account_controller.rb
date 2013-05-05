@@ -9,18 +9,9 @@ class AccountController < ApplicationController
 	def edit
 	end
 
-	def search_cat
-		@user = current_user
-		@user.search_logs << SearchLog.create(:searchTerm => "Cats")
-		@user.save
-
-		redirect_to account_view_url
-	end
-
 	def search
 		@user = current_user
-		@searchTerm = params[:searchfor]
-		@user.search_logs << SearchLog.create(@searchTerm)
+		@user.search_logs << SearchLog.create(:searchTerm => params[:searchfor])
 		@user.save
 
 		redirect_to account_view_url

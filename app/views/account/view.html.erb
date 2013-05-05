@@ -14,17 +14,20 @@
 		<%= image_tag @user.get_logo.url %>
 	</div>
 
-
-
-	<!-- Remove this later, but it is a good example -->
-	<h3><%= link_to "Search for cats", account_cat_url %></h3>
-	<h3><%= link_to "Search for:", account_search_url %> 
-		<%= text_field_tag 'searchfor'%></h3>
-	<% @user.search_logs.each do |s| %>
-		<p><%= s.searchTerm %></p>
-	<% end %>
-
-	<!-- REMOVE THIS LATER -->
-
-
+	<div class="center">
+		<br/><br/>
+		<!-- Remove this later, but it is a good example -->
+		<% if @user.is_vendor %>
+			<h3><%= link_to "Add a new location", business_vendor_locations_new_url %></h3>
+		<% end %>
+		<form action = <%= account_search_url %> >
+			<input type="text" name="searchfor"> <button type="submit" class="btn btn-primary">Search</button>
+		</form>
+		<br/>
+		<h3>Search Log:</h3>
+		<% @user.search_logs.each do |s| %>
+			<p><%= s.searchTerm %></p>
+		<% end %>
+		<br/>
+	</div>
 </div>

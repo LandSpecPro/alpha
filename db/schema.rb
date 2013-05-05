@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503035025) do
+ActiveRecord::Schema.define(:version => 20130504195752) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20130503035025) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "busType"
+    t.string   "busPhone"
+    t.string   "busFax"
+    t.string   "busContact"
+    t.string   "busEmail"
+    t.string   "busWebsite"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
   end
 
   create_table "bus_vendors", :force => true do |t|
@@ -33,6 +44,93 @@ ActiveRecord::Schema.define(:version => 20130503035025) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "user_id"
+    t.string   "busType"
+    t.string   "busPhone"
+    t.string   "busFax"
+    t.string   "busContact"
+    t.string   "busEmail"
+    t.string   "busWebsite"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "location_id",    :null => false
+    t.string   "firstName",      :null => false
+    t.string   "lastName"
+    t.string   "primaryPhone"
+    t.string   "secondaryPhone"
+    t.string   "fax"
+    t.string   "email"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "fav_locations", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "location_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "fav_products", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "product_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "featured_items", :force => true do |t|
+    t.integer  "location_id",      :null => false
+    t.integer  "product_id",       :null => false
+    t.integer  "product_image_id", :null => false
+    t.text     "description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "bus_vendor_id",  :null => false
+    t.string   "locName",        :null => false
+    t.string   "primaryPhone"
+    t.string   "secondaryPhone"
+    t.string   "fax"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "primaryEmail"
+    t.string   "secondaryEmail"
+    t.string   "websiteLink"
+    t.string   "facebookLink"
+    t.string   "twitterLink"
+    t.string   "googleLink"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "product_categories", :force => true do |t|
+    t.string   "category"
+    t.string   "parentCategory"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "product_images", :force => true do |t|
+    t.integer  "product_id",         :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "commonName", :null => false
+    t.string   "latinName"
+    t.string   "altName"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "search_logs", :force => true do |t|
@@ -73,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20130503035025) do
     t.string   "profileImage_content_type"
     t.integer  "profileImage_file_size"
     t.datetime "profileImage_updated_at"
-    t.integer  "search_log_id"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

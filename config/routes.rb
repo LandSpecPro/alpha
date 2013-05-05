@@ -1,5 +1,27 @@
 LspAlpha::Application.routes.draw do
 
+  get "location/edit"
+
+  get "locations/show"
+
+  get "location/search"
+
+  get "location/browse"
+
+  get "location/favorite"
+
+  get "product/new"
+
+  get "product/edit"
+
+  get "product/show"
+
+  get "product/search"
+
+  get "product/browse"
+
+  get "product/favorite"
+
   get "profile/edit"
 
   get "profile/view"
@@ -13,7 +35,20 @@ LspAlpha::Application.routes.draw do
     resources :bus_vendors
     resources :bus_buyers
     resources :search_logs
+    resources :fav_locations
+    resources :fav_products
   end
+  resources :products do
+    resources :product_images
+  end
+  resources :locations
+
+#  resources :locations do
+#    resources :featured_items
+#    resources :contacts
+#  end
+
+  resources :product_categories
 
   # For home controller
   match "home" => 'home#index'
@@ -30,13 +65,14 @@ LspAlpha::Application.routes.draw do
   match "account/view" => 'account#view'
   match "account/edit" => 'account#edit'
 
-  match "account/cat" => 'account#search_cat'
   match "account/search" => 'account#search'
+  match "account/location/new" => 'account#newloc'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
   match "business/vendor/account" => 'account#view'
+  match "business/vendor/manage" => 'bus_vendors#manage'
   match "business/vendor/account/view" => 'account#view'
   #match "business/vendor/profile/edit" => 'bus_vendors#profile_edit'
   match "business/vendor/account/edit" => 'account#edit'
@@ -45,8 +81,12 @@ LspAlpha::Application.routes.draw do
   match "business/buyer/show" => 'bus_buyers#show'
   match "business/buyer/new" => 'bus_buyers#new'
   match "business/buyer/account" => 'account#view'
+  match "business/buyer/manage" => 'bus_buyers#manage'
   match "business/buyer/account/view" => 'account#view'
   match "business/buyer/account/edit" => 'account#edit'
+
+  # Routes for locations
+  match "business/vendor/locations/new" => 'locations#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

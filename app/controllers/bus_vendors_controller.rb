@@ -26,6 +26,10 @@ class BusVendorsController < ApplicationController
 	    end
 	end
 
+	def manage
+
+	end
+
 	def show
 		@vendors = BusVendor.all
 	end

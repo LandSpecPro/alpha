@@ -26,6 +26,10 @@ class BusBuyersController < ApplicationController
 	    end
 	end
 
+	def manage
+
+	end
+
 	def show
 		@buyers = BusBuyer.all
 	end
