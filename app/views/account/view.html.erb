@@ -19,7 +19,7 @@
 	<!-- Remove this later, but it is a good example -->
 	<h3><%= link_to "Search for cats", account_cat_url %></h3>
 	<h3><%= link_to "Search for:", account_search_url %> 
-		<%= text_field_tag 'search'%></h3>
+		<%= text_field_tag 'searchfor'%></h3>
 	<% @user.search_logs.each do |s| %>
 		<p><%= s.searchTerm %></p>
 	<% end %>

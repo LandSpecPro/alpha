@@ -19,7 +19,7 @@ class AccountController < ApplicationController
 
 	def search
 		@user = current_user
-		@searchTerm = params[:search]
+		@searchTerm = params[:searchfor]
 		@user.search_logs << SearchLog.create(@searchTerm)
 		@user.save
 
