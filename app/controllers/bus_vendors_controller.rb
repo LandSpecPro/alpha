@@ -1,7 +1,7 @@
 class BusVendorsController < ApplicationController
 	before_filter :require_user
 	before_filter :require_user_is_vendor
-	before_filter :require_business, :only => [:show]
+	before_filter :require_business, :only => [:show, :manage]
 	before_filter :require_no_business, :only => [:new, :create]
 
 	def new
@@ -27,19 +27,18 @@ class BusVendorsController < ApplicationController
 	end
 
 	def manage
-
+		@user = current_user
+		@view = params[:view]
+		@usertype = "N/A"
+		if @user.is_vendor
+			@usertype = "Vendor"
+		elsif @user.is_buyer
+			@usertype = "Buyer"
+		end
 	end
 
 	def show
 		@vendors = BusVendor.all
-	end
-
-	def account_edit
-
-	end
-
-	def profile_edit
-
 	end
 
 end

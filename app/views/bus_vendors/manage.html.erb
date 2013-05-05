@@ -1,8 +1,43 @@
-<div class="container center">
-	<h1>Manage Business</h1>
-	<br/>
-	<%= link_to "View Locations", business_vendor_manage_url %>
-	<%= link_to "Manage Locations", business_vendor_manage_url %>
+<div class="container">
+	<div class="row-fluid">
+		<div class="span10 offset2">
+			<% if @view == 'manage_account' %>
+				<h1 class="center">Manage Account</h1>
+			<% elsif @view == 'manage_locations' %>
+				<h1 class="center">Manage Locations</h1>
+			<% elsif @view == 'view_locations' %>
+				<h1 class="center">View Locations</h1>
+			<% else %>
+				<h1 class="center"><%= @user.bus_vendor.busName %> Dashboard</h1>
+			<% end %>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span2">
+			<div class="sidebar">
+				<%= link_to "View Locations", business_vendor_locations_view_url, class: "sidebar-link" %>
+				<%= link_to "Manage Locations", business_vendor_locations_manage_url, class: "sidebar-link" %>
+				<%= link_to "Manage Account", business_vendor_account_manage_url, class: "sidebar-link" %>
+			</div>
+		</div>
+
+		<div class="span10">
+			<div class="content">
+				<!-- This is where I would put logic that would just change this view? But probably not
+						just because there is a separate controller for locations and products and stuff -->
+				<% if @view == 'manage_account' %>
+					<%= render "account/manage" %>
+				<% elsif @view == 'view_locations' %>
+					<%= render "locations/view" %>
+				<% elsif @view == 'manage_locations' %>
+					<%= render "locations/manage" %>
+				<% else %>
+					<h3>CHOOSE A LINK!</h3>
+				<% end %>
+			</div>
+		</div>
+
+	</div>
 
 
 

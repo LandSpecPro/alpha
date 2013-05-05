@@ -71,19 +71,19 @@ LspAlpha::Application.routes.draw do
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
-  match "business/vendor/account" => 'account#view'
-  match "business/vendor/manage" => 'bus_vendors#manage'
-  match "business/vendor/account/view" => 'account#view'
-  #match "business/vendor/profile/edit" => 'bus_vendors#profile_edit'
-  match "business/vendor/account/edit" => 'account#edit'
+
+  match "business/vendor/dashboard" => 'bus_vendors#manage'
+  match "business/vendor/locations/view" => 'bus_vendors#manage', :view => 'view_locations'
+  match "business/vendor/locations/manage" => 'bus_vendors#manage', :view => 'manage_locations'
+  match "business/vendor/account/manage" => 'bus_vendors#manage', :view => 'manage_account'
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
   match "business/buyer/new" => 'bus_buyers#new'
-  match "business/buyer/account" => 'account#view'
   match "business/buyer/manage" => 'bus_buyers#manage'
-  match "business/buyer/account/view" => 'account#view'
-  match "business/buyer/account/edit" => 'account#edit'
+
+  match "business/buyer/dashboard" => 'bus_buyers#manage'
+  match "business/buyer/account/manage" => 'bus_buyers#manage', :view => 'manage_account'
 
   # Routes for locations
   match "business/vendor/locations/new" => 'locations#new'
