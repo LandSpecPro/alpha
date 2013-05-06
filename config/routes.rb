@@ -1,31 +1,5 @@
 LspAlpha::Application.routes.draw do
 
-  get "location/edit"
-
-  get "locations/show"
-
-  get "location/search"
-
-  get "location/browse"
-
-  get "location/favorite"
-
-  get "product/new"
-
-  get "product/edit"
-
-  get "product/show"
-
-  get "product/search"
-
-  get "product/browse"
-
-  get "product/favorite"
-
-  get "profile/edit"
-
-  get "profile/view"
-
   # Root application page
   root :to => 'home#index'
 
@@ -61,21 +35,20 @@ LspAlpha::Application.routes.draw do
   match "logout" => 'user_sessions#destroy'
 
   # For dealing with account once registered and logged in
-  match "account" => 'account#view'
-  match "account/view" => 'account#view'
-  match "account/edit" => 'account#edit'
-
-  match "account/search" => 'account#search'
-  match "account/location/new" => 'account#newloc'
+  match "account" => 'account#view' #REMOVE THIS LATER #################################
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
 
   match "business/vendor/dashboard" => 'bus_vendors#manage'
-  match "business/vendor/locations/view" => 'bus_vendors#manage', :view => 'view_locations'
-  match "business/vendor/locations/manage" => 'bus_vendors#manage', :view => 'manage_locations'
-  match "business/vendor/account/manage" => 'bus_vendors#manage', :view => 'manage_account'
+  match "business/vendor/locations/manage" => 'bus_vendors#manage_locations'
+  match "business/vendor/locations/new" => 'bus_vendors#new_location'
+  match "business/vendor/locations/new/error" => 'locations#create'
+  match "business/vendor/account/manage" => 'bus_vendors#manage_account'
+
+  match "business/vendor/locations/:id" => "locations#view"
+  match "business/vendor/locations/edit/:id" => "bus_vendors#edit_location"
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
@@ -83,10 +56,7 @@ LspAlpha::Application.routes.draw do
   match "business/buyer/manage" => 'bus_buyers#manage'
 
   match "business/buyer/dashboard" => 'bus_buyers#manage'
-  match "business/buyer/account/manage" => 'bus_buyers#manage', :view => 'manage_account'
-
-  # Routes for locations
-  match "business/vendor/locations/new" => 'locations#new'
+  match "business/buyer/account/manage" => 'bus_buyers#manage_account'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

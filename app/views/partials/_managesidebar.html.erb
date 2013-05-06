@@ -1,0 +1,23 @@
+<!-- Vendors Sidebar -->
+<% if @user.is_vendor %>
+	<div class="sidebar">
+		<%= link_to "Dashboard", business_vendor_dashboard_url, class: "sidebar-link" %>
+		<%= link_to "Manage Account", business_vendor_account_manage_url, class: "sidebar-link" %>
+		<%= link_to "Manage Locations", business_vendor_locations_manage_url, class: "sidebar-link" %>
+		<ul class="nav nav-list center" style="width:100%;">
+			<li class="divider" style="width:100%;"></li>
+		</ul>
+		<%= link_to "Add a new location", business_vendor_locations_new_url, class: "sidebar-link" %>
+		<% if @view == 'manage_locations' %>
+
+		<% end %>
+	</div>
+<% end %>
+
+<!-- Buyers Sidebar -->
+<% if @user.is_buyer %>
+	<div class="sidebar">
+		<%= link_to "Dashboard", business_buyer_dashboard_url, class: "sidebar-link" %>
+		<%= link_to "Manage Account", business_buyer_account_manage_url, class: "sidebar-link" %>
+	</div>
+<% end %>

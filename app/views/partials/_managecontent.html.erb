@@ -1,0 +1,31 @@
+<!-- Vendors Content -->
+<% if @user.is_vendor %>
+	<div class="content">
+		<!-- This is where I would put logic that would just change this view? But probably not
+				just because there is a separate controller for locations and products and stuff -->
+		<% if @view == 'manage_account' %>
+			<%= render "account/manage" %>
+		<% elsif @view == 'view_locations' %>
+			<%= render "locations/view" %>
+		<% elsif @view == 'manage_locations' %>
+			<%= render "locations/manage" %>
+		<% elsif @view == 'new_location' %>
+			<%= render "locations/new" %>
+		<% elsif @view == 'edit_location' %>
+			<%= render "locations/edit" %>
+		<% else %>
+			<h3>CHOOSE A LINK!</h3>
+		<% end %>
+	</div>
+<% end %>
+
+<!-- Buyers Content -->
+<% if @user.is_buyer %>
+	<div class="content">
+		<% if @view == 'manage_account' %>
+			<%= render "account/manage" %>
+		<% else %>
+			<h3>CHOOSE A LINK!</h3>
+		<% end %>
+	</div>
+<% end %>

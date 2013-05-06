@@ -1,0 +1,27 @@
+<!-- Vendor Headers -->
+<% if @user.is_vendor %>
+	<% if @view == 'manage_account' %>
+		<h1 class="center">Manage Account</h1>
+	<% elsif @view == 'manage_locations' %>
+		<h1 class="center">Manage Locations</h1>
+	<% elsif @view == 'view_locations' %>
+		<h1 class="center">View Locations</h1>
+	<% elsif @view == 'new_location' %>
+		<h1 class="center">Add New Location</h1>
+	<% elsif @view == 'edit_location' %>
+		<h1 class="center">Edit Location - <%= @location.locName %></h1>
+	<% else %>
+		<h1 class="center"><%= @user.bus_vendor.busName %> Dashboard</h1>
+	<% end %>
+<% end %>
+
+<!-- Buyer Headers -->
+<% if @user.is_buyer %>
+	<% if @view == 'manage_account' %>
+		<h1 class="center">Manage Account</h1>
+	<% elsif @view == 'SOMETHINGELSE' %> <!-- THIS IS WHERE OTHER STUFF GOES -->
+		<h1 class="center">OTHER THINGS!</h1>
+	<% else %>
+		<h1 class="center"><%= @user.login %> Dashboard</h1>
+	<% end %>
+<% end %>
