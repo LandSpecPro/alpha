@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   before_filter :require_user
   before_filter :require_business
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update]
+  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy]
 
   def create
     @location = Location.new(params[:location])
@@ -40,5 +40,20 @@ class LocationsController < ApplicationController
   end
 
   def view
+  end
+
+  def destroy
+    if current_user.bus_vendor.id != Location.find(params[:id]).bus_vendor_id
+      redirect_to business_vendor_locations_manage_url
+    else
+      @location = Location.find(params[:id])
+    end
+  end
+
+  def confirm_destroy
+    if current_user.bus_vendor.id == Location.find(params[:id]).bus_vendor_id
+      Location.destroy(params[:id])
+    end
+    redirect_to business_vendor_locations_manage_url
   end
 end

@@ -36,10 +36,13 @@ LspAlpha::Application.routes.draw do
 
   # For dealing with account once registered and logged in
   match "account" => 'account#view' #REMOVE THIS LATER #################################
+  match "account/edit/business/name" => 'home#index'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
+
+  match "business/dashboard" => 'users#dashboard'
 
   match "business/vendor/dashboard" => 'bus_vendors#manage'
   match "business/vendor/locations/manage" => 'bus_vendors#manage_locations'
@@ -49,6 +52,8 @@ LspAlpha::Application.routes.draw do
 
   match "business/vendor/locations/:id" => "locations#view"
   match "business/vendor/locations/edit/:id" => "bus_vendors#edit_location"
+  match "business/vendor/locations/delete/:id" => "locations#destroy"
+  match "business/vendor/locations/destroy/confirm/:id" => "locations#confirm_destroy"
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
