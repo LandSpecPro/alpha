@@ -34,7 +34,11 @@
 							<!-- add back in class="dropdown-menu" to the <ul> tag here.
 								This makes it so you have to click, right now it's hover in that area -->
 						<ul class="dropdown-menu">
-							<li><%= link_to "Account", account_url %></li>
+							<% if current_user.is_vendor %>
+								<li><%= link_to "Dashboard", business_vendor_dashboard_url %></li>
+							<% elsif current_user.is_buyer %>
+								<li><%= link_to "Dashboard", business_buyer_dashboard_url %></li>
+							<% end %>
 							<li><%= link_to "Logout", logout_url %></li>
 							<!--<li class="divider"></li>-->
 						</ul>

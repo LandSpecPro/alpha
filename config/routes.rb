@@ -1,7 +1,5 @@
 LspAlpha::Application.routes.draw do
 
-  match "business/locations/new" => 'locations#new'
-
   # Root application page
   root :to => 'home#index'
 
@@ -37,27 +35,33 @@ LspAlpha::Application.routes.draw do
   match "logout" => 'user_sessions#destroy'
 
   # For dealing with account once registered and logged in
-  match "account" => 'account#view'
-  match "account/view" => 'account#view'
-  match "account/edit" => 'account#edit'
-
-  match "account/search" => 'account#search'
-  match "account/location/new" => 'account#newloc'
+  match "account" => 'account#view' #REMOVE THIS LATER #################################
+  match "account/edit/business/name" => 'home#index'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
-  match "business/vendor/account" => 'account#view'
-  match "business/vendor/account/view" => 'account#view'
-  #match "business/vendor/profile/edit" => 'bus_vendors#profile_edit'
-  match "business/vendor/account/edit" => 'account#edit'
+
+  match "business/dashboard" => 'users#dashboard'
+
+  match "business/vendor/dashboard" => 'bus_vendors#manage'
+  match "business/vendor/locations/manage" => 'bus_vendors#manage_locations'
+  match "business/vendor/locations/new" => 'bus_vendors#new_location'
+  match "business/vendor/locations/new/error" => 'locations#create'
+  match "business/vendor/account/manage" => 'bus_vendors#manage_account'
+
+  match "business/vendor/locations/:id" => "locations#view"
+  match "business/vendor/locations/edit/:id" => "bus_vendors#edit_location"
+  match "business/vendor/locations/delete/:id" => "locations#destroy"
+  match "business/vendor/locations/destroy/confirm/:id" => "locations#confirm_destroy"
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
   match "business/buyer/new" => 'bus_buyers#new'
-  match "business/buyer/account" => 'account#view'
-  match "business/buyer/account/view" => 'account#view'
-  match "business/buyer/account/edit" => 'account#edit'
+  match "business/buyer/manage" => 'bus_buyers#manage'
+
+  match "business/buyer/dashboard" => 'bus_buyers#manage'
+  match "business/buyer/account/manage" => 'bus_buyers#manage_account'
 
   # Routes for locations
   match "business/locations/show" => 'locations#show'

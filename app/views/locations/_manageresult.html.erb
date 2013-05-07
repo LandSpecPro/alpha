@@ -1,0 +1,20 @@
+<div class="span12">
+	<div class="result-location">
+		<div class="row-fluid">
+			<div class="span2">
+				<%= image_tag @user.get_logo.url(:thumb), :class => 'result-location-img' %>
+			</div>
+			<div class="span4">
+				<h3><a class="result-location-name" href="#">Location Name</a></h3>
+				<p>Street Address 123<br/>Apartment e4<br/>Atlanta, GA 30309</p>
+			</div>
+			<div class="span3">
+				<p>jmatt306@gmail.com<br/>P: 770-757-7583<br/>F: 1-800-899-0099</p>
+			</div>
+			<div class="span3">
+				<%= link_to image_tag(get_static_map_from_address("500 northside circle nw atlanta ga 30309")), get_map_link_from_address("500 northside circle nw atlanta, ga 30309"), :target => "_blank" %>
+			</div>
+		</div>
+	</div>
+
+</div>

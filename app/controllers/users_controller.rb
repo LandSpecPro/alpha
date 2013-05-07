@@ -42,4 +42,13 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+
+  def dashboard
+    @user = current_user
+    if @user.is_vendor
+      redirect_to business_vendor_dashboard_url
+    elsif @user.is_buyer
+      redirect_to business_buyer_dashboard_url
+    end
+  end
 end

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   # This method associates the attribute ":profileImage" with a file attachment
   has_attached_file :profileImage, styles: {
+  	smthumb: '50x50#',
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'},

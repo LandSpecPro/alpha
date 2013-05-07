@@ -1,0 +1,7 @@
+<div class="container">
+	<div class="center">
+		<h2>Are you sure you want to delete <%= @location.locName %>?</h2>
+		<%= link_to "Yes", {:action => :confirm_destroy}, :id => @location.id, :class => 'btn btn-primary' %>
+		<%= link_to "No", business_vendor_locations_manage_url, :class => 'btn btn-primary' %>
+	</div>
+</div>

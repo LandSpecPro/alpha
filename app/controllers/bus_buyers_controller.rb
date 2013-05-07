@@ -1,8 +1,7 @@
 class BusBuyersController < ApplicationController
 	before_filter :require_user
 	before_filter :require_user_is_buyer
-	before_filter :require_business, :only => [:show]
-	before_filter :require_no_business, :only => [:new, :create]
+	before_filter :require_business, :except => [:new, :create]
 
 	def new
 		@no_company = params[:no_company]
@@ -19,11 +18,27 @@ class BusBuyersController < ApplicationController
 
 	    if @busbuyer.save
 	      flash[:notice] = "Account registered!"
-	      redirect_to account_url
+	      redirect_to business_buyer_dashboard_url
 	    else
 	      flash[:notice] = "Not successful!"
 	      render :action => :new
 	    end
+	end
+
+	def manage
+		@user = current_user
+	end
+
+	def manage_account
+		@user = current_user
+		@view = 'manage_account'
+		@usertype = "N/A"
+		if @user.is_vendor
+			@usertype = "Vendor"
+		elsif @user.is_buyer
+			@usertype = "Buyer"
+		end
+		render 'manage'
 	end
 
 	def show
