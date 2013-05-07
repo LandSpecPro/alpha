@@ -30,35 +30,4 @@
 			<p><%= s.searchTerm %></p>
 		<% end %>
 		<br/>
-		<h3>Locations:</h3>
-		<table border="1">
-			<tr>
-				<th>Location Name</th>
-				<th>Primary Phone</th>
-				<th>Secondary Phone</th>
-				<th>Fax</th>
-				<th>Address 1</th>
-				<th>Address 2</th>
-				<th>City</th>
-				<th>State</th>
-				<th>Zip</th>
-				<th>Primary Email</th>
-				<th>Secondary Email</th>
-			</tr>
-			<% @user.bus_vendor.locations.each do |l| %>
-				<tr>
-					<td><%= l.locName %></td>
-					<td><%= l.primaryPhone %></td>
-					<td><%= l.secondaryPhone %></td>
-					<td><%= l.fax %></td>
-					<td><%= l.address1 %></td>
-					<td><%= l.address2 %></td>
-					<td><%= l.city %></td>
-					<td><%= l.state %></td>
-					<td><%= l.zip %></td>
-					<td><%= l.primaryEmail %></td>
-					<td><%= l.secondaryEmail %></td>
-				</tr>
-			<% end %>
-		</table>
 </div>

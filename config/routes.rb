@@ -1,31 +1,5 @@
 LspAlpha::Application.routes.draw do
 
-  get "location/edit"
-
-  get "locations/show"
-
-  get "location/search"
-
-  get "location/browse"
-
-  get "location/favorite"
-
-  get "product/new"
-
-  get "product/edit"
-
-  get "product/show"
-
-  get "product/search"
-
-  get "product/browse"
-
-  get "product/favorite"
-
-  get "profile/edit"
-
-  get "profile/view"
-
   match "business/locations/new" => 'locations#new'
 
   # Root application page
@@ -84,6 +58,9 @@ LspAlpha::Application.routes.draw do
   match "business/buyer/account" => 'account#view'
   match "business/buyer/account/view" => 'account#view'
   match "business/buyer/account/edit" => 'account#edit'
+
+  # Routes for locations
+  match "business/locations/show" => 'locations#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

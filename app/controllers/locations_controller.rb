@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
     if @location.save
       flash[:notice] = "New Location Added!"
 
-      redirect_to locations_show_url(:location_id => @location.id)
+      redirect_to business_locations_show_url(:location_id => @location.id)
 
     else
       flash[:notice] = "Not successful!"
@@ -25,6 +25,7 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @location = Location.find(params[:location_id])
   end
 
