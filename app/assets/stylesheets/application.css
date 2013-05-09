@@ -9,5 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require 'theme-imports'
+ *= require 'theme/jquery-ui-1.10.2.custom.min'
+ *= require 'theme/ace.min'
+ *= require 'theme/ace-responsive.min'
+ *= require 'theme/ace-skins.min'
  *= require_tree .
  */

@@ -7,19 +7,19 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'bootstrap-sass'
-gem "flat-ui-rails"
 gem "authlogic"
 gem 'dynamic_form'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro' #setting environment variables
+gem 'font-awesome-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
+gem 'sass-rails',   '~> 3.2.3'
+ gem 'coffee-rails', '~> 3.2.1'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 

@@ -1,7 +1,5 @@
-<div class="row-fluid">
-
-	
-	<div class="span12">
+<%= render 'layouts/sidebar' %>
+<div class="span12">
 		<% if @user.bus_vendor.locations.count == 0 %>
 			<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
 		<% else %>
@@ -53,5 +51,4 @@
 			<% end %> <!-- END DO-EACH FOR LOCATIONS -->
 		<% end %> <!-- END IF-ELSE IF BUSINESS HAS LOCATIONS -->
 	</div> <!-- END SPAN12 -->
-
-</div>
+	<%= render 'layouts/sidebarend' %>

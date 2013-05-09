@@ -9,4 +9,6 @@ class BusBuyer < ActiveRecord::Base
 		square: '200x200#',
 		medium: '300x300>'},
 		:default_style => :square
+
+	validates_presence_of :busName, :on => :create, :message => "You must provide a valid business to use LandSpec!"
 end

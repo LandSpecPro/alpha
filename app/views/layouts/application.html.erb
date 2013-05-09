@@ -2,65 +2,57 @@
 <html>
 <head>
   <title>LandSpec Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-	<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar navbar-inverse">
+		
 	  <div class="navbar-inner">
-	    <div class="container">
-	    	<ul class="nav">
-	    		<li>
-	    			<a class="brand" href=<%= root_url %>><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</a>
-	    		</li>
-	    	</ul>
-
-    		<% if current_user.nil? %>
-	    		<ul class="nav pull-right">
-	    			<li><%= link_to "Register", register_url %></li>
-	    			<li><%= link_to "Login", login_url %></li>
-	    		</ul>
-	    	<% end %>
-
-	    	<% if current_user %>
-	    		<ul class="nav pull-right">
-					<li class="dropdown" id="account-dropdown">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">
-							<%= current_user.login %> <b class="caret"></b></a>
+	   <div class="container-fluid">
 
 
-							<!-- add back in class="dropdown-menu" to the <ul> tag here.
-								This makes it so you have to click, right now it's hover in that area -->
-						<ul class="dropdown-menu">
-							<% if current_user.is_vendor %>
-								<li><%= link_to "Dashboard", business_vendor_dashboard_url %></li>
-							<% elsif current_user.is_buyer %>
-								<li><%= link_to "Dashboard", business_buyer_dashboard_url %></li>
-							<% end %>
-							<li><%= link_to "Logout", logout_url %></li>
-							<!--<li class="divider"></li>-->
+		  <a class="brand" href=<%= home_url %>><small><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</small> </a>
+		  <ul class="nav ace-nav pull-right">
+				<% if current_user %>
+					<li class="green user-profile">
+						<a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
+							<span id="user_info">
+								
+								<small>Logged in as:</small>
+								<center>
+									<%= current_user.login %>
+								</center>
+							</span>
+							<i class="icon-caret-down"></i>
+						</a>
+						<ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+							<li><a href=<%= dashboard_url %>><i class="icon-dashboard"></i> Dashboard</a></li>
+							<li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
+							<li class="divider"></li>
+							<li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
 						</ul>
 					</li>
-				</ul>
-			<% end %>
+				<% else %>
+					<li class="green">
+						<%= link_to "Login", login_url %>
+					</li>
+					<li class="blue">
+						<%= link_to "Register", register_url %>
+					</li>
 
-	    </div>
-	  </div>
-	</div>
-<!--
-	<div class="navbar navbar-fixed-bottom navbar-inverse center">
-		<div class="navbar-inner">
-	    	<div class="container">
-	    		<ul class="nav pull-right">
-	    			<li><%= link_to "Contact Us", contact_url %></li>
-	    			<li><%= link_to "About", about_url %></li>
-	    		</ul>
-	    	</div>
-	    </div>
-	</div>
--->
+				<% end %>
+
+		  </ul><!--/.ace-nav-->
+
+	   </div><!--/.container-fluid-->
+	  </div><!--/.navbar-inner-->
+	</div><!--/.navbar-->
+
+	
 <%= yield %>
 
 </body>

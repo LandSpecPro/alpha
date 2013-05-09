@@ -1,2 +1,10 @@
-<h1>Location#edit</h1>
-<p>Find me in app/views/location/edit.html.erb</p>
+<%= render 'layouts/sidebar' %>
+
+
+<div class="center">
+	<h3><%= @location.locName %></h3>
+	<%= link_to "Delete Location",  '../delete/' + @location.id.to_s %>
+</div>
+
+
+<%= render 'layouts/sidebarend' %>
