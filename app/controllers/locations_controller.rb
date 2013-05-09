@@ -1,7 +1,12 @@
 class LocationsController < ApplicationController
+  include LocationHelper
   before_filter :require_user
   before_filter :require_business
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy]
+
+  def new
+    @location = Location.new
+  end
 
   def create
     @location = Location.new(params[:location])
@@ -10,21 +15,25 @@ class LocationsController < ApplicationController
       flash[:notice] = "New Location Added!"
 
       #redirect_to locations_show_url(:location_id => @location.id)
-      redirect_to business_vendor_locations_manage_url
+      redirect_to locations_manage_url
 
     else
       @user = current_user
       @view = 'new_location'
-      render 'bus_vendors/manage'
-      #render :controller => :bus_vendors, :action => :new_location
+      render :action => :new
     end
   end
 
-  def edit
+  def manage
+    @user = current_user
   end
 
-  def show
-    @location = Location.find(params[:location_id])
+  def edit
+    if vendor_location_id_matches
+      @location = Location.find(params[:id])
+    else
+      redirect_to locations_manage_url
+    end
   end
 
   def update
@@ -43,17 +52,20 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    if current_user.bus_vendor.id != Location.find(params[:id]).bus_vendor_id
-      redirect_to business_vendor_locations_manage_url
-    else
+    if vendor_location_id_matches
       @location = Location.find(params[:id])
+    else
+      redirect_to locations_manage_url
     end
   end
 
   def confirm_destroy
-    if current_user.bus_vendor.id == Location.find(params[:id]).bus_vendor_id
-      Location.destroy(params[:id])
+
+      if vendor_location_id_matches
+        Location.destroy(params[:id])
+      end
+
+      redirect_to locations_manage_url
     end
-    redirect_to business_vendor_locations_manage_url
-  end
+
 end

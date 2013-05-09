@@ -1,0 +1,23 @@
+<%= render 'layouts/sidebar' %>
+
+
+	<div class="span3 offset2">
+		<div class="item-view">Company:</div>
+		<div class="item-view">Username:</div>
+		<div class="item-view">Email:</div>
+		<div class="item-view">User Type:</div>
+	</div>
+
+	<div class="span3">
+		<input class="input-readonly" type="text" value=<%= @user.get_bus_name %> readonly/>
+		<input class="input-readonly" type="text" value=<%= @user.login %> readonly/>
+		<input class="input-readonly" type="text" value=<%= @user.email %> readonly/>
+		<input class="input-readonly" type="text" value=<%= @usertype %> readonly/>
+		
+	</div>
+
+	<div class="span6 offset2">
+		<div class="center"style="font-size:20px;">Logo: <%= image_tag @user.get_logo.url(:thumb) %> </div>
+	</div>
+
+<%= render 'layouts/sidebarend' %>

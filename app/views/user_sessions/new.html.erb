@@ -1,51 +1,82 @@
-<div class="container center">
- 	
-	
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+
+			<div class="login-container">
+
+				<div class="row-fluid">
+					<div class="center">
+						<h1>LandSpec Pro</h1>
+					</div>
+				</div>
+
+	<div class="space-6"></div>
+
+	<div class="row-fluid">
+		<div class="position-relative">
+
+			<div class="visible widget-box">
+				<div class="widget-header">
+					<h4 class="center">Login</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main" id="login-widget-main">
+
+						<%= form_for @user_session do |f| %>
+
+							<!-- Display a login error here if redirected because not logged in -->
+
+						 	<% if @login_error %>
+							 	<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error!</strong> You must be logged in to do that.
+								</div>
+							<% end %>
+
+							<!-- Display error messages as alerts -->
+							<% @user_session.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+							<fieldset>
+
+								<br/>
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :login, :class => 'span12', :placeholder => "Username" %>
+									<i class="icon-user"></i>
+								</span>
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
+									<i class="icon-lock"></i>
+								</span>
+								<br/>
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-primary"><i class="icon-key"></i> Login</button>
+									</div>
+									<div class="pull-left">
+										<br/>
+										<a href="#">Forgot username/password?</a>
+									</div>
+								</div>
+								<br/>
 
 
+							</fieldset>
 
-	<%= form_for @user_session, :html => {:class => 'form-horizontal center inline'} do |f| %>
+						<% end %>
 
-		<h1>Login</h1>
+					</div> <!-- widget-main -->
+				</div> <!-- widget-body -->
+			</div> <!-- widget-box -->
 
-		<!-- Display a login error here if redirected because not logged in -->
-	 	<% if @login_error %>
-		 	<div class="alert alert-error">
-			  <button type="button" class="close" data-dismiss="alert">&times;</button>
-			  <strong>Error!</strong> You must be logged in to do that.
-			</div>
-		<% end %>
-
-		<!-- Display error messages as alerts -->
-		<% @user_session.errors.full_messages.each do |msg| %>
-			<div class="alert alert-error">
-			  <button type="button" class="close" data-dismiss="alert">&times;</button>
-			  <strong>Error! </strong> <%= msg %>
-			</div>
-		<% end %>
-
-		<div class="control-group">
-			<div class="control-label">
-				<%= f.label "Username" %> 
-			</div>
-			<div class="controls">
-				<%= f.text_field :login %>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<div class="control-label">
-				<%= f.label "Password" %>
-			</div>
-			<div class="controls">
-				<%= f.password_field :password %>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<%= f.submit "Submit", class: "btn btn-primary" %>
-		</div>
-
-	<% end %>
-
-</div>
+		</div> <!-- position-relative -->
+	</div> <!-- row-fluid -->
+			</div> <!-- login-container -->
+		</div> <!-- span12 -->
+	</div> <!-- row-fluid -->
+</div> <!-- container-fluid -->

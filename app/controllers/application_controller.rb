@@ -82,6 +82,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def should_show_sidebar
+    if !current_user
+      return false
+    else
+      return true
+    end
+  end
+
   def store_location
   	session[:return_to] = request.url
   end
@@ -90,4 +98,5 @@ class ApplicationController < ActionController::Base
   	redirect_to(session[:return_to] || default)
   	session[:return_to] = nil
   end
+
 end

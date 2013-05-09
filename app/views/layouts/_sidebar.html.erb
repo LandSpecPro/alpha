@@ -1,0 +1,90 @@
+<div class="container-fluid" id="main-container">
+		<a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
+
+		<div id="sidebar">
+			
+			<!--
+			<div id="sidebar-shortcuts">
+				<div id="sidebar-shortcuts-large">
+					<button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
+					<button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
+					<button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
+					<button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
+				</div>
+				<div id="sidebar-shortcuts-mini">
+					<span class="btn btn-success"></span>
+					<span class="btn btn-info"></span>
+					<span class="btn btn-warning"></span>
+					<span class="btn btn-danger"></span>
+				</div>
+			</div><!-- #sidebar-shortcuts -->
+
+			<ul class="nav nav-list">
+
+				<li>
+					<a href=<%= dashboard_url %>>
+						<i class="icon-dashboard"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+
+				<li>
+					<a href=<%= account_url %>>
+						<i class="icon-cog"></i>
+						<span>Account</span>
+					</a>
+				</li>
+
+				<% if current_user.is_vendor %>
+
+					<li id="vendor-locations-dropdown">
+					  <a href="#" class="dropdown-toggle" >
+						<i class="icon-desktop"></i>
+						<span>Locations</span>
+						<b class="arrow icon-angle-down"></b>
+					  </a>
+					  <ul class="submenu">
+						<li><a href=<%= locations_manage_url %>><i class="icon-double-angle-right"></i> Manage</a></li>
+						<li><a href=<%= locations_new_url %>><i class="icon-double-angle-right"></i> New</a></li>
+					  </ul>
+					</li>
+
+				<% end %>
+
+			</ul><!--/.nav-list-->
+
+			<div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+
+
+		</div><!--/#sidebar-->
+
+	
+		<div id="main-content" class="clearfix">
+
+			<button class="btn btn-inverse btn-block" disabled><strong>Manage Account</strong></button>
+
+				<!--
+				<div id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li><i class="icon-home"></i> <a href="#">Home</a><span class="divider"><i class="icon-angle-right"></i></span></li>
+						<li><a href="#">Other Pages</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
+						<li class="active">Blank Page</li>
+					</ul>
+
+					<div id="nav-search">
+						<form class="form-search">
+								<span class="input-icon">
+									<input autocomplete="off" id="nav-search-input" type="text" class="input-small search-query" placeholder="Search ..." />
+									<i id="nav-search-icon" class="icon-search"></i>
+								</span>
+						</form>
+					</div>
+				</div>
+				-->
+
+
+				<div id="page-content" class="clearfix">
+
+					<div class="row-fluid">
+<!-- PAGE CONTENT BEGINS HERE -->
+<!-- PAGE CONTENT ENDS HERE -->

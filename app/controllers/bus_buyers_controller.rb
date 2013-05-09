@@ -29,27 +29,8 @@ class BusBuyersController < ApplicationController
 		@user = current_user
 	end
 
-	def manage_account
-		@user = current_user
-		@view = 'manage_account'
-		@usertype = "N/A"
-		if @user.is_vendor
-			@usertype = "Vendor"
-		elsif @user.is_buyer
-			@usertype = "Buyer"
-		end
-		render 'manage'
-	end
-
 	def show
 		@buyers = BusBuyer.all
 	end
 
-	def account_edit
-
-	end
-
-	def profile_edit
-
-	end
 end
