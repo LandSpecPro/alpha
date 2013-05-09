@@ -28,7 +28,11 @@
 					</a>
 				</li>
 
+			<% if controller.controller_name == 'account' %>
+				<li class="active">
+			<% else %>
 				<li>
+			<% end %>
 					<a href=<%= account_url %>>
 						<i class="icon-cog"></i>
 						<span>Account</span>
@@ -37,15 +41,32 @@
 
 				<% if current_user.is_vendor %>
 
-					<li id="vendor-locations-dropdown">
+				<% if controller.controller_name == 'locations' %>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
 					  <a href="#" class="dropdown-toggle" >
 						<i class="icon-desktop"></i>
 						<span>Locations</span>
 						<b class="arrow icon-angle-down"></b>
 					  </a>
 					  <ul class="submenu">
-						<li><a href=<%= locations_manage_url %>><i class="icon-double-angle-right"></i> Manage</a></li>
-						<li><a href=<%= locations_new_url %>><i class="icon-double-angle-right"></i> New</a></li>
+
+					<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+							<a href=<%= locations_manage_url %>><i class="icon-double-angle-right"></i> Manage</a>
+						</li>
+					<% if controller.controller_name == 'locations' and controller.action_name == 'new' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+							<a href=<%= locations_new_url %>><i class="icon-double-angle-right"></i> New</a>
+						</li>
 					  </ul>
 					</li>
 
@@ -60,8 +81,6 @@
 
 	
 		<div id="main-content" class="clearfix">
-
-			<button class="btn btn-inverse btn-block" disabled><strong>Manage Account</strong></button>
 
 				<!--
 				<div id="breadcrumbs">

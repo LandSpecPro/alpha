@@ -3,6 +3,7 @@ class BusVendorsController < ApplicationController
 	before_filter :require_user
 	before_filter :require_user_is_vendor
 	before_filter :require_business, :except => [:new, :create]
+	before_filter :require_no_business, :only => [:new, :create]
 
 	def new
 		@no_company = params[:no_company]

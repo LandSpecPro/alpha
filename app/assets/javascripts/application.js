@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap
+//= require theme/jquery-ui-1.10.2.custom.min
 //= require theme/ace.min
 //= require theme/ace-elements.min
