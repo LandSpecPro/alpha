@@ -104,7 +104,16 @@
 
 				<div id="page-content" class="clearfix">
 
-
+					<div class="page-header position-relative">
+						<h1><%= get_page_title %> 
+							<% unless get_page_subtitle == '' %>
+								<small>
+									<i class='icon-double-angle-right'></i>
+									<%=get_page_subtitle %>
+								</small>
+							<% end %>
+						</h1>
+					</div><!--/page-header-->
 
 					<div class="row-fluid">
 <!-- PAGE CONTENT BEGINS HERE -->
