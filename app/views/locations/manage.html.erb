@@ -1,5 +1,33 @@
 <%= render 'layouts/sidebar' %>
-<div class="span12">
+
+	<% if @user.bus_vendor.locations.count == 0 %>
+		<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
+	<% else %>
+		<% @user.bus_vendor.locations.each do |l| %>
+
+			<div class="span3">
+				<div class="widget-box light-border">
+					<div class="widget-header header-color-dark">
+						<h5 class="smaller">With Badge</h5>
+						<div class="widget-toolbar">
+							<span class="badge badge-important">Alert</span>
+						</div>
+					</div>
+					<div class="widget-body">
+					 <div class="widget-main padding-5">
+						<div class="alert alert-info">
+							Hello World!
+						</div>
+					 </div>
+					</div>
+				</div>
+			</div>
+
+		<% end %>
+	<% end %>
+
+<%= render 'layouts/sidebarend' %>
+<!--
 		<% if @user.bus_vendor.locations.count == 0 %>
 			<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
 		<% else %>
@@ -47,8 +75,7 @@
 						</div>
 
 					</div> <!-- END ROW FLUID -->
-				</div> <!-- END RESULT-LOCATION DIV -->
-			<% end %> <!-- END DO-EACH FOR LOCATIONS -->
-		<% end %> <!-- END IF-ELSE IF BUSINESS HAS LOCATIONS -->
-	</div> <!-- END SPAN12 -->
-	<%= render 'layouts/sidebarend' %>
+			<!--	</div> <!-- END RESULT-LOCATION DIV -->
+		<!--	<% end %> <!-- END DO-EACH FOR LOCATIONS -->
+	<!--	<% end %> <!-- END IF-ELSE IF BUSINESS HAS LOCATIONS -->
+<!--	</div> <!-- END SPAN12 -->
