@@ -19,9 +19,17 @@ module ApplicationHelper
 			return "Manage your locations"
 		elsif controller.controller_name == 'locations' and controller.action_name == 'new'
 			return "Add a new location"
+		elsif controller.controller_name == 'locations' and controller.action_name == 'destroy'
+			return "Delete this location?"
+		elsif controller.controller_name == 'locations' and controller.action_name == 'edit'
+			return get_location_name
 		else
 			return ""
 		end
+	end
+
+	def get_location_name
+		return @location.locName
 	end
 
 end

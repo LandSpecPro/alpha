@@ -5,29 +5,62 @@
 	<% else %>
 		<% @user.bus_vendor.locations.each do |l| %>
 
-			<div class="span3">
+		<div class="row-fluid">
+			<div class="span6 offset1">
 				<div class="widget-box light-border">
 					<div class="widget-header header-color-dark">
-						<h5 class="smaller">With Badge</h5>
+						<h5 class="smaller">
+							<%= l.locName + " - " + l.address1 + ", " + l.city + ", " + l.state + " " + l.zip %>
+						</h5>
 						<div class="widget-toolbar">
-							<span class="badge badge-important">Alert</span>
+							<a href=<%= "view/" + l.id.to_s %> title="View">
+								<span class="badge badge-warning"><i class="icon-eye-open"></i></span>
+							</a>
+							<a href=<%= "edit/" + l.id.to_s %> title="Edit">
+								<span class="badge badge-info"><i class="icon-edit"></i></span>
+							</a>
+							<a href=<%= "delete/" + l.id.to_s %> title="Delete">
+								<span class="badge badge-important"><i class="icon-trash"></i></span>
+							</a>
 						</div>
 					</div>
 					<div class="widget-body">
 					 <div class="widget-main padding-5">
-						<div class="alert alert-info">
-							Hello World!
+						<div class="row-fluid">
+							<div class="span4">
+								<%= image_tag @user.get_logo.url(:thumb), :class => 'result-location-img' %>
+							</div>
+							<div class="span4">
+							</div>
+							<div class="span4">
+								<div class="pull-right">
+									<%= link_to image_tag(get_static_map_from_address(concat_address(l))), get_map_link_from_address(concat_address(l)), :target => "_blank" %>
+								</div>
+							</div>
 						</div>
+
 					 </div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<br/>
+
+			<!-- Increment results -->
+			<% @result_num = @result_num + 1 %>
 
 		<% end %>
 	<% end %>
 
 <%= render 'layouts/sidebarend' %>
 <!--
+
+
+
+
+
+
+
 		<% if @user.bus_vendor.locations.count == 0 %>
 			<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
 		<% else %>

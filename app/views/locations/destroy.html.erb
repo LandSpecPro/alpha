@@ -1,7 +1,11 @@
+<%= render 'layouts/sidebar' %>
 <div class="container">
 	<div class="center">
 		<h2>Are you sure you want to delete <%= @location.locName %>?</h2>
+		<h6><i>(This will permanently delete this location and any related featured items or information.)</i></h6>
 		<%= link_to "Yes", 'confirm/' + @location.id.to_s, :class => 'btn btn-primary' %>
 		<%= link_to "No", locations_manage_url, :class => 'btn btn-primary' %>
 	</div>
 </div>
+
+<%= render 'layouts/sidebarend' %>

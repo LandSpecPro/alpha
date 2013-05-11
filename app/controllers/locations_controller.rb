@@ -26,6 +26,7 @@ class LocationsController < ApplicationController
 
   def manage
     @user = current_user
+    @result_num = 0
   end
 
   def edit

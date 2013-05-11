@@ -21,6 +21,7 @@ LspAlpha::Application.routes.draw do
   match "locations" => 'locations#manage'
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
+  match "locations/view/:id" => 'locations#view'
   match "locations/edit/:id" => 'locations#edit'
   match "locations/delete/:id" => 'locations#destroy'
   match "locations/delete/confirm/:id" => 'locations#confirm_destroy'

@@ -35,4 +35,7 @@ class BusVendorsController < ApplicationController
 		@vendors = BusVendor.all
 	end
 
+	def edit
+
+	end
 end

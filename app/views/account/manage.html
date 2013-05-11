@@ -5,22 +5,27 @@
 			<div class="widget-header header-color-blue">
 				<h5 class="bigger lighter"><i class="icon-user"></i> Company Logo</h5>
 				<div class="widget-toolbar">
-					<button class="btn btn-mini btn-primary"><i class="icon-upload-alt"></i></button>
+					<button type="submit" class="btn btn-mini btn-primary" onclick="uploadLogo()"><i class="icon-save"></i></button>
 				</div>
 			</div>
 
 			<div class="widget-body">
 				<div class="widget-main no-padding">
 					<table id="table-company-logo" class="table table-bordered">
-						<tbody class="center">
+						<tbody>
 							<tr>
 								<th>
-									<ul class="ace-thumbnails center">
+									<ul class="ace-thumbnails">
 										<li><div>
-											<%= image_tag @user.get_logo.url(:medium), :alt => '200x200' %>
-										</div></li>
+											<%= image_tag @user.get_logo.url(:smthumb), :alt => '50x50' %>
+											</div>
+
+										</li>
 									</ul>
 								</th>
+								<td style="vertical-align:middle;" class="center">
+									<input type="file" id="user" name="user[" />
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -28,13 +33,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="span6">
 		<div class="widget-box">
 			<div class="widget-header header-color-green">
 				<h5 class="bigger lighter"><i class="icon-cog"></i> Account Info</h5>
 				<div class="widget-toolbar">
-					<button class="btn btn-mini badge-success" style="border:0;"><i class="icon-upload-alt"></i></button>
+					<a title="Edit" class="badge-success" style="border:0;color:white;" href="#"><i class="icon-edit"></i></a>
 				</div>
 			</div>
 
@@ -82,5 +87,17 @@
 
 		</div> <!-- end widget-box -->
 	</div> <!-- end span6 -->
-
 <%= render 'layouts/sidebarend' %>
+
+
+
+<!-- THIS NEEDS TO BE DONE DIFFERENTLY -->
+<script type="text/javascript">
+
+	function uploadLogo(){
+		var file = document.getElementById("file_upload").file;
+		alert(file);
+		
+	}
+
+</script>
