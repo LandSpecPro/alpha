@@ -13,6 +13,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro' #setting environment variables
 gem 'font-awesome-rails'
+gem 'prototype-rails'
 
 
 # Gems used only for assets and not required

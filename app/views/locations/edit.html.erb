@@ -1,10 +1,54 @@
 <%= render 'layouts/sidebar' %>
 
+	<% @location.featured_items do |l| %>
 
-<div class="center">
-	<h3><%= @location.locName %></h3>
-	<%= link_to "Delete Location",  '../delete/' + @location.id.to_s %>
-</div>
+		<h1>Product: <%= l.id %></h1>
+
+	<% end %>
+
+	<%= form_for :product, :html => {:class => 'form-horizontal center inline'} do |f| %>
+
+			<div class="control-group">
+				<div class="control-label">
+					<%= f.label "Common Name:" %>
+				</div>
+				<div class="controls">
+					<%= f.text_field :commonName %>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="control-label">
+					<%= f.label "Alternate Name" %>
+				</div>
+				<div class="controls">
+					<%= f.text_field :altName %>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="control-label">
+					<%= f.label "Latin Name:" %>
+				</div>
+				<div class="controls">
+					<%= f.text_field :latinName %>
+				</div>
+			</div>
+
+			<%= f.fields_for :featured_items do |f2| %>
+
+			<div class="control-group">
+				<div class="control-label">
+					<%= f2.label "Description:" %>
+				</div>
+				<div class="controls">
+					<%= f2.text_field :description %>
+				</div>
+			</div>
+
+		<% end %>
+
+		<%= f.submit %>
+
+	<% end %>
 
 
 <%= render 'layouts/sidebarend' %>

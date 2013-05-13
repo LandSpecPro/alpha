@@ -30,11 +30,15 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @product = Product.new
+
     if vendor_location_id_matches
       @location = Location.find(params[:id])
     else
       redirect_to locations_manage_url
     end
+
   end
 
   def update

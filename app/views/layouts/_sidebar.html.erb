@@ -41,11 +41,19 @@
 
 				<% if current_user.is_vendor %>
 
-				<% if controller.controller_name == 'locations' %>
-					<li class="active">
-				<% else %>
-					<li>
+					<% if controller.controller_name == 'locations' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+						<a href=<%= locations_manage_url %>>
+							<i class="icon-globe"></i>
+							<span>Locations</span>
+						</a>
+					</li>
 				<% end %>
+
+				<!--
 					  <a href="#" class="dropdown-toggle" >
 						<i class="icon-globe"></i>
 						<span>Locations</span>
@@ -69,8 +77,9 @@
 						</li>
 					  </ul>
 					</li>
+				-->
 
-				<% end %>
+				
 
 			</ul><!--/.nav-list-->
 

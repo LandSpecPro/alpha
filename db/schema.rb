@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130505230820) do
+ActiveRecord::Schema.define(:version => 20130513051451) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20130505230820) do
   create_table "featured_items", :force => true do |t|
     t.integer  "location_id",      :null => false
     t.integer  "product_id",       :null => false
-    t.integer  "product_image_id", :null => false
+    t.integer  "product_image_id"
     t.text     "description"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

@@ -12,16 +12,20 @@ LspAlpha::Application.routes.draw do
     resources :fav_locations
     resources :fav_products
   end
-  resources :products do
-    resources :product_images
+resources :product_images
+resources :featured_items
+  # Routes for locations
+  resources :locations, :except => ['show'] do
+    resources :products
   end
 
-  # Routes for locations
-  resources :locations, :except => ['show']
+  post 'locations/:id/edit' => 'products#create'
+
   match "locations" => 'locations#manage'
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
   match "locations/view/:id" => 'locations#view'
+  #match "locations/edit" => 'locations#edit'
   match "locations/edit/:id" => 'locations#edit'
   match "locations/delete/:id" => 'locations#destroy'
   match "locations/delete/confirm/:id" => 'locations#confirm_destroy'

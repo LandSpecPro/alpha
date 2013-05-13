@@ -1,6 +1,9 @@
 class BusBuyer < ActiveRecord::Base
-  	attr_accessible :busName, :logo, :id
+  	attr_accessible :busName, :logo, :id, :featured_items_attributes
 	belongs_to :user
+
+	has_many :featured_items
+	accepts_nested_attributes_for :featured_items
 
 	# This method associates the attribute ":logo" with a file attachment
 	has_attached_file :logo, 

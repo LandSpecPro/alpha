@@ -29,6 +29,17 @@ class User < ActiveRecord::Base
 		# Configuration options go here
 	end
 
+	def get_business
+		if self.is_vendor
+			return self.bus_vendor
+		elsif self.is_buyer
+			return self.bus_buyer
+		else
+			return nil
+		end
+	end
+	
+
 	def get_bus_name
 		if self.is_vendor
 			return self.bus_vendor.busName

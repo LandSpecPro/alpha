@@ -1,11 +1,11 @@
 <%= render 'layouts/sidebar' %>
 
-	<div class="span3 offset1">
+	<div class="span4 offset1">
 		<div class="widget-box">
 			<div class="widget-header header-color-blue">
 				<h5 class="bigger lighter"><i class="icon-user"></i> Company Logo</h5>
 				<div class="widget-toolbar">
-					<button type="submit" class="btn btn-mini btn-primary" onclick="uploadLogo()"><i class="icon-save"></i></button>
+					<button type="submit" class="btn btn-mini btn-primary" onclick="submit_logo()"><i class="icon-save"></i></button>
 				</div>
 			</div>
 
@@ -14,7 +14,7 @@
 					<table id="table-company-logo" class="table table-bordered">
 						<tbody>
 							<tr>
-								<th>
+								<th class="center">
 									<ul class="ace-thumbnails">
 										<li><div>
 											<%= image_tag @user.get_logo.url(:smthumb), :alt => '50x50' %>
@@ -23,9 +23,9 @@
 										</li>
 									</ul>
 								</th>
-								<td style="vertical-align:middle;" class="center">
-									<input type="file" id="user" name="user[" />
-								</td>
+								<th style="vertical-align:middle;">
+									<input type="file" id="new_logo" />
+								</th>
 							</tr>
 						</tbody>
 					</table>
@@ -94,10 +94,13 @@
 <!-- THIS NEEDS TO BE DONE DIFFERENTLY -->
 <script type="text/javascript">
 
-	function uploadLogo(){
-		var file = document.getElementById("file_upload").file;
-		alert(file);
-		
+	function submit_logo() {
+
+		var logo = $("#new_logo").val();
+    	if(logo == '')
+    		alert('no logo selected. also handle for file type later.');
+    	else
+    		alert('file selected');
 	}
 
 </script>

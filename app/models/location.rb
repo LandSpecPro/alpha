@@ -1,6 +1,11 @@
 class Location < ActiveRecord::Base
-	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id
+	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :product_id
 	belongs_to :bus_vendor
+
+	
+	has_many :featured_items
+	has_many :products, :through => :featured_items
+	accepts_nested_attributes_for :featured_items
 
 	validates_presence_of :locName, :on => :create, :message => "Must provide a name for this location!"
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}

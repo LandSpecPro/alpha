@@ -10,6 +10,7 @@ class AccountController < ApplicationController
 		elsif @user.is_buyer
 			@usertype = "Buyer"
 		end
+
 	end
 
 end
