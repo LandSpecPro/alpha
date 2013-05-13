@@ -1,0 +1,9 @@
+<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
+
+	<div class="pull-right">
+
+		<%= button_to "Add New Location", locations_new_url, :class => 'btn btn-info btn-small' %>
+
+	</div>
+
+<% end %>

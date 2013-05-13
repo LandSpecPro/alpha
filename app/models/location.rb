@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :product_id
+	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes
 	belongs_to :bus_vendor
 
 	
@@ -14,4 +14,11 @@ class Location < ActiveRecord::Base
 	validates_presence_of :city, :on => :create, :message => "Must provide a valid city!"
 	validates_presence_of :state, :on => :create, :message => "Must provide a valid state!"
 	validates_presence_of :zip, :on => :create, :message => "Must provide a valid zip code!"
+
+	def get_featured_items
+
+		return FeaturedItem.where(:location_id => self.id)
+
+	end
+
 end

@@ -3,13 +3,19 @@ class AccountController < ApplicationController
 	before_filter :require_business
 
 	def manage
-		@user = current_user
-		@usertype = "N/A"
-		if @user.is_vendor
-			@usertype = "Vendor"
-		elsif @user.is_buyer
-			@usertype = "Buyer"
+
+		if current_user.is_vendor
+			redirect_to business_vendor_manage_url
+		elsif current_user.is_buyer
+			redirect_to business_buyer_manage_url
+		else
+			redirect_to home_url
 		end
+
+	end
+
+	def update
+		redirect_to home_url
 
 	end
 

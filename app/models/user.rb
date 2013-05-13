@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 	end
 
 	def is_vendor
-		if self.userType == STRING_VENDOR
+		if self.userType == STRING_VENDOR or self.userType == 'Vendor'
 			return true
 		else
 			return false
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 	end
 
 	def is_buyer
-		if self.userType == STRING_BUYER
+		if self.userType == STRING_BUYER or self.userType == 'Buyer'
 			return true
 		else
 			return false

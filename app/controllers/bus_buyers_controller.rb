@@ -26,11 +26,18 @@ class BusBuyersController < ApplicationController
 	end
 
 	def manage
+		store_location
 		@user = current_user
+		@bus_buyer = @user.bus_buyer
+		@usertype = "Buyer"
 	end
 
 	def show
 		@buyers = BusBuyer.all
+	end
+
+	def dashboard
+		@user = current_user
 	end
 
 end

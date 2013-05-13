@@ -4,21 +4,35 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @description = params[:product][:description]
-    params[:product].delete :featured_items
+    @location = Location.find(params[:product][:location_id])
+    @description = params[:product][:featured_items][:description]
+    @image = params[:product][:product_images][:image] 
 
-    @location = Location.find(params[:id])
+    before_create
+    
     @product = @location.products.build(params[:product])
-    if @product.save
-      @featureditem = FeaturedItem.new(:description => @description, :location_id => params[:id], :product_id => @product.id)
-      @featureditem.save
-      flash[:notice] = "Product Added!"
-      redirect_to home_url
 
+    if @product.save
+      save_product_relations(@product, @image, @description)
+      flash[:notice] = "Product Added!"
+      redirect_back_or_default('/') 
     else
       flash[:notice] = "Not successful!"
       render :action => :new
     end
+  end
+
+  def before_create
+    params[:product].delete :featured_items
+    params[:product].delete :product_images
+    params[:product].delete :location_id
+  end
+
+  def save_product_relations(product, image, description)
+    @productimage = ProductImage.new(:product_id => product.id, :image => image)
+    @productimage.save
+    @featureditem = FeaturedItem.new(:description => description, :location_id => params[:id], :product_id => product.id, :product_image_id => @productimage.id)
+    @featureditem.save
   end
 
   def edit

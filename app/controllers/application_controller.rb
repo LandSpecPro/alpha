@@ -67,15 +67,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user_is_vendor
-    if current_user.userType != STRING_VENDOR
+    if current_user.userType != STRING_VENDOR and current_user.userType != 'Vendor'
       flash[:notice] = "You must be a vendor to access this page."
-      redirect_back_or_default(business_dashboard_url)
+      redirect_back_or_default(business_vendor_dashboard_url)
       return false
     end
   end
 
   def require_user_is_buyer
-    if current_user.userType != STRING_BUYER
+    if current_user.userType != STRING_BUYER and current_user.userType != 'Buyer'
       flash[:notice] = "You must be a buyer to access this page."
       redirect_back_or_default(business_dashboard_url)
       return false

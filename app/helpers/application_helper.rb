@@ -6,9 +6,9 @@ module ApplicationHelper
 		elsif controller.controller_name == 'locations'
 			return "Locations"
 		elsif controller.controller_name == 'bus_vendors' and controller.action_name == 'manage'
-			return "Vendor Dashboard"
+			return "Account Management"
 		elsif controller.controller_name == 'bus_buyers' and controller.action_name == 'manage'
-			return "Buyer Dashboard"
+			return "Account Management"
 		else
 			return ""
 		end

@@ -1,10 +1,73 @@
 <%= render 'layouts/sidebar' %>
 
-	<% @location.featured_items do |l| %>
+	<div class="span4">
+		<%= form_for @location do |f| %>
+		<div class="widget-box">
+			<div class="widget-header header-color-blue">
+				<h5 class="bigger lighter"><i class="icon-globe"></i> Location Address</h5>
+				<div class="widget-toolbar">
+					<button type="submit" class="btn btn-mini btn-success no-radius white"><i class="icon-save"></i> Update</button>
+				</div>
+			</div>
 
-		<h1>Product: <%= l.id %></h1>
+			<div class="widget-body">
 
-	<% end %>
+				
+
+					<div class="widget-main">
+
+						<!-- Display error messages as alerts -->
+						<% @location.errors.full_messages.each do |msg| %>
+							<div class="alert alert-error">
+							  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Error! </strong> <%= msg %>
+							</div>
+						<% end %>
+
+						<fieldset>
+
+							<%= f.hidden_field :id, :value => @location.id %>
+
+							<%= f.label 'Location Name:' %>
+							<div class="block input-icon input-icon-right">
+								<%= f.text_field :locName, :class => 'span12', :value => @location.locName %>
+							</div>
+
+							<%= f.label 'Street 1:' %>
+							<div class="block input-icon input-icon-right">
+								<%= f.text_field :address1, :class => 'span12', :value => @location.address1 %>
+							</div>
+
+							<%= f.label 'Street 2:' %>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :address2, :class => 'span12', :value => @location.address2 %>
+							</span>
+
+							<%= f.label 'City:' %>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :city, :class => 'span12', :value => @location.city %>
+							</span>
+
+							<%= f.label 'State:' %>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :state, :class => 'span12', :value => @location.state %>
+							</span>		
+
+							<%= f.label 'Zip Code:' %>
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :zip, :class => 'span12', :value => @location.zip %>
+							</span>					
+
+						</fieldset>
+
+					</div>
+				
+
+				
+			</div>
+		</div>
+		<% end %>
+	</div>
 
 	<%= form_for :product, :html => {:class => 'form-horizontal center inline'} do |f| %>
 
@@ -35,16 +98,31 @@
 
 			<%= f.fields_for :featured_items do |f2| %>
 
-			<div class="control-group">
-				<div class="control-label">
-					<%= f2.label "Description:" %>
+				<div class="control-group">
+					<div class="control-label">
+						<%= f2.label "Description:" %>
+					</div>
+					<div class="controls">
+						<%= f2.text_field :description %>
+					</div>
 				</div>
-				<div class="controls">
-					<%= f2.text_field :description %>
-				</div>
-			</div>
 
-		<% end %>
+			<% end %>
+
+			<%= f.fields_for :product_images do |f3| %>
+
+				<div class="control-group">
+					<div class="control-label">
+						<%= f3.label "Image:" %>
+					</div>
+					<div class="controls">
+						<%= f3.file_field :image %>
+					</div>
+				</div>
+				
+			<% end %>
+
+		<%= f.hidden_field(:location_id, :value => @location.id) %>
 
 		<%= f.submit %>
 

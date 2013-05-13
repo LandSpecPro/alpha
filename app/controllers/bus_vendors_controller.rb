@@ -27,8 +27,23 @@ class BusVendorsController < ApplicationController
 	    end
 	end
 
+	def update
+
+		@busvendor = BusVendor.find(params[:id])
+	    if @busvendor.update_attributes(params[:logo])
+	      flash[:notice] = "Account updated!"
+	      redirect_back_or_default('/') 
+	    else
+	      render :action => :edit
+	    end
+
+	end
+
 	def manage
+		store_location
 		@user = current_user
+		@bus_vendor = @user.bus_vendor
+		@usertype = "Vendor"
 	end
 
 	def show
@@ -37,5 +52,9 @@ class BusVendorsController < ApplicationController
 
 	def edit
 
+	end
+
+	def dashboard
+		@user = current_user
 	end
 end

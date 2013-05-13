@@ -6,34 +6,30 @@ LspAlpha::Application.routes.draw do
   # Resource routes for models
   resources :user_sessions
   resources :users do
-    resources :bus_vendors
-    resources :bus_buyers
+    resources :bus_vendor
+    resources :bus_buyer
     resources :search_logs
     resources :fav_locations
     resources :fav_products
   end
+  resources :locations, :except => ['show']
+  resources :products
 resources :product_images
 resources :featured_items
   # Routes for locations
-  resources :locations, :except => ['show'] do
-    resources :products
-  end
+  
 
   post 'locations/:id/edit' => 'products#create'
+  post 'users/:id/bus_vendors' => 'bus_vendors#create'
 
   match "locations" => 'locations#manage'
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
   match "locations/view/:id" => 'locations#view'
-  #match "locations/edit" => 'locations#edit'
   match "locations/edit/:id" => 'locations#edit'
   match "locations/delete/:id" => 'locations#destroy'
   match "locations/delete/confirm/:id" => 'locations#confirm_destroy'
 
-#  resources :locations do
-#    resources :featured_items
-#    resources :contacts
-#  end
 
   resources :product_categories
 
@@ -47,18 +43,19 @@ resources :featured_items
   match "login" => 'user_sessions#new'
   match "logout" => 'user_sessions#destroy'
   match "dashboard" => 'users#dashboard'
-  match "business/dashboard" => 'users#dashboard'
   match "account" => 'account#manage'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
-  match "business/vendor/dashboard" => 'bus_vendors#manage'
+  match "business/vendor/dashboard" => 'bus_vendors#dashboard'
+  match "business/vendor/manage" => 'bus_vendors#manage'
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
   match "business/buyer/new" => 'bus_buyers#new'
-  match "business/buyer/dashboard" => 'bus_buyers#manage'
+  match "business/buyer/dashboard" => 'bus_buyers#dashboard'
+  match "business/buyer/manage" => 'bus_buyers#manage'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

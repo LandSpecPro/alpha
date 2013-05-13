@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_vendor
+
+  end
+
   def dashboard
     @user = current_user
     if @user.is_vendor

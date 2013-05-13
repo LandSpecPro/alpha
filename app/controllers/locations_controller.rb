@@ -30,11 +30,12 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    store_location
     @user = current_user
-    @product = Product.new
 
     if vendor_location_id_matches
       @location = Location.find(params[:id])
+      @location.products.build
     else
       redirect_to locations_manage_url
     end
@@ -42,6 +43,13 @@ class LocationsController < ApplicationController
   end
 
   def update
+    @location = Location.find(params[:id])
+    if @location.update_attributes(params[:location])
+      flash[:notice] = "Account updated!"
+      redirect_back_or_default('/') 
+    else
+      render :action => :edit
+    end
   end
 
   def search
