@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513051451) do
+ActiveRecord::Schema.define(:version => 20130514063915) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -126,9 +126,9 @@ ActiveRecord::Schema.define(:version => 20130513051451) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "commonName", :null => false
-    t.string   "latinName"
-    t.string   "altName"
+    t.text     "commonName", :null => false
+    t.text     "latinName"
+    t.text     "altName"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

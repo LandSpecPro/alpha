@@ -40,15 +40,26 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @sidebar_search_active = true
+    @sidebar_search_products_active = true
+    search = Sunspot.search(Product) do |q|
+      q.fulltext params[:search]
+    end
+
+    @products = search.results
   end
 
   def update
   end
 
   def search
+    @sidebar_search_active = true
+    @sidebar_search_products_active = true
   end
 
   def browseall
+    @sidebar_search_active = true
+    @sidebar_search_products_active = true
   end
 
   def favorite

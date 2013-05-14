@@ -6,6 +6,10 @@ class FeaturedItem < ActiveRecord::Base
 	has_one :product
 	accepts_nested_attributes_for :product
 
+	searchable do
+		text :description		
+	end
+
 	def get_image
 
 		return ProductImage.find(self.product_image_id).image

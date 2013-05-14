@@ -1,18 +1,32 @@
 <%= render 'layouts/sidebar' %>
 
-<ul class="ace-thumbnails">
-	<% ProductImage.all.each do |p| %>
+	<div class="row-fluid">
+		<ul class="ace-thumbnails">
+			<% ProductImage.all.each do |p| %>
 
-		
+				
 
-			<li>
-				<%= image_tag p.image.url(:thumb) %>
-			</li>
+					<li>
+						<%= image_tag p.image.url(:thumb) %>
+					</li>
 
-		
+				
 
 
-	<% end %>
-	</ul>
+			<% end %>
+		</ul>
+	</div><br/><br/>
+	<div class="row-fluid">
+		<% Product.all.each do |p| %>
+			<div class="well span2">
+				<p>
+					Common Name: <%= p.commonName %><br/>
+					Alternate Name: <%= p.altName %><br/>
+					Latin Name: <%= p.latinName %><br/>
+
+				</p>
+			</div>
+		<% end %>
+	</div>
 
 <%= render 'layouts/sidebarend' %>

@@ -1,2 +1,9 @@
-<h1>Product#search</h1>
-<p>Find me in app/views/product/search.html.erb</p>
+<%= render 'layouts/sidebar' %>
+
+<%= form_tag products_show_path, :method => 'get' do %>
+
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search" %>
+
+<% end %>
+<%= render 'layouts/sidebarend' %>

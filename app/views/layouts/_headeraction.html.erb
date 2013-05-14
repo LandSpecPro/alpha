@@ -7,3 +7,23 @@
 	</div>
 
 <% end %>
+
+<% if controller.action_name == 'search' %>
+
+	<div class="pull-right">
+
+		<%= button_to "Browse All Products", products_browse_all_url, :class => 'btn btn-info btn-small' %>
+
+	</div>
+
+<% end %>
+
+<% if controller.controller_name == 'products' and controller.action_name == 'browseall' %>
+
+	<div class="pull-right">
+
+		<%= button_to "Search Products", products_search_url, :class => 'btn btn-info btn-small' %>
+
+	</div>
+
+<% end %>
