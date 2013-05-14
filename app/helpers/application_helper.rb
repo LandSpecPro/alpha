@@ -3,6 +3,8 @@ module ApplicationHelper
 	def get_page_title
 		if controller.controller_name == 'account'
 			return "Account"
+		elsif controller.controller_name == 'locations' and controller.action_name == 'edit'
+			return "Edit Location"
 		elsif controller.controller_name == 'locations'
 			return "Locations"
 		elsif controller.controller_name == 'bus_vendors' and controller.action_name == 'manage'
@@ -29,7 +31,7 @@ module ApplicationHelper
 	end
 
 	def get_location_name
-		return @location.locName
+		return 'Location Name: ' + @location.locName
 	end
 
 end

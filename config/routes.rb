@@ -14,11 +14,11 @@ LspAlpha::Application.routes.draw do
   end
   resources :locations, :except => ['show']
   resources :products
-resources :product_images
-resources :featured_items
-  # Routes for locations
+  resources :product_images
+  resources :featured_items
+  resources :product_categories
   
-
+  # Routes for locations
   post 'locations/:id/edit' => 'products#create'
   post 'users/:id/bus_vendors' => 'bus_vendors#create'
 
@@ -30,8 +30,9 @@ resources :featured_items
   match "locations/delete/:id" => 'locations#destroy'
   match "locations/delete/confirm/:id" => 'locations#confirm_destroy'
 
-
-  resources :product_categories
+  match "locations/edit/featureditem/add/:id" => 'locations#add_item'
+  match "locations/featureditem/delete" => 'locations#delete_featureditem'
+  match "locations/featureditem/delete/confirm" => 'locations#confirm_delete_featureditem'
 
   # For home controller
   match "home" => 'home#index'
@@ -44,6 +45,7 @@ resources :featured_items
   match "logout" => 'user_sessions#destroy'
   match "dashboard" => 'users#dashboard'
   match "account" => 'account#manage'
+  match "products/browse/all" => 'products#browseall'
 
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'

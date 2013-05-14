@@ -1,0 +1,18 @@
+<%= render 'layouts/sidebar' %>
+
+<ul class="ace-thumbnails">
+	<% ProductImage.all.each do |p| %>
+
+		
+
+			<li>
+				<%= image_tag p.image.url(:thumb) %>
+			</li>
+
+		
+
+
+	<% end %>
+	</ul>
+
+<%= render 'layouts/sidebarend' %>

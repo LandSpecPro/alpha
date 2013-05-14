@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def create
     @location = Location.find(params[:product][:location_id])
+    @locationid = @location.id
     @description = params[:product][:featured_items][:description]
     @image = params[:product][:product_images][:image] 
 
@@ -15,7 +16,7 @@ class ProductsController < ApplicationController
     if @product.save
       save_product_relations(@product, @image, @description)
       flash[:notice] = "Product Added!"
-      redirect_back_or_default('/') 
+      redirect_back_or_default('/')
     else
       flash[:notice] = "Not successful!"
       render :action => :new
@@ -47,9 +48,10 @@ class ProductsController < ApplicationController
   def search
   end
 
-  def browse
+  def browseall
   end
 
   def favorite
   end
+
 end

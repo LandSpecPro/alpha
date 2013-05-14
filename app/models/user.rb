@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_attached_file :profileImage, 
 		styles: {
 			smthumb: '50x50>',
-			thumb: '100x100>',
+			thumb: '100x100#',
 			medium: '300x300#'},
 		:default_style => :thumb,
 		:default_url => '/images/default/logos_:style.png',

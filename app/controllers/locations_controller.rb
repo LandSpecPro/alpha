@@ -26,7 +26,19 @@ class LocationsController < ApplicationController
 
   def manage
     @user = current_user
-    @result_num = 0
+  end
+
+  def add_item
+    store_location
+    @user = current_user
+
+    if vendor_location_id_matches
+      @location = Location.find(params[:id])
+      @location.products.build
+    else
+      redirect_to locations_manage_url
+    end
+
   end
 
   def edit
@@ -79,6 +91,27 @@ class LocationsController < ApplicationController
       end
 
       redirect_to locations_manage_url
+  end
+
+  def delete_featureditem
+
+    if vendor_can_delete_featured_item
+      @featureditem = FeaturedItem.find(params[:featured_item_id])
+      @location = Location.find(params[:location_id])
+    else
+      redirect_to locations_manage_url
     end
+
+  end
+
+  def confirm_delete_featureditem
+
+    if vendor_can_delete_featured_item
+      FeaturedItem.destroy(params[:featured_item_id])
+      redirect_back_or_default('/')
+    else
+      redirect_to locations_manage_url
+    end
+  end
 
 end
