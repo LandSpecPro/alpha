@@ -1,9 +1,13 @@
 <%= render 'layouts/sidebar' %>
 
-<%= form_tag products_show_path, :method => 'get' do %>
+<%= render 'search' %>
 
-	<%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Search" %>
+<div class="span8">
 
-<% end %>
+	<% @products.each do |p| %>
+		<h1><%= p.commonName %></h1>
+	<% end %>
+	
+</div>
+
 <%= render 'layouts/sidebarend' %>

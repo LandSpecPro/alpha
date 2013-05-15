@@ -1,0 +1,11 @@
+<div class="span4">
+
+	<%= form_tag products_search_path, :method => 'get' do %>
+			<span class="input-icon">
+				<%= text_field_tag :search, params[:search], :class => 'input-large search-query', :placeholder => 'Search...' %>
+				<i id="nav-search-icon" class="icon-search"></i>
+			</span>
+	<% end %>
+
+
+</div>

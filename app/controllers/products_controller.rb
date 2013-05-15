@@ -40,13 +40,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @sidebar_search_active = true
-    @sidebar_search_products_active = true
-    search = Sunspot.search(Product) do |q|
-      q.fulltext params[:search]
-    end
-
-    @products = search.results
   end
 
   def update
@@ -55,6 +48,8 @@ class ProductsController < ApplicationController
   def search
     @sidebar_search_active = true
     @sidebar_search_products_active = true
+
+    @products = Product.search_all_products(params[:search])
   end
 
   def browseall
