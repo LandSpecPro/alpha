@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_no_user, :only => [:new, :create, :password_reset_form]
   before_filter :require_user, :only => [:show, :edit, :update]
   
   def new
@@ -60,5 +60,14 @@ class UsersController < ApplicationController
     @user = current_user
     PasswordReset.password_reset_email(@user).deliver
   end
+
+  def password_reset_form
+    @user = User.find_using_perishable_token(params[:token])
+    unless @user
+      redirect_to home_url
+    end
+    ##### NEED TO FIX THIS UP AND SET UP THE ACTUAL FORM
+  end
+
 
 end

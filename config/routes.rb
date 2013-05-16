@@ -21,6 +21,7 @@ LspAlpha::Application.routes.draw do
   resources :product_categories
 
   match 'user/password/reset' => 'users#password_reset'
+  match 'password/reset' => 'users#password_reset_form'
 
   # Routes for products
   match 'products/search' => 'products#search'
