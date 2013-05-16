@@ -12,16 +12,16 @@ LspAlpha::Application.configure do
   }
 
   ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.raise_delivery_errors = true
-ActionMailer::Base.server_settings = {
-    :address        => 'smtp.gmail.com',
-    :domain         => 'landspecpro.com',
-    :port           => 587,
-    :user_name      => 'mattjohnson@landspecpro.com',
-    :password       => 'Epichlab11',
-    :authentication => :plain,
-    :enable_starttls_auto => true
-}
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.gmail.com',
+      :domain         => 'landspecpro.com',
+      :port           => 587,
+      :user_name      => 'mattjohnson@landspecpro.com',
+      :password       => ENV['SMTP_PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
