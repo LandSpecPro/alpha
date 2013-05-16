@@ -33,7 +33,7 @@ class BusVendorsController < ApplicationController
 	      flash[:notice] = "Account updated!"
 	      redirect_back_or_default('/') 
 	    else
-	      render :action => :edit
+	      render :action => :manage
 	    end
 
 	end

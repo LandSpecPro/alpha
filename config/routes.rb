@@ -4,6 +4,8 @@ LspAlpha::Application.routes.draw do
   root :to => 'home#index'
 
   # Resource routes for models
+
+  match "business/vendor/update" => 'bus_vendors#update'
   resources :user_sessions
   resources :users do
     resources :bus_vendors
@@ -17,6 +19,8 @@ LspAlpha::Application.routes.draw do
   resources :product_images
   resources :featured_items
   resources :product_categories
+
+  match 'user/password/reset' => 'users#password_reset'
 
   # Routes for products
   match 'products/search' => 'products#search'

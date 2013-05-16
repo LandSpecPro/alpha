@@ -55,4 +55,10 @@ class UsersController < ApplicationController
       redirect_to business_buyer_dashboard_url
     end
   end
+
+  def password_reset
+    @user = current_user
+    PasswordReset.password_reset_email(@user).deliver
+  end
+
 end
