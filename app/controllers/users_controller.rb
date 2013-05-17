@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create, :password_reset_form]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:show, :edit, :update, :password_reset]
   
   def new
     @user = User.new
@@ -43,10 +43,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_vendor
-
-  end
-
   def dashboard
     @user = current_user
     if @user.is_vendor
@@ -57,16 +53,33 @@ class UsersController < ApplicationController
   end
 
   def password_reset
-    @user = current_user
-    PasswordReset.password_reset_email(@user).deliver
+    unless params[:success]
+      @user = current_user
+      @user.reset_perishable_token!
+      PasswordReset.password_reset_email(current_user).deliver
+      current_user_session.destroy
+    else
+      @user = current_user
+    end
   end
 
   def password_reset_form
     @user = User.find_using_perishable_token(params[:token])
+    @user_session = UserSession.new(@user)
+    @user_session.save
     unless @user
       redirect_to home_url
     end
-    ##### NEED TO FIX THIS UP AND SET UP THE ACTUAL FORM
+  end
+
+  def update_password
+    @user = current_user # makes our views "cleaner" and more consistent
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Account updated!"
+      redirect_to user_password_reset_url(:success => true)
+    else
+      render :action => :password_reset_form
+    end
   end
 
 
