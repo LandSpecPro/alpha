@@ -1,7 +1,7 @@
 LspAlpha::Application.routes.draw do
 
   # Root application page
-  root :to => 'home#index'
+  root :to => 'home#root'
 
   # Resource routes for models
 
@@ -35,10 +35,10 @@ LspAlpha::Application.routes.draw do
   match "locations" => 'locations#manage'
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
-  match "locations/view/:id" => 'locations#view'
-  match "locations/edit/:id" => 'locations#edit'
-  match "locations/delete/:id" => 'locations#destroy'
-  match "locations/delete/confirm/:id" => 'locations#confirm_destroy'
+  match "locations/view" => 'locations#view'
+  match "locations/edit" => 'locations#edit'
+  match "locations/delete" => 'locations#destroy'
+  match "locations/delete/confirm" => 'locations#confirm_destroy'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'
@@ -48,6 +48,7 @@ LspAlpha::Application.routes.draw do
 
   # For home controller
   match "home" => 'home#index'
+  match 'index' => 'home#index'
   match "about" => 'home#about'
   match "contact" => 'home#contact'
 

@@ -1,4 +1,4 @@
-<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
+<% if controller.controller_name == 'locations' and (controller.action_name == 'manage' or controller.action_name == 'edit') %>
 
 	<div class="pull-right">
 
@@ -8,7 +8,7 @@
 
 <% end %>
 
-<% if controller.action_name == 'search' %>
+<% if controller.controller_name == 'products' and controller.action_name == 'search' %>
 
 	<div class="pull-right">
 

@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+
   end
 
   def create
@@ -26,6 +27,12 @@ class LocationsController < ApplicationController
 
   def manage
     @user = current_user
+    @vlocations = @user.bus_vendor.locations
+    if @vlocations.count == 1
+      @vlocations.each do |l|
+        redirect_to locations_edit_url(:id => l.id)
+      end
+    end
   end
 
   def add_item
@@ -65,6 +72,8 @@ class LocationsController < ApplicationController
   end
 
   def search
+    @sidebar_search_active = true
+    @sidebar_search_locations_active = true
   end
 
   def browse

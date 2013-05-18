@@ -14,13 +14,13 @@
 							<%= l.locName + " - " + l.address1 + ", " + l.city + ", " + l.state + " " + l.zip %>
 						</h5>
 						<div class="widget-toolbar">
-							<a href=<%= "view/" + l.id.to_s %> title="View">
+							<a href=<%= locations_view_url(:id => l.id) %> title="View">
 								<span class="badge badge-warning"><i class="icon-eye-open"></i></span>
 							</a>
-							<a href=<%= "edit/" + l.id.to_s %> title="Edit">
+							<a href=<%= locations_edit_url(:id => l.id) %> title="Edit">
 								<span class="badge badge-info"><i class="icon-edit"></i></span>
 							</a>
-							<a href=<%= "delete/" + l.id.to_s %> title="Delete">
+							<a href=<%= locations_delete_url(:id => l.id) %> title="Delete">
 								<span class="badge badge-important"><i class="icon-trash"></i></span>
 							</a>
 						</div>
@@ -51,62 +51,3 @@
 	<% end %>
 
 <%= render 'layouts/sidebarend' %>
-<!--
-
-
-
-
-
-
-
-		<% if @user.bus_vendor.locations.count == 0 %>
-			<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
-		<% else %>
-			<% @user.bus_vendor.locations.each do |l| %>
-				<div class="result-location">
-					<a class="manage-location-edit-link" href=<%= "edit/" + l.id.to_s %>><i class="icon-edit"></i></a>
-					<strong class="result-location-busname"><%= @user.bus_vendor.busName %></strong>
-
-					<div class="row-fluid">
-
-						<div class="span2">
-							<%= image_tag @user.get_logo.url(:thumb), :class => 'result-location-img' %>
-						</div>
-
-						<div class="span4">
-							<h3><a class="result-location-link" href=<%= l.id %>>
-								<%= l.locName %>
-							</a></h3>
-							<p>
-								<%= l.address1 %><br/>
-								<% if l.address2 != "" %>
-									<%= l.address2 %><br/>
-								<% end %>
-								<%= l.city %>, <%= l.state %> <%= l.zip %>
-							</p>
-						</div>
-
-						<div class="span3">
-							<p>
-								<br/>
-								<%= l.primaryEmail %>
-								<br/>
-								<% if l.primaryPhone != "" %>
-									<%= "P:" + l.primaryPhone %>
-								<% end %>
-								<br/>
-								<% if l.fax != "" %>
-									<%= "F:" + l.fax %>
-								<% end %>
-							</p>
-						</div>
-
-						<div class="span3">
-							<%= link_to image_tag(get_static_map_from_address(concat_address(l))), get_map_link_from_address(concat_address(l)), :target => "_blank" %>
-						</div>
-
-					</div> <!-- END ROW FLUID -->
-			<!--	</div> <!-- END RESULT-LOCATION DIV -->
-		<!--	<% end %> <!-- END DO-EACH FOR LOCATIONS -->
-	<!--	<% end %> <!-- END IF-ELSE IF BUSINESS HAS LOCATIONS -->
-<!--	</div> <!-- END SPAN12 -->

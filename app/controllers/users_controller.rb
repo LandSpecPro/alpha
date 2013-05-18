@@ -56,8 +56,7 @@ class UsersController < ApplicationController
     unless params[:success]
       @user = current_user
       @user.reset_perishable_token!
-      PasswordReset.password_reset_email(current_user).deliver
-      current_user_session.destroy
+      Mailers.password_reset_email(current_user).deliver
     else
       @user = current_user
     end

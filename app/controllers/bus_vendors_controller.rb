@@ -19,7 +19,7 @@ class BusVendorsController < ApplicationController
 
 	    if @busvendor.save
 	      flash[:notice] = "Account registered!"
-	      redirect_to business_vendor_dashboard_url
+	      redirect_to locations_new_url(:new_user_message => true)
 	    else
 	      flash[:notice] = "Not successful!"
 	      render :action => :new

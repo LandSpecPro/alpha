@@ -48,7 +48,7 @@
 					<% end %>
 							<a href=<%= products_search_url %>><i class="icon-double-angle-right"></i> Products</a>
 						</li>
-					<% if controller.controller_name == 'locations' and controller.action_name == 'search' %>
+					<% if @sidebar_search_locations_active %>
 						<li class="active">
 					<% else %>
 						<li>
