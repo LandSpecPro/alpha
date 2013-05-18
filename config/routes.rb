@@ -15,7 +15,9 @@ LspAlpha::Application.routes.draw do
     resources :fav_products
   end
   resources :locations, :except => ['show']
-  resources :products, :except => ['show']
+  resources :products, :except => ['show'] do
+    get :autocomplete_commonName, :on => :collection
+  end
   resources :product_images
   resources :featured_items
   resources :product_categories
@@ -36,6 +38,7 @@ LspAlpha::Application.routes.draw do
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
   match "locations/view" => 'locations#view'
+  match "locations/edit/:id" => 'locations#edit'
   match "locations/edit" => 'locations#edit'
   match "locations/delete" => 'locations#destroy'
   match "locations/delete/confirm" => 'locations#confirm_destroy'

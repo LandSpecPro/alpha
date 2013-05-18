@@ -17,7 +17,7 @@
 							<a href=<%= locations_view_url(:id => l.id) %> title="View">
 								<span class="badge badge-warning"><i class="icon-eye-open"></i></span>
 							</a>
-							<a href=<%= locations_edit_url(:id => l.id) %> title="Edit">
+							<a href=<%= 'edit/' + l.id.to_s %> title="Edit">
 								<span class="badge badge-info"><i class="icon-edit"></i></span>
 							</a>
 							<a href=<%= locations_delete_url(:id => l.id) %> title="Delete">

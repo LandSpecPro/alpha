@@ -1,30 +1,33 @@
 <%= render 'layouts/sidebar' %>
 
 	<div class="row-fluid">
-		<ul class="ace-thumbnails">
-			<% ProductImage.all.each do |p| %>
+		<% Product.order('"commonName" asc').all.each do |p| %>
+			<div class="well">
+				<div class="row-fluid">
+					<div class="span3">
+						<p>
+							<span style="font-size:25px;"><%= p.commonName %></span><br/>
+							<i style="font-size:12px;"><%= p.latinName %></i>
+						</p>
+					</div>
+					<div class="span9">
+						<ul class="ace-thumbnails">
+							<% p.get_all_images.each do |pi| %>
 
-				
+								
 
-					<li>
-						<%= image_tag p.image.url(:thumb) %>
-					</li>
+									<li>
+										<%= image_tag pi.image.url(:thumb) %>
+									</li>
 
-				
+								
 
 
-			<% end %>
-		</ul>
-	</div><br/><br/>
-	<div class="row-fluid">
-		<% Product.all.each do |p| %>
-			<div class="well span2">
-				<p>
-					Common Name: <%= p.commonName %><br/>
-					Alternate Name: <%= p.altName %><br/>
-					Latin Name: <%= p.latinName %><br/>
+							<% end %>
+						</ul>
 
-				</p>
+					</div>
+				</div>
 			</div>
 		<% end %>
 	</div>

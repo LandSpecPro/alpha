@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  autocomplete :product, :commonName
+
   def new
     @product = Product.new
   end

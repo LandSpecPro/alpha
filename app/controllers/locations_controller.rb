@@ -4,6 +4,8 @@ class LocationsController < ApplicationController
   before_filter :require_business
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy]
 
+  autocomplete :product, :commonName
+
   def new
     @location = Location.new
 
@@ -30,22 +32,12 @@ class LocationsController < ApplicationController
     @vlocations = @user.bus_vendor.locations
     if @vlocations.count == 1
       @vlocations.each do |l|
-        redirect_to locations_edit_url(:id => l.id)
+        redirect_to '/locations/edit/' + l.id.to_s
       end
+    elsif @vlocations.count == 0
+      redirect_to locations_new_url(:new_user_message => true)
+      
     end
-  end
-
-  def add_item
-    store_location
-    @user = current_user
-
-    if vendor_location_id_matches
-      @location = Location.find(params[:id])
-      @location.products.build
-    else
-      redirect_to locations_manage_url
-    end
-
   end
 
   def edit

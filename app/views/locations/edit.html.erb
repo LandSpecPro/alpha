@@ -196,7 +196,7 @@
 												<div class="span6">
 													Common Name: 
 													<span class="block input-icon input-icon-right">
-														<%= f.text_field :commonName, :class => 'span12' %>
+														<%= f.autocomplete_field :commonName, autocomplete_commonName_products_path, :class => 'span12' %>
 													</span>
 												</div>
 											
