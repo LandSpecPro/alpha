@@ -13,10 +13,10 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro' #setting environment variables
 gem 'font-awesome-rails'
-#gem 'prototype-rails' #uninstall
 gem 'geocoder'
-gem 'sunspot_rails'
-gem 'sunspot_solr' #development
+gem 'pg_search'
+gem 'rails3-jquery-autocomplete'
+gem 'chosen-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

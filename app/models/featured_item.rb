@@ -1,14 +1,11 @@
 class FeaturedItem < ActiveRecord::Base
-	attr_accessible :description, :product_id, :location_id, :product_image_id
+	include PgSearch
+	attr_accessible :description, :product_id, :location_id, :product_image_id, :size, :price
 	belongs_to :product
 	belongs_to :location
 
 	has_one :product
 	accepts_nested_attributes_for :product
-
-	searchable do
-		text :description		
-	end
 
 	def get_image
 

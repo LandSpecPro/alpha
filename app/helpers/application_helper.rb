@@ -15,6 +15,8 @@ module ApplicationHelper
 			return "Account Management"
 		elsif controller.controller_name == 'products'
 			return "Products"
+		elsif controller.controller_name == 'users' and controller.action_name == 'password_reset'
+			return "Password Reset"
 		else
 			return ""
 		end

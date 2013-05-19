@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+
   include LocationHelper
   before_filter :require_user
   before_filter :require_business
@@ -6,6 +7,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+
   end
 
   def create
@@ -26,25 +28,21 @@ class LocationsController < ApplicationController
 
   def manage
     @user = current_user
-  end
-
-  def add_item
-    store_location
-    @user = current_user
-
-    if vendor_location_id_matches
-      @location = Location.find(params[:id])
-      @location.products.build
-    else
-      redirect_to locations_manage_url
+    @vlocations = @user.bus_vendor.locations
+    if @vlocations.count == 1
+      @vlocations.each do |l|
+        redirect_to '/locations/edit/' + l.id.to_s
+      end
+    elsif @vlocations.count == 0
+      redirect_to locations_new_url(:new_user_message => true)
+      
     end
-
   end
 
   def edit
     store_location
     @user = current_user
-
+    @product = Product.new
     if vendor_location_id_matches
       @location = Location.find(params[:id])
       @location.products.build
@@ -65,6 +63,8 @@ class LocationsController < ApplicationController
   end
 
   def search
+    @sidebar_search_active = true
+    @sidebar_search_locations_active = true
   end
 
   def browse

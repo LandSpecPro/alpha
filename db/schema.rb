@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514063915) do
+ActiveRecord::Schema.define(:version => 20130519210254) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20130514063915) do
     t.text     "description"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "size"
+    t.integer  "price"
   end
 
   create_table "locations", :force => true do |t|
@@ -108,6 +110,14 @@ ActiveRecord::Schema.define(:version => 20130514063915) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "product_categories", :force => true do |t|
     t.string   "category"
     t.string   "parentCategory"
@@ -126,9 +136,9 @@ ActiveRecord::Schema.define(:version => 20130514063915) do
   end
 
   create_table "products", :force => true do |t|
-    t.text     "commonName", :null => false
-    t.text     "latinName"
-    t.text     "altName"
+    t.string   "commonName", :null => false
+    t.string   "latinName"
+    t.string   "altName"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -171,10 +181,13 @@ ActiveRecord::Schema.define(:version => 20130514063915) do
     t.string   "profileImage_content_type"
     t.integer  "profileImage_file_size"
     t.datetime "profileImage_updated_at"
+    t.string   "perishable_token",          :default => "",      :null => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["login"], :name => "index_users_on_login"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
 
 end

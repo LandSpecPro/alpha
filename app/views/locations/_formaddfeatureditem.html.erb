@@ -1,0 +1,113 @@
+<% if @location.featured_items.count < 3 %>
+
+	<% if @location.featured_items.count == 0 %>
+		<div class="center">
+			<h4>You have no featured items for this location. You can add up to 3. For more information, add link here.</h4><br/>
+		</div>
+	<% end %>
+
+	<div class="row-fluid">
+		<div class="span12">
+			<%= form_for @product do |f| %>
+				<div class="widget-box">
+					<div class="widget-header header-color-blue">
+						<h5 class="bigger lighter"><i class="icon-plus"></i> Add Featured Item</h5>
+						<div class="widget-toolbar">
+							<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-plus"></i> Add</button>
+						</div>
+					</div>
+
+					<div class="widget-body">
+
+						<div class="widget-main">
+
+
+							<% if params[:image_missing] %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> You must include an image when adding a featured item!
+								</div>
+							<% end %>
+
+							<% if params[:product_name_missing] %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> You must include a product name!
+								</div>
+							<% end %>
+
+							<fieldset>
+
+								<%= f.hidden_field(:location_id, :value => @location.id) %>
+
+								<div class="row-fluid">
+									<div class="span6">
+										Search for Product Name:
+										<span class="block input-icon input-icon-right">
+											<select id='productSelect' class="span12 chzn-select" data-placeholder="Enter Product Name">
+												<option selected="selected">New Product</option>
+								  				<% Product.all.each do |prod| %>
+								  					<option><%= prod.commonName %></option>
+								  				<% end %>
+								  			</select>
+										</span>
+										
+									</div>
+								
+									<div class="span6">
+										 Product Name:
+										<span class="block input-icon input-icon-right">
+											<%= f.text_field :commonName, :class => 'span12', :id => 'commonName' %>
+										</span>
+									</div>
+								</div>
+
+								<div class="row-fluid">
+									<%= f.fields_for :featured_items do |f2| %>
+										<div class="span6">
+											<div class="span6">
+												Size (optional): 
+												<div class="block input-icon input-icon-right">
+													<%= f2.text_field :size, :class => 'span12' %>
+												</div>
+
+											</div>
+
+											<div class="span6">
+												Price (optional): 
+												<div class="block input-icon input-icon-right">
+													<%= f2.text_field :price, :class => 'span12' %>
+												</div>
+
+											</div>
+										</div>
+										<div class="span6">
+
+											Description: 
+											<div class="block input-icon input-icon-right">
+												<%= f2.text_field :description, :class => 'span12' %>
+											</div>
+
+										</div>
+									<% end %>
+								</div>
+
+
+
+
+									Image: 
+									<div class="block input-icon input-icon-right">
+										<%= f.file_field :image, :class => 'span12' %>
+									</div>
+									
+
+							</fieldset>
+
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+<% end %>

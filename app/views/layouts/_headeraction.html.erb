@@ -1,19 +1,30 @@
-<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
+<% if controller.controller_name == 'locations' %>
 
-	<div class="pull-right">
+	<% if controller.action_name == 'manage' %>
 
-		<%= button_to "Add New Location", locations_new_url, :class => 'btn btn-info btn-small' %>
+		<div class="pull-right">
+			<%= button_to "Add New Location", locations_new_url, :class => 'btn btn-primary btn-small' %>
+		</div>
 
-	</div>
+	<% elsif controller.action_name == 'edit' %>
+
+		<div class="pull-right">
+			<div class="btn-group">
+				<a href=<%= locations_view_url(:id => params[:id]) %>><button class="btn btn-primary btn-small" style="margin-right:10px;">View Location</button></a>
+				<a href=<%= locations_new_url %>><button class="btn btn-primary btn-small">Add New Location</button></a>
+			</div>
+		</div>
+
+	<% end %>
 
 <% end %>
 
-<% if controller.action_name == 'search' %>
+<% if controller.controller_name == 'products' and controller.action_name == 'search' %>
 
 	<div class="pull-right">
-
-		<%= button_to "Browse All Products", products_browse_all_url, :class => 'btn btn-info btn-small' %>
-
+		<div class="btn-group">
+			<a href=<%= products_browse_all_url %>><button class="btn btn-primary btn-small" style="margin-right:10px;">Browse All Products</button></a>
+		</div>
 	</div>
 
 <% end %>
@@ -21,9 +32,9 @@
 <% if controller.controller_name == 'products' and controller.action_name == 'browseall' %>
 
 	<div class="pull-right">
-
-		<%= button_to "Search Products", products_search_url, :class => 'btn btn-info btn-small' %>
-
+		<div class="btn-group">
+			<a href=<%= products_search_url %>><button class="btn btn-primary btn-small" style="margin-right:10px;">Search Products</button></a>
+		</div>
 	</div>
 
 <% end %>

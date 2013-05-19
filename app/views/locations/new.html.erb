@@ -1,4 +1,5 @@
 <%= render 'layouts/sidebar' %>
+
 	<div class="span6 offset1">
 		<%= form_for @location do |f| %>
 		<div class="widget-box">
@@ -156,3 +157,23 @@
 <% end %>
 
 <%= render 'layouts/sidebarend' %>
+
+
+
+
+	<script type="text/javascript">
+
+		<% if params[:new_user_message] %>
+			$(document).ready(newUserMessage());
+
+			function newUserMessage(){
+				$.gritter.add({
+					title: 'Add a new location!',
+					text: 'LandSpec Pro allows you to have one or multiple locations set up for your company. You\'ll need to add your first location so other landscape professionals can find you. You can add more locations at any time.',
+					sticky: true,
+					class_name: 'gritter-warning gritter-dark',
+				});
+			}
+		<% end %>
+		
+	</script>

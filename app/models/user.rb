@@ -75,4 +75,9 @@ class User < ActiveRecord::Base
       return nil
     end
   end  	
+
+  def password_reset!
+  	reset_perishable_token!
+  	PasswordReset.password_reset_email(current_user).deliver
+  end
 end

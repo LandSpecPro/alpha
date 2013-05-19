@@ -1,11 +1,11 @@
 class Product < ActiveRecord::Base
+	include PgSearch
+	pg_search_scope :search_all_products, :against => [:commonName, :latinName, :altName], :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
+
 	attr_accessible :commonName, :latinName, :altName, :featured_items_attributes, :location_id, :featured_item_id
 
-	searchable do 
-		text :commonName
-		text :latinName
-		text :altName
-	end
+	has_many :product_images
+	accepts_nested_attributes_for :product_images
 
 	has_many :fav_products
 	accepts_nested_attributes_for :fav_products

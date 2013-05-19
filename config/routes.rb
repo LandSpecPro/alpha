@@ -1,9 +1,11 @@
 LspAlpha::Application.routes.draw do
 
   # Root application page
-  root :to => 'home#index'
+  root :to => 'home#root'
 
   # Resource routes for models
+
+  match "business/vendor/update" => 'bus_vendors#update'
   resources :user_sessions
   resources :users do
     resources :bus_vendors
@@ -12,11 +14,20 @@ LspAlpha::Application.routes.draw do
     resources :fav_locations
     resources :fav_products
   end
-  resources :locations, :except => ['show']
-  resources :products, :except => ['show']
+  resources :locations, :except => ['show'] do
+    get :autocomplete_products_commonName, :on => :collection
+  end
+  resources :products, :except => ['show'] do
+    get :autocomplete_users_login, :on => :collection
+    
+  end
   resources :product_images
   resources :featured_items
   resources :product_categories
+
+  match 'user/password/reset' => 'users#password_reset'
+  match 'user/password/update' => 'users#update_password'
+  match 'password/reset' => 'users#password_reset_form'
 
   # Routes for products
   match 'products/search' => 'products#search'
@@ -29,10 +40,11 @@ LspAlpha::Application.routes.draw do
   match "locations" => 'locations#manage'
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
-  match "locations/view/:id" => 'locations#view'
+  match "locations/view" => 'locations#view'
   match "locations/edit/:id" => 'locations#edit'
-  match "locations/delete/:id" => 'locations#destroy'
-  match "locations/delete/confirm/:id" => 'locations#confirm_destroy'
+  match "locations/edit" => 'locations#edit'
+  match "locations/delete" => 'locations#destroy'
+  match "locations/delete/confirm" => 'locations#confirm_destroy'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'
@@ -42,6 +54,7 @@ LspAlpha::Application.routes.draw do
 
   # For home controller
   match "home" => 'home#index'
+  match 'index' => 'home#index'
   match "about" => 'home#about'
   match "contact" => 'home#contact'
 

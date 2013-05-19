@@ -1,51 +1,53 @@
-<div class="span6">
-	<%= form_for @user do |f| %>
-		<div class="widget-box">
-			<div class="widget-header header-color-blue">
-				<h5 class="bigger lighter"><i class="icon-cog"></i> Account Info</h5>
-				<div class="widget-toolbar">
-					<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-save"></i> Update</button>
-				</div>
+
+<%= form_for @user do |f| %>
+	<div class="widget-box" style="min-width: 350px;">
+		<div class="widget-header header-color-blue">
+			<h5 class="bigger lighter"><i class="icon-cog"></i> Account Info</h5>
+			<div class="widget-toolbar">
+				<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-save"></i> Update</button>
 			</div>
+		</div>
 
-			<div class="widget-body">
-				<div class="widget-main">
-
-
-					<!-- Display error messages as alerts -->
-					<% @user.errors.full_messages.each do |msg| %>
-						<div class="alert alert-error">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Error! </strong> <%= msg %>
-						</div>
-					<% end %>
-
-					<fieldset>
-
-						<%= f.hidden_field :id, :value => @user.id %>
-
-						<%= f.label 'Username:' %>
-						<div class="block input-icon input-icon-right">
-							<%= f.text_field :login, :class => 'span12', :value => @user.login %>
-						</div>
-
-						<%= f.label 'Email:' %>
-						<div class="block input-icon input-icon-right">
-							<%= f.text_field :email, :class => 'span12', :value => @user.email %>
-						</div>
-
-						<%= f.label 'User Type:' %>
-						<span class="block input-icon input-icon-right">
-							<%= f.text_field :userType, :class => 'span12', :value => @usertype %>
-						</span>
-				
-
-					</fieldset>
+		<div class="widget-body">
+			<div class="widget-main">
 
 
-				</div> <!-- end widget-main -->
-			</div> <!-- end widget-body -->
+				<!-- Display error messages as alerts -->
+				<% @user.errors.full_messages.each do |msg| %>
+					<div class="alert alert-error">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>Error! </strong> <%= msg %>
+					</div>
+				<% end %>
 
-		</div> <!-- end widget-box -->
-	<% end %>
-</div> <!-- end span6 -->
+				<fieldset>
+
+					<%= f.hidden_field :id, :value => @user.id %>
+
+					<%= f.label 'Username:' %>
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :login, :class => 'span12', :value => @user.login %>
+					</div>
+
+					<%= f.label 'Email:' %>
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :email, :class => 'span12', :value => @user.email %>
+					</div>
+
+					<%= f.label 'User Type:' %>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :userType, :class => 'span12', :value => @usertype, :readonly => true %>
+					</span>
+					<div class="pull-right">
+						<a href=<%= user_password_reset_url %>>Reset Password</a>
+					</div>
+			
+
+				</fieldset>
+
+
+			</div> <!-- end widget-main -->
+		</div> <!-- end widget-body -->
+
+	</div> <!-- end widget-box -->
+<% end %>
