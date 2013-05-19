@@ -14,9 +14,12 @@ LspAlpha::Application.routes.draw do
     resources :fav_locations
     resources :fav_products
   end
-  resources :locations, :except => ['show']
+  resources :locations, :except => ['show'] do
+    get :autocomplete_products_commonName, :on => :collection
+  end
   resources :products, :except => ['show'] do
-    get :autocomplete_commonName, :on => :collection
+    get :autocomplete_users_login, :on => :collection
+    
   end
   resources :product_images
   resources :featured_items

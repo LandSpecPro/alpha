@@ -39,6 +39,10 @@ GEM
     bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.0.4)
+    chosen-rails (0.9.14)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -73,6 +77,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.2)
+    nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
@@ -141,6 +146,7 @@ DEPENDENCIES
   authlogic
   aws-sdk
   bootstrap-sass
+  chosen-rails
   coffee-rails (~> 3.2.1)
   dynamic_form
   figaro

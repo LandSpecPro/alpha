@@ -17,3 +17,5 @@
 //= require theme/ace.min
 //= require theme/ace-elements.min
 //= require autocomplete-rails
+//= require theme/jquery.ui.touch-punch.min
+//= require theme/chosen.jquery.min

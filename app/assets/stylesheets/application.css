@@ -15,5 +15,7 @@
  *= require 'theme/ace.min'
  *= require 'theme/ace-responsive.min'
  *= require 'theme/ace-skins.min'
+ *= require 'theme/chosen'
+ *= require 'theme/prettify'
  *= require_tree .
  */

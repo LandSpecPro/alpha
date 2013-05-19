@@ -1,10 +1,9 @@
 class LocationsController < ApplicationController
+
   include LocationHelper
   before_filter :require_user
   before_filter :require_business
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy]
-
-  autocomplete :product, :commonName
 
   def new
     @location = Location.new
@@ -43,7 +42,7 @@ class LocationsController < ApplicationController
   def edit
     store_location
     @user = current_user
-
+    @product = Product.new
     if vendor_location_id_matches
       @location = Location.find(params[:id])
       @location.products.build
