@@ -63,16 +63,33 @@
 								</div>
 
 								<div class="row-fluid">
-									<div class="span6 offset6">
-										<%= f.fields_for :featured_items do |f2| %>
+									<%= f.fields_for :featured_items do |f2| %>
+										<div class="span6">
+											<div class="span6">
+												Size (optional): 
+												<div class="block input-icon input-icon-right">
+													<%= f2.text_field :size, :class => 'span12' %>
+												</div>
+
+											</div>
+
+											<div class="span6">
+												Price (optional): 
+												<div class="block input-icon input-icon-right">
+													<%= f2.text_field :price, :class => 'span12' %>
+												</div>
+
+											</div>
+										</div>
+										<div class="span6">
 
 											Description: 
 											<div class="block input-icon input-icon-right">
 												<%= f2.text_field :description, :class => 'span12' %>
 											</div>
 
-										<% end %>
-									</div>
+										</div>
+									<% end %>
 								</div>
 
 

@@ -1,6 +1,6 @@
 class FeaturedItem < ActiveRecord::Base
 	include PgSearch
-	attr_accessible :description, :product_id, :location_id, :product_image_id
+	attr_accessible :description, :product_id, :location_id, :product_image_id, :size, :price
 	belongs_to :product
 	belongs_to :location
 

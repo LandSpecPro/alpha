@@ -14,6 +14,8 @@ class ProductsController < ApplicationController
     @locationid = @location.id
     @description = params[:product][:featured_items][:description]
     @image = params[:product][:image]
+    @size = params[:product][:featured_items][:size]
+    @price = params[:product][:featured_items][:price]
 
     @thing = params[:product][:productSelect]
 
@@ -22,7 +24,7 @@ class ProductsController < ApplicationController
     @product = find_product(@location)
 
     if @product.save
-      if save_product_relations(@product.id, @image, @description, @locationid)
+      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
         flash[:notice] = "Product Added!"
         redirect_to locations_edit_url(:id => @locationid)
         return
@@ -74,10 +76,10 @@ class ProductsController < ApplicationController
     params[:product].delete :location_id
   end
 
-  def save_product_relations(product_id, image, description, location_id)
+  def save_product_relations(product_id, image, description, location_id, size, price)
     @productimage = ProductImage.new(:product_id => product_id, :image => image)
     if @productimage.save
-      @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id)
+      @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
       @featureditem.save
       return true
     else
