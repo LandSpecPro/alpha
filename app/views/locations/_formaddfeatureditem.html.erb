@@ -41,7 +41,7 @@
 								<%= f.hidden_field(:location_id, :value => @location.id) %>
 
 								<div class="row-fluid">
-									<div class="span6">
+									<div class="span12">
 										Search for Product Name:
 										<span class="block input-icon input-icon-right">
 											<select id='productSelect' class="span12 chzn-select" data-placeholder="Enter Product Name">
@@ -53,8 +53,10 @@
 										</span>
 										
 									</div>
-								
-									<div class="span6">
+								</div>
+								<br/>
+								<div class="row-fluid">
+									<div class="span12">
 										 Product Name:
 										<span class="block input-icon input-icon-right">
 											<%= f.text_field :commonName, :class => 'span12', :id => 'commonName' %>
@@ -62,9 +64,10 @@
 									</div>
 								</div>
 
-								<div class="row-fluid">
-									<%= f.fields_for :featured_items do |f2| %>
-										<div class="span6">
+								
+								<%= f.fields_for :featured_items do |f2| %>
+									<div class="row-fluid">
+										<div class="span12">
 											<div class="span6">
 												Size (optional): 
 												<div class="block input-icon input-icon-right">
@@ -81,24 +84,23 @@
 
 											</div>
 										</div>
-										<div class="span6">
+									</div>
+									<div class="row-fluid">
+										<div class="span12">
 
 											Description: 
 											<div class="block input-icon input-icon-right">
-												<%= f2.text_field :description, :class => 'span12' %>
+												<%= f2.text_area :description, :class => 'span12', :rows => '3', :style => 'resize: none;' %>
 											</div>
 
 										</div>
-									<% end %>
-								</div>
-
-
-
-
-									Image: 
-									<div class="block input-icon input-icon-right">
-										<%= f.file_field :image, :class => 'span12' %>
 									</div>
+								<% end %>
+
+								Image: 
+								<div class="block input-icon input-icon-right">
+									<%= f.file_field :image, :class => 'span12', :id => 'image' %>
+								</div>
 									
 
 							</fieldset>
