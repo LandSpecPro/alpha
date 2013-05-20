@@ -33,42 +33,63 @@
 				<% else %>
 					<li>
 				<% end %>
-					<a href="#" class="dropdown-toggle" >
-						<i class="icon-search"></i>
-						<span>Search</span>
-						<b class="arrow icon-angle-down"></b>
-					</a>
+						<a href="#" class="dropdown-toggle" >
+							<i class="icon-search"></i>
+							<span>Search</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
 
-					<ul class="submenu">
+						<ul class="submenu">
 
-					<% if @sidebar_search_products_active %>
-						<li class="active">
-					<% else %>
-						<li>
-					<% end %>
-							<a href=<%= products_search_url %>><i class="icon-double-angle-right"></i> Products</a>
-						</li>
-					<% if @sidebar_search_locations_active %>
-						<li class="active">
-					<% else %>
-						<li>
-					<% end %>
-							<a href=<%= locations_search_url %>><i class="icon-double-angle-right"></i> Vendors</a>
-						</li>
-					</ul>
+						<% if @sidebar_search_products_active %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= products_search_url %>><i class="icon-double-angle-right"></i> Products</a>
+							</li>
+						<% if @sidebar_search_locations_active %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= locations_search_url %>><i class="icon-double-angle-right"></i> Vendors</a>
+							</li>
+						</ul>
 
-				</li>
+					</li>
 
-			<% if controller.controller_name == 'account' %>
-				<li class="active">
-			<% else %>
-				<li>
-			<% end %>
-					<a href=<%= account_url %>>
-						<i class="icon-cog"></i>
-						<span>Account</span>
-					</a>
-				</li>
+				<% if controller.controller_name == 'favorites' %>
+					<li class="active open">
+				<% else %>
+					<li>
+				<% end %>
+						<a href="#" class="dropdown-toggle">
+							<i class="icon-star"></i>
+							<span>Favorites</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+
+						<% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= favorites_products_url %>><i class="icon-double-angle-right"></i> Products</a>
+							</li>
+						<% if controller.controller_name == 'favorites' and controller.action_name == 'vendors' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= favorites_vendors_url %>><i class="icon-double-angle-right"></i> Vendors</a>
+							</li>
+						</ul>
+					</li>
+
+			
 
 				<% if current_user.is_vendor %>
 
@@ -84,7 +105,18 @@
 					</li>
 				<% end %>
 
-				<!--
+
+				<% if controller.controller_name == 'account' %>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
+					<a href=<%= account_url %>>
+						<i class="icon-cog"></i>
+						<span>Account</span>
+					</a>
+				</li>
+								<!--
 					  <a href="#" class="dropdown-toggle" >
 						<i class="icon-globe"></i>
 						<span>Locations</span>

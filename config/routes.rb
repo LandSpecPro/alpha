@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+  get "favorites/products"
+
+  get "favorites/vendors"
+
   # Root application page
   root :to => 'home#root'
 
@@ -24,6 +28,10 @@ LspAlpha::Application.routes.draw do
   resources :product_images
   resources :featured_items
   resources :product_categories
+
+  # Routes for favorites
+  match 'favorites/products' => 'favorites#products'
+  match 'favorites/vendors' => 'favorites#vendors'
 
   match 'user/password/reset' => 'users#password_reset'
   match 'user/password/update' => 'users#update_password'

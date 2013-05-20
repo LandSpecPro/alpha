@@ -1,16 +1,29 @@
 <%= render 'layouts/sidebar' %>
 
+
+
 	<div class="row-fluid">
 		<div class="span6">
+			<div class="row-fluid">
+		<div class="span12">
+			<div class="widget-box">
+				<div class="widget-header header-color-dark">
+					<div class="center">
+						<h3 class="lighter"><%= @location.bus_vendor.busName %></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 			<div class="widget-box">
 			<div class="widget-header header-color-blue">
-				<h5 class="bigger lighter"><i class="icon-home"></i> <%= @location.bus_vendor.busName %></h5>
+				<h5 class="bigger lighter"><i class="icon-home"></i> <%= @location.locName %></h5>
 				<div class="widget-toolbar">
 					<% if @location.is_favorited(current_user) %>
-						<a class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+						<a title="Remove from favorites" class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
 					<% else %>
-						<a class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+						<a title="Add to favorites" class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
 					<% end %>
 				</div>
 			</div>
@@ -21,13 +34,12 @@
 		
 
 					<div class="pull-left">
-						<%= image_tag @location.bus_vendor.logo.url(:thumb) %>
+						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '150px', :height => '150px' %>
 					</div>
 
 					<div class="span4">
 						<div class="pull-left">
 							<p style="margin-top:10px; margin-left:5px;">
-								<i style="font-size:20px;"><%= @location.locName %></i><br/>
 								<span style="font-size:15px;">
 									<%= @location.address1 %><br/>
 									<% if @location.address2 != "" %>
@@ -39,17 +51,50 @@
 						</div>
 					</div>
 
-				    <div class="span4">
-				    	<div class="pull-left">
-				    		<p style="margin-top:"
-
 				</div> <!-- end row-fluid -->
 			</div> <!-- end widget-main -->
 		</div> <!-- end widget-body -->
 
 			</div> <!-- end widget-box -->
 
-		</div> <!-- end span8 -->
+		</div> <!-- end span6 -->
+
+		<div class="span4">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-header header-color-dark">
+							<div class="center">
+								<h3 class="lighter">Featured Items</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<% @location.featured_items.each do |fi| %>
+				<div class="row-fluid">
+					<div class="span12">
+
+						<div class="widget-box">
+							<div class="widget-header header-color-blue">
+								<h5 class="bigger lighter"><i class="icon-home"></i> <%= fi.get_product.commonName %></h5>
+							</div>
+
+							<div class="widget-body">
+								<div class="widget-main">
+									<div class="center">
+										<%= image_tag fi.get_image.url(:medium) %>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+		</div>
 	</div> <!-- end row-fluid -->
 
 <%= render 'layouts/sidebarend' %>

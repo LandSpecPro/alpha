@@ -1,0 +1,7 @@
+<%= render 'layouts/sidebar' %>
+
+	<% @favlocations.each do |l| %>
+		<h1><%= l.location.locName %></h1>
+	<% end %>
+
+<%= render 'layouts/sidebarend' %>
