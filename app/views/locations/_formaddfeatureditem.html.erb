@@ -8,12 +8,12 @@
 
 	<div class="row-fluid">
 		<div class="span12">
-			<%= form_for @product do |f| %>
+			<%= form_for @product, :html => {:id => 'form_add_featured_item'} do |f| %>
 				<div class="widget-box">
 					<div class="widget-header header-color-blue">
 						<h5 class="bigger lighter"><i class="icon-plus"></i> Add Featured Item</h5>
 						<div class="widget-toolbar">
-							<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-plus"></i> Add</button>
+							<a href="javascript:{return true;}" onclick="document.getElementById('form_add_featured_item').submit();" class="white" id="white-link"><i  class="icon-plus" id="fav_icon"></i> Add</a>
 						</div>
 					</div>
 

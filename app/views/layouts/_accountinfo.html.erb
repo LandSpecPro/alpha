@@ -1,10 +1,10 @@
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:id => 'form_update_account_info'} do |f| %>
 	<div class="widget-box" style="min-width: 350px;">
 		<div class="widget-header header-color-blue">
 			<h5 class="bigger lighter"><i class="icon-cog"></i> Account Info</h5>
 			<div class="widget-toolbar">
-				<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-save"></i> Update</button>
+				<a href="javascript:{return true;}" onclick="document.getElementById('form_update_account_info').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
 			</div>
 		</div>
 
@@ -26,12 +26,12 @@
 
 					<%= f.label 'Username:' %>
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :login, :class => 'span12', :value => @user.login %>
+						<%= f.text_field :login, :class => 'span12', :value => @user.login, :readonly => true %>
 					</div>
 
 					<%= f.label 'Email:' %>
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :email, :class => 'span12', :value => @user.email %>
+						<%= f.text_field :email, :class => 'span12', :value => @user.email, :readonly => true %>
 					</div>
 
 					<%= f.label 'User Type:' %>
