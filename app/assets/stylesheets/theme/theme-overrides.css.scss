@@ -16,3 +16,15 @@
 	padding-left:25px;
 	padding-right:25px;
 }
+
+#white-link{
+	padding:2px;
+	padding-left:8px;
+	padding-right:8px;
+}
+#white-link:hover{
+	padding:2px;
+	padding-left:8px;
+	padding-right:8px;
+	background-color: lighten(#307ecc, 10%);
+}

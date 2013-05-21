@@ -3,7 +3,9 @@
 	<% if controller.action_name == 'manage' %>
 
 		<div class="pull-right">
-			<%= button_to "Add New Location", locations_new_url, :class => 'btn btn-primary btn-small' %>
+			<div class="btn-group">
+				<a href=<%= locations_new_url %>><button class="btn btn-primary btn-small" style="margin-right:10px;">Add New Location</button></a>
+			</div>
 		</div>
 
 	<% elsif controller.action_name == 'edit' %>
@@ -14,6 +16,18 @@
 				<a href=<%= locations_new_url %>><button class="btn btn-primary btn-small">Add New Location</button></a>
 			</div>
 		</div>
+
+	<% elsif controller.action_name == 'view' %>
+
+		<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
+
+			<div class="pull-right">
+				<div class="btn-group">
+					<a href=<%= locations_edit_url(:id => params[:id]) %>><button class="btn btn-primary btn-small" style="margin-right:10px;">Edit Location</button></a>
+				</div>
+			</div>
+
+		<% end %>
 
 	<% end %>
 

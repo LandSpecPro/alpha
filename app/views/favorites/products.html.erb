@@ -1,0 +1,7 @@
+<%= render 'layouts/sidebar' %>
+
+	<% @favproducts.each do |p| %>
+		<h1><%= p.product.commonName %></h1>
+	<% end %>
+
+<%= render 'layouts/sidebarend' %>

@@ -2,12 +2,12 @@
 
 <div class="row-fluid">
 	<div class="span4 offset1">
-		<%= form_for @user do |f| %>
+		<%= form_for @user, :html => {:id => 'form_update_logo'} do |f| %>
 			<div class="widget-box" style="min-width: 350px;">
 				<div class="widget-header header-color-blue">
 					<h5 class="bigger lighter"><i class="icon-user"></i> Company Logo</h5>
 					<div class="widget-toolbar">
-						<button type="submit" class="btn btn-mini btn-inverse no-radius white"><i class="icon-save"></i> Update</button>
+						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_logo').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
 					</div>
 				</div>
 

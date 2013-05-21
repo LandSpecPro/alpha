@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+  get "favorites/products"
+
+  get "favorites/vendors"
+
   # Root application page
   root :to => 'home#root'
 
@@ -25,6 +29,10 @@ LspAlpha::Application.routes.draw do
   resources :featured_items
   resources :product_categories
 
+  # Routes for favorites
+  match 'favorites/products' => 'favorites#products'
+  match 'favorites/vendors' => 'favorites#vendors'
+
   match 'user/password/reset' => 'users#password_reset'
   match 'user/password/update' => 'users#update_password'
   match 'password/reset' => 'users#password_reset_form'
@@ -45,6 +53,7 @@ LspAlpha::Application.routes.draw do
   match "locations/edit" => 'locations#edit'
   match "locations/delete" => 'locations#destroy'
   match "locations/delete/confirm" => 'locations#confirm_destroy'
+  match "locations/favorite/set" => 'locations#set_as_favorite'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'

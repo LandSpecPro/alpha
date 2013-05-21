@@ -8,6 +8,9 @@ class Location < ActiveRecord::Base
 	has_many :products, :through => :featured_items
 	accepts_nested_attributes_for :featured_items
 
+	has_many :fav_locations
+	accepts_nested_attributes_for :fav_locations
+
 	validates_presence_of :locName, :on => :create, :message => "Must provide a name for this location!"
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
 
@@ -21,5 +24,40 @@ class Location < ActiveRecord::Base
 		return FeaturedItem.where(:location_id => self.id)
 
 	end
+
+	def is_favorited(user)
+
+		if FavLocation.where(:user_id => user.id, :location_id => self.id).count > 0
+			return true
+		else
+			return false
+		end
+	end
+
+	def set_favorite(userid, locid)
+
+		if locid == self.id
+			@favloc = FavLocation.create(:user_id => userid, :location_id => self.id)
+			if @favloc.save
+				return true
+			else
+				return false
+			end
+		else
+			return false
+		end
+
+	end
+
+	def remove_favorite(userid, locid)
+
+		if locid == self.id
+			FavLocation.destroy(FavLocation.where(:user_id => userid, :location_id => self.id).first.id)
+			return true
+		else
+			return false
+		end
+	end
+
 
 end

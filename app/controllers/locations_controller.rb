@@ -74,6 +74,25 @@ class LocationsController < ApplicationController
   end
 
   def view
+
+    store_location
+
+    @location = Location.find(params[:id])
+    # Add in (if vendor owns this location put in an edit button at the top)
+  end
+
+  def set_as_favorite
+
+    @location = Location.find(params[:id])
+
+    if @location.is_favorited(current_user)
+      @location.remove_favorite(current_user.id, @location.id)
+      redirect_back_or_default('/')
+    else
+      @location.set_favorite(current_user.id, @location.id)
+      redirect_back_or_default('/')
+    end
+
   end
 
   def destroy
