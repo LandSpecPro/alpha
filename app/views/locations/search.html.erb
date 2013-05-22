@@ -1,4 +1,14 @@
 <%= render 'layouts/sidebar' %>
-<h1>Location#search</h1>
-<p>Find me in app/views/location/search.html.erb</p>
+
+<%= render 'search' %>
+
+<div class="span8">
+
+	<% unless @locations.nil? %>
+		<% @locations.each do |l| %>
+			<h1><%= l.locName %></h1>
+		<% end %>
+	<% end %>
+	
+</div>
 <%= render 'layouts/sidebarend' %>

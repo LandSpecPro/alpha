@@ -65,6 +65,10 @@ class LocationsController < ApplicationController
   def search
     @sidebar_search_active = true
     @sidebar_search_locations_active = true
+    @locations = nil
+    if params[:commit] == 'Find near me'
+      @locations = Location.near('atlanta, ga, us', 50)      
+    end
   end
 
   def browse

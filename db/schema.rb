@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130519210254) do
+ActiveRecord::Schema.define(:version => 20130522172150) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20130519210254) do
     t.datetime "updated_at",       :null => false
     t.string   "size"
     t.integer  "price"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "locations", :force => true do |t|
@@ -108,6 +110,8 @@ ActiveRecord::Schema.define(:version => 20130519210254) do
     t.string   "googleLink"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "pg_search_documents", :force => true do |t|
@@ -182,6 +186,8 @@ ActiveRecord::Schema.define(:version => 20130519210254) do
     t.integer  "profileImage_file_size"
     t.datetime "profileImage_updated_at"
     t.string   "perishable_token",          :default => "",      :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -1,8 +1,11 @@
 class Location < ActiveRecord::Base
 	include PgSearch
+
+	geocoded_by :get_full_address
+	after_validation :geocode
+
 	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes
 	belongs_to :bus_vendor
-
 	
 	has_many :featured_items
 	has_many :products, :through => :featured_items
@@ -18,6 +21,16 @@ class Location < ActiveRecord::Base
 	validates_presence_of :city, :on => :create, :message => "Must provide a valid city!"
 	validates_presence_of :state, :on => :create, :message => "Must provide a valid state!"
 	validates_presence_of :zip, :on => :create, :message => "Must provide a valid zip code!"
+
+	def get_full_address
+		@address1 = self.address1 + " "
+		@address2 = self.address2 + " "
+		@city = self.city + ", "
+		@state = self.state + " "
+		@zip = self.zip
+
+		return @address1 + @address2 + @city + @state + @zip
+	end
 
 	def get_featured_items
 
