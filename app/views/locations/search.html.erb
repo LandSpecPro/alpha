@@ -6,9 +6,21 @@
 
 	<% unless @locations.nil? %>
 		<% @locations.each do |l| %>
-			<h1><%= l.locName %></h1>
+			<a style="font-size:15px;" href=<%= locations_view_url(:id => l.id) %>><%= l.locName %></a><br/>
 		<% end %>
 	<% end %>
 	
 </div>
 <%= render 'layouts/sidebarend' %>
+
+
+<script type="text/javascript">
+
+	$(document).ready(chosenf())
+
+	function chosenf(){
+	  $(".chzn-select").chosen();
+	}
+
+
+</script>

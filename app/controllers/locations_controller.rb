@@ -66,9 +66,30 @@ class LocationsController < ApplicationController
     @sidebar_search_active = true
     @sidebar_search_locations_active = true
     @locations = nil
-    if params[:commit] == 'Find near me'
-      @locations = Location.near('atlanta, ga, us', 50)      
+    if params[:commit] == 'Search'
+      if params[:distance_from] != '0' and params[:search] != ''
+        @locations = search_with_distance_and_query
+      elsif params[:distance_from] != '0' and params[:search] == ''
+        @locations = search_with_distance_only
+      elsif params[:distance_from] == '0' and params[:search] != ''
+        @locations = search_with_query_only
+      elsif params[:distance_from] == '0' and params[:search] == ''
+        @locations = Location.all
+      end
     end
+  end
+
+  def search_with_distance_and_query
+    @locsnear = Location.near('atlanta, ga, us', params[:distance_from])
+    return @locsnear.search_all_locations(params[:search])
+  end
+
+  def search_with_distance_only
+    return Location.near('atlanta, ga, us', params[:distance_from])
+  end
+
+  def search_with_query_only
+    return Location.search_all_locations(params[:search])
   end
 
   def browse

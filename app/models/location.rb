@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
 	include PgSearch
+	pg_search_scope :search_all_locations, :against => :locName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
 
 	geocoded_by :get_full_address
 	after_validation :geocode
