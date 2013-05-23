@@ -22,15 +22,15 @@
 			<span class="block input-icon">
 				<label for="distance_from">Distance Away: </label>
 				<select id='distance_from' name='distance_from' class="input-large chzn-select" data-placeholder="Any">
-					<option value='0' <% if params[:distance_from] == 0 %>selected="selected"<% end %>>Any</option>
-					<option value='5' <% if params[:distance_from] == 5 %>selected="selected"<% end %>>5 Miles</option>
-					<option value='10'>10 Miles</option>
-					<option value='15'>15 Miles</option>
-					<option value='20'>20 Miles</option>
-					<option value='25'>25 Miles</option>
-					<option value='50'>50 Miles</option>
-					<option value='100'>100 Miles</option>
-					<option value='150'>150 Miles</option>
+					<option value='0' <% if params[:distance_from] == '0' %>selected="selected"<% end %>>Any</option>
+					<option value='5' <% if params[:distance_from] == '5' %>selected="selected"<% end %>>5 Miles</option>
+					<option value='10' <% if params[:distance_from] == '10' %>selected="selected"<% end %>>10 Miles</option>
+					<option value='15' <% if params[:distance_from] == '15' %>selected="selected"<% end %>>15 Miles</option>
+					<option value='20' <% if params[:distance_from] == '20' %>selected="selected"<% end %>>20 Miles</option>
+					<option value='25' <% if params[:distance_from] == '25' %>selected="selected"<% end %>>25 Miles</option>
+					<option value='50' <% if params[:distance_from] == '50' %>selected="selected"<% end %>>50 Miles</option>
+					<option value='100' <% if params[:distance_from] == '100' %>selected="selected"<% end %>>100 Miles</option>
+					<option value='150' <% if params[:distance_from] == '150' %>selected="selected"<% end %>>150 Miles</option>
 	  			</select>
 			</span>
 			<br/>
@@ -57,6 +57,7 @@
 			<br/>
 			<div class="widget-footer">
 				<%= submit_tag "Search", :class => "btn btn-block btn-success btn-small" %>
+				<%= request.location.city %>
 			</div>
 		</div>
 		
