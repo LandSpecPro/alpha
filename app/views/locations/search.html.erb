@@ -4,13 +4,22 @@
 
 <div class="span8">
 
-	<% unless @locations.nil? %>
-		<% @locations.each do |l| %>
-			<a style="font-size:15px;" href=<%= locations_view_url(:id => l.id) %>><%= l.locName %></a><br/>
+	<% if not @locations.nil? %>
+		<% if @locations.count == 0 %>
+			<div class="center"><br/>
+				<h3>0 locations were found!</h3>
+			</div>
+		<% else %>
+			<%= render 'searchresulttable' %>
 		<% end %>
+	<% else %>
+		<div class="center"><br/>
+			No results to display.
+		</div>
 	<% end %>
 	
 </div>
+
 <%= render 'layouts/sidebarend' %>
 
 

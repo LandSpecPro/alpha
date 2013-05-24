@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    @user.currentCity = request.location.city
+    @user.currentState = request.location.state
     if @user.save
       flash[:notice] = "Account registered!"
 
@@ -34,13 +36,24 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+
+    if params[:user][:company_name]
+      update_company_info
+    end
+
+    @user = @current_user # makes our views "cleaner" and more consistent    
+    params[:user].delete :company_name
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else
       render :action => :edit
     end
+  end
+
+  def update_company_info
+    @business = current_user.get_business
+    @business.update_attributes(:busName => params[:user][:company_name])
   end
 
   def dashboard

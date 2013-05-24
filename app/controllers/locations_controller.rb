@@ -67,21 +67,53 @@ class LocationsController < ApplicationController
     @sidebar_search_locations_active = true
     @locations = nil
     if params[:commit] == 'Search'
-
-      if params[:search] == ''
-        @templocs = Location.all
-      else
-        @templocs = Location.search_all_locations(params[:search])
+      if params[:distance_from] != '0' and params[:search] != ''
+        @locations = search_with_distance_and_query
+      elsif params[:distance_from] != '0' and params[:search] == ''
+        @locations = search_with_distance_only
+      elsif params[:distance_from] == '0' and params[:search] != ''
+        @locations = search_with_query_only
+      elsif params[:distance_from] == '0' and params[:search] == ''
+        @locations = Location.all
       end
+    end
+  end
 
-      if params[:distance_from] != '0'
-        @locations = @templocs.near('atlanta, ga, us', params[:distance_from])
-      else
-        @locations = @templocs
-      end
+  def search_with_distance_and_query
 
+    if current_user.currentCity.nil?
+      @city = 'Atlanta, '
+    else
+      @city = current_user.currentCity
     end
 
+    if current_user.currentState.nil?
+      @state = 'GA, '
+    else
+      @state = current_user.currentState
+    end
+
+    @locsnear = Location.near('' + @city + @state + 'US', params[:distance_from])
+    return @locsnear.search_all_locations(params[:search])
+  end
+
+  def search_with_distance_only
+    if current_user.currentCity.nil?
+      @city = 'Atlanta, '
+    else
+      @city = current_user.currentCity
+    end
+
+    if current_user.currentState.nil?
+      @state = 'GA, '
+    else
+      @state = current_user.currentState
+    end
+    return Location.near('' + @city + @state + 'US', params[:distance_from])
+  end
+
+  def search_with_query_only
+    return Location.search_all_locations(params[:search])
   end
 
   def browse

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522172150) do
+ActiveRecord::Schema.define(:version => 20130523221844) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(:version => 20130522172150) do
     t.string   "perishable_token",          :default => "",      :null => false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "currentCity"
+    t.string   "currentState"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

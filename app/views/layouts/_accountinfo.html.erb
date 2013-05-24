@@ -24,6 +24,11 @@
 
 					<%= f.hidden_field :id, :value => @user.id %>
 
+					<%= f.label 'Company Name:' %>
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :company_name, :class => 'span12', :value => @user.get_business.busName %>
+					</div>
+
 					<%= f.label 'Username:' %>
 					<div class="block input-icon input-icon-right">
 						<%= f.text_field :login, :class => 'span12', :value => @user.login, :readonly => true %>
@@ -37,6 +42,14 @@
 					<%= f.label 'User Type:' %>
 					<span class="block input-icon input-icon-right">
 						<%= f.text_field :userType, :class => 'span12', :value => @usertype, :readonly => true %>
+					</span>
+					<%= f.label 'Current City:' %>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :currentCity, :class => 'span12', :value => @user.currentCity %>
+					</span>
+					<%= f.label 'Current State:' %>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :currentState, :class => 'span12', :value => @user.currentState %>
 					</span>
 					<div class="pull-right">
 						<a href=<%= user_password_reset_url %>>Reset Password</a>
