@@ -57,6 +57,17 @@
 								<br/>
 								<div class="row-fluid">
 									<div class="span12">
+										Product Categories:
+										<span class="block input-icon input-icon-right">
+											<%= select_tag "categories", options_from_collection_for_select(Category.all, 'id', 'category'), :multiple => true, :class => 'span12 chzn-select' %>
+											
+										</span>
+										
+									</div>
+								</div>
+								<br/>
+								<div class="row-fluid">
+									<div class="span12">
 										 Product Name:
 										<span class="block input-icon input-icon-right">
 											<%= f.text_field :commonName, :class => 'span12', :id => 'commonName' %>

@@ -155,6 +155,8 @@ class LocationsController < ApplicationController
 
       if vendor_location_id_matches
         Location.destroy(params[:id])
+        FavLocation.destroy_all(:location_id => params[:id])
+        FeaturedItems.destroy_all(:location_id => params[:id])
       end
 
       redirect_to locations_manage_url

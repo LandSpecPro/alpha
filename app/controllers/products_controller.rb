@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
     @image = params[:product][:image]
     @size = params[:product][:featured_items][:size]
     @price = params[:product][:featured_items][:price]
+    @categories = params[:categories]
 
     @thing = params[:product][:productSelect]
 
@@ -24,7 +25,7 @@ class ProductsController < ApplicationController
     @product = find_product(@location)
 
     if @product.save
-      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
+      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price, @categories)
         flash[:notice] = "Product Added!"
         redirect_to locations_edit_url(:id => @locationid)
         return
@@ -76,15 +77,35 @@ class ProductsController < ApplicationController
     params[:product].delete :location_id
   end
 
-  def save_product_relations(product_id, image, description, location_id, size, price)
+  def save_product_relations(product_id, image, description, location_id, size, price, categories)
     @productimage = ProductImage.new(:product_id => product_id, :image => image)
     if @productimage.save
       @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
       @featureditem.save
+
+      save_categories(@featureditem.id, location_id, categories)
+
       return true
     else
       return false
     end
+  end
+
+  def save_categories(featured_item_id, location_id, categories)
+
+    @location = Location.find(location_id)
+
+    categories.each do |c|
+      @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
+      @productcats.save
+
+      if LocationHasCategory.where(:location_id => location_id, :category_id => c).count == 0
+        @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
+        @locationcats.save
+      end
+
+    end
+
   end
 
   def edit

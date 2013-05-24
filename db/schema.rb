@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524193109) do
+ActiveRecord::Schema.define(:version => 20130524221908) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",           :null => false
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(:version => 20130524193109) do
     t.string   "busContact"
     t.string   "busEmail"
     t.string   "busWebsite"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string "category"
+    t.string "parentCategory"
   end
 
   create_table "contacts", :force => true do |t|
@@ -92,6 +97,13 @@ ActiveRecord::Schema.define(:version => 20130524193109) do
     t.float    "longitude"
   end
 
+  create_table "location_has_categories", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.integer  "bus_vendor_id",  :null => false
     t.string   "locName",        :null => false
@@ -128,6 +140,13 @@ ActiveRecord::Schema.define(:version => 20130524193109) do
     t.string   "parentCategory"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "product_has_categories", :force => true do |t|
+    t.integer  "featured_item_id"
+    t.integer  "category_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "product_images", :force => true do |t|

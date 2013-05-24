@@ -46,12 +46,9 @@
 			<span class="block input-icon">
 				<label for="category">Category: </label>
 				<select multiple id='category' name='category' class="input-large chzn-select" data-placeholder="Product Categories">
-					<option>Tree</option>
-					<option>Shrub</option>
-					<option>Rock</option>
-					<option>Soil</option>
-					<option>Irrigation Supplies</option>
-					<option>These are just placeholders</option>
+					<% Category.all.each do |cat| %>
+						<option><%= cat.category %></option>
+					<% end %>
 	  			</select>
 			</span>
 			<br/>
