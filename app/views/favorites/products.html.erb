@@ -1,7 +1,52 @@
 <%= render 'layouts/sidebar' %>
 
-	<% @favproducts.each do |p| %>
-		<h1><%= p.product.commonName %></h1>
-	<% end %>
+	<div class="span8 offset1">
+		<div class="table-header header-color-green">
+			You have <%= @favproducts.count %> Favorite Products
+		</div>
+
+		<table id="table_report" class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th class="center">Common Name</th>
+					<th class="center">Latin Name</th>
+					<th class="hidden-phone center">Size</th>
+					<th class="hidden-phone center">Price</th>
+					<th class="hidden-phone center">Description</th>
+					<th class="hidden-phone center">Image</th>
+				</tr>
+			</thead>
+									
+			<tbody>
+
+				<% @favproducts.each do |p| %>
+				
+					<tr>
+						<td class="center">
+							<%= p.product.commonName %>
+						</td>
+						<td class="center">
+							<%= p.product.latinName %>
+						</td>
+						<td class='hidden-phone center'>
+							<%= p.featured_item.size %>
+						</td>
+						<td class='hidden-phone center'>
+							<%= '$' + p.featured_item.price.to_s %>
+						</td>
+						<td class='hidden-phone center'>
+							<%= p.featured_item.description %>
+						</td>
+						<td class='hidden-phone center'>
+							<%= image_tag ProductImage.find(p.featured_item.product_image_id).image.url(:thumb), :height => '20px', :width => '20px' %>
+					</tr>
+
+				<% end %>
+
+			</tbody>
+
+		</table>
+	</div>
+
 
 <%= render 'layouts/sidebarend' %>
