@@ -97,10 +97,50 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @sidebar_search_active = true
-    @sidebar_search_products_active = true
 
-    @products = Product.search_all_products(params[:search])
+    @sidebar_search_active = true
+    @sidebar_search_locations_active = true
+    @products = nil
+    @fi_near = FeaturedItem.all
+    if params[:commit] == 'Search'
+      if params[:distance_from] != '0' and params[:search] != ''
+        @products = search_with_query
+        @fi_near = get_featured_items_near
+      elsif params[:distance_from] != '0' and params[:search] == ''
+        @products = Product.all
+        @fi_near = get_featured_items_near
+      elsif params[:distance_from] == '0' and params[:search] != ''
+        @products = search_with_query
+      elsif params[:distance_from] == '0' and params[:search] == ''
+        @products = Product.all
+      end
+    end
+
+  end
+
+  def get_featured_items_near
+    if current_user.currentCity.nil?
+      @city = 'Atlanta'
+    else
+      @city = current_user.currentCity
+    end
+
+    if current_user.currentState.nil?
+      @state = 'GA'
+    else
+      @state = current_user.currentState
+    end
+
+    return FeaturedItem.near('' + @city.to_s + ', ' + @state.to_s + ', US', params[:distance_from])
+  end
+
+
+  def search_with_query
+
+    @prodsearch = Product.search_all_products(params[:search])
+
+    return @prodsearch
+
   end
 
   def browseall

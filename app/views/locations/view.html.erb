@@ -7,7 +7,7 @@
 			<div class="row-fluid">
 		<div class="span12">
 			<div class="widget-box">
-				<div class="widget-header header-color-dark">
+				<div class="widget-header header-color-green">
 					<div class="center">
 						<h3 class="lighter"><%= @location.bus_vendor.busName %></h3>
 					</div>
@@ -17,13 +17,13 @@
 	</div>
 
 			<div class="widget-box">
-			<div class="widget-header header-color-blue">
-				<h5 class="bigger lighter"><i class="icon-home"></i> <%= @location.locName %></h5>
+			<div class="widget-header">
+				<h5 class="bigger lighter"><i class="icon-home"></i> <strong><%= @location.locName %></strong></h5>
 				<div class="widget-toolbar">
 					<% if @location.is_favorited(current_user) %>
-						<a title="Remove from favorites" class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+						<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
 					<% else %>
-						<a title="Add to favorites" class="white" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+						<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
 					<% end %>
 				</div>
 			</div>
@@ -39,15 +39,10 @@
 
 					<div class="span4">
 						<div class="pull-left">
-							<p style="margin-top:10px; margin-left:5px;">
-								<span style="font-size:15px;">
-									<%= @location.address1 %><br/>
-									<% if @location.address2 != "" %>
-										<%= @location.address2 %><br/>
-									<% end %>
-									<%= @location.city + ", " + @location.state + " " + @location.zip %>
-								</span>
-							</p>
+							<span>
+								<%= link_to (simple_format(@location.address1 + " " + @location.address2 + "\n" + @location.city + ", " + @location.state + " " + @location.zip, :style => "font-size:15px; margin-top:10px; margin-left:5px;").html_safe), get_map_link_from_address(concat_address(@location)), :target => "_blank" %>
+
+							</span>
 						</div>
 					</div>
 
@@ -63,7 +58,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
-						<div class="widget-header header-color-dark">
+						<div class="widget-header header-color-green">
 							<div class="center">
 								<h3 class="lighter">Featured Items</h3>
 							</div>
@@ -77,8 +72,8 @@
 					<div class="span12">
 
 						<div class="widget-box">
-							<div class="widget-header header-color-blue">
-								<h5 class="bigger lighter"><i class="icon-home"></i> <%= fi.get_product.commonName %></h5>
+							<div class="widget-header">
+								<h5 class="bigger lighter"><i class="icon-star"></i> <strong><%= fi.get_product.commonName %></strong></h5>
 							</div>
 
 							<div class="widget-body">

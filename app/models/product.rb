@@ -15,12 +15,5 @@ class Product < ActiveRecord::Base
 	def get_all_images
 		return ProductImage.where(:product_id => self.id)
 	end
-
-	#def get_all_location_ids
-	#	FeaturedItem.where(:product_id => self.id).each do |p|
-	#		@location_ids = p.location_id
-	#	end
-
-	#	return @location_ids
-	#end
+	
 end

@@ -1,36 +1,61 @@
-<!-- CHANGE PRODUCTS INTO FEATURED ITEMS AND WORK ON THE LOGIC HERE TO MAKE IT BETTER BECAUSE RIGHT NOW IT ISNT GOING TO WORK AND ITS JUST GOING TO BREAK -->
-
-
 <div class="table-header header-color-green">
-	<%= @products.count %> Locations Found
+	<%= @products.count %> Products Found
 </div>
 
 <table id="table_report" class="table table-striped table-bordered table-hover">
 	<thead>
 		<tr>
-			<th class="center">Company</th>
-			<th class="center">Location Name</th>
-			<th class="hidden-phone center">Address</th>
+			<th class="center">Common Name</th>
+			<th class="center">Latin Name</th>
+			<th class="center">Supplier</th>
+			<th class="hidden-phone center">Size</th>
+			<th class="hidden-phone center">Price</th>
+			<th class="hidden-phone center">Description</th>
+			<th class="hidden-phone center">Image</th>
 		</tr>
 	</thead>
 							
 	<tbody>
 
 		<% @products.each do |p| %>
-		
-			<tr>
-				<td class="center">
-					<%= p
-				</td>
-				<td class="center">
-					<a href=<%= locations_view_url(:id => p.id) %>>
-						<%= p.locName %>
-					</a>
-				</td>
-				<td class='hidden-phone center'>
-					<%= link_to p.get_full_address, get_map_link_from_address(concat_address(p)), :target => "_blank" %>
-				</td>
-			</tr>
+			<% FeaturedItem.where(:product_id => p.id).each do |fi| %>
+
+				<% @fi_near.each do |finear| %>
+					<% if fi.id == finear.id %>
+
+						<tr>
+							<td class="center">
+								<%= p.commonName %>
+							</td>
+							<td class="center">
+								<%= p.latinName %>
+							</td>
+							<td class="center">
+								<a href=<%= locations_view_url(:id => fi.location_id) %>>
+									<%= Location.find(fi.location_id).bus_vendor.busName %>
+								</a>
+							</td>
+							<td class='hidden-phone center'>
+								<%= fi.size %>
+							</td>
+							<td class='hidden-phone center'>
+								<% if fi.price.to_s != '' %>
+									<%= '$' + fi.price.to_s %>
+								<% end %>
+							</td>
+							<td class='hidden-phone center'>
+								<%= fi.description %>
+							</td>
+							<td class='hidden-phone center'>
+								<%= image_tag ProductImage.find(fi.product_image_id).image.url(:thumb), :height => '20px', :width => '20px' %>
+						</tr>
+
+
+					<% end %>
+
+				<% end %>
+				
+			<% end %>
 
 		<% end %>
 
