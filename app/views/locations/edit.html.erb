@@ -47,15 +47,20 @@
 									<%= f.text_field :city, :class => 'span12', :value => @location.city %>
 								</span>
 
-								State:
-								<span class="block input-icon input-icon-right">
-									<%= f.text_field :state, :class => 'span12', :value => @location.state %>
-								</span>		
-
-								Zip Code:
-								<span class="block input-icon input-icon-right">
-									<%= f.text_field :zip, :class => 'span12', :value => @location.zip %>
-								</span>	
+								<div class="row-fluid">
+									<div class="span6">
+										State:
+										<span class="block input-icon input-icon-right">
+											<%= f.select(:state, get_states, {}, {:class => 'span12 chzn-select'}) %>
+										</span>
+									</div>
+									<div class="span6">
+										Zip Code:
+										<span class="block input-icon input-icon-right">
+											<%= f.text_field :zip, :class => 'span12', :value => @location.zip %>
+										</span>	
+									</div>
+								</div>
 
 							</fieldset>
 
