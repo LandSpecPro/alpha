@@ -54,6 +54,7 @@ LspAlpha::Application.routes.draw do
   match "locations/delete/confirm" => 'locations#confirm_destroy'
   match "locations/favorite/set" => 'locations#set_as_favorite'
   match "locations/categories/update" => 'locations#update_categories'
+  match "locations/featureditem/update" => 'locations#update_featured_item'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'

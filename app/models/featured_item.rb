@@ -10,13 +10,30 @@ class FeaturedItem < ActiveRecord::Base
 	accepts_nested_attributes_for :product
 
 	def get_image
-
 		return ProductImage.find(self.product_image_id).image
-
 	end
 
 	def get_product
 		return Product.find(self.product_id)
+	end
+
+	def get_category_ids
+		@categoryids = []
+		@categories = ProductHasCategory.where(:featured_item_id => self.id) 
+
+		if not @categories.nil?
+
+			if @categories.count > 1
+				@categories.each do |c|
+					@categoryids << c.category_id.to_s
+				end
+			elsif @categories.count == 1
+				@categoryids << @categories.first.category_id.to_s
+			end
+			
+		end
+
+		return @categoryids
 	end
 
 	def get_full_address

@@ -50,7 +50,7 @@
 
 								Product Categories:
 								<div class="block input-icon input-icon-right">
-									<%= select_tag "categories", options_from_collection_for_select(Category.all, 'id', 'category'), :multiple => true, :class => 'chzn-select' %>
+									<%= select_tag "product_categories", options_from_collection_for_select(Category.all, 'id', 'category'), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
 									
 								</div>
 

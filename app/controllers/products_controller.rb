@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @image = params[:product][:image]
     @size = params[:product][:featured_items][:size]
     @price = params[:product][:featured_items][:price]
-    @categories = params[:categories]
+    @categories = params[:product_categories]
 
     @thing = params[:product][:productSelect]
 

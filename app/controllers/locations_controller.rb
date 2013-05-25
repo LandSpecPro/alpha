@@ -80,6 +80,38 @@ class LocationsController < ApplicationController
 
   end
 
+  def update_featured_item
+
+      @featureditem = FeaturedItem.find(params[:id])
+      @fid = 'featured_item_categories' + @featureditem.id.to_s
+
+      if not params[:featured_items][:image].nil?
+        @product_image = ProductImage.new(:product_id => @featureditem.get_product.id, :image => params[:featured_items][:image])
+        if @product_image.save
+          params[:featured_items][:product_image_id] = @product_image.id
+        end
+      end
+      params[:featured_items].delete :image
+      @featureditem.update_attributes(params[:featured_items]) 
+
+      ProductHasCategory.destroy_all(:featured_item_id => @featureditem.id)
+
+      if not params[@fid].nil?
+
+        if params[@fid].count > 1
+          params[@fid].each do |c|
+            @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => c)
+            @prodcategory.save
+          end
+        else
+          @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => params[@fid].first)
+          @prodcategory.save
+        end
+      end
+      redirect_back_or_default('/')
+
+  end
+
   def update
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
@@ -177,28 +209,23 @@ class LocationsController < ApplicationController
       Location.destroy(params[:id])
       FavLocation.destroy_all(:location_id => params[:id])
       FeaturedItems.destroy_all(:location_id => params[:id])
+      LoactionHasCategory.destroy_all(:location_id => params[:id])
 
   end
 
   def delete_featureditem
 
-    if vendor_can_delete_featured_item
       @featureditem = FeaturedItem.find(params[:featured_item_id])
       @location = Location.find(params[:location_id])
-    else
-      redirect_to locations_manage_url
-    end
 
   end
 
   def confirm_delete_featureditem
 
-    if vendor_can_delete_featured_item
       FeaturedItem.destroy(params[:featured_item_id])
+      ProductHasCategory.destroy_all(:featured_item_id => [:featured_item_id])
       redirect_back_or_default('/')
-    else
-      redirect_to locations_manage_url
-    end
+
   end
 
 end

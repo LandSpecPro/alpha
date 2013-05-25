@@ -13,6 +13,7 @@
  *= require 'theme/jquery-ui-1.10.2.custom.min'
  *= require 'theme/chosen'
  *= require 'theme/jquery.gritter'
+ *= require 'theme/colorbox'
  *= require 'theme/ace.min'
  *= require 'theme/ace-responsive.min'
  *= require 'theme/ace-skins.min'

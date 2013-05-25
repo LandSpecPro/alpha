@@ -16,10 +16,12 @@
 
 					<%= hidden_field_tag(:id,  @location.id) %>
 
-					Product Categories:
-					<div class="block input-icon input-icon-right">
-						<%= select_tag :categories, options_from_collection_for_select(Category.all, 'id', 'category', :selected => @loccatsselected), :multiple => true, :class => 'chzn-select' %>
-						
+					<div class="center">
+						Product Categories:
+						<div class="block input-icon input-icon-right">
+							<%= select_tag :categories, options_from_collection_for_select(Category.all, 'id', 'category', :selected => @loccatsselected), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+							
+						</div>
 					</div>
 
 				</fieldset>

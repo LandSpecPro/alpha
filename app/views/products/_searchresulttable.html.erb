@@ -47,7 +47,10 @@
 								<%= fi.description %>
 							</td>
 							<td class='hidden-phone center'>
-								<%= image_tag ProductImage.find(fi.product_image_id).image.url(:thumb), :height => '20px', :width => '20px' %>
+								<a href=<%= ProductImage.find(fi.product_image_id).image.url(:original) %> data-rel="colorbox">
+									<i class="icon-picture"></i>
+								</a>
+							</td>
 						</tr>
 
 
