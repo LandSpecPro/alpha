@@ -1,6 +1,9 @@
 class LocationsController < ApplicationController
 
   include LocationHelper
+  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
+  before_filter :require_business_location_matches => [:edit, :update_categories, :update, :destroy, :confirm_destroy]
+  before_filter :require_business_featured_item_matches => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
   before_filter :require_business
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy]
@@ -34,7 +37,6 @@ class LocationsController < ApplicationController
       end
     elsif @vlocations.count == 0
       redirect_to locations_new_url(:new_user_message => true)
-      
     end
   end
 
@@ -42,12 +44,39 @@ class LocationsController < ApplicationController
     store_location
     @user = current_user
     @product = Product.new
-    if vendor_location_id_matches
-      @location = Location.find(params[:id])
-      @location.products.build
-    else
-      redirect_to locations_manage_url
+
+    @location = Location.find(params[:id])
+    @location.products.build
+
+    @locationcategories = LocationHasCategory.where(:location_id => @location.id)
+    @loccatsselected = ['']
+
+    @locationcategories.each do |lc|
+
+      @loccatsselected << Category.find(lc.category_id).id
+
     end
+
+  end
+
+  def update_categories
+
+    @location = Location.find(params[:id])
+    LocationHasCategory.destroy_all(:location_id => params[:id])
+
+    if not params[:categories].nil?
+      if params[:categories].count > 1
+        params[:categories].each do |c|
+          @loccategory = LocationHasCategory.new(:location_id => params[:id], :category_id => c)
+          @loccategory.save
+        end
+      else
+        @loccategory = LocationHasCategory.new(:location_id => params[:id], :category_id => params[:categories].first)
+        @loccategory.save
+      end
+    end
+
+    redirect_back_or_default('/')
 
   end
 
@@ -115,12 +144,6 @@ class LocationsController < ApplicationController
     return Location.search_all_locations(params[:search])
   end
 
-  def browse
-  end
-
-  def favorite
-  end
-
   def view
 
     store_location
@@ -144,22 +167,17 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    if vendor_location_id_matches
-      @location = Location.find(params[:id])
-    else
-      redirect_to locations_manage_url
-    end
+    
+    @location = Location.find(params[:id])
+
   end
 
   def confirm_destroy
 
-      if vendor_location_id_matches
-        Location.destroy(params[:id])
-        FavLocation.destroy_all(:location_id => params[:id])
-        FeaturedItems.destroy_all(:location_id => params[:id])
-      end
+      Location.destroy(params[:id])
+      FavLocation.destroy_all(:location_id => params[:id])
+      FeaturedItems.destroy_all(:location_id => params[:id])
 
-      redirect_to locations_manage_url
   end
 
   def delete_featureditem

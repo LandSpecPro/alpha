@@ -27,7 +27,6 @@ LspAlpha::Application.routes.draw do
   end
   resources :product_images
   resources :featured_items
-  resources :product_categories
 
   # Routes for favorites
   match 'favorites/products' => 'favorites#products'
@@ -54,6 +53,7 @@ LspAlpha::Application.routes.draw do
   match "locations/delete" => 'locations#destroy'
   match "locations/delete/confirm" => 'locations#confirm_destroy'
   match "locations/favorite/set" => 'locations#set_as_favorite'
+  match "locations/categories/update" => 'locations#update_categories'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'

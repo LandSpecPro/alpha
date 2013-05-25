@@ -1,19 +1,26 @@
 module LocationHelper
 
-  	def vendor_location_id_matches
-  		if current_user.bus_vendor.id == Location.find(params[:id]).bus_vendor_id
-  			return true
-  		else
+  	def require_business_location_matches
+  		if current_user.bus_vendor.id != Location.find(params[:id]).bus_vendor_id
+  			redirect_to locations_manage_url
+        return false
+  		end
+  	end
+
+  	def require_business_featured_item_matches
+
+  		if current_user.bus_vendor.id != Location.find(params[:location_id]).bus_vendor_id
+        redirect_to locations_manage_url
   			return false
   		end
   	end
 
-  	def vendor_can_delete_featured_item
+    def require_location_id
 
-  		if current_user.bus_vendor.id == Location.find(params[:location_id]).bus_vendor_id
-  			return true
-  		else
-  			return false
-  		end
-  	end
+      if not params[:id]
+        redirect_to locations_manage_url
+        return
+      end
+
+    end
 end
