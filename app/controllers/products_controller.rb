@@ -124,6 +124,7 @@ class ProductsController < ApplicationController
     @products = nil
     @fi_near = FeaturedItem.all
     if params[:commit] == 'Search'
+      update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
         @products = search_with_query
         @fi_near = get_featured_items_near
@@ -136,6 +137,21 @@ class ProductsController < ApplicationController
         @products = Product.all
       end
     end
+
+  end
+
+  def update_search_log
+
+    @cats = ''
+
+    if not params[:categories].nil?
+      params[:categories].each do |c|
+        @cats = @cats + Category.find(c).category + " "
+      end
+    end
+
+    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'product', :categories => @cats)
+    @searchlog.save
 
   end
 
