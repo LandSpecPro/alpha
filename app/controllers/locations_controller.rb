@@ -127,6 +127,7 @@ class LocationsController < ApplicationController
     @sidebar_search_locations_active = true
     @locations = nil
     if params[:commit] == 'Search'
+      update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
         @locations = search_with_distance_and_query
       elsif params[:distance_from] != '0' and params[:search] == ''
@@ -137,6 +138,21 @@ class LocationsController < ApplicationController
         @locations = Location.all
       end
     end
+  end
+
+  def update_search_log
+
+    @cats = ''
+
+    if not params[:categories].nil?
+      params[:categories].each do |c|
+        @cats = @cats + Category.find(c).category + " "
+      end
+    end
+
+    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location', :categories => @cats)
+    @searchlog.save
+
   end
 
   def search_with_distance_and_query
@@ -223,7 +239,8 @@ class LocationsController < ApplicationController
   def confirm_delete_featureditem
 
       FeaturedItem.destroy(params[:featured_item_id])
-      ProductHasCategory.destroy_all(:featured_item_id => [:featured_item_id])
+      FavProduct.destroy_all(:featured_item_id => params[:featured_item_id])
+      ProductHasCategory.destroy_all(:featured_item_id => params[:featured_item_id])
       redirect_back_or_default('/')
 
   end
