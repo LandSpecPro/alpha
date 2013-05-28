@@ -37,6 +37,12 @@ function applyColorbox() {
 	});
 }
 
+function applyPopovers(){
+	$('[data-rel=tooltip]').tooltip();
+	$('[data-rel=popover]').popover({html:true});
+}
+
+
 /*
 	function fileInput(){
 		$('#image').ace_file_input({

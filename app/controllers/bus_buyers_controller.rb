@@ -34,7 +34,7 @@ class BusBuyersController < ApplicationController
 	end
 
 	def show
-		@buyers = BusBuyer.all
+		@buyers = BusBuyer.where(:active => true)
 	end
 
 	def dashboard

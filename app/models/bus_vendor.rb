@@ -1,4 +1,6 @@
 class BusVendor < ActiveRecord::Base
+	include ModelHelper
+	
 	attr_accessible :busName, :logo, :locations_attributes, :featured_items_attributes
 	belongs_to :user
 

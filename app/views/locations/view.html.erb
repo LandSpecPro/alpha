@@ -67,7 +67,7 @@
 				</div>
 			</div>
 
-			<% @location.featured_items.each do |fi| %>
+			<% @location.featured_items.where(:active => true).each do |fi| %>
 				<div class="row-fluid">
 					<div class="span12">
 

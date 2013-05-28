@@ -45,7 +45,7 @@
 -->
 			<span class="block input-icon">
 				<label for="category">Category: </label>
-				<%= select_tag :categories, options_from_collection_for_select(Category.all, 'id', 'category', :selected => params[:categories]), :multiple => true, :class => 'input-large chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+				<%= select_tag :categories, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => params[:categories]), :multiple => true, :class => 'input-large chzn-select', :data => {:placeholder => "No Categories Selected"} %>
 			</span>
 			<br/>
 			<div class="widget-footer">

@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  
+  include ProductHelper
 
   def new
     @product = Product.new
@@ -12,10 +14,10 @@ class ProductsController < ApplicationController
 
     @location = Location.find(params[:product][:location_id])
     @locationid = @location.id
-    @description = params[:product][:featured_items][:description]
+    @description = params[:product][:featured_item][:description]
     @image = params[:product][:image]
-    @size = params[:product][:featured_items][:size]
-    @price = params[:product][:featured_items][:price]
+    @size = params[:product][:featured_item][:size]
+    @price = params[:product][:featured_item][:price]
     @categories = params[:product_categories]
 
     @thing = params[:product][:productSelect]
@@ -44,8 +46,8 @@ class ProductsController < ApplicationController
 
     @commonName = params[:product][:commonName]
 
-    if Product.where(:commonName => @commonName).count > 0
-      return Product.where(:commonName => @commonName).first
+    if Product.where(:commonName => @commonName, :active => true).count > 0
+      return Product.where(:commonName => @commonName, :active => true).first
     else
       return location.products.build(params[:product])
     end
@@ -72,7 +74,7 @@ class ProductsController < ApplicationController
   end
 
   def before_create
-    params[:product].delete :featured_items
+    params[:product].delete :featured_item
     params[:product].delete :image
     params[:product].delete :location_id
   end
@@ -99,7 +101,7 @@ class ProductsController < ApplicationController
       @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
       @productcats.save
 
-      if LocationHasCategory.where(:location_id => location_id, :category_id => c).count == 0
+      if LocationHasCategory.where(:location_id => location_id, :category_id => c, :active => true).count == 0
         @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
         @locationcats.save
       end
@@ -108,84 +110,37 @@ class ProductsController < ApplicationController
 
   end
 
-  def edit
-  end
-
-  def show
-  end
-
-  def update
-  end
-
   def search
-
-    @sidebar_search_active = true
-    @sidebar_search_locations_active = true
-    @products = nil
-    @fi_near = FeaturedItem.all
+    @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
-        @products = search_with_query
-        @fi_near = get_featured_items_near
+        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from])
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @products = Product.all
-        @fi_near = get_featured_items_near
+        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from])
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @products = search_with_query
+        @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @products = Product.all
+        @featureditems = FeaturedItem.where(:active => true)
       end
     end
 
   end
 
-  def update_search_log
+  def set_as_favorite
+    @featureditem = FeaturedItem.find(params[:id])
 
-    @cats = ''
-
-    if not params[:categories].nil?
-      params[:categories].each do |c|
-        @cats = @cats + Category.find(c).category + " "
-      end
-    end
-
-    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'product', :categories => @cats)
-    @searchlog.save
-
-  end
-
-  def get_featured_items_near
-    if current_user.currentCity.nil?
-      @city = 'Atlanta'
+    if @featureditem.is_favorited(current_user)
+      @featureditem.remove_favorite(current_user.id, params[:id])
+      redirect_back_or_default('/')
     else
-      @city = current_user.currentCity
+      @featureditem.set_favorite(current_user.id, @featureditem.id, @featureditem.get_product.id)
+      redirect_back_or_default('/')
     end
-
-    if current_user.currentState.nil?
-      @state = 'GA'
-    else
-      @state = current_user.currentState
-    end
-
-    return FeaturedItem.near('' + @city.to_s + ', ' + @state.to_s + ', US', params[:distance_from])
   end
 
-
-  def search_with_query
-
-    @prodsearch = Product.search_all_products(params[:search])
-
-    return @prodsearch
-
-  end
 
   def browseall
-    @sidebar_search_active = true
-    @sidebar_search_products_active = true
-  end
-
-  def favorite
   end
 
 end

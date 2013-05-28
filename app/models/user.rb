@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	include ModelHelper
 
 	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :currentState, :currentCity, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes, :fav_locations_attributes, :fav_products_attributes
 

@@ -1,7 +1,7 @@
 <%= render 'layouts/sidebar' %>
 
 	<div class="row-fluid">
-		<% Product.order('"commonName" asc').all.each do |p| %>
+		<% Product.order('"commonName" asc').where(:active => true).each do |p| %>
 			<div class="well">
 				<div class="row-fluid">
 					<div class="span3">

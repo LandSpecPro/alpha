@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527043820) do
+ActiveRecord::Schema.define(:version => 20130528052201) do
 
   create_table "bus_buyers", :force => true do |t|
-    t.string   "busName",           :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "busName",                             :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "user_id"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
@@ -33,12 +33,14 @@ ActiveRecord::Schema.define(:version => 20130527043820) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.boolean  "active",            :default => true, :null => false
+    t.text     "tagline"
   end
 
   create_table "bus_vendors", :force => true do |t|
-    t.string   "busName",           :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "busName",                             :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -50,81 +52,90 @@ ActiveRecord::Schema.define(:version => 20130527043820) do
     t.string   "busContact"
     t.string   "busEmail"
     t.string   "busWebsite"
+    t.boolean  "active",            :default => true, :null => false
+    t.text     "tagline"
   end
 
   create_table "categories", :force => true do |t|
-    t.string "category"
-    t.string "parentCategory"
+    t.string  "category"
+    t.string  "parentCategory"
+    t.boolean "active",         :default => true, :null => false
   end
 
   create_table "contacts", :force => true do |t|
-    t.integer  "location_id",    :null => false
-    t.string   "firstName",      :null => false
+    t.integer  "location_id",                      :null => false
+    t.string   "firstName",                        :null => false
     t.string   "lastName"
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
     t.string   "email"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "active",         :default => true, :null => false
   end
 
   create_table "fav_locations", :force => true do |t|
-    t.integer  "user_id",     :null => false
-    t.integer  "location_id", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "location_id",                   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active",      :default => true, :null => false
   end
 
   create_table "fav_products", :force => true do |t|
-    t.integer  "user_id",          :null => false
-    t.integer  "product_id",       :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "user_id",                            :null => false
+    t.integer  "product_id",                         :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "featured_item_id"
+    t.boolean  "active",           :default => true, :null => false
   end
 
   create_table "featured_items", :force => true do |t|
-    t.integer  "location_id",      :null => false
-    t.integer  "product_id",       :null => false
+    t.integer  "location_id",                        :null => false
+    t.integer  "product_id",                         :null => false
     t.integer  "product_image_id"
     t.text     "description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "size"
     t.float    "price"
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",           :default => true, :null => false
   end
 
   create_table "location_has_categories", :force => true do |t|
     t.integer  "location_id"
     t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active",      :default => true, :null => false
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "bus_vendor_id",  :null => false
-    t.string   "locName",        :null => false
+    t.integer  "bus_vendor_id",                    :null => false
+    t.string   "locName",                          :null => false
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
-    t.string   "address1",       :null => false
+    t.string   "address1",                         :null => false
     t.string   "address2"
-    t.string   "city",           :null => false
-    t.string   "state",          :null => false
-    t.string   "zip",            :null => false
+    t.string   "city",                             :null => false
+    t.string   "state",                            :null => false
+    t.string   "zip",                              :null => false
     t.string   "primaryEmail"
     t.string   "secondaryEmail"
     t.string   "websiteLink"
     t.string   "facebookLink"
     t.string   "twitterLink"
     t.string   "googleLink"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "active",         :default => true, :null => false
   end
 
   create_table "pg_search_documents", :force => true do |t|
@@ -145,38 +156,50 @@ ActiveRecord::Schema.define(:version => 20130527043820) do
   create_table "product_has_categories", :force => true do |t|
     t.integer  "featured_item_id"
     t.integer  "category_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "active",           :default => true, :null => false
   end
 
   create_table "product_images", :force => true do |t|
-    t.integer  "product_id",         :null => false
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "product_id",                           :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "active",             :default => true, :null => false
   end
 
   create_table "products", :force => true do |t|
-    t.string   "commonName", :null => false
+    t.string   "commonName",                   :null => false
     t.string   "latinName"
     t.string   "altName"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true, :null => false
   end
 
   create_table "search_logs", :force => true do |t|
     t.string   "searchTerm"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "currentState"
     t.string   "currentCity"
     t.text     "categories"
     t.string   "distanceFrom"
     t.text     "searchType"
+    t.boolean  "active",       :default => true, :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.text     "status"
+    t.integer  "user_id"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -215,6 +238,7 @@ ActiveRecord::Schema.define(:version => 20130527043820) do
     t.float    "longitude"
     t.string   "currentCity"
     t.string   "currentState"
+    t.boolean  "active",                    :default => true,    :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

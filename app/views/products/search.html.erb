@@ -4,8 +4,8 @@
 
 <div class="span8">
 
-	<% if not @products.nil? %>
-		<% if @products.count == 0 %>
+	<% if not @featureditems.nil? %>
+		<% if @featureditems.count == 0 %>
 			<div class="center"><br/>
 				<h3>No products were found!</h3>
 			</div>
@@ -24,44 +24,8 @@
 
 <script type="text/javascript">
 
-	$(document).ready(chosenf())
-
-	function chosenf(){
-	  $(".chzn-select").chosen();
-
-	  applyColorbox();
-	}
-
-	function applyColorbox() {
-
-		var colorbox_params = {
-			reposition:true,
-			scalePhotos:true,
-			scrolling:false,
-			previous:'<i class="icon-arrow-left"></i>',
-			next:'<i class="icon-arrow-right"></i>',
-			close:'&times;',
-			current:'{current} of {total}',
-			maxWidth:'100%',
-			maxHeight:'100%',
-			onOpen:function(){
-				document.body.style.overflow = 'hidden';
-			},
-			onClosed:function(){
-				document.body.style.overflow = 'auto';
-			},
-			onComplete:function(){
-				$.colorbox.resize();
-			}
-		};
-
-		$('[data-rel="colorbox"]').colorbox(colorbox_params);
-
-		$(window).on('resize.colorbox', function() {
-			try {
-				$.fn.colorbox.load();//to redraw the current frame
-			} catch(e){}
-		});
-	}
+	$(applyChosenStyle());
+	$(applyColorbox());
+	$(applyPopovers());
 
 </script>

@@ -8,8 +8,15 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    @user.currentCity = request.location.city
-    @user.currentState = request.location.state
+    
+    if not request.location.nil?
+      @user.currentCity = request.location.city
+      @user.currentState = request.location.state
+    else
+      @user.currentCity = 'Atlanta'
+      @user.currentState = 'Georgia'
+    end
+
     if @user.save
       flash[:notice] = "Account registered!"
 

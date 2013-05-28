@@ -1,4 +1,6 @@
 class FavProduct < ActiveRecord::Base
+	include ModelHelper
+	
 	attr_accessible :user_id, :product_id, :featured_item_id
 	belongs_to :user
 	belongs_to :product
