@@ -1,3 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :category, :parentCategory
+	include ModelHelper
+
+  	attr_accessible :category, :parentCategory
 end

@@ -1,4 +1,6 @@
 class BusBuyer < ActiveRecord::Base
+	include ModelHelper
+	
   	attr_accessible :busName, :logo, :id, :featured_items_attributes
 	belongs_to :user
 

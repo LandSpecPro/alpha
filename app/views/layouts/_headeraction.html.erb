@@ -1,6 +1,6 @@
 <% if controller.controller_name == 'locations' %>
 
-	<% if controller.action_name == 'manage' %>
+	<% if controller.action_name == 'manage' and current_user.is_vendor %>
 
 		<div class="pull-right">
 			<div class="btn-group">
@@ -8,7 +8,7 @@
 			</div>
 		</div>
 
-	<% elsif controller.action_name == 'edit' %>
+	<% elsif controller.action_name == 'edit' and current_user.is_vendor %>
 
 		<div class="pull-right">
 			<div class="btn-group">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 
-	<% elsif controller.action_name == 'view' %>
+	<% elsif controller.action_name == 'view' and current_user.is_vendor %>
 
 		<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
 

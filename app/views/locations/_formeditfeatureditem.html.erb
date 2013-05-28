@@ -16,7 +16,7 @@
 
 <% else %>
 
-	<% @location.featured_items.order("created_at ASC").each do |fi| %>
+	<% @location.featured_items.where(:active => true).order("created_at ASC").each do |fi| %>
 		<%= form_for :featured_items, :url => {:action => :update_featured_item}, :html => {:id => fi.id.to_s} do |f| %>
 			<div class="widget-box">
 				<div class="widget-header header-color-blue">
@@ -56,7 +56,7 @@
 							<div class="center">
 								Product Categories:
 								<div class="block input-icon input-icon-right">
-									<%= select_tag "featured_item_categories" + fi.id.to_s, options_from_collection_for_select(Category.all, 'id', 'category', :selected => fi.get_category_ids), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+									<%= select_tag "featured_item_categories" + fi.id.to_s, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => fi.get_category_ids), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
 								</div>
 							</div>
 

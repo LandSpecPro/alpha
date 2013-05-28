@@ -1,4 +1,6 @@
 class FeaturedItem < ActiveRecord::Base
+	include ModelHelper
+	
 	attr_accessible :description, :product_id, :location_id, :product_image_id, :size, :price
 	belongs_to :product
 	belongs_to :location
@@ -19,7 +21,7 @@ class FeaturedItem < ActiveRecord::Base
 
 	def get_category_ids
 		@categoryids = []
-		@categories = ProductHasCategory.where(:featured_item_id => self.id) 
+		@categories = ProductHasCategory.where(:featured_item_id => self.id, :active => true) 
 
 		if not @categories.nil?
 
@@ -45,5 +47,40 @@ class FeaturedItem < ActiveRecord::Base
 		@zip = @location.zip
 
 		return @address1 + @address2 + @city + @state + @zip
+	end
+
+	def is_favorited(user)
+
+		if FavProduct.where(:user_id => user.id, :featured_item_id => self.id, :active => true).count > 0
+			return true
+		else
+			return false
+		end
+	end
+
+	def set_favorite(userid, fid)
+
+		if fid == self.id
+			@favloc = FavProduct.create(:user_id => userid, :featured_item_id => self.id)
+			if @favloc.save
+				return true
+			else
+				return false
+			end
+		else
+			return false
+		end
+
+	end
+
+	def remove_favorite(userid, fid)
+
+		if fid == self.id
+			FavProduct.destroy(FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.id)
+			@favproduct = FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.id
+			@favproduct.deactivate
+		else
+			return false
+		end
 	end
 end

@@ -19,7 +19,7 @@
 					<div class="center">
 						Product Categories:
 						<div class="block input-icon input-icon-right">
-							<%= select_tag :categories, options_from_collection_for_select(Category.all, 'id', 'category', :selected => @loccatsselected), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+							<%= select_tag :categories, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => @loccatsselected), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
 							
 						</div>
 					</div>
@@ -32,11 +32,3 @@
 	</div>
 
 <% end %>
-
-<script type="text/javascript">
-	$(document).ready(chosenf());
-
-	function chosenf(){
-		$(".chzn-select").chosen();
-	}
-</script>

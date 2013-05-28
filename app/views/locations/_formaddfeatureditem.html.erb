@@ -42,7 +42,7 @@
 									
 									<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name">
 										<option selected="selected">New Product</option>
-						  				<% Product.all.each do |prod| %>
+						  				<% Product.where(:active => true).each do |prod| %>
 						  					<option><%= prod.commonName %></option>
 						  				<% end %>
 						  			</select>

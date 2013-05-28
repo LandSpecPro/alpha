@@ -46,7 +46,7 @@ class BusVendorsController < ApplicationController
 	end
 
 	def show
-		@vendors = BusVendor.all
+		@vendors = BusVendor.where(:active => true)
 	end
 
 	def edit

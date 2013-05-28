@@ -1,4 +1,6 @@
 class ProductImage < ActiveRecord::Base
+	include ModelHelper
+	
 	attr_accessible :product_id, :image
 	belongs_to :product
 

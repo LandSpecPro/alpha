@@ -1,4 +1,6 @@
 class Location < ActiveRecord::Base
+	include ModelHelper
+	
 	include PgSearch
 	pg_search_scope :search_all_locations, :against => :locName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
 
@@ -35,13 +37,13 @@ class Location < ActiveRecord::Base
 
 	def get_featured_items
 
-		return FeaturedItem.where(:location_id => self.id)
+		return FeaturedItem.where(:location_id => self.id, :active => true)
 
 	end
 
 	def is_favorited(user)
 
-		if FavLocation.where(:user_id => user.id, :location_id => self.id).count > 0
+		if FavLocation.where(:user_id => user.id, :location_id => self.id, :active => true).count > 0
 			return true
 		else
 			return false
@@ -67,7 +69,8 @@ class Location < ActiveRecord::Base
 
 		if locid == self.id
 			FavLocation.destroy(FavLocation.where(:user_id => userid, :location_id => self.id).first.id)
-			return true
+			@favloc = FavLocation.where(:user_id => userid, :location_id => self.id).first.id
+			@favloc.deactivate
 		else
 			return false
 		end

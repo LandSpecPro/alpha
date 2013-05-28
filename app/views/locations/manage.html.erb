@@ -4,7 +4,7 @@
 		<h4 class="center">You have no locations yet! You'll need to add some if you want to be visible to other vendors and buyers.</h4>
 
 	<% else %>
-		<% @user.bus_vendor.locations.each do |l| %>
+		<% @user.bus_vendor.locations.where(:active => true).each do |l| %>
 
 		<div class="row-fluid">
 			<div class="span6 offset1">

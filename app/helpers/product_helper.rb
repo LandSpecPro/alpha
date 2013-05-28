@@ -1,7 +1,7 @@
 module ProductHelper
 
 	def search_for_featured_items_with_distance_only(distance)
-		@featuredItems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance)
+		@featuredItems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
 		return @featuredItems
 	end
 
@@ -10,7 +10,7 @@ module ProductHelper
 
 		@result = []
 		@query.each do |p|
-			FeaturedItem.where(:product_id => p.id).each do |fi|
+			FeaturedItem.where(:product_id => p.id, :active => true).each do |fi|
 				@result << fi
 			end
 		end
@@ -20,7 +20,7 @@ module ProductHelper
 
 	def search_for_featured_items_with_query_and_distance(query, distance)
 	    @query = Product.search_all_products(query)
-	    @featureditems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance)
+	    @featureditems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
 
 	    @result = []
 	    @query.each do |p|

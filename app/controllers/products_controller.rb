@@ -45,8 +45,8 @@ class ProductsController < ApplicationController
 
     @commonName = params[:product][:commonName]
 
-    if Product.where(:commonName => @commonName).count > 0
-      return Product.where(:commonName => @commonName).first
+    if Product.where(:commonName => @commonName, :active => true).count > 0
+      return Product.where(:commonName => @commonName, :active => true).first
     else
       return location.products.build(params[:product])
     end
@@ -100,22 +100,13 @@ class ProductsController < ApplicationController
       @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
       @productcats.save
 
-      if LocationHasCategory.where(:location_id => location_id, :category_id => c).count == 0
+      if LocationHasCategory.where(:location_id => location_id, :category_id => c, :active => true).count == 0
         @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
         @locationcats.save
       end
 
     end
 
-  end
-
-  def edit
-  end
-
-  def show
-  end
-
-  def update
   end
 
   def search
@@ -132,43 +123,16 @@ class ProductsController < ApplicationController
       elsif params[:distance_from] == '0' and params[:search] != ''
         @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @featureditems = FeaturedItem.all
+        @featureditems = FeaturedItem.where(:active => true)
       end
     end
 
   end
 
-  def get_featured_items_near
-    if current_user.currentCity.nil?
-      @city = 'Atlanta'
-    else
-      @city = current_user.currentCity
-    end
-
-    if current_user.currentState.nil?
-      @state = 'GA'
-    else
-      @state = current_user.currentState
-    end
-
-    return FeaturedItem.near('' + @city.to_s + ', ' + @state.to_s + ', US', params[:distance_from])
-  end
-
-
-  def search_with_query
-
-    @prodsearch = Product.search_all_products(params[:search])
-
-    return @prodsearch
-
-  end
 
   def browseall
     @sidebar_search_active = true
     @sidebar_search_products_active = true
-  end
-
-  def favorite
   end
 
 end

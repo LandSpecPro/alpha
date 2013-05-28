@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
   before_filter :require_business_featured_item_matches => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
   before_filter :require_business
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy]
+  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_featured_item]
 
   def new
     @location = Location.new
@@ -30,11 +30,9 @@ class LocationsController < ApplicationController
 
   def manage
     @user = current_user
-    @vlocations = @user.bus_vendor.locations
+    @vlocations = @user.bus_vendor.locations.where(:active => true)
     if @vlocations.count == 1
-      @vlocations.each do |l|
-        redirect_to '/locations/edit/' + l.id.to_s
-      end
+        redirect_to '/locations/edit/' + @vlocations.first.id.to_s
     elsif @vlocations.count == 0
       redirect_to locations_new_url(:new_user_message => true)
     end
@@ -45,10 +43,11 @@ class LocationsController < ApplicationController
     @user = current_user
     @product = Product.new
 
-    @location = Location.find(params[:id])
+
+    @location = Location.where(:id => params[:id]).first
     @location.products.build
 
-    @locationcategories = LocationHasCategory.where(:location_id => @location.id)
+    @locationcategories = LocationHasCategory.where(:location_id => @location.id, :active => true)
     @loccatsselected = ['']
 
     @locationcategories.each do |lc|
@@ -134,7 +133,7 @@ class LocationsController < ApplicationController
       elsif params[:distance_from] == '0' and params[:search] != ''
         @locations = search_with_query_only
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @locations = Location.all
+        @locations = Location.where(:active => true)
       end
       update_search_log
     end
@@ -169,8 +168,8 @@ class LocationsController < ApplicationController
       @state = current_user.currentState
     end
 
-    @locsnear = Location.near('' + @city + ", " + @state + ', US', params[:distance_from])
-    return @locsnear.search_all_locations(params[:search])
+    @locsnear = Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
+    return @locsnear.search_all_locations(params[:search]).where(:active => true)
   end
 
   def search_with_distance_only
@@ -187,19 +186,30 @@ class LocationsController < ApplicationController
       @state = current_user.currentState
     end
 
-    return Location.near('' + @city + ", " + @state + ', US', params[:distance_from])
+    return Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
 
   end
 
   def search_with_query_only
-    return Location.search_all_locations(params[:search])
+    return Location.search_all_locations(params[:search]).where(:active => true)
   end
 
   def view
 
     store_location
 
-    @location = Location.find(params[:id])
+    if Location.where(:id => params[:id], :active => true).count > 0
+      @location = Location.find(params[:id])
+    else
+      if current_user.is_vendor
+        redirect_to locations_manage_url
+      elsif current_user.is_buyer
+        redirect_to dashboard_url
+      end
+    end
+
+
+
     # Add in (if vendor owns this location put in an edit button at the top)
   end
 
@@ -225,10 +235,24 @@ class LocationsController < ApplicationController
 
   def confirm_destroy
 
-      Location.destroy(params[:id])
-      FavLocation.destroy_all(:location_id => params[:id])
-      FeaturedItems.destroy_all(:location_id => params[:id])
-      LoactionHasCategory.destroy_all(:location_id => params[:id])
+      Location.find(params[:id]).deactivate
+
+      @favlocations = FavLocation.where(:location_id => params[:id])
+      @favlocations.each do |fl|
+        fl.deactivate
+      end
+
+      @featureditems = FeaturedItem.where(:location_id => params[:id])
+      @featureditems.each do |fi|
+        fi.deactivate
+      end
+
+      @catrelation = LocationHasCategory.where(:location_id => params[:id])
+      @catrelation.each do |cr|
+        cr.deactivate
+      end
+
+      redirect_back_or_default('/')
 
   end
 
@@ -241,10 +265,19 @@ class LocationsController < ApplicationController
 
   def confirm_delete_featureditem
 
-      FeaturedItem.destroy(params[:featured_item_id])
-      FavProduct.destroy_all(:featured_item_id => params[:featured_item_id])
-      ProductHasCategory.destroy_all(:featured_item_id => params[:featured_item_id])
-      redirect_back_or_default('/')
+    FeaturedItem.find(params[:featured_item_id]).deactivate
+
+    @favproducts = FavProduct.where(:featured_item_id => params[:featured_item_id])
+    @favproducts.each do |fp|
+      fp.deactivate
+    end    
+
+    @catrelation = ProductHasCategory.where(:featured_item_id => params[:featured_item_id])
+    @catrelation.each do |cr|
+      cr.deactivate
+    end
+
+    redirect_back_or_default('/')
 
   end
 

@@ -20,6 +20,11 @@ module LocationHelper
       if not params[:id]
         redirect_to locations_manage_url
         return
+      else #if there is an id passed in
+        if Location.where(:id => params[:id], :active => true).count == 0
+          redirect_to locations_manage_url
+          return
+        end
       end
 
     end
