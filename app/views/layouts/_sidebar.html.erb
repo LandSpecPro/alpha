@@ -28,7 +28,7 @@
 					</a>
 				</li>
 
-				<% if @sidebar_search_active %>
+				<% if controller.action_name == 'search' %>
 					<li class="active open">
 				<% else %>
 					<li>
@@ -41,14 +41,14 @@
 
 						<ul class="submenu">
 
-						<% if @sidebar_search_products_active %>
+						<% if controller.controller_name == 'products' and controller.action_name == 'search' %>
 							<li class="active">
 						<% else %>
 							<li>
 						<% end %>
 								<a href=<%= products_search_url %>><i class="icon-double-angle-right"></i> Products</a>
 							</li>
-						<% if @sidebar_search_locations_active %>
+						<% if controller.controller_name == 'locations' and controller.action_name == 'search' %>
 							<li class="active">
 						<% else %>
 							<li>

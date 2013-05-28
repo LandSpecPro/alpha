@@ -23,3 +23,4 @@
 //= require autocomplete-rails
 //= require masks
 //= require general
+//= require gritter.notifications

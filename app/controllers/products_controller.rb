@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include ProductHelper
 
   def new
     @product = Product.new
@@ -121,37 +122,19 @@ class ProductsController < ApplicationController
 
     @sidebar_search_active = true
     @sidebar_search_locations_active = true
-    @products = nil
-    @fi_near = FeaturedItem.all
+    @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
-        @products = search_with_query
-        @fi_near = get_featured_items_near
+        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from])
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @products = Product.all
-        @fi_near = get_featured_items_near
+        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from])
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @products = search_with_query
+        @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @products = Product.all
+        @featureditems = FeaturedItem.all
       end
     end
-
-  end
-
-  def update_search_log
-
-    @cats = ''
-
-    if not params[:categories].nil?
-      params[:categories].each do |c|
-        @cats = @cats + Category.find(c).category + " "
-      end
-    end
-
-    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'product', :categories => @cats)
-    @searchlog.save
 
   end
 

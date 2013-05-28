@@ -127,7 +127,6 @@ class LocationsController < ApplicationController
     @sidebar_search_locations_active = true
     @locations = nil
     if params[:commit] == 'Search'
-      update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
         @locations = search_with_distance_and_query
       elsif params[:distance_from] != '0' and params[:search] == ''
@@ -137,6 +136,7 @@ class LocationsController < ApplicationController
       elsif params[:distance_from] == '0' and params[:search] == ''
         @locations = Location.all
       end
+      update_search_log
     end
   end
 
@@ -158,34 +158,37 @@ class LocationsController < ApplicationController
   def search_with_distance_and_query
 
     if current_user.currentCity.nil?
-      @city = 'Atlanta, '
+      @city = 'Atlanta'
     else
       @city = current_user.currentCity
     end
 
     if current_user.currentState.nil?
-      @state = 'GA, '
+      @state = 'GA'
     else
       @state = current_user.currentState
     end
 
-    @locsnear = Location.near('' + @city + @state + 'US', params[:distance_from])
+    @locsnear = Location.near('' + @city + ", " + @state + ', US', params[:distance_from])
     return @locsnear.search_all_locations(params[:search])
   end
 
   def search_with_distance_only
+
     if current_user.currentCity.nil?
-      @city = 'Atlanta, '
+      @city = 'Atlanta'
     else
       @city = current_user.currentCity
     end
 
     if current_user.currentState.nil?
-      @state = 'GA, '
+      @state = 'GA'
     else
       @state = current_user.currentState
     end
-    return Location.near('' + @city + @state + 'US', params[:distance_from])
+
+    return Location.near('' + @city + ", " + @state + ', US', params[:distance_from])
+
   end
 
   def search_with_query_only
