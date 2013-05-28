@@ -7,7 +7,7 @@
 	<% end %>
 			<%= form_for @product, :html => {:id => 'form_add_featured_item'} do |f| %>
 				<div class="widget-box">
-					<div class="widget-header header-color-blue">
+					<div class="widget-header header-color-green">
 						<h5 class="bigger lighter"><i class="icon-plus"></i> Add Featured Item</h5>
 						<div class="widget-toolbar">
 							<a href="javascript:{return true;}" onclick="document.getElementById('form_add_featured_item').submit();" class="white" id="white-link"><i  class="icon-plus" id="fav_icon"></i> Add</a>
@@ -60,7 +60,7 @@
 								</div>
 
 								
-								<%= f.fields_for :featured_items do |f2| %>
+								<%= f.fields_for :featured_item do |f2| %>
 									<div class="row-fluid">
 										<div class="span6">
 											Size (optional): 

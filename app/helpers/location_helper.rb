@@ -28,4 +28,39 @@ module LocationHelper
       end
 
     end
+
+    def update_search_log
+
+    @cats = ''
+
+    if not params[:categories].nil?
+      params[:categories].each do |c|
+        @cats = @cats + Category.find(c).category + " "
+      end
+    end
+
+    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location', :categories => @cats)
+    @searchlog.save
+
+  end
+
+  def search_with_distance_and_query
+
+    @locsnear = Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
+    return @locsnear.search_all_locations(params[:search]).where(:active => true)
+
+  end
+
+  def search_with_distance_only
+
+    return Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
+
+  end
+
+  def search_with_query_only
+
+    return Location.search_all_locations(params[:search]).where(:active => true)
+    
+  end
+
 end

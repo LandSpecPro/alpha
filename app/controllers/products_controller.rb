@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  
   include ProductHelper
 
   def new
@@ -13,10 +14,10 @@ class ProductsController < ApplicationController
 
     @location = Location.find(params[:product][:location_id])
     @locationid = @location.id
-    @description = params[:product][:featured_items][:description]
+    @description = params[:product][:featured_item][:description]
     @image = params[:product][:image]
-    @size = params[:product][:featured_items][:size]
-    @price = params[:product][:featured_items][:price]
+    @size = params[:product][:featured_item][:size]
+    @price = params[:product][:featured_item][:price]
     @categories = params[:product_categories]
 
     @thing = params[:product][:productSelect]
@@ -73,7 +74,7 @@ class ProductsController < ApplicationController
   end
 
   def before_create
-    params[:product].delete :featured_items
+    params[:product].delete :featured_item
     params[:product].delete :image
     params[:product].delete :location_id
   end
@@ -110,9 +111,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-
-    @sidebar_search_active = true
-    @sidebar_search_locations_active = true
     @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
@@ -131,8 +129,6 @@ class ProductsController < ApplicationController
 
 
   def browseall
-    @sidebar_search_active = true
-    @sidebar_search_products_active = true
   end
 
 end

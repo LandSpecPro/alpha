@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528015234) do
+ActiveRecord::Schema.define(:version => 20130528052201) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                             :null => false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130528015234) do
     t.string   "state"
     t.string   "zip"
     t.boolean  "active",            :default => true, :null => false
+    t.text     "tagline"
   end
 
   create_table "bus_vendors", :force => true do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130528015234) do
     t.string   "busEmail"
     t.string   "busWebsite"
     t.boolean  "active",            :default => true, :null => false
+    t.text     "tagline"
   end
 
   create_table "categories", :force => true do |t|
@@ -190,6 +192,14 @@ ActiveRecord::Schema.define(:version => 20130528015234) do
     t.string   "distanceFrom"
     t.text     "searchType"
     t.boolean  "active",       :default => true, :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.text     "status"
+    t.integer  "user_id"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "user_sessions", :force => true do |t|

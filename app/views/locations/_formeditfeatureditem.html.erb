@@ -1,5 +1,5 @@
 <div class="widget-box">
-	<div class="widget-header header-color-blue">
+	<div class="widget-header header-color-green">
 		<div class="center">
 			<h3 class="bigger lighter">Featured Items</h3>
 		</div>
@@ -19,7 +19,7 @@
 	<% @location.featured_items.where(:active => true).order("created_at ASC").each do |fi| %>
 		<%= form_for :featured_items, :url => {:action => :update_featured_item}, :html => {:id => fi.id.to_s} do |f| %>
 			<div class="widget-box">
-				<div class="widget-header header-color-blue">
+				<div class="widget-header header-color-green">
 					<h5 class="bigger lighter"><i class="icon-star"></i> <%= fi.get_product.commonName %></h5>
 					<div class="widget-toolbar">
 						<a href="javascript:{return true;}" onclick="document.getElementById('<%= fi.id.to_s %>').submit();" title="Update" class="white" id="white-link">
