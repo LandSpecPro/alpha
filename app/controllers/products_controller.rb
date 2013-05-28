@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   
+  # add in before filter to make sure user id matches for setting and removing favorites
   include ProductHelper
 
   def new
@@ -111,6 +112,7 @@ class ProductsController < ApplicationController
   end
 
   def search
+    store_location
     @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
@@ -131,7 +133,7 @@ class ProductsController < ApplicationController
     @featureditem = FeaturedItem.find(params[:id])
 
     if @featureditem.is_favorited(current_user)
-      @featureditem.remove_favorite(current_user.id, params[:id])
+      FavProduct.where(:user_id => current_user.id, :featured_item_id => params[:id]).first.deactivate
       redirect_back_or_default('/')
     else
       @featureditem.set_favorite(current_user.id, @featureditem.id, @featureditem.get_product.id)

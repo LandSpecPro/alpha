@@ -59,16 +59,16 @@ class FeaturedItem < ActiveRecord::Base
 	end
 
 	def set_favorite(userid, fid, product_id)
-
-		if fid == self.id
-			@favloc = FavProduct.create(:user_id => userid, :featured_item_id => self.id, :product_id => product_id)
-			if @favloc.save
+		
+		if FavProduct.where(:user_id => userid, :featured_item_id => self.id).count > 0
+			FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.activate
+		else
+			@favprod = FavProduct.create(:user_id => userid, :featured_item_id => self.id, :product_id => product_id)
+			if @favprod.save
 				return true
 			else
 				return false
 			end
-		else
-			return false
 		end
 
 	end
@@ -77,9 +77,6 @@ class FeaturedItem < ActiveRecord::Base
 
 		if fid == self.id
 			FavProduct.destroy(FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.id)
-			@favproduct = FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.id
-			@favproduct.deactivate
-			redirect_to home_url
 			return
 		else
 			return false

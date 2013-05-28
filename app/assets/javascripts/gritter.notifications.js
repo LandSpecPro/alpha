@@ -21,7 +21,7 @@ function gritterNewUserAddLocation(){
 function gritterSearchProductHints(){
 	$.gritter.add({
 		title: 'Tips for Searching Products!',
-		text: '1. Hover over a product name to see a description.',
+		text: 'Hover over a product name to see a description (if there is one).',
 		sticky: true,
 		class_name: 'gritter-success gritter-dark'
 	});

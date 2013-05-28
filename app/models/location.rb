@@ -52,29 +52,17 @@ class Location < ActiveRecord::Base
 
 	def set_favorite(userid, locid)
 
-		if locid == self.id
+		if FavLocation.where(:user_id => userid, :location_id => self.id, :active => false).count > 0
+			FavLocation.where(:user_id => userid, :location_id => self.id).first.activate
+		else
 			@favloc = FavLocation.create(:user_id => userid, :location_id => self.id)
 			if @favloc.save
 				return true
 			else
 				return false
 			end
-		else
-			return false
 		end
 
 	end
-
-	def remove_favorite(userid, locid)
-
-		if locid == self.id
-			FavLocation.destroy(FavLocation.where(:user_id => userid, :location_id => self.id).first.id)
-			@favloc = FavLocation.where(:user_id => userid, :location_id => self.id).first.id
-			@favloc.deactivate
-		else
-			return false
-		end
-	end
-
 
 end

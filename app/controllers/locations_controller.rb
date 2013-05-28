@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   include LocationHelper
-  
+  # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
   before_filter :require_business_location_matches => [:edit, :update_categories, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches => [:delete_featureditem, :confirm_delete_featureditem]
@@ -123,8 +123,6 @@ class LocationsController < ApplicationController
   end
 
   def search
-    @sidebar_search_active = true
-    @sidebar_search_locations_active = true
     @locations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''
@@ -164,7 +162,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     if @location.is_favorited(current_user)
-      @location.remove_favorite(current_user.id, @location.id)
+      FavLocation.where(:user_id => current_user.id, :location_id => params[:id]).first.deactivate
       redirect_back_or_default('/')
     else
       @location.set_favorite(current_user.id, @location.id)
