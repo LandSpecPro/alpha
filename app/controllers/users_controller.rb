@@ -9,12 +9,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     
-    if not request.location.nil?
+    if not request.location.city.empty? and not request.location.state.empty?
       @user.currentCity = request.location.city
       @user.currentState = request.location.state
     else
       @user.currentCity = 'Atlanta'
-      @user.currentState = 'Georgia'
+      @user.currentState = 'GA'
     end
 
     if @user.save

@@ -98,15 +98,17 @@ class ProductsController < ApplicationController
 
     @location = Location.find(location_id)
 
-    categories.each do |c|
-      @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
-      @productcats.save
+    if not categories.blank?
+      categories.each do |c|
+        @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
+        @productcats.save
 
-      if LocationHasCategory.where(:location_id => location_id, :category_id => c, :active => true).count == 0
-        @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
-        @locationcats.save
+        if LocationHasCategory.where(:location_id => location_id, :category_id => c, :active => true).count == 0
+          @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
+          @locationcats.save
+        end
+
       end
-
     end
 
   end
