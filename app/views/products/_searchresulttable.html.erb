@@ -43,7 +43,11 @@
 								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>", :data => {:rel => "colorbox"} %>
 							</td>
 							<td class="center">
-								<i class="icon-bookmark"></i>
+								<% if fi.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+								<% end %>
 							</td>
 						</tr>
 		<% end %>

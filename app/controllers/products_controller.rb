@@ -127,6 +127,18 @@ class ProductsController < ApplicationController
 
   end
 
+  def set_as_favorite
+    @featureditem = FeaturedItem.find(params[:id])
+
+    if @featureditem.is_favorited(current_user)
+      @featureditem.remove_favorite(current_user.id, params[:id])
+      redirect_back_or_default('/')
+    else
+      @featureditem.set_favorite(current_user.id, @featureditem.id, @featureditem.get_product.id)
+      redirect_back_or_default('/')
+    end
+  end
+
 
   def browseall
   end
