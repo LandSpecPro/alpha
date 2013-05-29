@@ -46,14 +46,14 @@ module LocationHelper
 
   def search_with_distance_and_query
 
-    @locsnear = Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
+    @locsnear = Location.near('' + current_user.currentCity + ", " + current_user.currentState + ', US', params[:distance_from]).where(:active => true)
     return @locsnear.search_all_locations(params[:search]).where(:active => true)
 
   end
 
   def search_with_distance_only
 
-    return Location.near('' + @city + ", " + @state + ', US', params[:distance_from]).where(:active => true)
+    return Location.near('' + current_user.currentCity + ", " + current_user.currentState + ', US', params[:distance_from]).where(:active => true)
 
   end
 

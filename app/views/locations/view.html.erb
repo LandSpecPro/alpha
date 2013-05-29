@@ -3,7 +3,7 @@
 
 
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span4">
 			<div class="row-fluid">
 		<div class="span12">
 			<div class="widget-box">
@@ -37,7 +37,7 @@
 						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '150px', :height => '150px' %>
 					</div>
 
-					<div class="span4">
+					<div class="span6">
 						<div class="pull-left">
 							<span>
 								<%= link_to (simple_format(@location.address1 + " " + @location.address2 + "\n" + @location.city + ", " + @location.state + " " + @location.zip, :style => "font-size:15px; margin-top:10px; margin-left:5px;").html_safe), get_map_link_from_address(concat_address(@location)), :target => "_blank" %>
@@ -54,7 +54,7 @@
 
 		</div> <!-- end span6 -->
 
-		<div class="span4">
+		<div class="span8">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
@@ -66,28 +66,9 @@
 					</div>
 				</div>
 			</div>
-
-			<% @location.featured_items.where(:active => true).each do |fi| %>
-				<div class="row-fluid">
-					<div class="span12">
-
-						<div class="widget-box">
-							<div class="widget-header header-color-green">
-								<h5 class="bigger lighter"><i class="icon-star"></i> <strong><%= fi.get_product.commonName %></strong></h5>
-							</div>
-
-							<div class="widget-body">
-								<div class="widget-main">
-									<div class="center">
-										<%= image_tag fi.get_image.url(:medium) %>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			<% end %>
+			<div class="row-fluid">
+				<%= render 'viewfeatureditems' %>
+			</div>
 
 		</div>
 	</div> <!-- end row-fluid -->
