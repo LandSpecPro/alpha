@@ -115,6 +115,13 @@ class ProductsController < ApplicationController
 
   def search
     store_location
+
+    @resultnum = 0
+
+    if params[:view].blank?
+      params[:view] = 'list'
+    end
+
     @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
@@ -125,7 +132,7 @@ class ProductsController < ApplicationController
       elsif params[:distance_from] == '0' and params[:search] != ''
         @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @featureditems = FeaturedItem.where(:active => true)
+        @featureditems = search_for_all
       end
     end
 

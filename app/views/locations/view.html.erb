@@ -3,30 +3,31 @@
 
 
 	<div class="row-fluid">
-		<div class="span4">
+
+		<div class="span6">
 			<div class="row-fluid">
-		<div class="span12">
-			<div class="widget-box">
-				<div class="widget-header header-color-green">
-					<div class="center">
-						<h3 class="lighter"><%= @location.bus_vendor.busName %></h3>
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-header header-color-green">
+							<div class="center">
+								<h3 class="lighter"><%= @location.bus_vendor.busName %></h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
 			<div class="widget-box">
-			<div class="widget-header">
-				<h5 class="bigger lighter"><i class="icon-home"></i> <strong><%= @location.locName %></strong></h5>
-				<div class="widget-toolbar">
-					<% if @location.is_favorited(current_user) %>
-						<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-					<% else %>
-						<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
-					<% end %>
+				<div class="widget-header header-color-green">
+					<h5 class="bigger lighter"><i class="icon-home"></i> <strong><%= @location.locName %></strong></h5>
+					<div class="widget-toolbar">
+						<% if @location.is_favorited(current_user) %>
+							<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark white" id="fav_icon"></i></a>
+						<% else %>
+							<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark-empty white" id="fav_icon"></i></a>
+						<% end %>
+					</div>
 				</div>
-			</div>
 
 		<div class="widget-body">
 			<div class="widget-main">
@@ -54,23 +55,31 @@
 
 		</div> <!-- end span6 -->
 
-		<div class="span8">
+		<div class="span5">
+
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 						<div class="widget-header header-color-green">
 							<div class="center">
-								<h3 class="lighter">Featured Items</h3>
+								<h3 class="lighter">Specialty Items</h3>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<%= render 'viewfeatureditems' %>
-			</div>
+
+			<%= render 'viewfeatureditems' %>
 
 		</div>
+
 	</div> <!-- end row-fluid -->
 
 <%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

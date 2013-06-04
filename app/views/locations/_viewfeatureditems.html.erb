@@ -1,38 +1,72 @@
 
-	
-<ul class="ace-thumbnails">
+
 	<% @location.featured_items.where(:active => true).each do |fi| %>
 					
-		<div class="span4">
+		<div class="row-fluid">
+			<div class="span5">
+				<br/>
+				<ul class="ace-thumbnails">
+					<li>
 
-			<div class="widget-box">
-				<div class="widget-header header-color-green">
-					<h5 class="bigger lighter"><i class="icon-star"></i> <strong><%= fi.get_product.commonName %></strong></h5>
-					<div class="widget-toolbar">
-						<% if fi.is_favorited(current_user) %>
-							<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark white" id="fav_icon"></i></a>
-						<% else %>
-							<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty white" id="fav_icon"></i></a>
-						<% end %>
-					</div>
-				</div>
+							
+						<a href="<%= fi.get_image.url(:original) %>" title="<%= fi.get_product.commonName %>" data-rel="colorbox">
+						
+							<img src="<%= fi.get_image.url %>"/>
+
+							<% if fi.is_favorited(current_user) %>
+								<div class="tags">
+									<span class="label label-info arrowed">Favorited!</span>
+								</div>
+							<% end %>
+
+
+						</a>
+
+
+
+						<div class="tools tools-top">
+							<% if fi.is_favorited(current_user) %>
+								<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+							<% else %>
+								<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i>
+								</a>
+							<% end %>
+						</div>
+
+
+					</li>
+				</ul>
 			</div>
 
-			<ul class="ace-thumbnails">
-				<div class="center">
-				<li>
-					<%= image_tag fi.get_image.url %>
-					<div class="tags">
-						<span class="label label-info arrowed">fountain</span>
-						<span class="label label-important">recreation</span>
-					</div>
-				</li>
+			<div class="span6">
+				<br/>
+				<strong>Common Name:</strong>
+				<br/>
+				<%= fi.get_product.commonName %>
+				<br/>
+				<% unless fi.get_product.latinName.blank? %>
+					<strong>Latin Name:</strong>
+					<br/>
+					<%= fi.get_product.latinName %>
+					<br/>
+				<% end %>
+				<strong>Description:</strong>
+				<%= fi.description %>
+				<br/>
+				<% unless fi.price.blank? %>
+					<strong>Price:</strong>
+					<br/>
+					<%= '$' + fi.price.to_s %>
+					<br/>
+				<% end %>
+				<% unless fi.size.blank? %>
+					<strong>Size:</strong>
+					<br/>
+					<%= fi.size %>
+					<br/>
+				<% end %>
 			</div>
-
-			</ul>
-
-			
 		</div>
+		
 
 	<% end %>
-</ul>

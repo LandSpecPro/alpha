@@ -10,7 +10,11 @@
 				<h3>No products were found!</h3>
 			</div>
 		<% else %>
-			<%= render 'searchresulttable' %>
+			<% if params[:view] == 'list' %>
+				<%= render 'searchresultlist' %>
+			<% elsif params[:view] == 'grid' %>
+				<%= render 'searchresultgrid' %>
+			<% end %>
 		<% end %>
 	<% else %>
 		<div class="center"><br/>

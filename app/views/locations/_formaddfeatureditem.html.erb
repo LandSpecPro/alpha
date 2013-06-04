@@ -100,3 +100,27 @@
 
 
 <% end %>
+
+<script type="text/javascript">
+	$(bindInput());
+$(function bindInput(){
+	alert('ok');
+		$('#productSelect').change(function(){
+			if($(this).val() != 'New Product'){
+
+				//var p = document.getElementById("productSelect");
+				//var common_name = p.options[p.selectedIndex].dataset["comname"];
+				//var latin_name = p.options[p.selectedIndex].dataset["latname"];
+
+				$('#commonName').val($(this).val());
+				$('#commonName').attr('readonly', true);
+			}
+			else{
+				$('#commonName').val('');
+				$('#commonName').attr('readonly', false);
+				$(this).blur();
+				$('#commonName').focus();
+			}
+		})
+	});
+</script>

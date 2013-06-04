@@ -1,8 +1,34 @@
 module ProductHelper
 
+	def filter_by_categories(featureditems)
+
+		if not params[:categories].nil?
+
+			@result = []
+			featureditems.each do |fi|
+				params[:categories].each do |c|
+					if ProductHasCategory.where(:featured_item_id => fi.id, :category_id => c, :active => true).count > 0
+						@result << fi
+						break
+					end
+				end
+			end
+
+			return @result
+		else
+			return featureditems
+		end
+
+	end
+
+	def search_for_all
+		@featuredItems = FeaturedItem.where(:active => true)
+		return filter_by_categories(@featuredItems)
+	end
+
 	def search_for_featured_items_with_distance_only(distance)
 		@featuredItems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
-		return @featuredItems
+		return filter_by_categories(@featuredItems)
 	end
 
 	def search_for_featured_items_with_query_only(query)
@@ -15,7 +41,7 @@ module ProductHelper
 			end
 		end
 
-		return @result
+		return filter_by_categories(@result)
 	end
 
 	def search_for_featured_items_with_query_and_distance(query, distance)
@@ -31,7 +57,7 @@ module ProductHelper
 	      end
 	    end
 
-	    return @result
+	    return filter_by_categories(@result)
 	end
 
 	def update_search_log

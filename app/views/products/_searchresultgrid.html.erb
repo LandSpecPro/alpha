@@ -1,0 +1,17 @@
+<div class="table-header header-color-green">
+	<%= @featureditems.count %> Products Found 
+</div>
+
+<br/>
+<% @featureditems.each do |fi| %>
+
+			<ul class="ace-thumbnails">
+				<li>
+					<%= image_tag fi.get_image.url %>
+				</li>
+			</ul>
+
+
+	<% @resultnum = @resultnum + 1 %>
+
+<% end %>
