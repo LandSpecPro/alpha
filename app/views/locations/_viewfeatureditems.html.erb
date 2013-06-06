@@ -50,9 +50,11 @@
 					<%= fi.get_product.latinName %>
 					<br/>
 				<% end %>
-				<strong>Description:</strong>
-				<%= fi.description %>
-				<br/>
+				<% unless fi.description.blank? %>
+					<strong>Description:</strong>
+					<%= fi.description %>
+					<br/>
+				<% end %>
 				<% unless fi.price.blank? %>
 					<strong>Price:</strong>
 					<br/>
