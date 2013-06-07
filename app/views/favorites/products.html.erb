@@ -10,37 +10,56 @@
 				<tr>
 					<th class="center">Common Name</th>
 					<th class="center">Latin Name</th>
+					<th class="center">Supplier</th>
 					<th class="hidden-phone center">Size</th>
 					<th class="hidden-phone center">Price</th>
-					<th class="hidden-phone center">Description</th>
 					<th class="hidden-phone center">Image</th>
+					<th class="center">Favorite</th>
 				</tr>
 			</thead>
 									
 			<tbody>
 
-				<% @favproducts.each do |p| %>
+				<% @favproducts.each do |fi| %>
 				
 					<tr>
-						<td class="center">
-							<%= p.product.commonName %>
-						</td>
-						<td class="center">
-							<%= p.product.latinName %>
-						</td>
-						<td class='hidden-phone center'>
-							<%= p.featured_item.size %>
-						</td>
-						<td class='hidden-phone center'>
-							<%= '$' + p.featured_item.price.to_s %>
-						</td>
-						<td class='hidden-phone center'>
-							<%= p.featured_item.description %>
-						</td>
-						<td class='hidden-phone center'>
-							<%= image_tag ProductImage.find(p.featured_item.product_image_id).image.url(:thumb), :height => '20px', :width => '20px' %>
-					</tr>
+							<td class="center">
+								<a href="#<%= fi.product.commonName %>" data-rel="popover" data-content="<%= 
+									unless fi.featured_item.description.blank?
+										fi.featured_item.description 
+									else
+										'No description available'
+									end
 
+									%>" data-placement="bottom" data-trigger="hover"><%= fi.product.commonName %></a>
+							</td>
+							<td class="center">
+								<%= fi.product.latinName %>
+							</td>
+							<td class="center">
+								<a href=<%= locations_view_url(:id => fi.featured_item.location_id) %>>
+									<%= Location.find(fi.featured_item.location_id).bus_vendor.busName %>
+								</a>
+							</td>
+							<td class='hidden-phone center'>
+								<%= fi.featured_item.size %>
+							</td>
+							<td class='hidden-phone center'>
+								<% if fi.featured_item.price.to_s != '' %>
+									<%= '$' + fi.featured_item.price.to_s %>
+								<% end %>
+							</td>
+							<td class='hidden-phone center'>
+								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.featured_item.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"} %>
+							</td>
+							<td class="center">
+								<% if fi.featured_item.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+								<% end %>
+							</td>
+						</tr>
 				<% end %>
 
 			</tbody>
@@ -50,3 +69,10 @@
 
 
 <%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

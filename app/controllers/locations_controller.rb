@@ -123,6 +123,8 @@ class LocationsController < ApplicationController
   end
 
   def search
+    store_location
+    
     @locations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''

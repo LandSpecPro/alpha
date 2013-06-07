@@ -11,6 +11,7 @@
 					<th class="center">Company</th>
 					<th class="center">Location Name</th>
 					<th class="hidden-phone center">Address</th>
+					<th class="center">Favorite</th>
 				</tr>
 			</thead>
 									
@@ -29,6 +30,13 @@
 						</td>
 						<td class='hidden-phone center'>
 							<%= link_to l.location.get_full_address, get_map_link_from_address(concat_address(l.location)), :target => "_blank" %>
+						</td>
+						<td class="center">
+							<% if l.location.is_favorited(current_user) %>
+								<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => l.location.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+							<% else %>
+								<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => l.location.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+							<% end %>
 						</td>
 					</tr>
 
