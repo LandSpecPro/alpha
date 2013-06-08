@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(params[:location])
     @location.bus_vendor_id = current_user.bus_vendor_id
+    @location.busName = current_user.get_business.busName
     if @location.save
       flash[:notice] = "New Location Added!"
 
@@ -128,11 +129,11 @@ class LocationsController < ApplicationController
     @locations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''
-        @locations = search_with_distance_and_query
+        @locations = Location.search_with_distance_and_query(params[:distance_from], params[:search], current_user)
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @locations = search_with_distance_only
+        @locations = Location.search_with_distance_only(params[:distance_from], current_user)
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @locations = search_with_query_only
+        @locations = Location.search_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
         @locations = Location.where(:active => true)
       end

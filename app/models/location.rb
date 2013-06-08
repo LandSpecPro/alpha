@@ -2,12 +2,12 @@ class Location < ActiveRecord::Base
 	include ModelHelper
 	
 	include PgSearch
-	pg_search_scope :search_all_locations, :against => :locName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
+	pg_search_scope :search_all_locations, :against => :busName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
 
 	geocoded_by :get_full_address
 	after_validation :geocode
 
-	attr_accessible :locName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes
+	attr_accessible :locName, :busName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes
 	belongs_to :bus_vendor
 	
 	has_many :featured_items
@@ -24,6 +24,25 @@ class Location < ActiveRecord::Base
 	validates_presence_of :city, :on => :create, :message => "Must provide a valid city!"
 	validates_presence_of :state, :on => :create, :message => "Must provide a valid state!"
 	validates_presence_of :zip, :on => :create, :message => "Must provide a valid zip code!"
+
+	def self.search_with_distance_and_query(distance_from, query, user)
+
+	    @locsnear = self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:active => true)
+	    return @locsnear.search_all_locations(query).where(:active => true)
+
+	end
+
+	def self.search_with_distance_only(distance_from, user)
+
+		return self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:active => true)
+
+	end
+
+	def self.search_with_query_only(query)
+
+	    return self.search_all_locations(query).where(:active => true)
+	    
+	end
 
 	def get_full_address
 		@address1 = self.address1 + " "

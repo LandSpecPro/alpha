@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528052201) do
+ActiveRecord::Schema.define(:version => 20130608175137) do
 
   create_table "bus_buyers", :force => true do |t|
-    t.string   "busName",                             :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.string   "busName",                              :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "user_id"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
@@ -33,14 +33,15 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.boolean  "active",            :default => true, :null => false
+    t.boolean  "active",            :default => true,  :null => false
     t.text     "tagline"
+    t.boolean  "verified",          :default => false, :null => false
   end
 
   create_table "bus_vendors", :force => true do |t|
-    t.string   "busName",                             :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.string   "busName",                              :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -52,8 +53,9 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
     t.string   "busContact"
     t.string   "busEmail"
     t.string   "busWebsite"
-    t.boolean  "active",            :default => true, :null => false
+    t.boolean  "active",            :default => true,  :null => false
     t.text     "tagline"
+    t.boolean  "verified",          :default => false, :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -115,27 +117,29 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "bus_vendor_id",                    :null => false
-    t.string   "locName",                          :null => false
+    t.integer  "bus_vendor_id",                     :null => false
+    t.string   "locName",                           :null => false
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
-    t.string   "address1",                         :null => false
+    t.string   "address1",                          :null => false
     t.string   "address2"
-    t.string   "city",                             :null => false
-    t.string   "state",                            :null => false
-    t.string   "zip",                              :null => false
+    t.string   "city",                              :null => false
+    t.string   "state",                             :null => false
+    t.string   "zip",                               :null => false
     t.string   "primaryEmail"
     t.string   "secondaryEmail"
     t.string   "websiteLink"
     t.string   "facebookLink"
     t.string   "twitterLink"
     t.string   "googleLink"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",         :default => true, :null => false
+    t.boolean  "active",         :default => true,  :null => false
+    t.string   "busName",                           :null => false
+    t.boolean  "verified",       :default => false, :null => false
   end
 
   create_table "pg_search_documents", :force => true do |t|
@@ -162,23 +166,25 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
   end
 
   create_table "product_images", :force => true do |t|
-    t.integer  "product_id",                           :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.integer  "product_id",                            :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "active",             :default => true, :null => false
+    t.boolean  "active",             :default => true,  :null => false
+    t.boolean  "verified",           :default => false, :null => false
   end
 
   create_table "products", :force => true do |t|
-    t.string   "commonName",                   :null => false
+    t.string   "commonName",                    :null => false
     t.string   "latinName"
     t.string   "altName"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "active",     :default => true, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active",     :default => true,  :null => false
+    t.boolean  "verified",   :default => false, :null => false
   end
 
   create_table "search_logs", :force => true do |t|
@@ -213,10 +219,9 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
     t.string   "login",                                          :null => false
     t.string   "email",                                          :null => false
+    t.string   "userType",                  :default => "buyer", :null => false
     t.string   "crypted_password",                               :null => false
     t.string   "password_salt",                                  :null => false
     t.string   "persistence_token",                              :null => false
@@ -226,7 +231,8 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "userType",                  :default => "buyer", :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
     t.string   "profileImage_file_name"
@@ -239,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20130528052201) do
     t.string   "currentCity"
     t.string   "currentState"
     t.boolean  "active",                    :default => true,    :null => false
+    t.boolean  "verified",                  :default => false,   :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

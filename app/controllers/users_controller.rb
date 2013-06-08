@@ -61,6 +61,12 @@ class UsersController < ApplicationController
   def update_company_info
     @business = current_user.get_business
     @business.update_attributes(:busName => params[:user][:company_name])
+
+    if current_user.is_vendor
+      @business.locations.each do |l|
+        l.update_attributes(:busName => params[:user][:company_name])
+      end
+    end
   end
 
   def dashboard
