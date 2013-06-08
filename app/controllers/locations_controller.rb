@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-
+autocomplete :product, :commonName
   include LocationHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
@@ -8,6 +8,8 @@ class LocationsController < ApplicationController
   before_filter :require_user
   before_filter :require_business
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_featured_item]
+
+  
 
   def new
     @location = Location.new

@@ -16,6 +16,7 @@ gem 'font-awesome-rails'
 gem 'geocoder'
 gem 'pg_search'
 gem 'rails3-jquery-autocomplete'
+gem 'nifty-generators'
 gem 'chosen-rails'
 
 # Gems used only for assets and not required

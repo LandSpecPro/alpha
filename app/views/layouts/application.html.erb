@@ -9,59 +9,59 @@
 </head>
 <body>
 
-	<div class="navbar navbar-inverse">
-		
-	  <div class="navbar-inner">
-	   <div class="container-fluid">
+  <div class="navbar navbar-inverse">
+    
+    <div class="navbar-inner">
+     <div class="container-fluid">
 
 
-		  <a class="brand" href=<%= home_url %>><small><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</small> </a>
-		  <ul class="nav ace-nav pull-right">
-				<% if current_user %>
-					<li class="green user-profile">
-						<a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
-							<span id="user_info">
-								
-								<small>Logged in as:</small>
-								<center>
-									<%= current_user.login %>
-								</center>
-							</span>
-							<i class="icon-caret-down"></i>
-						</a>
-						<ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-							<li><a href=<%= dashboard_url %>><i class="icon-dashboard"></i> Dashboard</a></li>
-							<li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
-							<li class="divider"></li>
-							<li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
-						</ul>
-					</li>
-				<% else %>
-					<li class="green">
-						<%= link_to "Login", login_url %>
-					</li>
-					<li class="blue">
-						<%= link_to "Register", register_url %>
-					</li>
+      <a class="brand" href=<%= home_url %>><small><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro</small> </a>
+      <ul class="nav ace-nav pull-right">
+        <% if current_user %>
+          <li class="green user-profile">
+            <a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
+              <span id="user_info">
+                
+                <small>Logged in as:</small>
+                <center>
+                  <%= current_user.login %>
+                </center>
+              </span>
+              <i class="icon-caret-down"></i>
+            </a>
+            <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+              <li><a href=<%= dashboard_url %>><i class="icon-dashboard"></i> Dashboard</a></li>
+              <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
+              <li class="divider"></li>
+              <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="green">
+            <%= link_to "Login", login_url %>
+          </li>
+          <li class="blue">
+            <%= link_to "Register", register_url %>
+          </li>
 
-				<% end %>
+        <% end %>
 
-		  </ul><!--/.ace-nav-->
+      </ul><!--/.ace-nav-->
 
-	   </div><!--/.container-fluid-->
-	  </div><!--/.navbar-inner-->
-	</div><!--/.navbar-->
+     </div><!--/.container-fluid-->
+    </div><!--/.navbar-inner-->
+  </div><!--/.navbar-->
 
-	<%= yield %>
+  <%= yield %>
 
 
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	window.jQuery || document.write("<script src='assets/js/jquery-1.9.1.min.js'>\x3C/script>");
-	</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  window.jQuery || document.write("<script src='assets/js/jquery-1.9.1.min.js'>\x3C/script>");
+  </script>
 
-	
+  
 
 
 </body>

@@ -4,6 +4,8 @@ LspAlpha::Application.routes.draw do
 
   get "favorites/vendors"
 
+  get "locations/autocomplete_product_commonName"
+
   # Root application page
   root :to => 'home#root'
 
