@@ -10,7 +10,7 @@
 			<th class="center">Supplier</th>
 			<th class="hidden-phone center">Size</th>
 			<th class="hidden-phone center">Price</th>
-			<th class="hidden-phone center">Image</th>
+			<th class="center">Image</th>
 			<th class="center">Favorite</th>
 		</tr>
 	</thead>
@@ -46,7 +46,7 @@
 									<%= '$' + fi.price.to_s %>
 								<% end %>
 							</td>
-							<td class='hidden-phone center'>
+							<td class='center'>
 								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"} %>
 							</td>
 							<td class="center">

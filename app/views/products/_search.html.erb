@@ -1,5 +1,5 @@
-<div class="span3">
-	<div style="width:300px;">
+<div class="span4">
+	<div style="">
 
 	<div class="widget-box">
 		<div class="widget-header">
@@ -12,11 +12,14 @@
 
 	<br/>
 	<%= form_tag products_search_path, :method => 'get' do %>
+
+<div class="row-fluid">
+	<div class="span12">
 		<div class="center">
 
 			<%= hidden_field_tag :view, params[:view] %>
 			<span class="input-icon input-icon-right">
-				<%= text_field_tag :search, params[:search], :class => 'input-large search-query', :placeholder => 'Search by name...' %>
+				<%= text_field_tag :search, params[:search], :class => 'span12', :placeholder => 'Search by name...' %>
 				<p style="font-size:12px;">Leave blank to search all products.</p>
 				<!--<i id="nav-search-icon" class="icon-search"></i>-->
 			</span><hr/>
@@ -54,6 +57,8 @@
 				<%= submit_tag "Search", :class => "btn btn-block btn-success btn-small" %>
 			</div>
 		</div>
+	</div>
+</div>
 		
 	<% end %>
 
