@@ -119,7 +119,7 @@ class ProductsController < ApplicationController
     @resultnum = 0
 
     if params[:view].blank?
-      params[:view] = 'list'
+      params[:view] = 'grid'
     end
 
     @featureditems = nil

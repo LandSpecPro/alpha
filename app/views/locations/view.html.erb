@@ -1,5 +1,12 @@
 <%= render 'layouts/sidebar' %>
 
+
+<!--<div class="span10 offset1" id='map-canvas' style="height:250px;">
+
+	SPOT FOR COVER PHOTO TYPE FEATURE!
+
+</div>-->
+	
 	<div class="row-fluid">
 
 		<div class="span6">
@@ -29,31 +36,170 @@
 
 		<div class="widget-body">
 			<div class="widget-main">
+
+				<% unless @location.bus_vendor.tagline.blank? %>
+					<div class="row-fluid">
+						<div class="span8 offset2">
+							<div class="center">
+								<span style="font-size:15px; font-weight:bold;"><%= "\"" + @location.bus_vendor.tagline + "\"" %></span>
+							</div>
+						</div>
+					</div>
+				<% end %>
+
 				<div class="row-fluid">
 		
-
-					<div class="pull-left">
-						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '150px', :height => '150px' %>
-					</div>
-
-					<div class="span6">
-						<div class="pull-left">
-							<span>
-								<%= link_to (simple_format(@location.address1 + " " + @location.address2 + "\n" + @location.city + ", " + @location.state + " " + @location.zip, :style => "font-size:15px; margin-top:10px; margin-left:5px;").html_safe), get_map_link_from_address(concat_address(@location)), :target => "_blank" %>
-
-							</span>
+					<div class="span3">
+						<div class="center">
+							<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '200px', :height => '200px', :title => 'Logo' %>
 						</div>
 					</div>
 
-				</div> <!-- end row-fluid -->
+					<div class="span9">
+						<div class="center">
+							
+							<a href="<%= get_map_link_from_address(concat_address(@location)) %>" target="_blank" title="<%= @location.get_full_address %>">
+
+								<img src="<%= get_static_map_from_address(concat_address(@location)) %>"/>
+							</a>
+							<a href="<%= get_map_link_from_address(concat_address(@location)) %>" target="_blank" title="<%= @location.get_full_address %>">
+								<%= @location.get_full_address %>
+							</a>
+						</div>
+					</div>
+
+				</div><!-- end row-fluid -->
+
 			</div> <!-- end widget-main -->
 		</div> <!-- end widget-body -->
 
 			</div> <!-- end widget-box -->
 
-		</div> <!-- end span6 -->
+
+		<div class="widget-box">
+				<div class="widget-header header-color-green">
+					<h5 class="bigger lighter"><i class="icon-group"></i> <strong>Contact Info</strong></h5>
+				</div>
+
+		<div class="widget-body">
+			<div class="widget-main">
+								
+					<div class="row-fluid">
+
+						<div class="span8 offset2">
+
+							<div class="center">
+								<% unless @location.facebookLink.blank? %>
+
+									<a href="<%= @location.facebookLink %>" target="_blank" title="Facebook">
+										<%= image_tag("fb.png", :id => "brand-image") %>
+									</a>
+
+								<% end %>
+								<% unless @location.twitterLink.blank? %>
+
+									<a href="<%= @location.twitterLink %>" target="_blank" title="Twitter">
+										<%= image_tag("twitter.png", :id => "brand-image") %>
+									</a>
+
+								<% end %>
+								<% unless @location.googleLink.blank? %>
+
+									<a href="<%= @location.googleLink %>" target="_blank" title="Google+">
+										<%= image_tag("gplus.png", :id => "brand-image") %>
+									</a>
+
+								<% end %>
+							</div>
+							<br/>
+
+							<table class="table table-striped table-bordered">
+								<colgroup>
+									<col span="1" style="width: 40%;">
+									<col span="1" style="width: 60%;">
+								</colgroup>
+
+								<tbody>
+
+									<% if true %>
+										<tr>
+											<td class="center"><strong>Primary Phone</strong></td>
+											<td class="center"><%= @location.primaryPhone %></td>
+										</tr>
+									<% end %>
+
+									<% unless @location.secondaryPhone.blank? %>
+										<tr>
+											<td class="center"><strong>Secondary Phone</strong></td>
+											<td class="center"><%= @location.secondaryPhone %></td>
+										</tr>
+									<% end %>
+
+									<% unless @location.fax.blank? %>
+										<tr>
+											<td class="center"><strong>Fax</strong></td>
+											<td class="center"><%= @location.fax %></td>
+										</tr>
+									<% end %>
+
+									<% if true %>
+										<tr>
+											<td class="center"><strong>Primary Email</strong></td>
+											<td class="center"><%= @location.primaryEmail %></td>
+											<!-- MAKE THIS A LINK --> 
+										</tr>
+									<% end %>
+
+									<% unless @location.secondaryEmail.blank? %>
+										<tr>
+											<td class="center"><strong>Secondary Email</strong></td>
+											<td class="center"><%= @location.secondaryEmail %></td>
+											<!-- MAKE THIS A LINK --> 
+										</tr>
+									<% end %>
+
+									<% if true %>
+										<tr>
+											<td class="center"><strong>Website</strong></td>
+											<td class="center"><%= @location.websiteLink %></td>
+											<!-- MAKE THIS A LINK --> 
+										</tr>
+									<% end %>
+
+
+
+								</tbody>
+							</table>	
+
+						</div>					
+
+					</div>
+
+			</div> <!-- end widget-main -->
+		</div> <!-- end widget-body -->
+
+			</div> <!-- end widget-box -->
+
+
+		<br/>
+		
+
+
+	</div> <!-- end span6 -->
 
 		<div class="span5">
+
+			<% unless @currentstatus.status.blank? %>
+				
+				<div class="alert alert-success" title="<%= @currentstatus.created_at.to_s(:long) %>">
+					<i style="font-size:12px;" class="pull-right"><%= @currentstatus.created_at.to_s(:long) %></i>
+					<br/>
+					<strong>Recent Update: </strong> <%= @currentstatus.status %>
+
+				</div>
+
+
+			<% end %>
 
 			<div class="row-fluid">
 				<div class="span12">
@@ -79,5 +225,13 @@
 
 	$(applyColorbox());
 	$(applyPopovers());
+
+</script>
+
+
+<script type="text/javascript">
+
+
+	
 
 </script>

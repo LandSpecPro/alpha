@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
     @user = @current_user # makes our views "cleaner" and more consistent    
     params[:user].delete :company_name
+    params[:user].delete :tagline
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
 
   def update_company_info
     @business = current_user.get_business
-    @business.update_attributes(:busName => params[:user][:company_name])
+    @business.update_attributes(:busName => params[:user][:company_name], :tagline => params[:user][:tagline])
 
     if current_user.is_vendor
       @business.locations.each do |l|

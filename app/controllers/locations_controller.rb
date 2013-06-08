@@ -3,11 +3,11 @@ autocomplete :product, :commonName
   include LocationHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
-  before_filter :require_business_location_matches => [:edit, :update_categories, :update, :destroy, :confirm_destroy]
+  before_filter :require_business_location_matches => [:edit, :update_categories, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
   before_filter :require_business
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_featured_item]
+  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_status, :update_categories, :update_featured_item]
 
   
 
@@ -59,6 +59,23 @@ autocomplete :product, :commonName
       @loccatsselected << Category.find(lc.category_id).id
 
     end
+
+    @currentstatusstring = @location.get_current_status_string(params[:id])
+
+  end
+
+  def update_status
+    @location = Location.find(params[:id])
+    @currentStatus = Status.where(:active => true, :location_id => params[:id]).first
+
+    unless @currentStatus.blank?
+      @currentStatus.active = false
+      @currentStatus.save
+    end
+
+    Status.create(:location_id => params[:id], :status => params[:status])
+
+    redirect_back_or_default('/')
 
   end
 
@@ -157,9 +174,8 @@ autocomplete :product, :commonName
       end
     end
 
+    @currentstatus = @location.get_current_status(params[:id])
 
-
-    # Add in (if vendor owns this location put in an edit button at the top)
   end
 
   def set_as_favorite

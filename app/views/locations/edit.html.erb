@@ -12,13 +12,27 @@
 				<%= render 'formaddfeatureditem' %>
 			</div>
 
+			<div class="span4">
+				<%= render 'formupdatestatus' %>
+				<%= render 'formupdatelocationinfo' %>
+				<%= render 'formupdatecategories' %>
+			</div>
+
+		<% else %>
+
+			<div class="span4">
+				<%= render 'formupdatelocationinfo' %>
+			</div>
+
+			<div class="span4">
+				<%= render 'formupdatestatus' %>
+				<%= render 'formupdatecategories' %>
+			</div>
+
 		<% end %>
 
 
-		<div class="span4">
-			<%= render 'formupdatelocationinfo' %>
-			<%= render 'formupdatecategories' %>
-		</div>
+		
 
 	</div>
 

@@ -7,12 +7,15 @@ class Location < ActiveRecord::Base
 	geocoded_by :get_full_address
 	after_validation :geocode
 
-	attr_accessible :locName, :busName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes
+	attr_accessible :locName, :busName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :statuses_attributes
 	belongs_to :bus_vendor
 	
 	has_many :featured_items
 	has_many :products, :through => :featured_items
 	accepts_nested_attributes_for :featured_items
+
+	has_many :statuses
+	accepts_nested_attributes_for :statuses
 
 	has_many :fav_locations
 	accepts_nested_attributes_for :fav_locations
@@ -81,6 +84,26 @@ class Location < ActiveRecord::Base
 				return false
 			end
 		end
+
+	end
+
+	def get_current_status_string(locid)
+
+		currentstatus = Status.where(:active => true, :location_id => locid).first
+
+	    unless currentstatus.blank?
+	      currentstatusstring = currentstatus.status
+	    else
+	      currentstatusstring = ''
+	    end
+
+	    return currentstatusstring
+
+	end
+
+	def get_current_status(locid)
+
+		return Status.where(:active => true, :location_id => locid).first
 
 	end
 
