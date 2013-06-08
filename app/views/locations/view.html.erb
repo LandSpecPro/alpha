@@ -189,7 +189,7 @@
 
 		<div class="span5">
 
-			<% unless @currentstatus.status.blank? %>
+			<% unless @currentstatusstring.blank? %>
 				
 				<div class="alert alert-success" title="<%= @currentstatus.created_at.to_s(:long) %>">
 					<i style="font-size:12px;" class="pull-right"><%= @currentstatus.created_at.to_s(:long) %></i>

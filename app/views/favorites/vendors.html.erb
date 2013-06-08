@@ -9,8 +9,7 @@
 			<thead>
 				<tr>
 					<th class="center">Company</th>
-					<th class="center">Location Name</th>
-					<th class="hidden-phone center">Address</th>
+					<th class="center">Address</th>
 					<th class="center">Favorite</th>
 				</tr>
 			</thead>
@@ -23,12 +22,7 @@
 						<td class="center">
 							<%= BusVendor.find(l.location.bus_vendor_id).busName %>
 						</td>
-						<td class="center">
-							<a href=<%= locations_view_url(:id => l.location.id) %>>
-								<%= l.location.locName %>
-							</a>
-						</td>
-						<td class='hidden-phone center'>
+						<td class='center'>
 							<%= link_to l.location.get_full_address, get_map_link_from_address(concat_address(l.location)), :target => "_blank" %>
 						</td>
 						<td class="center">

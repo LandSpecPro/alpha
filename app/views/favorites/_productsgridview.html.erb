@@ -1,0 +1,45 @@
+
+<br/>
+<% @favproducts.each do |fi| %>
+
+
+			<ul class="ace-thumbnails">
+				
+				<li>
+					<div>
+						<%= image_tag fi.featured_item.get_image.url, :title => fi.product.commonName %>
+
+						<% if fi.featured_item.is_favorited(current_user) %>
+							<div class="tags">
+								<span class="label label-info arrowed">Favorited!</span>
+							</div>
+						<% end %>
+
+						<div class="text">
+							<div class="inner">
+
+								<span><p style="font-size:15px;"><%= fi.product.commonName %></p></span>
+
+								<a href="<%= fi.featured_item.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.product.commonName %>">
+									<i class="icon-zoom-in"></i>
+								</a>
+
+								<% if fi.featured_item.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+								<% end %>
+
+								<a href=<%= locations_view_url(:id => fi.featured_item.location_id) %>>
+									<i class="icon-globe" title="View Location"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+
+<% end %>
+
+<div class="row-fluid"></br></div>

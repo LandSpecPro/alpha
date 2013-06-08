@@ -60,3 +60,21 @@
 	</div>
 
 <% end %>
+
+<% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
+
+	<div class="pull-right">
+		<div class="btn-group">
+			<% if params[:view] == 'list' %>
+				<a href=<%= favorites_products_url(params.merge(:view => 'grid')) %>>
+					<button class="btn btn-success btn-small" style="margin-right:10px;">Grid View</button>
+				</a>
+			<% elsif params[:view] == 'grid' %>
+				<a href=<%= favorites_products_url(params.merge(:view => 'list')) %>>
+					<button class="btn btn-success btn-small" style="margin-right:10px;">List View</button>
+				</a>
+			<% end %>
+		</div>
+	</div>
+
+<% end %>

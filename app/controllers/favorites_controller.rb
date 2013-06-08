@@ -5,6 +5,10 @@ class FavoritesController < ApplicationController
   def products
   	store_location
 
+    if params[:view].blank?
+      params[:view] = 'grid'
+    end
+
   	@user = current_user
   	@favproducts = FavProduct.where(:user_id => @user.id, :active => true)
   end
