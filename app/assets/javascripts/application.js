@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require bootstrap
-//= require theme/jquery-ui-1.10.3.custom.min
-//= require theme/autocomplete-rails
+//= require theme/jquery-ui-1.10.2.custom.min
 //= require theme/rails
 //= require theme/jquery.ui.touch-punch.min
 //= require theme/chosen.jquery.min
