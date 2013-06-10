@@ -20,7 +20,9 @@
 				
 					<tr>
 						<td class="center">
-							<%= BusVendor.find(l.location.bus_vendor_id).busName %>
+							<a href=<%= locations_view_url(:id => l.id) %>>
+								<%= BusVendor.find(l.location.bus_vendor_id).busName %>
+							</a>
 						</td>
 						<td class='center'>
 							<%= link_to l.location.get_full_address, get_map_link_from_address(concat_address(l.location)), :target => "_blank" %>
