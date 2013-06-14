@@ -78,7 +78,6 @@ GEM
     mime-types (1.23)
     multi_json (1.7.2)
     nifty-generators (0.4.6)
-    nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
@@ -86,6 +85,11 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
+    parse_resource (1.8.0)
+      activemodel
+      activesupport
+      json
+      rest-client
     pg (0.15.1-x86-mingw32)
     pg_search (0.6.3)
       activerecord (>= 3.1)
@@ -119,6 +123,8 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -156,6 +162,7 @@ DEPENDENCIES
   jquery-rails
   nifty-generators
   paperclip
+  parse_resource (~> 1.8.0)
   pg
   pg_search
   rails (= 3.2.13)
