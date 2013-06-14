@@ -71,6 +71,8 @@ LspAlpha::Application.routes.draw do
   match 'index' => 'home#index'
   match "about" => 'home#about'
   match "contact" => 'home#contact'
+  match "contact/submit" => 'home#contact_submit'
+  match "subscribe" => 'home#subscribe'
 
   # For account register, login, logout, etc.
   match "register" => 'users#new'
