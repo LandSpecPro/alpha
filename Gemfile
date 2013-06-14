@@ -18,6 +18,7 @@ gem 'pg_search'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem 'chosen-rails'
+gem 'parse_resource', "~> 1.8.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
