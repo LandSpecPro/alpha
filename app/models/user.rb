@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
 		:path => 'users/:id/images/:attachment/:basename_:style.:extension'
 
 	acts_as_authentic do |c|
-		# Configuration options go here
+		c.login_field = :login
+	end
+
+	def self.find_by_username_or_email(login)
+		User.find_by_login(login) || User.find_by_email(login)
 	end
 
 	def get_business

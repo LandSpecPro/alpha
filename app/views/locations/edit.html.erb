@@ -21,12 +21,16 @@
 
 				  <div id="featuredItems" class="tab-pane">
 					<div class="row-fluid">
-						<div class="span4">
-							<%= render 'formeditfeatureditem' %>
-						</div>
 						<% if @location.featured_items.where(:active => true).count < 3 %>
+							<div class="span4">
+								<%= render 'formeditfeatureditem' %>
+							</div>
 							<div class="span8">
 								<%= render 'formaddfeatureditem' %>
+							</div>
+						<% else %>
+							<div class="span6">
+								<%= render 'formeditfeatureditem' %>
 							</div>
 						<% end %>
 					</div>

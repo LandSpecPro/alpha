@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     if @product.save
       if save_product_relations(@product.id, @image, @description, @locationid, @size, @price, @categories)
         flash[:notice] = "Product Added!"
-        redirect_to locations_edit_url(:id => @locationid)
+        redirect_to locations_edit_url, :id => @locationid, :anchor => 'featuredItems'
         return
       else
         flash[:notice] = "Not successful!"
