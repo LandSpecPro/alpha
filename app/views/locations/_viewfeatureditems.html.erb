@@ -1,17 +1,16 @@
 
-
 	<% @location.featured_items.where(:active => true).each do |fi| %>
 					
-		<div class="row-fluid">
-			<div class="span5">
-				<br/>
-				<ul class="ace-thumbnails">
-					<li>
 
+		<div class="row-fluid" style="width:100%;">
+			<div class="span12" >
+				<ul class="ace-thumbnails">
+
+					<li style="width:99%;">
 							
 						<a href="<%= fi.get_image.url(:original) %>" title="<%= fi.get_product.commonName %>" data-rel="colorbox">
 						
-							<img src="<%= fi.get_image.url %>"/>
+							<img src="<%= fi.get_image.url(:wide) %>" style="width:100%;"/>
 
 							<% if fi.is_favorited(current_user) %>
 								<div class="tags">
@@ -33,42 +32,10 @@
 							<% end %>
 						</div>
 
-
 					</li>
+
 				</ul>
 			</div>
-
-			<div class="span6">
-				<br/>
-				<strong>Common Name:</strong>
-				<br/>
-				<%= fi.get_product.commonName %>
-				<br/>
-				<% unless fi.get_product.latinName.blank? %>
-					<strong>Latin Name:</strong>
-					<br/>
-					<%= fi.get_product.latinName %>
-					<br/>
-				<% end %>
-				<% unless fi.description.blank? %>
-					<strong>Description:</strong>
-					<%= fi.description %>
-					<br/>
-				<% end %>
-				<% unless fi.price.blank? %>
-					<strong>Price:</strong>
-					<br/>
-					<%= '$' + fi.price.to_s %>
-					<br/>
-				<% end %>
-				<% unless fi.size.blank? %>
-					<strong>Size:</strong>
-					<br/>
-					<%= fi.size %>
-					<br/>
-				<% end %>
-			</div>
-		</div>
-		
+		</div>		
 
 	<% end %>

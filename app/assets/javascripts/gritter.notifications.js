@@ -7,6 +7,9 @@ function showGritter(gritter){
 	else if(gritter == 'search_product_hints'){
 		gritterSearchProductHints();
 	}
+	else if(gritter == 'multiple_location_names'){
+		gritterMultipleLocationNames();
+	}
 }
 
 function gritterNewUserAddLocation(){
@@ -24,5 +27,14 @@ function gritterSearchProductHints(){
 		text: 'Hover over a product name to see a description (if there is one).',
 		sticky: true,
 		class_name: 'gritter-success gritter-dark'
+	});
+}
+
+function gritterMultipleLocationNames(){
+	$.gritter.add({
+		title: 'Adding Multiple Locations',
+		text: 'When adding additional locations each location must have a unique location name. This will show up when a user views this location, but will only be searchable by your company name. It is good practice to use a store or location number for multiple locations (e.g. "Store #5").',
+		sticky: true,
+		class_name: 'gritter-warning gritter-dark'
 	});
 }

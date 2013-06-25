@@ -15,7 +15,7 @@
 					<div class="widget-box">
 						<div class="widget-header header-color-green2">
 							<div class="center">
-								<h3 class="lighter"><%= @location.bus_vendor.busName %></h3>
+								<h3 class="lighter header-font-white"><%= @location.bus_vendor.busName %></h3>
 							</div>
 						</div>
 					</div>
@@ -24,7 +24,13 @@
 
 			<div class="widget-box">
 				<div class="widget-header header-color-green2">
-					<h5 class="bigger lighter"><i class="icon-home"></i> <strong><%= @location.locName %></strong></h5>
+					<h5 class="bigger lighter header-font-white"><i class="icon-home"></i>
+						<% unless @location.locName.blank? %>
+							<strong><%= " " + @location.locName %></strong>
+						<% else %>
+							<strong><%= " " + @location.bus_vendor.busName %></strong>
+						<% end %>
+					</h5>
 					<div class="widget-toolbar">
 						<% if @location.is_favorited(current_user) %>
 							<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => params[:id]) %>><i  class="icon-bookmark white" id="fav_icon"></i></a>
@@ -78,7 +84,7 @@
 
 		<div class="widget-box">
 				<div class="widget-header header-color-green2">
-					<h5 class="bigger lighter"><i class="icon-group"></i> <strong>Contact Info</strong></h5>
+					<h5 class="bigger lighter header-font-white"><i class="icon-group"></i> <strong>Contact Info</strong></h5>
 				</div>
 
 		<div class="widget-body">
@@ -189,24 +195,14 @@
 
 		<div class="span5">
 
-			<% unless @currentstatus.status.blank? %>
-				
-				<div class="alert alert-success" title="<%= @currentstatus.created_at.to_s(:long) %>">
-					<i style="font-size:12px;" class="pull-right"><%= @currentstatus.created_at.to_s(:long) %></i>
-					<br/>
-					<strong>Recent Update: </strong> <%= @currentstatus.status %>
-
-				</div>
-
-
-			<% end %>
+			<!-- WHERE STATUS USED TO GO -->
 
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 						<div class="widget-header header-color-green2">
 							<div class="center">
-								<h3 class="lighter">Specialty Items</h3>
+								<h3 class="lighter header-font-white">Specialty Items</h3>
 							</div>
 						</div>
 					</div>
@@ -225,13 +221,5 @@
 
 	$(applyColorbox());
 	$(applyPopovers());
-
-</script>
-
-
-<script type="text/javascript">
-
-
-	
 
 </script>

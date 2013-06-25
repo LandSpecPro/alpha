@@ -90,7 +90,7 @@ module ApplicationHelper
 			elsif  controller.action_name == 'edit'
 				return get_location_name
 			elsif controller.action_name == 'search'
-				return " for Vendors"
+				return " for Suppliers"
 			else
 				return ""
 			end
@@ -110,7 +110,7 @@ module ApplicationHelper
 			if controller.action_name == 'products'
 				return " Products"
 			elsif controller.action_name == 'vendors'
-				return " Vendors"
+				return " Suppliers"
 			else
 				return ""
 			end

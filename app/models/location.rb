@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
 	geocoded_by :get_full_address
 	after_validation :geocode
 
-	attr_accessible :locName, :busName, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :statuses_attributes
+	attr_accessible :locName, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :statuses_attributes
 	belongs_to :bus_vendor
 	
 	has_many :featured_items
@@ -20,7 +20,6 @@ class Location < ActiveRecord::Base
 	has_many :fav_locations
 	accepts_nested_attributes_for :fav_locations
 
-	validates_presence_of :locName, :on => :create, :message => "Must provide a name for this location!"
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
 
 	validates_presence_of :address1, :on => :create, :message => "Must provide a valid address!"

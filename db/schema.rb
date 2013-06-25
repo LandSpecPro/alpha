@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625012555) do
+ActiveRecord::Schema.define(:version => 20130625165021) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20130625012555) do
 
   create_table "locations", :force => true do |t|
     t.integer  "bus_vendor_id",                     :null => false
-    t.string   "locName",                           :null => false
+    t.string   "locName"
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20130625012555) do
     t.boolean  "active",         :default => true,  :null => false
     t.string   "busName",                           :null => false
     t.boolean  "verified",       :default => false, :null => false
+    t.text     "bio"
   end
 
   create_table "pg_search_documents", :force => true do |t|

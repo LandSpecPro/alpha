@@ -51,17 +51,22 @@ autocomplete :product, :commonName
     @location = Location.where(:id => params[:id]).first
     @location.products.build
 
-    @locationcategories = LocationHasCategory.where(:location_id => @location.id, :active => true)
-    @loccatsselected = ['']
+    #@locationcategories = LocationHasCategory.where(:location_id => @location.id, :active => true)
+    #@loccatsselected = ['']
 
-    @locationcategories.each do |lc|
+    #@locationcategories.each do |lc|
 
-      @loccatsselected << Category.find(lc.category_id).id
+      #@loccatsselected << Category.find(lc.category_id).id
 
-    end
+    #end
 
-    @currentstatusstring = @location.get_current_status_string(params[:id])
+  end
 
+  def update_bio
+    @location = Location.find(params[:id])
+    @location.bio = params[:bio]
+    @location.save
+    redirect_back_or_default('/')
   end
 
   def update_status
