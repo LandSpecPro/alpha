@@ -8,6 +8,14 @@
   <%= csrf_meta_tags %>
 
   <link href='http://fonts.googleapis.com/css?family=Marmelad|Roboto+Slab|Cutive' rel='stylesheet' type='text/css'>
+
+  <!--[if IE 7]>
+    <link rel="stylesheet" href="/stylesheets/font-awesome-ie7.min.css" />
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/stylesheets/ace-ie.min.css" />
+  <![endif]-->
   
 </head>
 <body>
@@ -63,6 +71,10 @@
   <script type="text/javascript">
   window.jQuery || document.write("<script src='assets/js/jquery-1.9.1.min.js'>\x3C/script>");
   </script>
+
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="/javascripts/excanvas.min.js"></script>
+  <![endif]-->
 
 </body>
 </html>

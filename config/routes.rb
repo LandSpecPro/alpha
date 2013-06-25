@@ -42,6 +42,8 @@ LspAlpha::Application.routes.draw do
   match 'products/search' => 'products#search'
   match 'products/show' => 'products#show'
   match 'products/favorite/set' => 'products#set_as_favorite'
+  match 'products/view' => 'products#view'
+  match 'products/edit' => 'products#edit'
   
   # Routes for locations
   post 'locations/:id/edit' => 'products#create'

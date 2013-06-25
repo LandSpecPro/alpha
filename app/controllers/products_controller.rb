@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   # add in before filter to make sure user id matches for setting and removing favorites
   include ProductHelper
 
+  before_filter :require_id_parameter, :only => [:view, :edit]
+
   def new
     @product = Product.new
   end
@@ -40,6 +42,16 @@ class ProductsController < ApplicationController
       flash[:notice] = "Not successful!"
       render :template => 'locations/edit'
     end
+
+  end
+
+  def view
+
+
+  end
+
+  def edit
+
 
   end
 

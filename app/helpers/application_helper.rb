@@ -99,6 +99,10 @@ module ApplicationHelper
 				return " Browse All"
 			elsif controller.action_name == 'search'
 				return " for Products"
+			elsif controller.action_name == 'view'
+				return " View Featured Item"
+			elsif controller.action_name == 'edit'
+				return " Edit Featured Item"
 			else
 				return ""
 			end

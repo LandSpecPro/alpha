@@ -31,8 +31,7 @@
 								<%= f.hidden_field(:location_id, :value => @location.id) %>
 
 						 		Search for Product Name:
-								<div class="block input-icon input-icon-right">
-
+						 		<div>
 									<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name">
 										<option selected="selected">New Product</option>
 						  				<% Product.where(:active => true).each do |prod| %>
@@ -41,14 +40,8 @@
 						  			</select>
 						  		</div>
 
-								Product Categories:
-								<div class="block input-icon input-icon-right">
-									<%= select_tag "product_categories", options_from_collection_for_select(Category.all, 'id', 'category'), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
-
-								</div>
-
 								Product Name:
-								<div class="block input-icon input-icon-right">
+								<div class="input-icon input-icon-right">
 									<%= f.text_field :commonName, :class => 'span12', :id => 'commonName' %>
 								</div>
 
@@ -74,7 +67,7 @@
 									<div class="row-fluid">
 										<div class="span12">
 
-											Description: 
+											Description (optional):
 											<div class="block input-icon input-icon-right">
 												<%= f2.text_area :description, :class => 'span12', :rows => '3', :style => 'resize: none;' %>
 											</div>
@@ -98,8 +91,8 @@
 
 <script type="text/javascript">
 	$(bindInput());
-$(function bindInput(){
-	alert('ok');
+	function bindInput(){
+
 		$('#productSelect').change(function(){
 			if($(this).val() != 'New Product'){
 
@@ -116,6 +109,7 @@ $(function bindInput(){
 				$(this).blur();
 				$('#commonName').focus();
 			}
-		})
-	});
+		});
+
+	}
 </script>
