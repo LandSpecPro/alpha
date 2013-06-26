@@ -12,7 +12,7 @@
 
 				<li>
 					<div>
-						<%= image_tag fi.get_image.url(:wide), :title => fi.get_product.commonName %>
+						<%= image_tag fi.get_image.url(:medium), :title => fi.get_product.commonName %>
 
 						<% if fi.is_favorited(current_user) %>
 							<div class="tags">

@@ -43,32 +43,92 @@
 								<table style="table-layout: fixed; width: 100%; font-weight:normal;">
 
 									<colgroup>
-										<col span="1" style="width:20%">
-										<col span="1" style="width:80%">
+										<col span="1" style="width:40%">
+										<col span="1" style="width:60%">
 									</colgroup>
 
 									<br/>
 									<tr>
 										<td style="text-align:right; font-weight:bold;" valign="top">Address:&nbsp;</td>
-										<td style="text-align:left;">550 Mapledale Trail<br/>Sharpsburg, GA 30277</td>
+
+										<td style="text-align:left;">
+
+							<a href="<%= get_map_link_from_address(concat_address(@location)) %>" target="_blank" title="<%= @location.get_full_address %>" title="View Map">
+								<%= @location.address1 %><br/>
+								<% unless @location.address2.blank? %>
+									<%= @location.address2 %><br/>
+								<% end %>
+								<%= @location.city + ", " + @location.state + " " + @location.zip %>
+							</a>
+										</td>
+							
 									</tr>
+								<% unless @location.primaryPhone.blank? %>
 									<tr>
 										<td style="text-align:right; font-weight:bold;" valign="top">Phone:&nbsp;</td>
-										<td style="text-align:left;">770-757-7583</td>
+										<td style="text-align:left;"><%= @location.primaryPhone %></td>
 									</tr>
+								<% end %>
+								<% unless @location.secondaryPhone.blank? %>
+									<tr>
+										<td style="text-align:right; font-weight:bold;" valign="top">Alt. Phone:&nbsp;</td>
+										<td style="text-align:left;"><%= @location.secondaryPhone %></td>
+									</tr>
+								<% end %>
+								<% unless @location.fax.blank? %>
 									<tr>
 										<td style="text-align:right; font-weight:bold;" valign="top">Fax:&nbsp;</td>
-										<td style="text-align:left;">1+770-757-7583</td>
+										<td style="text-align:left;"><%= @location.fax %></td>
 										
 									</tr>
+								<% end %>
+								<% unless @location.primaryEmail.blank? %>
 									<tr>
 										<td style="text-align:right; font-weight:bold;" valign="top">Email:&nbsp;</td>
-										<td style="text-align:left; word-wrap: break-word;">mattjohnson@landspecpro.com</td>
+										<td style="text-align:left; word-wrap: break-word;"><%= @location.primaryEmail %></td>
 									</tr>
+								<% end %>
+								<% unless @location.secondaryEmail.blank? %>
+									<tr>
+										<td style="text-align:right; font-weight:bold;" valign="top">Alt. Email:&nbsp;</td>
+										<td style="text-align:left; word-wrap: break-word;"><%= @location.secondaryEmail %></td>
+									</tr>
+								<% end %>
+								<% unless @location.secondaryEmail.blank? %>
+									<tr>
+										<td style="text-align:right; font-weight:bold;" valign="top">Website:&nbsp;</td>
+										<td style="text-align:left; word-wrap: break-word;">
+											<a href="<%= @location.websiteLink %>" target="_blank">
+												Click Here
+											</a>
+										</td>
+									</tr>
+								<% end %>
+									<tr>
+										<td class="center" colspan="2" style="padding-top:15px;">
+											<% unless @location.facebookLink.blank? %>
 
+												<a href="<%= @location.facebookLink %>" target="_blank" title="Facebook">
+													<%= image_tag("fb.png", :id => "brand-image") %>
+												</a>
 
+											<% end %>
+											<% unless @location.twitterLink.blank? %>
 
+												<a href="<%= @location.twitterLink %>" target="_blank" title="Twitter">
+													<%= image_tag("twitter.png", :id => "brand-image") %>
+												</a>
 
+											<% end %>
+											<% unless @location.googleLink.blank? %>
+
+												<a href="<%= @location.googleLink %>" target="_blank" title="Google+">
+													<%= image_tag("gplus.png", :id => "brand-image") %>
+												</a>
+
+											<% end %>
+										</td>
+									</tr>
 								</table>
 							</th>
 							<th valign="top">

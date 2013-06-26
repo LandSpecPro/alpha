@@ -18,5 +18,6 @@
  *= require 'theme/ace-responsive.min'
  *= require 'theme/ace-skins.min'
  *= require 'theme/prettify'
+ *= require 'fonts'
  *= require_tree .
  */

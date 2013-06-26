@@ -7,8 +7,6 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <link href='http://fonts.googleapis.com/css?family=Marmelad|Roboto+Slab|Cutive' rel='stylesheet' type='text/css'>
-
   <!--[if IE 7]>
     <link rel="stylesheet" href="/stylesheets/font-awesome-ie7.min.css" />
   <![endif]-->
@@ -41,7 +39,7 @@
               <i class="icon-caret-down"></i>
             </a>
             <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-              <li><a href=<%= dashboard_url %>><i class="icon-dashboard"></i> Dashboard</a></li>
+              <li><a href=<%= locations_manage_url %>><i class="icon-dashboard"></i> Manage</a></li>
               <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
               <li class="divider"></li>
               <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>

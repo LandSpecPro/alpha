@@ -120,7 +120,11 @@ module ApplicationHelper
 	end
 
 	def get_location_name
-		return ' Location Name: ' + @location.locName
+		unless @location.locName.blank?
+			return ' Location Name: ' + @location.locName
+		else
+			return ' Location: ' + @location.bus_vendor.busName
+		end
 	end
 
 end

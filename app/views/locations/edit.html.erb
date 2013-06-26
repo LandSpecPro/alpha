@@ -25,21 +25,22 @@
 				  <div id="featuredItems" class="tab-pane">
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
-							<div class="span5">
+							<div class="span6">
 								<%= render 'formeditfeatureditem' %>
 							</div>
 							<div class="span5">
 								<%= render 'formaddfeatureditem' %>
 							</div>
 						<% else %>
-							<div class="span5">
-								<%= render 'formeditfeatureditem' %>
-							</div>
 							<div class="span4">
 								<h3 class="center">
 									At the moment each location you own may only have three featured items. If you would like to add more please remove one of your existing products.
 								</h3>
 							</div>
+							<div class="span8">
+								<%= render 'formeditfeatureditem' %>
+							</div>
+							
 						<% end %>
 					</div>
 				  </div>

@@ -1,16 +1,13 @@
-
 	<% @location.featured_items.where(:active => true).each do |fi| %>
-					
 
-		<div class="row-fluid" style="width:100%;">
-			<div class="span12" >
+
 				<ul class="ace-thumbnails">
 
-					<li style="width:99%;">
+					<li style="width:46%;">
 
-						<div>
+						<span>
 
-							<img src="<%= fi.get_image.url(:wide) %>" style="width:100%;"/>
+							<img src="<%= fi.get_image.url(:large) %>" style="width:100%;"/>
 
 							<% if fi.is_favorited(current_user) %>
 								<div class="tags">
@@ -34,19 +31,17 @@
 										</a>
 									<% end %>
 
-									<a href=<%= products_edit_url(:id => fi.id) %>>
+									<a href=<%= products_view_url(:id => fi.id) %>>
 										<i class="icon-info-sign" title="Info"></i>
 									</a>
 
 								</div>
 							</div>
 
-						</div>
+						</span>
 
 					</li>
 
 				</ul>
-			</div>
-		</div>		
 
 	<% end %>
