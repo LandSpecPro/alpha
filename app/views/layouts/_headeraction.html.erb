@@ -61,6 +61,18 @@
 
 <% end %>
 
+<% if controller.controller_name == 'products' and controller.action_name == 'edit' %>
+
+	<div class="pull-right">
+		<div class="btn-group">
+			<a href=<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %> title="Delete" class="white" id="white-link">
+				<button class="btn btn-success btn-small">Delete this Product</button>
+			</a>
+		</div>
+	</div>
+
+<% end %>
+
 <% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
 
 	<div class="pull-right">

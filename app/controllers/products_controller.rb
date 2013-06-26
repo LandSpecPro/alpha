@@ -47,11 +47,29 @@ class ProductsController < ApplicationController
 
   def view
 
+    @featureditem = FeaturedItem.find(params[:id])
+    @image = @featureditem.get_image
+    @product = @featureditem.get_product
 
+    if not @featureditem.active
+      redirect_back_or_default('/')
+    end
+
+    store_location
+    
   end
 
   def edit
 
+    @featureditem = FeaturedItem.find(params[:id])
+    @image = @featureditem.get_image
+    @product = @featureditem.get_product
+
+    if not @featureditem.active
+      redirect_back_or_default('/')
+    end
+
+    store_location
 
   end
 

@@ -19,7 +19,15 @@
 
 			<%= hidden_field_tag :view, params[:view] %>
 			<span class="input-icon input-icon-right">
-				<%= text_field_tag :search, params[:search], :class => 'span12', :placeholder => 'Search by name...' %>
+				<select id='search' name='search' class="chzn-select" data-placeholder="Search by Product Name...">
+					<option selected="selected"></option>
+	  				<% Product.where(:active => true).each do |prod| %>
+	  					<% if FeaturedItem.where(:active => true, :product_id => prod.id).count > 0 %>
+	  						<option><%= prod.commonName %></option>
+	  					<% end %>
+	  				<% end %>
+	  			</select>
+
 				<p style="font-size:12px;">Leave blank to search all products.</p>
 				<!--<i id="nav-search-icon" class="icon-search"></i>-->
 			</span><hr/>
@@ -48,11 +56,7 @@
 			</span>
 			<br/>
 -->
-			<span class="block input-icon">
-				<label for="category">Category: </label>
-				<%= select_tag :categories, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => params[:categories]), :multiple => true, :class => 'input-large chzn-select', :data => {:placeholder => "No Categories Selected"} %>
-			</span>
-			<br/>
+			
 			<div class="widget-footer">
 				<%= submit_tag "Search", :class => "btn btn-block btn-success btn-small" %>
 			</div>

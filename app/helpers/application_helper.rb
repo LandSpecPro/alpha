@@ -102,7 +102,7 @@ module ApplicationHelper
 			elsif controller.action_name == 'view'
 				return " View Featured Item"
 			elsif controller.action_name == 'edit'
-				return " Edit Featured Item"
+				return " Edit " + @product.commonName
 			else
 				return ""
 			end

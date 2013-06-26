@@ -231,6 +231,10 @@ autocomplete :product, :commonName
       @featureditem = FeaturedItem.find(params[:featured_item_id])
       @location = Location.find(params[:location_id])
 
+      if not @featureditem.active
+        redirect_back_or_default('/')
+      end
+
   end
 
   def confirm_delete_featureditem
@@ -247,7 +251,7 @@ autocomplete :product, :commonName
       cr.deactivate
     end
 
-    redirect_back_or_default('/')
+    redirect_to locations_manage_url
 
   end
 
