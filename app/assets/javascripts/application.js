@@ -22,4 +22,5 @@
 //= require theme/ace-elements.min
 //= require masks
 //= require general
+//= require validation
 //= require gritter.notifications

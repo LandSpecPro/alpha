@@ -19,6 +19,8 @@ autocomplete :product, :commonName
     @location = Location.new(params[:location])
     @location.bus_vendor_id = current_user.bus_vendor_id
     @location.busName = current_user.get_business.busName
+    @location.format_all_urls
+
     if @location.save
       flash[:notice] = "New Location Added!"
 
@@ -50,6 +52,8 @@ autocomplete :product, :commonName
 
     @location = Location.where(:id => params[:id]).first
     @location.products.build
+
+    @location.format_all_urls
 
     #@locationcategories = LocationHasCategory.where(:location_id => @location.id, :active => true)
     #@loccatsselected = ['']
@@ -143,7 +147,7 @@ autocomplete :product, :commonName
       flash[:notice] = "Account updated!"
       redirect_back_or_default('/') 
     else
-      render :action => :edit
+      redirect_back_or_default('/') 
     end
   end
 

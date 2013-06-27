@@ -62,7 +62,7 @@
 									<div class="span6">
 										<strong>Zip Code*</strong>
 										<span class="block input-icon input-icon-right">
-											<%= f.text_field :zip, :class => 'span12', :value => @location.zip %>
+											<%= f.text_field :zip, :class => 'span12 input-mask-zip', :value => @location.zip %>
 										</span>
 									</div>
 								</div>
@@ -121,13 +121,13 @@
 									<div class="span6">
 										Primary Phone
 										<span class="block input-icon input-icon-right">
-											<%= f.text_field :primaryPhone, :class => 'span12', :value => @location.primaryPhone %>
+											<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone', :value => @location.primaryPhone %>
 										</span>
 									</div>
 									<div class="span6">
 										Secondary Phone
 										<span class="block input-icon input-icon-right">
-											<%= f.text_field :secondaryPhone, :class => 'span12', :value => @location.secondaryPhone %>
+											<%= f.text_field :secondaryPhone, :class => 'span12 input-mask-phone', :value => @location.secondaryPhone %>
 										</span>
 									</div>
 								</div>
@@ -136,7 +136,7 @@
 									<div class="span6">
 										Fax
 										<span class="block input-icon input-icon-right">
-											<%= f.text_field :fax, :class => 'span12', :value => @location.fax %>
+											<%= f.text_field :fax, :class => 'span12 input-mask-fax', :value => @location.fax %>
 										</span>	
 									</div>
 								</div>
@@ -170,5 +170,5 @@
 	<% if Location.where(:bus_vendor_id => current_user.bus_vendor.id).count > 0 %>
 		$(showGritter("multiple_location_names"));
 	<% end %>
-	
+
 </script>

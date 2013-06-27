@@ -46,6 +46,24 @@ class Location < ActiveRecord::Base
 	    
 	end
 
+	
+	def format_all_urls
+
+		self.websiteLink = format_url(self.websiteLink)
+		self.facebookLink = format_url(self.facebookLink)
+	    self.twitterLink = format_url(self.twitterLink)
+	    self.googleLink = format_url(self.googleLink)
+
+	end
+
+	def format_url(urladdress)
+		unless urladdress[/^http:\/\//] || urladdress[/^https:\/\//] || urladdress.blank?
+	        urladdress = 'http://' + urladdress
+	    end
+
+	    return urladdress
+	end
+
 	def get_full_address
 		@address1 = self.address1 + " "
 		@address2 = self.address2 + " "

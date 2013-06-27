@@ -25,13 +25,20 @@
 
 					Location Name: 
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :locName, :class => 'span12', :value => @location.locName %>
+						<%= f.text_field :locName, :id => "locName", :class => 'span12 val-locname', :value => @location.locName %>
 					</div>
 
+
 					Street 1:
+			<!-- ERRORS 
+			<div class="hidden" id="address1-required"><div class="alert alert-error">
+				<strong>A valid address is required!</strong>
+			</div></div>  :onchange => 'validate("@location.address1", "address1", "required")'
+			-->
 					<div class="block input-icon input-icon-right">
 						<%= f.text_field :address1, :class => 'span12', :value => @location.address1 %>
 					</div>
+
 
 					Street 2:
 					<span class="block input-icon input-icon-right">
