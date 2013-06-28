@@ -12,7 +12,14 @@
 			<div class="widget-main">
 
 				<!-- Display error messages as alerts -->
-				<% @location.errors.full_messages.each do |msg| %>
+				<% unless @location.errors.blank? %>
+						<div class="alert alert-warning">
+						  <%= link_to "Revert Changes", '/locations/edit/' + @location.id.to_s, :class => 'btn btn-small btn-danger' %>
+						  <strong> &nbsp;&nbsp;&nbsp;Changes not saved!</strong>
+						</div>
+				<% end %>
+
+				<% @location.errors.each do |field, msg| %>
 					<div class="alert alert-error">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
 					  <strong>Error! </strong> <%= msg %>

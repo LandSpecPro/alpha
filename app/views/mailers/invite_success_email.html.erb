@@ -123,7 +123,7 @@ body{
             <table class="w325" width="" cellpadding="0" cellspacing="0" border="0">
                 <tbody><tr><td class="w325" width="350" height="8"></td></tr>
             </tbody></table>
-            <div class="header-content" style="font-size:18px; color:#fff; font-family: 'Droid Sans', sans-serif;">LandSpec Pro Password Reset Request</div>
+            <div class="header-content" style="font-size:18px; color:#fff; font-family: 'Droid Sans', sans-serif;">LandSpec Pro - Invitation Confirmation</div>
             <table class="w325" width="350" cellpadding="0" cellspacing="0" border="0">
                 <tbody><tr><td class="w325" width="350" height="8"></td></tr>
             </tbody></table>
@@ -173,10 +173,14 @@ body{
                         <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
                             <tbody><tr>
                                 <td class="w580" width="580">
-                                    <p align="center" class="article-title"><singleline label="Title">You have requested that your password be reset.</singleline></p>
-                                    <div align="center" class="article-content">
-                                        <multiline label="Description" style="font-family: 'Droid Sans', sans-serif;">Please follow this link to reset your password: <%= link_to "Reset Password", password_reset_url(:token => @user.perishable_token) %>.<br/><br/>
-                                        	If you have received this message in error and have not requested your password be reset, please email <a href="mailto:tech@landspecpro.com">tech@landspecpro.com</a> to report this problem.</multiline>
+                                    <p align="left" class="article-title"><singleline label="Title"><strong><%= @busName %></strong></singleline></p>
+                                    <div align="left" class="article-content">
+                                        <multiline label="Description" style="font-family: 'Droid Sans', sans-serif;">Thanks for joining our waiting list! We'll keep you up to date as we move forward. There's a lot of exciting things happening here at LandSpec Pro and now you'll be one of the first people to be involved from the very beginning.<br/><br/>
+
+                                        We're only letting in a small number of Suppliers and Landscapers to start, but you're now on the list. When we're ready to let in some more people we'll send you an email with instructions on how to sign up and be a part of this new community.<br/><br/>
+
+                                        Thanks again,<br/>
+                                        LandSpec Pro<br/><br/></multiline>
                                     </div>
                                 </td>
                             </tr>

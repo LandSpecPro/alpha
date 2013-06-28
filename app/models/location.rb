@@ -22,10 +22,13 @@ class Location < ActiveRecord::Base
 
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
 
-	validates_presence_of :address1, :on => :create, :message => "Must provide a valid address!"
-	validates_presence_of :city, :on => :create, :message => "Must provide a valid city!"
-	validates_presence_of :state, :on => :create, :message => "Must provide a valid state!"
-	validates_presence_of :zip, :on => :create, :message => "Must provide a valid zip code!"
+	validates_presence_of :address1, :message => "Must provide a valid address!"
+	validates_presence_of :city, :message => "Must provide a valid city!"
+	validates_presence_of :state, :message => "Must provide a valid state!"
+	validates_presence_of :zip, :message => "Must provide a valid zip code!"
+
+	validates_format_of :primaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Primary Email address is not valid."
+	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."
 
 	def self.search_with_distance_and_query(distance_from, query, user)
 
@@ -53,6 +56,18 @@ class Location < ActiveRecord::Base
 		self.facebookLink = format_url(self.facebookLink)
 	    self.twitterLink = format_url(self.twitterLink)
 	    self.googleLink = format_url(self.googleLink)
+
+	end
+
+	def reset_fields_keep_errors(lid)
+
+		@resetloc = Location.find(lid)
+
+		self.errors.each do |field, msg|
+			@resetloc.errors.add(field, msg)
+		end
+
+		return @resetloc
 
 	end
 

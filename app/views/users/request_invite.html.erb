@@ -11,16 +11,16 @@
 
 			<div class="visible widget-box">
 				<div class="widget-header">
-					<h4 class="center">Register</h4>
+					<h4 class="center">Request Invite</h4>
 				</div>
 
 				<div class="widget-body">
 					<div class="widget-main" id="login-widget-main">
 
-						<%= form_for @user do |f| %>
+						<%= form_for @invite, :url => {:action => :create_invite} do |f| %>
 
 							<!-- Display error messages as alerts -->
-							<% @user.errors.full_messages.each do |msg| %>
+							<% @invite.errors.each do |field, msg| %>
 								<div class="alert alert-error">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 								  <strong>Error! </strong> <%= msg %>
@@ -28,30 +28,28 @@
 							<% end %>
 
 							<fieldset>
-								<span class="block input-icon input-icon-right">
-									<%= f.text_field :login, :class => 'span12', :placeholder => "Username" %>
-									<i class="icon-user"></i>
-								</span>
+								<!--[if lt IE 10]>Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.text_field :email, :class => 'span12', :placeholder => "Email" %>
 									<i class="icon-envelope-alt"></i>
 								</span>
+								<!--[if lt IE 10]>Business Name:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
-									<i class="icon-lock"></i>
+									<%= f.text_field :busName, :class => 'span12', :placeholder => "Business Name" %>
+									<i class="icon-briefcase"></i>
 								</span>
-								<span class="block input-icon input-icon-right">
-									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
-									<i class="icon-lock"></i>
-								</span>
-								<span class="block input-icon input-icon-right">
-									<%= text_field_tag :invitecode, "", :class => 'span12', :placeholder => "Your invitation code" %>
-									<i class="icon-ticket"></i>
-								</span>
+
+								<div class="center"><p style="font-size:19px;">State:</p></div>
 								<span class="block center">
-									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
+									<%= f.select :state, get_states, :class => 'span12' %>
+								</span>
+
+
+								<span class="block center">
+
+									<input name="invite[userType]" id="userType" type="radio" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_BUYER %> checked/><span class="lbl"> Buyer</span>
+									<input name="invite[userType]" id="userType" type="radio" value=<%= STRING_BUYER %> /><span class="lbl"> Buyer</span>
 								</span>
 
 								<br/>
@@ -78,3 +76,11 @@
 		</div> <!-- span12 -->
 	</div> <!-- row-fluid -->
 </div> <!-- container-fluid -->
+
+<%= render 'layouts/footer' %>
+
+<script type="text/javascript">
+
+	$(applyChosenStyle());
+
+</script>

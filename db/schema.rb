@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625165021) do
+ActiveRecord::Schema.define(:version => 20130628010750) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -107,6 +107,26 @@ ActiveRecord::Schema.define(:version => 20130625165021) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "active",                                          :default => true, :null => false
+  end
+
+  create_table "invite_codes", :force => true do |t|
+    t.string   "code"
+    t.boolean  "used",       :default => false
+    t.integer  "invite_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "invites", :force => true do |t|
+    t.boolean  "inviteSent", :default => false
+    t.string   "email"
+    t.string   "userType"
+    t.string   "busName"
+    t.string   "busType"
+    t.string   "state"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "location_has_categories", :force => true do |t|

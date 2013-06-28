@@ -11,6 +11,8 @@ class FeaturedItem < ActiveRecord::Base
 	has_one :product
 	accepts_nested_attributes_for :product
 
+	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
+	
 	def get_image
 		return ProductImage.find(self.product_image_id).image
 	end

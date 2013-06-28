@@ -39,7 +39,7 @@
               <i class="icon-caret-down"></i>
             </a>
             <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-              <li><a href=<%= locations_manage_url %>><i class="icon-dashboard"></i> Manage</a></li>
+              <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
               <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
               <li class="divider"></li>
               <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
@@ -49,8 +49,8 @@
           <li class="green">
             <%= link_to "Login", login_url %>
           </li>
-          <li class="blue">
-            <%= link_to "Register", register_url %>
+          <li class="blue" style="padding-top:5px; margin-top:-5px; padding-bottom:5px; margin-bottom:-5px;">
+            <%= link_to "Request Invite", invite_request_url %>
           </li>
 
         <% end %>

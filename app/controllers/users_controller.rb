@@ -1,37 +1,79 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :password_reset]
   
+  def request_invite
+
+    @invite = Invite.new
+
+  end
+
+  def create_invite
+
+    @invite = Invite.new(params[:invite])
+    if @invite.save
+      redirect_to invite_success_url(:id => @invite.id)
+    else
+      render :action => :request_invite
+    end
+
+  end
+
+  def invite_confirm
+    if params[:id]
+      @invite = Invite.find(params[:id])
+      Mailers.invite_success_email(@invite.email, @invite.busName).deliver
+    else
+      redirect_to invite_request_url
+    end
+
+  end
+
   def new
     @user = User.new
+    @invitecode = ''
   end
   
   def create
-    @user = User.new(params[:user])
-    
-    if not request.location.city.empty? and not request.location.state.empty?
-      @user.currentCity = request.location.city
-      @user.currentState = request.location.state
-    else
-      @user.currentCity = 'Atlanta'
-      @user.currentState = 'GA'
-    end
 
-    if @user.save
-      flash[:notice] = "Account registered!"
+    @invitecode = params[:invitecode]
 
-      if @user.userType == STRING_VENDOR
-        redirect_to business_vendor_new_url
-      elsif @user.userType == STRING_BUYER
-        redirect_to business_buyer_new_url
+    if check_invite(params[:invitecode])
+
+      @user = User.new(params[:user])
+      
+      if not request.location.city.empty? and not request.location.state.empty?
+        @user.currentCity = request.location.city
+        @user.currentState = request.location.state
       else
-        redirect_to home_url
+        @user.currentCity = 'Atlanta'
+        @user.currentState = 'GA'
+      end
+
+      if @user.save
+        flash[:notice] = "Account registered!"
+
+        update_invite(@user, params[:invitecode])
+
+        if @user.userType == STRING_VENDOR
+          redirect_to business_vendor_new_url
+        elsif @user.userType == STRING_BUYER
+          redirect_to business_buyer_new_url
+        else
+          redirect_to home_url
+        end
+
+      else
+        flash[:notice] = "Not successful!"
+        render :action => :new
       end
 
     else
-      flash[:notice] = "Not successful!"
-      render :action => :new
+      #do something because invite was wrong
     end
+
+
   end
   
   def show

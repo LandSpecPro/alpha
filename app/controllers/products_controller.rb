@@ -97,9 +97,14 @@ class ProductsController < ApplicationController
       @name_missing = true
     end
 
+    # Invalid price format
+    params[:product][:featured_item][:price][0] = ''
+    unless /^\d+??(?:\.\d{0,2})?$/.match(params[:product][:featured_item][:price].to_s)
+      @price_invalid = true
+    end
     # Redirect if name or image is missing
     if @img_missing or @name_missing
-      redirect_to locations_edit_url(:id => params[:product][:location_id], :image_missing => @img_missing, :product_name_missing => @name_missing)
+      redirect_to locations_edit_url(:id => params[:product][:location_id], :image_missing => @img_missing, :product_name_missing => @name_missing, :price_invalid => @price_invalid)
       return true
     end
   end
@@ -115,8 +120,6 @@ class ProductsController < ApplicationController
     if @productimage.save
       @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
       @featureditem.save
-
-      save_categories(@featureditem.id, location_id, categories)
 
       return true
     else

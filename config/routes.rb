@@ -6,6 +6,10 @@ LspAlpha::Application.routes.draw do
 
   get "locations/autocomplete_product_commonName"
 
+  match "invite/request" => 'users#request_invite'
+  match "invite/create" => 'users#create_invite'
+  match "invite/success" => 'users#invite_confirm'
+
   # Root application page
   root :to => 'home#root'
 
@@ -13,6 +17,7 @@ LspAlpha::Application.routes.draw do
 
   match "business/vendor/update" => 'bus_vendors#update'
   resources :user_sessions
+  resources :invites
   resources :users do
     resources :bus_vendors
     resources :bus_buyers
@@ -50,6 +55,7 @@ LspAlpha::Application.routes.draw do
   post 'users/:id/bus_vendors' => 'bus_vendors#create'
 
   match "locations" => 'locations#manage'
+  
   match "locations/new" => 'locations#new'
   match "locations/manage" => 'locations#manage'
   match "locations/view" => 'locations#view'
@@ -68,6 +74,7 @@ LspAlpha::Application.routes.draw do
   match "locations/featureditem/delete/confirm" => 'locations#confirm_delete_featureditem'
 
   match "locations/search" => 'locations#search'
+  match "locations/:id" => 'locations#manage'
 
   # For home controller
   match "home" => 'home#index'

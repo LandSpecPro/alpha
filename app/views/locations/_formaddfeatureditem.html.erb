@@ -26,6 +26,13 @@
 								</div>
 							<% end %>
 
+							<% if params[:price_invalid] %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> Invalid format for price!
+								</div>
+							<% end %>
+
 							<fieldset>
 
 								<%= f.hidden_field(:location_id, :value => @location.id) %>

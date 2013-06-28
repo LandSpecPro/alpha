@@ -3,8 +3,8 @@ autocomplete :product, :commonName
   include LocationHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
-  before_filter :require_business_location_matches => [:edit, :update_categories, :update_status, :update, :destroy, :confirm_destroy]
-  before_filter :require_business_featured_item_matches => [:delete_featureditem, :confirm_delete_featureditem]
+  before_filter :require_business_location_matches, :only => [:edit, :update_categories, :update_status, :update, :destroy, :confirm_destroy]
+  before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
   before_filter :require_business
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_status, :update_categories, :update_featured_item]
@@ -112,32 +112,42 @@ autocomplete :product, :commonName
   def update_featured_item
 
       @featureditem = FeaturedItem.find(params[:id])
+      @product = @featureditem.get_product
+      @image = @featureditem.get_image
+
       @fid = 'featured_item_categories' + @featureditem.id.to_s
 
-      if not params[:featured_items][:image].nil?
+      if not params[:featured_item][:image].nil?
         @product_image = ProductImage.new(:product_id => @featureditem.get_product.id, :image => params[:featured_items][:image])
         if @product_image.save
           params[:featured_items][:product_image_id] = @product_image.id
-        end
-      end
-      params[:featured_items].delete :image
-      @featureditem.update_attributes(params[:featured_items]) 
-
-      ProductHasCategory.destroy_all(:featured_item_id => @featureditem.id)
-
-      if not params[@fid].nil?
-
-        if params[@fid].count > 1
-          params[@fid].each do |c|
-            @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => c)
-            @prodcategory.save
-          end
         else
-          @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => params[@fid].first)
-          @prodcategory.save
+          render template: "products/edit"
         end
       end
-      redirect_back_or_default('/')
+      params[:featured_item].delete :image
+
+      params[:featured_item][:price][0] = ''
+      if @featureditem.update_attributes(params[:featured_item]) 
+        redirect_back_or_default('/')
+      else
+        render template: "products/edit"
+      end
+
+      #ProductHasCategory.destroy_all(:featured_item_id => @featureditem.id)
+
+      #if not params[@fid].nil?
+
+       # if params[@fid].count > 1
+       #   params[@fid].each do |c|
+       #     @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => c)
+       #     @prodcategory.save
+       #   end
+       # else
+       #   @prodcategory = ProductHasCategory.new(:featured_item_id => @featureditem.id, :category_id => params[@fid].first)
+       #   @prodcategory.save
+       # end
+      #end
 
   end
 
@@ -147,7 +157,8 @@ autocomplete :product, :commonName
       flash[:notice] = "Account updated!"
       redirect_back_or_default('/') 
     else
-      redirect_back_or_default('/') 
+      #@location = @location.reset_fields_keep_errors(params[:id])
+      render :action => :edit
     end
   end
 

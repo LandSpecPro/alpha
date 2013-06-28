@@ -46,7 +46,11 @@
 
 					<%= f.label 'User Type:' %>
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :userType, :class => 'span12', :value => @usertype, :readonly => true %>
+						<% if @usertype == 'Vendor' %>
+							<%= f.text_field :userType, :class => 'span12', :value => 'Supplier', :readonly => true %>
+						<% else %>
+							<%= f.text_field :userType, :class => 'span12', :value => @usertype, :readonly => true %>
+						<% end %>
 					</span>
 					<div class="row-fluid">
 						<div class="span6">
