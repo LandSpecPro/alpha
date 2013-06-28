@@ -1,6 +1,6 @@
 class Mailers < ActionMailer::Base
   default from: "tech@landspecpro.com"
-  default_url_options[:host] = "localhost:3000"
+  default_url_options[:host] = ENV['HOST']
 
   def password_reset_email(user)
   	@user = user

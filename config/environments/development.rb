@@ -17,7 +17,7 @@ LspAlpha::Application.configure do
       :address        => 'smtp.gmail.com',
       :domain         => 'landspecpro.com',
       :port           => 587,
-      :user_name      => 'mattjohnson@landspecpro.com',
+      :user_name      => ENV['SMTP_USERNAME'],
       :password       => ENV['SMTP_PASSWORD'],
       :authentication => :plain,
       :enable_starttls_auto => true
