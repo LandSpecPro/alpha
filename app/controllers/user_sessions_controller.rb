@@ -28,4 +28,20 @@ class UserSessionsController < ApplicationController
     flash[:notice] = "Logout successful!"
     redirect_to home_url
   end
+
+  def submit_forgot
+
+    @email = params[:email]
+
+    @user = User.where(:email => @email, :active => true).first
+    if @user
+      @user.reset_perishable_token!
+      Mailers.forgot_email(@user, @user.perishable_token).deliver
+      redirect_to forgot_success_url
+    else
+      redirect_to forgot_url(:invalidemail => true)
+    end
+
+  end
+
 end

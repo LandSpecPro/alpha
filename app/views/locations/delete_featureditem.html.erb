@@ -2,28 +2,129 @@
 
 <div class="container">
 	<div class="row-fluid">
-		<div class="span4 offset4">
 
-			<div class="widget-box">
-				<div class="widget-header header-color-green2">
-					<h5 class="bigger lighter"><i class="icon-star"></i> <%= FeaturedItem.find(params[:featured_item_id]).get_product.commonName %></h5>
-				</div>
-				<div class="widget-body">
+	<div class="span12 center">
 
-					<div class="widget-main center">
-						<div><%= image_tag FeaturedItem.find(params[:featured_item_id]).get_image.url(:thumb) %>
-						
-							<h4>Description:</h4>
-							<%= FeaturedItem.find(params[:featured_item_id]).description %>
-						</div>
-					</div>
+		<h1 class="font-marmelad-black"><%= @product.commonName %></h1>
+
+		<a href="<%= @image.url(:original) %>" data-rel="colorbox" title="<%= @product.commonName %>">
+			<%= image_tag @image.url(:large), :title => @product.commonName %>
+		</a>
+
+	</div>
+
+</div>
+
+<br/>
+
+<div class="row-fluid">
+
+	<div class="span6 offset3">
+
+		<div class="widget-box">
+			<div class="widget-header header-color-green2">
+				<h5 class="bigger lighter"><i class="icon-star"></i> Item Details</h5>
+				<div class="widget-toolbar">
+
+					<% if @featureditem.is_favorited(current_user) %>
+						<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => @featureditem.id) %>><i  class="icon-bookmark white" id="fav_icon"></i></a>
+					<% else %>
+						<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => @featureditem.id) %>><i  class="icon-bookmark-empty white" id="fav_icon"></i></a>
+					<% end %>
 
 				</div>
 
 			</div>
+
+
+			<div class="widget-body">
+
+				<div class="widget-main" style="font-size:16px;">
+
+
+<!-- COMMON NAME -->
+					<div class="row-fluid">
+						<div class="span4">
+							<div class="pull-right">
+								<strong>Common Name:</strong>
+							</div>
+						</div>
+						<div class="span8">
+							<div class="pull-left">
+								<%= @product.commonName %>
+							</div>
+						</div>
+					</div>
+<!-- LATIN NAME -->
+					<div class="row-fluid">
+						<div class="span4">
+							<div class="pull-right">
+								<strong>Latin Name:</strong>
+							</div>
+						</div>
+						<div class="span8">
+							<div class="pull-left">
+								<%= @product.latinName %>
+							</div>
+						</div>
+					</div>
+<!-- SIZE -->
+					<% unless @featureditem.size.blank? %>
+						<div class="row-fluid">
+							<div class="span4">
+								<div class="pull-right">
+									<strong>Size:</strong>
+								</div>
+							</div>
+							<div class="span8">
+								<div class="pull-left">
+									<%= @featureditem.size %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+<!-- PRICE -->
+					<% unless @featureditem.price.blank? %>
+						<div class="row-fluid">
+							<div class="span4">
+								<div class="pull-right">
+									<strong>Price:</strong>
+								</div>
+							</div>
+							<div class="span8">
+								<div class="pull-left">
+									<%= '$' + @featureditem.price.to_s %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+<!-- DESCRIPTION -->
+					<div class="row-fluid">
+						<div class="span4">
+							<div class="pull-right">
+								<strong>Description:</strong>
+							</div>
+						</div>
+						<div class="span8">
+							<div class="pull-left">
+								<%= @featureditem.description %>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+
+			
+
 		</div>
 
 	</div>
+
+</div>
 	<div class="center">
 
 		<h2>Are you sure you want to delete this item from this location?</h2>

@@ -244,6 +244,8 @@ autocomplete :product, :commonName
   def delete_featureditem
 
       @featureditem = FeaturedItem.find(params[:featured_item_id])
+      @product = @featureditem.get_product
+      @image = @featureditem.get_image
       @location = Location.find(params[:location_id])
 
       if not @featureditem.active

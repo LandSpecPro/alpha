@@ -28,22 +28,27 @@
 							<% end %>
 
 							<fieldset>
+								<!--[if lt IE 10]>Username:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.text_field :login, :class => 'span12', :placeholder => "Username" %>
 									<i class="icon-user"></i>
 								</span>
+								<!--[if lt IE 10]>Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.text_field :email, :class => 'span12', :placeholder => "Email" %>
 									<i class="icon-envelope-alt"></i>
 								</span>
+								<!--[if lt IE 10]>Password:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
 									<i class="icon-lock"></i>
 								</span>
+								<!--[if lt IE 10]>Confirm Password:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
+								<!--[if lt IE 10]>Invitation Code:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= text_field_tag :invitecode, "", :class => 'span12', :placeholder => "Your invitation code" %>
 									<i class="icon-ticket"></i>

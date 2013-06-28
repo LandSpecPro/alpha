@@ -37,10 +37,12 @@
 							<% end %>
 
 							<fieldset>
+								<!--[if lt IE 10]>Username or Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.text_field :login, :class => 'span12', :placeholder => "Username or Email" %>
 									<i class="icon-user"></i>
 								</span>
+								<!--[if lt IE 10]>Password:<![endif]-->
 								<span class="block input-icon input-icon-right">
 									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
 									<i class="icon-lock"></i>
@@ -52,7 +54,7 @@
 									</div>
 									<div class="pull-left">
 										<br/>
-										<a href="#">Forgot username/password?</a>
+										<a href="<%= forgot_url %>">Forgot username/password?</a>
 									</div>
 								</div>
 								<br/>

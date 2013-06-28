@@ -68,9 +68,25 @@
 			<a href=<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %> title="Delete" class="white" id="white-link">
 				<button class="btn btn-success btn-small">Delete this Product</button>
 			</a>
+			<a href=<%= products_view_url(:id => @featureditem.id) %> title="View" class="white" id="white-link">
+				<button class="btn btn-success btn-small">View</button>
+			</a>
 		</div>
 	</div>
 
+<% end %>
+
+<% if controller.controller_name == 'products' and controller.action_name == 'view' %>
+
+	<% if Location.where(:id => @featureditem.location_id, :bus_vendor_id => current_user.bus_vendor_id).count > 0 %>
+		<div class="pull-right">
+			<div class="btn-group">
+				<a href=<%= products_edit_url(:id => @featureditem.id) %> title="Edit" class="white" id="white-link">
+					<button class="btn btn-success btn-small">Edit</button>
+				</a>
+			</div>
+		</div>
+	<% end %>
 <% end %>
 
 <% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>

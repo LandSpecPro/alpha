@@ -20,12 +20,7 @@ class HomeController < ApplicationController
 
 	def contact_submit
 
-		contact = Feedback.new
-		contact.email = params[:email]
-		contact.type = params[:type]
-		contact.subject = params[:subject]
-		contact.body = params[:body]
-		contact.save
+		Mailers.feedback_email(params[:type], params[:email], params[:subject], params[:body]).deliver
 
 		redirect_to contact_url(:submitted => true)
 
@@ -40,7 +35,7 @@ class HomeController < ApplicationController
 
 		@email = params[:emailnewsletter]
 
-		pe = Newsletteremail.new
+		pe = NewsletterEmail.new
 		pe.email = @email
 		pe.save
 		

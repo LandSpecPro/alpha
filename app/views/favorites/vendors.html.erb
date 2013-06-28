@@ -1,5 +1,6 @@
 <%= render 'layouts/sidebar' %>
 
+	<!--[if lt IE 10]> <div style="font-size:15px;"><![endif]-->
 	<div class="span8 offset1">
 		<div class="table-header header-color-green2">
 			You have <%= @favlocations.count %> Favorite Suppliers
@@ -42,5 +43,5 @@
 
 		</table>
 	</div>
-
+	<!--[if lt IE 10]> </div><![endif]-->
 <%= render 'layouts/sidebarend' %>

@@ -39,17 +39,50 @@
 									<i class="icon-briefcase"></i>
 								</span>
 
-								<div class="center"><p style="font-size:19px;">State:</p></div>
+								State:
 								<span class="block center">
-									<%= f.select :state, get_states, :class => 'span12' %>
+									<%= select_tag :state, options_for_select(get_states), :class => 'span12', :name => "invite[state]" %>
 								</span>
 
-
 								<span class="block center">
 
-									<input name="invite[userType]" id="userType" type="radio" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
+									User Type:<br/>
+									<input name="invite[userType]" id="userType" type="radio" onchange="showSupplierDropdown();" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-									<input name="invite[userType]" id="userType" type="radio" value=<%= STRING_BUYER %> /><span class="lbl"> Buyer</span>
+									<input name="invite[userType]" id="userType" type="radio" onchange="showBuyerDropdown();" value=<%= STRING_BUYER %> /><span class="lbl"> Buyer</span>
+
+								</span>
+
+								<span class="hidden" id="busTypeBuyer">
+									<span class="block">
+										Business Type:
+										<select class="span12" id="buyerBusType" name="buyerBusType">
+											<option selected='selected'>Landscape Contractor</option>
+											<option>Landscape Architect</option>
+											<option>Landscape Designer</option>
+										 	<option>Irrigation Contractor</option>
+					                     	<option>Turf Care Specialist</option>
+					                     	<option>Golf Course</option>
+					                     	<option>Sports Turf Specialist</option>
+					                     	<option>Landscape Lighting Designers/Contractors</option>
+					                     	<option>Arborist/Tree Care Specialist</option>
+					                     	<option>Government/Municipalities</option>
+					                     	<option>Reseller</option>
+					                     	<option>Other</option>
+					                     </select>
+					                 </span>
+								</span>
+
+								<span class="hidden" id="busTypeSupplier">
+									<span class="block">
+										Business Type:
+										<select class="span12" id="supplierBusType" name="supplierBusType">
+											<option selected='selected'>Horticultural Supplier</option>
+											<option>Material Supplier</option>
+											<option>Equipment Supplier</option>
+											<option>Other</option>
+					                     </select>
+					                 </span>
 								</span>
 
 								<br/>
@@ -82,5 +115,19 @@
 <script type="text/javascript">
 
 	$(applyChosenStyle());
+
+	function showSupplierDropdown(){
+
+		$('#busTypeSupplier').removeClass('hidden');
+		$('#busTypeBuyer').addClass('hidden');
+		
+	}
+
+	function showBuyerDropdown(){
+
+		$('#busTypeSupplier').addClass('hidden');
+		$('#busTypeBuyer').removeClass('hidden');
+		
+	}
 
 </script>

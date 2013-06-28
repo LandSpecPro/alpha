@@ -62,6 +62,8 @@ module ApplicationHelper
 			return "Search"
 		elsif controller.controller_name == 'locations' and controller.action_name == 'edit'
 			return "Edit Location"
+		elsif controller.controller_name == 'locations' and controller.action_name == 'delete_featureditem'
+			return "Delete Featured Item Confirmation"
 		elsif controller.controller_name == 'locations'
 			return "Locations"
 		elsif controller.controller_name == 'bus_vendors' and controller.action_name == 'manage'

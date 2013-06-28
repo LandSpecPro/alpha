@@ -1,0 +1,32 @@
+<div class="row-fluid">
+
+	<div class="span12">
+
+		<div class="center">
+
+			<% if params[:invalidemail] %>
+				<div class="row-fluid">
+					<div class="span6 offset3">
+						<div class="alert alert-error">
+						  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  	<strong>Error!</strong> The email you entered does not belong to any current user. Please try again.
+						</div>
+					</div>
+				</div>
+			<% else %>
+				<br/><br/><br/>
+			<% end %>
+
+			<h3>Enter your email below and we'll send you instructions to access your account.</h3>
+
+			<form method="post" action="submit_forgot" class="form-inline">
+            	<input id="email" name="email" type="text" placeholder="Enter your email" style="width:auto;"><button class="btn btn-small btn-success submit" type="submit">Submit &raquo;</button>
+          	</form>
+
+          	<a href="<%= home_url %>">Go Back</a>
+
+		</div>
+
+	</div>
+
+</div>

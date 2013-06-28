@@ -96,7 +96,7 @@
 						</ul>
 					</li>
 
-				<% if controller.controller_name == 'account' %>
+				<% if controller.controller_name == 'account' || ( (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and controller.action_name == 'manage') %>
 					<li class="active">
 				<% else %>
 					<li>

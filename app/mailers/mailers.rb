@@ -12,5 +12,20 @@ class Mailers < ActionMailer::Base
   	@busName = busName
   	mail(:to => email, :subject => "LandSpec Pro - Invitation Confirmation")
   end
+
+  def forgot_email(user, token)
+    @username = user.login
+    @email = user.email
+    @token = token
+    mail(:to => @email, :subject => "LandSpec Pro - Forgotten Username/Password Request")
+  end
   
+  def feedback_email(reason, email, subject, message)
+    @reason = reason
+    @email = email
+    @subject = subject
+    @message = message
+    mail(:to => 'tech@landspecpro.com', :subject => "Contact - " + @reason + " - " + @email)
+  end
+
 end

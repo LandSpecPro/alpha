@@ -9,6 +9,10 @@ LspAlpha::Application.routes.draw do
   match "invite/request" => 'users#request_invite'
   match "invite/create" => 'users#create_invite'
   match "invite/success" => 'users#invite_confirm'
+  match "forgot" => 'user_sessions#forgot'
+  match "forgot/success" => 'user_sessions#forgot_submitted'
+
+  post "/submit_forgot" => 'user_sessions#submit_forgot'
 
   # Root application page
   root :to => 'home#root'
@@ -95,13 +99,13 @@ LspAlpha::Application.routes.draw do
   # Routes for vendor's businesses
   match "business/vendor/show" => 'bus_vendors#show'
   match "business/vendor/new" => 'bus_vendors#new'
-  match "business/vendor/dashboard" => 'bus_vendors#dashboard'
+  match "business/vendor/dashboard" => 'users#dashboard'
   match "business/vendor/manage" => 'bus_vendors#manage'
 
   # Routes for buyer's businesses
   match "business/buyer/show" => 'bus_buyers#show'
   match "business/buyer/new" => 'bus_buyers#new'
-  match "business/buyer/dashboard" => 'bus_buyers#dashboard'
+  match "business/buyer/dashboard" => 'users#dashboard'
   match "business/buyer/manage" => 'bus_buyers#manage'
 
   # The priority is based upon order of creation:

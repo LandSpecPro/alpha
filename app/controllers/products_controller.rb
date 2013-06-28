@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   include ProductHelper
 
   before_filter :require_id_parameter, :only => [:view, :edit]
+  before_filter :require_user, :only => [:edit, :new, :create, :set_as_favorite]
+  before_filter :require_user_is_vendor, :only => [:edit, :new, :create]
 
   def new
     @product = Product.new
@@ -66,6 +68,8 @@ class ProductsController < ApplicationController
     @product = @featureditem.get_product
 
     if not @featureditem.active
+      redirect_back_or_default('/')
+    elsif not Location.where(:id => @featureditem.location_id, :bus_vendor_id => current_user.bus_vendor_id).count > 0
       redirect_back_or_default('/')
     end
 

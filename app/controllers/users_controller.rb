@@ -12,6 +12,13 @@ class UsersController < ApplicationController
   def create_invite
 
     @invite = Invite.new(params[:invite])
+
+    if @invite.userType == STRING_VENDOR
+      @invite.busType = params[:supplierBusType]
+    elsif @invite.userType == STRING_BUYER
+      @invite.busType = params[:buyerBusType]
+    end
+
     if @invite.save
       redirect_to invite_success_url(:id => @invite.id)
     else
@@ -115,9 +122,9 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     if @user.is_vendor
-      redirect_to business_vendor_dashboard_url
+      redirect_to locations_manage_url
     elsif @user.is_buyer
-      redirect_to business_buyer_dashboard_url
+      redirect_to locations_search_url
     end
   end
 
