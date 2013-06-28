@@ -97,7 +97,12 @@ class UsersController < ApplicationController
       update_company_info
     end
 
-    @user = @current_user # makes our views "cleaner" and more consistent    
+    @user = @current_user # makes our views "cleaner" and more consistent 
+    
+    if params[:user][:userType] == 'Supplier' || params[:user][:userType] == 'supplier'
+      params[:user][:userType] = 'Vendor'   
+    end
+
     params[:user].delete :company_name
     params[:user].delete :tagline
     if @user.update_attributes(params[:user])
