@@ -1,0 +1,30 @@
+<%= render 'layouts/sidebar' %>
+
+<%= render 'search' %>
+
+<div class="span7">
+
+	<% if not @locations.nil? %>
+		<% if @locations.count == 0 %>
+			<div class="center"><br/>
+				<h3>0 locations were found!</h3>
+			</div>
+		<% else %>
+			<%= render 'searchresultlist' %>
+		<% end %>
+	<% else %>
+		<div class="center"><br/>
+			No results to display.
+		</div>
+	<% end %>
+	
+</div>
+
+<%= render 'layouts/sidebarend' %>
+
+
+<script type="text/javascript">
+
+	$(applyChosenStyle());
+
+</script>

@@ -1,0 +1,35 @@
+<%= render 'layouts/sidebar' %>
+
+<%= render 'search' %>
+
+<div class="span7">
+
+	<% if not @featureditems.nil? %>
+		<% if @featureditems.count == 0 %>
+			<div class="center"><br/>
+				<h3>No products were found!</h3>
+			</div>
+		<% else %>
+			<% if params[:view] == 'list' %>
+				<%= render 'searchresultlist' %>
+			<% elsif params[:view] == 'grid' %>
+				<%= render 'searchresultgrid' %>
+			<% end %>
+		<% end %>
+	<% else %>
+		<div class="center"><br/>
+			No results to display.
+		</div>
+	<% end %>
+	
+</div>
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyChosenStyle());
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

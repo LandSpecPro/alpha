@@ -1,0 +1,133 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+
+			<div class="login-container">
+
+	<br/><br/><br/>
+
+	<div class="row-fluid">
+		<div class="position-relative">
+
+			<div class="visible widget-box">
+				<div class="widget-header header-color-green2">
+					<h4 class="center">Request Invite</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main" id="login-widget-main">
+
+						<%= form_for @invite, :url => {:action => :create_invite} do |f| %>
+
+							<!-- Display error messages as alerts -->
+							<% @invite.errors.each do |field, msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+							<fieldset>
+								<!--[if lt IE 10]>Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :email, :class => 'span12', :placeholder => "Email" %>
+									<i class="icon-envelope-alt"></i>
+								</span>
+								<!--[if lt IE 10]>Business Name:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :busName, :class => 'span12', :placeholder => "Business Name" %>
+									<i class="icon-briefcase"></i>
+								</span>
+
+								State:
+								<span class="block center">
+									<%= select_tag :state, options_for_select(get_states), :class => 'span12', :name => "invite[state]" %>
+								</span>
+
+								<span class="block center">
+
+									User Type:<br/>
+									<input name="invite[userType]" id="userType" type="radio" onchange="showSupplierDropdown();" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input name="invite[userType]" id="userType" type="radio" onchange="showBuyerDropdown();" value=<%= STRING_BUYER %> /><span class="lbl"> Buyer</span>
+
+								</span>
+
+								<span class="hidden" id="busTypeBuyer">
+									<span class="block">
+										Business Type:
+										<select class="span12" id="buyerBusType" name="buyerBusType">
+											<option selected='selected'>Landscape Contractor</option>
+											<option>Landscape Architect</option>
+											<option>Landscape Designer</option>
+										 	<option>Irrigation Contractor</option>
+					                     	<option>Turf Care Specialist</option>
+					                     	<option>Golf Course</option>
+					                     	<option>Sports Turf Specialist</option>
+					                     	<option>Landscape Lighting Designers/Contractors</option>
+					                     	<option>Arborist/Tree Care Specialist</option>
+					                     	<option>Government/Municipalities</option>
+					                     	<option>Reseller</option>
+					                     	<option>Other</option>
+					                     </select>
+					                 </span>
+								</span>
+
+								<span class="hidden" id="busTypeSupplier">
+									<span class="block">
+										Business Type:
+										<select class="span12" id="supplierBusType" name="supplierBusType">
+											<option selected='selected'>Horticultural Supplier</option>
+											<option>Material Supplier</option>
+											<option>Equipment Supplier</option>
+											<option>Other</option>
+					                     </select>
+					                 </span>
+								</span>
+
+								<br/>
+
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="icon-key"></i> Register</button>
+									</div>
+								</div>
+
+							</fieldset>
+
+
+						<% end %>
+						
+
+					</div> <!-- widget-main -->
+				</div> <!-- widget-body -->
+			</div> <!-- widget-box -->
+
+		</div> <!-- position-relative -->
+	</div> <!-- row-fluid -->
+			</div> <!-- login-container -->
+		</div> <!-- span12 -->
+	</div> <!-- row-fluid -->
+</div> <!-- container-fluid -->
+
+<%= render 'layouts/footer' %>
+
+<script type="text/javascript">
+
+	$(applyChosenStyle());
+
+	function showSupplierDropdown(){
+
+		$('#busTypeSupplier').removeClass('hidden');
+		$('#busTypeBuyer').addClass('hidden');
+		
+	}
+
+	function showBuyerDropdown(){
+
+		$('#busTypeSupplier').addClass('hidden');
+		$('#busTypeBuyer').removeClass('hidden');
+		
+	}
+
+</script>

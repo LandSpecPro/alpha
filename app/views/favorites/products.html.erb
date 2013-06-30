@@ -1,0 +1,25 @@
+<%= render 'layouts/sidebar' %>
+
+<!--[if lt IE 10]> <div style="font-size:14px;"><![endif]-->
+	<div class="span8 offset1">
+		<div class="table-header header-color-green2">
+			You have <%= @favproducts.count %> Favorite Products
+		</div>
+
+		<% if params[:view] == 'list' %>
+			<%= render 'productslistview' %>
+		<% elsif params[:view] == 'grid' %>
+			<%= render 'productsgridview' %>
+		<% end %>
+	</div>
+<!--[if lt IE 10]> </div><![endif]-->
+
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

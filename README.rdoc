@@ -1,0 +1,4 @@
+== Notes for Environment
+
+To keep updated with Heroku and using Amazon S3 for file storage, must install heroku toolbelt, have ruby and rails set up, and then install ImageMagick. Set up the application.yml file for Development so that all the AWS environment variables are set up. Also must have figaro installed and initialized.
+

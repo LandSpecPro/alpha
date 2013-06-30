@@ -1,0 +1,50 @@
+
+// Navbar color
+
+.navbar-inverse .navbar-inner{
+	background:#2e893f;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+#brand-image{
+	max-height: 32px;
+	margin-top: -8px;
+	margin-bottom: -4px;
+	padding-right: 5px;
+}
+
+#login-widget-main{
+	padding-left:25px;
+	padding-right:25px;
+}
+
+#white-link{
+	padding:2px;
+	padding-left:8px;
+	padding-right:8px;
+}
+#white-link:hover{
+	padding:2px;
+	padding-left:8px;
+	padding-right:8px;
+	background-color: lighten(#307ecc, 10%);
+}
+
+.green{
+	background-color: #22b14c;
+}
+.header-color-green{
+	//background: #22b14c;
+}
+
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#footer {
+   bottom:0;
+   width:100%;
+   height:auto;   /* Height of the footer */
+}

@@ -1,0 +1,85 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+
+			<div class="login-container">
+
+	<br/><br/><br/>
+
+	<div class="row-fluid">
+		<div class="position-relative">
+
+			<div class="visible widget-box">
+				<div class="widget-header header-color-green2">
+					<h4 class="center">Register</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main" id="login-widget-main">
+
+						<%= form_for @user do |f| %>
+
+							<!-- Display error messages as alerts -->
+							<% @user.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+							<fieldset>
+								<!--[if lt IE 10]>Username:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :login, :class => 'span12', :placeholder => "Username" %>
+									<i class="icon-user"></i>
+								</span>
+								<!--[if lt IE 10]>Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :email, :class => 'span12', :placeholder => "Email" %>
+									<i class="icon-envelope-alt"></i>
+								</span>
+								<!--[if lt IE 10]>Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
+									<i class="icon-lock"></i>
+								</span>
+								<!--[if lt IE 10]>Confirm Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
+									<i class="icon-lock"></i>
+								</span>
+								<!--[if lt IE 10]>Invitation Code:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :invitecode, "", :class => 'span12', :placeholder => "Your invitation code" %>
+									<i class="icon-ticket"></i>
+								</span>
+								<span class="block center">
+									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_VENDOR %> /><span class="lbl"> Supplier</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_BUYER %> checked/><span class="lbl"> Buyer</span>
+								</span>
+
+								<br/>
+
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="icon-key"></i> Register</button>
+									</div>
+								</div>
+
+							</fieldset>
+
+
+						<% end %>
+						
+
+					</div> <!-- widget-main -->
+				</div> <!-- widget-body -->
+			</div> <!-- widget-box -->
+
+		</div> <!-- position-relative -->
+	</div> <!-- row-fluid -->
+			</div> <!-- login-container -->
+		</div> <!-- span12 -->
+	</div> <!-- row-fluid -->
+</div> <!-- container-fluid -->

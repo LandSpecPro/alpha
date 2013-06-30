@@ -1,0 +1,73 @@
+<div class="table-header header-color-green2">
+	<%= @featureditems.count %> Products Found 
+</div>
+
+<table id="table_report" class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="center">Common Name</th>
+			<th class="center">Latin Name</th>
+			<th class="center">Supplier</th>
+			<th class="hidden-phone center">Size</th>
+			<th class="hidden-phone center">Price</th>
+			<th class="center">Image</th>
+			<th class="center">Favorite</th>
+		</tr>
+	</thead>
+							
+	<tbody>
+
+		<% @featureditems.each do |fi| %>		
+
+						<tr>
+							<td class="center">
+								<a href="#<%= fi.get_product.commonName %>" data-rel="popover" data-content="<%= 
+									unless fi.description.blank?
+										fi.description 
+									else
+										'No description available'
+									end
+
+									%>" data-placement="bottom" data-trigger="hover"><%= fi.get_product.commonName %></a>
+							</td>
+							<td class="center">
+								<%= fi.get_product.latinName %>
+							</td>
+							<td class="center">
+								<a href=<%= locations_view_url(:id => fi.location_id) %>>
+									<%= Location.find(fi.location_id).bus_vendor.busName %>
+								</a>
+							</td>
+							<td class='hidden-phone center'>
+								<%= fi.size %>
+							</td>
+							<td class='hidden-phone center'>
+								<% if fi.price.to_s != '' %>
+									<%= '$' + fi.price.to_s %>
+								<% end %>
+							</td>
+							<td class='center'>
+								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"} %>
+							</td>
+							<td class="center">
+								<% if fi.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+								<% end %>
+							</td>
+						</tr>
+		<% end %>
+
+
+	</tbody>
+
+</table>
+
+<script type="text/javascript">
+
+	<% if SearchLog.where(:user_id => current_user.id).count <= 1 %>
+		$(showGritter("search_product_hints"));
+	<% end %>
+
+</script>

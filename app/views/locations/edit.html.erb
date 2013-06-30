@@ -1,0 +1,67 @@
+<%= render 'layouts/sidebar' %>
+
+	<div class="row-fluid">
+
+		<div class="span12">
+			<div class="tabbable tabs-left">
+				<ul class="nav nav-tabs" id="locEditTabs">
+				  <li class="active" id="tab_locationinfo"><a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a></li>
+				  <li id="tab_featureditems"><a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a></li>
+				  
+				</ul>
+				<div class="tab-content">
+
+				  <div id="locationInfo" class="tab-pane in active">
+				  	<div class="row-fluid">
+				  		<div class="span6">
+							<%= render 'formupdatelocationinfo' %>
+						</div>
+						<div class="span6">
+							<%= render 'formeditlocationbio' %>
+						</div>
+					</div>
+				  </div>
+
+				  <div id="featuredItems" class="tab-pane">
+					<div class="row-fluid">
+						<% if @location.featured_items.where(:active => true).count < 3 %>
+							<div class="span6">
+								<%= render 'formeditfeatureditem' %>
+							</div>
+							<div class="span5">
+								<%= render 'formaddfeatureditem' %>
+							</div>
+						<% else %>
+							<div class="span4">
+								<h3 class="center">
+									At the moment each location you own may only have three featured items. If you would like to add more please remove one of your existing products.
+								</h3>
+							</div>
+							<div class="span8">
+								<%= render 'formeditfeatureditem' %>
+							</div>
+							
+						<% end %>
+					</div>
+				  </div>
+
+				</div>
+			</div>
+		</div>
+
+		
+
+
+		
+
+	</div>
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyChosenStyle());
+	$(applyMasks());
+	$(applyColorbox());	
+
+</script>

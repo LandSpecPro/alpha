@@ -1,0 +1,40 @@
+<div class="table-header header-color-green2">
+	<%= @locations.count %> Locations Found
+</div>
+
+<table id="table_report" class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="center">Company</th>
+			<th class="center">Address</th>
+			<th class="center">Favorite</th>
+		</tr>
+	</thead>
+							
+	<tbody>
+
+		<% @locations.each do |l| %>
+		
+			<tr>
+				<td class="center">
+					<a href=<%= locations_view_url(:id => l.id) %>>
+						<%= BusVendor.find(l.bus_vendor_id).busName %>
+					</a>
+				</td>
+				<td class='center'>
+					<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank" %>
+				</td>
+				<td class="center">
+					<% if l.is_favorited(current_user) %>
+						<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => l.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+					<% else %>
+						<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => l.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+					<% end %>
+				</td>
+			</tr>
+
+		<% end %>
+
+	</tbody>
+
+</table>

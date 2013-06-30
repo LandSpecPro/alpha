@@ -1,0 +1,62 @@
+<%= render 'layouts/sidebar' %>
+
+	<%= form_for :product, :html => {:class => 'form-horizontal center inline'} do |f| %>
+
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Common Name:" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :commonName %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Alternate Name" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :altName %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="control-label">
+				<%= f.label "Latin Name:" %>
+			</div>
+			<div class="controls">
+				<%= f.text_field :latinName %>
+			</div>
+		</div>
+
+		<%= f.fields_for :featured_items do |f2| %>
+
+			<div class="control-group">
+				<div class="control-label">
+					<%= f2.label "Description:" %>
+				</div>
+				<div class="controls">
+					<%= f2.text_field :description %>
+				</div>
+			</div>
+
+		<% end %>
+
+		<%= f.fields_for :product_images do |f3| %>
+
+			<div class="control-group">
+				<div class="control-label">
+					<%= f3.label "Image:" %>
+				</div>
+				<div class="controls">
+					<%= f3.file_field :image %>
+				</div>
+			</div>
+			
+		<% end %>
+
+		<%= f.hidden_field(:location_id, :value => @location.id) %>
+
+		<%= f.submit %>
+
+	<% end %>
+
+<%= render 'layouts/sidebarend' %>

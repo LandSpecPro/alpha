@@ -1,0 +1,101 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+
+			<div class="login-container">
+
+	<br/><br/><br/>
+
+	<div class="row-fluid">
+		<div class="position-relative">
+
+			<% if params[:submitted] %>
+				<div class="alert alert-success">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Success! </strong>Thanks for contacting us! We'll be in touch as quickly as we can.
+				</div>
+				<div class="center">
+					<a href="<%= home_url %>">Go Back</a>
+				</div>
+			<% end %>
+
+			<div class="visible widget-box">
+				<div class="widget-header header-color-green2">
+					<h4 class="center">Contact Us</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main" id="login-widget-main">
+
+						<form id="contactForm" method="post" action="contact/submit">
+
+
+
+							<fieldset>
+								Reason:
+								<span class="block input-icon input-icon-right">
+									<%= select_tag :type, 
+										"<option selected='selected'>Question</option>
+					                    <option>Problem</option>
+					                    <option>Feedback</option>
+					                    <option>Request</option>
+					                    <option>Other</option>
+										".html_safe, :class => 'chzn-select span12' %>
+								</span>
+								<br/>
+								<!--[if lt IE 10]>Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :email, '', :class => 'span12', :placeholder => 'Email', :id => 'email', :name => 'email' %>
+									<i class="icon-inbox"></i>
+								</span>
+								<!--[if lt IE 10]>Subject (optional):<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :subject, '', :class => 'span12', :placeholder => 'Subject (optional)' %>
+									<i class="icon-tags"></i>
+								</span>
+								<!--[if lt IE 10]>Message:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_area_tag :body, '', :class => 'span12', :placeholder => 'Message', :style => 'resize: none;', :rows => '10' %>
+								</span>
+								<br/>
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+									</div>
+								</div>
+								<br/>
+
+
+							</fieldset>
+
+
+					</div> <!-- widget-main -->
+				</div> <!-- widget-body -->
+			</div> <!-- widget-box -->
+
+		</div> <!-- position-relative -->
+	</div> <!-- row-fluid -->
+			</div> <!-- login-container -->
+		</div> <!-- span12 -->
+	</div> <!-- row-fluid -->
+</div> <!-- container-fluid -->
+
+<%= render 'layouts/footer' %>
+
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+
+<script>
+
+	$(applyChosenStyle());
+
+	$('#contactForm').validate({
+	    rules: {
+	      email: {
+	        required: true,
+	        email: true
+	      }
+	    }
+	});
+
+</script>

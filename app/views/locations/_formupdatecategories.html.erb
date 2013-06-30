@@ -1,0 +1,34 @@
+<%= form_for :location_has_categories, :url => {:action => :update_categories}, :html => {:id => 'form_update_location_categories'} do %>
+
+	<div class="widget-box">
+		<div class="widget-header header-color-green2">
+			<h5 class="bigger lighter"><i class="icon-tasks"></i> Location Categories</h5>
+			<div class="widget-toolbar">
+				<a href="javascript:{return true;}" onclick="document.getElementById('form_update_location_categories').submit();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+			</div>
+		</div>
+
+		<div class="widget-body">
+
+			<div class="widget-main">
+
+				<fieldset>
+
+					<%= hidden_field_tag(:id,  @location.id) %>
+
+					<div class="center">
+						Product Categories:
+						<div class="block input-icon input-icon-right">
+							<%= select_tag :categories, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => @loccatsselected), :multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+							
+						</div>
+					</div>
+
+				</fieldset>
+
+			</div>
+		</div>
+
+	</div>
+
+<% end %>

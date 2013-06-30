@@ -1,0 +1,168 @@
+<div class="container-fluid" id="main-container">
+		<a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
+
+		<div id="sidebar">
+			
+			<!--
+			<div id="sidebar-shortcuts">
+				<div id="sidebar-shortcuts-large">
+					<button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
+					<button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
+					<button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
+					<button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
+				</div>
+				<div id="sidebar-shortcuts-mini">
+					<span class="btn btn-success"></span>
+					<span class="btn btn-info"></span>
+					<span class="btn btn-warning"></span>
+					<span class="btn btn-danger"></span>
+				</div>
+			</div><!-- #sidebar-shortcuts -->
+
+			<ul class="nav nav-list">
+
+				<% if current_user.is_vendor %>
+
+					<% if controller.controller_name == 'locations' and controller.action_name != 'search'%>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+						<a href=<%= locations_manage_url %>>
+							<i class="icon-globe"></i>
+							<span>Manage</span>
+						</a>
+					</li>
+				<% end %>
+
+				<% if controller.action_name == 'search' %>
+					<li class="active open">
+				<% else %>
+					<li>
+				<% end %>
+						<a href="#" class="dropdown-toggle" >
+							<i class="icon-search"></i>
+							<span>Search</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+
+						<% if controller.controller_name == 'products' and controller.action_name == 'search' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= products_search_url(:view => 'grid') %>><i class="icon-double-angle-right"></i> Products</a>
+							</li>
+						<% if controller.controller_name == 'locations' and controller.action_name == 'search' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= locations_search_url %>><i class="icon-double-angle-right"></i> Suppliers</a>
+							</li>
+						</ul>
+
+					</li>
+
+				<% if controller.controller_name == 'favorites' %>
+					<li class="active open">
+				<% else %>
+					<li>
+				<% end %>
+						<a href="#" class="dropdown-toggle">
+							<i class="icon-star"></i>
+							<span>Favorites</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+
+						<% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= favorites_products_url %>><i class="icon-double-angle-right"></i> Products</a>
+							</li>
+						<% if controller.controller_name == 'favorites' and controller.action_name == 'vendors' %>
+							<li class="active">
+						<% else %>
+							<li>
+						<% end %>
+								<a href=<%= favorites_vendors_url %>><i class="icon-double-angle-right"></i> Suppliers</a>
+							</li>
+						</ul>
+					</li>
+
+				<% if controller.controller_name == 'account' || ( (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and controller.action_name == 'manage') %>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
+					<a href=<%= account_url %>>
+						<i class="icon-cog"></i>
+						<span>Account</span>
+					</a>
+				</li>
+								<!--
+					  <a href="#" class="dropdown-toggle" >
+						<i class="icon-globe"></i>
+						<span>Locations</span>
+						<b class="arrow icon-angle-down"></b>
+					  </a>
+					  <ul class="submenu">
+
+					<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+							<a href=<%= locations_manage_url %>><i class="icon-double-angle-right"></i> Manage</a>
+						</li>
+					<% if controller.controller_name == 'locations' and controller.action_name == 'new' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+							<a href=<%= locations_new_url %>><i class="icon-double-angle-right"></i> New</a>
+						</li>
+					  </ul>
+					</li>
+				-->
+
+				
+
+			</ul><!--/.nav-list-->
+
+			<div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+
+
+		</div><!--/#sidebar-->
+
+	
+		<div id="main-content" class="clearfix">
+
+				<div id="page-content" class="clearfix">
+
+					<div class="page-header position-relative row-fluid">
+
+						<h1><%= get_page_title %> 
+							<% unless get_page_subtitle == '' %>
+								<small>
+									<i class='icon-double-angle-right'></i>
+									<%=get_page_subtitle %>
+								</small>
+							<% end %>
+
+							<%= render 'layouts/headeraction' %>
+
+						
+						
+					</div><!--/page-header-->
+
+					<div class="row-fluid">
+
+<!-- PAGE CONTENT BEGINS HERE -->
+<!-- PAGE CONTENT ENDS HERE -->

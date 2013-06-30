@@ -1,0 +1,51 @@
+<%= render 'layouts/sidebar' %>
+
+
+<!--<div class="span10 offset1" id='map-canvas' style="height:250px;">
+
+	SPOT FOR COVER PHOTO TYPE FEATURE!
+
+</div>-->
+	
+	<div class="row-fluid">
+
+		<div class="span6">
+
+			<% unless @location.bio.blank? %>
+				<%= render 'viewlocationwithbio' %>
+			<% else %>
+				<%= render 'viewlocationwithoutbio' %>
+			<% end %>
+			
+		</div> <!-- end span6 -->
+
+		<div class="span5">
+
+			<!-- WHERE STATUS USED TO GO -->
+
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-header header-color-green2">
+							<div class="center">
+								<h3 class="lighter header-font-white">Specialty Items</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<%= render 'viewfeatureditems' %>
+
+		</div>
+
+	</div> <!-- end row-fluid -->
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

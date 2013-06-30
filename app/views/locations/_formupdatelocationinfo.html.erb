@@ -1,0 +1,138 @@
+<%= form_for @location, :html => {:id => 'form_location_address'} do |f| %>
+	<div class="widget-box">
+		<div class="widget-header header-color-green2">
+			<h5 class="bigger lighter"><i class="icon-globe"></i> Location Address</h5>
+			<div class="widget-toolbar">
+				<a href="javascript:{return true;}" onclick="document.getElementById('form_location_address').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+			</div>
+		</div>
+
+		<div class="widget-body">
+
+			<div class="widget-main">
+
+				<!-- Display error messages as alerts -->
+				<% unless @location.errors.blank? %>
+						<div class="alert alert-warning">
+						  <%= link_to "Revert Changes", '/locations/edit/' + @location.id.to_s, :class => 'btn btn-small btn-danger' %>
+						  <strong> &nbsp;&nbsp;&nbsp;Changes not saved!</strong>
+						</div>
+				<% end %>
+
+				<% @location.errors.each do |field, msg| %>
+					<div class="alert alert-error">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>Error! </strong> <%= msg %>
+					</div>
+				<% end %>
+
+				<fieldset>
+
+					<%= f.hidden_field :id, :value => @location.id %>
+
+					Location Name: 
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :locName, :id => "locName", :class => 'span12 val-locname', :value => @location.locName %>
+					</div>
+
+
+					Street 1:
+			<!-- ERRORS 
+			<div class="hidden" id="address1-required"><div class="alert alert-error">
+				<strong>A valid address is required!</strong>
+			</div></div>  :onchange => 'validate("@location.address1", "address1", "required")'
+			-->
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :address1, :class => 'span12', :value => @location.address1 %>
+					</div>
+
+
+					Street 2:
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :address2, :class => 'span12', :value => @location.address2 %>
+					</span>
+
+					City:
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :city, :class => 'span12', :value => @location.city %>
+					</span>
+
+					<div class="row-fluid">
+						<div class="span4">
+							State:
+							<div class="block input-icon input-icon-right">
+								<%= f.select(:state, get_states, {}, {:class => 'span10 chzn-select'}) %>
+							</div>
+						</div>
+						<div class="offset3 span5">
+							Zip Code:
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :zip, :class => 'span12 input-mask-zip', :value => @location.zip %>
+							</span>	
+						</div>
+					</div>
+
+					<%= f.hidden_field :id, :value => @location.id %>
+
+					Primary Phone: 
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone', :value => @location.primaryPhone %>
+					</div>
+
+					Secondary Phone:
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :secondaryPhone, :class => 'span12 input-mask-fax', :value => @location.secondaryPhone %>
+					</div>
+
+					Fax:
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :fax, :class => 'span12 input-mask-fax', :value => @location.fax %>
+					</span>
+
+					Primary Email:
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :primaryEmail, :class => 'span12', :value => @location.primaryEmail %>
+					</span>
+
+					Secondary Email:
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :secondaryEmail, :class => 'span12', :value => @location.secondaryEmail %>
+					</span>
+
+					<div class="row-fluid">
+						<div class="span6">
+							Website:
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :websiteLink, :class => 'span12', :value => @location.websiteLink, :placeholder => 'http://' %>
+							</span>	
+						</div>
+						<div class="span6">
+							Facebook Link:
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :facebookLink, :class => 'span12', :value => @location.facebookLink, :placeholder => 'http://' %>
+							</span>	
+						</div>	
+
+					</div>		
+					<div class="row-fluid">
+						<div class="span6">
+							Twitter Link:
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :twitterLink, :class => 'span12', :value => @location.twitterLink, :placeholder => 'http://' %>
+							</span>	
+						</div>
+						<div class="span6">
+							Google+:
+							<span class="block input-icon input-icon-right">
+								<%= f.text_field :googleLink, :class => 'span12', :value => @location.googleLink, :placeholder => 'http://' %>
+							</span>
+						</div>
+					</div>	
+
+				</fieldset>
+
+			</div>
+
+		</div>
+	</div>
+<% end %>

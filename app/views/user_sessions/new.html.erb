@@ -1,0 +1,76 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+
+			<div class="login-container">
+
+	<br/><br/><br/>
+
+	<div class="row-fluid">
+		<div class="position-relative">
+
+			<div class="visible widget-box">
+				<div class="widget-header header-color-green2">
+					<h4 class="center">Login</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main" id="login-widget-main">
+
+						<%= form_for @user_session do |f| %>
+
+							<!-- Display a login error here if redirected because not logged in -->
+
+						 	<% if @login_error %>
+							 	<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error!</strong> You must be logged in to do that.
+								</div>
+							<% end %>
+
+							<!-- Display error messages as alerts -->
+							<% @user_session.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+							<fieldset>
+								<!--[if lt IE 10]>Username or Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :login, :class => 'span12', :placeholder => "Username or Email" %>
+									<i class="icon-user"></i>
+								</span>
+								<!--[if lt IE 10]>Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
+									<i class="icon-lock"></i>
+								</span>
+								<br/>
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="icon-key"></i> Login</button>
+									</div>
+									<div class="pull-left">
+										<br/>
+										<a href="<%= forgot_url %>">Forgot username/password?</a>
+									</div>
+								</div>
+								<br/>
+
+
+							</fieldset>
+
+						<% end %>
+
+					</div> <!-- widget-main -->
+				</div> <!-- widget-body -->
+			</div> <!-- widget-box -->
+
+		</div> <!-- position-relative -->
+	</div> <!-- row-fluid -->
+			</div> <!-- login-container -->
+		</div> <!-- span12 -->
+	</div> <!-- row-fluid -->
+</div> <!-- container-fluid -->

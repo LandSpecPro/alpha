@@ -1,0 +1,69 @@
+<div class="span4">
+	<div style="">
+
+	<div class="widget-box">
+		<div class="widget-header header-color-green2">
+			<h5 class="bigger lighter"><i class="icon-search"></i> Search Options</h5>
+		</div>
+
+		<div class="widget-body">
+
+			<div class="widget-main">
+
+	<br/>
+	<%= form_tag locations_search_path, :method => 'get' do %>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="center">
+
+
+			<span class="input-icon input-icon-right">
+				<!--[if lt IE 10]>Search by Supplier Name:<![endif]-->
+				<%= text_field_tag :search, params[:search], :class => 'span12', :placeholder => 'Search by name...' %>
+				<p style="font-size:12px;">Leave blank to search all suppliers.</p>
+				<!--<i id="nav-search-icon" class="icon-search"></i>-->
+			</span><hr/>
+			
+			<span class="block input-icon">
+				<label for="distance_from">Distance Away: </label>
+				<select id='distance_from' name='distance_from' class="input-large chzn-select" data-placeholder="Any">
+					<option value='0' <% if params[:distance_from] == '0' %>selected="selected"<% end %>>Any</option>
+					<option value='5' <% if params[:distance_from] == '5' %>selected="selected"<% end %>>5 Miles</option>
+					<option value='10' <% if params[:distance_from] == '10' %>selected="selected"<% end %>>10 Miles</option>
+					<option value='15' <% if params[:distance_from] == '15' %>selected="selected"<% end %>>15 Miles</option>
+					<option value='20' <% if params[:distance_from] == '20' %>selected="selected"<% end %>>20 Miles</option>
+					<option value='25' <% if params[:distance_from] == '25' %>selected="selected"<% end %>>25 Miles</option>
+					<option value='50' <% if params[:distance_from] == '50' %>selected="selected"<% end %>>50 Miles</option>
+					<option value='100' <% if params[:distance_from] == '100' %>selected="selected"<% end %>>100 Miles</option>
+					<option value='150' <% if params[:distance_from] == '150' %>selected="selected"<% end %>>150 Miles</option>
+	  			</select>
+			</span>
+			<br/>
+<!--
+			<span class="block input-icon">
+
+				<label class="checkbox">
+					<input id="location_auto" name="location_auto" type="checkbox" value="true" <% if params[:location_auto] %>checked="checked" <% end %>/><span class="lbl"> Use Current Location</span>
+				</label>
+			</span>
+			<br/>
+
+			<span class="block input-icon">
+				<label for="category">Category: </label>
+				<%= select_tag :categories, options_from_collection_for_select(Category.where(:active => true), 'id', 'category', :selected => params[:categories]), :multiple => true, :class => 'input-large chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+			</span>
+			<br/>
+-->
+			<div class="widget-footer">
+				<%= submit_tag "Search", :class => "btn btn-block btn-success btn-small" %>
+			</div>
+		</div>
+	</div>
+</div>
+		
+	<% end %>
+
+</div></div></div>
+
+</div></div>
