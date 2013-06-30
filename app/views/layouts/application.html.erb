@@ -14,6 +14,29 @@
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="/stylesheets/ace-ie.min.css" />
   <![endif]-->
+
+  <style>
+
+    #button-request-invite{
+      padding-top:5px;
+      margin-top:-5px;
+      padding-bottom:5px;
+      margin-bottom:-5px;
+    }
+
+    @media (max-width: 767px) {
+
+      #button-request-invite{
+        margin-top:0;
+        margin-bottom:0;
+        padding-top:0;
+        padding-bottom:0;
+      }
+
+    }
+
+
+  </style>
   
 </head>
 <body>
@@ -49,7 +72,7 @@
           <li class="green">
             <%= link_to "Login", login_url %>
           </li>
-          <li class="blue" style="padding-top:5px; margin-top:-5px; padding-bottom:5px; margin-bottom:-5px;">
+          <li class="blue" id="button-request-invite">
             <%= link_to "Request Invite", invite_request_url %>
           </li>
 
