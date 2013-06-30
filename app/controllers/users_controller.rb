@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       
       if not request.location.city.empty? and not request.location.state.empty?
         @user.currentCity = request.location.city
-        @user.currentState = request.location.state
+        @user.currentState = get_state_abbr(request.location.state)
       else
         @user.currentCity = 'Atlanta'
         @user.currentState = 'GA'
