@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+  include ApplicationHelper
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :password_reset]
   
