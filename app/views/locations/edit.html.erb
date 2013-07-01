@@ -5,13 +5,31 @@
 		<div class="span12">
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs" id="locEditTabs">
-				  <li class="active" id="tab_locationinfo"><a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a></li>
-				  <li id="tab_featureditems"><a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a></li>
+					<% if not params[:products] %>
+					  	<li class="active" id="tab_locationinfo">
+					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
+					  	</li>
+					  	<li id="tab_featureditems">
+					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
+					  	</li>
+					<% else %>
+						<li id="tab_locationinfo">
+					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
+					  	</li>
+					  	<li class="active" id="tab_featureditems">
+					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
+					  	</li>
+					<% end %>
 				  
 				</ul>
 				<div class="tab-content">
 
+				<% if not params[:products] %>
 				  <div id="locationInfo" class="tab-pane in active">
+				<% else %>
+				  <div id="locationInfo" class="tab-pane">
+				<% end %>
+
 				  	<div class="row-fluid">
 				  		<div class="span6">
 							<%= render 'formupdatelocationinfo' %>
@@ -22,7 +40,12 @@
 					</div>
 				  </div>
 
-				  <div id="featuredItems" class="tab-pane">
+				<% if params[:products] %>
+				  <div id="featuredItems" class="tab-pane in active">
+				<% else %>
+				  <div id="featuredItems">
+				<% end %>
+				
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
 							<div class="span6">

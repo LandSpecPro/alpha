@@ -34,14 +34,16 @@ class ProductsController < ApplicationController
     if @product.save
       if save_product_relations(@product.id, @image, @description, @locationid, @size, @price, @categories)
         flash[:notice] = "Product Added!"
-        redirect_to locations_edit_url, :id => @locationid, :anchor => 'featuredItems'
+        redirect_to locations_edit_url(:id => @locationid, :products => true)
         return
       else
         flash[:notice] = "Not successful!"
+        params[:products] = true
         render :template => 'locations/edit'
       end
     else
       flash[:notice] = "Not successful!"
+      params[:products] = true
       render :template => 'locations/edit'
     end
 
@@ -108,7 +110,7 @@ class ProductsController < ApplicationController
     end
     # Redirect if name or image is missing
     if @img_missing or @name_missing
-      redirect_to locations_edit_url(:id => params[:product][:location_id], :image_missing => @img_missing, :product_name_missing => @name_missing, :price_invalid => @price_invalid)
+      redirect_to locations_edit_url(:id => params[:product][:location_id], :image_missing => @img_missing, :product_name_missing => @name_missing, :price_invalid => @price_invalid, :products => true)
       return true
     end
   end
