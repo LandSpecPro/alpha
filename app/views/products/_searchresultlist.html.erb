@@ -44,7 +44,7 @@
 							</td>
 							<td class='hidden-phone center'>
 								<% if fi.price.to_s != '' %>
-									<%= '$' + fi.price.to_s %>
+									<%= "$%8.2f" % fi.price.to_f %>
 								<% end %>
 							</td>
 							<td class='center'>

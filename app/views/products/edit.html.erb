@@ -63,7 +63,7 @@
 								<div class="span3 offset1">
 									Price (optional):
 									<div class="block">
-										<%= f.text_field :price, :class => 'span12 input-mask-price', :id => 'price', :value => '$' + @featureditem.price.to_s %>
+										<%= f.text_field :price, :class => 'span12 input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f %>
 										
 									</div>
 								</div>

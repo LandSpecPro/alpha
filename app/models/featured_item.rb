@@ -12,6 +12,12 @@ class FeaturedItem < ActiveRecord::Base
 	accepts_nested_attributes_for :product
 
 	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
+
+	def add_decimals_to_price
+		initprice = self.price
+		return initprice + 500
+	end
+
 	
 	def get_image
 		return ProductImage.find(self.product_image_id).image
