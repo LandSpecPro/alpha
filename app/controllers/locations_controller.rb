@@ -170,8 +170,6 @@ autocomplete :product, :commonName
         @locations = Location.where(:active => true)
       end
 
-      @locations.order("busName")
-      
       update_search_log
     end
   end

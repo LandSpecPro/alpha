@@ -13,7 +13,7 @@
 							
 	<tbody>
 
-		<% @locations.each do |l| %>
+		<% @locations.order('"busName" ASC').each do |l| %>
 		
 			<tr>
 				<td class="center">
