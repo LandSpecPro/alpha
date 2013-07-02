@@ -119,7 +119,7 @@ class ProductsController < ApplicationController
       @price = params[:product][:featured_item][:price]
       @size = params[:product][:featured_item][:size]
       @description = params[:product][:featured_item][:description]
-      
+
       render 'locations/edit'
       #redirect_to locations_edit_url(:id => params[:product][:location_id], \
       #  :image_missing => @img_missing, \
@@ -184,13 +184,13 @@ class ProductsController < ApplicationController
     if params[:commit] == 'Search'
       update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
-        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from])
+        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from]).order("created_at DESC")
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from])
+        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from]).order("created_at DESC")
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @featureditems = search_for_featured_items_with_query_only(params[:search])
+        @featureditems = search_for_featured_items_with_query_only(params[:search]).order("created_at DESC")
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @featureditems = search_for_all
+        @featureditems = search_for_all.order("created_at DESC")
       end
     end
 
