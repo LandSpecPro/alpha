@@ -106,7 +106,7 @@
 						</div>
 						<div class="span8">
 							<div class="pull-left">
-								<%= @featureditem.description %>
+								<%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>
 							</div>
 						</div>
 					</div>
