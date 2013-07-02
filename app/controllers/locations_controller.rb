@@ -256,7 +256,10 @@ autocomplete :product, :commonName
 
   def confirm_delete_featureditem
 
-    FeaturedItem.find(params[:featured_item_id]).deactivate
+    @featureditem = FeaturedItem.find(params[:featured_item_id])
+    @featureditem.deactivate
+
+    @locid = @featureditem.location_id
 
     @favproducts = FavProduct.where(:featured_item_id => params[:featured_item_id])
     @favproducts.each do |fp|
@@ -268,7 +271,7 @@ autocomplete :product, :commonName
       cr.deactivate
     end
 
-    redirect_to locations_manage_url
+    redirect_to locations_edit_url(:id => @locid, :products => true)
 
   end
 
