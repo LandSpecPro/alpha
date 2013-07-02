@@ -169,6 +169,9 @@ autocomplete :product, :commonName
       elsif params[:distance_from] == '0' and params[:search] == ''
         @locations = Location.where(:active => true)
       end
+
+      @locations.order("busName")
+      
       update_search_log
     end
   end
