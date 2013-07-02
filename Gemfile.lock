@@ -77,7 +77,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.2)
+    newrelic_rpm (3.6.5.130)
     nifty-generators (0.4.6)
+    nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
@@ -160,6 +162,7 @@ DEPENDENCIES
   font-awesome-rails
   geocoder
   jquery-rails
+  newrelic_rpm
   nifty-generators
   paperclip
   parse_resource (~> 1.8.0)
