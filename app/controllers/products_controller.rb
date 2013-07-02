@@ -13,11 +13,15 @@ class ProductsController < ApplicationController
 
   def create
 
+    @location = Location.find(params[:product][:location_id])
+    @featureditem = FeaturedItem.new
+    @product = Product.new
+
     if validation_failed
       return
     end
 
-    @location = Location.find(params[:product][:location_id])
+    
     @locationid = @location.id
     @description = params[:product][:featured_item][:description]
     @image = params[:product][:image]
@@ -109,8 +113,23 @@ class ProductsController < ApplicationController
       @price_invalid = true
     end
     # Redirect if name or image is missing
-    if @img_missing or @name_missing
-      redirect_to locations_edit_url(:id => params[:product][:location_id], :image_missing => @img_missing, :product_name_missing => @name_missing, :price_invalid => @price_invalid, :products => true)
+    if @img_missing or @name_missing or @price_invalid
+      params[:products] = true
+      @commonName = params[:product][:commonName]
+      @price = params[:product][:featured_item][:price]
+      @size = params[:product][:featured_item][:size]
+      @description = params[:product][:featured_item][:description]
+      
+      render 'locations/edit'
+      #redirect_to locations_edit_url(:id => params[:product][:location_id], \
+      #  :image_missing => @img_missing, \
+      #  :product_name_missing => @name_missing, \
+      #  :price_invalid => @price_invalid, \
+      #  :products => true, \
+      #  :commonName => params[:product][:commonName], \
+      #  :price => params[:product][:featured_item][:price], \
+      #  :size => params[:product][:featured_item][:size], \
+      #  :description => params[:product][:featured_item][:description])
       return true
     end
   end

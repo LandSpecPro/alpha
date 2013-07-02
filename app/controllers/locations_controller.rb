@@ -48,21 +48,12 @@ autocomplete :product, :commonName
     store_location
     @user = current_user
     @product = Product.new
-
+    @featureditem = FeaturedItem.new
 
     @location = Location.where(:id => params[:id]).first
     @location.products.build
 
     @location.format_all_urls
-
-    #@locationcategories = LocationHasCategory.where(:location_id => @location.id, :active => true)
-    #@loccatsselected = ['']
-
-    #@locationcategories.each do |lc|
-
-      #@loccatsselected << Category.find(lc.category_id).id
-
-    #end
 
   end
 
@@ -152,6 +143,8 @@ autocomplete :product, :commonName
   end
 
   def update
+    @product = Product.new
+    @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
       flash[:notice] = "Account updated!"

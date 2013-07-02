@@ -32,10 +32,10 @@
 
 				  	<div class="row-fluid">
 				  		<div class="span6">
-							<%= render 'formupdatelocationinfo' %>
+							<%= render 'locations/formupdatelocationinfo' %>
 						</div>
 						<div class="span6">
-							<%= render 'formeditlocationbio' %>
+							<%= render 'locations/formeditlocationbio' %>
 						</div>
 					</div>
 				  </div>
@@ -49,10 +49,10 @@
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
 							<div class="span6">
-								<%= render 'formeditfeatureditem' %>
+								<%= render 'locations/formeditfeatureditem' %>
 							</div>
 							<div class="span5">
-								<%= render 'formaddfeatureditem' %>
+								<%= render 'locations/formaddfeatureditem' %>
 							</div>
 						<% else %>
 							<div class="span4">
@@ -61,7 +61,7 @@
 								</h3>
 							</div>
 							<div class="span8">
-								<%= render 'formeditfeatureditem' %>
+								<%= render 'locations/formeditfeatureditem' %>
 							</div>
 							
 						<% end %>

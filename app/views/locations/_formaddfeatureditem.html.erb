@@ -11,22 +11,38 @@
 
 						<div class="widget-main">
 
+							<!-- Display error messages as alerts -->
+							<% @product.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
 
-							<% if params[:image_missing] %>
+							<!-- Display error messages as alerts -->
+							<% @featureditem.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+
+							<% if @img_missing %>
 								<div class="alert alert-error">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 								  <strong>Error! </strong> You must include an image when adding a featured item!
 								</div>
 							<% end %>
 
-							<% if params[:product_name_missing] %>
+							<% if @name_missing %>
 								<div class="alert alert-error">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 								  <strong>Error! </strong> You must include a product name!
 								</div>
 							<% end %>
 
-							<% if params[:price_invalid] %>
+							<% if @price_invalid %>
 								<div class="alert alert-error">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 								  <strong>Error! </strong> Invalid format for price!
@@ -40,9 +56,13 @@
 						 		Search for Product Name:
 						 		<div>
 									<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name">
-										<option selected="selected">New Product</option>
+										<option>New Product</option>
 						  				<% Product.where(:active => true).each do |prod| %>
-						  					<option><%= prod.commonName %></option>
+						  					<% if @commonName == prod.commonName %>
+						  						<option selected="selected"><%= prod.commonName %></option>
+						  					<% else %>
+						  						<option><%= prod.commonName %></option>
+						  					<% end %>
 						  				<% end %>
 						  			</select>
 						  		</div>
@@ -58,7 +78,7 @@
 										<div class="span6">
 											Size (optional): 
 											<div class="block input-icon input-icon-right">
-												<%= f2.text_field :size, :class => 'span12' %>
+												<%= f2.text_field :size, :class => 'span12', :value => @size %>
 											</div>
 
 										</div>
@@ -66,7 +86,7 @@
 										<div class="span6">
 											Price (optional): 
 											<div class="block input-icon input-icon-right">
-												<%= f2.text_field :price, :class => 'span12 input-mask-price' %>
+												<%= f2.text_field :price, :class => 'span12 input-mask-price', :value => @price %>
 											</div>
 
 										</div>
@@ -76,7 +96,7 @@
 
 											Description (optional):
 											<div class="block input-icon input-icon-right">
-												<%= f2.text_area :description, :class => 'span12', :rows => '3', :style => 'resize: none;' %>
+												<%= f2.text_area :description, :class => 'span12', :rows => '3', :style => 'resize: none;', :value => @description %>
 											</div>
 
 										</div>
@@ -98,6 +118,7 @@
 
 <script type="text/javascript">
 	$(bindInput());
+
 	function bindInput(){
 
 		$('#productSelect').change(function(){
@@ -118,5 +139,22 @@
 			}
 		});
 
+		if($('#productSelect').val() != 'New Product'){
+
+			//var p = document.getElementById("productSelect");
+			//var common_name = p.options[p.selectedIndex].dataset["comname"];
+			//var latin_name = p.options[p.selectedIndex].dataset["latname"];
+
+			$('#commonName').val($('#productSelect').val());
+			$('#commonName').attr('readonly', true);
+		}
+		else{
+			$('#commonName').val('');
+			$('#commonName').attr('readonly', false);
+			$('#productSelect').blur();
+			$('#commonName').focus();
+		}
+
 	}
+	
 </script>
