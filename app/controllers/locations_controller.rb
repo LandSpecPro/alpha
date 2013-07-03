@@ -2,7 +2,8 @@ class LocationsController < ApplicationController
 autocomplete :product, :commonName
   include LocationHelper
   # add in before filter to make sure user id matches for setting and removing favorites
-  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :set_as_favorite]
+  before_filter :require_location_id_active, :only => :set_as_favorite
+  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy]
   before_filter :require_business_location_matches, :only => [:edit, :update_categories, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
@@ -36,7 +37,7 @@ autocomplete :product, :commonName
 
   def manage
     @user = current_user
-    @vlocations = @user.bus_vendor.locations.where(:active => true)
+    @vlocations = @user.bus_vendor.locations
     if @vlocations.count == 1
         redirect_to '/locations/edit/' + @vlocations.first.id.to_s
     elsif @vlocations.count == 0
@@ -188,7 +189,7 @@ autocomplete :product, :commonName
       end
     end
 
-    @currentstatus = @location.get_current_status(params[:id])
+    #@currentstatus = @location.get_current_status(params[:id])
 
   end
 

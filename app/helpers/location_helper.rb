@@ -15,13 +15,26 @@ module LocationHelper
   		end
   	end
 
-    def require_location_id
+    def require_location_id_active
 
       if not params[:id]
         redirect_to locations_manage_url
         return
       else #if there is an id passed in
         if Location.where(:id => params[:id], :active => true).count == 0
+          redirect_to locations_manage_url
+          return
+        end
+      end
+
+    end
+
+    def require_location_id
+      if not params[:id]
+        redirect_to locations_manage_url
+        return
+      else #if there is an id passed in
+        if Location.where(:id => params[:id]).count == 0
           redirect_to locations_manage_url
           return
         end

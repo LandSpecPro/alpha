@@ -3,7 +3,11 @@
 		<div class="widget-box">
 			<div class="widget-header header-color-green2">
 				<div class="center">
-					<h3 class="lighter header-font-white"><%= @location.bus_vendor.busName %></h3>
+					<% unless @location.locName.blank? %>
+						<h3 class="lighter header-font-white"><%= @location.bus_vendor.busName + " - " + @location.locName %></h3>
+					<% else %>
+						<h3 class="lighter header-font-white"><%= @location.bus_vendor.busName %></h3>
+					<% end %>
 				</div>
 			</div>
 		</div>
