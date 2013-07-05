@@ -61,6 +61,10 @@ class ProductsController < ApplicationController
 
     if not @featureditem.active
       redirect_back_or_default('/')
+    elsif not @featureditem.is_visible
+      unless Location.find(@featureditem.location_id).bus_vendor_id == current_user.bus_vendor_id
+        redirect_back_or_default('/')
+      end
     end
 
     store_location
@@ -184,13 +188,13 @@ class ProductsController < ApplicationController
     if params[:commit] == 'Search'
       update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
-        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from]).order("created_at DESC")
+        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from])
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from]).order("created_at DESC")
+        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from])
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @featureditems = search_for_featured_items_with_query_only(params[:search]).order("created_at DESC")
+        @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @featureditems = search_for_all.order("created_at DESC")
+        @featureditems = search_for_all
       end
     end
 

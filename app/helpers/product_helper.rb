@@ -21,14 +21,29 @@ module ProductHelper
 
 	end
 
+	def get_visible(featureditems)
+
+		featureditems.order("created_at DESC")
+
+		@result = []
+		featureditems.each do |fi|
+			if fi.is_visible
+				@result << fi
+			end
+		end
+
+		return @result
+
+	end
+
 	def search_for_all
 		@featuredItems = FeaturedItem.where(:active => true)
-		return filter_by_categories(@featuredItems)
+		return get_visible(@featuredItems)
 	end
 
 	def search_for_featured_items_with_distance_only(distance)
 		@featuredItems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
-		return filter_by_categories(@featuredItems)
+		return get_visible(@featuredItems)
 	end
 
 	def search_for_featured_items_with_query_only(query)
@@ -41,7 +56,7 @@ module ProductHelper
 			end
 		end
 
-		return filter_by_categories(@result)
+		return get_visible(@result)
 	end
 
 	def search_for_featured_items_with_query_and_distance(query, distance)
@@ -57,7 +72,7 @@ module ProductHelper
 	      end
 	    end
 
-	    return filter_by_categories(@result)
+	    return get_visible(@result)
 	end
 
 	def update_search_log

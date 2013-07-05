@@ -183,7 +183,14 @@ autocomplete :product, :commonName
       @location = Location.find(params[:id])
     else
       if current_user.is_vendor
-        redirect_to locations_manage_url
+        if Location.where(:id => params[:id]).count > 0
+          @location = Location.find(params[:id])
+          if @location.bus_vendor_id != current_user.bus_vendor_id
+            redirect_to locations_manage_url
+          end
+        else
+          redirect_to locations_manage_url
+        end
       elsif current_user.is_buyer
         redirect_to dashboard_url
       end

@@ -35,8 +35,15 @@
 							<%= render 'locations/formupdatelocationinfo' %>
 						</div>
 						<div class="span6">
-							<%= render 'locations/formactivatelocation' %>
-							<%= render 'locations/formeditlocationbio' %>
+							<% if not @location.active %>
+								<%= render 'locations/formactivatelocation' %>
+								<br/>
+								<%= render 'locations/formeditlocationbio' %>
+							<% else %>
+								<%= render 'locations/formeditlocationbio' %>
+								<br/>
+								<%= render 'locations/formactivatelocation' %>
+							<% end %>							
 						</div>
 					</div>
 				  </div>

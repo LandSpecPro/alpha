@@ -11,6 +11,10 @@
 
 		<div class="span6">
 
+			<div class="alert alert-error">
+			  <strong>Inactive! </strong> This location is inactive and is only visible to you. Until activated, this location and the items featured will not be visible to anyone else.
+			</div>
+
 			<% unless @location.bio.blank? %>
 				<%= render 'viewlocationwithbio' %>
 			<% else %>

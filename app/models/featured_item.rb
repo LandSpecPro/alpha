@@ -13,12 +13,15 @@ class FeaturedItem < ActiveRecord::Base
 
 	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
 
-	def add_decimals_to_price
-		initprice = self.price
-		return initprice + 500
+	def is_visible
+		loc = Location.find(self.location_id)
+		if loc.active
+			return true
+		else
+			return false
+		end
 	end
 
-	
 	def get_image
 		return ProductImage.find(self.product_image_id).image
 	end
