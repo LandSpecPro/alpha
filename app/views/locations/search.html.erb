@@ -1,24 +1,21 @@
 <%= render 'layouts/sidebar' %>
 
-<%= render 'search' %>
-
-<div class="span7">
-
-	<% if not @locations.nil? %>
-		<% if @locations.count == 0 %>
-			<div class="center"><br/>
-				<h3>0 locations were found!</h3>
-			</div>
-		<% else %>
-			<%= render 'searchresultlist' %>
-		<% end %>
-	<% else %>
-		<div class="center"><br/>
-			No results to display.
+<% if @locations.nil? %>
+	<%= render 'search' %>
+<% else %>
+	<%= render 'search' %>
+	<div class="row-fluid">
+		<div class="span12">
+			<% if @locations.count == 0 %>
+				<div class="center"><br/>
+					<h3>0 locations were found!</h3>
+				</div>
+			<% else %>
+				<%= render 'searchresultlist' %>
+			<% end %>
 		</div>
-	<% end %>
-	
-</div>
+	</div>
+<% end %>
 
 <%= render 'layouts/sidebarend' %>
 
