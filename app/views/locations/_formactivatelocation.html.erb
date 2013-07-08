@@ -21,7 +21,7 @@
 					<div class="center">
 						<% if @location.active %>
 							<a href="<%= locations_deactivate_url(:id => @location.id) %>">
-								<button class="btn btn-danger">Deactivate</button>
+								<button class="btn btn-inverse">Deactivate</button>
 							</a>
 						<% else %>
 							<a href="<%= locations_activate_url(:id => @location.id) %>">

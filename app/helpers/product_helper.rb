@@ -49,32 +49,28 @@ module ProductHelper
 	end
 
 	def search_for_featured_items_with_query_only(query)
-		@query = Product.search_all_products(query)
+		@product = Product.where(:commonName => query, :active => true).first
 
-		@result = []
-		@query.each do |p|
-			FeaturedItem.where(:product_id => p.id, :active => true).each do |fi|
-				@result << fi
-			end
+		if @product
+			@featureditems = FeaturedItem.where(:active => true, :product_id => @product.id)
+		else
+			@featureditems = []
 		end
 
-		return get_visible(@result)
+	    return get_visible(@featureditems)
 	end
 
 	def search_for_featured_items_with_query_and_distance(query, distance)
-	    @query = Product.search_all_products(query)
+	    @product = Product.where(:commonName => query, :active => true).first
 	    @featureditems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
 
-	    @result = []
-	    @query.each do |p|
-	      @featureditems.each do |fi|
-	        if p.id == fi.product_id
-	          @result << fi
-	        end
-	      end
-	    end
+	    if @product
+			@featureditems = FeaturedItem.where(:active => true, :product_id => @product.id)
+		else
+			@featureditems = []
+		end
 
-	    return get_visible(@result)
+	    return get_visible(@featureditems)
 	end
 
 	def update_search_log

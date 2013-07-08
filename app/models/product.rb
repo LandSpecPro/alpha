@@ -26,4 +26,18 @@ class Product < ActiveRecord::Base
 		return @products.where(:active => true)
 	end
 
+	def has_active_featureditem
+
+		@featureditems = FeaturedItem.where(:active => true, :product_id => self.id)
+
+		@featureditems.each do |fi|
+			if fi.is_visible
+				return true
+			end
+		end
+
+		return false
+
+	end
+
 end

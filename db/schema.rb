@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628173309) do
+ActiveRecord::Schema.define(:version => 20130708043255) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(:version => 20130628173309) do
     t.datetime "updated_at",                        :null => false
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",         :default => true,  :null => false
+    t.boolean  "active",         :default => false, :null => false
     t.string   "busName",                           :null => false
     t.boolean  "verified",       :default => false, :null => false
     t.text     "bio"
@@ -247,10 +247,9 @@ ActiveRecord::Schema.define(:version => 20130628173309) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
     t.string   "login",                                          :null => false
     t.string   "email",                                          :null => false
+    t.string   "userType",                  :default => "buyer", :null => false
     t.string   "crypted_password",                               :null => false
     t.string   "password_salt",                                  :null => false
     t.string   "persistence_token",                              :null => false
@@ -260,7 +259,8 @@ ActiveRecord::Schema.define(:version => 20130628173309) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "userType",                  :default => "buyer", :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
     t.string   "profileImage_file_name"

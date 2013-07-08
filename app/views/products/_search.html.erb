@@ -21,8 +21,8 @@
 			<span class="input-icon input-icon-right">
 				<select id='search' name='search' class="chzn-select" data-placeholder="Search by Product Name...">
 					<option selected="selected"></option>
-	  				<% Product.where(:active => true).each do |prod| %>
-	  					<% if FeaturedItem.where(:active => true, :product_id => prod.id).count > 0 %>
+	  				<% Product.where(:active => true).order('"commonName" ASC').each do |prod| %>
+	  					<% if FeaturedItem.where(:active => true, :product_id => prod.id).count > 0 and prod.has_active_featureditem %>
 	  						<option><%= prod.commonName %></option>
 	  					<% end %>
 	  				<% end %>
