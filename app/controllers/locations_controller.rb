@@ -174,6 +174,10 @@ autocomplete :product, :commonName
 
   def search
     store_location
+
+    if params[:distance_from].empty?
+      params[:distance_from] = '0'
+    end
     
     @locations = nil
     if params[:commit] == 'Search'
@@ -189,6 +193,7 @@ autocomplete :product, :commonName
 
       update_search_log
     end
+
   end
 
   def view

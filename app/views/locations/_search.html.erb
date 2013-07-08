@@ -24,11 +24,16 @@
 							</a>
 						</div>
 
-						<div class="accordion-body collapse" id="searchFilters" zindex="-1">
+						<% if params[:distance_from] == '0' or params[:distance_from].blank? %>
+							<div class="accordion-body collapse" id="searchFilters" zindex="-1">
+						<% else %>
+							<div class="accordion-body" id="searchFilters" zindex="-1">
+						<% end %>
+
 							<div class="accordion-inner">
 								Distance From:
-								<%= number_field_tag :distance_from, params[:distance_from], in: 0...10000, :style => 'z-index: 99999999;' %>
-								
+								<%= number_field_tag :distance_from, params[:distance_from], in: 0...10000, :style => 'z-index: 99999999;', :class => 'input-small' %>
+								miles
 							</div>
 						</div>
 					</div>
