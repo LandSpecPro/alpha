@@ -47,9 +47,9 @@
 								<span class="block center">
 
 									User Type:<br/>
-									<input name="invite[userType]" id="userType" type="radio" onchange="showSupplierDropdown();" value=<%= STRING_VENDOR %> checked /><span class="lbl"> Supplier</span>
+									<input name="invite[userType]" id="userTypeSupplier" type="radio" onchange="showSupplierDropdown();" value=<%= STRING_VENDOR %> checked onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-									<input name="invite[userType]" id="userType" type="radio" onchange="showBuyerDropdown();" value=<%= STRING_BUYER %> /><span class="lbl"> Buyer</span>
+									<input name="invite[userType]" id="userTypeBuyer" type="radio" onchange="showBuyerDropdown();" value=<%= STRING_BUYER %> onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')"> Buyer</span>
 
 								</span>
 
@@ -128,6 +128,15 @@
 		$('#busTypeSupplier').addClass('hidden');
 		$('#busTypeBuyer').removeClass('hidden');
 		
+	}
+
+	function checkUserType(type){
+		if(type == 'buyer'){
+			document.getElementById("userTypeBuyer").checked = true;
+		}
+		else if(type == 'supplier'){
+			document.getElementById("userTypeSupplier").checked = true;
+		}
 	}
 
 </script>
