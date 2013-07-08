@@ -54,9 +54,9 @@
 									<i class="icon-ticket"></i>
 								</span>
 								<span class="block center">
-									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_VENDOR %> zindex='99999' checked onclick=""/><span class="lbl" onclick=""> Supplier</span>
+									<input name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' checked onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-									<input name="user[userType]" id="userType" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick=""/><span class="lbl" onclick=""> Buyer</span>
+									<input name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')"> Buyer</span>
 								</span>
 
 								<br/>
@@ -83,3 +83,16 @@
 		</div> <!-- span12 -->
 	</div> <!-- row-fluid -->
 </div> <!-- container-fluid -->
+
+<script type="text/javascript">
+
+	function checkUserType(type){
+		if(type == 'buyer'){
+			document.getElementById("userTypeBuyer").checked = true;
+		}
+		else if(type == 'supplier'){
+			document.getElementById("userTypeSupplier").checked = true;
+		}
+	}
+
+</script>
