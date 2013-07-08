@@ -23,7 +23,9 @@ module ProductHelper
 
 	def get_visible(featureditems)
 
-		featureditems.order("created_at DESC")
+		if featureditems.count > 1
+			featureditems.order("created_at DESC")
+		end
 
 		@result = []
 		featureditems.each do |fi|

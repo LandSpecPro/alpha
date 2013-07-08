@@ -3,7 +3,7 @@ autocomplete :product, :commonName
   include LocationHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
-  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy]
+  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
   before_filter :require_business_location_matches, :only => [:edit, :update_categories, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
@@ -14,6 +14,22 @@ autocomplete :product, :commonName
 
   def new
     @location = Location.new
+  end
+
+  def deactivate_location
+
+    Location.find(params[:id]).deactivate
+
+    redirect_back_or_default('/')
+
+  end
+
+  def activate_location
+
+    Location.find(params[:id]).activate
+    
+    redirect_back_or_default('/')
+
   end
 
   def create

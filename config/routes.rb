@@ -77,6 +77,9 @@ LspAlpha::Application.routes.draw do
   match "locations/featureditem/delete" => 'locations#delete_featureditem'
   match "locations/featureditem/delete/confirm" => 'locations#confirm_delete_featureditem'
 
+  match "locations/deactivate" => 'locations#deactivate_location'
+  match "locations/activate" => 'locations#activate_location'
+  
   match "locations/search" => 'locations#search'
   match "locations/:id" => 'locations#manage'
 
