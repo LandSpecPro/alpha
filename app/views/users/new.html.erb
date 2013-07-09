@@ -48,15 +48,25 @@
 									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
-								<!--[if lt IE 10]>Invitation Code:<![endif]-->
-								<span class="block input-icon input-icon-right">
-									<%= text_field_tag :invitecode, "", :class => 'span12', :placeholder => "Your invitation code" %>
-									<i class="icon-ticket"></i>
-								</span>
 								<span class="block center">
 									<input name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' checked onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<input name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')"> Buyer</span>
+								</span>
+								<br/>
+								<% if @missingterms %>
+									<div class="alert alert-error">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										<strong>Error! </strong> You must agree to the terms and conditions.
+									</div>
+								<% end %>
+								<span class="block center">
+									<% if params[:terms] %>
+										<input type="checkbox" id="terms" name="terms" checked>
+									<% else %>
+										<input type="checkbox" id="terms" name="terms"/>
+									<% end %>
+									<label class="lbl" for="terms"> I agree to the <a href="<%= terms_url %>" target="_BLANK">Terms and Conditions</a></label>
 								</span>
 
 								<br/>

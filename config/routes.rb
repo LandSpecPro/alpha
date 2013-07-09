@@ -13,6 +13,7 @@ LspAlpha::Application.routes.draw do
   match "forgot/success" => 'user_sessions#forgot_submitted'
   match "feedback/success" => 'home#feedback_success'
   match "back" => "application#back"
+  match "terms" => "home#terms"
 
   post "/submit_forgot" => 'user_sessions#submit_forgot'
 

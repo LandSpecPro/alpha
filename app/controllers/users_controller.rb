@@ -45,10 +45,6 @@ class UsersController < ApplicationController
   
   def create
 
-    @invitecode = params[:invitecode]
-
-    if check_invite(params[:invitecode])
-
       @user = User.new(params[:user])
       
       if not request.location.city.empty? and not request.location.state.empty?
@@ -60,27 +56,33 @@ class UsersController < ApplicationController
       end
 
       if @user.save
-        flash[:notice] = "Account registered!"
 
-        update_invite(@user, params[:invitecode])
+        unless params[:terms]
+          @missingterms = true
+          render :action => :new
 
-        if @user.userType == STRING_VENDOR
-          redirect_to business_vendor_new_url
-        elsif @user.userType == STRING_BUYER
-          redirect_to business_buyer_new_url
         else
-          redirect_to home_url
+          flash[:notice] = "Account registered!"
+
+          update_invite(@user, params[:invitecode])
+
+          if @user.userType == STRING_VENDOR
+            redirect_to business_vendor_new_url
+          elsif @user.userType == STRING_BUYER
+            redirect_to business_buyer_new_url
+          else
+            redirect_to home_url
+          end
+
         end
 
-      else
+      else          
+        unless params[:terms]
+          @missingterms = true
+        end
         flash[:notice] = "Not successful!"
         render :action => :new
       end
-
-    else
-      #do something because invite was wrong
-    end
-
 
   end
   
