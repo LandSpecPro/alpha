@@ -175,7 +175,7 @@ autocomplete :product, :commonName
   def search
     store_location
 
-    if params[:distance_from].empty?
+    if params[:distance_from].blank?
       params[:distance_from] = '0'
     end
     

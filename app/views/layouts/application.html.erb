@@ -97,6 +97,20 @@
 
   <%= yield %>
 
+
+  
+
+  <div id="feedbackFooter" class="navbar navbar-fixed-bottom">
+
+    <div class="pull-right" style="margin-right:10px;">
+      
+      <a class="btn btn-mini btn-primary" data-toggle="modal" href="#feedbackModal"><i class='icon-comments'></i> Feedback</a>
+    </div>
+        
+  </div>
+
+  <%= render 'layouts/feedbackmodal' %>
+
 </div>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

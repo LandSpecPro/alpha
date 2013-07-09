@@ -89,6 +89,7 @@ LspAlpha::Application.routes.draw do
   match "about" => 'home#about'
   match "contact" => 'home#contact'
   match "contact/submit" => 'home#contact_submit'
+  match "feedback/submit" => 'application#submit_feedback'
   match "subscribe" => 'home#subscribe'
 
   # For account register, login, logout, etc.

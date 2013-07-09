@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
     if validation_failed
       return
     end
-
     
     @locationid = @location.id
     @description = params[:product][:featured_item][:description]
@@ -179,6 +178,10 @@ class ProductsController < ApplicationController
     store_location
 
     @resultnum = 0
+
+    if params[:distance_from].blank?
+      params[:distance_from] = '0'
+    end
 
     if params[:view].blank?
       params[:view] = 'grid'
