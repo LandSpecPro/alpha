@@ -2,6 +2,18 @@ class Mailers < ActionMailer::Base
   default from: "tech@landspecpro.com"
   default_url_options[:host] = ENV['HOST']
 
+  def basic_feedback_email(name, email, feedback, username)
+    @name = name
+    @email = email
+    @feedback = feedback
+    unless username.blank?
+      @username = username
+    else
+      @username = 'Not logged in'
+    end
+    mail(:to => 'tech@landspecpro.com', :subject => "LandSpec Pro - Feedback")
+  end
+
   def password_reset_email(user)
   	@user = user
   	mail(:to => user.email, :subject => "LandSpec Pro - Password Reset")

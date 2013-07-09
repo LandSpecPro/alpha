@@ -26,6 +26,11 @@ class HomeController < ApplicationController
 
 	end
 
+	def feedback_success
+
+
+  	end
+
 	def subscribe_user
 		
 

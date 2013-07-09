@@ -12,19 +12,21 @@
 
 			<div class="row-fluid">
 
-				<strong>*Name:</strong> 
+				
 				<div class="block input-icon input-icon-right">
-					<%= text_field_tag :name, '', :id => "name", :class => 'span12' %>
+					<strong>*Name:</strong> <%= text_field_tag :name, '', :id => "name", :class => 'span12' %>
 				</div>
 
-				<strong>*Email:</strong>
 				<div class="block input-icon input-icon-right">
-					<%= text_field_tag :email, '', :class => 'span12' %>
+					<% if current_user %>
+						<strong>*Email:</strong><%= text_field_tag :email, current_user.email, :class => 'span12', :readonly => 'true' %>
+					<% else %>
+						<strong>*Email:</strong><%= text_field_tag :email, '', :class => 'span12' %>
+					<% end %>					
 				</div>
 
-				<strong>*Feedback:</strong>
 				<span class="block input-icon input-icon-right">
-					<%= text_area_tag :feedback, '', :class => 'span12', :style => 'resize: none;', :rows => '6' %>
+					<strong>*Feedback:</strong><%= text_area_tag :feedback, '', :class => 'span12', :style => 'resize: none;', :rows => '6' %>
 				</span>
 
 			</div>
@@ -39,3 +41,26 @@
 	</div>
 
 </form>
+
+<script type="text/javascript">
+
+	$("#feedbackForm").validate({
+		rules: {
+			name: "required",
+			feedback: "required",
+			email: {
+				required: true,
+				email: true
+			},
+		},
+		errorElement: "span",
+		wrapper: "span",
+		errorPlacement: function(error, element){
+			offset = element.offset();
+			error.insertBefore(element);
+			error.css('top', offset.top);
+			error.css('color', '#CC0000');
+		}
+	});
+
+</script>

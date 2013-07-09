@@ -187,6 +187,10 @@ class ProductsController < ApplicationController
       params[:view] = 'grid'
     end
 
+    if params[:search] == "All Products"
+      params[:search] = ''
+    end
+
     @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log

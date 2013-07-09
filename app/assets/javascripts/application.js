@@ -18,6 +18,7 @@
 //= require theme/jquery.gritter.min
 //= require theme/jquery.colorbox-min
 //= require theme/jquery.maskedinput.min
+//= require theme/jquery.validate.min
 //= require theme/ace.min
 //= require theme/ace-elements.min
 //= require masks

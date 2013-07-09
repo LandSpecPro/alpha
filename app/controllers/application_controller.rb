@@ -4,8 +4,18 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
 
+  def back
+    redirect_back_or_default('/')
+  end
+
   def submit_feedback
-    redirect_to home_url
+    if current_user
+      @username = current_user.login
+    else
+      @username = nil
+    end
+    Mailers.basic_feedback_email(params[:name], params[:email], params[:feedback], @username).deliver
+    redirect_to feedback_success_url
   end
 
   private

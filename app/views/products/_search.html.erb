@@ -6,10 +6,18 @@
 		<%= hidden_field_tag :view, params[:view] %>
 		<span class="input-icon input-icon-right">
 			<select id='search' name='search' class="chzn-select" data-placeholder="Search by Product Name...">
-				<option selected="selected"></option>
+				<% unless params[:search] %>
+					<option selected="selected"></option>
+				<% else %>
+					<option>All Products</option>
+				<% end %>
   				<% Product.where(:active => true).order('"commonName" ASC').each do |prod| %>
   					<% if FeaturedItem.where(:active => true, :product_id => prod.id).count > 0 and prod.has_active_featureditem %>
-  						<option><%= prod.commonName %></option>
+  						<% if params[:search] == prod.commonName %>
+  							<option selected="selected"><%= prod.commonName %></option>
+  						<% else %>
+  							<option><%= prod.commonName %></option>
+  						<% end %>
   					<% end %>
   				<% end %>
   			</select><%= submit_tag "Search", :class => "btn btn-success btn-small" %>

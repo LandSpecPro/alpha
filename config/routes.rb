@@ -11,6 +11,8 @@ LspAlpha::Application.routes.draw do
   match "invite/success" => 'users#invite_confirm'
   match "forgot" => 'user_sessions#forgot'
   match "forgot/success" => 'user_sessions#forgot_submitted'
+  match "feedback/success" => 'home#feedback_success'
+  match "back" => "application#back"
 
   post "/submit_forgot" => 'user_sessions#submit_forgot'
 
