@@ -19,11 +19,10 @@
 					<td class="center">
 						<a href="#<%= fi.product.commonName %>" data-rel="popover" data-content="<%= 
 							unless fi.featured_item.description.blank?
-								fi.featured_item.description 
+								fi.featured_item.description.gsub(/\n/,'<br/>').html_safe 
 							else
 								'No description available'
 							end
-
 							%>" data-placement="bottom" data-trigger="hover"><%= fi.product.commonName %></a>
 					</td>
 					<td class="center">
@@ -39,7 +38,7 @@
 					</td>
 					<td class='hidden-phone center'>
 						<% if fi.featured_item.price.to_s != '' %>
-							<%= '$' + fi.featured_item.price.to_s %>
+							<%= "$%8.2f" % fi.featured_item.price.to_f %>
 						<% end %>
 					</td>
 					<td class='hidden-phone center'>
@@ -58,3 +57,19 @@
 	</tbody>
 
 </table>
+
+<script type="text/javascript">
+
+	$('#table_report').dataTable( {
+		"aoColumns": [
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true, "bSearchable": false, "sDefaultContent": "?"},
+			{"bSortable": false, "bSearchable": false},
+			{"bSortable": false, "bSearchable": false}
+		]
+	});
+
+</script>

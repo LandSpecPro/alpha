@@ -24,7 +24,7 @@
 							<td class="center">
 								<a href="#<%= fi.get_product.commonName %>" data-rel="popover" data-content="<%= 
 									unless fi.description.blank?
-										fi.description 
+										fi.description.gsub(/\n/,'<br/>').html_safe 
 									else
 										'No description available'
 									end
@@ -66,6 +66,17 @@
 </table>
 
 <script type="text/javascript">
+	$('#table_report').dataTable( {
+		"aoColumns": [
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true, "bSearchable": false, "sDefaultContent": "?"},
+			{"bSortable": false, "bSearchable": false},
+			{"bSortable": false, "bSearchable": false}
+		]
+	});
 
 	<% if SearchLog.where(:user_id => current_user.id).count <= 1 %>
 		$(showGritter("search_product_hints"));
