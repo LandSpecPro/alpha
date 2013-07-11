@@ -50,8 +50,9 @@ class UsersController < ApplicationController
     # Check invite code and agreement to terms and conditions
     @incorrectinvite = is_invite_wrong(params[:invitecode])
     @missingterms = is_missing_terms(params[:terms])
+    @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
 
-    if @incorrectinvite or @missingterms
+    if @incorrectinvite or @missingterms or @confirmemail
       render :action => :new
       return
     end
@@ -111,7 +112,17 @@ class UsersController < ApplicationController
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else
-      render :action => :edit
+      if current_user.is_vendor
+        @user = current_user
+        @bus_vendor = @user.bus_vendor
+        @usertype = "Vendor"
+        render :template => "bus_vendors/manage"
+      elsif current_user.is_buyer
+        @user = current_user
+        @bus_buyer = @user.bus_buyer
+        @usertype = "Buyer"
+        render :template => "bus_buyers/manage"
+      end
     end
   end
 
