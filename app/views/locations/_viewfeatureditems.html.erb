@@ -1,47 +1,85 @@
-	<% @location.featured_items.where(:active => true).each do |fi| %>
+<% @location.featured_items.where(:active => true).each do |fi| %>
 
+	<div class="row-fluid">
+		<div class="span6">
+			<ul class="ace-thumbnails">
+				<li>
+					<span>
 
-				<ul class="ace-thumbnails">
+						<img src="<%= fi.get_image.url(:large) %>" width="400px" height="400px"/>
 
-					<li style="width:46%;">
-
-						<span>
-
-							<img src="<%= fi.get_image.url(:large) %>" style="width:100%;"/>
-
-							<% if fi.is_favorited(current_user) %>
-								<div class="tags">
-									<span class="label label-info arrowed">Favorited!</span>
-								</div>
-							<% end %>
-
-							<div class="text">
-								<div class="inner">
-
-									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
-
-									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
-										<i class="icon-zoom-in" title="View Larger"></i>
-									</a>
-
-									<% if fi.is_favorited(current_user) %>
-										<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-									<% else %>
-										<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i>
-										</a>
-									<% end %>
-
-									<a href=<%= products_view_url(:id => fi.id) %>>
-										<i class="icon-info-sign" title="Info"></i>
-									</a>
-
-								</div>
+						<% if fi.is_favorited(current_user) %>
+							<div class="tags">
+								<span class="label label-info arrowed">Favorited!</span>
 							</div>
+						<% end %>
 
-						</span>
+						<div class="text">
+							<div class="inner">
 
-					</li>
+								<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-				</ul>
+								<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
+									<i class="icon-zoom-in" title="View Larger"></i>
+								</a>
 
-	<% end %>
+								<% if fi.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i>
+									</a>
+								<% end %>
+
+								<a href=<%= products_view_url(:id => fi.id) %>>
+									<i class="icon-info-sign" title="Info"></i>
+								</a>
+
+							</div>
+						</div>
+
+					</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="span6">
+			<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
+			<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
+				<p style="font-size:18px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
+			<% end %>
+			<% unless fi.price.blank? or fi.price == '' %>
+				<p style="font-size:18px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
+			<% end %>
+			<% unless fi.size.blank? or fi.size == '' %>
+				<p style="font-size:18px;"><strong>Size: </strong><%= fi.size %></p>
+			<% end %>
+			<% unless fi.description.blank? or fi.description == '' %>
+				<p style="font-size:18px;">
+					<strong>Description:</strong><br/>
+					<%= fi.description %>
+				</p>
+			<% end %>
+
+		</div>
+
+	</div>
+
+<% end %>
+
+<% @missingproducts.times { %>
+
+	<div class="row-fluid">
+		<div class="span6">
+			<ul class="ace-thumbnails">
+				<li>
+
+					<span>
+						<img src="/images/default/featureditem.png" width="400px" height="400px"/>
+					</span>
+
+				</li>
+			</ul>
+		</div>
+	</div>
+
+<% } %>

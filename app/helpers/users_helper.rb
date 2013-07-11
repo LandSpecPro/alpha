@@ -1,12 +1,16 @@
 module UsersHelper
 
 
-	def check_invite(invitecode)
+	def is_invite_wrong(invitecode)
+
+		if invitecode.blank? or invitecode == ''
+			return true
+		end
 
 		if InviteCode.where(:code => invitecode, :used => false).count > 0
-			return true
-		else
 			return false
+		else
+			return true
 		end
 	end
 
@@ -21,4 +25,13 @@ module UsersHelper
 			return false
 		end
 	end
+
+	def is_missing_terms(terms)
+		if not params[:terms]
+	    	return true
+	    else
+	    	return false
+	    end
+	end
+
 end

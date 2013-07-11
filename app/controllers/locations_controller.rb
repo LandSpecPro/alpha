@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
 autocomplete :product, :commonName
   include LocationHelper
+  include EditHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
   before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
@@ -215,6 +216,12 @@ autocomplete :product, :commonName
       elsif current_user.is_buyer
         redirect_to dashboard_url
       end
+    end
+
+    if current_user.is_vendor
+      @missingproducts = 3 - @location.featured_items.where(:active => true).count
+    else
+      @missingproducts = 0
     end
 
     #@currentstatus = @location.get_current_status(params[:id])

@@ -45,44 +45,43 @@ class UsersController < ApplicationController
   
   def create
 
-      @user = User.new(params[:user])
-      
-      if not request.location.city.empty? and not request.location.state.empty?
-        @user.currentCity = request.location.city
-        @user.currentState = get_state_abbr(request.location.state)
+    @user = User.new(params[:user])
+
+    # Check invite code and agreement to terms and conditions
+    @incorrectinvite = is_invite_wrong(params[:invitecode])
+    @missingterms = is_missing_terms(params[:terms])
+
+    if @incorrectinvite or @missingterms
+      render :action => :new
+      return
+    end
+
+    # Set default city and state
+    if not request.location.city.empty? and not request.location.state.empty?
+      @user.currentCity = request.location.city
+      @user.currentState = get_state_abbr(request.location.state)
+    else
+      @user.currentCity = 'Atlanta'
+      @user.currentState = 'GA'
+    end
+
+    if @user.save
+
+      update_invite(@user, params[:invitecode])
+
+      if @user.userType == STRING_VENDOR
+        redirect_to business_vendor_new_url
+      elsif @user.userType == STRING_BUYER
+        redirect_to business_buyer_new_url
       else
-        @user.currentCity = 'Atlanta'
-        @user.currentState = 'GA'
+        redirect_to home_url
       end
 
-      if @user.save
-
-        unless params[:terms]
-          @missingterms = true
-          render :action => :new
-
-        else
-          flash[:notice] = "Account registered!"
-
-          update_invite(@user, params[:invitecode])
-
-          if @user.userType == STRING_VENDOR
-            redirect_to business_vendor_new_url
-          elsif @user.userType == STRING_BUYER
-            redirect_to business_buyer_new_url
-          else
-            redirect_to home_url
-          end
-
-        end
-
-      else          
-        unless params[:terms]
-          @missingterms = true
-        end
-        flash[:notice] = "Not successful!"
-        render :action => :new
-      end
+    else
+      flash[:notice] = "Not successful!"
+      render :action => :new
+      return
+    end
 
   end
   

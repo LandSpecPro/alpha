@@ -17,7 +17,7 @@
 				<div class="widget-body">
 					<div class="widget-main" id="login-widget-main">
 
-						<%= form_for @user do |f| %>
+						<%= form_for @user, :html => {:id => 'newUserForm'} do |f| %>
 
 							<!-- Display error messages as alerts -->
 							<% @user.errors.full_messages.each do |msg| %>
@@ -27,10 +27,17 @@
 								</div>
 							<% end %>
 
+							<% if @incorrectinvite %>
+								<div class="alert alert-error">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>Error! </strong> Incorrect invite code!
+								</div>
+							<% end %>
+
 							<fieldset>
 								<!--[if lt IE 10]>Username:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :login, :class => 'span12', :placeholder => "Username", :maxlength => '15' %>
+									<%= f.text_field :login, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
 									<i class="icon-user"></i>
 								</span>
 								<!--[if lt IE 10]>Email:<![endif]-->
@@ -48,18 +55,17 @@
 									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
+								<!-- [if lt IE 10]>Invitaction Code:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :invitecode, params[:invitecode], :class => 'span12', :placeholder => "Your invitation code" %>
+									<i class="icon-ticket"></i>
+								</span>
 								<span class="block center">
 									<input name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' checked onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<input name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')"> Buyer</span>
 								</span>
 								<br/>
-								<% if @missingterms %>
-									<div class="alert alert-error">
-										<button type="button" class="close" data-dismiss="alert">&times;</button>
-										<strong>Error! </strong> You must agree to the terms and conditions.
-									</div>
-								<% end %>
 								<span class="block center">
 									<% if params[:terms] %>
 										<input type="checkbox" id="terms" name="terms" checked>
@@ -70,6 +76,13 @@
 								</span>
 
 								<br/>
+
+								<% if @missingterms %>
+									<div class="alert alert-error">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										<strong>Error! </strong> You must agree to the terms and conditions.
+									</div>
+								<% end %>
 
 								<div class="row-fluid">
 									<div class="pull-right">
@@ -96,6 +109,24 @@
 
 <script type="text/javascript">
 
+$("#newUserForm").validate({
+		rules: {
+			login: "required",
+			email: {
+				required: true,
+				email: true
+			}
+		},
+		errorElement: "span",
+		wrapper: "span",
+		errorPlacement: function(error, element){
+			offset = element.offset();
+			error.insertBefore(element);
+			error.css('top', offset.top);
+			error.css('color', '#CC0000');
+		}
+	});
+
 	function checkUserType(type){
 		if(type == 'buyer'){
 			document.getElementById("userTypeBuyer").checked = true;
@@ -104,5 +135,7 @@
 			document.getElementById("userTypeSupplier").checked = true;
 		}
 	}
+
+	
 
 </script>
