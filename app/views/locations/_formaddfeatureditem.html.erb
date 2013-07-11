@@ -54,10 +54,10 @@
 								<%= f.hidden_field(:location_id, :value => @location.id) %>
 
 						 		Search for Product Name:
-						 		<div>
-									<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name">
+						 		<div style="width: 100% !important;">
+									<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name" >
 										<option>New Product</option>
-						  				<% Product.where(:active => true).each do |prod| %>
+						  				<% Product.where(:active => true).order('"commonName" ASC').each do |prod| %>
 						  					<% if @commonName == prod.commonName %>
 						  						<option selected="selected"><%= prod.commonName %></option>
 						  					<% else %>
@@ -118,6 +118,7 @@
 
 <script type="text/javascript">
 	$(bindInput());
+	$("select").chosen({ width: '100%'});
 
 	function bindInput(){
 

@@ -218,7 +218,7 @@ autocomplete :product, :commonName
       end
     end
 
-    if current_user.is_vendor
+    if @location.is_owner(current_user)
       @missingproducts = 3 - @location.featured_items.where(:active => true).count
     else
       @missingproducts = 0

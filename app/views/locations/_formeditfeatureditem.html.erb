@@ -8,47 +8,73 @@
 
 	<% @location.featured_items.where(:active => true).order("created_at ASC").each do |fi| %>
 
-			<ul class="ace-thumbnails">
+		<div class="row-fluid">
 
-				<li>
-					<div>
-						<%= image_tag fi.get_image.url(:medium), :title => fi.get_product.commonName %>
+			<div class="span6">
+				<ul class="ace-thumbnails pull-right">
+					<li>
+						<div>
 
-						<% if fi.is_favorited(current_user) %>
-							<div class="tags">
-								<span class="label label-info arrowed">Favorited!</span>
+							<%= image_tag fi.get_image.url(:medium), :title => fi.get_product.commonName %>
+
+							<% if fi.is_favorited(current_user) %>
+								<div class="tags">
+									<span class="label label-info arrowed">Favorited!</span>
+								</div>
+							<% end %>
+
+							<div class="text">
+								<div class="inner">
+
+									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+
+									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="View Larger">
+										<i class="icon-zoom-in"></i>
+									</a>
+
+									<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
+										<i class="icon-trash" title="Delete"></i>
+									</a>
+
+									<a href=<%= products_edit_url(:id => fi.id) %>>
+										<i class="icon-pencil" title="Edit"></i>
+									</a>
+								</div>
 							</div>
-						<% end %>
 
-						<div class="text">
-							<div class="inner">
-
-								<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
-
-								<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="View Larger">
-									<i class="icon-zoom-in"></i>
-								</a>
-
-								<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
-									<i class="icon-trash" title="Delete"></i>
-								</a>
-
-								<a href=<%= products_edit_url(:id => fi.id) %>>
-									<i class="icon-pencil" title="Edit"></i>
-								</a>
-							</div>
 						</div>
+					</li>
+				</ul>
+			</div>
 
-					</div>
-				</li>
-			</ul>
+			<div class="span6">
+
+				<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
+
+				<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
+					<p style="font-size:18px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
+				<% end %>
+
+				<% unless fi.price.blank? or fi.price == '' %>
+					<p style="font-size:18px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
+				<% end %>
+
+				<% unless fi.size.blank? or fi.size == '' %>
+					<p style="font-size:18px;"><strong>Size: </strong><%= fi.size %></p>
+				<% end %>
+
+				<% unless fi.description.blank? or fi.description == '' %>
+					<p style="font-size:18px;">
+						<strong>Description:</strong><br/>
+						<%= fi.description %>
+					</p>
+				<% end %>
+
+			</div>
+
+		</div>
 		
 
 	<% end %>
 
 <% end %>
-
-
-<script type="text/javascript">
-
-</script>

@@ -74,11 +74,29 @@
 				<li>
 
 					<span>
+
 						<img src="/images/default/featureditem.png" width="400px" height="400px"/>
+
+						<div class="text">
+							<div class="inner">
+
+								<span><p style="font-size:15px;">No Product</p></span>
+
+								<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>">
+									<i class="icon-plus" title="Add Featured Item"></i>
+								</a>
+
+							</div>
+						</div>
+
 					</span>
 
 				</li>
 			</ul>
+		</div>
+
+		<div class="span6">
+			<p style="font-size:24px;"><strong>No Product</strong></p>
 		</div>
 	</div>
 

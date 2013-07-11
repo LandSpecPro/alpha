@@ -54,7 +54,7 @@
 				
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
-							<div class="span6">
+							<div class="span7">
 								<%= render 'locations/formeditfeatureditem' %>
 							</div>
 							<div class="span5">
@@ -77,11 +77,6 @@
 				</div>
 			</div>
 		</div>
-
-		
-
-
-		
 
 	</div>
 
