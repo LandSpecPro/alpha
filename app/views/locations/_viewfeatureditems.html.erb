@@ -47,7 +47,7 @@
 			<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
 				<p style="font-size:18px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
 			<% end %>
-			<% unless fi.price.blank? or fi.price == '' %>
+			<% unless fi.price.blank? or fi.price == '' or fi.price == 0 %>
 				<p style="font-size:18px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
 			<% end %>
 			<% unless fi.size.blank? or fi.size == '' %>
@@ -56,7 +56,7 @@
 			<% unless fi.description.blank? or fi.description == '' %>
 				<p style="font-size:18px;">
 					<strong>Description:</strong><br/>
-					<%= fi.description %>
+					<%= fi.description.gsub(/\n/,'<br/>').html_safe %>
 				</p>
 			<% end %>
 
