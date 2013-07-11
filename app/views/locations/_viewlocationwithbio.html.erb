@@ -32,21 +32,21 @@
 				<th valign="top">
 
 					<% if @location.is_owner(current_user) %>
-					<ul class="ace-thumbnails">
-						<li>
-							<span>
-								<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
-								<div class="text">
-									<div class="inner">
-										<span><p style="font-size:15px;">Edit Company Logo</p></span>
-										<a href="<%= account_url %>">
-											<i class="icon-pencil" title="Edit Logo"></i>
-										</a>
+						<ul class="ace-thumbnails">
+							<li>
+								<span>
+									<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
+									<div class="text">
+										<div class="inner">
+											<span><p style="font-size:15px;">Edit Company Logo</p></span>
+											<a href="<%= account_url %>">
+												<i class="icon-pencil" title="Edit Logo"></i>
+											</a>
+										</div>
 									</div>
-								</div>
-							</span>
-						</li>
-					</ul>
+								</span>
+							</li>
+						</ul>
 					<% else %>
 						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
 					<% end %>

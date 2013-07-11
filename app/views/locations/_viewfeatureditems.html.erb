@@ -34,6 +34,18 @@
 									<i class="icon-info-sign" title="Info"></i>
 								</a>
 
+								<% if @location.is_owner(current_user) %>
+
+									<a href=<%= products_edit_url(:id => fi.id) %>>
+										<i class="icon-pencil" title="Edit"></i>
+									</a>
+									
+									<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
+										<i class="icon-trash" title="Delete"></i>
+									</a>
+
+								<% end %>
+								
 							</div>
 						</div>
 
