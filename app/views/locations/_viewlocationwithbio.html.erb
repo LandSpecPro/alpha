@@ -30,7 +30,27 @@
 			</colgroup>
 			<tr>
 				<th valign="top">
-					<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
+
+					<% if @location.is_owner(current_user) %>
+					<ul class="ace-thumbnails">
+						<li>
+							<span>
+								<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
+								<div class="text">
+									<div class="inner">
+										<span><p style="font-size:15px;">Edit Company Logo</p></span>
+										<a href="<%= account_url %>">
+											<i class="icon-pencil" title="Edit Logo"></i>
+										</a>
+									</div>
+								</div>
+							</span>
+						</li>
+					</ul>
+					<% else %>
+						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo' %>
+					<% end %>
+					
 					<table style="table-layout: fixed; width: 100%; font-weight:normal;">
 
 						<colgroup>

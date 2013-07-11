@@ -56,7 +56,7 @@ autocomplete :product, :commonName
     @user = current_user
     @vlocations = @user.bus_vendor.locations
     if @vlocations.count == 1
-        redirect_to '/locations/edit/' + @vlocations.first.id.to_s
+        redirect_to locations_view_url(:id => @vlocations.first.id)
     elsif @vlocations.count == 0
       redirect_to locations_new_url(:new_user_message => true)
     end
