@@ -124,15 +124,6 @@ class ProductsController < ApplicationController
       @description = params[:product][:featured_item][:description]
 
       render 'locations/edit'
-      #redirect_to locations_edit_url(:id => params[:product][:location_id], \
-      #  :image_missing => @img_missing, \
-      #  :product_name_missing => @name_missing, \
-      #  :price_invalid => @price_invalid, \
-      #  :products => true, \
-      #  :commonName => params[:product][:commonName], \
-      #  :price => params[:product][:featured_item][:price], \
-      #  :size => params[:product][:featured_item][:size], \
-      #  :description => params[:product][:featured_item][:description])
       return true
     end
   end

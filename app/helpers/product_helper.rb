@@ -34,9 +34,17 @@ module ProductHelper
 			end
 		end
 
-		return @result
+		return limit_by_company(@result)
 
 	end
+
+	def limit_by_company(featureditems)
+
+		return featureditems
+		
+	end
+
+
 
 	def search_for_all
 		@featuredItems = FeaturedItem.where(:active => true)

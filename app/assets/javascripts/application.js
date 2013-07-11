@@ -19,6 +19,8 @@
 //= require theme/jquery.colorbox-min
 //= require theme/jquery.maskedinput.min
 //= require theme/jquery.validate.min
+//= require theme/jquery.dataTables.min
+//= require theme/jquery.dataTables.bootstrap
 //= require theme/ace.min
 //= require theme/ace-elements.min
 //= require masks

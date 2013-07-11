@@ -7,6 +7,7 @@
 		<tr>
 			<th class="center">Company</th>
 			<th class="center">Address</th>
+			<th class="center">Distance Away</th>
 			<th class="center">Favorite</th>
 		</tr>
 	</thead>
@@ -24,6 +25,9 @@
 				<td class='center'>
 					<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank" %>
 				</td>
+				<td class='center'>
+					<%= "%8.1f" % l.distance_from(current_user.currentCity + ", " + current_user.currentState) %>
+				</td>
 				<td class="center">
 					<% if l.is_favorited(current_user) %>
 						<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => l.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
@@ -33,8 +37,54 @@
 				</td>
 			</tr>
 
-		<% end %>
+		<% end %>	
 
 	</tbody>
 
 </table>
+
+<script type="text/javascript">
+
+	$('#table_report').dataTable( {
+		"aoColumns": [
+			{"bSortable": true},
+			{"bSortable": true},
+			{"bSortable": true, "bSearchable": false},
+			{"bSortable": false}
+		]
+	});
+
+</script>
+
+<!--
+<div>
+		<div class="pagination center no-margin">
+			<ul>
+				<li class="prev disabled">
+					<a href="#">
+						<i class="icon-double-angle-left"></i>
+					</a>
+				</li>
+
+				<li class="active">
+					<a href="#">1</a>
+				</li>
+
+				<li>
+					<a href="#">2</a>
+				</li>
+
+				<li>
+					<a href="#">3</a>
+				</li>
+
+				<li class="next">
+					<a href="#">
+						<i class="icon-double-angle-right"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	-->
