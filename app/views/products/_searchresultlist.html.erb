@@ -43,7 +43,7 @@
 								<%= fi.size %>
 							</td>
 							<td class='hidden-phone center'>
-								<% if fi.price.to_s != '' %>
+								<% if fi.price.to_s != '' and fi.price != 0 %>
 									<%= "$%8.2f" % fi.price.to_f %>
 								<% end %>
 							</td>

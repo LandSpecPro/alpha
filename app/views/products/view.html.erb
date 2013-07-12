@@ -83,7 +83,7 @@
 						</div>
 					<% end %>
 <!-- PRICE -->
-					<% unless @featureditem.price.blank? %>
+					<% unless @featureditem.price.blank? or @featureditem.price == 0 %>
 						<div class="row-fluid">
 							<div class="span4">
 								<div class="pull-right">
