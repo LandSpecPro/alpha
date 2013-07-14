@@ -52,19 +52,19 @@
 				<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
 
 				<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
-					<p style="font-size:18px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
+					<p style="font-size:15px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
 				<% end %>
 
 				<% unless fi.price.blank? or fi.price == '' or fi.price == 0 %>
-					<p style="font-size:18px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
+					<p style="font-size:15px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
 				<% end %>
 
 				<% unless fi.size.blank? or fi.size == '' %>
-					<p style="font-size:18px;"><strong>Size: </strong><%= fi.size %></p>
+					<p style="font-size:15px;"><strong>Size: </strong><%= fi.size %></p>
 				<% end %>
 
 				<% unless fi.description.blank? or fi.description == '' %>
-					<p style="font-size:18px;">
+					<p style="font-size:15px;">
 						<strong>Description:</strong><br/>
 						<%= fi.description.gsub(/\n/,'<br/>').html_safe %>
 					</p>
