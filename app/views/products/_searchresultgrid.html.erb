@@ -29,9 +29,9 @@
 								</a>
 
 								<% if fi.is_favorited(current_user) %>
-									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+									<a title="Remove from favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
 								<% else %>
-									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+									<a title="Add to favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
 								<% end %>
 
 								<a href=<%= locations_view_url(:id => fi.location_id) %>>

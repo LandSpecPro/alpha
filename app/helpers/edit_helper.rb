@@ -5,6 +5,4 @@ module EditHelper
 		return current_user.login
 	end
 
-
-
 end
