@@ -23,10 +23,6 @@ module ProductHelper
 
 	def get_visible(featureditems)
 
-		if featureditems.count > 1
-			featureditems.order("created_at DESC")
-		end
-
 		@result = []
 		featureditems.each do |fi|
 			if fi.is_visible
@@ -47,7 +43,7 @@ module ProductHelper
 
 
 	def search_for_all
-		@featuredItems = FeaturedItem.where(:active => true)
+		@featuredItems = FeaturedItem.where(:active => true).order('created_at DESC')
 		return get_visible(@featuredItems)
 	end
 
