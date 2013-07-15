@@ -2,10 +2,12 @@ class Mailers < ActionMailer::Base
   default from: "tech@landspecpro.com"
   default_url_options[:host] = ENV['HOST']
 
-  def basic_feedback_email(name, email, feedback, username)
+  def basic_feedback_email(name, email, feedback, username, action, controller)
     @name = name
     @email = email
     @feedback = feedback
+    @action = action
+    @controller = controller
     unless username.blank?
       @username = username
     else

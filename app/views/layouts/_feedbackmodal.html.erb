@@ -12,6 +12,8 @@
 
 			<div class="row-fluid">
 
+				<%= hidden_field_tag(:action,  controller.action_name) %>
+				<%= hidden_field_tag(:controller,  controller.controller_name) %>
 				
 				<div class="block input-icon input-icon-right">
 					<strong>*Name:</strong> <%= text_field_tag :name, '', :id => "name", :class => 'span12' %>

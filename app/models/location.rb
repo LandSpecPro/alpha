@@ -26,6 +26,7 @@ class Location < ActiveRecord::Base
 	validates_presence_of :city, :message => "Must provide a valid city!"
 	validates_presence_of :state, :message => "Must provide a valid state!"
 	validates_presence_of :zip, :message => "Must provide a valid zip code!"
+	validates_presence_of :primaryPhone, :message => "Must provide a valid phone number!"
 
 	validates_format_of :primaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Primary Email address is not valid."
 	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."

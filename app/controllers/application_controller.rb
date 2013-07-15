@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
     else
       @username = nil
     end
-    Mailers.basic_feedback_email(params[:name], params[:email], params[:feedback], @username).deliver
+    @action = params[:action]
+    @controller = params[:controller]
+    Mailers.basic_feedback_email(params[:name], params[:email], params[:feedback], @username, @action, @controller).deliver
     redirect_to feedback_success_url
   end
 

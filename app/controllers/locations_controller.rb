@@ -66,6 +66,7 @@ autocomplete :product, :commonName
     store_location
     @user = current_user
     @product = Product.new
+    @productimage = ProductImage.new
     @featureditem = FeaturedItem.new
 
     @location = Location.where(:id => params[:id]).first
@@ -162,6 +163,7 @@ autocomplete :product, :commonName
 
   def update
     @product = Product.new
+    @productimage = ProductImage.new
     @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
