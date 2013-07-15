@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :userType, :on => :create, :message => "You must select a user type."
 
 
+
   	# This method associates the attribute ":profileImage" with a file attachment
   	has_attached_file :profileImage, 
 		styles: {
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
 	end
 
 	def self.find_by_username_or_email(login)
-		User.find_by_login(login) || User.find_by_email(login)
+		User.find_by_login(login.downcase) || User.find_by_email(login.downcase)
 	end
 
 	def get_business
