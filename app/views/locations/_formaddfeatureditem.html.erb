@@ -27,6 +27,14 @@
 								</div>
 							<% end %>
 
+							<!-- Display error messages as alerts -->
+							<% @productimage.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
 
 							<% if @img_missing %>
 								<div class="alert alert-error">

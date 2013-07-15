@@ -12,4 +12,5 @@ class ProductImage < ActiveRecord::Base
 		:default_style => :medium
 
 	validates_presence_of :image, :on => :create, :message => "An image is required when adding a new item."
+	validates_attachment_content_type :image, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
 end

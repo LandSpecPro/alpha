@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @productimage = ProductImage.new
   end
 
   def create

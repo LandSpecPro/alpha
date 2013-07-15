@@ -18,4 +18,5 @@ class BusBuyer < ActiveRecord::Base
 		:path => 'buyers/:id/images/logos/:basename_:style.:extension'
 
 	validates_presence_of :busName, :on => :create, :message => "You must provide a valid business to use LandSpec!"
+	validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
 end

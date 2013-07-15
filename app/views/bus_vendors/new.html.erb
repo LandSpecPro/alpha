@@ -26,6 +26,14 @@
                   </div>
                 <% end %>
 
+                <!-- Display error messages as alerts -->
+                <% @busvendor.errors.full_messages.each do |msg| %>
+                  <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error! </strong> <%= msg %>
+                  </div>
+                <% end %>
+
                 <fieldset>
                   <span class="block input-icon input-icon-right">
                     <%= f.text_field :busName, :class => 'span12', :placeholder => "Business Name" %>

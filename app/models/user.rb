@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
 		:default_url => '/images/default/logos_:style.png',
 		:path => 'users/:id/images/:attachment/:basename_:style.:extension'
 
+	validates_attachment_content_type :profileImage, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
+
 	acts_as_authentic do |c|
 		c.login_field = :login
 	end
