@@ -175,5 +175,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def temp_claim_account
+    @user = User.where(:perishable_token => params[:token]).first
+    if @user
+      @user_session = UserSession.new(@user)
+      @user_session.save
+      render :action => :password_reset_form
+    else
+      redirect_to home_url #ERROR URL
+    end
+  end
+
 
 end

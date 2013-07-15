@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+
+
+  match "account/claim" => "users#temp_claim_account"
+
   get "favorites/products"
 
   get "favorites/vendors"
