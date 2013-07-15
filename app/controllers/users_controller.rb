@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     if params[:id]
       @invite = Invite.find(params[:id])
       Mailers.invite_success_email(@invite.email, @invite.busName).deliver
+      Mailers.admin_invite(@invite.email, @invite.busName, @invite.busType, @invite.userType, @invite.state).deliver
     else
       redirect_to invite_request_url
     end

@@ -42,4 +42,13 @@ class Mailers < ActionMailer::Base
     mail(:to => 'tech@landspecpro.com', :subject => "Contact - " + @reason + " - " + @email)
   end
 
+  def admin_invite(email, busName, busType, userType, state)
+    @email = email
+    @busName = busName
+    @busType = busType
+    @userType = userType
+    @state = state
+    mail(:to => 'timwolfe@landspecpro.com', :subject => "New Invite Request - " + @busName)
+  end
+
 end
