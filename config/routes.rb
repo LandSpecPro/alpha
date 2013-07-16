@@ -3,6 +3,8 @@ LspAlpha::Application.routes.draw do
 
   match "invite/register" => "users#new"
   match "account/claim" => "users#temp_claim_account"
+  match "profile/claim" => "users#claim_profile"
+  match "profile/claim/create" => "users#create_claimed_profile"
 
   get "favorites/products"
 

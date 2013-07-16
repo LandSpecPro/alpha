@@ -187,5 +187,86 @@ class UsersController < ApplicationController
     end
   end
 
+  def claim_profile
+
+    @user = User.new
+    @location = Location.new
+    @claimlocation = nil
+
+    ClaimLocation.where(:claimed => false).each do |l|
+      if params[:token] == l.claim_token
+        @claimlocation = l
+      end
+    end
+
+    if @claimlocation.blank?
+      redirect_to home_url #CHANGE TO ERROR URL LATER
+    end
+
+  end
+
+  def create_claimed_profile
+
+    # USER: login, email, userType, password
+    # BUS_VENDOR: busName
+    # LOCATION: primaryPhone, address1, address2, city, state, zip, website, ?latitude, ?longitude (automatic lat and long?)
+    @claimlocation = ClaimLocation.find(params[:user][:claim_location_id])
+    params[:user].delete :claim_location_id
+
+    claim_user(@claimlocation)
+
+    #@claimlocation.claimed = true
+    #if not @claimlocation.save
+    #  render :action => :claim_profile #CHANGE TO ERROR URL LATER
+    #end
+
+  end
+
+  def claim_user(claimlocation)
+    @user = User.new(params[:user])
+    @user.userType = claimlocation.user_type
+
+    if not request.location.city.empty? and not request.location.state.empty?
+      @user.currentCity = request.location.city
+      @user.currentState = get_state_abbr(request.location.state)
+    else
+      @user.currentCity = 'Atlanta'
+      @user.currentState = 'GA'
+    end
+
+    if @user.save
+      claim_bus_vendor(@user, claimlocation)
+    else
+      render 'claim_profile'
+    end
+  end
+
+  def claim_bus_vendor(user, claimlocation)
+    @busvendor = user.create_bus_vendor(:busName => claimlocation.bus_name)    
+    
+    if @busvendor.save
+      user.bus_vendor_id = @busvendor.id
+      user.save
+      claim_location(user, claimlocation, @busvendor)
+    else
+      user.destroy
+      render 'claim_profile'
+    end
+
+  end
+
+  def claim_location(user, claimlocation, busvendor)
+    @cl = claimlocation
+    @location = Location.new()
+    busvendor.locations.create(:address1 => @cl.loc_address1, :address2 => @cl.loc_address2, :city => @cl.loc_city, :state => @cl.loc_state, :zip => @cl.loc_zip, :primaryPhone => @cl.loc_phone, :busName => @cl.bus_name, :bus_vendor_id => user.bus_vendor_id)
+
+    if busvendor.save
+      redirect_to locations_manage_url
+    else
+      user.destroy
+      busvendor.destroy
+      render 'claim_profile'
+    end
+  end
 
 end

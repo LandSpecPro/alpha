@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711013401) do
+ActiveRecord::Schema.define(:version => 20130716175830) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -63,6 +63,24 @@ ActiveRecord::Schema.define(:version => 20130711013401) do
     t.string  "parentCategory"
     t.boolean "active",         :default => true, :null => false
     t.integer "hierarchyLevel", :default => 0,    :null => false
+  end
+
+  create_table "claim_locations", :force => true do |t|
+    t.string  "user_login"
+    t.string  "user_email"
+    t.string  "user_type"
+    t.string  "bus_name"
+    t.string  "loc_phone"
+    t.string  "loc_address1"
+    t.string  "loc_address2"
+    t.string  "loc_city"
+    t.string  "loc_state"
+    t.string  "loc_zip"
+    t.string  "loc_website"
+    t.string  "claim_token"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.boolean "claimed",      :default => false
   end
 
   create_table "contacts", :force => true do |t|
@@ -248,10 +266,9 @@ ActiveRecord::Schema.define(:version => 20130711013401) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
     t.string   "login",                                          :null => false
     t.string   "email",                                          :null => false
+    t.string   "userType",                  :default => "buyer", :null => false
     t.string   "crypted_password",                               :null => false
     t.string   "password_salt",                                  :null => false
     t.string   "persistence_token",                              :null => false
@@ -261,7 +278,8 @@ ActiveRecord::Schema.define(:version => 20130711013401) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "userType",                  :default => "buyer", :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
     t.string   "profileImage_file_name"
