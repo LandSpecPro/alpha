@@ -215,10 +215,10 @@ class UsersController < ApplicationController
 
     claim_user(@claimlocation)
 
-    #@claimlocation.claimed = true
-    #if not @claimlocation.save
-    #  render :action => :claim_profile #CHANGE TO ERROR URL LATER
-    #end
+    @claimlocation.claimed = true
+    if not @claimlocation.save
+      render :action => :claim_profile #CHANGE TO ERROR URL LATER
+    end
 
   end
 
@@ -258,7 +258,7 @@ class UsersController < ApplicationController
   def claim_location(user, claimlocation, busvendor)
     @cl = claimlocation
     @location = Location.new()
-    busvendor.locations.create(:address1 => @cl.loc_address1, :address2 => @cl.loc_address2, :city => @cl.loc_city, :state => @cl.loc_state, :zip => @cl.loc_zip, :primaryPhone => @cl.loc_phone, :busName => @cl.bus_name, :bus_vendor_id => user.bus_vendor_id)
+    busvendor.locations.create(:address1 => @cl.loc_address1, :address2 => @cl.loc_address2, :city => @cl.loc_city, :state => @cl.loc_state, :zip => @cl.loc_zip, :primaryPhone => @cl.loc_phone, :busName => @cl.bus_name, :websiteLink => @cl.loc_website, :bus_vendor_id => user.bus_vendor_id)
 
     if busvendor.save
       redirect_to locations_manage_url

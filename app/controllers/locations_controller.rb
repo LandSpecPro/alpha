@@ -72,8 +72,6 @@ autocomplete :product, :commonName
     @location = Location.where(:id => params[:id]).first
     @location.products.build
 
-    @location.format_all_urls
-
   end
 
   def update_bio
@@ -167,6 +165,8 @@ autocomplete :product, :commonName
     @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
+      @location.format_all_urls
+      @location.save
       flash[:notice] = "Account updated!"
       redirect_back_or_default('/') 
     else
