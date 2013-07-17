@@ -1,6 +1,9 @@
 class ClaimLocation < ActiveRecord::Base
   	attr_accessible :claimed
 
+  	include PgSearch
+	pg_search_scope :search_all_locations, :against => :bus_name, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
+
   	geocoded_by :get_full_address
   	after_validation :geocode
 
