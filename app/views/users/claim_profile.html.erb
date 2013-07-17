@@ -1,50 +1,97 @@
-<%= form_for @user, :html => {:id => 'claimProfileForm'}, :url => profile_claim_create_url do |f| %>
+<div class="row-fluid" style="margin-top:20px;">
+	<div class="container">
+		<div class="span6">
 
-	<!-- Display error messages as alerts -->
-	<% @user.errors.full_messages.each do |msg| %>
-		<div class="alert alert-error">
-		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-		  <strong>Error! </strong> <%= msg %>
+			<%= form_for @user, :html => {:id => 'claimProfileForm'}, :url => profile_claim_create_url do |f| %>
+				<div class="widget-box" style="min-width: 350px;">
+					<div class="widget-header header-color-green2">
+						<h5 class="bigger lighter"><i class="icon-home"></i> Claim Your Profile</h5>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main">
+
+							<!-- Display error messages as alerts -->
+							<% @user.errors.full_messages.each do |msg| %>
+								<div class="alert alert-error">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								  <strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
+							<fieldset>
+
+								<%= f.hidden_field :claim_location_id, :value => @claimlocation.id %>
+
+								<!--[if lt IE 10]>Username:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :login, :value => @claimlocation.user_login, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
+									<i class="icon-user"></i>
+								</span>
+								<!--[if lt IE 10]>Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :email, :value => @claimlocation.user_email, :class => 'span12', :placeholder => "Email" %>
+									<i class="icon-envelope-alt"></i>
+								</span>
+								<!--[if lt IE 10]>Confirm Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :email_confirmation, params[:email_confirmation], :class => 'span12', :placeholder => "Confirm Email" %>
+									<i class="icon-envelope-alt"></i>
+								</span>
+								<!--[if lt IE 10]>Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
+									<i class="icon-lock"></i>
+								</span>
+								<!--[if lt IE 10]>Confirm Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
+									<i class="icon-lock"></i>
+								</span>
+
+								<div class="row-fluid">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="icon-key"></i> Claim Profile</button>
+									</div>
+								</div>
+
+							</fieldset>
+
+						</div>
+					</div>
+
+				</div>
+
+			<% end %>
+
 		</div>
-	<% end %>
 
-	<fieldset>
+		<div class="span6">
 
-		<%= f.hidden_field :claim_location_id, :value => @claimlocation.id %>
+			<div class="center">
+				<h2>Location Information</h2>
+				<address>
+					<strong><%= @claimlocation.bus_name %></strong>
 
-		<!--[if lt IE 10]>Username:<![endif]-->
-		<span class="block input-icon input-icon-right">
-			<%= f.text_field :login, :value => @claimlocation.user_login, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
-			<i class="icon-user"></i>
-		</span>
-		<!--[if lt IE 10]>Email:<![endif]-->
-		<span class="block input-icon input-icon-right">
-			<%= f.text_field :email, :value => @claimlocation.user_email, :class => 'span12', :placeholder => "Email" %>
-			<i class="icon-envelope-alt"></i>
-		</span>
-		<!--[if lt IE 10]>Confirm Email:<![endif]-->
-		<span class="block input-icon input-icon-right">
-			<%= text_field_tag :email_confirmation, params[:email_confirmation], :class => 'span12', :placeholder => "Confirm Email" %>
-			<i class="icon-envelope-alt"></i>
-		</span>
-		<!--[if lt IE 10]>Password:<![endif]-->
-		<span class="block input-icon input-icon-right">
-			<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
-			<i class="icon-lock"></i>
-		</span>
-		<!--[if lt IE 10]>Confirm Password:<![endif]-->
-		<span class="block input-icon input-icon-right">
-			<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
-			<i class="icon-lock"></i>
-		</span>
-
-		<div class="row-fluid">
-			<div class="pull-right">
-				<button type="submit" class="btn btn-success"><i class="icon-key"></i> Claim Profile</button>
+					<br/>
+					<%= @claimlocation.loc_address1 %>
+					<%= 
+						unless @claimlocation.loc_address2.blank?
+							", " + @claimlocation.loc_address2
+						end
+					%>
+					<br/>
+					<%= @claimlocation.loc_city + ", " + @claimlocation.loc_state + " " + @claimlocation.loc_zip %>
+					<br/>
+					<abbr title="Phone">P:</abbr> <%= @claimlocation.loc_phone %>
+				</address>
 			</div>
+
+			<p style="margin-left:15px; margin-right:15px;">If the above information is wrong in any way you will have the opportunity to update it after claiming your profile. All you need to do is confirm your email and enter a password. Feel free to use a different email or a different username also, and remember you can change any information later after you have claimed your profile.</p>
+
 		</div>
 
-	</fieldset>
+	</div>
+</div>
 
-
-<% end %>
+<%= render 'layouts/footer' %>

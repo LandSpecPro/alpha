@@ -13,4 +13,9 @@ class ClaimLocation < ActiveRecord::Base
 
 		return @address1 + @address2 + @city + @state + @zip
 	end
+
+	def self.get_all_unclaimed
+		return ClaimLocation.where(:claimed => false)
+	end
+	
 end
