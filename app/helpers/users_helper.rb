@@ -42,4 +42,50 @@ module UsersHelper
 		end
 	end
 
+	  def claim_user(claimlocation)
+   		@user = User.new(params[:user])
+	    @user.userType = claimlocation.user_type
+
+	    if not request.location.city.empty? and not request.location.state.empty?
+	      @user.currentCity = request.location.city
+	      @user.currentState = get_state_abbr(request.location.state)
+	    else
+	      @user.currentCity = 'Atlanta'
+	      @user.currentState = 'GA'
+	    end
+
+	    if @user.save
+	      claim_bus_vendor(@user, claimlocation)
+	    else
+	      render 'claim_profile'
+	    end
+	  end
+
+	  def claim_bus_vendor(user, claimlocation)
+	    @busvendor = user.create_bus_vendor(:busName => claimlocation.bus_name)    
+	    
+	    if @busvendor.save
+	      user.bus_vendor_id = @busvendor.id
+	      user.save
+	      claim_location(user, claimlocation, @busvendor)
+	    else
+	      user.destroy
+	      render 'claim_profile'
+	    end
+
+	  end
+
+	  def claim_location(user, claimlocation, busvendor)
+	    @cl = claimlocation
+	    @location = Location.new()
+	    busvendor.locations.create(:address1 => @cl.loc_address1, :address2 => @cl.loc_address2, :city => @cl.loc_city, :state => @cl.loc_state, :zip => @cl.loc_zip, :primaryPhone => @cl.loc_phone, :busName => @cl.bus_name, :websiteLink => @cl.loc_website, :bus_vendor_id => user.bus_vendor_id)
+
+	    if not busvendor.save
+	      user.destroy
+	      busvendor.destroy
+	      render 'claim_profile'
+	    end
+
+	  end
+
 end
