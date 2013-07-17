@@ -183,15 +183,20 @@ autocomplete :product, :commonName
     end
     
     @locations = nil
+    @otherlocations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''
         @locations = Location.search_with_distance_and_query(params[:distance_from], params[:search], current_user)
+        @otherlocations = ClaimLocation.search_with_distance_and_query(params[:distance_from], params[:search], current_user)
       elsif params[:distance_from] != '0' and params[:search] == ''
         @locations = Location.search_with_distance_only(params[:distance_from], current_user)
+        @otherlocations = ClaimLocation.search_with_distance_only(params[:distance_from], current_user)
       elsif params[:distance_from] == '0' and params[:search] != ''
         @locations = Location.search_with_query_only(params[:search])
+        @otherlocations = ClaimLocation.search_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
         @locations = Location.where(:active => true)
+        @otherlocations = ClaimLocation.where(:claimed => false)
       end
 
       update_search_log

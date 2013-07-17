@@ -15,4 +15,9 @@ module BusVendorsHelper
 		return address
 	end
 
+	def concat_unclaimed_address(loc)
+		address = loc.loc_address1 + " " + loc.loc_address2 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
+		return address
+	end
+
 end
