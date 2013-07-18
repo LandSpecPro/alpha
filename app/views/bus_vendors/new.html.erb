@@ -17,7 +17,7 @@
         <div class="widget-body">
           <div class="widget-main" id="login-widget-main">
 
-            <%= form_for([@user, @user.build_bus_vendor]) do |f| %>
+            <%= form_for([@user, @busvendor]) do |f| %>
 
                 <% if @no_company %>
                   <div class="alert alert-error">
@@ -27,7 +27,7 @@
                 <% end %>
 
                 <!-- Display error messages as alerts -->
-                <% @busvendor.errors.full_messages.each do |msg| %>
+                <% @busvendor.errors.each do |field, msg| %>
                   <div class="alert alert-error">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Error! </strong> <%= msg %>

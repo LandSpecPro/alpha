@@ -1,7 +1,7 @@
 class BusVendor < ActiveRecord::Base
 	include ModelHelper
 	
-	attr_accessible :busName, :logo, :tagline, :locations_attributes, :featured_items_attributes
+	attr_accessible :busName, :busPhone, :logo, :tagline, :locations_attributes, :featured_items_attributes
 	belongs_to :user
 
 	has_many :locations
@@ -20,6 +20,7 @@ class BusVendor < ActiveRecord::Base
 		:default_url => '/images/default/:attachment_:style.png',
 		:path => 'vendors/:id/images/logos/:basename_:style.:extension'
 
-	validates_presence_of :busName, :on => :create, :message => "You must provide a valid business to use LandSpec!"
+	validates_presence_of :busName, :message => "You must provide a valid business to use LandSpec!"
+	validates :busPhone, :format => { :with => /\A\([0-9]{3}\)\s[0-9]{3}\-[0-9]{4}\z/, :message => "Must provide a valid phone number!" }
 	validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
 end

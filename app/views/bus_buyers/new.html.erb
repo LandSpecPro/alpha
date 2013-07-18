@@ -17,12 +17,19 @@
         <div class="widget-body">
           <div class="widget-main" id="login-widget-main">
 
-            <%= form_for([@user, @user.build_bus_buyer]) do |f| %>
+            <%= form_for([@user, @busbuyer]) do |f| %>
 
                 <% if @no_company %>
                   <div class="alert alert-error">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Error!</strong> You must add a company first!
+                  </div>
+                <% end %>
+
+                <% @busbuyer.errors.each do |field, msg| %>
+                  <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Error! </strong> <%= msg %>
                   </div>
                 <% end %>
 
@@ -32,6 +39,13 @@
                     <%= f.text_field :busName, :class => 'span12', :placeholder => "Business Name" %>
                     <i class="icon-briefcase"></i>
                   </span>
+
+                  <!--[if lt IE 10]>Phone Number:<![endif]-->
+                  <span class="block input-icon input-icon-right">
+                    <%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :placeholder => "Phone Number" %>
+                    <i class="icon-phone"></i>
+                  </span>
+
                   <i>Optional business logo:</i>
                   <%= f.file_field :logo %>
 
@@ -58,3 +72,7 @@
     </div> <!-- span12 -->
   </div> <!-- row-fluid -->
 </div> <!-- container-fluid -->
+
+<script type="text/javascript">
+  $(applyMasks());
+</script>

@@ -7,18 +7,19 @@ class BusVendorsController < ApplicationController
 	def new
 		@no_company = params[:no_company]
 		@user = current_user
-		@busvendor = current_user.build_bus_vendor
+		@busvendor = @user.build_bus_vendor
 	end
 
 	def create
 		@user = current_user
-		@busvendor = @user.create_bus_vendor(params[:bus_vendor])
-
-		# Update current_users Business-Vendor id
-		@user.update_attribute(:bus_vendor_id, @busvendor.id)
+		@busvendor = @user.build_bus_vendor(params[:bus_vendor])
 
 	    if @busvendor.save
 	      flash[:notice] = "Account registered!"
+
+	      # Update current_users Business-Vendor id
+		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
+
 	      redirect_to locations_new_url(:new_user_message => true)
 	    else
 	      flash[:notice] = "Not successful!"

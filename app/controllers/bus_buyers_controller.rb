@@ -7,18 +7,19 @@ class BusBuyersController < ApplicationController
 	def new
 		@no_company = params[:no_company]
 		@user = current_user
-		@busbuyer = current_user.build_bus_buyer
+		@busbuyer = @user.build_bus_buyer
 	end
 
 	def create
 		@user = current_user
-		@busbuyer = @user.create_bus_buyer(params[:bus_buyer])
-
-		# Update current_users Business-Buyer id
-		@user.update_attribute(:bus_buyer_id, @busbuyer.id)
+		@busbuyer = @user.build_bus_buyer(params[:bus_buyer])
 
 	    if @busbuyer.save
 	      flash[:notice] = "Account registered!"
+
+	      # Update current_users Business-Buyer id
+	      @user.update_attribute(:bus_buyer_id, @busbuyer.id)
+
 	      redirect_to business_buyer_dashboard_url
 	    else
 	      flash[:notice] = "Not successful!"

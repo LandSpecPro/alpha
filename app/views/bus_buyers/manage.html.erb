@@ -1,5 +1,48 @@
-<%= render "layouts/sidebar" %>
+<%= render 'layouts/sidebar' %>
 
+<div class="row-fluid">
+	<div class="span4 offset1">
+		<%= form_for @user, :html => {:id => 'form_update_logo'} do |f| %>
+			<div class="widget-box" style="min-width: 350px;">
+				<div class="widget-header header-color-green2">
+					<h5 class="bigger lighter"><i class="icon-user"></i> Company Logo</h5>
+					<div class="widget-toolbar">
+						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_logo').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+					</div>
+				</div>
 
+				<div class="widget-body">
+					<div class="widget-main no-padding">
+						<table id="table-company-logo" class="table table-bordered">
+							<tbody>
+								<tr>
+									<td >
+										<ul class="ace-thumbnails">
+											<li><div style="min-height: 100px; min-width: 100px;">
+												<%= image_tag @user.get_logo.url(:thumb) %>
+												</div>
 
-<%= render "layouts/sidebarend" %>
+											</li>
+										</ul>
+									</td>
+									<td style="vertical-align:middle;">
+										<%= f.fields_for :bus_buyer do |f2| %>
+											<%= f2.file_field :logo %>
+											<%= f2.hidden_field :id, :value => @user.bus_buyer.id %>
+										<% end %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+				<% end %>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4 offset1">
+			<%= render 'layouts/accountinfo' %>
+		</div>
+	</div>
+<%= render 'layouts/sidebarend' %>

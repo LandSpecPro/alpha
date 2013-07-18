@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include UsersHelper
   include ApplicationHelper
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :password_reset] #, :claim_profile_success]
+  before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success]
   
   def request_invite
 
@@ -109,6 +109,8 @@ class UsersController < ApplicationController
 
     params[:user].delete :company_name
     params[:user].delete :tagline
+    params[:user].delete :busPhone
+
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
@@ -129,7 +131,7 @@ class UsersController < ApplicationController
 
   def update_company_info
     @business = current_user.get_business
-    @business.update_attributes(:busName => params[:user][:company_name], :tagline => params[:user][:tagline])
+    @business.update_attributes(:busName => params[:user][:company_name], :tagline => params[:user][:tagline], :busPhone => params[:user][:busPhone])
 
     if current_user.is_vendor
       @business.locations.each do |l|

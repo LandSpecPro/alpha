@@ -13,7 +13,7 @@
 
 
 				<!-- Display error messages as alerts -->
-				<% @user.errors.full_messages.each do |msg| %>
+				<% @user.errors.each do |field, msg| %>
 					<div class="alert alert-error">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
 					  <strong>Error! </strong> <%= msg %>
@@ -42,6 +42,11 @@
 					<%= f.label 'Email:' %>
 					<div class="block input-icon input-icon-right">
 						<%= f.text_field :email, :class => 'span12', :value => @user.email %>
+					</div>
+
+					<%= f.label 'Phone:' %>
+					<div class="block input-icon input-icon-right">
+						<%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :value => @user.get_business.busPhone %>
 					</div>
 
 					<%= f.label 'User Type:' %>
@@ -82,4 +87,5 @@
 
 <script type="text/javascript">
 	$(applyChosenStyle());
+	$(applyMasks());
 </script>
