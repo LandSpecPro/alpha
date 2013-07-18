@@ -28,7 +28,6 @@ class BusVendorsController < ApplicationController
 	end
 
 	def update
-
 		@busvendor = BusVendor.find(params[:id])
 	    if @busvendor.update_attributes(params[:logo])
 	      flash[:notice] = "Account updated!"

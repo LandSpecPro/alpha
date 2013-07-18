@@ -35,10 +35,18 @@
                 <% end %>
 
                 <fieldset>
+                  <!--[if lt IE 10]>Business Name:<![endif]-->
                   <span class="block input-icon input-icon-right">
                     <%= f.text_field :busName, :class => 'span12', :placeholder => "Business Name" %>
                     <i class="icon-briefcase"></i>
                   </span>
+
+                  <!--[if lt IE 10]>Phone Number:<![endif]-->
+                  <span class="block input-icon input-icon-right">
+                    <%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :placeholder => "Phone Number" %>
+                    <i class="icon-phone"></i>
+                  </span>
+
                   <i>Optional business logo:</i>
                   <%= f.file_field :logo %>
 
@@ -65,3 +73,7 @@
     </div> <!-- span12 -->
   </div> <!-- row-fluid -->
 </div> <!-- container-fluid -->
+
+<script type="text/javascript">
+  $(applyMasks());
+</script>
