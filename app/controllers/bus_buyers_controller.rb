@@ -20,7 +20,7 @@ class BusBuyersController < ApplicationController
 	      # Update current_users Business-Buyer id
 	      @user.update_attribute(:bus_buyer_id, @busbuyer.id)
 
-	      redirect_to business_buyer_dashboard_url
+	      redirect_to buyer_dashboard_url
 	    else
 	      flash[:notice] = "Not successful!"
 	      render :action => :new

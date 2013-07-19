@@ -72,9 +72,9 @@ class UsersController < ApplicationController
       update_invite(@user, params[:invitecode])
 
       if @user.userType == STRING_VENDOR
-        redirect_to business_vendor_new_url
+        redirect_to supplier_new_url
       elsif @user.userType == STRING_BUYER
-        redirect_to business_buyer_new_url
+        redirect_to buyer_new_url
       else
         redirect_to home_url
       end

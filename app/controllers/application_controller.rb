@@ -54,9 +54,9 @@ class ApplicationController < ActionController::Base
       store_location
       flash[:notice] = "You must add a company before you can do anything else!"
       if current_user.userType == STRING_VENDOR
-        redirect_to business_vendor_new_url(:no_company => true)
+        redirect_to supplier_new_url(:no_company => true)
       elsif current_user.userType == STRING_BUYER
-        redirect_to business_buyer_new_url(:no_company => true)
+        redirect_to buyer_new_url(:no_company => true)
       else
         redirect_to home_url
       end
@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
   def require_user_is_vendor
     if current_user.userType != STRING_VENDOR and current_user.userType != 'Vendor'
       flash[:notice] = "You must be a vendor to access this page."
-      redirect_back_or_default(business_vendor_dashboard_url)
+      redirect_back_or_default(supplier_dashboard_url)
       return false
     end
   end

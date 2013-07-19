@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       if UserSession.find.user.is_vendor
         redirect_to locations_manage_url
       elsif UserSession.find.user.is_buyer
-        redirect_to business_buyer_dashboard_url
+        redirect_to buyer_dashboard_url
       else
         redirect_to home_url
       end        

@@ -29,7 +29,7 @@ LspAlpha::Application.routes.draw do
 
   # Resource routes for models
 
-  match "business/vendor/update" => 'bus_vendors#update'
+  match "supplier/update" => 'bus_vendors#update'
   resources :user_sessions
   resources :invites
   resources :users do
@@ -111,16 +111,18 @@ LspAlpha::Application.routes.draw do
   match "products/browse/all" => 'products#browseall'
 
   # Routes for vendor's businesses
-  match "business/vendor/show" => 'bus_vendors#show'
-  match "business/vendor/new" => 'bus_vendors#new'
-  match "business/vendor/dashboard" => 'users#dashboard'
-  match "business/vendor/manage" => 'bus_vendors#manage'
+  match "supplier/new" => 'bus_vendors#new'
+  match "supplier/dashboard" => 'users#dashboard'
+  match "supplier/manage" => 'bus_vendors#manage'
+  match "supplier/welcome" => 'bus_vendors#welcome_help'
+  match "supplier/help" => 'bus_vendors#welcome_help'
 
   # Routes for buyer's businesses
-  match "business/buyer/show" => 'bus_buyers#show'
-  match "business/buyer/new" => 'bus_buyers#new'
-  match "business/buyer/dashboard" => 'users#dashboard'
-  match "business/buyer/manage" => 'bus_buyers#manage'
+  match "buyer/new" => 'bus_buyers#new'
+  match "buyer/dashboard" => 'users#dashboard'
+  match "buyer/manage" => 'bus_buyers#manage'
+  match "buyer/welcome" => 'bus_buyers#welcome_help'
+  match "buyer/help" => 'bus_buyers#welcome_help'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,54 @@
+<%= render 'layouts/sidebar' %>
+
+<div class="container">
+	<div class="alert alert-success center">
+		<h3>Welcome to LandSpec Pro!</h3>
+	</div>
+
+	<h2><strong>What's next?</strong></h2>
+
+	<div class="row-fluid">
+
+		<div class="span8">
+			<p>Now it's time to update your profile and make it stand out. We'll outline a few pointers for you to get you started below. The more complete your profile is, the more it will stand out and the more traffic you will generate, so it's a good idea to go ahead and add all the information you can.</p>
+
+			<h3><strong>Company Information</strong></h3>
+
+			<p>We've only included the most basic information into your profile to start with, so the first thing you might want to do is click on the "Account" button on the sidebar or the dropdown menu in the title bar. From here you can update your account information like Username, Email, and Password, but this is also where you can change your Company name, add a tagline, or update your company's logo. Your logo will show up in search results and make your business stand out.</p>
+
+			<h3><strong>Location Information</strong></h3>
+
+			<p>At LandSpec Pro we've split things up so you can manage your actual store location separate from your business. This allows for companies with multiple locations, as well as laying the groundwork for a lot of features we want to bring you in the future.</p>
+
+			<p>The "Manage" tap on the sidebar or dropdown menu provides you access to managing your store location(s). You can go there now to view your location and edit information. You can add in more contact information, links to social networks, and update the About section for your business. In the future we'll be rolling out even more customization options to manage your business here.</p>
+
+			<p>This brings us to the most important part of LandSpec Pro: Featured Items.</p>
+
+			<h3><strong>Featured Items</strong></h3>
+
+			<p>At the heart of LandSpec Pro is the ability to feature the items that are most important to you and your customers. Right now you can have up to three featured items for each location you have. This allows you to showcase what makes you stand out. We don't limit what type of items you can feature. Maybe you have something common, but you have the best and cheapest around. Maybe you have an extremely rare item. You showcase what's special to you and your customers, regardless of why it's special.</p>
+
+			<p>Your featured items are also managed from the "Manage" page. When you go to edit your location you will find a tab for Featured Items which will allow you to add and update your items. You can add a description, size, price, and a high-quality image to showcase your product to the world. We'll also be adding a lot of cool features to help you showcase and categorize your products even more in the near future.</p>
+
+			<h3><strong>Search and Favorites</strong></h3>
+
+			<p>For now searching for specialty items and suppliers is the main use of LandSpec Pro from the Landscaper's perspective. You can find the links on the sidebar and can use it to view other suppliers and products they are featuring. You can bookmark suppliers and their products throughout the site to keep track of your favorites.</p>
+
+			<p>So after you take a little time exploring the site and updating your information, remember that you have to activate your location before anyone else can see it or any featured items associated with it. We're still in the very early stages of LandSpec Pro and we're excited to have you be a part of this at this time. You'll notice a little feedback button on the bottom of every page, please feel free to send us any feedback, suggestions, or questions you have while you're using the site.</p>
+
+			<h5><strong>Thanks again for joining, enjoy!</strong></h5>
+		</div>
+
+		<div class="span4">
+				<strong style="font-size:20px; text-decoration:underline;" class="pull-right">Get Started</strong><br/><br/>
+				<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
+				<a href="<%= locations_edit_url(:id => @location.id) %>" class="pull-right">Update location information</a><br/>
+				<a href="<%= account_url %>" class="pull-right">Add a company logo</a><br/>
+				<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>" class="pull-right">Add Featured Items</a><br/>
+
+		</div>
+
+	</div>
+</div>
+
+<%= render 'layouts/sidebarend' %>
