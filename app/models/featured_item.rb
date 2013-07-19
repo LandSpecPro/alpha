@@ -30,6 +30,10 @@ class FeaturedItem < ActiveRecord::Base
 		return Product.find(self.product_id)
 	end
 
+	def get_location
+		return Loaction.find(self.location_id)
+	end
+
 	def get_category_ids
 		@categoryids = []
 		@categories = ProductHasCategory.where(:featured_item_id => self.id, :active => true) 

@@ -47,8 +47,8 @@ module ProductHelper
 		return get_visible(@featuredItems)
 	end
 
-	def search_for_featured_items_with_distance_only(distance)
-		@featuredItems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
+	def search_for_featured_items_with_distance_only(location, distance)
+		@featuredItems = FeaturedItem.near(location, distance).where(:active => true)
 		return get_visible(@featuredItems)
 	end
 
@@ -64,9 +64,9 @@ module ProductHelper
 	    return get_visible(@featureditems)
 	end
 
-	def search_for_featured_items_with_query_and_distance(query, distance)
+	def search_for_featured_items_with_query_and_distance(location, query, distance)
 	    @product = Product.where(:commonName => query, :active => true).first
-	    @featureditems = FeaturedItem.near(current_user.currentCity + ', ' + current_user.currentState + ', ', distance).where(:active => true)
+	    @featureditems = FeaturedItem.near(location, distance).where(:active => true)
 
 	    if @product
 			@featureditems = FeaturedItem.where(:active => true, :product_id => @product.id)

@@ -7,8 +7,9 @@
 	<thead>
 		<tr>
 			<th class="center">Common Name</th>
-			<th class="center">Latin Name</th>
+			<th class="hidden-phone center">Latin Name</th>
 			<th class="center">Supplier</th>
+			<th class="center">Distance Away (miles)</th>
 			<th class="hidden-phone center">Size</th>
 			<th class="hidden-phone center">Price</th>
 			<th class="center">Image</th>
@@ -31,13 +32,16 @@
 
 									%>" data-placement="bottom" data-trigger="hover"><%= fi.get_product.commonName %></a>
 							</td>
-							<td class="center">
+							<td class="hidden-phone center">
 								<%= fi.get_product.latinName %>
 							</td>
 							<td class="center">
 								<a href=<%= locations_view_url(:id => fi.location_id) %>>
 									<%= Location.find(fi.location_id).bus_vendor.busName %>
 								</a>
+							</td>
+							<td class="center">
+								<%= "%8.1f" % Location.find(fi.location_id).distance_from(@setlocation) %>
 							</td>
 							<td class='hidden-phone center'>
 								<%= fi.size %>
@@ -68,6 +72,7 @@
 <script type="text/javascript">
 	$('#table_report').dataTable( {
 		"aoColumns": [
+			{"bSortable": true},
 			{"bSortable": true},
 			{"bSortable": true},
 			{"bSortable": true},

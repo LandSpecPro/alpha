@@ -22,7 +22,22 @@
 						<div class="text">
 							<div class="inner">
 
-								<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+								<span>
+									<p style="font-size:18px;" data-rel="popover" data-content="<%= 
+									unless fi.description.blank?
+										fi.description.gsub(/\n/,'<br/>').html_safe 
+									else
+										'No description available'
+									end
+
+									%>" data-placement="top" data-trigger="hover">
+										<%= fi.get_product.commonName %>
+									</p>
+								</span>
+
+								<% unless Location.find(fi.location_id).distance_from(@setlocation).to_s == 'NaN' %>
+									<span><p style="font-size:15px;"><%= "%8.1f" % Location.find(fi.location_id).distance_from(@setlocation).to_s + ' miles away' %></p></span>
+								<% end %>
 
 								<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
 									<i class="icon-zoom-in"></i>

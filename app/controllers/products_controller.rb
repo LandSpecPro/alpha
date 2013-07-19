@@ -183,13 +183,20 @@ class ProductsController < ApplicationController
       params[:search] = ''
     end
 
+    @setlocation = nil
+    if params[:use_current_location]
+      @setlocation = request.location.city + ", " + request.location.state
+    else
+      @setlocation = params[:custom_location]
+    end
+
     @featureditems = nil
     if params[:commit] == 'Search'
       update_search_log
       if params[:distance_from] != '0' and params[:search] != ''
-        @featureditems = search_for_featured_items_with_query_and_distance(params[:search], params[:distance_from])
+        @featureditems = search_for_featured_items_with_query_and_distance(@setlocation, params[:search], params[:distance_from])
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @featureditems = search_for_featured_items_with_distance_only(params[:distance_from])
+        @featureditems = search_for_featured_items_with_distance_only(@setlocation, params[:distance_from])
       elsif params[:distance_from] == '0' and params[:search] != ''
         @featureditems = search_for_featured_items_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
