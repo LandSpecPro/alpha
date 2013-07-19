@@ -7,16 +7,16 @@ class ClaimLocation < ActiveRecord::Base
   	geocoded_by :get_full_address
   	after_validation :geocode
 
-  	def self.search_with_distance_and_query(distance_from, query, user)
+  	def self.search_with_distance_and_query(location, distance_from, query, user)
 
-	    @locsnear = self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:claimed => false)
+	    @locsnear = self.near(location, distance_from).where(:claimed => false)
 	    return @locsnear.search_all_locations(query).where(:claimed => false)
 
 	end
 
-	def self.search_with_distance_only(distance_from, user)
+	def self.search_with_distance_only(location, distance_from, user)
 
-		return self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:claimed => false)
+		return self.near(location, distance_from).where(:claimed => false)
 
 	end
 

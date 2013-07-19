@@ -33,9 +33,13 @@
 				<div class="accordion" id="searchFiltersHeader">
 					<div class="accordion-group">
 						<div class="accordion-heading">
-							<a href="#searchFilters" data-parent="#searchFiltersHeader" data-toggle="collapse" class="accordion-toggle collapsed">
-								Search Filters...
-							</a>
+
+							<div data-rel="popover" data-content="Use these filters to narrow your search by location." data-placement="left" data-trigger="hover">
+								<a href="#searchFilters" data-parent="#searchFiltersHeader" data-toggle="collapse" class="accordion-toggle collapsed">
+									Search Filters...
+								</a>
+							</div>
+							
 						</div>
 
 						<% if params[:distance_from] == '0' or params[:distance_from].blank? %>

@@ -1,12 +1,12 @@
 <%= render 'layouts/sidebar' %>
 
-<% if @locations.nil? %>
+<% if @locations.nil? and @otherlocations.nil? %>
 	<%= render 'search' %>
 <% else %>
 	<%= render 'search' %>
 	<div class="row-fluid">
 		<div class="span12">
-			<% if @locations.count == 0 %>
+			<% if @locations.count == 0 and @otherlocations.count == 0 %>
 				<div class="center"><br/>
 					<h3>0 locations were found!</h3>
 				</div>
@@ -24,5 +24,6 @@
 
 	$(applyChosenStyle());
 	$(applyColorbox());
+	$(applyPopovers());
 
 </script>

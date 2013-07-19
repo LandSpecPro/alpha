@@ -36,7 +36,7 @@
 					<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank", :title => "View on Map" %>
 				</td>
 				<td class='center'>
-					<%= "%8.1f" % l.distance_from(current_user.currentCity + ", " + current_user.currentState) %>
+					<%= "%8.1f" % l.distance_from(@setlocation) %>
 				</td>
 				<td class="center">
 					<% if l.is_favorited(current_user) %>
@@ -63,7 +63,7 @@
 					<%= link_to ol.get_full_address, get_map_link_from_address(concat_unclaimed_address(ol)), :target => "_blank", :title => "View on Map" %>
 				</td>
 				<td class='center'>
-					<%= "%8.1f" % ol.distance_from(current_user.currentCity + ", " + current_user.currentState) %>
+					<%= "%8.1f" % ol.distance_from(@setlocation) %>
 				</td>
 				<td class="center">
 				</td>

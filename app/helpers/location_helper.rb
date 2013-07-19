@@ -106,4 +106,6 @@ module LocationHelper
       location.save
     end
 
+    
+
 end

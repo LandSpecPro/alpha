@@ -31,16 +31,16 @@ class Location < ActiveRecord::Base
 	validates_format_of :primaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Primary Email address is not valid."
 	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."
 
-	def self.search_with_distance_and_query(distance_from, query, user)
+	def self.search_with_distance_and_query(location, distance_from, query, user)
 
-	    @locsnear = self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:active => true)
+	    @locsnear = self.near(location, distance_from).where(:active => true)
 	    return @locsnear.search_all_locations(query).where(:active => true)
 
 	end
 
-	def self.search_with_distance_only(distance_from, user)
+	def self.search_with_distance_only(location, distance_from, user)
 
-		return self.near('' + user.currentCity + ", " + user.currentState + ', US', distance_from).where(:active => true)
+		return self.near(location, distance_from).where(:active => true)
 
 	end
 

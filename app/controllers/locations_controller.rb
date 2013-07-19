@@ -183,16 +183,23 @@ autocomplete :product, :commonName
     if params[:distance_from].blank?
       params[:distance_from] = '0'
     end
+
+    @setlocation = nil
+    if params[:use_current_location]
+      @setlocation = request.location
+    else
+      @setlocation = params[:custom_location]
+    end
     
     @locations = nil
     @otherlocations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''
-        @locations = Location.search_with_distance_and_query(params[:distance_from], params[:search], current_user)
-        @otherlocations = ClaimLocation.search_with_distance_and_query(params[:distance_from], params[:search], current_user)
+        @locations = Location.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user)
+        @otherlocations = ClaimLocation.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user)
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @locations = Location.search_with_distance_only(params[:distance_from], current_user)
-        @otherlocations = ClaimLocation.search_with_distance_only(params[:distance_from], current_user)
+        @locations = Location.search_with_distance_only(@setlocation, params[:distance_from], current_user)
+        @otherlocations = ClaimLocation.search_with_distance_only(@setlocation, params[:distance_from], current_user)
       elsif params[:distance_from] == '0' and params[:search] != ''
         @locations = Location.search_with_query_only(params[:search])
         @otherlocations = ClaimLocation.search_with_query_only(params[:search])
