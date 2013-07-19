@@ -186,7 +186,7 @@ autocomplete :product, :commonName
 
     @setlocation = nil
     if params[:use_current_location]
-      @setlocation = request.location
+      @setlocation = request.location.city + ", " + request.location.state
     else
       @setlocation = params[:custom_location]
     end

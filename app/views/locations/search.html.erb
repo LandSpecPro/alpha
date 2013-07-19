@@ -1,5 +1,7 @@
 <%= render 'layouts/sidebar' %>
 
+<%= @setlocation %>
+
 <% if @locations.nil? and @otherlocations.nil? %>
 	<%= render 'search' %>
 <% else %>
