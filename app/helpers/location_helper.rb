@@ -44,17 +44,66 @@ module LocationHelper
 
     def update_search_log
 
-    @cats = ''
+      @cats = ''
 
-    if not params[:categories].nil?
-      params[:categories].each do |c|
-        @cats = @cats + Category.find(c).category + " "
+      if not params[:categories].nil?
+        params[:categories].each do |c|
+          @cats = @cats + Category.find(c).category + " "
+        end
       end
+
+      @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location', :categories => @cats)
+      @searchlog.save
+
     end
 
-    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location', :categories => @cats)
-    @searchlog.save
+    def update_weight_rank(location)
 
-  end
+      # 5 points for tagline, each link, and email
+      # 8 points for about section
+      # 12 points for company logo
+      # 15 points for having at least one featured item
+
+      @weight = 0
+
+      unless location.primaryEmail.blank?
+        @weight = @weight + 5
+      end
+
+      unless location.websiteLink.blank?
+        @weight = @weight + 5
+      end
+
+      unless location.facebookLink.blank?
+        @weight = @weight + 5
+      end
+
+      unless location.twitterLink.blank?
+        @weight = @weight + 5
+      end
+
+      unless location.googleLink.blank?
+        @weight = @weight + 5
+      end
+
+      unless BusVendor.find(location.bus_vendor_id).tagline.blank?
+        @weight = @weight + 5
+      end
+
+      unless location.bio.blank?
+        @weight = @weight + 8
+      end
+
+      unless BusVendor.find(location.bus_vendor_id).logo_file_name.blank?
+        @weight = @weight + 12
+      end
+
+      unless FeaturedItem.where(:location_id => location.id).count == 0
+        @weight = @weight + 15
+      end
+
+      location.searchWeight = @weight
+      location.save
+    end
 
 end

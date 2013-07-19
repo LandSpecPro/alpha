@@ -42,7 +42,7 @@ autocomplete :product, :commonName
     if @location.save
       flash[:notice] = "New Location Added!"
 
-      #redirect_to locations_show_url(:location_id => @location.id)
+      update_weight_rank(@location)
       redirect_to locations_manage_url
 
     else
@@ -78,6 +78,7 @@ autocomplete :product, :commonName
     @location = Location.find(params[:id])
     @location.bio = params[:bio]
     @location.save
+    update_weight_rank(@location)
     redirect_back_or_default('/')
   end
 
@@ -165,6 +166,7 @@ autocomplete :product, :commonName
     @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
+      update_weight_rank(@location)
       @location.format_all_urls
       @location.save
       flash[:notice] = "Account updated!"
