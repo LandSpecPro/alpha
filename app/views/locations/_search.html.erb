@@ -35,6 +35,8 @@
 						<% end %>
 
 							<div class="accordion-inner center">
+								<%= if params[:use_current_location]
+									request.location.city + ', ' + request.location.state end %>
 								<div class="center" style="margin-left:30px; margin-right:30px;">
 									<%= check_box_tag 'use_current_location', 'true', params[:use_current_location] %> <label class="lbl" for="use_current_location"> Use Current Location</label>
 								</div>
