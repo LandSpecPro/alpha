@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
   def require_user_is_buyer
     if current_user.userType != STRING_BUYER and current_user.userType != 'Buyer'
       flash[:notice] = "You must be a buyer to access this page."
-      redirect_back_or_default(business_dashboard_url)
+      redirect_back_or_default(buyer_dashboard_url)
       return false
     end
   end
