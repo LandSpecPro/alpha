@@ -57,12 +57,13 @@ module UsersHelper
 	    if @user.save
 	      claim_bus_vendor(@user, claimlocation)
 	    else
-	      render 'claim_profile'
+
+	      return false
 	    end
 	  end
 
 	  def claim_bus_vendor(user, claimlocation)
-	    @busvendor = user.create_bus_vendor(:busName => claimlocation.bus_name)    
+	    @busvendor = user.build_bus_vendor(:busName => claimlocation.bus_name, :busPhone => claimlocation.loc_phone)    
 	    
 	    if @busvendor.save
 	      user.bus_vendor_id = @busvendor.id
@@ -70,7 +71,7 @@ module UsersHelper
 	      claim_location(user, claimlocation, @busvendor)
 	    else
 	      user.destroy
-	      render 'claim_profile'
+	      return false
 	    end
 
 	  end
@@ -83,7 +84,9 @@ module UsersHelper
 	    if not busvendor.save
 	      user.destroy
 	      busvendor.destroy
-	      render 'claim_profile'
+	      return false
+	    else
+	      return true
 	    end
 
 	  end

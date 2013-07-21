@@ -198,6 +198,8 @@ class UsersController < ApplicationController
     ClaimLocation.where(:claimed => false).each do |l|
       if params[:token] == l.claim_token
         @claimlocation = l
+        @userlogin = @claimlocation.user_login
+        @useremail = @claimlocation.user_email
       end
     end
 
@@ -209,19 +211,41 @@ class UsersController < ApplicationController
 
   def create_claimed_profile
 
+
+
     # USER: login, email, userType, password
     # BUS_VENDOR: busName
     # LOCATION: primaryPhone, address1, address2, city, state, zip, website, ?latitude, ?longitude (automatic lat and long?)
     @claimlocation = ClaimLocation.find(params[:user][:claim_location_id])
     params[:user].delete :claim_location_id
 
-    claim_user(@claimlocation)
+    @user = User.new(params[:user])
+    @location = Location.new
 
-    @claimlocation.claimed = true
-    if @claimlocation.save
-      redirect_to profile_claim_success_url
+    @userlogin = params[:user][:login]
+    @useremail = params[:user][:email]
+
+    @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
+
+    if @confirmemail
+      render 'claim_profile'
+      return
+    end
+
+    if claim_user(@claimlocation)
+
+      @claimlocation.claimed = true
+      if @claimlocation.save
+          redirect_to profile_claim_success_url
+          return
+      else
+        render :action => :claim_profile #CHANGE TO ERROR URL LATER
+        return
+      end
+
     else
-      render :action => :claim_profile #CHANGE TO ERROR URL LATER
+      render 'claim_profile'
+      return
     end
 
   end

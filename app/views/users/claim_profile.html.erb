@@ -19,18 +19,25 @@
 								</div>
 							<% end %>
 
+							<% if @confirmemail %>
+								<div class="alert alert-error">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>Error! </strong> Email confirmation does not match!
+								</div>
+							<% end %>
+
 							<fieldset>
 
 								<%= f.hidden_field :claim_location_id, :value => @claimlocation.id %>
 
 								<!--[if lt IE 10]>Username:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :login, :value => @claimlocation.user_login, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
+									<%= f.text_field :login, :value => @userlogin, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
 									<i class="icon-user"></i>
 								</span>
 								<!--[if lt IE 10]>Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :email, :value => @claimlocation.user_email, :class => 'span12', :placeholder => "Email" %>
+									<%= f.text_field :email, :value => @useremail, :class => 'span12', :placeholder => "Email" %>
 									<i class="icon-envelope-alt"></i>
 								</span>
 								<!--[if lt IE 10]>Confirm Email:<![endif]-->
