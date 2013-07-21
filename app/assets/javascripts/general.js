@@ -38,8 +38,12 @@ function applyColorbox() {
 }
 
 function applyPopovers(){
+
 	$('[data-rel=tooltip]').tooltip();
 	$('[data-rel=popover]').popover({html:true});
+
+	$('.profile-social-links > a').tooltip();
+
 }
 
 
