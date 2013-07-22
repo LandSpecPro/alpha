@@ -151,13 +151,17 @@
 					<div class="profile-info-name"> Address </div>
 
 					<div class="profile-info-value">
-						<i class="icon-map-marker light-orange bigger-110"></i>
-						<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+						<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank"> 
+							<i class="icon-map-marker light-orange bigger-110"></i>
+							<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+						</a>
 					</div>
 				</div>
 
 			</div>
 
+
+<!--
 			<div class="hr hr12 dotted"></div>
 
 			<div class="clearfix">
@@ -173,7 +177,7 @@
 			</div>
 
 			<div class="hr hr12 dotted"></div>
-
+-->
 
 		</div>
 
