@@ -85,14 +85,14 @@
 						<% else %>
 							<li>
 						<% end %>
-								<a href=<%= products_search_url(:view => 'grid') %>><i class="icon-double-angle-right"></i> Products</a>
+								<a href=<%= products_search_url(:view => 'grid', :use_current_location => true) %>><i class="icon-double-angle-right"></i> Products</a>
 							</li>
 						<% if controller.controller_name == 'locations' and controller.action_name == 'search' %>
 							<li class="active">
 						<% else %>
 							<li>
 						<% end %>
-								<a href=<%= locations_search_url %>><i class="icon-double-angle-right"></i> Suppliers</a>
+								<a href=<%= locations_search_url(:use_current_location => true) %>><i class="icon-double-angle-right"></i> Suppliers</a>
 							</li>
 						</ul>
 
