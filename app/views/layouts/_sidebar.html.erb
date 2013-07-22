@@ -21,31 +21,6 @@
 
 			<ul class="nav nav-list">
 
-				<li>
-					<a href="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
-						<span class="menu-text"> UI Elements </span>
-
-						<b class="arrow icon-angle-down"></b>
-					</a>
-
-					<ul class="submenu">
-						<li>
-							<a href="elements.html">
-								<i class="icon-double-angle-right"></i>
-								Elements
-							</a>
-						</li>
-
-						<li>
-							<a href="buttons.html">
-								<i class="icon-double-angle-right"></i>
-								Buttons &amp; Icons
-							</a>
-						</li>
-					</ul>
-				</li>
-
 				<% if current_user.is_vendor %>
 
 					<% if controller.controller_name == 'locations' and controller.action_name != 'search'%>
@@ -68,13 +43,6 @@
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-search"></i>
 							<span class="menu-text">Search</span>
-							<b class="arrow icon-angle-down"></b>
-						</a>
-
-						<a href="#" class="dropdown-toggle">
-							<i class="icon-desktop"></i>
-							<span class="menu-text"> UI Elements </span>
-
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
