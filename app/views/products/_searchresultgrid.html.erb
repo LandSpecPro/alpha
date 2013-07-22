@@ -36,7 +36,7 @@
 								</span>
 
 								<% unless Location.find(fi.location_id).distance_from(@setlocation).to_s == 'NaN' %>
-									<span><p style="font-size:15px;"><%= "%8.1f" % Location.find(fi.location_id).distance_from(@setlocation) %> miles away</p></span>
+									<span><p style="font-size:15px;"><%= "%8.1f" % Location.find(fi.location_id).distance_from(@setlocation).to_s + ' miles away' %></p></span>
 								<% end %>
 
 								<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
