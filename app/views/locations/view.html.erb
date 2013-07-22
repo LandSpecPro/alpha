@@ -75,7 +75,7 @@
 			<div class="space-16"></div>
 
 			<div class="profile-contact-info">
-				<div class="profile-contact-links align-left">
+				<div class="profile-contact-links center">
 
 					<% if @location.is_favorited(current_user) %>
 						<a class="btn btn-link" title="Remove from favorites" href=<%= locations_favorite_set_url(:id => @location.id) %>><i  class="icon-bookmark" id="fav_icon"></i> Remove From Favorites</a>
@@ -188,7 +188,7 @@
 				<div class="widget-box transparent">
 					<div class="widget-header widget-header-large">
 						<h2 class="smaller">
-							<i class="icon-male bigger-110"></i>
+							<i class="icon-info-sign bigger-110"></i>
 							About
 						</h2>
 					</div>
