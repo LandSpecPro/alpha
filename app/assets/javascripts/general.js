@@ -43,6 +43,7 @@ function applyPopovers(){
 	$('[data-rel=popover]').popover({html:true});
 
 	$('.profile-social-links > a').tooltip();
+	$('.tooltip-success').tooltip();
 
 }
 

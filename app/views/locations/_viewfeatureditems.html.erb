@@ -20,29 +20,29 @@
 
 									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
-										<i class="icon-zoom-in" title="View Larger"></i>
+									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="<%= fi.get_product.commonName %>" data-placement="bottom" data-original-title="View Larger">
+										<i class="icon-zoom-in"></i>
 									</a>
 
 									<% if fi.is_favorited(current_user) %>
-										<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+										<a href=<%= products_favorite_set_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Remove from Favorites"><i  class="icon-bookmark" id="fav_icon"></i></a>
 									<% else %>
-										<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i>
+										<a href=<%= products_favorite_set_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add to Favorites"><i  class="icon-bookmark-empty" id="fav_icon"></i>
 										</a>
 									<% end %>
 
-									<a href=<%= products_view_url(:id => fi.id) %>>
-										<i class="icon-info-sign" title="Info"></i>
+									<a href=<%= products_view_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+										<i class="icon-info-sign"></i>
 									</a>
 
 									<% if @location.is_owner(current_user) %>
 
-										<a href=<%= products_edit_url(:id => fi.id) %>>
-											<i class="icon-pencil" title="Edit"></i>
+										<a href=<%= products_edit_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Product Info">
+											<i class="icon-pencil"></i>
 										</a>
 										
-										<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
-											<i class="icon-trash" title="Delete"></i>
+										<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>" data-rel="tooltip" class="tooltip-error" title="" data-placement="bottom" data-original-title="Delete Product">
+											<i class="icon-trash"></i>
 										</a>
 
 									<% end %>
@@ -98,8 +98,8 @@
 
 									<span><p style="font-size:15px;">No Product</p></span>
 
-									<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>">
-										<i class="icon-plus" title="Add Featured Item"></i>
+									<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add Featured Item">
+										<i class="icon-plus"></i>
 									</a>
 
 								</div>
