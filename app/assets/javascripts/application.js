@@ -10,8 +10,8 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require bootstrap
+//= require theme/jquery-2.0.3.min
+//= require theme/bootstrap.min
 //= require theme/jquery-ui-1.10.3.custom.min
 //= require theme/jquery.ui.touch-punch.min
 //= require theme/chosen.jquery.min
@@ -21,8 +21,8 @@
 //= require theme/jquery.validate.min
 //= require theme/jquery.dataTables.min
 //= require theme/jquery.dataTables.bootstrap
-//= require theme/ace.min
 //= require theme/ace-elements.min
+//= require theme/ace.min
 //= require masks
 //= require general
 //= require gritter.notifications

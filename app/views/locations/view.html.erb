@@ -1,50 +1,228 @@
 <%= render 'layouts/sidebar' %>
 
+<div>
+	<div id="user-profile-1" class="user-profile row-fluid">
+		<div class="span4 center">
+			<div>
+				<span class="profile-picture">
+					<% if @location.is_owner(current_user) %>
+						<ul class="ace-thumbnails">
+							<li>
+								<span>
+									<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+									<div class="text">
+										<div class="inner">
+											<span><p style="font-size:15px;">Edit Company Logo</p></span>
+											<a href="<%= account_url %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Company Logo">
+												<i class="icon-pencil"></i>
+											</a>
+										</div>
+									</div>
+								</span>
+							</li>
+						</ul>
+					<% else %>
+						<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+					<% end %>
+				</span>
 
-<!--<div class="span10 offset1" id='map-canvas' style="height:250px;">
+				<div class="space-4"></div>
 
-	SPOT FOR COVER PHOTO TYPE FEATURE!
+				<div class="profile-social-links center">
+					<% unless @location.facebookLink.blank? %>
+						<a href="<%= @location.facebookLink %>" title="" class="tooltip-info" data-original-title="View Our Facebook" target="_blank">
+							<i class="middle icon-facebook-sign icon-2x blue"></i>
+						</a>
+					<% end %>
 
-</div>-->
+					<% unless @location.twitterLink.blank? %>
+						<a href="<%= @location.twitterLink %>" class="tooltip-info" title="" data-original-title="View Our Twitter" target="_blank">
+							<i class="middle icon-twitter-sign icon-2x light-blue"></i>
+						</a>
+					<% end %>
 
-	<div class="row-fluid">
-
-		<div class="span6">
-
-			<% unless @location.active %>
-				<div class="alert alert-error">
-				  <strong>Inactive! </strong> This location is inactive and is only visible to you. Until activated, this location and the items featured will not be visible to anyone else.
+					<% unless @location.googleLink.blank? %>
+						<a href="<%= @location.googleLink %>" class="tooltip-info" title="" data-original-title="View Our Google+" target="_blank">
+							<i class="middle icon-google-plus-sign icon-2x red"></i>
+						</a>
+					<% end %>
 				</div>
-			<% end %>
 
-			<% unless @location.bio.blank? %>
-				<%= render 'viewlocationwithbio' %>
-			<% else %>
-				<%= render 'viewlocationwithoutbio' %>
-			<% end %>
-			
-		</div> <!-- end span6 -->
+				<div class="space-10"></div>
 
-		<div class="span5">
-
-			<!-- WHERE STATUS USED TO GO -->
-
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="widget-box">
-						<div class="widget-header header-color-green2">
-								<h3 class="lighter header-font-white">Featured Items</h3>
-						</div>
+				<div class="width-90 label label-info label-large arrowed-in arrowed-in-right">
+					<div class="inline position-relative">
+							<span class="white middle bigger-120"><%= @location.bus_vendor.busName %></span>
+							<% unless @location.locName.blank? %>
+								<br/><%= @location.locName %>
+							<% end %>
 					</div>
 				</div>
 			</div>
 
-			<%= render 'viewfeatureditems' %>
+			<% unless @location.bus_vendor.tagline.blank? %>
+
+				<div class="space-16"></div>
+
+				<div class="widget-box transparent">
+					<div class="widget-header" style="text-align:center; font-style:oblique; padding-bottom:10px;">
+						"<%= @location.bus_vendor.tagline %>"
+					</div>
+				</div>
+
+			<% end %>
+
+			<div class="space-16"></div>
+
+			<div class="profile-contact-info">
+				<div class="profile-contact-links center">
+
+					<% if @location.is_favorited(current_user) %>
+						<a class="btn btn-link" title="Remove from favorites" href=<%= locations_favorite_set_url(:id => @location.id) %>><i  class="icon-bookmark" id="fav_icon"></i> Remove From Favorites</a>
+					<% else %>
+						<a class="btn btn-link"title="Add to favorites"  href=<%= locations_favorite_set_url(:id => @location.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i> Add To Favorites</a>
+					<% end %>
+					<br/>
+					<% unless @location.websiteLink.blank? %>
+						<a class="btn btn-link" href="<%= @location.websiteLink %>" target="_blank">
+							<i class="icon-globe blue"></i>
+							View Website
+						</a>
+					<% end %>
+				</div>
+
+			</div>
+
+			<div class="space-16"></div>
+
+			<div class="profile-user-info profile-user-info-striped">
+
+				<% unless @location.primaryEmail.blank? %>
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Email </div>
+
+						<div class="profile-info-value">
+							<span id="primaryEmail"><%= @location.primaryEmail %></span>
+						</div>
+					</div>
+				<% end %>
+
+				<% unless @location.secondaryEmail.blank? %>
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Alt. Email </div>
+
+						<div class="profile-info-value">
+							<span id="secondaryEmail"><%= @location.secondaryEmail %></span>
+						</div>
+					</div>
+				<% end %>
+
+				<% unless @location.primaryPhone.blank? %>
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Phone </div>
+
+						<div class="profile-info-value">
+							<span id="primaryPhone"><%= @location.primaryPhone %></span>
+						</div>
+					</div>
+				<% end %>
+
+				<% unless @location.secondaryPhone.blank? %>
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Alt. Phone </div>
+
+						<div class="profile-info-value">
+							<span id="secondaryPhone"><%= @location.secondaryPhone %></span>
+						</div>
+					</div>
+				<% end %>
+
+				<% unless @location.fax.blank? %>
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Fax </div>
+
+						<div class="profile-info-value">
+							<span id="fax"><%= @location.fax %></span>
+						</div>
+					</div>
+				<% end %>
+
+				<div class="profile-info-row">
+					<div class="profile-info-name"> Address </div>
+
+					<div class="profile-info-value">
+						<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank"> 
+							<i class="icon-map-marker light-orange bigger-110"></i>
+							<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+
+<!--
+			<div class="hr hr12 dotted"></div>
+
+			<div class="clearfix">
+				<div>
+					Favorited By:
+					<br/>
+					<span class="bigger-175 blue">
+						<%= FavLocation.where(:location_id => @location.id, :active => true).count.to_s %>
+					</span>
+					<br />
+					Users
+				</div>
+			</div>
+
+			<div class="hr hr12 dotted"></div>
+-->
 
 		</div>
 
-	</div> <!-- end row-fluid -->
+		<div class="span8">
+			<% if not @location.active %>
+				<div class="alert alert-error">
+					<strong>Warning! </strong> This location is currently incative and only visible to you. Go to the edit location page to activate this so other users can view this page and find you in search results.
+				</div>
+			<% end %>
 
+			<% unless @location.bio.blank? %>
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-large">
+						<h2 class="smaller">
+							<i class="icon-info-sign bigger-110"></i>
+							About
+						</h2>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main">
+							<p><%= @location.bio %></p>
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<div class="widget-box transparent">
+				<div class="widget-header widget-header-large">
+					<h2 class="smaller">
+						<i class="icon-star bigger-110"></i>
+						Featured Items
+					</h2>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main">
+						<%= render 'locations/viewfeatureditems' %>		
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
 <%= render 'layouts/sidebarend' %>
 
 <script type="text/javascript">

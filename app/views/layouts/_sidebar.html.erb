@@ -1,17 +1,17 @@
-<div class="container-fluid" id="main-container">
-		<a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
+<div class="main-container container-fluid">
+		<a href="#" class="menu-toggler" id="menu-toggler"><span class="menu-text"></span></a><!-- menu toggler -->
 
-		<div id="sidebar">
+		<div id="sidebar" class="sidebar">
 			
 			<!--
-			<div id="sidebar-shortcuts">
-				<div id="sidebar-shortcuts-large">
+			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+				<div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large">
 					<button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
 					<button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
 					<button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
 					<button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
 				</div>
-				<div id="sidebar-shortcuts-mini">
+				<div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
 					<span class="btn btn-info"></span>
 					<span class="btn btn-warning"></span>
@@ -40,9 +40,9 @@
 				<% else %>
 					<li>
 				<% end %>
-						<a href="#" class="dropdown-toggle" >
+						<a href="#" class="dropdown-toggle">
 							<i class="icon-search"></i>
-							<span>Search</span>
+							<span class="menu-text">Search</span>
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
@@ -73,7 +73,7 @@
 				<% end %>
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-star"></i>
-							<span>Favorites</span>
+							<span class="menu-text">Favorites</span>
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
@@ -136,15 +136,15 @@
 
 			</ul><!--/.nav-list-->
 
-			<div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+			<div class="sidebar-collapse" id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
 
 
 		</div><!--/#sidebar-->
 
 	
-		<div id="main-content" class="clearfix">
+		<div id="main-content" class="main-content">
 
-				<div id="page-content" class="clearfix">
+				<div id="page-content" class="page-content">
 
 					<div class="page-header position-relative row-fluid">
 
@@ -163,6 +163,7 @@
 					</div><!--/page-header-->
 
 					<div class="row-fluid">
+						<div class="clearfix">
 
 <!-- PAGE CONTENT BEGINS HERE -->
 <!-- PAGE CONTENT ENDS HERE -->

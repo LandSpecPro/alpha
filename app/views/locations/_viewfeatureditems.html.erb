@@ -2,59 +2,62 @@
 
 	<div class="row-fluid">
 		<div class="span6">
-			<ul class="ace-thumbnails">
-				<li>
-					<span>
+			<div class="pull-right">
+				<ul class="ace-thumbnails">
+					<li>
+						<span>
 
-						<img src="<%= fi.get_image.url(:large) %>" width="400px" height="400px"/>
+							<img src="<%= fi.get_image.url(:large) %>" width="400px" height="400px"/>
 
-						<% if fi.is_favorited(current_user) %>
-							<div class="tags">
-								<span class="label label-info arrowed">Favorited!</span>
-							</div>
-						<% end %>
+							<% if fi.is_favorited(current_user) %>
+								<div class="tags">
+									<span class="label label-info arrowed">Favorited!</span>
+								</div>
+							<% end %>
 
-						<div class="text">
-							<div class="inner">
+							<div class="text">
+								<div class="inner">
 
-								<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-								<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
-									<i class="icon-zoom-in" title="View Larger"></i>
-								</a>
-
-								<% if fi.is_favorited(current_user) %>
-									<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-								<% else %>
-									<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i>
+									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="<%= fi.get_product.commonName %>" data-placement="bottom">
+										<i class="icon-zoom-in"></i>
 									</a>
-								<% end %>
 
-								<a href=<%= products_view_url(:id => fi.id) %>>
-									<i class="icon-info-sign" title="Info"></i>
-								</a>
+									<% if fi.is_favorited(current_user) %>
+										<a href=<%= products_favorite_set_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Remove from Favorites"><i  class="icon-bookmark" id="fav_icon"></i></a>
+									<% else %>
+										<a href=<%= products_favorite_set_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add to Favorites"><i  class="icon-bookmark-empty" id="fav_icon"></i>
+										</a>
+									<% end %>
 
-								<% if @location.is_owner(current_user) %>
-
-									<a href=<%= products_edit_url(:id => fi.id) %>>
-										<i class="icon-pencil" title="Edit"></i>
+									<a href=<%= products_view_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+										<i class="icon-info-sign"></i>
 									</a>
+
+									<% if @location.is_owner(current_user) %>
+
+										<a href=<%= products_edit_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Product Info">
+											<i class="icon-pencil"></i>
+										</a>
+										
+										<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>" data-rel="tooltip" class="tooltip-error" title="" data-placement="bottom" data-original-title="Delete Product">
+											<i class="icon-trash"></i>
+										</a>
+
+									<% end %>
 									
-									<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
-										<i class="icon-trash" title="Delete"></i>
-									</a>
-
-								<% end %>
-								
+								</div>
 							</div>
-						</div>
 
-					</span>
-				</li>
-			</ul>
+						</span>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="span6">
+			<br/>
 			<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
 			<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
 				<p style="font-size:15px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
@@ -82,32 +85,35 @@
 
 	<div class="row-fluid">
 		<div class="span6">
-			<ul class="ace-thumbnails">
-				<li>
+			<div class="pull-right">
+				<ul class="ace-thumbnails">
+					<li>
 
-					<span>
+						<span>
 
-						<img src="/images/default/featureditem.png" width="400px" height="400px"/>
+							<img src="/images/default/featureditem.png" width="400px" height="400px"/>
 
-						<div class="text">
-							<div class="inner">
+							<div class="text">
+								<div class="inner">
 
-								<span><p style="font-size:15px;">No Product</p></span>
+									<span><p style="font-size:15px;">No Product</p></span>
 
-								<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>">
-									<i class="icon-plus" title="Add Featured Item"></i>
-								</a>
+									<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add Featured Item">
+										<i class="icon-plus"></i>
+									</a>
 
+								</div>
 							</div>
-						</div>
 
-					</span>
+						</span>
 
-				</li>
-			</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="span6">
+			<br/>
 			<p style="font-size:24px;"><strong>No Product</strong></p>
 		</div>
 	</div>
