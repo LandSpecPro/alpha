@@ -28,7 +28,7 @@
 					</a>
 				</td>
 				<td class="center">
-					<a data-toggle="modal" href="<%= '#' + l.id.to_s + 'locationInfoPopup' %>" title="View Location Information">
+					<a href="<%= locations_view_url(:id => l.id) %>" title="View Profile">
 						<%= BusVendor.find(l.bus_vendor_id).busName %>
 					</a>
 				</td>
@@ -47,146 +47,7 @@
 				</td>
 			</tr>
 
-			<div id="<%= l.id.to_s + 'locationInfoPopup' %>"class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-				
-				<div class="modal-header header-color-green2">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3 style="color:#fff;"><%= l.busName %></h3>
-				</div>
-
-				<div class="modal-body">
-
-
-					<div class="profile-user-info profile-user-info-striped">
-
-						<% unless l.locName.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Location Name </div>
-
-								<div class="profile-info-value">
-									<span id="locName"><%= l.locName %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.primaryEmail.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Email </div>
-
-								<div class="profile-info-value">
-									<span id="primaryEmail"><%= l.primaryEmail %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.secondaryEmail.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Alt. Email </div>
-
-								<div class="profile-info-value">
-									<span id="secondaryEmail"><%= l.secondaryEmail %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.primaryPhone.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Phone </div>
-
-								<div class="profile-info-value">
-									<span id="primaryPhone"><%= l.primaryPhone %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.secondaryPhone.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Alt. Phone </div>
-
-								<div class="profile-info-value">
-									<span id="secondaryPhone"><%= l.secondaryPhone %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.fax.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Fax </div>
-
-								<div class="profile-info-value">
-									<span id="fax"><%= l.fax %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.websiteLink.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Website </div>
-
-								<div class="profile-info-value">
-									<span id="websiteLink"><%= l.websiteLink %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.facebookLink.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Facebook </div>
-
-								<div class="profile-info-value">
-									<span id="facebookLink"><%= l.facebookLink %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.twitterLink.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Twitter </div>
-
-								<div class="profile-info-value">
-									<span id="twitterLink"><%= l.twitterLink %></span>
-								</div>
-							</div>
-						<% end %>
-
-						<% unless l.googleLink.blank? %>
-							<div class="profile-info-row">
-								<div class="profile-info-name"> Google+ </div>
-
-								<div class="profile-info-value">
-									<span id="googleLink"><%= l.googleLink %></span>
-								</div>
-							</div>
-						<% end %>
-
-					</div>
-					
-					<% unless l.bio.blank? %>
-						<div class="widget-box transparent">
-							<div class="widget-header widget-header-large">
-								<h2 class="smaller">
-									<i class="icon-info-sign bigger-110"></i>
-									About
-								</h2>
-							</div>
-
-							<div class="widget-body">
-								<div class="widget-main">
-									<p><%= l.bio %></p>
-								</div>
-							</div>
-						</div>
-					<% end %>
-
-					<a class="btn btn-success btn-block" href="<%= locations_view_url(:id => l.id) %>">
-						View Location
-					</a>
-
-				</div>
-
-			</div>
-
-		<% end %>	
+		<% end %>				
 
 		<% @otherlocations.order('"bus_name" ASC').each do |ol| %>
 			<tr>
@@ -242,7 +103,11 @@
 								<div class="profile-info-name"> Website </div>
 
 								<div class="profile-info-value">
-									<span id="primaryEmail"><%= ol.loc_website %></span>
+									<span id="primaryEmail">
+										<a href="<%= ol.loc_website %>" target="_blank">
+											<%= ol.loc_website %>
+										</a>
+									</span>
 								</div>
 							</div>
 						<% end %>
