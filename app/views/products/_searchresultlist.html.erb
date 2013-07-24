@@ -52,7 +52,7 @@
 								<% end %>
 							</td>
 							<td class='center'>
-								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"} %>
+								<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"}, :class => 'colorbox-result' %>
 							</td>
 							<td class="center">
 								<% if fi.is_favorited(current_user) %>
@@ -70,6 +70,7 @@
 </table>
 
 <script type="text/javascript">
+
 	$('#table_report').dataTable( {
 		"aoColumns": [
 			{"bSortable": true},

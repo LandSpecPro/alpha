@@ -7,6 +7,19 @@ function applyChosenStyle(){
 // Apply colorbox style for viewing images
 function applyColorbox() {
 
+	var colorbox_params = getColorboxParams();
+
+	$('[data-rel="colorbox"]').colorbox(colorbox_params);
+
+	$(window).on('resize.colorbox', function() {
+		try {
+			$.fn.colorbox.load();//to redraw the current frame
+		} catch(e){}
+	});
+}
+
+function getColorboxParams(){
+
 	var colorbox_params = {
 		reposition:true,
 		scalePhotos:true,
@@ -28,13 +41,7 @@ function applyColorbox() {
 		}
 	};
 
-	$('[data-rel="colorbox"]').colorbox(colorbox_params);
-
-	$(window).on('resize.colorbox', function() {
-		try {
-			$.fn.colorbox.load();//to redraw the current frame
-		} catch(e){}
-	});
+	return colorbox_params;
 }
 
 function applyPopovers(){

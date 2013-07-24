@@ -103,6 +103,11 @@
       letter-spacing: -1px;
     }
 
+    #content-over-carousel{
+        position:absolute; 
+        top:-20px; 
+        right:170px;
+      }
 
 
     /* RESPONSIVE CSS
@@ -133,7 +138,7 @@
         height: 500px;
       }
       .carousel img {
-        top: -50px;
+        top: 0px;
         left: -150px;
         width: auto;
         box-shadow: 0 0 30px #000;
@@ -149,6 +154,12 @@
         float: none;
         max-width: 40%;
         margin: 0 auto 20px;
+      }
+
+      #content-over-carousel{
+        position:absolute; 
+        top:-50px; 
+        right:70px;
       }
     }
 
@@ -187,22 +198,40 @@
         line-height: 1.5;
       }
 
+      #content-over-carousel{
+        position:absolute; 
+        top:50px; 
+        right:20px;
+      }
+
     }
 
 </style>
 
 <!-- Carousel
 ================================================== -->
-<div id="myCarousel" class="carousel slide">
+<div id="carousel" class="carousel slide">
   <div class="carousel-inner">
-    <div class="item active">
+    <div class="item active"> <!-- item one -->
       <img src="/images/slide_two.png" alt="">
-      <div class="container">
+    </div>
+    <div class="item"> <!-- item two -->
+      <img src="/images/slide_three.png" alt="" />
+    </div>
+    <div class="item"> <!-- item three -->
+      <img src="/images/slide_four.png" alt="" />
+    </div>
+  </div>
+  <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+
+        <!-- TEXT OVERLAY -->
+    <div id="content-over-carousel" class="container">
         <div class=""> <!-- center -->
           <div class="row-fluid">
             <div class="span8 offset4">
               <div class="pull-right">
-                <h1 class="font-marmelad-white" style="font-size:40px; text-align:right;">Specialty product network for the landscape industry</h1>
+                <h1 class="font-marmelad-white" style="font-size:40px; text-align:right; text-shadow: 3px 3px 3px #000;">Specialty product network for the landscape industry</h1>
               </div>
             </div>
           </div>
@@ -210,9 +239,9 @@
             <div class="span12">
               <div class="pull-right">
                 <% if params[:subscribed] %>
-                  <h1 class="font-marmelad-white" style="font-size:27px; text-align:right;">Thanks for subscribing!<br/></h1>
+                  <h1 class="font-marmelad-white" style="font-size:27px; text-align:right; text-shadow: 3px 3px 3px #000;">Thanks for subscribing!<br/></h1>
                 <% else %>
-                  <h1 class="font-marmelad-white" style="font-size:27px; text-align:right;">Sign up for the newsletter:<br/></h1>
+                  <h1 class="font-marmelad-white" style="font-size:27px; text-align:right; text-shadow: 3px 3px 3px #000;">Sign up for the newsletter:<br/></h1>
                 <% end %>
               </div>
             </div>
@@ -237,10 +266,10 @@
           </div>
 
         </div>
-      </div>
-    </div>
-  </div>
+      </div><!-- content-over-carousel -->
 </div><!-- /.carousel -->
+
+
 
 
 
@@ -287,12 +316,16 @@
 </div><!-- /.container -->
 
 <!-- Parse JS -->
-<script src="javascripts/parse-1.2.2.min.js"></script>
 <script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
 <script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
 
 <script>
+
+  $('#carousel').carousel();
+
   
   $('#newsletterForm').validate({
     rules: {
