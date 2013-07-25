@@ -51,6 +51,7 @@ function applyPopovers(){
 
 	$('.profile-social-links > a').tooltip();
 	$('.tooltip-success').tooltip();
+	$('.tooltip-info').tooltip();
 	$('.tooltip-error').tooltip();
 
 }

@@ -84,7 +84,7 @@
 					<% end %>
 					<br/>
 					<% unless @location.websiteLink.blank? %>
-						<a class="btn btn-link" href="<%= @location.websiteLink %>" target="_blank">
+						<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
 							<i class="icon-globe blue"></i>
 							View Website
 						</a>
@@ -151,7 +151,7 @@
 					<div class="profile-info-name"> Address </div>
 
 					<div class="profile-info-value">
-						<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank"> 
+						<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-info" data-original-title="View on Map" target="_blank" data-placement="bottom"> 
 							<i class="icon-map-marker light-orange bigger-110"></i>
 							<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
 						</a>
