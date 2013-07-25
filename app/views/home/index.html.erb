@@ -37,24 +37,6 @@
       height: 500px;
     }
 
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 550px;
-      padding: 0 20px;
-      margin-top: 200px;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    }
-
 
 
     /* MARKETING CONTENT
@@ -208,24 +190,36 @@
 
 </style>
 
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+
 <!-- Carousel
 ================================================== -->
 <div id="carousel" class="carousel slide">
   <div class="carousel-inner">
+
     <div class="item active"> <!-- item one -->
-      <img src="/images/slide_two.png" alt="">
+      <img src="/images/slide_five.png" alt="">
+
     </div>
+
     <div class="item"> <!-- item two -->
       <img src="/images/slide_three.png" alt="" />
+      <!--<div class="carousel-caption">
+        <p>My Nursery</p>
+        <p><a href="http://www.google.com">Go To Google &raquo;</a></p>
+      </div>-->
     </div>
+
     <div class="item"> <!-- item three -->
       <img src="/images/slide_four.png" alt="" />
     </div>
+
   </div>
   <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+  <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
 
-        <!-- TEXT OVERLAY -->
+          <!-- TEXT OVERLAY -->
     <div id="content-over-carousel" class="container">
         <div class=""> <!-- center -->
           <div class="row-fluid">
@@ -267,6 +261,8 @@
 
         </div>
       </div><!-- content-over-carousel -->
+
+
 </div><!-- /.carousel -->
 
 
@@ -324,7 +320,9 @@
 
 <script>
 
-  $('#carousel').carousel();
+  $('#carousel').carousel({
+     interval: 1000
+  });
 
   
   $('#newsletterForm').validate({
