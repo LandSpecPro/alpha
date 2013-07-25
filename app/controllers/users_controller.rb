@@ -209,9 +209,26 @@ class UsersController < ApplicationController
 
   end
 
+  def claim_buyer_profile
+
+    @user = User.new
+    @claimbuyer = nil
+
+    ClaimBuyer.where(:claimed => false).each do |l|
+      if params[:token] == l.claim_token
+        @claimbuyer = l
+        @userlogin = @claimbuyer.user_login
+        @useremail = @claimbuyer.user_email
+      end
+    end
+
+    if @claimbuyer.blank?
+      redirect_to home_url #CHANGE TO ERROR URL LATER
+    end
+
+  end
+
   def create_claimed_profile
-
-
 
     # USER: login, email, userType, password
     # BUS_VENDOR: busName
@@ -250,9 +267,51 @@ class UsersController < ApplicationController
 
   end
 
+  def create_claimed_buyer_profile
+
+    @claimbuyer = ClaimBuyer.find(params[:user][:claim_profile_id])
+    params[:user].delete :claim_profile_id
+
+    @user = User.new(params[:user])
+
+    @userlogin = params[:user][:login]
+    @useremail = params[:user][:email]
+
+    @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
+
+    if @confirmemail
+      render 'claim_buyer_profile'
+      return
+    end
+
+    if claim_user(@claimbuyer)
+
+      @claimbuyer.claimed = true
+      if @claimbuyer.save
+        redirect_to profile_buyer_claim_success_url
+        return
+      else
+        render :action => :claim_buyer_profile
+        return
+      end
+
+    else
+      render 'claim_buyer_profile'
+      return
+    end
+
+  end
+
   def claim_profile_success
 
     @location = current_user.get_business.locations.first
+
+  end
+
+  def claim_buyer_profile_success
+
+    @user = current_user
+    @business = current_user.get_business
 
   end
 

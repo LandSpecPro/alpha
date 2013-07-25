@@ -6,6 +6,9 @@ LspAlpha::Application.routes.draw do
   match "profile/claim" => "users#claim_profile"
   match "profile/claim/create" => "users#create_claimed_profile"
   match "profile/claim/success" => "users#claim_profile_success"
+  match "profile/buyer/claim" => "users#claim_buyer_profile"
+  match "profile/buyer/claim/create" => "users#create_claimed_buyer_profile"
+  match "profile/buyer/claim/success" => "users#claim_buyer_profile_success"
 
   get "favorites/products"
 

@@ -73,7 +73,26 @@
             </a>
 
             <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-              <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
+              <% if current_user.is_vendor %>
+                <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
+              <% end %>
+
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-search"> Search</i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= products_search_url %>">Products</a></li>
+                  <li><a href="<%= locations_search_url %>">Suppliers</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-star"> Favorites</i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= favorites_products_url %>">Products</a></li>
+                  <li><a href="<%= favorites_vendors_url %>">Suppliers</a></li>
+                </ul>
+              </li>
+
               <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
               <li class="divider"></li>
               <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
