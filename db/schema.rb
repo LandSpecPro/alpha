@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716175830) do
+ActiveRecord::Schema.define(:version => 20130725171946) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(:version => 20130716175830) do
     t.string  "parentCategory"
     t.boolean "active",         :default => true, :null => false
     t.integer "hierarchyLevel", :default => 0,    :null => false
+  end
+
+  create_table "claim_buyers", :force => true do |t|
+    t.string  "user_login"
+    t.string  "user_email"
+    t.string  "user_type"
+    t.string  "bus_name"
+    t.string  "bus_phone"
+    t.string  "claim_token"
+    t.boolean "claimed",     :default => false
   end
 
   create_table "claim_locations", :force => true do |t|
