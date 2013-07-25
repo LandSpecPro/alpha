@@ -139,9 +139,12 @@ class ProductsController < ApplicationController
     @productimage = ProductImage.new(:product_id => product_id, :image => image)
     if @productimage.save
       @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
-      @featureditem.save
-
-      return true
+      if @featureditem.save
+        return true
+      else
+        @productimage.destroy
+        return false
+      end
     else
       return false
     end
