@@ -184,6 +184,10 @@ autocomplete :product, :commonName
       params[:distance_from] = '0'
     end
 
+    if params[:search] == "All Suppliers"
+      params[:search] = ''
+    end
+
     @setlocation = nil
     if params[:use_current_location]
       @setlocation = request.location.city + ", " + request.location.state

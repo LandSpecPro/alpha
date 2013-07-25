@@ -3,12 +3,34 @@
 	<div class="row-fluid">
 		<div class="span6">
 
-				<span class="input-icon input-icon-right">
-					<!--[if lt IE 10]>Search by Supplier Name:<![endif]-->
-					<%= text_field_tag :search, params[:search], :placeholder => 'Search by name...' %><%= submit_tag "Search", :class => "btn btn-success btn-small" %>
-					<p style="font-size:12px;">Leave blank to search all suppliers.</p>
-					<!--<i id="nav-search-icon" class="icon-search"></i>-->
-				</span>
+			<span class="input-icon input-icon-right">
+				<select id="search" name="search" class="chzn-select input-large" data-placeholder="Search by Supplier Name...">
+					<% unless params[:search] %>
+						<option selected="selected"></option>
+					<% else %>
+						<option>All Suppliers</option>
+					<% end %>
+
+					<% BusVendor.where(:active => true).order('"busName" ASC').each do |bus| %>
+						<% if bus.locations.where(:active => true).count > 0 %>
+							<% if params[:search] == bus.busName %>
+								<option selected="selected"><%= bus.busName %></option>
+							<% else %>
+								<option><%= bus.busName %></option>
+							<% end %>
+						<% end %>
+					<% end %>
+
+					<% ClaimLocation.where(:claimed => false).order('bus_name ASC').each do |bus| %>
+						<% if params[:search] == bus.bus_name %>
+							<option selected="selected"><%= bus.bus_name %></option>
+						<% else %>
+							<option><%= bus.bus_name %></option>
+						<% end %>
+					<% end %>
+				</select><%= submit_tag "Search", :class => "btn btn-success btn-small" %>
+				<p style="font-size:12px;">Leave black to search all suppliers.</p>
+			</span>
 
 		</div>
 
