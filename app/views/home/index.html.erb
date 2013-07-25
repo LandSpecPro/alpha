@@ -311,7 +311,6 @@
 
 </div><!-- /.container -->
 
-<!-- Parse JS -->
 <script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
 <script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 
@@ -320,19 +319,14 @@
 
 <script>
 
-  $('#carousel').carousel({
-     interval: 1000
-  });
-
-  
-  $('#newsletterForm').validate({
-    rules: {
-      emailnewsletter: {
-        required: true,
-        email: true
+    $('#newsletterForm').validate({
+      rules: {
+        emailnewsletter: {
+          required: true,
+          email: true
+        }
       }
-    }
-  });
+    });
 
 </script>
 

@@ -56,4 +56,8 @@ class BusVendorsController < ApplicationController
 	def dashboard
 		@user = current_user
 	end
+
+	def help
+
+	end
 end

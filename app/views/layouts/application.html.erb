@@ -51,12 +51,13 @@
   
 </head>
 <body>
+  
 
   <div class="navbar navbar-inverse">
     
     <div class="navbar-inner">
      <div class="container-fluid">
-
+<span id="top"></span>
 
       <a class="brand" href=<%= home_url %>><small><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro<sub style="font-size:9pt; margin-left:-16px; top:10px;" class="badge badge-warning">beta</sub></small> </a>
       <ul class="nav ace-nav pull-right">
@@ -77,6 +78,8 @@
                 <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
               <% end %>
 
+              <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
+
               <li class="dropdown-submenu">
                 <a href="#"><i class="icon-search"> Search</i></a>
                 <ul class="dropdown-menu">
@@ -93,8 +96,8 @@
                 </ul>
               </li>
 
-              <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
               <li class="divider"></li>
+              <li><a href=<%= help_url %>><i class="icon-question-sign"></i> Help</a></li>
               <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
             </ul>
           </li>

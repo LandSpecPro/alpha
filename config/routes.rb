@@ -24,6 +24,7 @@ LspAlpha::Application.routes.draw do
   match "feedback/success" => 'home#feedback_success'
   match "back" => "application#back"
   match "terms" => "home#terms"
+  match "help" => "application#help"
 
   post "/submit_forgot" => 'user_sessions#submit_forgot'
 
@@ -117,15 +118,15 @@ LspAlpha::Application.routes.draw do
   match "supplier/new" => 'bus_vendors#new'
   match "supplier/dashboard" => 'users#dashboard'
   match "supplier/manage" => 'bus_vendors#manage'
-  match "supplier/welcome" => 'bus_vendors#welcome_help'
-  match "supplier/help" => 'bus_vendors#welcome_help'
+  #match "supplier/welcome" => 'bus_vendors#welcome_help'
+  match "supplier/help" => 'bus_vendors#help'
 
   # Routes for buyer's businesses
   match "buyer/new" => 'bus_buyers#new'
   match "buyer/dashboard" => 'users#dashboard'
   match "buyer/manage" => 'bus_buyers#manage'
-  match "buyer/welcome" => 'bus_buyers#welcome_help'
-  match "buyer/help" => 'bus_buyers#welcome_help'
+  #match "buyer/welcome" => 'bus_buyers#welcome_help'
+  match "buyer/help" => 'bus_buyers#help'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

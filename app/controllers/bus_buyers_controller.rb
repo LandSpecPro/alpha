@@ -42,4 +42,8 @@ class BusBuyersController < ApplicationController
 		@user = current_user
 	end
 
+	def help
+
+	end
+
 end
