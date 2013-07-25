@@ -1,7 +1,0 @@
-<%= render 'layouts/sidebar' %>
-
-	<% @products.where(:active => true).each do |p| %>
-		<h1><%= p.commonName %></h1>
-	<% end %>
-
-<%= render 'layouts/sidebarend' %>
