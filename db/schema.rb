@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725171946) do
+ActiveRecord::Schema.define(:version => 20130726221702) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -166,31 +166,35 @@ ActiveRecord::Schema.define(:version => 20130725171946) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "bus_vendor_id",                     :null => false
+    t.integer  "bus_vendor_id",                             :null => false
     t.string   "locName"
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
-    t.string   "address1",                          :null => false
+    t.string   "address1",                                  :null => false
     t.string   "address2"
-    t.string   "city",                              :null => false
-    t.string   "state",                             :null => false
-    t.string   "zip",                               :null => false
+    t.string   "city",                                      :null => false
+    t.string   "state",                                     :null => false
+    t.string   "zip",                                       :null => false
     t.string   "primaryEmail"
     t.string   "secondaryEmail"
     t.string   "websiteLink"
     t.string   "facebookLink"
     t.string   "twitterLink"
     t.string   "googleLink"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",         :default => false, :null => false
-    t.string   "busName",                           :null => false
-    t.boolean  "verified",       :default => false, :null => false
+    t.boolean  "active",                 :default => false, :null => false
+    t.string   "busName",                                   :null => false
+    t.boolean  "verified",               :default => false, :null => false
     t.text     "bio"
-    t.integer  "searchWeight",   :default => 0,     :null => false
+    t.integer  "searchWeight",           :default => 0,     :null => false
+    t.string   "inventory_file_name"
+    t.string   "inventory_content_type"
+    t.integer  "inventory_file_size"
+    t.datetime "inventory_updated_at"
   end
 
   create_table "newsletter_emails", :force => true do |t|

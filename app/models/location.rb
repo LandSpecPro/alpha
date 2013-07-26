@@ -7,8 +7,11 @@ class Location < ActiveRecord::Base
 	geocoded_by :get_full_address
 	after_validation :geocode
 
-	attr_accessible :locName, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :statuses_attributes
+	attr_accessible :locName, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :statuses_attributes
 	belongs_to :bus_vendor
+
+	has_attached_file :inventory,
+		:path => 'vendors/:id/inventory/inventory_:basename.:extension'
 	
 	has_many :featured_items
 	has_many :products, :through => :featured_items
