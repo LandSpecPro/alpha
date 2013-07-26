@@ -51,4 +51,14 @@ class Mailers < ActionMailer::Base
     mail(:to => 'timwolfe@landspecpro.com', :subject => "New Invite Request - " + @busName)
   end
 
+  def mass_buyer_claim_profile(login, email, busName, busPhone, claimToken)
+
+    @login = login
+    @email = email
+    @busName = busName
+    @claimToken = claimToken
+    mail(:to => @email, :subject => "Claim Your Profile on LandSpec Pro!")
+
+  end
+
 end
