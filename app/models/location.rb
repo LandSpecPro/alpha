@@ -53,6 +53,20 @@ class Location < ActiveRecord::Base
 	    
 	end
 
+	def self.default_best_rank(location)
+
+		@top20 = self.where(:active => true).order('"searchWeight" DESC').limit(20)
+
+		@ignorezero = @top20.where('"searchWeight" > ?', 0)
+
+		@nearest = @ignorezero.near(location, 100000).order("distance")
+
+		@top3 = @nearest.limit(3)
+
+		return @top3
+
+	end
+
 	
 	def format_all_urls
 

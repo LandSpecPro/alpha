@@ -57,6 +57,7 @@ function applyPopovers(){
 }
 
 
+
 /*
 	function fileInput(){
 		$('#image').ace_file_input({
