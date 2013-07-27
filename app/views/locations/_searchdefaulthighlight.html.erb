@@ -5,7 +5,7 @@
 			<% Location.default_best_rank(@setlocation).each do |l| %>
 
 				<div class="span4">
-					<div class="widget-box pricing-box">
+					<div class="widget-box pricing-box" height='750px'>
 
 						<div class="widget-header header-color-green2">
 							<h3 class="bigger lighter"><%= l.busName %></h3>
@@ -14,10 +14,10 @@
 						<div class="widget-body">
 							<div class="widget-main">
 								<div class="row-fluid">
-									<div class="center">
-										<img src="<%= BusVendor.find(l.bus_vendor_id).logo.url(:thumb) %>" title="" class="tooltip-info" data-original-title="Company Logo" data-placement="top"/>
-									</div>
-									<br/>
+										<div class="center" style="height:110px;">
+											<img src="<%= BusVendor.find(l.bus_vendor_id).logo.url(:thumb) %>" title="" class="tooltip-info" data-original-title="Company Logo" data-placement="top"/>
+										</div>
+										<br/>
 									<div class="profile-user-info profile-user-info-striped">
 
 										<% unless l.primaryEmail.blank? %>
