@@ -1,26 +1,5 @@
 module ProductHelper
 
-	def filter_by_categories(featureditems)
-
-		if not params[:categories].nil?
-
-			@result = []
-			featureditems.each do |fi|
-				params[:categories].each do |c|
-					if ProductHasCategory.where(:featured_item_id => fi.id, :category_id => c, :active => true).count > 0
-						@result << fi
-						break
-					end
-				end
-			end
-
-			return @result
-		else
-			return featureditems
-		end
-
-	end
-
 	def get_visible(featureditems)
 
 		@result = []
@@ -39,8 +18,6 @@ module ProductHelper
 		return featureditems
 		
 	end
-
-
 
 	def search_for_all
 		@featuredItems = FeaturedItem.where(:active => true).order('created_at DESC')
@@ -78,15 +55,7 @@ module ProductHelper
 	end
 
 	def update_search_log
-	    @cats = ''
-
-	    if not params[:categories].nil?
-	      params[:categories].each do |c|
-	        @cats = @cats + Category.find(c).category + " "
-	      end
-	    end
-
-	    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'product', :categories => @cats)
+	    @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'product')
 	    @searchlog.save
 	end
 

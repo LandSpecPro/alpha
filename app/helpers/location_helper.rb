@@ -44,15 +44,7 @@ module LocationHelper
 
     def update_search_log
 
-      @cats = ''
-
-      if not params[:categories].nil?
-        params[:categories].each do |c|
-          @cats = @cats + Category.find(c).category + " "
-        end
-      end
-
-      @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location', :categories => @cats)
+      @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location')
       @searchlog.save
 
     end

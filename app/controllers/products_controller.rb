@@ -27,7 +27,6 @@ class ProductsController < ApplicationController
     @image = params[:product][:image]
     @size = params[:product][:featured_item][:size]
     @price = params[:product][:featured_item][:price]
-    @categories = params[:product_categories]
 
     @thing = params[:product][:productSelect]
 
@@ -36,7 +35,7 @@ class ProductsController < ApplicationController
     @product = find_product(@location)
 
     if @product.save
-      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price, @categories)
+      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
         flash[:notice] = "Product Added!"
         redirect_to locations_edit_url(:id => @locationid, :products => true)
         return
@@ -135,7 +134,7 @@ class ProductsController < ApplicationController
     params[:product].delete :location_id
   end
 
-  def save_product_relations(product_id, image, description, location_id, size, price, categories)
+  def save_product_relations(product_id, image, description, location_id, size, price)
     @productimage = ProductImage.new(:product_id => product_id, :image => image)
     if @productimage.save
       @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
@@ -148,25 +147,6 @@ class ProductsController < ApplicationController
     else
       return false
     end
-  end
-
-  def save_categories(featured_item_id, location_id, categories)
-
-    @location = Location.find(location_id)
-
-    if not categories.blank?
-      categories.each do |c|
-        @productcats = ProductHasCategory.new(:featured_item_id => featured_item_id, :category_id => c)
-        @productcats.save
-
-        if LocationHasCategory.where(:location_id => location_id, :category_id => c, :active => true).count == 0
-          @locationcats = LocationHasCategory.new(:location_id => location_id, :category_id => c)
-          @locationcats.save
-        end
-
-      end
-    end
-
   end
 
   def search

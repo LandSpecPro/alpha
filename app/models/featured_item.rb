@@ -34,25 +34,6 @@ class FeaturedItem < ActiveRecord::Base
 		return Location.find(self.location_id)
 	end
 
-	def get_category_ids
-		@categoryids = []
-		@categories = ProductHasCategory.where(:featured_item_id => self.id, :active => true) 
-
-		if not @categories.nil?
-
-			if @categories.count > 1
-				@categories.each do |c|
-					@categoryids << c.category_id.to_s
-				end
-			elsif @categories.count == 1
-				@categoryids << @categories.first.category_id.to_s
-			end
-			
-		end
-
-		return @categoryids
-	end
-
 	def get_full_address
 		@location = Location.find(self.location_id)
 		@address1 = @location.address1 + " "
