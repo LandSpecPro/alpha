@@ -53,16 +53,6 @@
 
 <% end %>
 
-<% if controller.controller_name == 'products' and controller.action_name == 'browseall' %>
-
-	<div class="pull-right">
-		<div class="btn-group">
-			<a href=<%= products_search_url %>><button class="btn btn-success btn-small" style="margin-right:10px;">Search Products</button></a>
-		</div>
-	</div>
-
-<% end %>
-
 <% if controller.controller_name == 'products' and controller.action_name == 'edit' %>
 
 	<div class="pull-right">
@@ -70,8 +60,8 @@
 			<a href=<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %> title="Delete" class="white" id="white-link">
 				<button class="btn btn-success btn-small">Delete this Product</button>
 			</a>
-			<a href=<%= products_view_url(:id => @featureditem.id) %> title="View" class="white" id="white-link">
-				<button class="btn btn-success btn-small">View</button>
+			<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" title="View" class="white" id="white-link">
+				<button class="btn btn-success btn-small">Preview</button>
 			</a>
 		</div>
 	</div>

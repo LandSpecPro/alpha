@@ -31,7 +31,7 @@
 										</a>
 									<% end %>
 
-									<a href=<%= products_view_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+									<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
 										<i class="icon-info-sign"></i>
 									</a>
 
@@ -55,6 +55,9 @@
 				</ul>
 			</div>
 		</div>
+
+		<% @featureditem = fi %>
+		<%= render 'products/productinfomodal' %>
 
 		<div class="span6">
 			<br/>

@@ -31,7 +31,7 @@ class FeaturedItem < ActiveRecord::Base
 	end
 
 	def get_location
-		return Loaction.find(self.location_id)
+		return Location.find(self.location_id)
 	end
 
 	def get_category_ids

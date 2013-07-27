@@ -19,18 +19,15 @@
 							
 	<tbody>
 
-		<% @featureditems.each do |fi| %>		
+		<% @featureditems.each do |fi| %>
+
+			<% @featureditem = fi %>
 
 						<tr>
 							<td class="center">
-								<a href="#<%= fi.get_product.commonName %>" data-rel="popover" data-content="<%= 
-									unless fi.description.blank?
-										fi.description.gsub(/\n/,'<br/>').html_safe 
-									else
-										'No description available'
-									end
-
-									%>" data-placement="bottom" data-trigger="hover"><%= fi.get_product.commonName %></a>
+								<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>">
+									<%= fi.get_product.commonName %>
+								</a>
 							</td>
 							<td class="hidden-phone center">
 								<%= fi.get_product.latinName %>
@@ -62,6 +59,8 @@
 								<% end %>
 							</td>
 						</tr>
+
+						<%= render 'products/productinfomodal' %>
 		<% end %>
 
 

@@ -23,14 +23,7 @@
 							<div class="inner">
 
 								<span>
-									<p style="font-size:18px;" data-rel="popover" data-content="<%= 
-									unless fi.description.blank?
-										fi.description.gsub(/\n/,'<br/>').html_safe 
-									else
-										'No description available'
-									end
-
-									%>" data-placement="top" data-trigger="hover">
+									<p style="font-size:18px;">
 										<%= fi.get_product.commonName %>
 									</p>
 								</span>
@@ -44,13 +37,17 @@
 								</a>
 
 								<% if fi.is_favorited(current_user) %>
-									<a title="Remove from favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+									<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
 								<% else %>
-									<a title="Add to favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+									<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
 								<% end %>
 
-								<a href=<%= locations_view_url(:id => fi.location_id) %>>
-									<i class="icon-globe" title="View Location"></i>
+								<a title="" class="tooltip-success" data-placement="bottom" data-original-title="View Location" href=<%= locations_view_url(:id => fi.location_id) %>>
+									<i class="icon-globe"></i>
+								</a>
+								<% @featureditem = fi %>
+								<a title="" class="tooltip-success" data-placement="bottom" data-original-title="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
+									<i class="icon-info-sign"></i>
 								</a>
 							</div>
 						</div>
@@ -58,8 +55,8 @@
 				</li>
 
 			</ul>
-		
 
+			<%= render 'products/productinfomodal' %>
 
 	<% @resultnum = @resultnum + 1 %>
 

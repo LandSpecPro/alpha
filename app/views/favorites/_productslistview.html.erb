@@ -13,45 +13,47 @@
 							
 	<tbody>
 
-		<% @favproducts.each do |fi| %>
+		<% @favproducts.each do |fp| %>
 		
+			<%  fi = fp.featured_item
+				@featureditem = fi %>
+
 			<tr>
-					<td class="center">
-						<a href="#<%= fi.product.commonName %>" data-rel="popover" data-content="<%= 
-							unless fi.featured_item.description.blank?
-								fi.featured_item.description.gsub(/\n/,'<br/>').html_safe 
-							else
-								'No description available'
-							end
-							%>" data-placement="bottom" data-trigger="hover"><%= fi.product.commonName %></a>
-					</td>
-					<td class="center">
-						<%= fi.product.latinName %>
-					</td>
-					<td class="center">
-						<a href=<%= locations_view_url(:id => fi.featured_item.location_id) %>>
-							<%= Location.find(fi.featured_item.location_id).bus_vendor.busName %>
-						</a>
-					</td>
-					<td class='hidden-phone center'>
-						<%= fi.featured_item.size %>
-					</td>
-					<td class='hidden-phone center'>
-						<% if fi.featured_item.price.to_s != '' %>
-							<%= "$%8.2f" % fi.featured_item.price.to_f %>
-						<% end %>
-					</td>
-					<td class='hidden-phone center'>
-						<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.featured_item.product_image_id).image.url(:original), :title => fi.product.commonName, :data => {:rel => "colorbox"} %>
-					</td>
-					<td class="center">
-						<% if fi.featured_item.is_favorited(current_user) %>
-							<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-						<% else %>
-							<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.featured_item.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
-						<% end %>
-					</td>
-				</tr>
+				<td class="center">
+					<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>">
+						<%= fi.get_product.commonName %>
+					</a>
+				</td>
+				<td class="hidden-phone center">
+					<%= fi.get_product.latinName %>
+				</td>
+				<td class="center">
+					<a href=<%= locations_view_url(:id => fi.location_id) %>>
+						<%= Location.find(fi.location_id).bus_vendor.busName %>
+					</a>
+				</td>
+				<td class='hidden-phone center'>
+					<%= fi.size %>
+				</td>
+				<td class='hidden-phone center'>
+					<% if fi.price.to_s != '' and fi.price != 0 %>
+						<%= "$%8.2f" % fi.price.to_f %>
+					<% end %>
+				</td>
+				<td class='center'>
+					<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"}, :class => 'colorbox-result' %>
+				</td>
+				<td class="center">
+					<% if fi.is_favorited(current_user) %>
+						<a title="Remove from favorites" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+					<% else %>
+						<a title="Add to favorites"  href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+					<% end %>
+				</td>
+			</tr>
+
+			<%= render 'products/productinfomodal' %>
+
 		<% end %>
 
 	</tbody>
