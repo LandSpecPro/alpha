@@ -61,7 +61,7 @@
 				<div class="profile-info-name"> Description </div>
 
 				<div class="profile-info-value">
-					<span id="description" style="word-wrap:break-word;"><%= @featureditem.description + ' ' %>&nbsp;</span>
+					<span id="description" style="word-wrap:break-word;"><%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>&nbsp;</span>
 				</div>
 			</div>
 
