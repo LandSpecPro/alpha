@@ -1,0 +1,18 @@
+<div class="profile-contact-info">
+	<div class="profile-contact-links center">
+
+		<% if @location.is_favorited(current_user) %>
+			<a class="btn btn-link" title="Remove from favorites" href=<%= locations_favorite_set_url(:id => @location.id) %>><i  class="icon-bookmark" id="fav_icon"></i> Remove From Favorites</a>
+		<% else %>
+			<a class="btn btn-link"title="Add to favorites"  href=<%= locations_favorite_set_url(:id => @location.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i> Add To Favorites</a>
+		<% end %>
+		<br/>
+		<% unless @location.websiteLink.blank? %>
+			<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
+				<i class="icon-globe blue"></i>
+				View Website
+			</a>
+		<% end %>
+	</div>
+
+</div>

@@ -1,0 +1,21 @@
+<span class="profile-picture">
+	<% if @location.is_owner(current_user) %>
+		<ul class="ace-thumbnails">
+			<li>
+				<span>
+					<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+					<div class="text">
+						<div class="inner">
+							<span><p style="font-size:15px;">Edit Company Logo</p></span>
+							<a href="<%= account_url %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Company Logo">
+								<i class="icon-pencil"></i>
+							</a>
+						</div>
+					</div>
+				</span>
+			</li>
+		</ul>
+	<% else %>
+		<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+	<% end %>
+</span>

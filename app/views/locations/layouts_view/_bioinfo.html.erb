@@ -1,0 +1,16 @@
+<% unless @location.bio.blank? %>
+	<div class="widget-box transparent">
+		<div class="widget-header widget-header-large">
+			<h2 class="smaller">
+				<i class="icon-info-sign bigger-110"></i>
+				About
+			</h2>
+		</div>
+
+		<div class="widget-body">
+			<div class="widget-main">
+				<p><%= @location.bio %></p>
+			</div>
+		</div>
+	</div>
+<% end %>
