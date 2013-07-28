@@ -1,10 +1,10 @@
 <%= render 'layouts/sidebar' %>
 
 <% if @locations.nil? and @otherlocations.nil? %>
-	<%= render 'search' %>
-	<%= render 'searchdefaulthighlight' %>
+	<%= render 'locations/layouts_search/searchbar' %>
+	<%= render 'locations/layouts_search/searchdefault_highlight' %>
 <% else %>
-	<%= render 'search' %>
+	<%= render 'locations/layouts_search/searchbar' %>
 	<div class="row-fluid">
 		<div class="span12">
 			<% if @locations.count == 0 and @otherlocations.count == 0 %>
@@ -12,7 +12,7 @@
 					<h3>0 locations were found!</h3>
 				</div>
 			<% else %>
-				<%= render 'searchresultlist' %>
+				<%= render 'locations/layouts_search/searchresults_list' %>
 			<% end %>
 		</div>
 	</div>
