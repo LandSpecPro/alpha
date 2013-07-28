@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726221702) do
+ActiveRecord::Schema.define(:version => 20130728003007) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -59,10 +59,19 @@ ActiveRecord::Schema.define(:version => 20130726221702) do
   end
 
   create_table "categories", :force => true do |t|
-    t.string  "category"
-    t.string  "parentCategory"
-    t.boolean "active",         :default => true, :null => false
-    t.integer "hierarchyLevel", :default => 0,    :null => false
+    t.integer  "parent_id",       :default => -1,    :null => false
+    t.integer  "hierarchy_level", :default => 1,     :null => false
+    t.string   "cat_name",        :default => "err", :null => false
+    t.boolean  "active",          :default => true,  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "category_to_locations", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "claim_buyers", :force => true do |t|
@@ -157,14 +166,6 @@ ActiveRecord::Schema.define(:version => 20130726221702) do
     t.datetime "updated_at",                    :null => false
   end
 
-  create_table "location_has_categories", :force => true do |t|
-    t.integer  "location_id"
-    t.integer  "category_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "active",      :default => true, :null => false
-  end
-
   create_table "locations", :force => true do |t|
     t.integer  "bus_vendor_id",                             :null => false
     t.string   "locName"
@@ -209,21 +210,6 @@ ActiveRecord::Schema.define(:version => 20130726221702) do
     t.string   "searchable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-  end
-
-  create_table "product_categories", :force => true do |t|
-    t.string   "category"
-    t.string   "parentCategory"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "product_has_categories", :force => true do |t|
-    t.integer  "featured_item_id"
-    t.integer  "category_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "active",           :default => true, :null => false
   end
 
   create_table "product_images", :force => true do |t|
