@@ -31,18 +31,18 @@
 
 				  	<div class="row-fluid">
 				  		<div class="span6">
-							<%= render 'locations/formupdatelocationinfo' %>
+							<%= render 'locations/layouts_edit/locationinfo' %>
 							<div class="center">
 								<a href="<%= locations_new_url %>" class="btn btn-small btn-block btn-success">Add New Location</a>			
 							</div>	
 						</div>
 						<div class="span6">
 							<% if not @location.active %>
-								<%= render 'locations/formactivatelocation' %>
+								<%= render 'locations/layouts_edit/activate' %>
 								<br/>
-								<%= render 'locations/formeditlocationbio' %>
+								<%= render 'locations/layouts_edit/bioinfo' %>
 							<% else %>
-								<%= render 'locations/formeditlocationbio' %>
+								<%= render 'locations/layouts_edit/bioinfo' %>
 							<% end %>			
 						</div>
 					</div>
@@ -57,10 +57,10 @@
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
 							<div class="span7">
-								<%= render 'locations/formeditfeatureditem' %>
+								<%= render 'locations/layouts_edit/editfeatureditem' %>
 							</div>
 							<div class="span5">
-								<%= render 'locations/formaddfeatureditem' %>
+								<%= render 'locations/layouts_edit/addfeatureditem' %>
 							</div>
 						<% else %>
 							<div class="span4">
@@ -69,7 +69,7 @@
 								</h3>
 							</div>
 							<div class="span8">
-								<%= render 'locations/formeditfeatureditem' %>
+								<%= render 'locations/layouts_edit/editfeatureditem' %>
 							</div>
 							
 						<% end %>
