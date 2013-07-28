@@ -5,9 +5,9 @@ class AccountController < ApplicationController
 	def manage
 
 		if current_user.is_vendor
-			redirect_to supplier_manage_url
+			redirect_to supplier_manage_url(:password_update_success => true)
 		elsif current_user.is_buyer
-			redirect_to buyer_manage_url
+			redirect_to buyer_manage_url(:password_update_success => true)
 		else
 			redirect_to home_url
 		end

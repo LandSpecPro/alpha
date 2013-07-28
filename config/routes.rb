@@ -57,9 +57,10 @@ LspAlpha::Application.routes.draw do
   match 'favorites/products' => 'favorites#products'
   match 'favorites/vendors' => 'favorites#vendors'
 
-  match 'user/password/reset' => 'users#password_reset'
-  match 'user/password/update' => 'users#update_password'
   match 'password/reset' => 'users#password_reset_form'
+  match 'password/forgot' => 'users#password_forgot_form'
+  match 'password/reset/update' => 'users#password_reset_update'
+  match 'password/forgot/update' => 'users#password_forgot_update'
 
   # Routes for products
   match 'products/search' => 'products#search'

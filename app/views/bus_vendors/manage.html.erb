@@ -39,6 +39,17 @@
 			</div>
 				<% end %>
 		</div>
+
+		<% if params[:password_update_success] %>
+			<div class="span7">
+				<div class="center">
+					<div class="alert alert-success">
+						<h3><strong>Success!</strong> Your password has been updated!</h3>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
 	</div>
 	<div class="row-fluid">
 		<div class="span4 offset1">

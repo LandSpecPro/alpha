@@ -149,17 +149,54 @@ class UsersController < ApplicationController
     end
   end
 
-  def password_reset
-    unless params[:success]
-      @user = current_user
-      @user.reset_perishable_token!
-      Mailers.password_reset_email(current_user).deliver
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def password_reset_form
+    if params[:token]
+      @user = User.find_using_perishable_token(params[:token])
+      unless @user
+        redirect_to home_url
+      end
     else
       @user = current_user
     end
   end
 
-  def password_reset_form
+  def password_reset_update
+    @user = current_user
+
+    if not @user.valid_password?(params[:user][:old_password])
+      @wrongoldpass = true
+      render :action => :password_reset_form
+      return
+    end
+
+    params[:user].delete :old_password
+    if @user.update_attributes(params[:user])
+      redirect_to account_url(:password_update_success => true)
+    else
+      render :action => :password_reset_form
+    end
+
+  end
+
+  def password_forgot_form
     @user = User.find_using_perishable_token(params[:token])
     @user_session = UserSession.new(@user)
     @user_session.save
@@ -168,11 +205,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_password
+  def password_forgot_update
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to user_password_reset_url(:success => true)
+      redirect_to account_url(:password_update_success => true)
     else
       render :action => :password_reset_form
     end
