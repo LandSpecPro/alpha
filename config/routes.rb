@@ -86,6 +86,7 @@ LspAlpha::Application.routes.draw do
   match "locations/status/update" => 'locations#update_status'
   match "locations/bio/update" => 'locations#update_bio'
   match "locations/featureditem/update" => 'locations#update_featured_item'
+  match "locations/update_categories" => 'locations#update_categories'
 
   match "locations/edit/featureditem/add/:id" => 'locations#add_item'
   match "locations/featureditem/delete" => 'locations#delete_featureditem'

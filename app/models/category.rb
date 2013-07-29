@@ -38,6 +38,26 @@ class Category < ActiveRecord::Base
   	end
   end
 
+  def is_highest_level
+    if self.hierarchy_level == 1
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_descendant_of(cat_name)
+    if self.cat_name == cat_name
+      return true
+    elsif self.hierarchy_level == 1
+      return false
+    elsif self.parent.is_descendant_of(cat_name)
+      return true
+    else
+      return false
+    end
+  end
+
   def direct_children
   	return Category.where(:parent_id => self.id)
   end

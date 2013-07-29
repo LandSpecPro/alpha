@@ -4,12 +4,12 @@ autocomplete :product, :commonName
   include CategoryHelper
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
-  before_filter :require_location_id, :only => [:edit, :update, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
+  before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user
   before_filter :require_business
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_status, :update_featured_item]
+  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
 
   
 
@@ -71,6 +71,30 @@ autocomplete :product, :commonName
 
     @location = Location.where(:id => params[:id]).first
     @location.products.build
+
+    @loccatids = []
+    @location.categories.each do |lc|
+      @loccatids << lc.id
+    end
+
+  end
+
+  def update_categories
+    @location = Location.find(params[:id])
+    @location.categories.destroy_all #make this only delete ones that weren't included later
+
+    if not params[:categories].nil?
+      if params[:categories].count > 1
+        params[:categories].each do |c|
+          add_category_to_location(Category.find(c), @location)
+        end
+      else
+        add_category_to_location(Category.find(params[:categories].first), @location)
+      end
+
+    end
+
+    redirect_back_or_default('/')
 
   end
 
