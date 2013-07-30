@@ -120,10 +120,10 @@
     </div><!--/.navbar-inner-->
   </div><!--/.navbar-->
 
+  <!-- Customer IO global variable. Make sure this works. -->
+  <% $customerio = Customerio::Client.new("b527a3e6bc1bfbe9e176", "3c4823a96f8d4e6de7e5") %>
+
   <%= yield %>
-
-
-  
 
   <div id="feedbackFooter" class="navbar navbar-fixed-bottom">
 

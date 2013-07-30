@@ -54,6 +54,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    customerio (0.5.0)
+      httparty (>= 0.5, < 1.0)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -65,6 +67,9 @@ GEM
       railties (>= 3.1)
     geocoder (1.1.8)
     hike (1.2.2)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -77,6 +82,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.2)
+    multi_xml (0.5.4)
     newrelic_rpm (3.6.5.130)
     nifty-generators (0.4.6)
     nokogiri (1.5.9)
@@ -157,6 +163,7 @@ DEPENDENCIES
   bootstrap-sass
   chosen-rails
   coffee-rails (~> 3.2.1)
+  customerio
   dynamic_form
   figaro
   font-awesome-rails

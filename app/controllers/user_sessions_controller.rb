@@ -1,4 +1,7 @@
 class UserSessionsController < ApplicationController
+
+  include CustomerioHelper
+  
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   
@@ -10,6 +13,9 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
+
+      cio_user_login(UserSession.find.user)
+      
       flash[:notice] = "Login successful!"
       if UserSession.find.user.is_vendor
         redirect_to locations_manage_url

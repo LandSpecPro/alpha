@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+
   include UsersHelper
   include ApplicationHelper
+  include CustomerioHelper
+
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success]
   
@@ -71,6 +74,9 @@ class UsersController < ApplicationController
 
       update_invite(@user, params[:invitecode])
 
+      # Add new user to Customer.IO
+      cio_user(@user)
+
       if @user.userType == STRING_VENDOR
         redirect_to supplier_new_url
       elsif @user.userType == STRING_BUYER
@@ -112,6 +118,9 @@ class UsersController < ApplicationController
     params[:user].delete :busPhone
 
     if @user.update_attributes(params[:user])
+
+      cio_user_new(@user)
+
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else

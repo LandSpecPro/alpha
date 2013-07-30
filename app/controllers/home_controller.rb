@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
 
+	include CustomerioHelper
+	
 	def root
 
 		if current_user
