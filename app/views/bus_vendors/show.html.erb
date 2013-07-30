@@ -1,9 +1,0 @@
-<!-- THIS IS A TEST PAGE -->
-
-<div class="container">
-  <div class="hero-unit">
-    <% @vendors.where(:active => true).each do |vendors| %>
-    	<%= image_tag vendors.logo.url(:thumb) %>
-    <% end %>
-  </div>
-</div>
