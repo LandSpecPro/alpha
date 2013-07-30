@@ -96,7 +96,18 @@
 						</ul>
 					</li>
 
-				<% if controller.controller_name == 'account' || ( (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and controller.action_name == 'manage') %>
+				<% if (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and (controller.action_name == 'manage_company' || controller.action_name == 'update') %>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
+					<a href=<%= account_company_url %>>
+						<i class="icon-briefcase"></i>
+						<span>Company</span>
+					</a>
+				</li>
+
+				<% if ( (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and controller.action_name == 'manage' ) or (controller.controller_name == 'users' and controller.action_name == 'update') %>
 					<li class="active">
 				<% else %>
 					<li>

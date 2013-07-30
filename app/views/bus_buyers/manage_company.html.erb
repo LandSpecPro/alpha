@@ -1,0 +1,88 @@
+<%= render 'layouts/sidebar' %>
+
+<div class="row-fluid">
+	<div class="span4 offset1">
+		<%= form_for @bus_buyer, :html => {:id => 'form_update_logo'}, :url => {:action => :update} do |f| %>
+			<%= f.hidden_field :id, :value => @bus_buyer.id %>
+			<div class="widget-box" style="min-width: 350px;">
+				<div class="widget-header header-color-green2">
+					<h5 class="bigger lighter"><i class="icon-user"></i> Company Logo</h5>
+					<div class="widget-toolbar">
+						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_logo').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+					</div>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main">
+
+						<!-- Display error messages as alerts -->
+						<% @bus_buyer.errors.each do |field, msg| %>
+							<div class="alert alert-error">
+							  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  <strong>Error! </strong> <%= msg %>
+							</div>
+						<% end %>
+
+						<table id="table-company-logo" class="table">
+							<tbody>
+								<tr>
+									<td >
+										<ul class="ace-thumbnails">
+											<li><div style="min-height: 100px; min-width: 100px;">
+												<%= image_tag @bus_buyer.logo.url(:thumb) %>
+												</div>
+
+											</li>
+										</ul>
+									</td>
+									<td style="vertical-align:middle;">
+										<%= f.file_field :logo %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<fieldset>
+
+							<%= f.label 'Company Name:' %>
+							<div class="block input-icon input-icon-right">
+								<%= f.text_field :busName, :class => 'span12', :value => @bus_buyer.busName %>
+							</div>
+
+							<%= f.label 'Company Tagline:' %>
+							<div class="block input-icon input-icon-right">
+								<%= f.text_field :tagline, :class => 'span12', :value => @bus_buyer.tagline %>
+							</div>
+
+							<%= f.label 'Phone:' %> <!-- Add in something that says this is not visible to other users -->
+							<div class="block input-icon input-icon-right">
+								<%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :value => @bus_buyer.busPhone %>
+							</div>
+
+						</fieldset>
+
+					</div>
+				</div>
+
+			</div>
+		<% end %>
+	</div>
+
+	<% if @success %>
+		<div class="span7">
+			<div class="center">
+				<div class="alert alert-success">
+					<h3><strong>Success!</strong> Company Information has been updated.</h3>
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+</div>
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+	$(applyChosenStyle());
+	$(applyMasks());
+</script>

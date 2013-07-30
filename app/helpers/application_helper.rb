@@ -163,25 +163,33 @@ module ApplicationHelper
 	end
 
 	def get_page_title
-		if controller.controller_name == 'account'
-			return "Account"
-		elsif controller.action_name == 'search'
+
+		@action = controller.action_name
+		@controller = controller.controller_name
+
+		if @action == 'search'
 			return "Search"
-		elsif controller.controller_name == 'locations' and controller.action_name == 'edit'
+		elsif @controller == 'locations' and @action == 'edit'
 			return "Edit Location"
-		elsif controller.controller_name == 'locations' and controller.action_name == 'delete_featureditem'
+		elsif @controller == 'locations' and @action == 'delete_featureditem'
 			return "Delete Featured Item Confirmation"
-		elsif controller.controller_name == 'locations'
+		elsif @controller == 'locations'
 			return "Locations"
-		elsif controller.controller_name == 'bus_vendors' and controller.action_name == 'manage'
+		elsif @controller == 'bus_vendors' and @action == 'manage'
 			return "Account Management"
-		elsif controller.controller_name == 'bus_buyers' and controller.action_name == 'manage'
+		elsif @controller == 'bus_vendors' and (@action == 'manage_company' or @action == 'update')
+			return "Company Management"
+		elsif @controller == 'bus_buyers' and @action == 'manage'
 			return "Account Management"
-		elsif controller.controller_name == 'products'
+		elsif @controller == 'bus_buyers' and (@action == 'manage_company' or @action == 'update')
+			return "Company Management"
+		elsif @controller == 'products'
 			return "Products"
-		elsif controller.controller_name == 'users' and controller.action_name == 'password_reset'
+		elsif @controller == 'users' and @action == 'password_reset'
 			return "Password Reset"
-		elsif controller.controller_name == 'favorites'
+		elsif @controller == 'users' and @action == 'update'
+			return "Account Management"
+		elsif @controller == 'favorites'
 			return "Favorites"
 		else
 			return ""

@@ -27,6 +27,17 @@ class BusBuyersController < ApplicationController
 	    end
 	end
 
+	def update
+		@bus_buyer = BusBuyer.find(params[:bus_buyer][:id])
+	    if @bus_buyer.update_attributes(params[:bus_buyer])
+	      flash[:notice] = "Account updated!"
+	      @success = true
+	      render :action => :manage_company
+	    else
+	      render :action => :manage_company
+	    end
+	end
+
 	def manage
 		store_location
 		@user = current_user
@@ -34,12 +45,11 @@ class BusBuyersController < ApplicationController
 		@usertype = "Buyer"
 	end
 
-	def show
-		@buyers = BusBuyer.where(:active => true)
-	end
-
-	def dashboard
+	def manage_company
+		store_location
 		@user = current_user
+		@bus_buyer = @user.bus_buyer
+		@usertype = "Buyer"
 	end
 
 	def help

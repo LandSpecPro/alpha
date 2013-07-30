@@ -28,14 +28,14 @@ class BusVendorsController < ApplicationController
 	end
 
 	def update
-		@busvendor = BusVendor.find(params[:id])
-	    if @busvendor.update_attributes(params[:logo])
+		@bus_vendor = BusVendor.find(params[:bus_vendor][:id])
+	    if @bus_vendor.update_attributes(params[:bus_vendor])
 	      flash[:notice] = "Account updated!"
-	      redirect_back_or_default('/') 
+	      @success = true
+	      render :action => :manage_company
 	    else
-	      render :action => :manage
+	      render :action => :manage_company
 	    end
-
 	end
 
 	def manage
@@ -45,16 +45,11 @@ class BusVendorsController < ApplicationController
 		@usertype = "Vendor"
 	end
 
-	def show
-		@vendors = BusVendor.where(:active => true)
-	end
-
-	def edit
-
-	end
-
-	def dashboard
+	def manage_company
+		store_location
 		@user = current_user
+		@bus_vendor = @user.bus_vendor
+		@usertype = "Vendor"
 	end
 
 	def help

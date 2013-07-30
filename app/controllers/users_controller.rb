@@ -103,19 +103,11 @@ class UsersController < ApplicationController
   
   def update
 
-    if params[:user][:company_name]
-      update_company_info
-    end
-
     @user = @current_user # makes our views "cleaner" and more consistent 
     
     if params[:user][:userType] == 'Supplier' || params[:user][:userType] == 'supplier'
       params[:user][:userType] = 'Vendor'   
     end
-
-    params[:user].delete :company_name
-    params[:user].delete :tagline
-    params[:user].delete :busPhone
 
     if @user.update_attributes(params[:user])
 
@@ -138,17 +130,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_company_info
-    @business = current_user.get_business
-    @business.update_attributes(:busName => params[:user][:company_name], :tagline => params[:user][:tagline], :busPhone => params[:user][:busPhone])
-
-    if current_user.is_vendor
-      @business.locations.each do |l|
-        l.update_attributes(:busName => params[:user][:company_name])
-      end
-    end
-  end
-
   def dashboard
     @user = current_user
     if @user.is_vendor
@@ -157,24 +138,6 @@ class UsersController < ApplicationController
       redirect_to locations_search_url
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   def password_reset_form
     if params[:token]

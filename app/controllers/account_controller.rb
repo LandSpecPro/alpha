@@ -14,6 +14,18 @@ class AccountController < ApplicationController
 
 	end
 
+	def manage_company
+
+		if current_user.is_vendor
+			redirect_to supplier_company_url
+		elsif current_user.is_buyer
+			redirect_to buyer_company_url
+		else
+			redirect_to home_url
+		end
+
+	end
+
 	def update
 		redirect_to home_url
 

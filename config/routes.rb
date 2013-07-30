@@ -113,7 +113,7 @@ LspAlpha::Application.routes.draw do
   match "logout" => 'user_sessions#destroy'
   match "dashboard" => 'users#dashboard'
   match "account" => 'account#manage'
-  match "account/company" => 'account#company'
+  match "account/company" => 'account#manage_company'
   match "products/browse/all" => 'products#browseall'
 
   # Routes for vendor's businesses
