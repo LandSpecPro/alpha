@@ -67,7 +67,7 @@ module UsersHelper
 	 end
 
 	 def claim_bus_buyer(user, claimprofile)
-	 	@busbuyer = user.build_bus_buyer(:busName => claimprofile.bus_name, :busPhone => claimprofile.bus_phone)
+	 	@busbuyer = user.build_bus_buyer(:busName => claimprofile.bus_name, :busPhone => @phone)
 
 	 	if @busbuyer.save
 	 		user.bus_buyer_id = @busbuyer.id

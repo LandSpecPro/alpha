@@ -34,6 +34,7 @@ LspAlpha::Application.routes.draw do
   # Resource routes for models
 
   match "supplier/update" => 'bus_vendors#update'
+  match "buyer/update" => "bus_buyers#update"
   resources :user_sessions
   resources :invites
   resources :users do

@@ -221,7 +221,7 @@ class UsersController < ApplicationController
   def claim_buyer_profile
 
     @user = User.new
-    @claimbuyer = nil
+    @busbuyer = @user.build_bus_buyer
 
     ClaimBuyer.where(:claimed => false).each do |l|
       if params[:token] == l.claim_token
@@ -282,9 +282,16 @@ class UsersController < ApplicationController
     params[:user].delete :claim_profile_id
 
     @user = User.new(params[:user])
+    @busbuyer = @user.build_bus_buyer
 
     @userlogin = params[:user][:login]
     @useremail = params[:user][:email]
+
+    if params[:phone]
+      @phone = params[:phone]
+    elsif not @claimbuyer.bus_phone.blank?
+      @phone = @claimbuyer.bus_phone
+    end
 
     @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
 

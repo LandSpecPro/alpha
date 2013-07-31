@@ -26,6 +26,13 @@
 								</div>
 							<% end %>
 
+							<% @busbuyer.errors.each do |field, msg| %>
+								<div class="alert alert-error">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>Error! </strong> <%= msg %>
+								</div>
+							<% end %>
+
 							<fieldset>
 
 								<%= f.hidden_field :claim_profile_id, :value => @claimbuyer.id %>
@@ -55,6 +62,11 @@
 									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
+								<!-- [if lt IE 10]>Phone Number:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= text_field_tag :phone, @phone, :class => 'span12 input-mask-phone', :placeholder => "Phone Number" %>
+									<i class="icon-phone"></i>
+								</span>
 
 								<div class="row-fluid">
 									<div class="pull-right">
@@ -80,8 +92,10 @@
 				<address>
 					<strong><%= @claimbuyer.bus_name %></strong>
 
-					<br/>
-					<abbr title="Phone">P:</abbr> <%= @claimbuyer.bus_phone %>
+					<% unless @claimbuyer.bus_phone.blank? %>
+						<br/>
+						<abbr title="Phone">P:</abbr> <%= @claimbuyer.bus_phone %>
+					<% end %>
 				</address>
 			</div>
 
@@ -93,3 +107,9 @@
 </div>
 
 <%= render 'layouts/footer' %>
+
+<script type="text/javascript">
+
+	$(applyMasks());
+
+</script>
