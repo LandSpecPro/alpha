@@ -1,5 +1,5 @@
 class Mailers < ActionMailer::Base
-  default from: "tech@landspecpro.com"
+  default from: "LandSpec Pro <tech@landspecpro.com>"
   default_url_options[:host] = ENV['HOST']
 
   def basic_feedback_email(name, email, feedback, username, action, controller)
@@ -57,7 +57,7 @@ class Mailers < ActionMailer::Base
     @email = email
     @busName = busName
     @claimToken = claimToken
-    mail(:to => @email, :subject => "Claim Your Profile on LandSpec Pro!")
+    mail(:to => @email, :subject => "Claim Your New Profile on LandSpec Pro!")
 
   end
 

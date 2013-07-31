@@ -235,6 +235,12 @@ class UsersController < ApplicationController
       redirect_to home_url #CHANGE TO ERROR URL LATER
     end
 
+    if params[:phone]
+      @phone = params[:phone]
+    elsif not @claimbuyer.bus_phone.blank?
+      @phone = @claimbuyer.bus_phone
+    end
+
   end
 
   def create_claimed_profile
