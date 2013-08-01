@@ -41,6 +41,10 @@ module CustomerioHelper
 
 	end
 
+	def cio_user_update(user)
+		cio_user_new(user)
+	end
+
 	def format_datetime_or_return_blank(datetime, format)
 		if datetime.blank?
 			return ""

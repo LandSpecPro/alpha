@@ -111,7 +111,8 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
 
-      cio_user_new(@user)
+      cio_user_update(@user)
+      @success = true
 
       flash[:notice] = "Account updated!"
       redirect_to account_url

@@ -14,6 +14,16 @@
 				</div>
 			</div>
 		<% end %>
+
+		<% if @success %>
+			<div class="span6">
+				<div class="center">
+					<div class="alert alert-success">
+						<h3><strong>Success!</strong> User information has been saved.</h3>
+					</div>
+				</div>
+			</div>
+		<% end %>
 		
 	</div>
 <%= render 'layouts/sidebarend' %>
