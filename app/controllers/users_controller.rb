@@ -75,7 +75,7 @@ class UsersController < ApplicationController
       update_invite(@user, params[:invitecode])
 
       # Add new user to Customer.IO
-      cio_user(@user)
+      cio_user_new(@user)
 
       if @user.userType == STRING_VENDOR
         redirect_to supplier_new_url

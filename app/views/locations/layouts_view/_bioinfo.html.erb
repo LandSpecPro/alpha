@@ -9,7 +9,7 @@
 
 		<div class="widget-body">
 			<div class="widget-main">
-				<p><%= @location.bio %></p>
+				<p><%= @location.bio.gsub(/\n/,'<br/>').html_safe %></p>
 			</div>
 		</div>
 	</div>

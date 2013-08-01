@@ -199,12 +199,12 @@
   <div class="carousel-inner">
 
     <div class="item active"> <!-- item one -->
-      <img src="/images/slide_five.png" alt="">
+      <img class="active" src="/images/slide_five.png" alt="">
 
     </div>
 
     <div class="item"> <!-- item two -->
-      <img src="/images/slide_three.png" alt="" />
+      <img src="/images/slide_six.png" alt="" />
       <!--<div class="carousel-caption">
         <p>My Nursery</p>
         <p><a href="http://www.google.com">Go To Google &raquo;</a></p>
@@ -212,7 +212,7 @@
     </div>
 
     <div class="item"> <!-- item three -->
-      <img src="/images/slide_four.png" alt="" />
+      <img src="/images/slide_two.png" alt="" />
     </div>
 
   </div>
@@ -225,7 +225,7 @@
           <div class="row-fluid">
             <div class="span8 offset4">
               <div class="pull-right">
-                <h1 class="font-marmelad-white" style="font-size:40px; text-align:right; text-shadow: 3px 3px 3px #000;">Specialty product network for the landscape industry</h1>
+                <h1 class="font-marmelad-white" style="font-size:40px; text-align:right; text-shadow: 3px 3px 3px #000;">Supply network for the landscape industry</h1>
               </div>
             </div>
           </div>
@@ -317,8 +317,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
 
-<script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+$('#carousel').carousel();
+});
     $('#newsletterForm').validate({
       rules: {
         emailnewsletter: {
@@ -327,6 +329,8 @@
         }
       }
     });
+
+
 
 </script>
 
