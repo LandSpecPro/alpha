@@ -112,10 +112,9 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
 
       cio_user_update(@user)
-      @success = true
 
       flash[:notice] = "Account updated!"
-      redirect_to account_url
+      redirect_to account_url(:success => true)
     else
       if current_user.is_vendor
         @user = current_user
