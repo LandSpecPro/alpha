@@ -52,5 +52,34 @@ class HomeController < ApplicationController
 		
 		redirect_to home_url(:subscribed => true)
 	end
+
+	def oops
+
+		@message = lookup_err_code(params[:err_code])
+
+		if params[:origin_url]
+			@back_url = params[:origin_url]
+		else
+			@back_url = home_url
+		end
+	end
+
+	private 
+	def lookup_err_code(err_code)
+
+		# BROKEN LINK
+		if err_code == '19'
+			return "The link you used doesn't seem to be working properly."
+		# CLAIM PROFILE ERROR
+		elsif err_code == '20'
+			return "It looks like we can\'t find the profile you\'re looking for."
+		# CREATED USER TYPE WAS NOT BUYER OR SUPPLIER
+		elsif err_code == '185'
+			return "Well that's our mistake. Something went wrong behind the scenes and we couldn't create your account. We'll do our best to fix it!"
+		else
+			return nil
+		end
+
+	end
 	
 end

@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       elsif @user.userType == STRING_BUYER
         redirect_to buyer_new_url
       else
-        redirect_to home_url
+        redirect_to oops_url(:err_code => 185)
       end
 
     else
@@ -143,7 +143,7 @@ class UsersController < ApplicationController
     if params[:token]
       @user = User.find_using_perishable_token(params[:token])
       unless @user
-        redirect_to home_url
+        redirect_to oops_url(:err_code => 19)
       end
     else
       @user = current_user
@@ -173,7 +173,7 @@ class UsersController < ApplicationController
     @user_session = UserSession.new(@user)
     @user_session.save
     unless @user
-      redirect_to home_url
+      redirect_to oops_url(:err_code => 19)
     end
   end
 
@@ -194,7 +194,7 @@ class UsersController < ApplicationController
       @user_session.save
       render :action => :password_reset_form
     else
-      redirect_to home_url #ERROR URL
+      redirect_to oops_url(:err_code => 19)
     end
   end
 
@@ -213,7 +213,7 @@ class UsersController < ApplicationController
     end
 
     if @claimlocation.blank?
-      redirect_to home_url #CHANGE TO ERROR URL LATER
+      redirect_to oops_url(:err_code => 20)
     end
 
   end
@@ -232,7 +232,7 @@ class UsersController < ApplicationController
     end
 
     if @claimbuyer.blank?
-      redirect_to home_url #CHANGE TO ERROR URL LATER
+      redirect_to oops_url(:err_code => 20)
       return
     end
 
