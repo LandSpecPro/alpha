@@ -233,6 +233,7 @@ class UsersController < ApplicationController
 
     if @claimbuyer.blank?
       redirect_to home_url #CHANGE TO ERROR URL LATER
+      return
     end
 
     if params[:phone]
