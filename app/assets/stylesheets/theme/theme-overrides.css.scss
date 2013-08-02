@@ -3,14 +3,21 @@
 
 .navbar-inverse .navbar-inner{
 	background:#2e893f;
-	padding-top:5px;
-	padding-bottom:5px;
+	padding-top:12px;
+	padding-bottom:8px;
+}
+
+#brand-title{
+	font-size:28px;
+	padding: 0;
+	margin-bottom:-10px;
 }
 
 #brand-image{
-	max-height: 32px;
-	margin-top: -8px;
-	margin-bottom: -4px;
+	max-height: 40px;
+	padding: 0;
+	margin-top:-11px;
+	margin-bottom:-6px;
 	padding-right: 5px;
 }
 

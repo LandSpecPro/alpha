@@ -25,20 +25,17 @@
     ga('send', 'pageview');
 
   </script>
-  <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?v=3.key=AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI&sensor=false">
-    </script>
 
   <style>
 
     #button-request-invite{
-      padding-top:5px;
-      margin-top:-5px;
-      padding-bottom:5px;
-      margin-bottom:-5px;
+      padding-top:10px;
+      margin-top:-10px;
+      padding-bottom:10px;
+      margin-bottom:-10px;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 422px) {
 
       #button-request-invite{
         margin-top:0;
@@ -48,7 +45,6 @@
       }
 
     }
-
 
   </style>
   
@@ -62,7 +58,7 @@
      <div class="container-fluid">
 <span id="top"></span>
 
-      <a class="brand" href=<%= home_url %>><small><%= image_tag("brand-image.png", :id => "brand-image") %> LandSpec Pro<sub style="font-size:9pt; margin-left:-16px; top:10px;" class="badge badge-warning">beta</sub></small> </a>
+      <a class="brand" href=<%= home_url %>><%= image_tag("brand-image.png", :id => "brand-image") %> <span id="brand-title">LandSpec Pro</span></a>
       <ul class="nav ace-nav pull-right">
         <% if current_user %>
           <li class="green">
