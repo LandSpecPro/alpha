@@ -1,3 +1,11 @@
+<% if CategoryToLocation.where(:location_id => @location.id).count == 0 %>
+	<div class="alert alert-info">
+	  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  	<strong>Categories </strong> <br/>
+	  	You can now add categories to your location to let other users know what kind of products you carry. You can add as many as you want from the dropdowns below, but make sure you only add categories you currently supply at this location. If we're missing any categories you'd like to add, feel free to let us know in the feedback form at the bottom right of your screen.
+	</div>
+<% end %>
+
 <%= form_for :category_to_locations, :url => {:action => :update_categories, :controller => :locations}, :html => {:id => 'form_location_categories'} do |f| %>
 
 	<div class="widget-box">
