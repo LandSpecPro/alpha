@@ -67,8 +67,11 @@ class HomeController < ApplicationController
 	private 
 	def lookup_err_code(err_code)
 
+		# TOO MANY FEATURED ITEMS
+		if err_code == '3'
+			return "Oops! It seems you're trying to add more than three featured items. You can only have three per location at the moment. If this isn't the case, go back and try again. Sorry!"
 		# BROKEN LINK
-		if err_code == '19'
+		elsif err_code == '19'
 			return "The link you used doesn't seem to be working properly."
 		# CLAIM PROFILE ERROR
 		elsif err_code == '20'

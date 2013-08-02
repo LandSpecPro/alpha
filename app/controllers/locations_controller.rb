@@ -43,6 +43,7 @@ autocomplete :product, :commonName
     if @location.save
       flash[:notice] = "New Location Added!"
 
+      cio_user_location(current_user, @location)
       update_weight_rank(@location)
       redirect_to locations_manage_url
 
@@ -95,6 +96,8 @@ autocomplete :product, :commonName
 
     end
 
+    cio_user_location(current_user, @location)
+
     redirect_back_or_default('/')
 
   end
@@ -103,6 +106,7 @@ autocomplete :product, :commonName
     @location = Location.find(params[:id])
     @location.bio = params[:bio]
     @location.save
+    cio_user_location(current_user, @location)
     update_weight_rank(@location)
     redirect_back_or_default('/')
   end
@@ -140,6 +144,7 @@ autocomplete :product, :commonName
 
     params[:featured_item][:price][0] = ''
     if @featureditem.update_attributes(params[:featured_item]) 
+      cio_user_location(current_user, Location.find(@featureditem.location_id))
       redirect_back_or_default('/')
     else
       render template: "products/edit"
@@ -153,6 +158,7 @@ autocomplete :product, :commonName
     @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
+      cio_user_location(current_user, @location)
       update_weight_rank(@location)
       @location.format_all_urls
       @location.save
@@ -298,6 +304,7 @@ autocomplete :product, :commonName
       fp.deactivate
     end    
 
+    cio_user_location(current_user, Location.find(@locid))
     redirect_to locations_edit_url(:id => @locid, :products => true)
 
   end

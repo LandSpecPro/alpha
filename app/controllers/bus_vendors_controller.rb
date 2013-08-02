@@ -1,5 +1,6 @@
 class BusVendorsController < ApplicationController
 	include BusVendorsHelper
+	include CustomerioHelper
 	before_filter :require_user
 	before_filter :require_user_is_vendor
 	before_filter :require_business, :except => [:new, :create]
@@ -17,6 +18,8 @@ class BusVendorsController < ApplicationController
 	    if @busvendor.save
 	      flash[:notice] = "Account registered!"
 
+	      cio_user_company(@user)
+
 	      # Update current_users Business-Vendor id
 		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
 
@@ -32,6 +35,7 @@ class BusVendorsController < ApplicationController
 	    if @bus_vendor.update_attributes(params[:bus_vendor])
 	      flash[:notice] = "Account updated!"
 	      @success = true
+	      cio_user_company(current_user)
 	      render :action => :manage_company
 	    else
 	      render :action => :manage_company

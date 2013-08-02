@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   
   # add in before filter to make sure user id matches for setting and removing favorites
   include ProductHelper
+  include CustomerioHelper
 
   before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user, :only => [:edit, :new, :create, :set_as_favorite]
@@ -34,20 +35,25 @@ class ProductsController < ApplicationController
     
     @product = find_product(@location)
 
-    if @product.save
-      if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
-        flash[:notice] = "Product Added!"
-        redirect_to locations_edit_url(:id => @locationid, :products => true)
-        return
+    if @location.featured_items.where(:active => true).count < 3
+      if @product.save
+        if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
+          flash[:notice] = "Product Added!"
+          cio_user_location(current_user, Location.find(@locationid))
+          redirect_to locations_edit_url(:id => @locationid, :products => true)
+          return
+        else
+          flash[:notice] = "Not successful!"
+          params[:products] = true
+          render :template => 'locations/edit'
+        end
       else
         flash[:notice] = "Not successful!"
         params[:products] = true
         render :template => 'locations/edit'
       end
     else
-      flash[:notice] = "Not successful!"
-      params[:products] = true
-      render :template => 'locations/edit'
+      redirect_to oops_url(:err_code => 3, :origin_url => locations_edit_url(:id => @locationid, :products => true))
     end
 
   end
