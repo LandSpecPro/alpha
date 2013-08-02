@@ -16,7 +16,7 @@ class BusVendorsController < ApplicationController
 		@busvendor = @user.build_bus_vendor(params[:bus_vendor])
 
 	    if @busvendor.save
-	      flash[:notice] = "Account registered!"
+	      flash[:notice] = "Account registered!" 
 
 	      
 
