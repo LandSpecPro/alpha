@@ -56,11 +56,12 @@ autocomplete :product, :commonName
 
   def manage
     @user = current_user
-    @vlocations = @user.bus_vendor.locations
-    if @vlocations.count == 1
-        redirect_to locations_view_url(:id => @vlocations.first.id)
-    elsif @vlocations.count == 0
-      redirect_to locations_new_url(:new_user_message => true)
+    if @user.bus_vendor.locations.blank?
+      redirect_to locations_new_url
+    elsif @user.bus_vendor.locations.count == 1
+      redirect_to locations_view_url(:id => @user.bus_vendor.locations.first.id)
+    else
+      @vlocations = @user.bus_vendor.locations
     end
   end
 
