@@ -16,12 +16,28 @@
 
 					<%= hidden_field_tag(:id, @location.id) %>
 
-					<h4>Product Categories:</h4>
+					
 					<div class="center">
-						<div class="block input-icon input-icon-right">
-							<%= select_tag :categories, options_from_collection_for_select(
-								    Category.where(:active => true).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids),
-									:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+						<div class="row-fluid">
+
+							<div class="span6">
+								<h4>Plants:</h4>
+								<div class="block input-icon input-icon-right">
+									<%= select_tag :categories, options_from_collection_for_select(
+										    Category.where(:active => true, :parent_id => 1).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids),
+											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+								</div>
+							</div>
+
+							<div class="span6">
+								<h4>Materials:</h4>
+								<div class="block input-icon input-icon-right">
+									<%= select_tag :categories, options_from_collection_for_select(
+										    Category.where(:active => true, :parent_id => 2).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids),
+											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+								</div>
+							</div>
+
 						</div>
 					</div>
 
