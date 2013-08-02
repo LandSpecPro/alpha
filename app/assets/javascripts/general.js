@@ -49,6 +49,12 @@ function applyPopovers(){
 	$('[data-rel=tooltip]').tooltip();
 	$('[data-rel=popover]').popover({html:true});
 
+	$('.popover-phone').popover({
+		content: "This is only for contact and verification purposes and will never be made public.",
+		placement: "bottom",
+		trigger: 'focus hover'
+	});
+
 	$('.profile-social-links > a').tooltip();
 	$('.tooltip-success').tooltip();
 	$('.tooltip-info').tooltip();

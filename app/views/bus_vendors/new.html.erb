@@ -43,7 +43,7 @@
 
                   <!--[if lt IE 10]>Phone Number:<![endif]-->
                   <span class="block input-icon input-icon-right">
-                    <%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :placeholder => "Phone Number" %>
+                    <%= f.text_field :busPhone, :class => 'span12 input-mask-phone popover-phone', :placeholder => "Phone Number" %>
                     <i class="icon-phone"></i>
                   </span>
 
@@ -76,4 +76,5 @@
 
 <script type="text/javascript">
   $(applyMasks());
+  $(applyPopovers());
 </script>

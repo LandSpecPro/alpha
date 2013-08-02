@@ -56,9 +56,8 @@
 
 							<%= f.label 'Phone:' %> <!-- Add in something that says this is not visible to other users -->
 							<div class="block input-icon input-icon-right">
-								<%= f.text_field :busPhone, :class => 'span12 input-mask-phone', :value => @bus_buyer.busPhone %>
+								<%= f.text_field :busPhone, :class => 'span12 input-mask-phone popover-phone', :value => @bus_buyer.busPhone %>
 							</div>
-
 						</fieldset>
 
 					</div>
@@ -85,4 +84,5 @@
 <script type="text/javascript">
 	$(applyChosenStyle());
 	$(applyMasks());
+	$(applyPopovers());
 </script>

@@ -90,7 +90,7 @@
 					<br/>
 					<%= @claimlocation.loc_city + ", " + @claimlocation.loc_state + " " + @claimlocation.loc_zip %>
 					<br/>
-					<abbr title="Phone">P:</abbr> <%= @claimlocation.loc_phone %>
+					<abbr title="Phone" class="popover-phone">P:</abbr> <%= @claimlocation.loc_phone %>
 				</address>
 			</div>
 
@@ -102,3 +102,7 @@
 </div>
 
 <%= render 'layouts/footer' %>
+
+<script type="text/javascript">
+	$(applyPopovers());
+</script>
