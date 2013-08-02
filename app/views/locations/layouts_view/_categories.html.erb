@@ -13,18 +13,65 @@
 
 		<div class="widget-body">
 			<div class="widget-main">
-				<% @location.categories.order('hierarchy_level ASC, cat_name ASC').each do |cat| %>
-					<% if cat.is_descendant_of("Materials") %>
-						<span class="label label-large label-warning" style="font-size:20px; padding:8px; margin:5px;">
-					<% elsif cat.is_descendant_of("Plants") %>
-						<span class="label label-large label-success" style="font-size:20px; padding:8px; margin:5px;">
-					<% else %>
-						<span class="label label-large label-inverse" style="font-size:20px; padding:8px; margin:5px;">
+
+				<div class="row-fluid">
+
+					<!-- HAS PLANT AND MATERIAL CATEGORIES -->
+					<% if @location.categories.where(:id => 1).count > 0 and @location.categories.where(:id => 2).count > 0 %>
+						<div class="span6">
+							<div class="center">
+								<h2><strong>Plants</strong></h2>
+								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
+									<% if cat.is_descendant_of("Plants") %>
+										<h4><%= cat.cat_name %></h4>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+						<div class="span6">
+							<div class="center">
+								<h2><strong>Materials</strong></h2>
+								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
+									<% if cat.is_descendant_of("Materials") %>
+										<h4><%= cat.cat_name %></h4>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+
+					<!-- ONLY HAS PLANT CATEGORIES -->
+					<% elsif @location.categories.where(:id => 1).count > 0 %>
+						<div class="span12">
+							<div class="center">
+								<h2><strong>Plants</strong></h2>
+								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
+									<% if cat.is_descendant_of("Plants") %>
+										<h4><%= cat.cat_name %></h4>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+
+					<!-- ONLY HAS MATERIAL CATEGORIES -->
+					<% elsif @location.categories.where(:id => 2).count > 0 %>
+						<div class="span12">
+							<div class="center">
+								<h2><strong>Materials</strong></h2>
+								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
+									<% if cat.is_descendant_of("Materials") %>
+										<h4><%= cat.cat_name %></h4>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
 					<% end %>
-						<%= cat.cat_name %>
-					</span>
-				<% end %>
+
+
+				</div>
+
 			</div>
 		</div>
 	</div>
 <% end %>
+
+			
