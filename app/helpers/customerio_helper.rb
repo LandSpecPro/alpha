@@ -117,10 +117,16 @@ module CustomerioHelper
 					location_created_at: format_as_unix_timestamp(location.created_at),
 					location_is_active: location.active,
 					location_is_verified: location.verified,
-					location_search_weight: location.searchWeight,
-					featured_items_last_added_at: format_as_unix_timestamp(location.featured_items.where(:active => true).order('created_at DESC').first.created_at),
-					featured_items_last_updated_at: format_as_unix_timestamp(location.featured_items.where(:active => true).order('updated_at DESC').first.updated_at)
+					location_search_weight: location.searchWeight
 				)
+
+				if location.featured_items.where(:active => true).count > 0
+					$customerio.identify(
+						id: user.id,
+						featured_items_last_added_at: format_as_unix_timestamp(location.featured_items.where(:active => true).order('created_at DESC').first.created_at),
+						featured_items_last_updated_at: format_as_unix_timestamp(location.featured_items.where(:active => true).order('updated_at DESC').first.updated_at)
+					)
+				end
 			end
 
 		end
