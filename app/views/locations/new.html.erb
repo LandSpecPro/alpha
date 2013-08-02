@@ -4,7 +4,7 @@
 		<%= form_for @location, :html => {:id => 'form_add_new_location'} do |f| %>
 		<div class="widget-box">
 			<div class="widget-header header-color-green2">
-				<h5 class="bigger lighter"><i class="icon-globe"></i> New Location Information</h5>
+				<h5 class="bigger lighter"><i class="icon-globe"></i> New Location for <%= current_user.bus_vendor.busName %></h5>
 				<div class="widget-toolbar">
 					<a href="javascript:{return true;}" onclick="document.getElementById('form_add_new_location').submit();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
 				</div>
@@ -29,12 +29,15 @@
 
 								<% if Location.where(:bus_vendor_id => current_user.bus_vendor_id).count > 0 %>
 									<strong>Location Name*</strong>
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :locName, :class => 'span12', :value => @location.locName %>
+									</span>	
 								<% else %>
-									Location Name
+									<strong>Primary Location for</strong>
+									<span class="block input-icon input-icon-right">
+										<%= text_field_tag :locNamePrimary, current_user.bus_vendor.busName, :class => 'span12', :readonly => true %>
+									</span>	
 								<% end %>
-								<span class="block input-icon input-icon-right">
-									<%= f.text_field :locName, :class => 'span12', :value => @location.locName %>
-								</span>	
 
 								<strong>Street 1*</strong>
 								<span class="block input-icon input-icon-right">
