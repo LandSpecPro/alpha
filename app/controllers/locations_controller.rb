@@ -56,7 +56,7 @@ autocomplete :product, :commonName
 
   def manage
     @user = current_user
-    if @user.bus_vendor.locations.blank?
+    if Location.where(:bus_vendor_id => @user.bus_vendor.id).count == 0
       redirect_to locations_new_url
     elsif @user.bus_vendor.locations.count == 1
       redirect_to locations_view_url(:id => @user.bus_vendor.locations.first.id)
