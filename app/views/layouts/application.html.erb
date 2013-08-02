@@ -119,7 +119,7 @@
   </div><!--/.navbar-->
 
   <!-- Customer IO global variable. Make sure this works. -->
-  <%  if Rails.env == "production"
+  <%  if ENV['CIO_ENVIRONMENT'].to_s == 'prod'
         $customerio = Customerio::Client.new("8fd65e5d2b490719bc35", "870b715f5b99bdb6ee9e")
       else
         $customerio = Customerio::Client.new("b527a3e6bc1bfbe9e176", "3c4823a96f8d4e6de7e5")   
