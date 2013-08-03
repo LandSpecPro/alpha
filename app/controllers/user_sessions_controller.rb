@@ -22,7 +22,7 @@ class UserSessionsController < ApplicationController
       elsif UserSession.find.user.is_buyer
         redirect_to buyer_dashboard_url
       else
-        redirect_to home_url
+        redirect_to home_url ##ADD_OOPS
       end        
     else
       render :action => :new

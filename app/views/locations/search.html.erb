@@ -28,4 +28,11 @@
 	$(applyColorbox());
 	$(applyPopovers());
 
+	<% unless cookies.signed[:read_update_help_message] %>
+		<% if current_user.is_buyer %>
+			$(showGritter('update_help_buyer'));
+			<% cookies.permanent.signed[:read_update_help_message] = true %>
+		<% end %>
+	<% end %>
+
 </script>
