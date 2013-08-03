@@ -90,11 +90,12 @@
 
 		<div class="span4">
 				<h2><strong class="pull-right">Helpful Links</strong></h2><br/><br/>
-				<a href="#" class="pull-right">Update your account information</a><br/>
-				<a href="#" class="pull-right">Update location information</a><br/>
-				<a href="#" class="pull-right">Add a company logo</a><br/>
-				<a href="#" class="pull-right">Add Featured Items</a><br/>
-				<a href="#" class="pull-right">Send us Feedback</a><br/>
+				<a href="<%= account_company_url %>" class="pull-right">Update your company information</a><br/>
+				<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
+				<a href="<%= account_company_url %>" class="pull-right">Add a company logo</a><br/>
+				<a href="<%= locations_search_url(:use_current_location => true) %>" class="pull-right">Search for Suppliers</a><br/>
+				<a href="<%= products_search_url(:use_current_location => true) %>" class="pull-right">Search for Products</a><br/>				
+				<a data-toggle="modal" href="#feedbackModal" class="pull-right">Send us Feedback</a><br/>
 		</div>
 
 	</div>

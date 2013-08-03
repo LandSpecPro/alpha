@@ -1,21 +1,10 @@
 <% if controller.controller_name == 'locations' %>
 
-	<% if controller.action_name == 'manage' and current_user.is_vendor %>
-
-		<div class="pull-right">
-			<div class="btn-group">
-				<a href=<%= locations_new_url %>><button class="btn btn-success btn-small" style="margin-right:10px;">Add New Location</button></a>
-			</div>
-		</div>
-
-	<% elsif controller.action_name == 'edit' and current_user.is_vendor  %>
+	<% if controller.action_name == 'edit' and current_user.is_vendor  %>
 
 		<div class="pull-right">
 			<div class="btn-group">
 				<a href=<%= locations_view_url(:id => params[:id]) %>><button class="btn btn-success btn-small" style="margin-right:10px;">View Location</button></a>
-				<% if current_user.login == 'fisoutdoor' %>
-					<a href=<%= locations_new_url %>><button class="btn btn-success btn-small">Add New Location</button></a>
-				<% end %>
 			</div>
 		</div>
 
