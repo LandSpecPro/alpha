@@ -79,6 +79,54 @@ Category.create([
 #	{ id: 245, parent_id: 2, hierarchy_level: 2, cat_name: 'Stone Treads'},
 #	{ id: 246, parent_id: 2, hierarchy_level: 2, cat_name: 'Veneer & Building Stone'},
 #	{ id: 247, parent_id: 2, hierarchy_level: 2, cat_name: 'Supplies'},
-	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'}
+#	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'}
 
 ])
+
+Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in production
+
+	{bus_vendor_id: 2,
+		locName: 'Orlando #101',
+		busName: BusVendor.find(2).busName,
+		primaryPhone: '(407) 425-6669',
+		address1: '2400 Paseo Ave.',
+		city: 'Orlando',
+		state: 'FL',
+		zip: '32805',
+		primaryEmail: 'jeff.fischer@fisoutdoor.com',
+		websiteLink: 'http://www.fisoutdoor.com',
+		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
+	},
+	{bus_vendor_id: 2,
+		locName: 'Ft. Myres #102',
+		busName: BusVendor.find(2).busName,
+		primaryPhone: '(239) 936-6556',
+		address1: '6300 Arc Way',
+		city: 'Ft. Myres',
+		state: 'FL',
+		zip: '33966',
+		primaryEmail: 'jeff.fischer@fisoutdoor.com',
+		websiteLink: 'http://www.fisoutdoor.com',
+		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
+	},
+	{bus_vendor_id: 2,
+		locName: 'Gainesville #103',
+		busName: BusVendor.find(2).busName,
+		primaryPhone: '(352) 375-2225',
+		address1: '1250 NW 53rd Ave.',
+		city: 'Gainesville',
+		state: 'FL',
+		zip: '32653',
+		primaryEmail: 'jeff.fischer@fisoutdoor.com',
+		websiteLink: 'http://www.fisoutdoor.com',
+		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
+	}
+])
+
+
+
+### WHEN PUSHING TO PRODUCTION --
+	# rake db:migrate
+	# rake db:seed
+	# geocode:all CLASS=Locations
+	# what did I need to do to update searchWeight, do that too
