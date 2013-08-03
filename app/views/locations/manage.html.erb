@@ -82,11 +82,6 @@
 
 	$(applyPopovers());
 
-	<% unless cookies.signed[:read_update_help_message] %>
-		$(showGritter('update_help_supplier'));
-		<% cookies.permanent.signed[:read_update_help_message] = true %>
-	<% end %>
-
 	$('#table_report').dataTable( {
 		"aoColumns": [
 			{"bSortable": true, "bSearchable": false},
