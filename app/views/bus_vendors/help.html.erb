@@ -104,8 +104,8 @@
 				<a href="<%= account_company_url %>" class="pull-right">Update your company information</a><br/>
 				<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
 				<% if Location.where(:bus_vendor_id => current_user.bus_vendor_id).count == 1 %>
-					<a href="<%= locations_manage_url %>" class="pull-right">Update location information</a><br/>
-					<a href="<%= locations_manage_url(:products => true) %>" class="pull-right">Add Featured Items</a><br/>
+					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id) %>" class="pull-right">Update location information</a><br/>
+					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :products => true) %>" class="pull-right">Add Featured Items</a><br/>
 				<% elsif Location.where(:bus_vendor_id => current_user.bus_vendor_id).count > 1 %>
 					<a href="<%= locations_manage_url %>" class="pull-right">Manage Locations</a><br/>
 				<% else %>
