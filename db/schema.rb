@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728213338) do
+ActiveRecord::Schema.define(:version => 20130803225202) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -132,6 +132,13 @@ ActiveRecord::Schema.define(:version => 20130728213338) do
     t.boolean  "active",           :default => true, :null => false
   end
 
+  create_table "featured_item_view_logs", :force => true do |t|
+    t.integer  "viewed_by_user_id", :null => false
+    t.integer  "featured_item_id",  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "featured_items", :force => true do |t|
     t.integer  "location_id",                                                       :null => false
     t.integer  "product_id",                                                        :null => false
@@ -164,6 +171,13 @@ ActiveRecord::Schema.define(:version => 20130728213338) do
     t.string   "state"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "location_view_logs", :force => true do |t|
+    t.integer  "viewed_by_user_id", :null => false
+    t.integer  "location_id",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "locations", :force => true do |t|

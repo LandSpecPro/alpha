@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   # add in before filter to make sure user id matches for setting and removing favorites
   include ProductHelper
   include CustomerioHelper
+  include AnalyticsHelper
 
   before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user, :only => [:edit, :new, :create, :set_as_favorite]
