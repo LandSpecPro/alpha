@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803225202) do
+ActiveRecord::Schema.define(:version => 20130804203009) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20130803225202) do
     t.string   "inventory_content_type"
     t.integer  "inventory_file_size"
     t.datetime "inventory_updated_at"
+    t.string   "public_url"
+    t.boolean  "public_url_active",      :default => false, :null => false
   end
 
   create_table "newsletter_emails", :force => true do |t|

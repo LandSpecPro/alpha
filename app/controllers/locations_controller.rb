@@ -9,11 +9,29 @@ class LocationsController < ApplicationController
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
-  before_filter :require_user
-  before_filter :require_business
+  before_filter :require_user, :except => :view_public
+  before_filter :require_business, :except => :view_public
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
 
-  
+  def view_public
+
+    @url = params[:public_url]
+
+    if @url.blank?
+      redirect_to oops_url(:err_code => 1) #Maybe redirect later to the profile default page that lets users browse public profiles
+      return
+    end
+
+    @location = Location.where(:public_url => @url, :active => true, :public_url_active => true).first
+
+    if @location.blank?
+      redirect_to oops_url(:err_code => 1)
+      return
+    end
+
+    #add_location_viewed(-1, params[:id])
+
+  end
 
   def new
     @location = Location.new

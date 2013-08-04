@@ -67,8 +67,11 @@ class HomeController < ApplicationController
 	private 
 	def lookup_err_code(err_code)
 
+		# INCORRECT LINK TO PUBLIC PROFILE
+		if err_code == '1'
+			return "The profile you were trying to get too doesn't exist. Check your spelling or the source to make sure everything is correct. If you feel like you've reached this page in error, feel free to contact us and we'll try to sort out this problem for you."
 		# TOO MANY FEATURED ITEMS
-		if err_code == '3'
+		elsif err_code == '3'
 			return "Oops! It seems you're trying to add more than three featured items. You can only have three per location at the moment. If this isn't the case, go back and try again. Sorry!"
 		# BROKEN LINK
 		elsif err_code == '19'

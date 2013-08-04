@@ -84,13 +84,13 @@
 
 	$('#table_report').dataTable( {
 		"aoColumns": [
-			{"bSortable": true, "bSearchable": false},
-			{"bSortable": true, "bSearchable": false},
-			{"bSortable": false, "bSearchable": false}
+			{"bSortable": true, "bSearchable": true},
+			{"bSortable": true, "bSearchable": true},
+			{"bSortable": false, "bSearchable": false},
+			{"bSortable": true, "bSearchable": false}
 		],
-		"bFilter": false,
-		"bPaginate": false,
-		"sDom": 'ti'
+		"bFilter": true,
+		"bPaginate": false
 	});
 
 </script>
