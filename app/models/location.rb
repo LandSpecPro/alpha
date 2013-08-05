@@ -31,8 +31,7 @@ class Location < ActiveRecord::Base
 	accepts_nested_attributes_for :categories
 
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
-	validates :public_url, :uniqueness => {:scape => :active, :message => "This URL is already in use!"}
-	validates_presence_of :public_url, :on => :set_public_url
+	validates :public_url, :uniqueness => {:scope => :active, :message => "This URL is already in use!"}, :allow_nil => true
 
 	validates_presence_of :address1, :message => "Must provide a valid address!"
 	validates_presence_of :city, :message => "Must provide a valid city!"

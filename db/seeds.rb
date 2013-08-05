@@ -83,7 +83,7 @@
 #
 #])
 
-Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in production
+Location.create!([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in production
 
 	{
 		bus_vendor_id: 1,  
