@@ -270,8 +270,8 @@ class LocationsController < ApplicationController
         @locations = Location.search_with_query_only(params[:search])
         @otherlocations = ClaimLocation.search_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @locations = Location.where(:active => true)
-        @otherlocations = ClaimLocation.where(:claimed => false)
+        @locations = Location.where(:active => true).geocoded
+        @otherlocations = ClaimLocation.where(:claimed => false).geocoded
       end
 
       update_search_log

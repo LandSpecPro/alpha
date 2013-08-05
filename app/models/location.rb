@@ -52,14 +52,14 @@ class Location < ActiveRecord::Base
 
 	def self.search_with_distance_and_query(location, distance_from, query, user)
 
-	    @locsnear = self.near(location, distance_from).where(:active => true)
+	    @locsnear = self.geocoded.near(location, distance_from).where(:active => true)
 	    return @locsnear.search_all_locations(query).where(:active => true)
 
 	end
 
 	def self.search_with_distance_only(location, distance_from, user)
 
-		return self.near(location, distance_from).where(:active => true)
+		return self.geocoded.near(location, distance_from).where(:active => true)
 
 	end
 
@@ -75,7 +75,7 @@ class Location < ActiveRecord::Base
 
 		@ignorezero = @top20.where('"searchWeight" > ?', 0)
 
-		@nearest = @ignorezero.near(location, 100000).order("distance")
+		@nearest = @ignorezero.geocoded.near(location, 100000).order("distance")
 
 		@top3 = @nearest.limit(3)
 

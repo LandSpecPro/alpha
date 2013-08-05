@@ -20,12 +20,12 @@ module ProductHelper
 	end
 
 	def search_for_all
-		@featuredItems = FeaturedItem.where(:active => true).order('created_at DESC')
+		@featuredItems = FeaturedItem.where(:active => true).geocoded.order('created_at DESC')
 		return get_visible(@featuredItems)
 	end
 
 	def search_for_featured_items_with_distance_only(location, distance)
-		@featuredItems = FeaturedItem.near(location, distance).where(:active => true).order('created_at DESC')
+		@featuredItems = FeaturedItem.geocoded.near(location, distance).where(:active => true).order('created_at DESC')
 		return get_visible(@featuredItems)
 	end
 
@@ -43,7 +43,7 @@ module ProductHelper
 
 	def search_for_featured_items_with_query_and_distance(location, query, distance)
 	    @product = Product.where(:commonName => query, :active => true).first
-	    @featureditems = FeaturedItem.near(location, distance).where(:active => true).order('created_at DESC')
+	    @featureditems = FeaturedItem.geocoded.near(location, distance).where(:active => true).order('created_at DESC')
 
 	    if @product
 			@featureditems = FeaturedItem.where(:active => true, :product_id => @product.id).order('created_at DESC')
