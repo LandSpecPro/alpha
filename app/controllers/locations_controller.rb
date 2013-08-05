@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
       return
     end
 
-    @location = Location.where(:public_url => @url, :active => true, :public_url_active => true).first
+    @location = Location.where(:public_url => @url, :active => true).first
 
     if @location.blank?
       redirect_to oops_url(:err_code => 1)

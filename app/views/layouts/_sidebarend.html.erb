@@ -14,14 +14,9 @@
 
 <script type="text/javascript">
 
-	<% unless cookies.signed[:read_update_help_message] %>
-		<% if current_user.is_buyer %>
-			$(showGritter('update_help_buyer'));
-			<% cookies.permanent.signed[:read_update_help_message] = true %>
-		<% elsif current_user.is_vendor %>
-			$(showGritter('update_help_supplier'));
-			<% cookies.permanent.signed[:read_update_help_message] = true %>
-		<% end %>
+	<% unless cookies.signed[:update_helppage] %>
+		$(showGritter('update_helppage'));
+		<% cookies.permanent.signed[:update_helppage] = true %>
 	<% end %>
 
 </script>

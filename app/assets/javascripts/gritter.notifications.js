@@ -10,11 +10,8 @@ function showGritter(gritter){
 	else if(gritter == 'multiple_location_names'){
 		gritterMultipleLocationNames();
 	}
-	else if (gritter == 'update_help_supplier'){
-		gritterUpdateHelpSupplier();
-	}
-	else if (gritter == 'update_help_buyer'){
-		gritterUpdateHelpBuyer();
+	else if (gritter == 'update_helppage'){
+		gritterUpdateHelpPage();
 	}
 	else if (gritter == 'public_profile_update_success'){
 		gritterPublicProfileUpdateSuccess();
@@ -48,19 +45,10 @@ function gritterMultipleLocationNames(){
 	});
 }
 
-function gritterUpdateHelpSupplier(){
+function gritterUpdateHelpPage(){
 	$.gritter.add({
 		title: 'New Updates!',
-		text: "We\'ve added and updated a variety of things across LandSpec Pro. The most important changes are the addition of Categories for your locations now, which you\'ll find on your location edit page, and a new Help page which you can access from the dropdown menu at the top of the page. This new addition should help you get acquainted with LandSpec Pro much easier. Please continue to send us your feedback as we improve your experience on LandSpec Pro!",
-		sticky: true,
-		class_name: 'gritter-success gritter-dark gritter-center'
-	});
-}
-
-function gritterUpdateHelpBuyer(){
-	$.gritter.add({
-		title: 'New Updates!',
-		text: "We\'ve added and updated a variety of things across LandSpec Pro. The most important change is the addition of a new Help page which you can access from the dropdown menu at the top of the page. This new addition should help you get acquainted with LandSpec Pro much easier. Please continue to send us your feedback as we improve your experience on LandSpec Pro!",
+		text: "There is now a 'Help' page, accessible from the dropdown menu at the top of the page. This page will expand as we add new features and offer some help and insight on how to get the most out of LandSpec Pro.",
 		sticky: true,
 		class_name: 'gritter-success gritter-dark gritter-center'
 	});
