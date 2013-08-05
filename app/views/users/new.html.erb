@@ -67,17 +67,14 @@
 									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
-								<!-- [if lt IE 10]>Invitaction Code:<![endif]-->
-								<span class="block input-icon input-icon-right">
-									<%= text_field_tag :invitecode, params[:invitecode], :class => 'span12', :placeholder => "Your invitation code" %>
-									<i class="icon-ticket"></i>
-								</span>
 								<span class="block center">
-									<input name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' checked onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')"> Supplier</span>
+
+									<input name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="Suppliers are retailers of Landscaping Materials such as Equipment, Stone, Plants (nurseries, tree farms, etc.)"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-							<span class="">
-									<input name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')"> Buyer</span>
-							</span>
+										<span class="">
+									<input name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="Buyers are Landscape Professionals such as Contractors, Designers, and Architects."> Buyer</span>
+										</span>
+
 								</span>
 								<br/>
 								<span class="block center">
@@ -123,7 +120,9 @@
 
 <script type="text/javascript">
 
-$("#newUserForm").validate({
+	$(applyPopovers());
+
+	$("#newUserForm").validate({
 		rules: {
 			login: "required",
 			email: {
@@ -150,6 +149,12 @@ $("#newUserForm").validate({
 		}
 	}
 
-	
+	<% unless params[:user].blank? %>
+		<% if params[:user][:userType] == STRING_VENDOR %>
+			$(document.getElementById("userTypeSupplier").checked = true);
+		<% elsif params[:user][:userType] == STRING_BUYER %>
+			$(document.getElementById("userTypeBuyer").checked = true);
+		<% end %>
+	<% end %>
 
 </script>

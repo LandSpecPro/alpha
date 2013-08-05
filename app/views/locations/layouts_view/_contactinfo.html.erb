@@ -56,7 +56,11 @@
 		<div class="profile-info-value">
 			<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-info" data-original-title="View on Map" target="_blank" data-placement="bottom"> 
 				<i class="icon-map-marker light-orange bigger-110"></i>
-				<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+				<% unless @location.address2.blank? %>
+					<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+				<% else %>
+					<span id="address"><%= @location.address1 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+				<% end %>
 			</a>
 		</div>
 	</div>

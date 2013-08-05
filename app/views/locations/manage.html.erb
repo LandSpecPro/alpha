@@ -14,6 +14,7 @@
 						<tr>
 							<th class="center">Location Name</th>
 							<th class="center">Address</th>
+							<th class="center hidden-phone">Public URL</th>
 							<th class="center"></th>
 							<th class="center">Active?</th>
 						</tr>
@@ -39,6 +40,18 @@
 								</td>
 
 								<td class="center">
+									<% if l.public_url_active %>
+										<a href="http://www.landspecpro.com/profile/<%= l.public_url %>" target="_blank">
+											<%= l.public_url %>
+										</a>
+									<% else %>
+										<a href="http://www.landspecpro.com/profile/<%= l.public_url %>" target="_blank" data-rel="popover" data-placement="top" data-trigger="hover" data-content="This Profile is still active, but you have not set a custom URL. You can do this from the Edit Location page.">
+											temp
+										</a>
+									<% end %>
+								</td>
+
+								<td class="center">
 									<a href=<%= locations_view_url(:id => l.id) %> title="View">
 										<span class="btn btn-mini btn-warning"><i class="icon-eye-open"></i> View</span>
 									</a>
@@ -52,9 +65,9 @@
 
 								<td class="center">
 									<% if l.active %>
-										<span class="badge badge-success" data-rel="popover" data-content="Active!" data-placement="right" data-trigger="hover"><i class="icon-ok"></i></span>
+										<span class="badge badge-success" data-rel="popover" data-content="Active!" data-placement="top" data-trigger="hover"><i class="icon-ok"></i></span>
 									<% else %>
-										<a href="<%= locations_edit_url(:id => l.id) %>" class="badge badge-important" data-rel="popover" data-content="Inactive! You must activate this location for it to be visible to other users." data-placement="right" data-trigger="hover"><i class="icon-remove"></i></a>
+										<a href="<%= locations_edit_url(:id => l.id) %>" class="badge badge-important" data-rel="popover" data-content="Inactive! You must activate this location for it to be visible to other users." data-placement="top" data-trigger="hover"><i class="icon-remove"></i></a>
 									<% end %>
 								</td>
 
@@ -84,6 +97,7 @@
 
 	$('#table_report').dataTable( {
 		"aoColumns": [
+			{"bSortable": true, "bSearchable": true},
 			{"bSortable": true, "bSearchable": true},
 			{"bSortable": true, "bSearchable": true},
 			{"bSortable": false, "bSearchable": false},

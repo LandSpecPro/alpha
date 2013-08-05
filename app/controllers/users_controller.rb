@@ -52,11 +52,10 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     # Check invite code and agreement to terms and conditions
-    @incorrectinvite = is_invite_wrong(params[:invitecode])
     @missingterms = is_missing_terms(params[:terms])
     @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
 
-    if @incorrectinvite or @missingterms or @confirmemail
+    if @missingterms or @confirmemail
       render :action => :new
       return
     end
@@ -71,8 +70,6 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-
-      update_invite(@user, params[:invitecode])
 
       # Add new user to Customer.IO
       cio_user_new(@user)
