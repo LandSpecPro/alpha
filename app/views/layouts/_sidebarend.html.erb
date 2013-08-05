@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 
-	<% unless cookies.signed[:read_update_help_message] and current_user.login_count > 1 %>
+	<% unless cookies.signed[:read_update_help_message] %>
 		<% if current_user.is_buyer %>
 			$(showGritter('update_help_buyer'));
 			<% cookies.permanent.signed[:read_update_help_message] = true %>

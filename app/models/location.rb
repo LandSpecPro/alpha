@@ -108,7 +108,11 @@ class Location < ActiveRecord::Base
 
 	def get_full_address
 		@address1 = self.address1 + " "
-		@address2 = self.address2 + " "
+		if not self.address2.blank?
+			@address2 = self.address2 + " "
+		else
+			@address2 = " "
+		end
 		@city = self.city + ", "
 		@state = self.state + " "
 		@zip = self.zip
