@@ -47,7 +47,7 @@ class LocationsController < ApplicationController
     end
 
     if @location.update_attributes(params[:location])
-      redirect_to locations_edit_url(:id => @location.id, :settings => true)
+      redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_success => true)
       return
     else
       @product = Product.new

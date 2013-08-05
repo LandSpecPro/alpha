@@ -1,0 +1,42 @@
+<%= form_for @location, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
+
+	<!-- Display error messages as alerts -->
+	<% @location.errors.each do |field, msg| %>
+		<div class="row-fluid">
+			<div class="span4 offset4">
+				<div class="alert alert-error center">
+				  <strong>Error! </strong> <%= msg %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<% if params[:url_blank] %>
+		<div class="row-fluid">
+			<div class="span4 offset4">
+				<div class="alert alert-error center">
+					<strong>Error! </strong> Unique URL is required.
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+	<%= hidden_field_tag(:id,  @location.id) %>
+	<%= hidden_field_tag('location[public_url_active]', true) %>
+	<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profile/<%= @location.public_url %></strong></label>
+	<%= f.text_field :public_url, :class => 'span3 center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+
+	<br/>
+
+	<div class="row-fluid">
+		<div class="span6 offset3">
+			<p>This is where instructions go on what this public url shit is all about. I will write things here to tell the user what they should be doing so that they are aware of what it is they should do.</p>
+		</div>
+	</div>
+
+	<br/>
+
+	<a class="btn btn-success btn-small center" style="width:250px;" href="javascript:{return true;}" onclick="document.getElementById('form_set_public_url').submit();">
+		<i class="icon-save" id="submit_public_url"></i> Submit
+	</a>
+
+<% end %>
