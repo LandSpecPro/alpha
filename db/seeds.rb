@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Category.create([
+#Category.create([
 #
 #	#TOPLEVEL
 #	{ id: 1, cat_name: 'Plants'},
@@ -81,11 +81,11 @@ Category.create([
 #	{ id: 247, parent_id: 2, hierarchy_level: 2, cat_name: 'Supplies'},
 #	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'}
 
-])
+#])
 
 Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in production
 
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Orlando #101',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(407) 425-6669',
@@ -98,7 +98,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Ft. Myres #102',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(239) 936-6556',
@@ -111,7 +111,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Gainesville #103',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(352) 375-2225',
@@ -124,7 +124,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Jacksonville #104',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(904) 363-8899',
@@ -137,7 +137,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Tampa #105',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(813) 978-1181',
@@ -150,7 +150,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Lakeland #106',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(863) 683-1323',
@@ -163,7 +163,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Ormond Beach #107',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(386) 673-8899',
@@ -176,7 +176,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Clearwater #108',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(727) 446-3534',
@@ -189,7 +189,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Minneola #110',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(352) 242-9050',
@@ -202,7 +202,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Oviedo #111',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(407) 365-2225',
@@ -215,7 +215,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Kissimmee #112',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(407) 518-1555',
@@ -228,7 +228,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Ocala #113',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(352) 368-5600',
@@ -241,7 +241,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Jacksonville Beach #114',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(904) 247-8899',
@@ -254,7 +254,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Pooler #115',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(912) 964-2363',
@@ -267,7 +267,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Sebring #116',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(863) 471-1110',
@@ -280,7 +280,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Tallahassee #117',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(850) 580-5251',
@@ -293,7 +293,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'West Palm Beach #118',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(561) 688-1477',
@@ -306,7 +306,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Palm Coast #119',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(386) 586-0137',
@@ -319,7 +319,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Sanford #121',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(407) 323-4222',
@@ -332,7 +332,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Santa Rosa Beach #123',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(850) 622-2797',
@@ -345,7 +345,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Brunswick #124',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(912) 554-2270',
@@ -358,7 +358,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Greenville #125',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(864) 299-5424',
@@ -371,7 +371,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Summerfield #127',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(352) 245-4428',
@@ -384,7 +384,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Ft. Lauderdale #128',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(954) 689-6406',
@@ -397,7 +397,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Orange Park #129',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(904) 541-1255',
@@ -410,7 +410,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Port St. Lucie #130',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(772) 464-9288',
@@ -423,7 +423,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Miami #134',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(305) 392-3202',
@@ -436,7 +436,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Naples #135',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(239) 594-0904',
@@ -449,7 +449,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Pelham #136',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(205) 621-2116',
@@ -462,7 +462,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Mathews #137',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(704) 893-0707',
@@ -475,7 +475,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Pensacola #140',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(850) 262-0430',
@@ -488,7 +488,7 @@ Location.create([ # CHANGE BUS_VENDOR_ID BACK TO 1, or whatever FISOUTDOOR is in
 		websiteLink: 'http://www.fisoutdoor.com',
 		facebookLink: 'https://www.facebook.com/pages/FIS-Outdoor/305688348364'
 	},
-	{bus_vendor_id: 2,
+	{bus_vendor_id: 1,
 		locName: 'Mooresville #141',
 		busName: BusVendor.find(2).busName,
 		primaryPhone: '(704) 664-1805',
