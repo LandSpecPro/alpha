@@ -33,6 +33,48 @@ class LocationsController < ApplicationController
 
   end
 
+  def set_public_url
+
+    @location = Location.find(params[:id])
+
+    if @location.blank?
+      redirect_to oops_url
+    end
+
+    if params[:location][:public_url].blank?
+      redirect_to locations_edit_url(:id => @location.id, :settings => true, :url_blank => true)
+      return
+    end
+
+    if @location.update_attributes(params[:location])
+      redirect_to locations_edit_url(:id => @location.id, :settings => true)
+      return
+    else
+      @product = Product.new
+      @productimage = ProductImage.new
+      @featureditem = FeaturedItem.new
+      params[:settings] = true
+      render :template => 'locations/edit'
+    end
+
+  end
+
+  def update_public_settings
+
+    @location = Location.find(params[:id])
+    @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
+
+    if @publicsettings.update_attributes(params[:location_public_setting])
+      redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_success => true)
+    else
+      # DO SOME ERROR
+      redirect_to oops_url
+    end
+
+
+  end
+
+
   def new
     @location = Location.new
   end
@@ -98,6 +140,8 @@ class LocationsController < ApplicationController
     @location.categories.each do |lc|
       @loccatids << lc.id
     end
+
+    @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
 
   end
 

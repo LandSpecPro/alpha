@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
 	geocoded_by :get_full_address
 	after_validation :geocode
 
-	attr_accessible :locName, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
+	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
 
 	has_attached_file :inventory,
@@ -23,14 +23,16 @@ class Location < ActiveRecord::Base
 	has_many :fav_locations
 	accepts_nested_attributes_for :fav_locations
 
-	has_one :location_public_settings
-	accepts_nested_attributes_for :location_public_settings
+	has_one :location_public_setting
+	accepts_nested_attributes_for :location_public_setting
 
 	has_many :category_to_locations
 	has_many :categories, :through => :category_to_locations
 	accepts_nested_attributes_for :categories
 
 	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
+	validates :public_url, :uniqueness => {:scape => :active, :message => "This URL is already in use!"}
+	validates_presence_of :public_url, :on => :set_public_url
 
 	validates_presence_of :address1, :message => "Must provide a valid address!"
 	validates_presence_of :city, :message => "Must provide a valid city!"

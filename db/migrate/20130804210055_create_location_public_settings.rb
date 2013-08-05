@@ -23,6 +23,8 @@ class CreateLocationPublicSettings < ActiveRecord::Migration
     	t.boolean :show_categories, :default => true, :null => false
     	t.boolean :show_other_locations, :default => false, :null => false
 
+        t.integer :location_id, :null => false
+
     	t.timestamps
     end
   end

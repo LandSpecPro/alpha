@@ -11,6 +11,9 @@ LspAlpha::Application.routes.draw do
   match "profile/buyer/claim/create" => "users#create_claimed_buyer_profile"
   match "profile/buyer/claim/success" => "users#claim_buyer_profile_success"
 
+  match "locations/edit/profile/url" => "locations#set_public_url"
+  match "locations/edit/profile/update" => "locations#update_public_settings"
+
   get "favorites/products"
 
   get "favorites/vendors"

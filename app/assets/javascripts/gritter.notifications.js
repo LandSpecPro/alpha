@@ -16,6 +16,9 @@ function showGritter(gritter){
 	else if (gritter == 'update_help_buyer'){
 		gritterUpdateHelpBuyer();
 	}
+	else if (gritter == 'public_profile_update_success'){
+		gritterPublicProfileUpdateSuccess();
+	}
 }
 
 function gritterNewUserAddLocation(){
@@ -60,5 +63,13 @@ function gritterUpdateHelpBuyer(){
 		text: "We\'ve added and updated a variety of things across LandSpec Pro. The most important change is the addition of a new Help page which you can access from the dropdown menu at the top of the page. This new addition should help you get acquainted with LandSpec Pro much easier. Please continue to send us your feedback as we improve your experience on LandSpec Pro!",
 		sticky: true,
 		class_name: 'gritter-success gritter-dark gritter-center'
+	});
+}
+
+function gritterPublicProfileUpdateSuccess(){
+	$.gritter.add({
+		title: 'Success!',
+		text: 'Your Public Profile Settings have been updated.',
+		class_name: 'gritter-info gritter-dark'
 	});
 }
