@@ -11,12 +11,24 @@ module BusVendorsHelper
 	end
 
 	def concat_address(loc)
-		address = loc.address1 + " " + loc.address2 + " " + loc.city + " " + loc.state + " " + loc.zip
+
+		unless loc.address2.blank?
+			address = loc.address1 + " " + loc.address2 + " " + loc.city + " " + loc.state + " " + loc.zip
+		else
+			address = loc.address1 + " " + loc.city + " " + loc.state + " " + loc.zip
+		end
+
 		return address
 	end
 
 	def concat_unclaimed_address(loc)
-		address = loc.loc_address1 + " " + loc.loc_address2 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
+		
+		unless loc.address2.blank?
+			address = loc.loc_address1 + " " + loc.loc_address2 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
+		else
+			address = loc.loc_address1 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
+		end
+
 		return address
 	end
 
