@@ -175,7 +175,7 @@
 			<% end %>
 
 			<!-- SHOW FEATURED ITEMS -->
-			<% unless FeaturedItem.where(:location_id => @location.id).count == 0 %>
+			<% unless FeaturedItem.where(:location_id => @location.id, :active => true).count == 0 %>
 				<span class="pull-left" data-rel="popover" data-placement="right" data-trigger="hover"
 						data-content="By selecting this you will make the Name and Image of all featured items for this location visible to the public." >
 					<%= f.check_box :show_featured_items, :id => 'show_featured_items', :onchange => "selectFeaturedItems();" %>
