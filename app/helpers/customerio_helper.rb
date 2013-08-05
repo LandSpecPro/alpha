@@ -158,6 +158,23 @@ module CustomerioHelper
 
 	end
 
+	def cio_user_public_profile(user, location)
+
+		# This will not work exactly right for users with multiple locations
+		if user.is_vendor
+
+			$customerio.identify(
+				id: user.id,
+				email: user.email,
+				username: user.login,
+				public_url: location.public_url,
+				public_url_active: location.public_url_active
+			)
+
+		end
+
+	end
+
 	def format_datetime_or_return_blank(datetime, format)
 		if datetime.blank?
 			return ""

@@ -47,6 +47,7 @@ class LocationsController < ApplicationController
     end
 
     if @location.update_attributes(params[:location])
+      cio_user_public_profile(current_user, @location)
       redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_success => true)
       return
     else
@@ -65,6 +66,7 @@ class LocationsController < ApplicationController
     @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
 
     if @publicsettings.update_attributes(params[:location_public_setting])
+      cio_user_public_profile(current_user, @location)
       redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_success => true)
     else
       # DO SOME ERROR

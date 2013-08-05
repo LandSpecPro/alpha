@@ -23,7 +23,7 @@ module BusVendorsHelper
 
 	def concat_unclaimed_address(loc)
 		
-		unless loc.address2.blank?
+		unless loc.loc_address2.blank?
 			address = loc.loc_address1 + " " + loc.loc_address2 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
 		else
 			address = loc.loc_address1 + " " + loc.loc_city + " " + loc.loc_state + " " + loc.loc_zip
