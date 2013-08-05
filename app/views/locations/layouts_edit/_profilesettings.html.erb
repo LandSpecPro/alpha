@@ -1,4 +1,4 @@
-<% if Location.where(:id => @location.id).first.public_url.blank? %>
+<% unless Location.where(:id => @location.id).first.public_url_active %>
 
 	<div class="span11">
 		<div class="center">
@@ -241,7 +241,7 @@
 				<!-- Display error messages as alerts -->
 				<% @location.errors.each do |field, msg| %>
 					<div class="row-fluid">
-						<div class="span4 offset4">
+						<div class="span10 offset1">
 							<div class="alert alert-error center">
 							  <strong>Error! </strong> <%= msg %>
 							</div>
@@ -250,7 +250,7 @@
 				<% end %>
 				<% if params[:url_blank] %>
 					<div class="row-fluid">
-						<div class="span4 offset4">
+						<div class="span10 offset1">
 							<div class="alert alert-error center">
 								<strong>Error! </strong> Unique URL is required.
 							</div>
@@ -262,16 +262,19 @@
 				
 				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profile/<%= @location.public_url %></strong></label>
 
-				<div class="span8 offset2">
-					<%= f.text_field :public_url, :class => 'span12 center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+				<div class="row-fluid">
+					<div class="span10 offset1">
+						<% @location.public_url = '' %>
+						<%= f.text_field :public_url, :class => 'span12 center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+					</div>
 				</div>
 
-				<br/>
-
-				<div class="span8 offset2">
-					<a class="btn btn-success btn-small btn-block" href="javascript:{return true;}" onclick="document.getElementById('form_set_public_url').submit();">
-						<i class="icon-save" id="submit_public_url"></i> Update
-					</a>
+				<div class="row-fluid">
+					<div class="span10 offset1">
+						<a class="btn btn-success btn-small btn-block" href="javascript:{return true;}" onclick="document.getElementById('form_set_public_url').submit();">
+							<i class="icon-save" id="submit_public_url"></i> Update
+						</a>
+					</div>
 				</div>
 
 

@@ -36,6 +36,7 @@ class LocationsController < ApplicationController
   def set_public_url
 
     @location = Location.find(params[:id])
+    @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
 
     if @location.blank?
       redirect_to oops_url
@@ -44,6 +45,8 @@ class LocationsController < ApplicationController
     if params[:location][:public_url].blank?
       redirect_to locations_edit_url(:id => @location.id, :settings => true, :url_blank => true)
       return
+    else
+      params[:location][:public_url] = params[:location][:public_url].gsub(/\s+/, "")
     end
 
     if @location.update_attributes(params[:location])

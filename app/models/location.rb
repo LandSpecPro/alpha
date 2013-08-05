@@ -1,11 +1,13 @@
 class Location < ActiveRecord::Base
 	include ModelHelper
+	include AnalyticsHelper
 	
 	include PgSearch
 	pg_search_scope :search_all_locations, :against => :busName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
 
 	geocoded_by :get_full_address
 	after_validation :geocode
+	after_create :set_profile_url
 
 	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
@@ -41,6 +43,12 @@ class Location < ActiveRecord::Base
 
 	validates_format_of :primaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Primary Email address is not valid."
 	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."
+	validates_format_of :public_url, :with => /\A([a-zA-Z0-9_]){3,25}\z/, :message => "URL can only contain numbers, letters, and underscores. Must be between 3 and 25 characters long."
+
+	def set_profile_url
+		self.public_url = eight_digit_random_number
+		self.save
+	end
 
 	def self.search_with_distance_and_query(location, distance_from, query, user)
 
