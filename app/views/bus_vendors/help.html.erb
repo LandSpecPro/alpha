@@ -105,7 +105,9 @@
 				<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
 				<% if Location.where(:bus_vendor_id => current_user.bus_vendor_id).count == 1 %>		
 					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id) %>" class="pull-right">Update location information</a><br/>
+<!-- #publicprofiles
 					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :settings => true) %>" class="pull-right">Update Public Profile</a><br/>
+-->
 					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :products => true) %>" class="pull-right">Add Featured Items</a><br/>
 				<% elsif Location.where(:bus_vendor_id => current_user.bus_vendor_id).count > 1 %>
 					<a href="<%= locations_manage_url %>" class="pull-right">Manage Locations</a><br/>
@@ -117,6 +119,7 @@
 				<a href="<%= products_search_url(:use_current_location => true) %>" class="pull-right">Search for Products</a><br/>	
 				<a data-toggle="modal" href="#feedbackModal" class="pull-right">Send us Feedback</a><br/>
 
+<!-- #publicprofiles
 				<br/><br/><br/>
 
 				<h2><strong class="pull-right">What's New</strong></h2><br/><br/>
@@ -128,7 +131,7 @@
 						<p style="text-align: right;">You can now add different Product categories to your profile!</p>
 					</div>
 				</div>
-
+-->
 				<br/><br/>
 
 		</div>

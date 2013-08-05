@@ -14,7 +14,7 @@
 						<tr>
 							<th class="center">Location Name</th>
 							<th class="center">Address</th>
-							<th class="center hidden-phone">Public URL</th>
+<!-- #publicprofiles <th class="center hidden-phone">Public URL</th>-->
 							<th class="center"></th>
 							<th class="center">Active?</th>
 						</tr>
@@ -39,7 +39,8 @@
 									%>
 								</td>
 
-								<td class="center">
+<!-- #publicprofiles
+								<td class="center hidden-phone">
 									<% if l.public_url_active %>
 										<a href="http://www.landspecpro.com/profile/<%= l.public_url %>" target="_blank">
 											<%= l.public_url %>
@@ -50,6 +51,7 @@
 										</a>
 									<% end %>
 								</td>
+-->
 
 								<td class="center">
 									<a href=<%= locations_view_url(:id => l.id) %> title="View">
@@ -99,7 +101,7 @@
 		"aoColumns": [
 			{"bSortable": true, "bSearchable": true},
 			{"bSortable": true, "bSearchable": true},
-			{"bSortable": true, "bSearchable": true},
+			//{"bSortable": true, "bSearchable": true},
 			{"bSortable": false, "bSearchable": false},
 			{"bSortable": true, "bSearchable": false}
 		],

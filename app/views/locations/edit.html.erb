@@ -4,16 +4,18 @@
 		<div class="span12">
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs" id="locEditTabs">
-					<% if not params[:products] and not params[:settings] %>
+					<% if not params[:products] %><!-- #publicprofiles and not params[:settings] %> -->
 					  	<li class="active" id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
 					  	</li>
 					  	<li id="tab_featureditems">
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
+<!-- #publicprofiles
 					  	<li id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
+-->
 					<% elsif params[:products] %>
 						<li id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
@@ -21,10 +23,11 @@
 					  	<li class="active" id="tab_featureditems">
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
+<!-- #publicprofiles
 					  	<li id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
-					  	</li>
-					<% elsif params[:settings] %>
+					  	</li>					
+						<% elsif params[:settings] %>
 						<li id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
 					  	</li>
@@ -34,13 +37,14 @@
 					  	<li class="active" id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
+-->
 					<% end %>
 				  
 				</ul>
 
 			<div class="tab-content">
 
-				<% if not params[:products] and not params[:settings] %>
+				<% if not params[:products] %><!-- #publicprofiles and not params[:settings] %> -->
 				  <div id="locationInfo" class="tab-pane in active">
 				<% else %>
 				  <div id="locationInfo" class="tab-pane">
@@ -94,17 +98,8 @@
 					</div>
 				  </div>
 
-				<% if params[:settings] %>
-					<div id="publicSettings" class="tab-pane in active">
-				<% else %>
-					<div id="publicSettings" class="tab-pane">
-				<% end %>
-					<div class="row-fluid">
-						<%= render 'locations/layouts_edit/profilesettings' %>
-					</div>
-				</div>
 
-
+				  <!-- #publicprofiles INSERT THE CODE THAT I HAD TO PASTE IN THE TEMP CODE THING -->
 
 
 				</div><!-- tab-content -->
