@@ -1,3 +1,9 @@
+<% if @location.locName.blank? %>
+	<%- title "Edit Location | LandSpec Pro" %>
+<% else %>
+	<%- title "Edit " + @location.locName + " | LandSpec Pro" %>
+<% end %>
+
 <%= render 'layouts/sidebar' %>
 	<div class="row-fluid">
 
