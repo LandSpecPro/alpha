@@ -40,6 +40,12 @@
                     <i class="icon-briefcase"></i>
                   </span>
 
+                  <!--[if lt IE 10]>Company Tagline:<![endif]-->
+                  <span class="block input-icon input-icon-right">
+                    <%= f.text_field :tagline, :class => 'span12', :placeholder => "Company Tagline (optional)" %>
+                    <i class="icon-tag"></i>
+                  </span>
+
                   <!--[if lt IE 10]>Phone Number:<![endif]-->
                   <span class="block input-icon input-icon-right">
                     <%= f.text_field :busPhone, :class => 'span12 input-mask-phone popover-phone', :placeholder => "Phone Number" %>
