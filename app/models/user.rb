@@ -41,7 +41,6 @@ class User < ActiveRecord::Base
 
 		c.merge_validates_confirmation_of_password_field_options :message => 'Passwords did not match.'
 		c.validates_length_of_password_confirmation_field_options :minimum => 0, :maximum => 5000, :message => 'Password Confirmation is either less than 0 or greater than 5000. Either way, that\'s not right.'
-		c.validates_length_of_password_field_options :minimum => 6, :maximum => 5000, :message => 'Password must be at least 6 characters long.'
 
 	end
 
