@@ -2,6 +2,11 @@
 
 <% if @featureditems.nil? %>
 	<%= render 'search' %>
+	<div class="row-fluid">
+		<div class="center">
+			<h2><%= (Product.all.count).to_s %> unique products and growing...</h2>
+		</div>
+	</div>
 <% else %>
 	<%= render 'search' %>
 	<div class="row-fluid">
