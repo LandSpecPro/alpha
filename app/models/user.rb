@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	has_many :fav_products
 	accepts_nested_attributes_for :fav_products
 
-	validates_presence_of :userType, :on => :create, :message => "You must select a user type."
+	validates_presence_of :userType, :message => "You must select a user type."
 
   	# This method associates the attribute ":profileImage" with a file attachment
   	has_attached_file :profileImage, 

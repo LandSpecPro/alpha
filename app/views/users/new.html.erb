@@ -20,17 +20,10 @@
 						<%= form_for @user, :html => {:id => 'newUserForm'} do |f| %>
 
 							<!-- Display error messages as alerts -->
-							<% @user.errors.full_messages.each do |msg| %>
+							<% @user.errors.each do |field, msg| %>
 								<div class="alert alert-error">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 								  <strong>Error! </strong> <%= msg %>
-								</div>
-							<% end %>
-
-							<% if @incorrectinvite %>
-								<div class="alert alert-error">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
-									<strong>Error! </strong> Incorrect invite code!
 								</div>
 							<% end %>
 
