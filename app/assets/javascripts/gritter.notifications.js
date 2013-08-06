@@ -13,9 +13,6 @@ function showGritter(gritter){
 	else if (gritter == 'update_helppage'){
 		gritterUpdateHelpPage();
 	}
-	else if (gritter == 'public_profile_update_success'){
-		gritterPublicProfileUpdateSuccess();
-	}
 }
 
 function gritterNewUserAddLocation(){
@@ -54,10 +51,10 @@ function gritterUpdateHelpPage(){
 	});
 }
 
-function gritterPublicProfileUpdateSuccess(){
+function showUpdateSuccessGritter(updated){
 	$.gritter.add({
 		title: 'Success!',
-		text: 'Your Public Profile Settings have been updated.',
+		text: updated,
 		class_name: 'gritter-info gritter-dark'
 	});
 }

@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
         if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
           flash[:notice] = "Product Added!"
           cio_user_location(current_user, Location.find(@locationid))
-          redirect_to locations_edit_url(:id => @locationid, :products => true)
+          redirect_to locations_edit_url(:id => @locationid, :products => true, :add_featured_item_success => true)
           return
         else
           flash[:notice] = "Not successful!"

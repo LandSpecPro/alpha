@@ -100,4 +100,19 @@
 	$(applyColorbox());	
 	$(applyPopovers());
 
+	// Success messages
+	<% if params[:update_settings_url_success] %>
+		$(showUpdateSuccessGritter('Public Profile URL has been updated.'));
+	<% elsif params[:update_settings_success] %>
+		$(showUpdateSuccessGritter('Public Profile Settings have been updated.'));
+	<% elsif params[:update_about_success] %>
+		$(showUpdateSuccessGritter('Location About Section has been updated.'));
+	<% elsif params[:update_categories_success] %>
+		$(showUpdateSuccessGritter('Your Categories for this Location have been updated.'));
+	<% elsif params[:add_featured_item_success] %>
+		$(showUpdateSuccessGritter('Your Featured Item was added to this location.'));
+	<% elsif params[:update_location_info_success] %>
+		$(showUpdateSuccessGritter('Location Information has been updated.'));
+	<% end %>
+
 </script>

@@ -26,7 +26,7 @@
 					<h5 class="bigger lighter"><i class="icon-star"></i> Edit Featured Item</h5>
 					<div class="widget-toolbar">
 						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_featured_item').submit();" title="Update" class="white" id="white-link">
-							<i class="icon-save" id="save_icon"></i>
+							<i  class="icon-save" id="fav_icon"></i> Update</a>
 						</a>
 					</div>
 				</div>
@@ -104,5 +104,10 @@
 	$(applyColorbox());
 	$(applyPopovers());
 	$(applyMasks());
+
+	// Success messages
+	<% if params[:update_featured_item_success] %>
+		$(showUpdateSuccessGritter('<%= @featureditem.get_product.commonName %> has been updated.'));
+	<% end %>
 
 </script>

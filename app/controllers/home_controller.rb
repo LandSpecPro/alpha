@@ -73,6 +73,9 @@ class HomeController < ApplicationController
 		# TOO MANY FEATURED ITEMS
 		elsif err_code == '3'
 			return "Oops! It seems you're trying to add more than three featured items. You can only have three per location at the moment. If this isn't the case, go back and try again. Sorry!"
+		# WHEN SAVING TO DATABASE, SOMETHING WENT WRONG
+		elsif err_code =='7'
+			return "Don't panic! Something went wrong, but it'll be okay, go back and try again. And if that doesn't work let us know and we'll try to fix it."
 		# BROKEN LINK
 		elsif err_code == '19'
 			return "The link you used doesn't seem to be working properly."

@@ -111,7 +111,7 @@ class UsersController < ApplicationController
       cio_user_update(@user)
 
       flash[:notice] = "Account updated!"
-      redirect_to account_url(:success => true)
+      redirect_to account_url(:update_account_info_success => true)
     else
       if current_user.is_vendor
         @user = current_user

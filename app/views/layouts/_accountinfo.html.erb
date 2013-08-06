@@ -55,6 +55,15 @@
 <% end %>
 
 <script type="text/javascript">
+
 	$(applyChosenStyle());
 	$(applyMasks());
+
+	// Success messages
+	<% if params[:update_account_info_success] %>
+		$(showUpdateSuccessGritter('Your Account Information has been updated.'));
+	<% elsif params[:password_update_success] %>
+		$(showUpdateSuccessGritter('Your Password has been updated.'));
+	<% end %>
+
 </script>

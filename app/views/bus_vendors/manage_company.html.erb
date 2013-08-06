@@ -68,22 +68,20 @@
 		<% end %>
 	</div>
 
-	<% if @success %>
-		<div class="span6">
-			<div class="center">
-				<div class="alert alert-success">
-					<h3><strong>Success!</strong> Company Information has been saved.</h3>
-				</div>
-			</div>
-		</div>
-	<% end %>
-
 </div>
 
 <%= render 'layouts/sidebarend' %>
 
 <script type="text/javascript">
+
 	$(applyChosenStyle());
 	$(applyMasks());
 	$(applyPopovers());
+
+	// Success messages
+	<% if @update_company_info_success %>
+		$(showUpdateSuccessGritter('Company Information has been updated.'));
+	<% end %>
+
+
 </script>

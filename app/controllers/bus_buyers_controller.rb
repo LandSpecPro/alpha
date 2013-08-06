@@ -31,7 +31,7 @@ class BusBuyersController < ApplicationController
 		@bus_buyer = BusBuyer.find(params[:bus_buyer][:id])
 	    if @bus_buyer.update_attributes(params[:bus_buyer])
 	      flash[:notice] = "Account updated!"
-	      @success = true
+	      @update_company_info_success = true
 	      render :action => :manage_company
 	    else
 	      render :action => :manage_company

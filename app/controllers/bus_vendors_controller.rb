@@ -35,7 +35,7 @@ class BusVendorsController < ApplicationController
 		@bus_vendor = BusVendor.find(params[:bus_vendor][:id])
 	    if @bus_vendor.update_attributes(params[:bus_vendor])
 	      flash[:notice] = "Account updated!"
-	      @success = true
+	      @update_company_info_success = true
 	      cio_user_company(current_user)
 	      render :action => :manage_company
 	    else
