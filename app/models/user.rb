@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
 	validates_presence_of :userType, :message => "You must select a user type."
 
+
   	# This method associates the attribute ":profileImage" with a file attachment
   	has_attached_file :profileImage, 
 		styles: {
@@ -30,6 +31,18 @@ class User < ActiveRecord::Base
 
 	acts_as_authentic do |c|
 		c.login_field = :login
+
+		c.merge_validates_format_of_email_field_options :message => 'Email address is invalid.'
+		c.merge_validates_uniqueness_of_email_field_options :message => 'This email is already in use.'
+
+		c.merge_validates_length_of_login_field_options :minimum => 4, :message => 'Username must at least 4 characters long.'
+		c.merge_validates_uniqueness_of_login_field_options :message => 'Username is already in use.'
+		c.validates_format_of_login_field_options :with => /\A[a-zA-Z0-9_-]*\z/, :message => 'Username can only contain letters, numbers, underscores, and hyphens.'
+
+		c.merge_validates_confirmation_of_password_field_options :message => 'Passwords did not match.'
+		c.validates_length_of_password_confirmation_field_options :minimum => 0, :maximum => 5000, :message => 'Password Confirmation is either less than 0 or greater than 5000. Either way, that\'s not right.'
+		c.validates_length_of_password_field_options :minimum => 6, :maximum => 5000, :message => 'Password must be at least 6 characters long.'
+
 	end
 
 	def self.find_by_username_or_email(login)
