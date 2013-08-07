@@ -1,7 +1,5 @@
 LspAlpha::Application.routes.draw do
 
-
-  match "profile/:public_url" => "locations#view_public"
   match "invite/register" => "users#new"
   match "account/claim" => "users#temp_claim_account"
   match "profile/claim" => "users#claim_profile"
@@ -122,6 +120,7 @@ LspAlpha::Application.routes.draw do
   match "account" => 'account#manage'
   match "account/company" => 'account#manage_company'
   match "products/browse/all" => 'products#browseall'
+  match "profiles/:public_url" => "locations#view_public"
 
   # Routes for vendor's businesses
   match "supplier/new" => 'bus_vendors#new'

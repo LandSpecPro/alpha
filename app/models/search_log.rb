@@ -3,4 +3,6 @@ class SearchLog < ActiveRecord::Base
 	
 	attr_accessible :searchTerm, :user_id, :currentState, :currentCity, :distanceFrom, :searchType
 	belongs_to :user
+
+	
 end

@@ -34,7 +34,7 @@
 
 	<%= hidden_field_tag(:id,  @location.id) %>
 	<%= hidden_field_tag('location[public_url_active]', true) %>
-	<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profile/<%= @location.public_url %></strong></label>
+	<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
 	<% @location.public_url = '' %>
 	<%= f.text_field :public_url, :class => 'span3 center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
 

@@ -260,7 +260,7 @@
 
 				<%= hidden_field_tag(:id,  @location.id) %>
 				
-				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profile/<%= @location.public_url %></strong></label>
+				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
 
 				<div class="row-fluid">
 					<div class="span10 offset1">
@@ -311,7 +311,7 @@
 	}
 
 	function updatePreviewURL(){
-		document.getElementById('url_preview').innerHTML = "www.landspecpro.com/profile/" + $('#public_url').val();
+		document.getElementById('url_preview').innerHTML = "www.landspecpro.com/profiles/" + $('#public_url').val();
 	}
 
 </script>
