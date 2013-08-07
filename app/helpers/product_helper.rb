@@ -20,7 +20,7 @@ module ProductHelper
 	end
 
 	def search_for_all
-		@featuredItems = FeaturedItem.where(:active => true).geocoded.order_by_most_searched
+		@featuredItems = FeaturedItem.where(:active => true).geocoded.order('created_at DESC')
 		return get_visible(@featuredItems)
 	end
 
