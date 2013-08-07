@@ -129,7 +129,7 @@ class ProductsController < ApplicationController
       @price = params[:product][:featured_item][:price]
       @size = params[:product][:featured_item][:size]
       @description = params[:product][:featured_item][:description]
-
+      @productimage = ProductImage.new
       render 'locations/edit'
       return true
     end
