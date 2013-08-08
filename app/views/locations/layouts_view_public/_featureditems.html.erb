@@ -22,7 +22,7 @@
 						<div class="span12">
 					<% end %>
 				
-						<ul class="ace-thumbnails" style="width:100%;">
+						<ul class="ace-thumbnails">
 							<li>
 								<span>
 
@@ -48,9 +48,6 @@
 								
 							</li>
 						</ul>	
-						<div class="center">
-							<strong><%= fi.get_product.commonName %></strong>
-						</div>
 					</div>
 
 					<% @featureditem = fi %>
@@ -60,6 +57,23 @@
 
 			</div>
 
+			<div class="row-fluid">
+				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
+
+					<% if @ficount == 3 %>
+						<div class="span4">
+					<% elsif @ficount == 2 %>
+						<div class="span6">
+					<% elsif @ficount == 1 %>
+						<div class="span12">
+					<% end %>
+
+							<div class="center">
+								<strong><%= fi.get_product.commonName %></strong>
+							</div>
+						</div>
+				<% end %>
+			</div>
 			
 
 		</div>
