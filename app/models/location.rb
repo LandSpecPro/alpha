@@ -46,7 +46,9 @@ class Location < ActiveRecord::Base
 	validates_format_of :public_url, :with => /\A([a-zA-Z0-9_]){3,25}\z/, :message => "URL can only contain numbers, letters, and underscores. Must be between 3 and 25 characters long."
 
 	def initialize_public_url
-		self.public_url = eight_digit_random_number
+		if self.public_url.blank?
+			self.public_url = eight_digit_random_number
+		end
 	end
 
 	def set_public_url
@@ -193,5 +195,17 @@ class Location < ActiveRecord::Base
 			return false
 		end
 		
+	end
+
+	def busName
+
+		return self.bus_vendor.busName
+
+	end
+
+	def tagline
+
+		return self.bus_vendor.tagline
+
 	end
 end

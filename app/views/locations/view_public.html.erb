@@ -30,12 +30,48 @@
 
 			<div id="user-profile-1" class="user-profile row-fluid">
 
-				<div class="span4">
+				<!-- LEFT SIDEBAR -->
+				<div class="span4 center">
+
+					<!-- PROFILE IMAGE, SOCIAL LINKS, AND TITLE RIBBON THING -->
 					<div>
+
 						<%= render 'locations/layouts_view_public/profileimage' %>
+
+						<div class="space-10"></div>
+
+						<div class="width-90 label label-info label-large arrowed-in arrowed-in-right">
+							<div class="inline position-relative">
+									<span class="white middle bigger-120"><%= @location.busName %></span>
+									<% unless @location.locName.blank? %>
+										<br/><%= @location.locName %>
+									<% end %>
+							</div>
+						</div>
+
+						<% if @locsettings.show_tagline and not @location.tagline.blank? %>
+							<div class="space-10"></div>
+							<div style="text-align:center; font-style:oblique; padding-bottom:10px;">
+								"<%= @location.tagline %>"
+							</div>
+						<% end %>
+
+						<%= render 'locations/layouts_view_public/profilelinks' %>
+
+						<div class="space-10"></div>
+
+						
+
 					</div>
 
-					<div class="fb-like" data-href="http://www.landspecpro.com/profile/ohmattnursery" data-layout="button_count" data-show-faces="true" data-send="true"></div>
+					
+
+					<div class="space-16"></div>
+
+				</div>
+
+				<!-- MAIN BODY -->
+				<div class="span8">
 
 				</div>
 

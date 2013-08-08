@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806024319) do
+ActiveRecord::Schema.define(:version => 20130808020915) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -228,7 +228,6 @@ ActiveRecord::Schema.define(:version => 20130806024319) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "active",                 :default => true,  :null => false
-    t.string   "busName",                                   :null => false
     t.boolean  "verified",               :default => false, :null => false
     t.text     "bio"
     t.integer  "searchWeight",           :default => 0,     :null => false

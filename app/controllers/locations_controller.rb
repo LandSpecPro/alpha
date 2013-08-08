@@ -29,6 +29,8 @@ class LocationsController < ApplicationController
       return
     end
 
+    @locsettings = @location.location_public_setting
+
     #add_location_viewed(-1, params[:id])
 
   end

@@ -1,0 +1,802 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"publi",
+				"public_url_active"
+			],
+			[
+				"confirm",
+				"confirm_delete_featureditem"
+			],
+			[
+				"file",
+				"file"
+			],
+			[
+				"o",
+				"groove"
+			],
+			[
+				"s",
+				"sans-serif"
+			],
+			[
+				"backg",
+				"background-origin"
+			],
+			[
+				"siz",
+				"font-size"
+			],
+			[
+				"al",
+				"vertical-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 7054,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/locations/layouts_edit/_profileurl.html.erb",
+			"settings":
+			{
+				"buffer_size": 2186,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/locations/layouts_edit/_profilesettings.html.erb",
+			"settings":
+			{
+				"buffer_size": 12929,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/G/Sites/alpha/master/app/helpers/application_helper.rb",
+			"settings":
+			{
+				"buffer_size": 6924,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/G/Sites/alpha/master/app/controllers/locations_controller.rb",
+			"settings":
+			{
+				"buffer_size": 9374,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/helpers/product_helper.rb",
+			"settings":
+			{
+				"buffer_size": 1980,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/home/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 9150,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/controllers/users_controller.rb",
+			"settings":
+			{
+				"buffer_size": 7883,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20130808020915_remove_busname_from_location_model.rb",
+			"settings":
+			{
+				"buffer_size": 201,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/location.rb",
+			"settings":
+			{
+				"buffer_size": 5603,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/G/Sites/alpha/master/app/views/locations/_viewlocationwithbio.html.erb",
+		"/G/Sites/master/app/controllers/products_controller.rb",
+		"/G/Sites/master/app/helpers/product_helper.rb",
+		"/G/Sites/master/app/helpers/location_helper.rb",
+		"/G/Sites/master/app/models/featured_item.rb",
+		"/G/Sites/master/app/models/search_log.rb",
+		"/G/Sites/master/app/models/product.rb",
+		"/G/Sites/master/app/views/bus_vendors/manage.html.erb",
+		"/G/Sites/master/app/views/layouts/_feedbackmodal.html.erb",
+		"/G/Sites/master/app/controllers/application_controller.rb",
+		"/G/Sites/master/app/mailers/mailers.rb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_editfeatureditem.html.erb",
+		"/G/Sites/master/app/views/mailers/basic_feedback_email.html.erb",
+		"/G/Sites/master/app/views/mailers/basic_feedback_email.txt.erb",
+		"/G/Sites/master/app/views/users/show.html.erb",
+		"/G/Sites/master/app/views/bus_buyers/manage.html.erb",
+		"/G/Sites/master/app/views/users/request_invite.html.erb",
+		"/G/Sites/master/app/views/users/password_reset_form.html.erb",
+		"/G/Sites/master/app/views/users/password_forgot_form.html.erb",
+		"/G/Sites/master/app/views/users/new.html.erb",
+		"/G/Sites/master/app/views/users/invite_confirm.html.erb",
+		"/G/Sites/master/app/views/users/claim_profile_success.html.erb",
+		"/G/Sites/master/app/views/users/claim_profile.html.erb",
+		"/G/Sites/master/app/views/users/claim_buyer_profile.html.erb",
+		"/G/Sites/master/app/views/users/claim_buyer_profile_success.html.erb",
+		"/G/Sites/master/app/views/user_sessions/forgot_submitted.html.erb",
+		"/G/Sites/master/app/views/user_sessions/new.html.erb",
+		"/G/Sites/master/app/views/user_sessions/forgot.html.erb",
+		"/G/Sites/master/app/views/products/search.html.erb",
+		"/G/Sites/master/app/views/products/view.html.erb",
+		"/G/Sites/master/app/views/products/edit.html.erb",
+		"/G/Sites/master/app/views/locations/view.html.erb",
+		"/G/Sites/master/app/views/locations/view_public.html.erb",
+		"/G/Sites/master/app/views/locations/search.html.erb",
+		"/G/Sites/master/app/views/locations/new.html.erb",
+		"/G/Sites/master/app/views/locations/manage.html.erb",
+		"/G/Sites/master/app/views/locations/edit.html.erb",
+		"/G/Sites/master/app/views/locations/destroy.html.erb",
+		"/G/Sites/master/app/views/account/manage.html",
+		"/G/Sites/master/app/views/bus_vendors/dashboard.html.erb",
+		"/G/Sites/master/app/views/bus_buyers/dashboard.html.erb",
+		"/G/Sites/master/app/views/bus_vendors/new.html.erb",
+		"/G/Sites/master/app/views/bus_buyers/new.html.erb",
+		"/G/Sites/master/app/views/bus_buyers/manage_company.html.erb",
+		"/G/Sites/master/app/views/bus_vendors/manage_company.html.erb",
+		"/G/Sites/master/app/views/bus_vendors/help.html.erb",
+		"/G/Sites/master/app/views/bus_buyers/help.html.erb",
+		"/G/Sites/master/app/views/home/terms.html.erb",
+		"/G/Sites/master/app/views/home/oops.html.erb",
+		"/G/Sites/master/app/views/home/index.html.erb",
+		"/G/Sites/master/app/views/home/feedback_success.html.erb",
+		"/G/Sites/master/app/views/home/about.html.erb",
+		"/G/Sites/master/app/views/home/contact.html.erb",
+		"/G/Sites/master/app/views/favorites/products.html.erb",
+		"/G/Sites/master/app/views/favorites/vendors.html.erb",
+		"/G/Sites/master/app/assets/javascripts/gritter.notifications.js",
+		"/G/Sites/master/app/controllers/locations_controller.rb",
+		"/G/Sites/master/app/helpers/application_helper.rb",
+		"/G/Sites/master/app/views/layouts/application.html.erb",
+		"/G/Sites/master/app/controllers/bus_buyers_controller.rb",
+		"/G/Sites/master/app/controllers/bus_vendors_controller.rb",
+		"/G/Sites/master/app/controllers/users_controller.rb",
+		"/G/Sites/master/app/controllers/account_controller.rb",
+		"/G/Sites/master/app/views/layouts/_accountinfo.html.erb",
+		"/G/Sites/master/app/controllers/home_controller.rb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_profilesettings.html.erb",
+		"/G/Sites/master/app/models/user.rb",
+		"/G/Sites/master/app/models/location.rb",
+		"/G/Sites/master/db/schema.rb",
+		"/G/Sites/master/app/views/layouts/_headeraction.html.erb",
+		"/G/Sites/master/db/migrate/20130806024319_remove_default_for_usertype_on_users.rb",
+		"/G/Sites/master/db/migrate/20130708043255_default_locations_to_inactive.rb",
+		"/G/Sites/master/app/helpers/bus_vendors_helper.rb",
+		"/G/Sites/master/app/helpers/analytics_helper.rb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_profileurl.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_view/_contactinfo.html.erb",
+		"/G/Sites/master/app/views/layouts/_sidebarend.html.erb",
+		"/G/Sites/master/db/seeds.rb",
+		"/G/Sites/master/app/helpers/customerio_helper.rb",
+		"/G/Sites/master/db/migrate/20130805180025_default_public_url_to_null.rb",
+		"/G/Sites/master/log/development.log",
+		"/G/Sites/master/app/models/location_public_setting.rb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_locationinfo.html.erb",
+		"/G/Sites/master/config/routes.rb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_addfeatureditem.html.erb",
+		"/G/Sites/master/app/views/products/_productinfomodal.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_view_public/_profileimage.html.erb",
+		"/G/Sites/master/db/migrate/20130804210055_create_location_public_settings.rb",
+		"/G/Sites/master/app/views/layouts/_sidebar.html.erb",
+		"/G/Sites/master/db/migrate/20130804203009_add_public_url_columns_to_locations.rb",
+		"/G/Sites/master/app/controllers/user_sessions_controller.rb",
+		"/G/Sites/master/app/helpers/category_helper.rb",
+		"/G/Sites/master/app/models/location_view_log.rb",
+		"/G/Sites/master/app/models/featured_item_view_log.rb",
+		"/G/Sites/master/db/migrate/20130803225145_create_location_view_logs.rb",
+		"/G/Sites/master/db/migrate/20130803225202_create_featured_item_view_logs.rb",
+		"/G/Sites/master/config/initializers/constants.rb",
+		"/G/Sites/master/app/assets/javascripts/general.js",
+		"/G/Sites/master/app/views/locations/layouts_view/_bioinfo.html.erb",
+		"/G/Sites/master/app/models/category.rb",
+		"/G/Sites/master/app/views/locations/layouts_view/_categories.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_edit/_categories.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_search/_searchdefault_highlight.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_search/_searchresults_list.html.erb",
+		"/G/Sites/master/config/database.yml",
+		"/G/Sites/master/app/views/locations/layouts_view/_profileimage.html.erb",
+		"/G/Sites/master/config/application.yml",
+		"/G/Sites/master/app/assets/stylesheets/theme/theme-overrides.css.scss",
+		"/G/Sites/master/app/views/products/_search.html.erb",
+		"/G/Sites/master/app/views/locations/layouts_search/_searchbar.html.erb",
+		"/G/Sites/master/app/views/admin/login.html.erb",
+		"/G/Sites/master/app/controllers/admin_controller.rb",
+		"/G/Sites/master/app/views/admin/dashboard_users.html.erb",
+		"/G/Sites/master/app/views/locations/_search.html.erb",
+		"/G/Sites/master/app/views/admin/dashboard_main.html.erb",
+		"/G/Sites/master/app/views/admin/_adminsidebar.html.erb",
+		"/G/Sites/master/app/controllers/adminmethods_controller.rb",
+		"/G/Sites/master/app/helpers/admin_helper.rb",
+		"/G/Sites/master/app/views/products/_searchresultlist.html.erb",
+		"/G/Sites/master/app/models/claim_buyer.rb",
+		"/G/Sites/master/app/models/category_to_location.rb",
+		"/G/Users/ohmatt/Dropbox/LandSpec Pro/LandSpec Pro/Website/Bootstrap Theme/v1.2/docs/index.html",
+		"/G/Sites/master/app/views/layouts/oops.html.erb",
+		"/G/Sites/master/public/oops.html.erb",
+		"/G/Sites/master/app/views/mailers/mass_buyer_claim_profile.html.erb",
+		"/G/Sites/master/app/views/mailers/mass_buyer_claim_profile.txt.erb",
+		"/G/Sites/master/config/environments/development.rb",
+		"/G/Sites/master/app/views/mailers/forgot_email.html.erb"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"G:\\Sites\\alpha\\master",
+			"G:\\Sites\\alpha\\master\\db",
+			"G:\\Sites\\alpha\\master\\db\\seeds.rb",
+			"G:\\Sites\\alpha\\master\\app\\db\\seeds.rb",
+			"G:\\Sites\\alpha\\master",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"location.bus_vendor.busName",
+			"location.busName",
+			"invite_request_url",
+			"profile/",
+			"profiles/",
+			"profile/",
+			"update_search_",
+			"update_search_log",
+			"public_url: '',",
+			"find(2).busName",
+			"bus_vendor_id: 12",
+			"bus_vendor_id: 2",
+			"profile_url",
+			"bus_vendor_id: 2,",
+			"bus_vendor_id: 1",
+			"address2: nil,",
+			"address2: '',",
+			"bus_vendor_id: 2",
+			"name=\"",
+			"+",
+			"ADD_OO",
+			"ADD_OOPS",
+			"STRING_VENDOR",
+			"popover",
+			"cio_user_company",
+			"reset",
+			"(user",
+			"ENV[",
+			"oops_url",
+			"thing",
+			"update_cat",
+			"black",
+			"form_tag",
+			"order('",
+			"mass_buyer_claim_profile",
+			"search_minimal",
+			"welcome_help",
+			"ruby",
+			"business_dashboard_url",
+			"buyer_dashboard_url",
+			"business_dashboard_url",
+			"business_buyer_manage_",
+			"business_vendor_manage_",
+			"business_vendor_update_",
+			"business_vendor_dashboard_",
+			"business_buyer_dashboard_",
+			"business_vendor_dashboard_",
+			"business_buyer_show_",
+			"business_vendor_show_",
+			"business_vendor_new_",
+			"business_vendor_show_url",
+			"locations_edit_url",
+			"tab-content",
+			"tab-pane",
+			".green",
+			"Dark Version",
+			"Pages",
+			"=begin",
+			"Searching",
+			"=begin",
+			"#",
+			"view",
+			"img",
+			"form",
+			"AAA",
+			"AAA'",
+			"AAA",
+			"input",
+			"2e8965",
+			"green2",
+			"bio",
+			"vendo",
+			"white",
+			"87",
+			"87b",
+			"featured_items",
+			"featured_item",
+			"render",
+			"categories",
+			"vendor_locati",
+			"en",
+			"bus_vendor",
+			"requestHandler",
+			"offset3",
+			"\">\n",
+			"jpeg",
+			"}.dataTables_wr",
+			"margin:1",
+			"ced2>li{margin:",
+			">\n",
+			"vendor",
+			"profile",
+			"container",
+			"navbar",
+			"body-conta",
+			"well",
+			"validateform",
+			"content",
+			"well-",
+			"brand",
+			"000",
+			"signup",
+			"well",
+			"content",
+			"header",
+			"img",
+			"btn-",
+			"well",
+			"well-",
+			"000",
+			"opacity",
+			"center",
+			"btn-",
+			"collapse",
+			"navbar",
+			"btn-navbar",
+			"btn",
+			"navbar-",
+			"btn",
+			"loginToAccount",
+			"val-",
+			"modal-body",
+			"hover",
+			"btn-fill",
+			"popover",
+			"tooltip",
+			"popover"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"find(1).busName",
+			"bus_vendor_id: 1",
+			"bus_vendor_id: 12",
+			"public_url",
+			"bus_vendor_id: 2, profile_url: '', ",
+			"bus_vendor_id: 2",
+			"",
+			"address2: nil,",
+			"",
+			"bus_vendor_id: 1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 7054,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4712,
+								4712
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1881.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/locations/layouts_edit/_profileurl.html.erb",
+					"settings":
+					{
+						"buffer_size": 2186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								781,
+								788
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/locations/layouts_edit/_profilesettings.html.erb",
+					"settings":
+					{
+						"buffer_size": 12929,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/G/Sites/alpha/master/app/helpers/application_helper.rb",
+					"settings":
+					{
+						"buffer_size": 6924,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6907,
+								6907
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3964.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/G/Sites/alpha/master/app/controllers/locations_controller.rb",
+					"settings":
+					{
+						"buffer_size": 9374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1312,
+								1312
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/helpers/product_helper.rb",
+					"settings":
+					{
+						"buffer_size": 1980,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								191,
+								191
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/views/home/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 9150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								549,
+								549
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4902.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/controllers/users_controller.rb",
+					"settings":
+					{
+						"buffer_size": 7883,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1040,
+								1058
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "db/migrate/20130808020915_remove_busname_from_location_model.rb",
+					"settings":
+					{
+						"buffer_size": 201,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								201,
+								201
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/models/location.rb",
+					"settings":
+					{
+						"buffer_size": 5603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5399,
+								5399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3192.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"sucess",
+				"alpha/master/app/views/mailers/invite_success_email.txt.erb"
+			],
+			[
+				"2e8965",
+				"alpha/master/tmp/cache/sass/48e2aced58052107ffe9a074f6dc05b0679cbac0/chosen.css.sassc"
+			],
+			[
+				"87b",
+				"landspecpro-alpha/tmp/cache/sass/4a239a80782f043b247285a0912b8142169f7ec5/_buttons.scssc"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 338.0,
+	"status_bar_visible": true
+}

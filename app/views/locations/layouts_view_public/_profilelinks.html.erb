@@ -1,0 +1,23 @@
+<!-- IF ALL ITEMS IN THIS SECTION ARE BLANK DO NOT SHOW IT AT ALL -->
+
+<% if @locsettings.show_website %>
+
+	<div class="space-16"></div>
+
+	<div class="profile-contact-info">
+		<div class="profile-contact-links center">
+
+			<%= render 'locations/layouts_view_public/sociallinks' %>
+
+			<% unless @location.websiteLink.blank? %>
+				<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
+					<i class="icon-globe blue"></i>
+					View Website
+				</a>
+			<% end %>
+
+		</div>
+
+	</div>
+
+<% end %>

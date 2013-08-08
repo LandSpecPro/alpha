@@ -1,18 +1,13 @@
-<ul class="ace-thumbnails">
-	<li>
-		<span>
-			<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
-
-			<div class="text">
-				<div class="inner">
-					<a href="<%= @location.bus_vendor.logo.url(:original) %>" data-rel="colorbox" title="Company Logo">
-						<i class="icon-zoom-in"></i><br/>
-						<span style="font-size: 13px;">View Full Size</span>
-					</a>
-				</div>
-			</div>
-
-		</span>
-	</li>
-</ul>
-
+<span class="profile-picture">
+	<ul class="ace-thumbnails">
+		<li>
+			<span>
+				<% if @locsettings.show_company_logo %>
+					<%= image_tag @location.bus_vendor.logo.url(:medium), :width => '300px', :height => '300px', :title => 'Logo', :id => 'avatar' %>
+				<% else %>
+					<img src="/images/default/logos_large.png" width='300px' height='300px' title='Logo' id='avatar'/>
+				<% end %>
+			</span>
+		</li>
+	</ul>
+</span>

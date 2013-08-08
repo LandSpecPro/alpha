@@ -240,7 +240,7 @@ module ApplicationHelper
 		unless @location.locName.blank?
 			return ' Location Name: ' + @location.locName
 		else
-			return ' Location: ' + @location.bus_vendor.busName
+			return ' Location: ' + @location.busName
 		end
 	end
 

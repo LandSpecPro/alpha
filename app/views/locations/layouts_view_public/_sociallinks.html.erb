@@ -1,0 +1,32 @@
+<div class="profile-social-links center">
+
+	<% unless @location.facebookLink.blank? or not @locsettings.show_facebook %>
+		<a href="<%= @location.facebookLink %>" title="" class="tooltip-info" data-original-title="View Our Facebook" target="_blank">
+			<i class="middle icon-facebook-sign icon-2x blue"></i>
+		</a>
+	<% end %>
+
+	<% unless @location.twitterLink.blank? or not @locsettings.show_twitter %>
+		<a href="<%= @location.twitterLink %>" class="tooltip-info" title="" data-original-title="View Our Twitter" target="_blank">
+			<i class="middle icon-twitter-sign icon-2x light-blue"></i>
+		</a>
+	<% end %>
+
+	<% unless @location.googleLink.blank? or not @locsettings.show_google %>
+		<a href="<%= @location.googleLink %>" class="tooltip-info" title="" data-original-title="View Our Google+" target="_blank">
+			<i class="middle icon-google-plus-sign icon-2x red"></i>
+		</a>
+	<% end %>
+
+
+<!-- <%= request.original_url %> -->
+
+
+<!--
+	Look at adding a facebook like and share button the inner-text thing on the ace-thumbnails for featured items.
+	And add in pinterest share
+
+	Twitter and Google+ sharing
+
+-->
+</div>
