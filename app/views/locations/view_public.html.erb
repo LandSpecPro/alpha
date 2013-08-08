@@ -49,6 +49,10 @@
 							</div>
 						</div>
 
+						<div class="space-10"></div>
+
+						<div class="fb-like" data-href="http://www.landspecpro.com/profile/ohmattnursery" data-layout="button_count" data-show-faces="true" data-send="true"></div>
+
 						<% if @locsettings.show_tagline and not @location.tagline.blank? %>
 							<div class="space-10"></div>
 							<div style="text-align:center; font-style:oblique; padding-bottom:10px;">
@@ -60,18 +64,30 @@
 
 						<div class="space-10"></div>
 
-						
+						<%= render 'locations/layouts_view_public/contactinfo' %>
 
 					</div>
-
-					
-
-					<div class="space-16"></div>
 
 				</div>
 
 				<!-- MAIN BODY -->
 				<div class="span8">
+
+					<!-- ABOUT LOCATION -->
+					<% if @locsettings.show_about %>
+						<%= render 'locations/layouts_view/bioinfo' %>
+					<% end %>
+
+					<!-- FEATURED ITEMS -->
+					<% if @locsettings.show_featured_items %>
+						<%= render 'locations/layouts_view_public/featureditems' %>
+					<% end %>
+
+					<!-- CATEGORIES -->
+					<% if @locsettings.show_categories %>
+						<div class="space-10"></div>
+						<%= render 'locations/layouts_view/categories' %>
+					<% end %>
 
 				</div>
 

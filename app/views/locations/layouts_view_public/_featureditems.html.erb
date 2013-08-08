@@ -1,0 +1,67 @@
+<div class="widget-box transparent">
+	<div class="widget-header widget-header-large">
+		<h2 class="smaller">
+			<i class="icon-star bigger-110"></i>
+			Featured Items
+		</h2>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main">
+			<div class="row-fluid">
+
+				<% @ficount = @location.featured_items.count %>
+
+				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
+
+					<% if @ficount == 3 %>
+						<div class="span4">
+					<% elsif @ficount == 2 %>
+						<div class="span6">
+					<% elsif @ficount == 1 %>
+						<div class="span12">
+					<% end %>
+				
+						<ul class="ace-thumbnails" style="width:100%;">
+							<li>
+								<span>
+
+									<img src="<%= fi.get_image.url(:medium) %>" title="<%= fi.get_product.commonName %>"/>
+
+									<div class="text">
+										<div class="inner">
+
+											<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+
+											<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="View Larger" data-placement="bottom">
+												<i class="icon-zoom-in"></i>
+											</a>
+
+											<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+												<i class="icon-info-sign"></i>
+											</a>
+											
+										</div>
+									</div>
+
+								</span>
+								
+							</li>
+						</ul>	
+						<div class="center">
+							<strong><%= fi.get_product.commonName %></strong>
+						</div>
+					</div>
+
+					<% @featureditem = fi %>
+					<%= render 'locations/layouts_view_public/featureditemmodal' %>
+
+				<% end %>
+
+			</div>
+
+			
+
+		</div>
+	</div>
+</div>

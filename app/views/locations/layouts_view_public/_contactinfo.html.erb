@@ -1,0 +1,74 @@
+<div class="profile-user-info profile-user-info-striped">
+
+	<% unless @location.primaryEmail.blank? or not @locsettings.show_primary_email %>
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Email </div>
+
+			<div class="profile-info-value">
+				<span id="primaryEmail" style="word-wrap: break-word;"><%= @location.primaryEmail %></span>
+			</div>
+		</div>
+	<% end %>
+
+	<% unless @location.secondaryEmail.blank? or not @locsettings.show_secondary_email %>
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Alt. Email </div>
+
+			<div class="profile-info-value">
+				<span id="secondaryEmail" style="word-wrap: break-word;"><%= @location.secondaryEmail %></span>
+			</div>
+		</div>
+	<% end %>
+
+	<% unless @location.primaryPhone.blank?  or not @locsettings.show_primary_phone %>
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Phone </div>
+
+			<div class="profile-info-value">
+				<span id="primaryPhone"><%= @location.primaryPhone %></span>
+			</div>
+		</div>
+	<% end %>
+
+	<% unless @location.secondaryPhone.blank? or not @locsettings.show_secondary_phone %>
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Alt. Phone </div>
+
+			<div class="profile-info-value">
+				<span id="secondaryPhone"><%= @location.secondaryPhone %></span>
+			</div>
+		</div>
+	<% end %>
+
+	<% unless @location.fax.blank? or not @locsettings.show_fax %>
+		<div class="profile-info-row">
+			<div class="profile-info-name"> Fax </div>
+
+			<div class="profile-info-value">
+				<span id="fax"><%= @location.fax %></span>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="profile-info-row">
+		<div class="profile-info-name"> Address </div>
+
+		<div class="profile-info-value">
+			<% if @locsettings.show_city_and_state %>
+				<span id="address"><%= @location.city + ", " + get_state_from_abbr(@location.state) %></span>
+			<% elsif @locsettings.show_state_only %>
+				<span id="address"><%= get_state_from_abbr(@location.state) %></span>
+			<% else %>
+				<a href="<%= get_map_link_from_address(concat_address(@location)) %>" title="" class="tooltip-info" data-original-title="View on Map" target="_blank" data-placement="bottom"> 
+					<i class="icon-map-marker light-orange bigger-110"></i>
+					<% unless @location.address2.blank? %>
+						<span id="address"><%= @location.address1 + " " + @location.address2 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+					<% else %>
+						<span id="address"><%= @location.address1 + ", " + @location.city + ", " + @location.state + " " + @location.zip %></span>
+					<% end %>
+				</a>
+			<% end %>
+		</div>
+	</div>
+
+</div>

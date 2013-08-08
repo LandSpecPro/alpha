@@ -10,7 +10,7 @@
 		<div class="span12">
 			<div class="tabbable tabs-left">
 				<ul class="nav nav-tabs" id="locEditTabs">
-					<% if not params[:products] %><!-- #publicprofiles and not params[:settings] %> -->
+					<% if not params[:products] and not params[:settings] %>
 					  	<li class="active" id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
 					  	</li>

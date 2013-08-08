@@ -39,6 +39,17 @@
 				<br/><br/>
 			<% end %>
 
+			<!-- SHOW COMPANY ABOUT -->
+			<% unless @location.bio.blank? %>
+				<span class="pull-left" data-rel="popover" data-placement="right" data-trigger="hover"
+						data-content="Your company about section will be displayed on your public profile." >
+					<%= f.check_box :show_about, :id => 'show_about' %>
+					<label class="lbl" for="show_about"> Show About Company Section</label>
+				</span>
+
+				<br/><br/>
+			<% end %>
+
 			<!-- SHOW FULL ADDRESS -->
 			<span class="pull-left" data-rel="popover" data-placement="right" data-trigger="hover"
 					data-content="Selecting this option makes your Full Address, City, State, and Zip visible." >
@@ -158,17 +169,6 @@
 						data-content="A link to your Google+ page will be visible to the public on your profile." >
 					<%= f.check_box :show_google, :id => 'show_google' %>
 					<label class="lbl" for="show_google"> Show Link to Google+</label>
-				</span>
-
-				<br/><br/>
-			<% end %>
-
-			<!-- SHOW LOCATION BIO -->
-			<% unless @location.bio.blank? %>
-				<span class="pull-left" data-rel="popover" data-placement="right" data-trigger="hover"
-						data-content="Your About Section for this location will be visible to the public." >
-					<%= f.check_box :show_about, :id => 'show_about' %>
-					<label class="lbl" for="show_about"> Show About Location Section</label>
 				</span>
 
 				<br/><br/>
