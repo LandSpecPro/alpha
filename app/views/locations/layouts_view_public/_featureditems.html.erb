@@ -10,45 +10,37 @@
 		<div class="widget-main">
 			<div class="row-fluid">
 
-				<% @ficount = @location.featured_items.count %>
-
 				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
 
-					<% if @ficount == 3 %>
 						<div class="span4">
-					<% elsif @ficount == 2 %>
-						<div class="span6">
-					<% elsif @ficount == 1 %>
-						<div class="span12">
-					<% end %>
-				
-						<ul class="ace-thumbnails">
-							<li>
-								<span>
 
-									<img src="<%= fi.get_image.url(:medium) %>" title="<%= fi.get_product.commonName %>"/>
+							<ul class="ace-thumbnails">
+								<li>
+									<span>
 
-									<div class="text">
-										<div class="inner">
+										<img src="<%= fi.get_image.url(:medium) %>" title="<%= fi.get_product.commonName %>"/>
 
-											<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+										<div class="text">
+											<div class="inner">
 
-											<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="View Larger" data-placement="bottom">
-												<i class="icon-zoom-in"></i>
-											</a>
+												<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-											<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
-												<i class="icon-info-sign"></i>
-											</a>
-											
+												<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="View Larger" data-placement="bottom">
+													<i class="icon-zoom-in"></i>
+												</a>
+
+												<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+													<i class="icon-info-sign"></i>
+												</a>
+												
+											</div>
 										</div>
-									</div>
 
-								</span>
-								
-							</li>
-						</ul>	
-					</div>
+									</span>
+									
+								</li>
+							</ul>	
+						</div>
 
 					<% @featureditem = fi %>
 					<%= render 'locations/layouts_view_public/featureditemmodal' %>
@@ -60,18 +52,12 @@
 			<div class="row-fluid">
 				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
 
-					<% if @ficount == 3 %>
-						<div class="span4">
-					<% elsif @ficount == 2 %>
-						<div class="span6">
-					<% elsif @ficount == 1 %>
-						<div class="span12">
-					<% end %>
-
-							<div class="center">
-								<strong><%= fi.get_product.commonName %></strong>
-							</div>
+					<div class="span4">
+						<div class="center">
+							<strong><%= fi.get_product.commonName %></strong>
 						</div>
+					</div>
+						
 				<% end %>
 			</div>
 			
