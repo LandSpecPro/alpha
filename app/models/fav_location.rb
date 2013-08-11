@@ -9,4 +9,25 @@ class FavLocation < ActiveRecord::Base
 		return Location.find(self.location_id)
 	end
 
+	def self.update_active_status(user_id)
+
+		self.where(:user_id => user_id, :active => true).each do |s|
+
+			if not Location.find(s.location_id).active
+				s.active = false
+				s.save
+			end
+
+		end
+
+		self.where(:user_id => user_id, :active => false).each do |s|
+
+			if Location.find(s.location_id).active
+				s.active = true
+				s.save
+			end
+		end
+
+	end
+
 end

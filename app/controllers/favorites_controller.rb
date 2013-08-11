@@ -17,7 +17,10 @@ class FavoritesController < ApplicationController
   	store_location
 
   	@user = current_user
+    FavLocation.update_active_status(@user.id)
   	@favlocations = FavLocation.where(:user_id => @user.id, :active => true)
+    @favlocationsinactive = FavLocation.where(:user_id => @user.id, :active => false)
+
   end
 
 end

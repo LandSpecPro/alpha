@@ -323,7 +323,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     if @location.is_favorited(current_user)
-      FavLocation.where(:user_id => current_user.id, :location_id => params[:id]).first.deactivate
+      FavLocation.where(:user_id => current_user.id, :location_id => params[:id]).first.destroy
       redirect_back_or_default('/')
     else
       @location.set_favorite(current_user.id, @location.id)

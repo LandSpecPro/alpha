@@ -32,7 +32,7 @@
 						</td>
 						<td class="center">
 							<a href=<%= locations_view_url(:id => l.id) %> title="View Profile">
-								<%= BusVendor.find(l.bus_vendor_id).busName %>
+								<%= l.busName %>
 							</a>
 						</td>
 						<td class='center'>
@@ -52,6 +52,40 @@
 
 				<% end %>
 
+				<% @favlocationsinactive.each do |l| %>
+
+					<% if l.location %>
+
+						<% l = l.location %>
+
+						<tr>
+							<td class="center hidden-phone">
+								<%= image_tag l.bus_vendor.logo.url(:smthumb), :title => l.busName, :width => '50px', :height => '50px' %>
+							</td>
+							<td class="center">
+								<span data-rel="popover" data-content="This location is no longer active." data-placement="top" data-trigger="hover">
+									<%= l.busName %>
+								</span>
+							</td>
+							<td class="center">
+								<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank", :title => "View on Map" %>
+							</td>
+							<td class="center">
+								<%= "%8.1f" % l.distance_from(current_user.currentCity + ", " + current_user.currentState) %>
+							</td>
+							<td class="center">
+								<% if l.is_favorited(current_user) %>
+									<a title="Remove from favorites" href=<%= locations_favorite_set_url(:id => l.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+								<% else %>
+									<a title="Add to favorites"  href=<%= locations_favorite_set_url(:id => l.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+								<% end %>
+							</td>
+						</tr>
+
+					<% end %>
+
+				<% end %>
+
 			</tbody>
 
 		</table>
@@ -60,6 +94,8 @@
 <%= render 'layouts/sidebarend' %>
 
 <script type="text/javascript">
+
+	$(applyPopovers());
 
 	$('#table_report').dataTable( {
 		"aoColumns": [

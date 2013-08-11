@@ -141,7 +141,7 @@ class Location < ActiveRecord::Base
 
 	def is_favorited(user)
 
-		if FavLocation.where(:user_id => user.id, :location_id => self.id, :active => true).count > 0
+		if FavLocation.where(:user_id => user.id, :location_id => self.id).count > 0
 			return true
 		else
 			return false
