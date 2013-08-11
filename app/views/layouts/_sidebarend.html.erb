@@ -14,9 +14,13 @@
 
 <script type="text/javascript">
 
-	<% unless cookies.signed[:update_helppage] %>
+
+	<% if not cookies.signed[:update_helppage] %>
 		$(showGritter('update_helppage'));
 		<% cookies.permanent.signed[:update_helppage] = true %>
+	<% elsif not cookies.signed[:update_publicprofiles] and current_user.is_vendor %>
+		$(showGritter('update_publicprofiles'));
+		<% cookies.permanent.signed[:update_publicprofiles] = true %>
 	<% end %>
 
 </script>
