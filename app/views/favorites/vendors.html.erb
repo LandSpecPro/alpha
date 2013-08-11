@@ -4,7 +4,7 @@
 	<!--[if lt IE 10]> <div style="font-size:15px;"><![endif]-->
 	<div class="span8 offset1">
 		<div class="table-header header-color-green2">
-			You have <%= @favlocations.count %> Favorite Suppliers
+			You have <%= @favlocations.count + @favlocationsinactive.count %> Favorite Suppliers
 		</div>
 
 		<table id="table_report" class="table table-striped table-bordered table-hover">

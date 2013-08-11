@@ -47,7 +47,7 @@ class FeaturedItem < ActiveRecord::Base
 
 	def is_favorited(user)
 
-		if FavProduct.where(:user_id => user.id, :featured_item_id => self.id, :active => true).count > 0
+		if FavProduct.where(:user_id => user.id, :featured_item_id => self.id).count > 0
 			return true
 		else
 			return false

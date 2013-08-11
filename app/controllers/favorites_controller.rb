@@ -10,7 +10,10 @@ class FavoritesController < ApplicationController
     end
 
   	@user = current_user
+    FavProduct.update_active_status(@user.id)
   	@favproducts = FavProduct.where(:user_id => @user.id, :active => true)
+    @favproductsinactive = FavProduct.where(:user_id => @user.id, :active => false)
+    
   end
 
   def vendors

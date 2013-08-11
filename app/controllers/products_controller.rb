@@ -200,7 +200,7 @@ class ProductsController < ApplicationController
     @featureditem = FeaturedItem.find(params[:id])
 
     if @featureditem.is_favorited(current_user)
-      FavProduct.where(:user_id => current_user.id, :featured_item_id => params[:id]).first.deactivate
+      FavProduct.where(:user_id => current_user.id, :featured_item_id => params[:id]).first.destroy
       redirect_back_or_default('/')
     else
       @featureditem.set_favorite(current_user.id, @featureditem.id, @featureditem.get_product.id)
