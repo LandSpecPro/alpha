@@ -28,7 +28,11 @@ class ClaimLocation < ActiveRecord::Base
 
   	def get_full_address
 		@address1 = self.loc_address1 + " "
-		@address2 = self.loc_address2 + " "
+		if not self.loc_address2.blank?
+			@address2 = self.loc_address2 + " "
+		else
+			@address2 = ""
+		end
 		@city = self.loc_city + ", "
 		@state = self.loc_state + " "
 		@zip = self.loc_zip

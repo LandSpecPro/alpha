@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
 	include AnalyticsHelper
 	
 	include PgSearch
-	pg_search_scope :search_all_locations, :against => :busName, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
+	pg_search_scope :search_all_locations, :associated_against => {:bus_vendor => :busName}, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
 
 	geocoded_by :get_full_address
 	after_validation :geocode
@@ -208,4 +208,15 @@ class Location < ActiveRecord::Base
 		return self.bus_vendor.tagline
 
 	end
+
+
+	def map_marker
+
+		return "var marker_" + self.id.to_s + " = new google.maps.Marker({
+			position: new google.maps.LatLng(" + self.latitude.to_s + "," + self.longitude.to_s + "),
+			map: map,
+			title: '" + self.busName + "' });"
+
+	end
+
 end

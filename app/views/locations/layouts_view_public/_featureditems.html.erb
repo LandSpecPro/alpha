@@ -37,9 +37,14 @@
 										</div>
 
 									</span>
+									<div class="center">
+										<strong><%= fi.get_product.commonName %></strong>
+									</div>
 									
 								</li>
+
 							</ul>	
+							
 						</div>
 
 					<% @featureditem = fi %>
@@ -48,19 +53,6 @@
 				<% end %>
 
 			</div>
-
-			<div class="row-fluid">
-				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
-
-					<div class="span4">
-						<div class="center">
-							<strong><%= fi.get_product.commonName %></strong>
-						</div>
-					</div>
-						
-				<% end %>
-			</div>
-			
 
 		</div>
 	</div>
