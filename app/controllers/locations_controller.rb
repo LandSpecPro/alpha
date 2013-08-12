@@ -105,7 +105,6 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(params[:location])
     @location.bus_vendor_id = current_user.bus_vendor_id
-    @location.busName = current_user.get_business.busName
     @location.format_all_urls
 
     if @location.save
