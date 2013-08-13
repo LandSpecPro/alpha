@@ -2,6 +2,13 @@ class Mailers < ActionMailer::Base
   default from: "LandSpec Pro <tech@landspecpro.com>"
   default_url_options[:host] = ENV['HOST']
 
+  def new_user_activation_email(user)
+    @username = user.login
+    @email = user.email
+    @userType = user.userType
+    mail(:to => 'mattjohnson@landspecpro.com', :subject => "LandSpec Pro - New User!")
+  end
+
   def basic_feedback_email(name, email, feedback, username, page_title)
     @name = name
     @email = email

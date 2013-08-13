@@ -267,16 +267,16 @@ class LocationsController < ApplicationController
     @otherlocations = nil
     if params[:commit] == 'Search'
       if params[:distance_from] != '0' and params[:search] != ''
-        @locations = Location.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user)
+        @locations = Location.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user).order('"searchWeight" DESC')
         @otherlocations = ClaimLocation.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user)
       elsif params[:distance_from] != '0' and params[:search] == ''
-        @locations = Location.search_with_distance_only(@setlocation, params[:distance_from], current_user)
+        @locations = Location.search_with_distance_only(@setlocation, params[:distance_from], current_user).order('"searchWeight" DESC')
         @otherlocations = ClaimLocation.search_with_distance_only(@setlocation, params[:distance_from], current_user)
       elsif params[:distance_from] == '0' and params[:search] != ''
-        @locations = Location.search_with_query_only(params[:search])
+        @locations = Location.search_with_query_only(params[:search]).order('"searchWeight" DESC')
         @otherlocations = ClaimLocation.search_with_query_only(params[:search])
       elsif params[:distance_from] == '0' and params[:search] == ''
-        @locations = Location.where(:active => true).geocoded
+        @locations = Location.where(:active => true).geocoded.order('"searchWeight" DESC')
         @otherlocations = ClaimLocation.where(:claimed => false).geocoded
       end
 
