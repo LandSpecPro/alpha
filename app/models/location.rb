@@ -56,6 +56,11 @@ class Location < ActiveRecord::Base
 		self.save
 	end
 
+	def user_has_set_url
+		self.url_is_custom = true
+		self.save
+	end
+
 	def self.search_with_distance_and_query(location, distance_from, query, user)
 
 	    @locsnear = self.geocoded.near(location, distance_from).where(:active => true)

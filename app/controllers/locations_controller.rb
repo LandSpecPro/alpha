@@ -54,6 +54,7 @@ class LocationsController < ApplicationController
     end
 
     if @location.update_attributes(params[:location])
+      @location.user_has_set_url
       cio_user_public_profile(current_user, @location)
       redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_url_success => true)
       return

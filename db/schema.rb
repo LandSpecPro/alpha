@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814222228) do
+ActiveRecord::Schema.define(:version => 20130814223907) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(:version => 20130814222228) do
     t.datetime "inventory_updated_at"
     t.string   "public_url"
     t.boolean  "public_url_active",      :default => true,  :null => false
+    t.boolean  "url_is_custom",          :default => false, :null => false
   end
 
   create_table "newsletter_emails", :force => true do |t|

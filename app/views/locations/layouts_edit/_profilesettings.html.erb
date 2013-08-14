@@ -1,4 +1,4 @@
-<% unless Location.where(:id => @location.id).first.public_url_active %>
+<% unless Location.where(:id => @location.id).first.url_is_custom %>
 
 	<div class="span11">
 		<div class="center">
