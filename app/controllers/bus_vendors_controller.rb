@@ -22,7 +22,7 @@ class BusVendorsController < ApplicationController
 	      # Update current_users Business-Vendor id
 		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
 
-		  if is_production_url
+		  if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
 		  	Mailers.new_user_activation_email(@user).deliver
 		  end
 		  cio_user_company(@user)

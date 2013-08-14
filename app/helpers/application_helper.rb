@@ -354,14 +354,4 @@ module ApplicationHelper
 		content_for(:title) { page_title }
 	end
 
-	def is_production_url
-		if request.url[0..21] == 'http://www.landspecpro'
-			return true
-		elsif request.url[0..17] == 'http://landspecpro'
-			return true
-		else
-			return false
-		end
-	end
-
 end

@@ -121,7 +121,7 @@ class LocationsController < ApplicationController
       cio_user_location(current_user, @location)
       update_weight_rank(@location)
 
-      if is_production_url
+      if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
         Mailers.new_location_activation_email(current_user, @location).deliver
       end
 
