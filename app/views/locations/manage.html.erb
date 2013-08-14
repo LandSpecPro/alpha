@@ -68,7 +68,7 @@
 									<% if l.active %>
 										<span class="badge badge-success" data-rel="popover" data-content="Active!" data-placement="top" data-trigger="hover"><i class="icon-ok"></i></span>
 									<% else %>
-										<a href="<%= locations_edit_url(:id => l.id) %>" class="badge badge-important" data-rel="popover" data-content="Inactive! You must activate this location for it to be visible to other users." data-placement="top" data-trigger="hover"><i class="icon-remove"></i></a>
+										<span class="badge badge-important" data-rel="popover" data-content="Inactive! Contact us if you think this is in error." data-placement="top" data-trigger="hover"><i class="icon-remove"></i></a>
 									<% end %>
 								</td>
 
