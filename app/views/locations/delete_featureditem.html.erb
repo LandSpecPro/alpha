@@ -1,25 +1,25 @@
 <%= render 'layouts/sidebar' %>
 
-<div class="container">
-	<div class="row-fluid">
 
-	<div class="span12 center">
+<div class="row-fluid">
 
-		<h1 class="font-marmelad-black"><%= @product.commonName %></h1>
+	<div class="span6 center">
+
+		
 
 		<a href="<%= @image.url(:original) %>" data-rel="colorbox" title="<%= @product.commonName %>">
 			<%= image_tag @image.url(:large), :title => @product.commonName %>
 		</a>
 
+		
+
 	</div>
 
-</div>
+	<div class="span5">
 
-<br/>
-
-<div class="row-fluid">
-
-	<div class="span6 offset3">
+		<div class="center">
+			<h1 class="font-marmelad-black"><%= @product.commonName %></h1>
+		</div>
 
 		<div class="widget-box">
 			<div class="widget-header header-color-green2">
@@ -41,65 +41,19 @@
 
 				<div class="widget-main" style="font-size:16px;">
 
-
-<!-- COMMON NAME -->
-					<div class="row-fluid">
-						<div class="span4">
-							<div class="pull-right">
-								<strong>Name:</strong>
-							</div>
-						</div>
-						<div class="span8">
-							<div class="pull-left">
-								<%= @product.commonName %>
-							</div>
-						</div>
-					</div>
-<!-- SIZE -->
-					<% unless @featureditem.size.blank? %>
-						<div class="row-fluid">
-							<div class="span4">
-								<div class="pull-right">
-									<strong>Size:</strong>
-								</div>
-							</div>
-							<div class="span8">
-								<div class="pull-left">
-									<%= @featureditem.size %>
-								</div>
-							</div>
-						</div>
-					<% end %>
-<!-- PRICE -->
-					<% unless @featureditem.price.blank? %>
-						<div class="row-fluid">
-							<div class="span4">
-								<div class="pull-right">
-									<strong>Price:</strong>
-								</div>
-							</div>
-							<div class="span8">
-								<div class="pull-left">
-									<%= "$%8.2f" % @featureditem.price.to_f %>
-								</div>
-							</div>
-						</div>
-					<% end %>
-<!-- DESCRIPTION -->
-					<div class="row-fluid">
-						<div class="span4">
-							<div class="pull-right">
-								<strong>Description:</strong>
-							</div>
-						</div>
-						<div class="span8">
-							<div class="pull-left">
-								<%= @featureditem.description %>
-							</div>
-						</div>
-					</div>
-
-
+					<dl class="">
+						<dt>Name:</dt>
+						<dd><%= @product.commonName %></dd>
+						<br/>
+						<dt>Size:</dt>
+						<dd><%= @featureditem.size %>&nbsp;</dd>
+						<br/>
+						<dt>Price:</dt>
+						<dd><%= @featureditem.price %>&nbsp;</dd>
+						<br/>
+						<dt>Description:</dt>
+						<dd><%= @featureditem.description %>&nbsp;</dd>
+					</dl>
 
 				</div>
 
@@ -112,12 +66,12 @@
 	</div>
 
 </div>
-	<div class="center">
 
-		<h2>Are you sure you want to permanently delete this item from this location?</h2>
-		<%= link_to "Yes", locations_featureditem_delete_confirm_url(:featured_item_id => params[:featured_item_id], :location_id => params[:location_id]), :class => 'btn btn-success' %>
-		<%= link_to "No", locations_manage_url, :class => 'btn btn-success' %>
-	</div>
+<div class="center">
+
+	<h2>Are you sure you want to permanently delete this item from this location?</h2>
+	<%= link_to "Yes", locations_featureditem_delete_confirm_url(:featured_item_id => params[:featured_item_id], :location_id => params[:location_id]), :class => 'btn btn-success' %>
+	<%= link_to "No", locations_manage_url, :class => 'btn btn-success' %>
 </div>
 
 <%= render 'layouts/sidebarend' %>
