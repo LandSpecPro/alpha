@@ -9,7 +9,7 @@ class Mailers < ActionMailer::Base
     @userType = user.userType
     @busName = user.get_business.busName
     @busPhone = user.get_business.busPhone
-    if is_production_url
+    if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
       mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New User!")
     else
       mail(:to => 'tech@landspecpro.com', :subject => "LandSpec Pro - New User!")
@@ -25,7 +25,7 @@ class Mailers < ActionMailer::Base
     @busName = location.busName
     @busPhone = user.get_business.busPhone
     @address = location.get_full_address
-    if is_production_url
+    if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
       mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New Location!")
     else
       mail(:to => 'tech@landspecpro.com', :subject => "LandSpec Pro - New Location!")
