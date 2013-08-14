@@ -111,7 +111,7 @@
 					<% end %>
 
 					<!-- FEATURED ITEMS -->
-					<% if @locsettings.show_featured_items %>
+					<% if @locsettings.show_featured_items and FeaturedItem.where(:location_id => @location.id, :active => true).count > 0 %>
 						<%= render 'locations/layouts_view_public/featureditems' %>
 					<% end %>
 
