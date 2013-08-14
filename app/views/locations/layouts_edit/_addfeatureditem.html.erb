@@ -61,21 +61,7 @@
 
 					<%= f.hidden_field(:location_id, :value => @location.id) %>
 
-			 		Search for Product Name:
-			 		<div style="width: 100% !important;">
-						<select id='productSelect' class="chzn-select" data-placeholder="Enter Product Name" >
-							<option>New Product</option>
-			  				<% Product.where(:active => true).order('"commonName" ASC').each do |prod| %>
-			  					<% if @commonName == prod.commonName %>
-			  						<option selected="selected"><%= prod.commonName %></option>
-			  					<% else %>
-			  						<option><%= prod.commonName %></option>
-			  					<% end %>
-			  				<% end %>
-			  			</select>
-			  		</div>
-
-					Product Name:
+					Name:
 					<div class="input-icon input-icon-right">
 						<%= f.text_field :commonName, :class => 'span12', :id => 'commonName' %>
 					</div>
@@ -125,45 +111,8 @@
 <% end %>
 
 <script type="text/javascript">
-	$(bindInput());
+
 	$("select").chosen({ width: '100%'});
 
-	function bindInput(){
-
-		$('#productSelect').change(function(){
-			if($(this).val() != 'New Product'){
-
-				//var p = document.getElementById("productSelect");
-				//var common_name = p.options[p.selectedIndex].dataset["comname"];
-				//var latin_name = p.options[p.selectedIndex].dataset["latname"];
-
-				$('#commonName').val($(this).val());
-				$('#commonName').attr('readonly', true);
-			}
-			else{
-				$('#commonName').val('');
-				$('#commonName').attr('readonly', false);
-				$(this).blur();
-				$('#commonName').focus();
-			}
-		});
-
-		if($('#productSelect').val() != 'New Product'){
-
-			//var p = document.getElementById("productSelect");
-			//var common_name = p.options[p.selectedIndex].dataset["comname"];
-			//var latin_name = p.options[p.selectedIndex].dataset["latname"];
-
-			$('#commonName').val($('#productSelect').val());
-			$('#commonName').attr('readonly', true);
-		}
-		else{
-			$('#commonName').val('');
-			$('#commonName').attr('readonly', false);
-			$('#productSelect').blur();
-			$('#commonName').focus();
-		}
-
-	}
 	
 </script>

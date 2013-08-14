@@ -46,25 +46,12 @@
 					<div class="row-fluid">
 						<div class="span4">
 							<div class="pull-right">
-								<strong>Common Name:</strong>
+								<strong>Name:</strong>
 							</div>
 						</div>
 						<div class="span8">
 							<div class="pull-left">
 								<%= @product.commonName %>
-							</div>
-						</div>
-					</div>
-<!-- LATIN NAME -->
-					<div class="row-fluid">
-						<div class="span4">
-							<div class="pull-right">
-								<strong>Latin Name:</strong>
-							</div>
-						</div>
-						<div class="span8">
-							<div class="pull-left">
-								<%= @product.latinName %>
 							</div>
 						</div>
 					</div>
@@ -127,10 +114,9 @@
 </div>
 	<div class="center">
 
-		<h2>Are you sure you want to delete this item from this location?</h2>
-		<h6><i>(This will permanently delete this featured item, but the product will remain in the system.)</i></h6>
-		<%= link_to "Yes", locations_featureditem_delete_confirm_url(:featured_item_id => params[:featured_item_id], :location_id => params[:location_id]), :class => 'btn btn-primary' %>
-		<%= link_to "No", locations_manage_url, :class => 'btn btn-primary' %>
+		<h2>Are you sure you want to permanently delete this item from this location?</h2>
+		<%= link_to "Yes", locations_featureditem_delete_confirm_url(:featured_item_id => params[:featured_item_id], :location_id => params[:location_id]), :class => 'btn btn-success' %>
+		<%= link_to "No", locations_manage_url, :class => 'btn btn-success' %>
 	</div>
 </div>
 
