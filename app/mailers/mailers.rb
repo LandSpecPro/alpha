@@ -3,10 +3,33 @@ class Mailers < ActionMailer::Base
   default_url_options[:host] = ENV['HOST']
 
   def new_user_activation_email(user)
+    @userid = user.id
     @username = user.login
     @email = user.email
     @userType = user.userType
-    mail(:to => 'mattjohnson@landspecpro.com', :subject => "LandSpec Pro - New User!")
+    @busName = user.get_business.busName
+    @busPhone = user.get_business.busPhone
+    if is_production_url
+      mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New User!")
+    else
+      mail(:to => 'tech@landspecpro.com', :subject => "LandSpec Pro - New User!")
+    end
+  end
+
+  def new_location_activation_email(user, location)
+    @userid = user.id
+    @username = user.login
+    @email = user.email
+    @userType = user.userType
+    @verified = user.verified
+    @busName = location.busName
+    @busPhone = user.get_business.busPhone
+    @address = location.get_full_address
+    if is_production_url
+      mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New Location!")
+    else
+      mail(:to => 'tech@landspecpro.com', :subject => "LandSpec Pro - New Location!")
+    end
   end
 
   def basic_feedback_email(name, email, feedback, username, page_title)

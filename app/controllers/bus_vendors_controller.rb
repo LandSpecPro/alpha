@@ -18,10 +18,9 @@ class BusVendorsController < ApplicationController
 	    if @busvendor.save
 	      flash[:notice] = "Account registered!" 
 
-	      
-
 	      # Update current_users Business-Vendor id
 		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
+		  Mailers.new_user_activation_email(@user).deliver
 		  cio_user_company(@user)
 
 	      redirect_to locations_new_url(:new_user_message => true)

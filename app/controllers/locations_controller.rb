@@ -118,6 +118,9 @@ class LocationsController < ApplicationController
 
       cio_user_location(current_user, @location)
       update_weight_rank(@location)
+
+      Mailers.new_location_activation_email(current_user, @location).deliver
+
       redirect_to locations_manage_url
 
     else

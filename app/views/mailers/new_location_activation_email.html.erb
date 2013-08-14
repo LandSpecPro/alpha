@@ -1,0 +1,18 @@
+<h2>New Location</h2>
+A new location has been added to LandSpec Pro.
+<% if not @verified %>
+	<br/><br/>
+	<strong>This location is not active because this user is not verified. User the link below to fix this.</strong>
+<% end %>
+<br/><br/>
+<strong>Username:</strong> <%= @username %><br/>
+<strong>Email:</strong> <%= @email %><br/>
+<strong>User Type:</strong> <%= @userType %><br/>
+<br/>
+<strong>Business Name:</strong> <%= @busName %><br/>
+<strong>Business Phone:</strong> <%= @busPhone %><br/>
+<strong>Business Address:</strong> <%= @address %><br/>
+<br/>
+Use the following link to view this location.
+<br/><br/>
+<a href="http://admin.landspecpro.com/user/view?id=<%= @userid %>">User Information - Admin Panel</a>

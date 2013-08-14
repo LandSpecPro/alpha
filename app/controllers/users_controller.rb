@@ -73,7 +73,6 @@ class UsersController < ApplicationController
 
       # Add new user to Customer.IO
       cio_user_new(@user)
-      #Mailers.new_user_activation_email(@user).deliver
 
       if @user.userType == STRING_VENDOR
         redirect_to supplier_new_url
