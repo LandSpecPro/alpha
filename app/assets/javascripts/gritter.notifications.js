@@ -67,6 +67,7 @@ function showUpdateSuccessGritter(updated){
 	$.gritter.add({
 		title: 'Success!',
 		text: updated,
-		class_name: 'gritter-info gritter-dark'
+		class_name: 'gritter-info gritter-dark', 
+		time: 1200
 	});
 }
