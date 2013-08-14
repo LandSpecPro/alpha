@@ -17,6 +17,12 @@
 
 			<%= hidden_field_tag(:id,  @location.id) %>
 
+			<a class="btn btn-success btn-small center" style="width:250px;" href="javascript:{return true;}" onclick="document.getElementById('form_update_public_settings').submit();">
+				<i class="icon-save" id="update_public_settings"></i> Update
+			</a>
+
+			<br/><br/>
+
 			<!-- SHOW COMPANY LOGO -->
 			<% unless BusVendor.find(@location.bus_vendor_id).logo.blank? %>
 				<span class="pull-left" data-rel="popover" data-placement="right" data-trigger="hover"
