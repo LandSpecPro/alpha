@@ -19,7 +19,9 @@ class BusBuyersController < ApplicationController
 
 	      # Update current_users Business-Buyer id
 	      @user.update_attribute(:bus_buyer_id, @busbuyer.id)
-	      Mailers.new_user_activation_email(@user).deliver
+	      if is_production_url
+	      	Mailers.new_user_activation_email(@user).deliver
+	      end
 
 	      redirect_to buyer_help_url
 	    else

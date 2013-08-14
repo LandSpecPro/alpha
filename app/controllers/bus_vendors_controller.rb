@@ -20,7 +20,10 @@ class BusVendorsController < ApplicationController
 
 	      # Update current_users Business-Vendor id
 		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
-		  Mailers.new_user_activation_email(@user).deliver
+
+		  if is_production_url
+		  	Mailers.new_user_activation_email(@user).deliver
+		  end
 		  cio_user_company(@user)
 
 	      redirect_to locations_new_url(:new_user_message => true)
