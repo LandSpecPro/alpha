@@ -4,6 +4,8 @@ class LocationsController < ApplicationController
   include CategoryHelper
   include CustomerioHelper
   include AnalyticsHelper
+  include ApplicationHelper
+  
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location]

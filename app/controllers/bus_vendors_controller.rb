@@ -1,6 +1,7 @@
 class BusVendorsController < ApplicationController
 	include BusVendorsHelper
 	include CustomerioHelper
+	include ApplicationHelper
 	before_filter :require_user
 	before_filter :require_user_is_vendor
 	before_filter :require_business, :except => [:new, :create]
