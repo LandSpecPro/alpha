@@ -9,7 +9,7 @@
 	<div class="widget-body">
 		<div class="widget-main">
 
-			<% @location.featured_items.where(:active => true).each do |fi| %>
+			<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
 
 				<div class="row-fluid">
 					<div class="span6">
