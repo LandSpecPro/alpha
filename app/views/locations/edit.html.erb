@@ -62,8 +62,8 @@
 						<div class="span6">
 							<% if not @location.active %>
 								<%= render 'locations/layouts_edit/activate' %>
-								<br/>
 								<%= render 'locations/layouts_edit/bioinfo' %>
+								<%= render 'locations/layouts_edit/categories' %>
 							<% else %>
 								<%= render 'locations/layouts_edit/bioinfo' %>
 								<%= render 'locations/layouts_edit/categories' %>

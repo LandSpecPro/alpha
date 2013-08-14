@@ -107,6 +107,12 @@ class LocationsController < ApplicationController
     @location.bus_vendor_id = current_user.bus_vendor_id
     @location.format_all_urls
 
+    if not current_user.verified
+      @location.active = false
+    else
+      @location.active = true
+    end
+
     if @location.save
       flash[:notice] = "New Location Added!"
 
