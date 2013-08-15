@@ -1,9 +1,0 @@
-
-
-<div class="row-fluid">
-	<div class="center">
-		<h2><%= (Location.where(:active => true).count + ClaimLocation.where(:claimed => false).count).to_s %> suppliers and growing...</h2>
-
-		<div id="map-canvas" style="width:500px;"/>
-	</div>
-</div>

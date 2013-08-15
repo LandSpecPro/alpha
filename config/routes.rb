@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+  get "search/product"
+
+  get "search/supplier"
+
   match "invite/register" => "users#new"
   match "account/claim" => "users#temp_claim_account"
   match "profile/claim" => "users#claim_profile"
