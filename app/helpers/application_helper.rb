@@ -273,7 +273,7 @@ module ApplicationHelper
 		@action = controller.action_name
 		@controller = controller.controller_name
 
-		if @action == 'search'
+		if @controller == 'search'
 			return "Search"
 		elsif @controller == 'locations' and @action == 'edit'
 			return "Edit Location"
@@ -312,16 +312,12 @@ module ApplicationHelper
 				return " Delete this location?"
 			elsif  controller.action_name == 'edit'
 				return get_location_name
-			elsif controller.action_name == 'search'
-				return " for Suppliers"
 			else
 				return ""
 			end
 		elsif controller.controller_name == 'products'
 			if controller.action_name == 'browseall'
 				return " Browse All"
-			elsif controller.action_name == 'search'
-				return " for Products"
 			elsif controller.action_name == 'view'
 				return " View Featured Item"
 			elsif controller.action_name == 'edit'
@@ -334,6 +330,15 @@ module ApplicationHelper
 				return " Products"
 			elsif controller.action_name == 'vendors'
 				return " Suppliers"
+			else
+				return ""
+			end
+		else
+		elsif controller.controller_name == 'search'
+			if controller.action_name == 'product'
+				return " for Products"
+			elsif controller.action_name == 'supplier'
+				return " for Suppliers"
 			else
 				return ""
 			end

@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 			if current_user.is_vendor
 				redirect_to locations_manage_url
 			else
-				redirect_to products_search_url
+				redirect_to search_product_url
 			end
 		else
 			redirect_to home_url

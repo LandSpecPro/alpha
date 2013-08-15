@@ -132,7 +132,7 @@ class UsersController < ApplicationController
     if @user.is_vendor
       redirect_to locations_manage_url
     elsif @user.is_buyer
-      redirect_to locations_search_url
+      redirect_to search_supplier_url
     end
   end
 

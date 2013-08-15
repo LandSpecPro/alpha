@@ -4,9 +4,6 @@ function showGritter(gritter){
 	if(gritter == 'new_user_add_location'){
 		gritterNewUserAddLocation();
 	}
-	else if(gritter == 'search_product_hints'){
-		gritterSearchProductHints();
-	}
 	else if(gritter == 'multiple_location_names'){
 		gritterMultipleLocationNames();
 	}
@@ -24,15 +21,6 @@ function gritterNewUserAddLocation(){
 		text: 'LandSpec Pro allows you to have one or multiple locations set up for your company. You\'ll need to add your first location so other landscape professionals can find you. You can add more locations at any time.',
 		sticky: true,
 		class_name: 'gritter-warning gritter-light'
-	});
-}
-
-function gritterSearchProductHints(){
-	$.gritter.add({
-		title: 'Tips for Searching Products!',
-		text: 'Hover over a product name to see a description (if there is one).',
-		sticky: true,
-		class_name: 'gritter-success gritter-light'
 	});
 }
 
