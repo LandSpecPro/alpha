@@ -2,9 +2,6 @@ class Location < ActiveRecord::Base
 	include ModelHelper
 	include AnalyticsHelper
 	
-	include PgSearch
-	pg_search_scope :search_all_locations, :associated_against => {:bus_vendor => :busName}, :using => { :tsearch => {:prefix => true, :dictionary => "english"} }
-
 	geocoded_by :get_full_address
 	after_validation :geocode
 	after_initialize :initialize_public_url
@@ -60,40 +57,6 @@ class Location < ActiveRecord::Base
 		self.url_is_custom = true
 		self.save
 	end
-
-	def self.search_with_distance_and_query(location, distance_from, query, user)
-
-	    @locsnear = self.geocoded.near(location, distance_from).where(:active => true)
-	    return @locsnear.search_all_locations(query).where(:active => true)
-
-	end
-
-	def self.search_with_distance_only(location, distance_from, user)
-
-		return self.geocoded.near(location, distance_from).where(:active => true)
-
-	end
-
-	def self.search_with_query_only(query)
-
-	    return self.search_all_locations(query).where(:active => true)
-	    
-	end
-
-	def self.default_best_rank(location)
-
-		@top20 = self.where(:active => true).order('"searchWeight" DESC').limit(20)
-
-		@ignorezero = @top20.where('"searchWeight" > ?', 0)
-
-		@nearest = @ignorezero.geocoded.near(location, 100000).order("distance")
-
-		@top3 = @nearest.limit(3)
-
-		return @top3
-
-	end
-
 	
 	def format_all_urls
 
@@ -211,16 +174,6 @@ class Location < ActiveRecord::Base
 	def tagline
 
 		return self.bus_vendor.tagline
-
-	end
-
-
-	def map_marker
-
-		return "var marker_" + self.id.to_s + " = new google.maps.Marker({
-			position: new google.maps.LatLng(" + self.latitude.to_s + "," + self.longitude.to_s + "),
-			map: map,
-			title: '" + self.busName + "' });"
 
 	end
 

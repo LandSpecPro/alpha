@@ -1,7 +1,6 @@
 LspAlpha::Application.routes.draw do
 
   get "search/product"
-
   get "search/supplier"
 
   match "invite/register" => "users#new"
@@ -74,7 +73,6 @@ LspAlpha::Application.routes.draw do
   match 'password/forgot/update' => 'users#password_forgot_update'
 
   # Routes for products
-  match 'products/search' => 'products#search'
   match 'products/show' => 'products#show'
   match 'products/favorite/set' => 'products#set_as_favorite'
   match 'products/view' => 'products#view'
@@ -106,7 +104,6 @@ LspAlpha::Application.routes.draw do
   match "locations/deactivate" => 'locations#deactivate_location'
   match "locations/activate" => 'locations#activate_location'
   
-  match "locations/search" => 'locations#search'
   match "locations/:id" => 'locations#manage'
 
   # For home controller

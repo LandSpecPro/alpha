@@ -288,46 +288,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  def search
-    store_location
-
-    if params[:distance_from].blank?
-      params[:distance_from] = '0'
-    end
-
-    if params[:search] == "All Suppliers"
-      params[:search] = ''
-    end
-
-    @setlocation = nil
-    if params[:use_current_location]
-      @setlocation = request.location.city + ", " + request.location.state
-    else
-      @setlocation = params[:custom_location]
-    end
-    
-    @locations = nil
-    @otherlocations = nil
-    if params[:commit] == 'Search'
-      if params[:distance_from] != '0' and params[:search] != ''
-        @locations = Location.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user).order('"searchWeight" DESC')
-        @otherlocations = ClaimLocation.search_with_distance_and_query(@setlocation, params[:distance_from], params[:search], current_user)
-      elsif params[:distance_from] != '0' and params[:search] == ''
-        @locations = Location.search_with_distance_only(@setlocation, params[:distance_from], current_user).order('"searchWeight" DESC')
-        @otherlocations = ClaimLocation.search_with_distance_only(@setlocation, params[:distance_from], current_user)
-      elsif params[:distance_from] == '0' and params[:search] != ''
-        @locations = Location.search_with_query_only(params[:search]).order('"searchWeight" DESC')
-        @otherlocations = ClaimLocation.search_with_query_only(params[:search])
-      elsif params[:distance_from] == '0' and params[:search] == ''
-        @locations = Location.where(:active => true).geocoded.order('"searchWeight" DESC')
-        @otherlocations = ClaimLocation.where(:claimed => false).geocoded
-      end
-
-      update_search_log
-    end
-
-  end
-
   def view
 
     store_location

@@ -42,13 +42,6 @@ module LocationHelper
 
     end
 
-    def update_search_log
-
-      @searchlog = SearchLog.new(:searchTerm => params[:search], :user_id => current_user.id, :currentState => current_user.currentState, :currentCity => current_user.currentCity, :distanceFrom => params[:distance_from], :searchType => 'location')
-      @searchlog.save
-
-    end
-
     def update_weight_rank(location)
 
       # 5 points for tagline, each link, and email
