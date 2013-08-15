@@ -28,8 +28,8 @@
 
 									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="View Larger">
-										<i class="icon-zoom-in"></i>
+									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
+										<i class="icon-zoom-in" title="View Larger"></i>
 									</a>
 
 									<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
