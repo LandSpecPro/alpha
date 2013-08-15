@@ -29,6 +29,9 @@ class LocationsController < ApplicationController
     if @location.blank?
       redirect_to oops_url(:err_code => 1)
       return
+    elsif not @location.public_url_active
+      redirect_to oops_url(:err_code => 1)
+      return
     end
 
     @locsettings = @location.location_public_setting
