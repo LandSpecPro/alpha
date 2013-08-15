@@ -68,6 +68,32 @@ class LocationsController < ApplicationController
 
   end
 
+  def public_url_deactivate
+
+    @location = Location.find(params[:id])
+    @location.public_url_active = false
+    if @location.save
+      redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_url_success => true)
+      return
+    else
+      redirect_to oops_url
+    end
+
+  end
+
+  def public_url_activate
+
+    @location = Location.find(params[:id])
+    @location.public_url_active = true
+    if @location.save
+      redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_url_success => true)
+      return
+    else
+      redirect_to oops_url
+    end
+
+  end
+
   def update_public_settings
 
     @location = Location.find(params[:id])

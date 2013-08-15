@@ -1,0 +1,17 @@
+<% if @location.public_url_active %>
+	<div class='alert alert-danger'>
+		<strong>Warning!</strong> This location is currently active. De-activating it will temporarily disable your public profile, custom URL, and any links to the page. You can undo this at any point from this page.
+	</div>
+
+	<a class='btn btn-danger btn-small btn-block' href='<%= location_public_url_deactivate_url(:id => @location.id) %>'>
+		<i class='icon-save' id='submit_public_url'></i> Confirm De-activate
+	</a>
+<% else %>
+	<div class='alert alert-danger'>
+		<strong>Warning!</strong> This location is inactive. By activating it all information will be made public and can be viewed by anyone. Please be sure your settings are up to date. You can undo this at any point from this page.
+	</div>
+
+	<a class='btn btn-danger btn-small btn-block' href='<%= location_public_url_activate_url(:id => @location.id) %>'>
+		<i class='icon-save' id='submit_public_url'></i> Confirm Activate
+	</a>
+<% end %>

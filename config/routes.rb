@@ -11,6 +11,8 @@ LspAlpha::Application.routes.draw do
 
   match "locations/edit/profile/url" => "locations#set_public_url"
   match "locations/edit/profile/update" => "locations#update_public_settings"
+  match "location/public/url/deactivate" => "locations#public_url_deactivate"
+  match "location/public/url/activate" => "locations#public_url_activate"
 
   get "favorites/products"
 
