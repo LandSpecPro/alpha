@@ -21,6 +21,7 @@
 //= require theme/jquery.validate.min
 //= require theme/jquery.dataTables.min
 //= require theme/jquery.dataTables.bootstrap
+//= require theme/bootstrap-tag.min
 //= require theme/ace-elements.min
 //= require theme/ace.min
 //= require masks

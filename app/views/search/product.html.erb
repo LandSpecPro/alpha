@@ -1,7 +1,35 @@
 <%= render 'layouts/sidebar' %>
 
 
+<div class="control-group">
+	<label class="control-label" for="form-field-tags">Tag input</label>
 
+	<div class="controls">
+		<input type="text" name="tags" id="form-field-tags" placeholder="Enter tags ..." />
+	</div>
+</div>
 
 
 <%= render 'layouts/sidebarend' %>
+
+
+<script type="text/javascript">
+
+	var tag_input = $('#form-field-tags');
+	if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) ) 
+	{
+		tag_input.tag(
+		  {
+			placeholder:tag_input.attr('placeholder'),
+			//enable typeahead by specifying the source array
+			source: ['mine', 'yours']
+		  }
+		);
+	}
+	else {
+		//display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+		tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+		//$('#form-field-tags').autosize({append: "\n"});
+	}
+
+</script>

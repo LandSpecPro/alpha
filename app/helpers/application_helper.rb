@@ -333,7 +333,6 @@ module ApplicationHelper
 			else
 				return ""
 			end
-		else
 		elsif controller.controller_name == 'search'
 			if controller.action_name == 'product'
 				return " for Products"
