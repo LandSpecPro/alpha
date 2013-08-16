@@ -1,7 +1,23 @@
 <%= render 'layouts/sidebar' %>
 
+<div class="row-fluid">
 
+	<!-- Search Sidebar -->
+	<div class="span3">
+		<%= render 'search/layouts/sidebar' %>
+	</div>
 
+	<!-- Search Results -->
+	<div class="span9">
 
+		<% if params[:view] == 'list' %>
+			<%= render 'search/layouts/supplier_results_list' %>
+		<% else %>
+			<%= render 'search/layouts/supplier_results_map' %>
+		<% end %>
+
+	</div>
+
+</div>
 
 <%= render 'layouts/sidebarend' %>

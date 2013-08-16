@@ -1,0 +1,18 @@
+<div class="center">
+
+	<% if params[:page].to_i > 1 %>
+		<a href="<%= search_supplier_url(:page => 1, :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">First</a>
+		&nbsp;
+		<a href="<%= search_supplier_url(:page => (params[:page].to_i - 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Prev</a>
+		&nbsp;
+	<% end %>
+	<% if params[:page].to_i * params[:per_page].to_i < Location.count %>
+		<a href="<%= search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Next</a>
+		&nbsp;
+		<a href="<%= search_supplier_url(:page => last_page_number, :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Last</a>
+		&nbsp;
+	<% end %>
+	
+</div>
+
+<br/>
