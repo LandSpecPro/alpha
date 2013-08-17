@@ -7,7 +7,7 @@
 	<div class="widget-body">
 		<div class="widget-main">
 
-			<%= form_tag search_path, :method => 'get' do %>
+			<%= form_tag @path, :method => 'post' do %>
 
 				<%= hidden_field_tag :search_type, controller.action_name %>
 

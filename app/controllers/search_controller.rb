@@ -6,17 +6,21 @@ class SearchController < ApplicationController
 
 	def product
 
+		@path = search_product_path
+		#@featured_items = method_that_searches_in_search_helper_based_on_criteria
+		@featured_items = search_for_featured_items
+
 	end
 
 	def supplier
 
-		@locations = search_for_suppliers.order('created_at DESC')
+		@path = search_supplier_path
+		#@locations = method_that_searches_in_search_helper_based_on_criteria
+		@locations = search_for_suppliers
 
 	end
 
 	def search
-
-		cookies.permanent.signed[:search_results_view] = params[:view]
 
 		if params[:search_type] == 'supplier'
 			redirect_to search_supplier_url(:query => params[:query])
