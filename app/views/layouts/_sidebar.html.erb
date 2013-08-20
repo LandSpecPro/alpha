@@ -53,14 +53,14 @@
 						<% else %>
 							<li>
 						<% end %>
-								<a href=<%= search_product_url %>><i class="icon-double-angle-right"></i> Products</a>
+								<a href=<%= search_product_url(:current_location => true) %>><i class="icon-double-angle-right"></i> Products</a>
 							</li>
 						<% if controller.action_name == 'supplier' %>
 							<li class="active">
 						<% else %>
 							<li>
 						<% end %>
-								<a href=<%= search_supplier_url %>><i class="icon-double-angle-right"></i> Suppliers</a>
+								<a href=<%= search_supplier_url(:current_location => true) %>><i class="icon-double-angle-right"></i> Suppliers</a>
 							</li>
 						</ul>
 

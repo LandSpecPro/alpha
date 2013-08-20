@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814223907) do
+ActiveRecord::Schema.define(:version => 20130820205037) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -239,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20130814223907) do
     t.string   "public_url"
     t.boolean  "public_url_active",      :default => true,  :null => false
     t.boolean  "url_is_custom",          :default => false, :null => false
+    t.string   "busName"
   end
 
   create_table "newsletter_emails", :force => true do |t|
@@ -309,10 +310,9 @@ ActiveRecord::Schema.define(:version => 20130814223907) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
     t.string   "login",                                        :null => false
     t.string   "email",                                        :null => false
+    t.string   "userType",                  :default => "",    :null => false
     t.string   "crypted_password",                             :null => false
     t.string   "password_salt",                                :null => false
     t.string   "persistence_token",                            :null => false
@@ -322,7 +322,8 @@ ActiveRecord::Schema.define(:version => 20130814223907) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.string   "userType",                  :default => "",    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
     t.string   "profileImage_file_name"

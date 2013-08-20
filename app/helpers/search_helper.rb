@@ -14,11 +14,15 @@ module SearchHelper
 			params[:sort] = 'dist_asc'
 		end
 
-		if params[:location].blank?
-			params[:location] = 'atlanta, ga'
+		if params[:current_location]
+			params[:location] = request.location.city + ", " + request.location.state
+		elsif params[:location].blank?
+			params[:location] = 'Atlanta, GA'
 		end
 
-		# if distance is blank, leave it blank
+		if params[:distance_from].blank?
+			params[:distance_from] = 9999
+		end
 
 		# if categories is blank, leave it blank
 
@@ -33,18 +37,26 @@ module SearchHelper
 
 	def search_for_suppliers
 
-		if params[:page] == 1
-			return Location.limit(params[:per_page]).order('created_at DESC')
-		else
-			@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-			return Location.limit(params[:per_page]).offset(@offset).order('created_at DESC')
-		end
+		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
+		@locs = Location.geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		params[:result_count] = @locs.count
+		return @locs.limit(params[:per_page]).offset(@offset)
+
+	end
+
+	def find_supplier_by_bus_name
+
+		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
+		@locs = Location.geocoded.where(:active => true, :busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		params[:result_count] = @locs.count
+		return @locs.limit(params[:per_page]).offset(@offset)
 
 	end
 
 	def search_for_featured_items
 
 		if params[:page] == 1
+			params[:num_pages] 
 			return FeaturedItem.limit(params[:per_page]).order('created_at DESC')
 		else
 			@offset = (params[:page].to_i - 1) * params[:per_page].to_i
@@ -55,11 +67,35 @@ module SearchHelper
 
 	def last_page_number
 
-		if not (Location.count % 10) == 0
-			return (Location.count / params[:per_page].to_i) + 1
+		if not (params[:result_count].to_i % 10) == 0
+			return (params[:result_count].to_i / params[:per_page].to_i) + 1
 		else
-			return (Location.count / params[:per_page].to_i)
+			return (params[:result_count].to_i / params[:per_page].to_i)
 		end
+
+	end
+
+	def min_paginate_number
+		
+		@minpage = params[:page].to_i - 3
+
+		if @minpage <= 0
+			@minpage = 1
+		end
+
+		return @minpage
+
+	end
+
+	def max_paginate_number
+
+		@maxpage = params[:page].to_i + 3
+
+		if @maxpage > last_page_number
+			@maxpage = last_page_number
+		end
+
+		return @maxpage
 
 	end
 

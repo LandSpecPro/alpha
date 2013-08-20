@@ -6,32 +6,21 @@ class SearchController < ApplicationController
 
 	def product
 
-		@path = search_product_path
-		#@featured_items = method_that_searches_in_search_helper_based_on_criteria
+		@path = search_product_path(:current_location => true)
 		@featured_items = search_for_featured_items
 
 	end
 
 	def supplier
 
-		@path = search_supplier_path
-		#@locations = method_that_searches_in_search_helper_based_on_criteria
-		@locations = search_for_suppliers
+		@path = search_supplier_path(:current_location => true)
 
-	end
-
-	def search
-
-		if params[:search_type] == 'supplier'
-			redirect_to search_supplier_url(:query => params[:query])
-			return
-		elsif params[:search_type] == 'product'
-			redirect_to search_product_url(:query => params[:query])
-			return
+		if params[:query].blank?
+			@locations = search_for_suppliers
 		else
-			redirect_to oops_url
-			return
+			@locations = find_supplier_by_bus_name
 		end
 
 	end
+
 end

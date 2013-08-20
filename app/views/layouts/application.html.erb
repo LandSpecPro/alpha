@@ -84,8 +84,8 @@
               <li class="dropdown-submenu">
                 <a href="#"><i class="icon-search"> Search</i></a>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= search_product_url %>">Products</a></li>
-                  <li><a href="<%= search_supplier_url %>">Suppliers</a></li>
+                  <li><a href="<%= search_product_url(:current_location => true) %>">Products</a></li>
+                  <li><a href="<%= search_supplier_url(:current_location => true) %>">Suppliers</a></li>
                 </ul>
               </li>
 

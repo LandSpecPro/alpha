@@ -1,10 +1,10 @@
 class Location < ActiveRecord::Base
 	include ModelHelper
 	include AnalyticsHelper
-	
+
 	geocoded_by :get_full_address
 	after_validation :geocode
-	after_initialize :initialize_public_url
+	after_initialize :initialize_public_url, :initialize_bus_name
 
 	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
@@ -46,6 +46,30 @@ class Location < ActiveRecord::Base
 		if self.public_url.blank?
 			self.public_url = eight_digit_random_number
 		end
+	end
+
+	def self.sort_by_criteria(criteria)
+		# dist_asc, dist_desc, name_asc, name_desc
+		if criteria.to_s == 'dist_asc'
+			return self.order("distance")
+		elsif criteria.to_s == 'dist_desc'
+			return self.order('distance DESC')
+		elsif criteria.to_s == 'name_asc'
+			return self.order('"busName" ASC')
+		elsif criteria.to_s == 'name_desc'
+			return self.order('"busName" DESC')
+		else
+			return self.order('distance ASC')
+		end
+	end
+
+	def initialize_bus_name
+		self.busName = self.bus_vendor.busName
+	end
+
+	def set_bus_name
+		self.busName = self.bus_vendor.busName
+		self.save
 	end
 
 	def set_public_url
@@ -163,12 +187,6 @@ class Location < ActiveRecord::Base
 			return false
 		end
 		
-	end
-
-	def busName
-
-		return self.bus_vendor.busName
-
 	end
 
 	def tagline

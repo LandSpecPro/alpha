@@ -1,18 +1,49 @@
 <div class="center">
 
-	<% if params[:page].to_i > 1 %>
-		<a href="<%= search_supplier_url(:page => 1, :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">First</a>
-		&nbsp;
-		<a href="<%= search_supplier_url(:page => (params[:page].to_i - 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Prev</a>
-		&nbsp;
-	<% end %>
-	<% if params[:page].to_i * params[:per_page].to_i < Location.count %>
-		<a href="<%= search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Next</a>
-		&nbsp;
-		<a href="<%= search_supplier_url(:page => last_page_number, :per_page => params[:per_page], :query => params[:query], :view => params[:view]) %>" class="btn btn-mini btn-primary">Last</a>
-		&nbsp;
-	<% end %>
+	<div class="pagination no-padding">
+		<ul>
+
+			<% if params[:page].to_i > 1 %>
+				<li class="prev">
+					<a href="<%= search_supplier_url(:page => (params[:page].to_i - 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location]) %>"><i class="icon-double-angle-left"></i></a>
+				</li>
+			<% else %>
+				<li class="prev disabled">
+					<a><i class="icon-double-angle-left"></i></a>
+				</li>
+			<% end %>
+
+			<!-- Show pages by individual number -->
+			<% last_page_number.times do |p| %>
+
+				<% if (p + 1) >= min_paginate_number and (p + 1) <= max_paginate_number %>
+
+					<% if not (p + 1) == params[:page].to_i %>
+						<li>
+							<a href="<%= search_supplier_url(:page => (p + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location]) %>"><%= (p + 1).to_s %></a>
+						</li>
+					<% else %>
+						<li class="active">
+							<a><%= (p + 1).to_s %></a>
+						</li>
+					<% end %>
+
+				<% end %>
+
+			<% end %>
+
+
+			<% if params[:page].to_i * params[:per_page].to_i < Location.count %>
+				<li>
+					<a href="<%= search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location]) %>"><i class="icon-double-angle-right"></i></a>
+				</li>
+			<% else %>
+				<li class="disabled">
+					<a><i class="icon-double-angle-right"></i></a>
+				</li>
+			<% end %>
+
+		</ul>
+	</div>
 	
 </div>
-
-<br/>
