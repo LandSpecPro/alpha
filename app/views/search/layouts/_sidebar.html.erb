@@ -10,6 +10,7 @@
 			<%= form_tag @path, :method => 'get' do %>
 
 				<%= hidden_field_tag :search_type, controller.action_name %>
+				<%= hidden_field_tag :sort, params[:sort] %>
 
 				<!-- Search Box 
 						- Need to change to CHZN dropdown and set up with another render so that a different box is rendered
@@ -18,7 +19,11 @@
 
 				<div class="row-fluid">
 					<div class="span8">
-						<input id='query' name='query' type="text" class="input search-query span12" placeholder="Enter search query here..." value="<%= params[:query] %>" />
+						<% if controller.action_name == 'supplier' %>
+							<%= render 'search/layouts/supplier_search_box' %>
+						<% elsif controller.action_name == 'product' %>
+							<%= render 'search/layouts/product_search_box' %>
+						<% end %>
 					</div>
 					<div class="span4">
 						<%= submit_tag "Search", :class => "btn btn-success btn-small btn-block" %>
