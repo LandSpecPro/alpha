@@ -8,47 +8,95 @@
 		<% end %>
 
 		<div class="widget-toolbar">
-			<button class="btn btn-mini bigger btn-success dropdown-toggle" data-toggle="dropdown">
-				<% if params[:sort] == 'dist_asc' %>
-					Sort By - Distance Asc.
-				<% elsif params[:sort] == 'dist_desc' %>
-					Sort By - Distance Desc.
-				<% elsif params[:sort] == 'name_asc' %>
-					Sort By - Business Name Asc.
-				<% elsif params[:sort] == 'name_desc' %>
-					Sort By - Business Name Desc.
-				<% else %>
-					Sort By
-				<% end %>
-				<i class="icon-angle-down icon-on-right"></i>
-			</button>
 
-			<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
-				<li>
-					<a href="<%= sort_by_url('supplier', 'dist_asc') %>">
-						<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
-						&nbsp;Distance Asc.
-					</a>
-				</li>
-				<li>
-					<a href="<%= sort_by_url('supplier', 'dist_desc') %>">
-						<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
-						&nbsp;Distance Desc.
-					</a>
-				</li>
-				<li>
-					<a href="<%= sort_by_url('supplier', 'name_asc') %>">
-						<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
-						&nbsp;Business Name Asc.
-					</a>
-				</li>
-				<li>
-					<a href="<%= sort_by_url('supplier', 'name_desc') %>">
-						<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
-						&nbsp;Business Name Desc.
-					</a>
-				</li>
-			</ul>
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					<% if params[:per_page].to_i == 10 %>
+						10 Per Page
+					<% elsif params[:per_page].to_i == 15 %>
+						15 Per Page
+					<% elsif params[:per_page].to_i == 25 %>
+						25 Per Page
+					<% elsif params[:per_page].to_i == 50 %>
+						50 Per Page
+					<% else %>
+						Results Per Page
+					<% end %>
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul id="resultsPerPage" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= per_page_url('supplier', '10') %>">
+							<% if params[:per_page].to_i == 10 %><i class="icon-ok"></i><% end %>
+							&nbsp;10 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('supplier', '15') %>">
+							<% if params[:per_page].to_i == 15 %><i class="icon-ok"></i><% end %>
+							&nbsp;15 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('supplier', '25') %>">
+							<% if params[:per_page].to_i == 25 %><i class="icon-ok"></i><% end %>
+							&nbsp;25 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('supplier', '50') %>">
+							<% if params[:per_page].to_i == 50 %><i class="icon-ok"></i><% end %>
+							&nbsp;50 Per Page
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					<% if params[:sort] == 'dist_asc' %>
+						Sort By - Distance Asc.
+					<% elsif params[:sort] == 'dist_desc' %>
+						Sort By - Distance Desc.
+					<% elsif params[:sort] == 'name_asc' %>
+						Sort By - Business Name Asc.
+					<% elsif params[:sort] == 'name_desc' %>
+						Sort By - Business Name Desc.
+					<% else %>
+						Sort By
+					<% end %>
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= sort_by_url('supplier', 'dist_asc') %>">
+							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Distance Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('supplier', 'dist_desc') %>">
+							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Distance Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('supplier', 'name_asc') %>">
+							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Business Name Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('supplier', 'name_desc') %>">
+							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Business Name Desc.
+						</a>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 	</div>
 
@@ -116,11 +164,7 @@
 	</div>
 
 </div>
-
 <%= javascript_tag do %>
 
-	window.sort_distance_asc = <%= j search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => 'dist_asc') %>;
-
-	window.sort_distance_desc = <%= j search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => 'dist_desc') %>;
-
+	window.myurl = "<%= search_supplier_url %>";
 <% end %>

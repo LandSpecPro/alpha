@@ -112,6 +112,15 @@ module SearchHelper
 		# Currently goes back to first page
 	end
 
+	def per_page_url(search_type, per_page)
+		if search_type == 'supplier'
+			return search_supplier_url(:page => 1, :per_page => per_page, :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => params[:sort])
+		elsif search_type == 'product'
+			return search_product_url(:page => 1, :per_page => per_page, :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => params[:sort])
+		end
+		# Currently goes back to first page
+	end
+
 end
 
 # COOKIES
