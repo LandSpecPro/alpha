@@ -9,6 +9,8 @@ class SearchController < ApplicationController
 		@path = search_product_path(:current_location => true)
 		@featured_items = search_for_featured_items
 
+		store_location
+
 	end
 
 	def supplier
@@ -20,6 +22,8 @@ class SearchController < ApplicationController
 		else
 			@locations = find_supplier_by_bus_name
 		end
+
+		store_location
 
 	end
 
