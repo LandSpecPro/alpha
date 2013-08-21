@@ -92,7 +92,7 @@
 							<td class="center">
 								<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank", :title => "", :class => 'tooltip-info', :data => { :rel => 'tooltip', :original_title => 'View on Map', :placement => 'bottom' } %>
 							</td>
-							<td class="center"><%= "%5.2f" % l.distance_from('atlanta, ga, usa').to_f %></td>
+							<td class="center"><%= "%5.2f" % l.distance_from(params[:location]).to_f %></td>
 							<td class="center">
 								<% if l.is_favorited(current_user) %>
 									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
