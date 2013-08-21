@@ -2,6 +2,10 @@ module SearchHelper
 
 	def default_search_values
 
+		if params[:query] == 'Search All'
+			params[:query] = nil
+		end
+
 		if params[:page].blank?
 			params[:page] = 1
 		end
