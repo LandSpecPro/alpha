@@ -33,7 +33,7 @@ module SearchHelper
 		if params[:view].blank? and not cookies.signed[:search_results_view]
 			params[:view] = 'list'
 			cookies.permanent.signed[:search_results_view] = params[:view]
-		else
+		elsif params[:view].blank?
 			params[:view] = cookies.signed[:search_results_view]
 		end
 
@@ -42,7 +42,7 @@ module SearchHelper
 	def search_for_suppliers
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@locs = Location.geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@locs = Location.geocoded.where(:active => true).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
 		return @locs.limit(params[:per_page]).offset(@offset)
 
@@ -59,13 +59,19 @@ module SearchHelper
 
 	def search_for_featured_items
 
-		if params[:page] == 1
-			params[:num_pages] 
-			return FeaturedItem.limit(params[:per_page]).order('created_at DESC')
-		else
-			@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-			return Location.limit(params[:per_page]).offset(@offset).order('created_at DESC')
-		end
+		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
+		@prods = FeaturedItem.geocoded.where(:active => true).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		params[:result_count] = @prods.count
+		return @prods.limit(params[:per_page]).offset(@offset)
+
+	end
+
+	def find_featured_items_by_name
+
+		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
+		@prods = FeaturedItem.geocoded.where(:active => true, :commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		params[:result_count] = @prods.count
+		return @prods.limit(params[:per_page]).offset(@offset)
 
 	end
 

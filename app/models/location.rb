@@ -70,6 +70,11 @@ class Location < ActiveRecord::Base
 	def set_bus_name
 		self.busName = self.bus_vendor.busName
 		self.save
+
+		self.featured_items.each do |fi|
+			fi.set_bus_name
+		end
+
 	end
 
 	def set_public_url

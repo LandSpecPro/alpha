@@ -7,7 +7,12 @@ class SearchController < ApplicationController
 	def product
 
 		@path = search_product_path(:current_location => true)
-		@featured_items = search_for_featured_items
+
+		if params[:query].blank?
+			@featured_items = search_for_featured_items
+		else
+			@featured_items = find_featured_items_by_name
+		end
 
 		store_location
 

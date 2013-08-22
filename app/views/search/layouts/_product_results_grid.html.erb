@@ -1,0 +1,5 @@
+<% @featured_items.each do |fi| %>
+
+	<img src="<%= fi.get_image.url(:medium) %>" alt=""/>
+
+<% end %>

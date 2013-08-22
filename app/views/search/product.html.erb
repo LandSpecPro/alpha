@@ -8,24 +8,19 @@
 	</div>
 
 
-
-
-
-
-
-</div>
-
-
-<div class="control-group">
-	<label class="control-label" for="form-field-tags">Tag input</label>
-
-	<div class="controls">
-		<input type="text" name="tags" id="form-field-tags" placeholder="Enter tags ..." />
+	<div class="span9">
+		<% if params[:view] == 'list' %>
+			<%= render 'search/layouts/product_results_list' %>
+		<% else %>
+			<%= render 'search/layouts/product_results_grid' %>
+		<% end %>
 	</div>
+
+
+
+
 </div>
 
-Page Number: <%= params[:page] %><br/>
-Results Per PAge: <%= params[:per_page] %><br/>
 
 
 <%= render 'layouts/sidebarend' %>
@@ -33,22 +28,10 @@ Results Per PAge: <%= params[:per_page] %><br/>
 
 <script type="text/javascript">
 
-	var tag_input = $('#form-field-tags');
-	if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) ) 
-	{
-		var v_source = <%= "['ours', 'what', 'who']" %>;
-		tag_input.tag(
-		  {
-			placeholder:tag_input.attr('placeholder'),
-			//enable typeahead by specifying the source array
-			source: v_source
-		  }
-		);
-	}
-	else {
-		//display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-		tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
-		//$('#form-field-tags').autosize({append: "\n"});
-	}
+	$(applyColorbox());
+	$(applyPopovers());
+	$(applyChosenStyle());
+
+	$("select").chosen({ width: '100%'});
 
 </script>

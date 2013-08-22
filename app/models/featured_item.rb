@@ -7,11 +7,69 @@ class FeaturedItem < ActiveRecord::Base
 
 	geocoded_by :get_full_address
 	after_validation :geocode
+	before_save :initialize_common_name, :initialize_bus_name
 
 	has_one :product
 	accepts_nested_attributes_for :product
 
 	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
+
+	def initialize_common_name
+		self.commonName = Product.find(self.product_id).commonName
+	end
+
+	def initialize_bus_name
+		self.busName = Location.find(self.location_id).busName
+	end
+	
+	def set_common_name
+		self.commonName = Product.find(self.product_id).commonName
+		self.save
+	end
+
+	def set_bus_name
+		self.busName = Location.find(self.location_id).busName
+		self.save
+	end
+
+	def self.only_visible
+		@ids = []
+
+		self.all.each do |e|
+			if e.is_visible
+				@ids << e
+			end
+		end
+
+		self.scoped(:conditions => { :id => @ids })
+	end
+
+	def self.sort_by_criteria(criteria)
+		# dist_asc, dist_desc, name_asc, name_desc
+		if criteria.to_s == 'dist_asc'
+			return self.order('distance ASC')
+		elsif criteria.to_s == 'dist_desc'
+			return self.order('distance DESC')
+		elsif criteria.to_s == 'name_asc'
+			return self.order('"commonName" ASC')
+		elsif criteria.to_s == 'name_desc'
+			return self.order('"commonName" DESC')
+		elsif criteria.to_s == 'busname_asc'
+			return self.order('"busName" ASC')
+		elsif criteria.to_s == 'busname_desc'
+			return self.order('"busName" DESC')
+		elsif criteria.to_s == 'price_asc'
+			return self.order('price ASC')
+		elsif criteria.to_s == 'price_desc'
+			return self.order('price DESC')
+		elsif criteria.to_s == 'size_asc'
+			return self.order('size ASC')
+		elsif criteria.to_s == 'size_desc'
+			return self.order('size DESC')
+		else
+			return self.order('distance ASC')
+		end
+	end
 
 	def is_visible
 		loc = Location.find(self.location_id)

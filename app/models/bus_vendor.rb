@@ -10,6 +10,8 @@ class BusVendor < ActiveRecord::Base
 	has_many :featured_items
 	accepts_nested_attributes_for :featured_items
 
+	after_save :update_relations_bus_name
+
 	# This method associates the attribute ":logo" with a file attachment
 	has_attached_file :logo, 
 		styles: {
@@ -23,4 +25,11 @@ class BusVendor < ActiveRecord::Base
 	validates_presence_of :busName, :message => "You must provide a valid business to use LandSpec!"
 	validates :busPhone, :format => { :with => /\A\([0-9]{3}\)\s[0-9]{3}\-[0-9]{4}\z/, :message => "Must provide a valid phone number!" }
 	validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
+
+	def update_relations_bus_name
+		self.locations.each do |l|
+			l.set_bus_name
+		end
+	end
+
 end

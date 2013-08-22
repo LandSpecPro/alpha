@@ -60,9 +60,21 @@
 					<% elsif params[:sort] == 'dist_desc' %>
 						Sort By - Distance Desc.
 					<% elsif params[:sort] == 'name_asc' %>
-						Sort By - Business Name Asc.
+						Sort By - Product Name Asc.
 					<% elsif params[:sort] == 'name_desc' %>
+						Sort By - Product Name Desc.
+					<% elsif params[:sort] == 'busname_asc' %>
+						Sort By - Business Name Asc.
+					<% elsif params[:sort] == 'busname_desc' %>
 						Sort By - Business Name Desc.
+					<% elsif params[:sort] == 'price_asc' %>
+						Sort By - Price Asc.
+					<% elsif params[:sort] == 'price_desc' %>
+						Sort By - Price Desc.
+					<% elsif params[:sort] == 'size_asc' %>
+						Sort By - Size Asc.
+					<% elsif params[:sort] == 'size_desc' %>
+						Sort By - Size Desc.
 					<% else %>
 						Sort By
 					<% end %>
@@ -71,27 +83,63 @@
 
 				<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
 					<li>
-						<a href="<%= sort_by_url('supplier', 'dist_asc') %>">
+						<a href="<%= sort_by_url('product', 'dist_asc') %>">
 							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Distance Asc.
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('supplier', 'dist_desc') %>">
+						<a href="<%= sort_by_url('product', 'dist_desc') %>">
 							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Distance Desc.
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('supplier', 'name_asc') %>">
+						<a href="<%= sort_by_url('product', 'name_asc') %>">
 							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Product Name Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'name_desc') %>">
+							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Product Name Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'busname_asc') %>">
+							<% if params[:sort] == 'busname_asc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Business Name Asc.
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('supplier', 'name_desc') %>">
-							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
+						<a href="<%= sort_by_url('product', 'busname_desc') %>">
+							<% if params[:sort] == 'busname_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Business Name Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'price_asc') %>">
+							<% if params[:sort] == 'price_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Price Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'price_desc') %>">
+							<% if params[:sort] == 'price_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Price Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'size_asc') %>">
+							<% if params[:sort] == 'size_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Size Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'size_desc') %>">
+							<% if params[:sort] == 'size_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Size Desc.
 						</a>
 					</li>
 				</ul>
@@ -106,50 +154,54 @@
 			<% if last_page_number > 1 %>
 
 				<div class="row-fluid">
-					<%= render 'search/layouts/supplier_paginate_links' %>
+					<%= render 'search/layouts/product_paginate_links' %>
 				</div>
 
 			<% end %>
 
-			<table id="searchResultsSupplierList" class="table table-striped table-bordered table-hover">
+			<table id="searchResultsProductList" class="table table-striped table-bordered table-hover">
 				
 				<thead>
 					<tr>
-						<th class="center hidden-phone">Logo</th>
-						<th class="center">Business Name</th>
-						<th class="center">Address</th>
+						<th class="center">Product Name</th>
+						<th class="center">Supplier</th>
 						<th class="center">Distance Away (miles)</th>
+						<th class="center">Size</th>
+						<th class="center">Price</th>
 						<th class="center">Favorite</th>
 					</tr>
 				</thead>
 
 				<tbody>
 
-					<% @locations.each do |l| %>
+					<% @featured_items.each do |fi| %>
 						<tr>
-							<td class="center hidden-phone">
-								<a href="<%= locations_view_url(:id => l.id) %>" title="" class="tooltip-info" data-rel="tooltip" data-original-title="View Profile" data-placement="bottom">
-									<%= image_tag l.bus_vendor.logo.url(:smthumb), :width => '50px', :height => '50px', :style => 'min-width:50px; min-height:50px; max-height:50px;' %>
+							<td class="center">
+								<%= fi.commonName %>
+							</td>
+							<td class="center">
+								<a href="<%= locations_view_url(:id => fi.get_location.id) %>">
+									<%= fi.busName %>
 								</a>
 							</td>
 							<td class="center">
-								<a href="<%= locations_view_url(:id => l.id) %>" title="" class="tooltip-info" data-rel="tooltip" data-original-title="View Profile" data-placement="bottom">
-									<%= l.busName %>
-								</a>
+								<%= "%5.2f" % fi.distance_from(params[:location]).to_f %>
 							</td>
 							<td class="center">
-								<%= link_to l.get_full_address, get_map_link_from_address(concat_address(l)), :target => "_blank", :title => "", :class => 'tooltip-info', :data => { :rel => 'tooltip', :original_title => 'View on Map', :placement => 'bottom' } %>
+								<%= fi.size %>
 							</td>
 							<td class="center">
-								<%= "%5.2f" % l.distance_from(params[:location]).to_f %>
+								<% unless fi.price.blank? %>
+									<%= '$%8.2f' % fi.price %>
+								<% end %>
 							</td>
 							<td class="center">
-								<% if l.is_favorited(current_user) %>
-									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
+								<% if fi.is_favorited(current_user) %>
+									<a href=<%= products_favorite_set_url(:id => fi.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
 										<i  class="icon-bookmark" id="fav_icon"></i>
 									</a>
 								<% else %>
-									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Add To Favorites" data-placement="bottom">
+									<a href=<%= products_favorite_set_url(:id => fi.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Add To Favorites" data-placement="bottom">
 										<i  class="icon-bookmark-empty" id="fav_icon"></i>
 									</a>
 								<% end %>
