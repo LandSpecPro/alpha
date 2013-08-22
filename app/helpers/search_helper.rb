@@ -60,18 +60,18 @@ module SearchHelper
 	def search_for_featured_items
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = FeaturedItem.geocoded.where(:active => true).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = FeaturedItem.geocoded.where(:active => true).only_visible.sort_by_criteria(params[:sort])
 		params[:result_count] = @prods.count
-		return @prods.limit(params[:per_page]).offset(@offset)
+		return @prods.limit(params[:per_page]).offset(@offset).near(params[:location], params[:distance_from])
 
 	end
 
 	def find_featured_items_by_name
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = FeaturedItem.geocoded.where(:active => true, :commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = FeaturedItem.geocoded.where(:active => true, :commonName => params[:query]).only_visible.sort_by_criteria(params[:sort])
 		params[:result_count] = @prods.count
-		return @prods.limit(params[:per_page]).offset(@offset)
+		return @prods.limit(params[:per_page]).offset(@offset).near(params[:location], params[:distance_from])
 
 	end
 
