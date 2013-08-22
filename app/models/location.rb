@@ -45,7 +45,7 @@ class Location < ActiveRecord::Base
 	validates_format_of :public_url, :with => /\A([a-zA-Z0-9_]){3,25}\z/, :message => "URL can only contain numbers, letters, and underscores. Must be between 3 and 25 characters long."
 
 	def cache_location
-		Rails.cache.write('location_' + self.id.to_s, self)
+		Rails.cache.write('location_' + self.id.to_s, Location.find(self.id))
 	end
 
 	def is_cached_and_active
