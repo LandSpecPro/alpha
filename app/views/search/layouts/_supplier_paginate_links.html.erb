@@ -33,7 +33,7 @@
 			<% end %>
 
 
-			<% if params[:page].to_i * params[:per_page].to_i < Location.count %>
+			<% if params[:page].to_i * params[:per_page].to_i < params[:result_count] %>
 				<li>
 					<a href="<%= search_supplier_url(:page => (params[:page].to_i + 1), :per_page => params[:per_page], :query => params[:query], :view => params[:view], :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => params[:sort]) %>"><i class="icon-double-angle-right"></i></a>
 				</li>

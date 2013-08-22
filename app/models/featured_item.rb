@@ -7,12 +7,18 @@ class FeaturedItem < ActiveRecord::Base
 
 	geocoded_by :get_full_address
 	after_validation :geocode
-	before_save :initialize_common_name, :initialize_bus_name
+	before_save :initialize_common_name, :initialize_bus_name, :zero_out_price
 
 	has_one :product
 	accepts_nested_attributes_for :product
 
 	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
+
+	def zero_out_price
+		if self.price.to_i < 0.01
+			self.price = nil
+		end
+	end
 
 	def initialize_common_name
 		self.commonName = Product.find(self.product_id).commonName

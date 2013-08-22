@@ -27,10 +27,9 @@ class ProductsController < ApplicationController
     @locationid = @location.id
     @description = params[:product][:featured_item][:description]
     @image = params[:product][:image]
+    @prodname = params[:product][:commonName]
     @size = params[:product][:featured_item][:size]
     @price = params[:product][:featured_item][:price]
-
-    @thing = params[:product][:productSelect]
 
     before_create
     

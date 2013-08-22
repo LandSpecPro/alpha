@@ -177,10 +177,14 @@
 					<% @featured_items.each do |fi| %>
 						<tr>
 							<td class="center">
-								<%= fi.commonName %>
+								<span class="tooltip-info" data-rel="tooltip" data-original-title="View Larger" data-placement="top">
+									<a href="<%= fi.get_image.url(:original) %>" title="<%= fi.commonName %>" class="colorbox-result colorbox">
+										<%= fi.commonName %>
+									</a>
+								</span>
 							</td>
 							<td class="center">
-								<a href="<%= locations_view_url(:id => fi.get_location.id) %>">
+								<a href="<%= locations_view_url(:id => fi.get_location.id) %>" class="tooltip-info" data-rel="tooltip" data-original-title="View Profile" data-placement="top">
 									<%= fi.busName %>
 								</a>
 							</td>
@@ -191,7 +195,7 @@
 								<%= fi.size %>
 							</td>
 							<td class="center">
-								<% unless fi.price.blank? %>
+								<% unless fi.price.blank? or fi.price < 0.01 %>
 									<%= '$%8.2f' % fi.price %>
 								<% end %>
 							</td>

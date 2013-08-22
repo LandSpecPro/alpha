@@ -9,7 +9,8 @@ function applyColorbox() {
 
 	var colorbox_params = getColorboxParams();
 
-	$('[data-rel="colorbox"]').colorbox(colorbox_params);
+	$('[data-rel="colorbox"]').colorbox(colorbox_params).show();
+	$('.colorbox').colorbox(colorbox_params).show();
 
 	$(window).on('resize.colorbox', function() {
 		try {
