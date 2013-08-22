@@ -1,5 +1,248 @@
-<% @featured_items.each do |fi| %>
+<div class="widget-box">
 
-	<img src="<%= fi.get_image.url(:medium) %>" alt=""/>
+	<div class="widget-header header-color-green2">
+		<% if params[:query].blank? %>
+			<h5 class="lighter">Results - Page <%= params[:page] %> of <%= last_page_number %></h5>
+		<% else %>
+			<h5 class="lighter"><%= params[:result_count] %> Results for <%= params[:query] %></h5>
+		<% end %>
 
-<% end %>
+		<div class="widget-toolbar">
+
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					Grid View
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul id="viewDropdown" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= change_view_url('product', 'list') %>">
+							&nbsp;List View
+						</a>
+					</li>
+					<li>
+						<a href="<%= change_view_url('product', 'alt') %>">
+							<i class="icon-ok"></i>
+							&nbsp;Grid View
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					<% if params[:per_page].to_i == 10 %>
+						10 Per Page
+					<% elsif params[:per_page].to_i == 15 %>
+						15 Per Page
+					<% elsif params[:per_page].to_i == 25 %>
+						25 Per Page
+					<% elsif params[:per_page].to_i == 50 %>
+						50 Per Page
+					<% else %>
+						Results Per Page
+					<% end %>
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul id="resultsPerPage" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= per_page_url('product', '10') %>">
+							<% if params[:per_page].to_i == 10 %><i class="icon-ok"></i><% end %>
+							&nbsp;10 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('product', '15') %>">
+							<% if params[:per_page].to_i == 15 %><i class="icon-ok"></i><% end %>
+							&nbsp;15 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('product', '25') %>">
+							<% if params[:per_page].to_i == 25 %><i class="icon-ok"></i><% end %>
+							&nbsp;25 Per Page
+						</a>
+					</li>
+					<li>
+						<a href="<%= per_page_url('product', '50') %>">
+							<% if params[:per_page].to_i == 50 %><i class="icon-ok"></i><% end %>
+							&nbsp;50 Per Page
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					<% if params[:sort] == 'dist_asc' %>
+						Sort By - Distance Asc.
+					<% elsif params[:sort] == 'dist_desc' %>
+						Sort By - Distance Desc.
+					<% elsif params[:sort] == 'name_asc' %>
+						Sort By - Product Name Asc.
+					<% elsif params[:sort] == 'name_desc' %>
+						Sort By - Product Name Desc.
+					<% elsif params[:sort] == 'busname_asc' %>
+						Sort By - Business Name Asc.
+					<% elsif params[:sort] == 'busname_desc' %>
+						Sort By - Business Name Desc.
+					<% elsif params[:sort] == 'price_asc' %>
+						Sort By - Price Asc.
+					<% elsif params[:sort] == 'price_desc' %>
+						Sort By - Price Desc.
+					<% elsif params[:sort] == 'size_asc' %>
+						Sort By - Size Asc.
+					<% elsif params[:sort] == 'size_desc' %>
+						Sort By - Size Desc.
+					<% else %>
+						Sort By
+					<% end %>
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= sort_by_url('product', 'dist_asc') %>">
+							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Distance Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'dist_desc') %>">
+							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Distance Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'name_asc') %>">
+							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Product Name Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'name_desc') %>">
+							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Product Name Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'busname_asc') %>">
+							<% if params[:sort] == 'busname_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Business Name Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'busname_desc') %>">
+							<% if params[:sort] == 'busname_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Business Name Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'price_asc') %>">
+							<% if params[:sort] == 'price_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Price Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'price_desc') %>">
+							<% if params[:sort] == 'price_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Price Desc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'size_asc') %>">
+							<% if params[:sort] == 'size_asc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Size Asc.
+						</a>
+					</li>
+					<li>
+						<a href="<%= sort_by_url('product', 'size_desc') %>">
+							<% if params[:sort] == 'size_desc' %><i class="icon-ok"></i><% end %>
+							&nbsp;Size Desc.
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main">
+
+			<% if last_page_number > 1 %>
+
+				<div class="row-fluid">
+					<%= render 'search/layouts/product_paginate_links' %>
+				</div>
+
+			<% end %>
+			<div class="row-fluid">
+				<% @featured_items.each_with_index do |fi, index| %>
+					
+					<% if index % 4 == 0 %>
+						<div class="span3" style="margin-left:0; margin-top:25px;">
+					<% else %>
+						<div class="span3" style="margin-top:25px;">
+					<% end %>
+							<ul class="ace-thumbnails">
+							
+								<li>
+									<div>
+										<%= image_tag fi.get_image.url, :title => fi.commonName %>
+
+										<% if fi.is_favorited(current_user) %>
+											<div class="tags">
+												<span class="label label-info arrowed">Favorited!</span>
+											</div>
+										<% end %>
+
+										<div class="text">
+											<div class="inner">
+
+												<span>
+													<p style="font-size:18px;">
+														<%= fi.commonName %>
+													</p>
+												</span>
+
+												<span><p style="font-size:15px;"><%= "%8.1f" % fi.distance_from(params[:location]) %> miles away</p></span>
+
+												<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.commonName %>">
+													<i class="icon-zoom-in"></i>
+												</a>
+
+												<% if fi.is_favorited(current_user) %>
+													<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+												<% else %>
+													<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+												<% end %>
+
+												<a title="" class="tooltip-success" data-placement="bottom" data-original-title="View Location" href=<%= locations_view_url(:id => fi.location_id) %>>
+													<i class="icon-globe"></i>
+												</a>
+												<% @featureditem = fi %>
+												<a title="" class="tooltip-success" data-placement="bottom" data-original-title="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
+													<i class="icon-info-sign"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+				<% end %>
+			</div>
+
+			<br/>
+
+		</div>
+
+	</div>
+
+
+
+</div>

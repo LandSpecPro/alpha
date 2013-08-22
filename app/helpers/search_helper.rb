@@ -30,11 +30,13 @@ module SearchHelper
 
 		# if categories is blank, leave it blank
 
-		if params[:view].blank? and not cookies.signed[:search_results_view]
-			params[:view] = 'list'
+		if not params[:view].blank?
 			cookies.permanent.signed[:search_results_view] = params[:view]
-		elsif params[:view].blank?
+		elsif params[:view].blank? and cookies.signed[:search_results_view]
 			params[:view] = cookies.signed[:search_results_view]
+			cookies.permanent.signed[:search_results_view] = params[:view]
+		else
+			params[:view] = 'list'
 		end
 
 	end
@@ -139,7 +141,7 @@ end
 
 # COOKIES
 #
-# cookies.signed[:search_results_view] ---- can be 'list' or 'alternate'
+# cookies.signed[:search_results_view] ---- can be 'list' or 'alt'
 #     Alternate will be Grid view for products, and Map view for suppliers, until I add Map View to suppliers, and then come up with slightly better
 #      logic to determine the default view
 #

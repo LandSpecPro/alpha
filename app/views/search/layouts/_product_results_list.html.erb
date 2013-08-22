@@ -11,6 +11,27 @@
 
 			<div class="dropdown">
 				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+					List View
+					<i class="icon-angle-down icon-on-right"></i>
+				</button>
+
+				<ul id="viewDropdown" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= change_view_url('product', 'list') %>">
+							<i class="icon-ok"></i>
+							&nbsp;List View
+						</a>
+					</li>
+					<li>
+						<a href="<%= change_view_url('product', 'alt') %>">
+							&nbsp;Grid View
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="dropdown">
+				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					<% if params[:per_page].to_i == 10 %>
 						10 Per Page
 					<% elsif params[:per_page].to_i == 15 %>

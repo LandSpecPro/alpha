@@ -12,6 +12,7 @@
 				<%= hidden_field_tag :search_type, controller.action_name %>
 				<%= hidden_field_tag :sort, params[:sort] %>
 				<%= hidden_field_tag :per_page, params[:per_page] %>
+				<%= hidden_field_tag :view, params[:view] %>
 
 				<!-- Search Box 
 						- Need to change to CHZN dropdown and set up with another render so that a different box is rendered
@@ -72,21 +73,6 @@
 
 			<% end %>
 
-		</div>
-		<div class="widget-footer">
-			<div class="row-fluid">
-				<div class="span12 center">
-					<% if controller.action_name == 'product' and params[:view] == 'list' %>
-						<a href="<%= change_view_url('product', 'grid') %>" class="btn btn-success btn-block btn-small">Switch to Grid View</a>
-					<% elsif controller.action_name == 'product' and params[:view] == 'grid' %>
-						<a href="<%= change_view_url('product', 'list') %>" class="btn btn-success btn-block btn-small">Switch to List View</a>
-					<% elsif controller.action_name == 'supplier' and params[:view] == 'list' %>
-						<a href="<%= change_view_url('supplier', 'map') %>" class="btn btn-success btn-block btn-small">Switch to Map View</a>
-					<% elsif controller.action_name == 'supplier' and params[:view] == 'map' %>
-						<a href="<%= change_view_url('supplier', 'list') %>" class="btn btn-success btn-block btn-small">Switch to List View</a>
-					<% end %>
-				</div>
-			</div>
 		</div>
 	</div>
 
