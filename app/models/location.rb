@@ -49,7 +49,7 @@ class Location < ActiveRecord::Base
 	end
 
 	def is_cached_and_active
-		if Rails.cache.read('location_' + self.id.to_s).active
+		if Rails.cache.read('location_' + self.id.to_s)
 			return true
 		else
 			return false
