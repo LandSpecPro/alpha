@@ -1,38 +1,12 @@
+<% Location.all.each do |l| %>
+	
+	<% if l.is_cached_and_active %>
+		<% @loc = Rails.cache.read('location_' + l.id.to_s) %>
+		<%= @loc.busName + ' - id: ' + @loc.id.to_s + ' is cached' %>
+	<% else %>
+		<%= l.busName + ' - id: ' + l.id.to_s + ' is not cached!' %>
+	<% end %>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI&sensor=true"></script>
-<script type="text/javascript">
-	function initialize(){
-		var latlng = new google.maps.LatLng(56.46249,-4.87793);
-		var options = {
-			zoom: 6,
-			center: latlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
+	<br/>
 
-		var map = new google.maps.Map(document.getElementById("map"), options);
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
-
-	<div id="map"/>
-<div class="dropdown">
-				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
-					List View
-					<i class="icon-angle-down icon-on-right"></i>
-				</button>
-
-				<ul id="viewDropdown" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
-					<li>
-						<a href="<%= change_view_url('supplier', 'list') %>">
-							<i class="icon-ok"></i>
-							&nbsp;List View
-						</a>
-					</li>
-					<li>
-						<a href="<%= change_view_url('supplier', 'alt') %>">
-							&nbsp;Map View
-						</a>
-					</li>
-				</ul>
-			</div>
+<% end %>
