@@ -9,7 +9,9 @@
 
 
 	<div class="span9">
-		<% if params[:view] == 'list' %>
+		<% if params[:result_count] %>
+			<%= render 'search/layouts/no_results' %>
+		<% elsif params[:view] == 'list' %>
 			<%= render 'search/layouts/product_results_list' %>
 		<% else %>
 			<%= render 'search/layouts/product_results_grid' %>

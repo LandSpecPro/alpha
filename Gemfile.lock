@@ -87,7 +87,6 @@ GEM
     multi_xml (0.5.4)
     newrelic_rpm (3.6.5.130)
     nifty-generators (0.4.6)
-    nokogiri (1.5.9)
     nokogiri (1.5.9-x86-mingw32)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)

@@ -52,6 +52,24 @@ class Location < ActiveRecord::Base
 		Rails.cache.write('active_locations', Location.where(:active => true))
 	end
 
+	def self.filter_by_categories(array_cat_strings)
+
+		# get all category ids from strings
+		@catids = []
+		array_cat_strings.each do |cat_name|
+			@catids << Category.where(:cat_name => cat_name).first.id
+		end
+
+		@locids = []
+		@catids.each do |cat_id|
+			CategoryToLocation.where(:category_id => cat_id).each do |catloc|
+				@locids << catloc.id
+			end
+		end
+		return self.where('id IN(?)', @locids.uniq)
+
+	end
+
 	def initialize_public_url
 		if self.public_url.blank?
 			self.public_url = eight_digit_random_number

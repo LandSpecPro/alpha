@@ -10,7 +10,11 @@
 	<!-- Search Results -->
 	<div class="span9">
 
+		<% if params[:result_count] > 0 %>
 			<%= render 'search/layouts/supplier_results_list' %>
+		<% else %>
+			<%= render 'search/layouts/no_results' %>
+		<% end %>
 
 	</div>
 

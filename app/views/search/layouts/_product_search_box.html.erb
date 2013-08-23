@@ -4,9 +4,20 @@
 
 		<% FeaturedItem.where(:active => true).select('"commonName"').uniq.select(:location_id).order('"commonName" ASC').each do |fi| %>
 			<% if fi.is_visible %>
-				<option><%= fi.commonName %></option>
+				<% if params[:query] == fi.commonName %>
+					<option selected="selected"><%= fi.commonName %></option>
+				<% else %>
+					<option><%= fi.commonName %></option>
+				<% end %>
 			<% end %>
 		<% end %>
 	</select>
 
 </div>
+
+
+<% if params[:query] == busname %>
+				<option selected="selected"><%= busname %></option>
+			<% else %>
+				<option><%= busname %></option>
+			<% end %>

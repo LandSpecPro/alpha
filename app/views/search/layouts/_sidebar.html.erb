@@ -49,23 +49,51 @@
 			<% else %>
 				<div class="row-fluid" id="setLocationRow">
 			<% end %>
-					<div class="span12 center">
-						<input id='location' name='location' type='text' class='input span10 center' placeholder="Location to search from..." value="<%= params[:location] %>" />
+					<div class="span10 offset1 center">
+						<input id='location' name='location' type='text' class='input span12 center' placeholder="Location to search from..." value="<%= params[:location] %>" />
 					</div>
 				</div>
 
 				<div class="row-fluid">
-					<div class="span12 center">
+					<div class="span10 offset1 center">
 
-						<label class="lbl" for="distance_from">Max Miles Away:</label>
+						<label class="lbl" for="distance_from">Max Miles Away</label>
 					<% if params[:distance_from].blank? or params[:distance_from].to_i > 9000 %>
-						<input id='distance_from' name='distance_from' type='text' class='input span10 center' placeholder="Leave blank to search any distance..." />
+						<input id='distance_from' name='distance_from' type='text' class='input span12 center' placeholder="Leave blank to search any distance..." />
 					<% else %>
-						<input id='distance_from' name='distance_from' type='text' class='input span10 center' value="<%= params[:distance_from] %>" />
+						<input id='distance_from' name='distance_from' type='text' class='input span12 center' value="<%= params[:distance_from] %>" />
 					<% end %>
 
 					</div>
 				</div>
+
+
+				<% if controller.action_name == 'supplier' %>
+					<div class="row-fluid">
+						<div class="span10 offset1 center">
+							<label class="lbl" for="categories">Filter by Categories</label>
+
+							<div class="block input-icon input-icon-right">
+								<select id="categories[]" name="categories[]" class="chzn-select input-large span12" multiple="multiple" data-placeholder="Leave blank to search all categories...">
+
+									<% Category.where(:active => true).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
+										<% if params[:categories].blank? %>
+											<option><%= cat.cat_name %></option>
+										<% elsif params[:categories].include? cat.cat_name %>
+											<option selected="selected"><%= cat.cat_name %></option>
+										<% else %>
+											<option><%= cat.cat_name %></option>
+										<% end %>
+									<% end %>
+								</select>
+
+							</div>
+
+						</div>
+					</div>
+				<% end %>
+
+
 
 				<br/>
 

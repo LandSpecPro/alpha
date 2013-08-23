@@ -45,9 +45,20 @@ module SearchHelper
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@locs = get_location_by_cache.geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
-		params[:result_count] = @locs.count
-		update_search_log
-		return @locs.limit(params[:per_page]).offset(@offset)
+
+		unless params[:categories].blank?
+			@locs = @locs.filter_by_categories(params[:categories])
+		end
+
+		unless @locs.blank?
+			params[:result_count] = @locs.count
+			update_search_log
+			return @locs.limit(params[:per_page]).offset(@offset)
+		else
+			params[:result_count] = 0
+			update_search_log
+			return nil
+		end
 
 	end
 
@@ -55,9 +66,20 @@ module SearchHelper
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@locs = get_location_by_cache.geocoded.where(:busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
-		params[:result_count] = @locs.count
-		update_search_log
-		return @locs.limit(params[:per_page]).offset(@offset)
+
+		unless params[:categories].blank?
+			@locs = @locs.filter_by_categories(params[:categories])
+		end
+
+		unless @locs.blank?
+			params[:result_count] = @locs.count
+			update_search_log
+			return @locs.limit(params[:per_page]).offset(@offset)
+		else
+			params[:result_count] = 0
+			update_search_log
+			return nil
+		end	
 
 	end
 
@@ -68,7 +90,7 @@ module SearchHelper
 		params[:result_count] = @prods.count
 		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
-		
+
 	end
 
 	def find_featured_items_by_name
@@ -83,23 +105,23 @@ module SearchHelper
 
 	def get_location_by_cache
 
-		if not Rails.cache.read('active_locations').blank?
-			return Rails.cache.read('active_locations')
-		else
-			Location.update_cache
+#		if not Rails.cache.read('active_locations').blank?
+#			return Rails.cache.read('active_locations')
+#		else
+#			Location.update_cache
 			return Location.where(:active => true)
-		end
+#		end
 
 	end
 
 	def get_featured_items_by_cache
 
-		if not Rails.cache.read('active_featured_items').blank?
-			return Rails.cache.read('active_featured_items')
-		else
-			FeaturedItem.update_cache
+#		if not Rails.cache.read('active_featured_items').blank?
+#			return Rails.cache.read('active_featured_items')
+#		else
+#			FeaturedItem.update_cache
 			return FeaturedItem.where(:active => true)
-		end
+#		end
 
 	end
 
