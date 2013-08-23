@@ -1,7 +1,7 @@
 class FeaturedItem < ActiveRecord::Base
 	include ModelHelper
 	
-	after_save :cache_featured_items
+	after_save :update_cache
 
 	attr_accessible :description, :product_id, :location_id, :product_image_id, :size, :price
 	belongs_to :product
@@ -18,7 +18,11 @@ class FeaturedItem < ActiveRecord::Base
 	validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
 
 	
-	def cache_featured_items
+	def update_cache
+		Rails.cache.write('active_featured_items', FeaturedItem.where(:active => true))
+	end
+
+	def self.update_cache
 		Rails.cache.write('active_featured_items', FeaturedItem.where(:active => true))
 	end
 	

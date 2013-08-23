@@ -44,7 +44,7 @@ module SearchHelper
 	def search_for_suppliers
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@locs = Rails.cache.read('active_locations').geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@locs = get_location_by_cache.geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
 		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
@@ -54,7 +54,7 @@ module SearchHelper
 	def find_supplier_by_bus_name
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@locs = Rails.cache.read('active_locations').geocoded.where(:busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@locs = get_location_by_cache.geocoded.where(:busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
 		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
@@ -64,19 +64,42 @@ module SearchHelper
 	def search_for_featured_items
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = Rails.cache.read('active_featured_items').geocoded.only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = get_featured_items_by_cache.geocoded.only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @prods.count
 		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
+		
 	end
 
 	def find_featured_items_by_name
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = Rails.cache.read('active_featured_items').geocoded.where(:commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = get_featured_items_by_cache.geocoded.where(:commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @prods.count
 		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
+
+	end
+
+	def get_location_by_cache
+
+		if not Rails.cache.read('active_locations').blank?
+			return Rails.cache.read('active_locations')
+		else
+			Location.update_cache
+			return Location.where(:active => true)
+		end
+
+	end
+
+	def get_featured_items_by_cache
+
+		if not Rails.cache.read('active_featured_items').blank?
+			return Rails.cache.read('active_featured_items')
+		else
+			FeaturedItem.update_cache
+			return FeaturedItem.where(:active => true)
+		end
 
 	end
 
