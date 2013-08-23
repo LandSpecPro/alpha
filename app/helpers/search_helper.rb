@@ -46,6 +46,7 @@ module SearchHelper
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@locs = Location.geocoded.where(:active => true).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
+		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
 
 	end
@@ -55,6 +56,7 @@ module SearchHelper
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@locs = Location.geocoded.where(:active => true, :busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
+		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
 
 	end
@@ -63,8 +65,8 @@ module SearchHelper
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@prods = FeaturedItem.geocoded.where(:active => true).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
-
 		params[:result_count] = @prods.count
+		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
 	end
 
@@ -73,6 +75,7 @@ module SearchHelper
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
 		@prods = FeaturedItem.geocoded.where(:active => true, :commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @prods.count
+		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
 
 	end
@@ -134,6 +137,13 @@ module SearchHelper
 			return search_supplier_url(:page => params[:page], :per_page => params[:per_page], :query => params[:query], :view => view, :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => params[:sort])
 		elsif search_type == 'product'
 			return search_product_url(:page => params[:page], :per_page => params[:per_page], :query => params[:query], :view => view, :current_location => params[:current_location], :distance_from => params[:distance_from], :location => params[:location], :sort => params[:sort])
+		end
+	end
+
+	def update_search_log
+		if params[:commit]
+			@log = SearchLog.new(:searchTerm => params[:query], :user_id => current_user.id, :location => params[:location], :distanceFrom => params[:distance_from], :searchType => params[:search_type], :categories => params[:categories], :numResults => params[:result_count])
+			@log.save
 		end
 	end
 
