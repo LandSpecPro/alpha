@@ -5,6 +5,7 @@ class Location < ActiveRecord::Base
 	geocoded_by :get_full_address
 	after_validation :geocode
 	after_initialize :initialize_public_url, :initialize_bus_name
+	after_save :cache_locations
 
 	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
@@ -42,18 +43,10 @@ class Location < ActiveRecord::Base
 	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."
 	validates_format_of :public_url, :with => /\A([a-zA-Z0-9_]){3,25}\z/, :message => "URL can only contain numbers, letters, and underscores. Must be between 3 and 25 characters long."
 
-#   after_save :cache_location
-#	def cache_location
-#		Rails.cache.write('location_' + self.id.to_s, Location.find(self.id))
-#	end
-#
-#	def is_cached_and_active
-#		if Rails.cache.read('location_' + self.id.to_s)
-#			return true
-#		else
-#			return false
-#		end
-#	end
+   
+	def cache_locations
+		Rails.cache.write('active_locations', Location.where(:active => true))
+	end
 
 	def initialize_public_url
 		if self.public_url.blank?

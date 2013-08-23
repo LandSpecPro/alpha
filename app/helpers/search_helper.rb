@@ -44,7 +44,7 @@ module SearchHelper
 	def search_for_suppliers
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@locs = Location.geocoded.where(:active => true).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@locs = Rails.cache.read('active_locations').geocoded.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
 		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
@@ -54,7 +54,7 @@ module SearchHelper
 	def find_supplier_by_bus_name
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@locs = Location.geocoded.where(:active => true, :busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@locs = Rails.cache.read('active_locations').geocoded.where(:busName => params[:query]).sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @locs.count
 		update_search_log
 		return @locs.limit(params[:per_page]).offset(@offset)
@@ -64,7 +64,7 @@ module SearchHelper
 	def search_for_featured_items
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = FeaturedItem.geocoded.where(:active => true).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = Rails.cache.read('active_featured_items').geocoded.only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @prods.count
 		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
@@ -73,7 +73,7 @@ module SearchHelper
 	def find_featured_items_by_name
 
 		@offset = (params[:page].to_i - 1) * params[:per_page].to_i
-		@prods = FeaturedItem.geocoded.where(:active => true, :commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
+		@prods = Rails.cache.read('active_featured_items').geocoded.where(:commonName => params[:query]).only_visible.sort_by_criteria(params[:sort]).near(params[:location], params[:distance_from])
 		params[:result_count] = @prods.count
 		update_search_log
 		return @prods.limit(params[:per_page]).offset(@offset)
