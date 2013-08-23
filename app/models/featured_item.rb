@@ -109,7 +109,11 @@ class FeaturedItem < ActiveRecord::Base
 	def get_full_address
 		@location = Location.find(self.location_id)
 		@address1 = @location.address1 + " "
-		@address2 = @location.address2 + " "
+		if not @location.address2.blank?
+			@address2 = @location.address2 + " "
+		else
+			@address2 = ''
+		end
 		@city = @location.city + ", "
 		@state = @location.state + " "
 		@zip = @location.zip
