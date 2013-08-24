@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822234153) do
+ActiveRecord::Schema.define(:version => 20130824012409) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.boolean  "verified",          :default => false, :null => false
   end
 
+  add_index "bus_buyers", ["id"], :name => "index_bus_buyers_on_id"
+
   create_table "bus_vendors", :force => true do |t|
     t.string   "busName",                              :null => false
     t.datetime "created_at",                           :null => false
@@ -58,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.boolean  "verified",          :default => false, :null => false
   end
 
+  add_index "bus_vendors", ["id"], :name => "index_bus_vendors_on_id"
+  add_index "bus_vendors", ["user_id"], :name => "index_bus_vendors_on_user_id"
+
   create_table "categories", :force => true do |t|
     t.integer  "parent_id",       :default => -1,    :null => false
     t.integer  "hierarchy_level", :default => 1,     :null => false
@@ -67,12 +72,18 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.datetime "updated_at",                         :null => false
   end
 
+  add_index "categories", ["id"], :name => "index_categories_on_id"
+
   create_table "category_to_locations", :force => true do |t|
     t.integer  "category_id"
     t.integer  "location_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "category_to_locations", ["category_id"], :name => "index_category_to_locations_on_category_id"
+  add_index "category_to_locations", ["id"], :name => "index_category_to_locations_on_id"
+  add_index "category_to_locations", ["location_id"], :name => "index_category_to_locations_on_location_id"
 
   create_table "claim_buyers", :force => true do |t|
     t.string  "user_login"
@@ -154,6 +165,14 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.string   "commonName"
     t.string   "busName"
   end
+
+  add_index "featured_items", ["active"], :name => "index_featured_items_on_active"
+  add_index "featured_items", ["busName"], :name => "index_featured_items_on_busName"
+  add_index "featured_items", ["commonName"], :name => "index_featured_items_on_commonName"
+  add_index "featured_items", ["id"], :name => "index_featured_items_on_id"
+  add_index "featured_items", ["location_id"], :name => "index_featured_items_on_location_id"
+  add_index "featured_items", ["product_id"], :name => "index_featured_items_on_product_id"
+  add_index "featured_items", ["product_image_id"], :name => "index_featured_items_on_product_image_id"
 
   create_table "invite_codes", :force => true do |t|
     t.string   "code"
@@ -244,6 +263,11 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.string   "busName"
   end
 
+  add_index "locations", ["active"], :name => "index_locations_on_active"
+  add_index "locations", ["busName"], :name => "index_locations_on_busName"
+  add_index "locations", ["bus_vendor_id"], :name => "index_locations_on_bus_vendor_id"
+  add_index "locations", ["id"], :name => "index_locations_on_id"
+
   create_table "newsletter_emails", :force => true do |t|
     t.string   "email"
     t.datetime "created_at", :null => false
@@ -270,6 +294,9 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.boolean  "verified",           :default => false, :null => false
   end
 
+  add_index "product_images", ["id"], :name => "index_product_images_on_id"
+  add_index "product_images", ["product_id"], :name => "index_product_images_on_product_id"
+
   create_table "products", :force => true do |t|
     t.string   "commonName",                    :null => false
     t.string   "latinName"
@@ -279,6 +306,8 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.boolean  "active",     :default => true,  :null => false
     t.boolean  "verified",   :default => false, :null => false
   end
+
+  add_index "products", ["id"], :name => "index_products_on_id"
 
   create_table "search_logs", :force => true do |t|
     t.string   "searchTerm"
@@ -308,7 +337,6 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "user_sessions", ["updated_at"], :name => "index_user_sessions_on_updated_at"
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
@@ -342,9 +370,8 @@ ActiveRecord::Schema.define(:version => 20130822234153) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
+  add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["login"], :name => "index_users_on_login"
-  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
-  add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
+  add_index "users", ["userType"], :name => "index_users_on_userType"
 
 end
