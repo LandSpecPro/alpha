@@ -86,7 +86,11 @@
       });
 
       google.maps.event.addListener(marker_<%= l.id.to_s %>, 'click', function(){
-        infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        <% if not l.primaryPhone.blank? %>
+          infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><abbr title=\'Primary Phone\'>P:</abbr> <%= l.primaryPhone %><br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        <% else %>
+          infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        <% end %>
         infowindow.open(map,marker_<%= l.id.to_s %>);
       });
     <% end %>
