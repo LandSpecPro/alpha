@@ -74,7 +74,11 @@
 				<div class="profile-info-value">
 					<a href="<%= get_map_link_from_address(concat_address(@filoc)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank" data-placement="right"> 
 						<i class="icon-map-marker light-orange bigger-110"></i>
-						<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+						<% unless @filoc.address2.blank? %>
+							<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+						<% else %>
+							<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+						<% end %>
 					</a>
 				</div>
 			</div>
