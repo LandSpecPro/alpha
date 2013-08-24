@@ -10,10 +10,12 @@
 	<!-- Search Results -->
 	<div class="span9">
 
-		<% if params[:result_count] > 0 %>
+		<% if params[:result_count] == 0 %>
+			<%= render 'search/layouts/no_results' %>
+		<% elsif params[:view] == 'list' %>
 			<%= render 'search/layouts/supplier_results_list' %>
 		<% else %>
-			<%= render 'search/layouts/no_results' %>
+			<%= render 'search/layouts/supplier_results_map' %>
 		<% end %>
 
 	</div>
@@ -27,5 +29,6 @@
 	$(applyColorbox());
 	$(applyPopovers());
 	$(applyChosenStyle());
+	
 
 </script>

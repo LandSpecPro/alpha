@@ -1,0 +1,96 @@
+<style>
+
+  #result-map{
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 650px;
+  }
+
+  @media (max-width: 979px){
+    #result-map{
+      height: 400px;
+    }
+  }
+
+</style>
+
+<div class="widget-box">
+
+  <div class="widget-header header-color-green2">
+    <% if params[:query].blank? %>
+      <h5 class="lighter"><%= Location.geocoded.count %> Locations being displayed</h5>
+    <% else %>
+      <h5 class="lighter"><%= params[:result_count] %> Locations for <%= params[:query] %></h5>
+    <% end %>
+
+    <div class="widget-toolbar">
+
+      <div class="dropdown">
+        <button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+          Map View
+          <i class="icon-angle-down icon-on-right"></i>
+        </button>
+
+        <ul id="viewDropdown" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
+          <li>
+            <a href="<%= change_view_url('supplier', 'list') %>">
+              &nbsp;List View
+            </a>
+          </li>
+          <li>
+            <a href="<%= change_view_url('supplier', 'alt') %>">
+              <i class="icon-ok"></i>
+              &nbsp;Map View
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="widget-body">
+    <div class="widget-main no-padding">
+      <div class="google-maps" id="result-map"/>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function initialize() {
+    var mapOptions = {
+      center: new google.maps.LatLng(<%= @center[0].to_s + ',' + @center[1].to_s %>),
+      zoom: 6,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: true,
+      navigationControl: true,
+      mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
+    };
+    var map = new google.maps.Map(document.getElementById("result-map"),
+        mapOptions);
+
+    // LOAD ACTUAL LOCATIONS //
+    <% @locations.each do |l| %>
+      var marker_<%= l.id.to_s %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= l.latitude.to_s %>,<%= l.longitude.to_s %>),
+        map: map,
+        title:"<%= l.busName.html_safe %>",
+        url:"<%= locations_view_url(:id => l.id) %>"
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        size: new google.maps.Size(150,50)
+      });
+
+      google.maps.event.addListener(marker_<%= l.id.to_s %>, 'click', function(){
+        infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        infowindow.open(map,marker_<%= l.id.to_s %>);
+      });
+    <% end %>
+
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

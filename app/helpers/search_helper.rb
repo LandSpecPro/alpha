@@ -50,15 +50,26 @@ module SearchHelper
 			@locs = @locs.filter_by_categories(params[:categories])
 		end
 
+		#Get center point for map
+		@center = Geocoder::Calculations.geographic_center(@locs)
+
 		unless @locs.blank?
 			params[:result_count] = @locs.count
 			update_search_log
-			return @locs.limit(params[:per_page]).offset(@offset)
+			if params[:view] == 'alt'
+				#Get center point for map
+				@center = Geocoder::Calculations.geographic_center(@locs)
+				return @locs
+			else
+				return @locs.limit(params[:per_page]).offset(@offset)
+			end
 		else
 			params[:result_count] = 0
 			update_search_log
 			return nil
 		end
+
+
 
 	end
 
@@ -74,7 +85,13 @@ module SearchHelper
 		unless @locs.blank?
 			params[:result_count] = @locs.count
 			update_search_log
-			return @locs.limit(params[:per_page]).offset(@offset)
+			if params[:view] == 'alt'
+				#Get center point for map
+				@center = Geocoder::Calculations.geographic_center(@locs)
+				return @locs
+			else
+				return @locs.limit(params[:per_page]).offset(@offset)
+			end
 		else
 			params[:result_count] = 0
 			update_search_log
