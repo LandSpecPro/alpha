@@ -70,12 +70,6 @@ class Location < ActiveRecord::Base
 
 	end
 
-	def initialize_public_url
-		if self.public_url.blank?
-			self.public_url = eight_digit_random_number
-		end
-	end
-
 	def self.sort_by_criteria(criteria)
 		# dist_asc, dist_desc, name_asc, name_desc
 		if criteria.to_s == 'dist_asc'
@@ -90,9 +84,15 @@ class Location < ActiveRecord::Base
 			return self.order('distance ASC')
 		end
 	end
+	
+	def initialize_public_url
+		if self.public_url.blank?
+			self.public_url = eight_digit_random_number
+		end
+	end
 
 	def initialize_bus_name
-		self.busName = self.bus_vendor.busName
+		self.busName = current_user.bus_vendor.busName
 	end
 
 	def set_bus_name
