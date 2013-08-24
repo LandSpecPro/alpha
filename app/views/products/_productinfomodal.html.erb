@@ -77,7 +77,7 @@
 						<% unless @filoc.address2.blank? %>
 							<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
 						<% else %>
-							<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+							<span id="address"><%= @filoc.address1 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
 						<% end %>
 					</a>
 				</div>
