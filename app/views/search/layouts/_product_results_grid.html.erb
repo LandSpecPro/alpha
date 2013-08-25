@@ -77,25 +77,17 @@
 			<div class="dropdown">
 				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					<% if params[:sort] == 'dist_asc' %>
-						Sort By - Distance Asc.
+						Sort By - Closest First
 					<% elsif params[:sort] == 'dist_desc' %>
-						Sort By - Distance Desc.
+						Sort By - Farthest First
 					<% elsif params[:sort] == 'name_asc' %>
-						Sort By - Product Name Asc.
+						Sort By - Product Name (A to Z)
 					<% elsif params[:sort] == 'name_desc' %>
-						Sort By - Product Name Desc.
+						Sort By - Product Name (Z to A)
 					<% elsif params[:sort] == 'busname_asc' %>
-						Sort By - Business Name Asc.
+						Sort By - Business Name (A to Z)
 					<% elsif params[:sort] == 'busname_desc' %>
-						Sort By - Business Name Desc.
-					<% elsif params[:sort] == 'price_asc' %>
-						Sort By - Price Asc.
-					<% elsif params[:sort] == 'price_desc' %>
-						Sort By - Price Desc.
-					<% elsif params[:sort] == 'size_asc' %>
-						Sort By - Size Asc.
-					<% elsif params[:sort] == 'size_desc' %>
-						Sort By - Size Desc.
+						Sort By - Business Name (Z to A)
 					<% else %>
 						Sort By
 					<% end %>
@@ -106,61 +98,37 @@
 					<li>
 						<a href="<%= sort_by_url('product', 'dist_asc') %>">
 							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Distance Asc.
+							&nbsp;Closest First
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'dist_desc') %>">
 							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Distance Desc.
+							&nbsp;Farthest First
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'name_asc') %>">
 							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Product Name Asc.
+							&nbsp;Product Name (A to Z)
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'name_desc') %>">
 							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Product Name Desc.
+							&nbsp;Product Name (Z to A)
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'busname_asc') %>">
 							<% if params[:sort] == 'busname_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Business Name Asc.
+							&nbsp;Business Name (A to Z)
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'busname_desc') %>">
 							<% if params[:sort] == 'busname_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Business Name Desc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'price_asc') %>">
-							<% if params[:sort] == 'price_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Price Asc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'price_desc') %>">
-							<% if params[:sort] == 'price_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Price Desc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'size_asc') %>">
-							<% if params[:sort] == 'size_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Size Asc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'size_desc') %>">
-							<% if params[:sort] == 'size_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Size Desc.
+							&nbsp;Business Name (Z to A)
 						</a>
 					</li>
 				</ul>

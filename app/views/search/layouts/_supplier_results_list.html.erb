@@ -77,13 +77,13 @@
 			<div class="dropdown">
 				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					<% if params[:sort] == 'dist_asc' %>
-						Sort By - Distance Asc.
+						Sort By - Closest First
 					<% elsif params[:sort] == 'dist_desc' %>
-						Sort By - Distance Desc.
+						Sort By - Farthest First
 					<% elsif params[:sort] == 'name_asc' %>
-						Sort By - Business Name Asc.
+						Sort By - Business Name (A to Z)
 					<% elsif params[:sort] == 'name_desc' %>
-						Sort By - Business Name Desc.
+						Sort By - Business Name (Z to A)
 					<% else %>
 						Sort By
 					<% end %>
@@ -94,25 +94,25 @@
 					<li>
 						<a href="<%= sort_by_url('supplier', 'dist_asc') %>">
 							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Distance Asc.
+							&nbsp;Closest First
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('supplier', 'dist_desc') %>">
 							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Distance Desc.
+							&nbsp;Farthest First
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('supplier', 'name_asc') %>">
 							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Business Name Asc.
+							&nbsp;Business Name (A to Z)
 						</a>
 					</li>
 					<li>
 						<a href="<%= sort_by_url('supplier', 'name_desc') %>">
 							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Business Name Desc.
+							&nbsp;Business Name (Z to A)
 						</a>
 					</li>
 				</ul>

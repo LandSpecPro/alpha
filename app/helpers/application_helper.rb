@@ -335,7 +335,7 @@ module ApplicationHelper
 			end
 		elsif controller.controller_name == 'search'
 			if controller.action_name == 'product'
-				return " for over " + (FeaturedItem.where(:active => true).count - 1).to_s + " Products"
+				return " for over " + (FeaturedItem.where(:active => true).count - 1).to_s + " Featured Products"
 			elsif controller.action_name == 'supplier'
 				return " for over " + (Location.where(:active => true).count - 1).to_s + " Suppliers"
 			else
