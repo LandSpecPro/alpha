@@ -76,7 +76,17 @@
 							<div class="block input-icon input-icon-right">
 								<select id="categories[]" name="categories[]" class="chzn-select input-large span12" multiple="multiple" data-placeholder="Leave blank to search all categories...">
 
-									<% Category.where(:active => true).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
+									<% Category.where(:active => true, :parent_id => 1).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
+										<% if params[:categories].blank? %>
+											<option><%= cat.cat_name %></option>
+										<% elsif params[:categories].include? cat.cat_name %>
+											<option selected="selected"><%= cat.cat_name %></option>
+										<% else %>
+											<option><%= cat.cat_name %></option>
+										<% end %>
+									<% end %>
+
+									<% Category.where(:active => true, :parent_id => 2).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
 										<% if params[:categories].blank? %>
 											<option><%= cat.cat_name %></option>
 										<% elsif params[:categories].include? cat.cat_name %>

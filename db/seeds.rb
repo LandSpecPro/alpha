@@ -80,7 +80,6 @@ Category.create([
 #	{ id: 241, parent_id: 2, hierarchy_level: 2, cat_name: 'Pavers'},
 #	{ id: 242, parent_id: 2, hierarchy_level: 2, cat_name: 'River Rock'},
 #	{ id: 243, parent_id: 2, hierarchy_level: 2, cat_name: 'Squared Stone'},
-#	{ id: 244, parent_id: 2, hierarchy_level: 2, cat_name: 'Stepping Stones'},
 #	{ id: 245, parent_id: 2, hierarchy_level: 2, cat_name: 'Stone Treads'},
 #	{ id: 246, parent_id: 2, hierarchy_level: 2, cat_name: 'Veneer & Building Stone'},
 #	{ id: 247, parent_id: 2, hierarchy_level: 2, cat_name: 'Supplies'},
