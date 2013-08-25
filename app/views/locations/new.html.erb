@@ -75,6 +75,15 @@
 									</div>
 								</div>
 
+								<div class="row-fluid">
+									<div class="span12">
+										<strong>Primary Phone*</strong>
+										<span class="block input-icon input-icon-right">
+											<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone', :value => @location.primaryPhone %>
+										</span>
+									</div>
+								</div>
+
 								Primary Email
 								<span class="block input-icon input-icon-right">
 									<%= f.text_field :primaryEmail, :class => 'span12', :value => @location.primaryEmail %>
@@ -126,13 +135,8 @@
 								</div>
 
 								<div class="row-fluid">
-									<div class="span6">
-										<strong>Primary Phone*</strong>
-										<span class="block input-icon input-icon-right">
-											<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone', :value => @location.primaryPhone %>
-										</span>
-									</div>
-									<div class="span6">
+									
+									<div class="span12">
 										Secondary Phone
 										<span class="block input-icon input-icon-right">
 											<%= f.text_field :secondaryPhone, :class => 'span12 input-mask-phone', :value => @location.secondaryPhone %>
@@ -141,11 +145,18 @@
 								</div>
 
 								<div class="row-fluid">
-									<div class="span6">
+									<div class="span12">
 										Fax
 										<span class="block input-icon input-icon-right">
 											<%= f.text_field :fax, :class => 'span12 input-mask-fax', :value => @location.fax %>
 										</span>	
+									</div>
+								</div>
+
+								<div class="row-fluid">
+									<div class="span12">
+										&nbsp;
+										<button type='submit' class="btn btn-small btn-success btn-block">Save</button>
 									</div>
 								</div>
 

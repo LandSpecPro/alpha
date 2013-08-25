@@ -88,14 +88,6 @@
 						Sort By - Business Name Asc.
 					<% elsif params[:sort] == 'busname_desc' %>
 						Sort By - Business Name Desc.
-					<% elsif params[:sort] == 'price_asc' %>
-						Sort By - Price Asc.
-					<% elsif params[:sort] == 'price_desc' %>
-						Sort By - Price Desc.
-					<% elsif params[:sort] == 'size_asc' %>
-						Sort By - Size Asc.
-					<% elsif params[:sort] == 'size_desc' %>
-						Sort By - Size Desc.
 					<% else %>
 						Sort By
 					<% end %>
@@ -137,30 +129,6 @@
 						<a href="<%= sort_by_url('product', 'busname_desc') %>">
 							<% if params[:sort] == 'busname_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Business Name Desc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'price_asc') %>">
-							<% if params[:sort] == 'price_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Price Asc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'price_desc') %>">
-							<% if params[:sort] == 'price_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Price Desc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'size_asc') %>">
-							<% if params[:sort] == 'size_asc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Size Asc.
-						</a>
-					</li>
-					<li>
-						<a href="<%= sort_by_url('product', 'size_desc') %>">
-							<% if params[:sort] == 'size_desc' %><i class="icon-ok"></i><% end %>
-							&nbsp;Size Desc.
 						</a>
 					</li>
 				</ul>
