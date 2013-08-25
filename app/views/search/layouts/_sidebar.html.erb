@@ -59,7 +59,7 @@
 
 						<label class="lbl" for="distance_from">Max Miles Away</label>
 					<% if params[:distance_from].blank? or params[:distance_from].to_i > 9000 %>
-						<input id='distance_from' name='distance_from' type='text' class='input span12 center' placeholder="Leave blank to search any distance..." />
+						<input id='distance_from' name='distance_from' type='text' class='input span12 center' placeholder="Any Distance" />
 					<% else %>
 						<input id='distance_from' name='distance_from' type='text' class='input span12 center' value="<%= params[:distance_from] %>" />
 					<% end %>
