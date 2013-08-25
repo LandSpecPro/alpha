@@ -4,8 +4,9 @@ class Location < ActiveRecord::Base
 
 	geocoded_by :get_full_address
 	after_validation :geocode
-	after_initialize :initialize_public_url, :initialize_bus_name
-	after_save :update_cache, :set_bus_name
+	after_initialize :initialize_public_url
+	after_save :update_cache
+	before_save :initialize_bus_name
 
 	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :inventory, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
@@ -92,7 +93,7 @@ class Location < ActiveRecord::Base
 	end
 
 	def initialize_bus_name
-		self.busName = ''
+		self.busName = self.bus_vendor.busName
 	end
 
 	def set_bus_name

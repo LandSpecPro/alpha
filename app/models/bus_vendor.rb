@@ -15,7 +15,7 @@ class BusVendor < ActiveRecord::Base
 	# This method associates the attribute ":logo" with a file attachment
 	has_attached_file :logo, 
 		styles: {
-			smthumb: '50x50>',
+			smthumb: '50x50',
 			thumb: '100x100>',
 			medium: '300x300>'},
 		:default_style => :thumb,
