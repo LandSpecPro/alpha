@@ -204,7 +204,7 @@ module SearchHelper
 
 	def update_search_log
 		if params[:commit]
-			@log = SearchLog.new(:searchTerm => params[:query], :user_id => current_user.id, :location => params[:location], :distanceFrom => params[:distance_from], :searchType => params[:search_type], :categories => params[:categories], :numResults => params[:result_count])
+			@log = SearchLog.new(:searchTerm => params[:query], :user_id => current_user.id, :location => params[:location], :distanceFrom => params[:distance_from], :searchType => params[:search_type], :categories => params[:categories], :numResults => params[:result_count], :resultsView => params[:view])
 			@log.save
 		end
 	end
