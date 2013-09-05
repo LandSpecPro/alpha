@@ -64,7 +64,7 @@ class Location < ActiveRecord::Base
 		@locids = []
 		@catids.each do |cat_id|
 			CategoryToLocation.where(:category_id => cat_id).each do |catloc|
-				@locids << catloc.id
+				@locids << catloc.location_id
 			end
 		end
 		return self.where('id IN(?)', @locids.uniq)
