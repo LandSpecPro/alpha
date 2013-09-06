@@ -19,7 +19,8 @@ class ProductsController < ApplicationController
     @location = Location.find(params[:product][:location_id])
     @featureditem = FeaturedItem.new
     @product = Product.new
-
+    @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
+    
     if validation_failed
       return
     end
