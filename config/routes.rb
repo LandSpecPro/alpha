@@ -27,7 +27,6 @@ LspAlpha::Application.routes.draw do
 
   match "oops" => 'home#oops'
 
-  match "invite/request" => 'users#request_invite'
   match "invite/create" => 'users#create_invite'
   match "invite/success" => 'users#invite_confirm'
   match "forgot" => 'user_sessions#forgot'

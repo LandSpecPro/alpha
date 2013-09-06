@@ -6,12 +6,6 @@ class UsersController < ApplicationController
 
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success]
-  
-  def request_invite
-
-    @invite = Invite.new
-
-  end
 
   def create_invite
 

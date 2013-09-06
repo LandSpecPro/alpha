@@ -4,7 +4,7 @@
   <title><%= content_for?(:title) ? content_for(:title) : "LandSpec Pro" %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="landscapers, suppliers, landscaping, buyers, landscapes, landscape suppliers, network, supply network, materials, plants, professionals" />
-  <meta name="description" content="A growing supply network for landscape industry professionals." />
+  <meta name="description" content=<%= content_for?(:description) ? content_for(:description) : "A growing supply network for landscape industry professionals." %> />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
