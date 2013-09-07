@@ -177,13 +177,13 @@
 	<% end %>
 
 	// Cookies for popovers
-	<% if not cookies.signed[:new_tab_addons2] %>
+	<% if not cookies.signed[:new_tab_addons] %>
 		$('#tab_addons').popover({
 			html: true,
 			placement: "bottom",
 			container: "body",
-			title: '<span class="text-info"><strong>New Add-Ons!</strong></span>',
-			content: "We'll be rolling out add-ons to your profile over time, which you can access from here. The first add-on allows you to upload your full inventory, click here to try it out!"
+			title: '<span class="text-info"><strong>New Premium Features!</strong></span>',
+			content: "We'll be rolling out new premium features to your profile over time, which you can access from here. The first of which allows you to upload your full inventory, click here to try it out!"
 		});
 
 		$('#tab_addons').popover('show');
