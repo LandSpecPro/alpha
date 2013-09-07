@@ -9,9 +9,9 @@
 	<div class="row-fluid">
 
 		<div class="span12">
-			<div class="tabbable tabs-left">
+			<div class="tabbable tabs-top">
 				<ul class="nav nav-tabs" id="locEditTabs">
-					<% if not params[:products] and not params[:settings] %>
+					<% if not params[:products] and not params[:settings] and not params[:addons] %>
 					  	<li class="active" id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
 					  	</li>
@@ -22,7 +22,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="orange icon-plus bigger-110"></i> Add-Ons</a>
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-plus bigger-110"></i> Premium Features</a>
 					  	</li>
 					<% elsif params[:products] %>
 						<li id="tab_locationinfo">
@@ -35,7 +35,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>	
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
 					  	</li>				
 					<% elsif params[:settings] %>
 						<li id="tab_locationinfo">
@@ -48,7 +48,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
 					  	</li>
 					<% elsif params[:addons] %>
 						<li id="tab_locationinfo">
@@ -61,7 +61,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li class="active" id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
 					  	</li>
 					<% end %>
 				  
@@ -69,7 +69,7 @@
 
 			<div class="tab-content" style="overflow:hidden;">
 
-				<% if not params[:products] and not params[:settings] %>
+				<% if not params[:products] and not params[:settings] and not params[:addons] %>
 				  <div id="locationInfo" class="tab-pane in active">
 				<% else %>
 				  <div id="locationInfo" class="tab-pane">
@@ -134,6 +134,16 @@
 					</div>
 				</div>
 
+				<% if params[:addons] %>
+					<div id="addons" class="tab-pane in active">
+				<% else %>
+					<div id="addons" class="tab-pane">
+				<% end %>
+					<div class="row-fluid">
+						<%= render 'locations/layouts_edit/addons' %>
+					</div>
+				</div>
+
 
 				</div><!-- tab-content -->
 
@@ -167,10 +177,10 @@
 	<% end %>
 
 	// Cookies for popovers
-	<% if not cookies.signed[:new_tab_addons] %>
+	<% if not cookies.signed[:new_tab_addons2] %>
 		$('#tab_addons').popover({
 			html: true,
-			placement: "right",
+			placement: "bottom",
 			container: "body",
 			title: '<span class="text-info"><strong>New Add-Ons!</strong></span>',
 			content: "We'll be rolling out add-ons to your profile over time, which you can access from here. The first add-on allows you to upload your full inventory, click here to try it out!"
