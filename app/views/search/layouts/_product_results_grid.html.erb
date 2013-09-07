@@ -178,23 +178,26 @@
 
 												<span><p style="font-size:15px;"><%= "%8.1f" % fi.distance_from(params[:location]) %> miles away</p></span>
 
-												<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.commonName %>">
-													<i class="icon-zoom-in"></i>
-												</a>
+												<span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Larger">
+													<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.commonName %>">
+														<i class="icon-zoom-in"></i>
+													</a>
+												</span>
 
 												<% if fi.is_favorited(current_user) %>
-													<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+													<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
 												<% else %>
-													<a title="" class="tooltip-success" data-placement="bottom" data-original-title="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+													<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
 												<% end %>
 
-												<a title="" class="tooltip-success" data-placement="bottom" data-original-title="View Location" href=<%= locations_view_url(:id => fi.location_id) %>>
+												<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Location" href=<%= locations_view_url(:id => fi.location_id) %>>
 													<i class="icon-globe"></i>
 												</a>
 												<% @featureditem = fi %>
-												<a title="" class="tooltip-success" data-placement="bottom" data-original-title="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
+												<span data-container="body" >
+												<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
 													<i class="icon-info-sign"></i>
-												</a>
+												</a></span>
 											</div>
 										</div>
 									</div>
