@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
   before_filter :require_user, :except => :view_public
   before_filter :require_business, :except => :view_public
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
-
+  
   def view_public
 
     @url = params[:public_url]

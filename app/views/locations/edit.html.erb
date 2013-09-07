@@ -21,6 +21,9 @@
 						<li id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
+					  	<li id="tab_addons">
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-plus bigger-110"></i> Add-Ons</a>
+					  	</li>
 					<% elsif params[:products] %>
 						<li id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
@@ -30,7 +33,10 @@
 					  	</li>
 					  	<li id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
-					  	</li>					
+					  	</li>	
+					  	<li id="tab_addons">
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
+					  	</li>				
 					<% elsif params[:settings] %>
 						<li id="tab_locationinfo">
 					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
@@ -40,6 +46,22 @@
 					  	</li>
 					  	<li class="active" id="tab_publicsettings">
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
+					  	</li>
+					  	<li id="tab_addons">
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
+					  	</li>
+					<% elsif params[:addons] %>
+						<li id="tab_locationinfo">
+					  		<a data-toggle="tab" href="#locationInfo"><i class="blue icon-globe bigger-110"></i> Location Info</a>
+					  	</li>
+					  	<li id="tab_featureditems">
+					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
+					  	</li>
+					  	<li id="tab_publicsettings">
+					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
+					  	</li>
+					  	<li class="active" id="tab_addons">
+					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Add-Ons</a>
 					  	</li>
 					<% end %>
 				  
@@ -143,5 +165,23 @@
 	<% elsif params[:update_location_info_success] %>
 		$(showUpdateSuccessGritter('Location Information has been updated.'));
 	<% end %>
+
+	// Cookies for popovers
+	<% if not cookies.signed[:new_tab_addons] %>
+		$('#tab_addons').popover({
+			html: true,
+			placement: "right",
+			container: "body",
+			title: '<span class="text-info"><strong>New Add-Ons!</strong></span>',
+			content: "We'll be rolling out add-ons to your profile over time, which you can access from here. The first add-on allows you to upload your full inventory, click here to try it out!"
+		});
+
+		$('#tab_addons').popover('show');
+
+
+		<% cookies.permanent.signed[:new_tab_addons] = true %>
+	<% end %>
+
+	
 
 </script>

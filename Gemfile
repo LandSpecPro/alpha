@@ -23,6 +23,9 @@ gem 'chosen-rails'
 gem 'parse_resource', "~> 1.8.0"
 gem 'newrelic_rpm'
 
+gem 'paypal-sdk-rest'
+gem 'activemerchant'
+
 gem 'customerio'
 
 #Used for MemCachier

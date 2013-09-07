@@ -60,10 +60,7 @@ function applyPopovers(){
 	$('.tooltip-success').tooltip();
 	$('.tooltip-info').tooltip();
 	$('.tooltip-error').tooltip();
-
 }
-
-
 
 /*
 	function fileInput(){
