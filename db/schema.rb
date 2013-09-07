@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907151805) do
+ActiveRecord::Schema.define(:version => 20130907221431) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -174,6 +174,19 @@ ActiveRecord::Schema.define(:version => 20130907151805) do
   add_index "featured_items", ["product_id"], :name => "index_featured_items_on_product_id"
   add_index "featured_items", ["product_image_id"], :name => "index_featured_items_on_product_image_id"
 
+  create_table "inventories", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "num_views"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.boolean  "active",            :default => true, :null => false
+    t.boolean  "current",           :default => true, :null => false
+  end
+
   create_table "invite_codes", :force => true do |t|
     t.string   "code"
     t.boolean  "used",       :default => false
@@ -229,38 +242,35 @@ ActiveRecord::Schema.define(:version => 20130907151805) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "bus_vendor_id",                             :null => false
+    t.integer  "bus_vendor_id",                                 :null => false
     t.string   "locName"
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
     t.string   "fax"
-    t.string   "address1",                                  :null => false
+    t.string   "address1",                                      :null => false
     t.string   "address2"
-    t.string   "city",                                      :null => false
-    t.string   "state",                                     :null => false
-    t.string   "zip",                                       :null => false
+    t.string   "city",                                          :null => false
+    t.string   "state",                                         :null => false
+    t.string   "zip",                                           :null => false
     t.string   "primaryEmail"
     t.string   "secondaryEmail"
     t.string   "websiteLink"
     t.string   "facebookLink"
     t.string   "twitterLink"
     t.string   "googleLink"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "active",                 :default => true,  :null => false
-    t.boolean  "verified",               :default => false, :null => false
+    t.boolean  "active",                     :default => true,  :null => false
+    t.boolean  "verified",                   :default => false, :null => false
     t.text     "bio"
-    t.integer  "searchWeight",           :default => 0,     :null => false
-    t.string   "inventory_file_name"
-    t.string   "inventory_content_type"
-    t.integer  "inventory_file_size"
-    t.datetime "inventory_updated_at"
+    t.integer  "searchWeight",               :default => 0,     :null => false
     t.string   "public_url"
-    t.boolean  "public_url_active",      :default => true,  :null => false
-    t.boolean  "url_is_custom",          :default => false, :null => false
+    t.boolean  "public_url_active",          :default => true,  :null => false
+    t.boolean  "url_is_custom",              :default => false, :null => false
     t.string   "busName"
+    t.boolean  "is_subscribed_to_inventory", :default => false, :null => false
   end
 
   add_index "locations", ["active"], :name => "index_locations_on_active"
