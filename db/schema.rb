@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825162822) do
+ActiveRecord::Schema.define(:version => 20130907151805) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(:version => 20130825162822) do
     t.boolean  "show_featured_items",             :default => true,  :null => false
     t.boolean  "show_featured_items_price",       :default => false, :null => false
     t.boolean  "show_featured_items_size",        :default => false, :null => false
-    t.boolean  "show_featured_items_description", :default => false, :null => false
+    t.boolean  "show_featured_items_description", :default => true,  :null => false
     t.boolean  "show_categories",                 :default => true,  :null => false
     t.boolean  "show_other_locations",            :default => false, :null => false
     t.integer  "location_id",                                        :null => false
