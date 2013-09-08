@@ -3,10 +3,16 @@ html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
 #result-map { height: 100%;}
 
+$brand-color: #2e893f;
+$brand-color-darken-five-percent: darken($brand-color, 5%);
+$brand-color-darken-ten-percent: darken($brand-color, 10%);
+$brand-color-lighten-five-percent: lighten($brand-color, 5%);
+$brand-color-lighten-ten-percent: lighten($brand-color, 10%);
+
 // Navbar color
 
 .navbar-inverse .navbar-inner{
-	background:#2e893f;
+	background: $brand-color;
 	padding-top:12px;
 	padding-bottom:8px;
 }
@@ -40,6 +46,18 @@ body { height: 100%; margin: 0; padding: 0 }
 	padding-left:8px;
 	padding-right:8px;
 	background-color: lighten(#307ecc, 10%);
+}
+
+.infobox-custom{
+	background: $brand-color;
+}
+
+.infobox-custom:hover{
+	background-color: $brand-color-darken-five-percent;
+}
+
+.infobox-custom:active{
+	background-color: $brand-color-lighten-five-percent;
 }
 
 .green{
