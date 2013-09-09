@@ -358,4 +358,8 @@ module ApplicationHelper
 		content_for(:title) { page_title }
 	end
 
+	def description(descript)
+		content_for(:description) { descript }
+	end
+
 end
