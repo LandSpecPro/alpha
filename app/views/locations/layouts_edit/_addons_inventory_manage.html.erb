@@ -1,0 +1,11 @@
+
+<%= form_for :location, :url => {:action => :inventory_upload} do |f| %>
+
+	<%= f.hidden_field :id, :value => @location.id %>
+
+	<%= f.file_field :file %>
+
+	<button type="submit">Submit</button>
+
+
+<% end %>

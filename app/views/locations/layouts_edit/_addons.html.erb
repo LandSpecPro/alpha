@@ -1,4 +1,8 @@
-<%= render 'locations/layouts_edit/addons_inventory' %>
+<% if @location.is_subscribed_to_inventory %>
+	<%= render 'locations/layouts_edit/addons_inventory_manage' %>
+<% else %>
+	<%= render 'locations/layouts_edit/addons_inventory' %>
+<% end %>
 
 <!-- 
 <div class="span5 offset1">

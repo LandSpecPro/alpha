@@ -113,6 +113,28 @@ class LocationsController < ApplicationController
 
   end
 
+  def inventory_upload
+
+    @location = Location.find(params[:location][:id])
+
+    @inventory = @location.inventories.new(:location_id => @location.id, :file => params[:location][:file], :num_views => 0)
+
+    if @inventory.save
+      Inventory.where(:location_id => @location).each do |inv|
+        unless inv.id == @inventory.id
+          inv.current = false;
+          inv.save;
+        end
+      end
+    else
+      redirect_to locations_edit_url(:id => @location.id, :addons => true, :failed => true)      
+    end
+
+  end
+
+  def inventory_view
+    @location = Location.find(params[:id])
+  end
 
   def new
     @location = Location.new

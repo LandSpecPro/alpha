@@ -1,5 +1,5 @@
 class Inventory < ActiveRecord::Base
-  attr_accessible :location_id, :num_views, :file_file_name
+  attr_accessible :location_id, :num_views, :file_file_name, :file
 
   belongs_to :location
 

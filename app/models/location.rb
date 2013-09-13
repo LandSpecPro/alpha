@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
 	after_save :update_cache
 	before_save :initialize_bus_name
 
-	attr_accessible :locName, :public_url, :public_url_active, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :inventories_attributes, :location_public_settings_attributes, :statuses_attributes
+	attr_accessible :locName, :public_url, :is_subscribed_to_inventory, :public_url_active, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :inventories_attributes, :location_public_settings_attributes, :statuses_attributes
 	belongs_to :bus_vendor
 	
 	has_many :featured_items

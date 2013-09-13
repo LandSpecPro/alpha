@@ -1,5 +1,10 @@
 LspAlpha::Application.routes.draw do
 
+  match "location/inventory/:file_file_name" => "location#inventory_view"
+
+
+
+
   get "search/product"
   get "search/supplier"
   post "search/product"
@@ -22,6 +27,8 @@ LspAlpha::Application.routes.draw do
   get "favorites/products"
 
   get "favorites/vendors"
+
+  post "inventory/upload" => 'locations#inventory_upload'
 
   get "locations/autocomplete_product_commonName"
 
