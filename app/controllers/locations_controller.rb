@@ -8,7 +8,7 @@ class LocationsController < ApplicationController
   
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
-  before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location]
+  before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user, :except => :view_public
@@ -134,7 +134,31 @@ class LocationsController < ApplicationController
   end
 
   def inventory_view
+
     @location = Location.find(params[:id])
+    @invs = Inventory.where(:active => true, :location_id => params[:id])
+
+    if params[:inv_id].blank? or @invs.where(:id => params[:inv_id]).count == 0
+      redirect_to oops_url #todo - err_code for no inventory
+    else
+      @inventory = @invs.where(:id => params[:inv_id]).first
+    end
+
+    if current_user
+      unless @location.is_owner(current_user)
+        @inventory.num_views = @inventory.num_views + 1
+        if @inventory.save
+          redirect_to @inventory.file.url
+        else
+          redirect_to oops_url #todo - err_code for something?
+        end
+      else
+        redirect_to @inventory.file.url
+      end
+    else
+      redirect_to @inventory.file.url
+    end
+
   end
 
   def new

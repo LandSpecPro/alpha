@@ -1,6 +1,6 @@
 LspAlpha::Application.routes.draw do
 
-  match "location/inventory/:file_file_name" => "location#inventory_view"
+  match "location/inventory/view" => "locations#inventory_view"
 
 
 
