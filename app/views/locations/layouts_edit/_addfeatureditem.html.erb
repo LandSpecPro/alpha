@@ -2,9 +2,6 @@
 	<div class="widget-box">
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-plus"></i> Add Featured Item</h5>
-			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="document.getElementById('form_add_featured_item').submit();" class="white" id="white-link"><i  class="icon-plus" id="fav_icon"></i> Add</a>
-			</div>
 		</div>
 
 		<div class="widget-body">
@@ -61,6 +58,10 @@
 
 					<%= f.hidden_field(:location_id, :value => @location.id) %>
 
+					<div id="addFeaturedItemProgress" class="progress progress-success progress-striped active hide" data-percent="Uploading please wait...">
+						<div class="bar" style="width:100%;"></div>
+					</div>
+
 					Name:
 					<div class="input-icon input-icon-right">
 						<%= f.text_field :commonName, :class => 'span12', :id => 'commonName', :value => @prodname %>
@@ -110,7 +111,7 @@
 		<div class="widget-footer">
 			<div class="row-fluid">
 				<div class="span12">
-					<button class="btn btn-block btn-small btn-success" type="submit"><i  class="icon-plus" id="fav_icon"></i> Add</button>
+					<button class="btn btn-block btn-small btn-success" type="submit" onclick="addFeaturedItem();"><i  class="icon-plus" id="fav_icon"></i> Add</button>
 				</div>
 			</div>
 		</div>
@@ -120,6 +121,12 @@
 <script type="text/javascript">
 
 	$("select").chosen({ width: '100%'});
+
+	function addFeaturedItem(){
+
+		// Show Progress Bar
+		$( "#addFeaturedItemProgress" ).show();
+	}
 
 	
 </script>

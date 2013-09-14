@@ -37,7 +37,7 @@
 							<div class="bar" style="width:100%;"></div>
 						</div>
 
-						<%= form_for :location, :url => {:action => :inventory_upload} do |f| %>
+						<%= form_for :location, :url => {:action => :inventory_upload, :controller => :locations} do |f| %>
 
 							<%= f.hidden_field :id, :value => @location.id %>
 							<%= f.file_field :file %>
