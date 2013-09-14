@@ -2,9 +2,6 @@
 	<div class="widget-box" style="min-width: 350px;">
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-cog"></i> Account Info</h5>
-			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="document.getElementById('form_update_account_info').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
-			</div>
 		</div>
 
 		<div class="widget-body">
@@ -18,6 +15,10 @@
 					  <strong>Error! </strong> <%= msg %>
 					</div>
 				<% end %>
+
+				<div id="updateAccountInfoProgress" class="progress progress-success progress-striped active hide" data-percent="Updating please wait...">
+					<div class="bar" style="width:100%;"></div>
+				</div>
 
 				<fieldset>
 
@@ -51,6 +52,14 @@
 			</div> <!-- end widget-main -->
 		</div> <!-- end widget-body -->
 
+		<div class="widget-footer">
+			<div class="row-fluid">
+				<div class="span12">
+					<button class="btn btn-block btn-small btn-success" type="submit" onclick="updateAccountInfo();"><i  class="icon-save" id="fav_icon"></i> Update</button>
+				</div>
+			</div>
+		</div>
+
 	</div> <!-- end widget-box -->
 <% end %>
 
@@ -58,6 +67,13 @@
 
 	$(applyChosenStyle());
 	$(applyMasks());
+
+	function updateAccountInfo(){
+
+		// Show progres bar
+		$( "#updateAccountInfoProgress" ).show();
+		
+	}
 
 	// Success messages
 	<% if params[:update_account_info_success] %>

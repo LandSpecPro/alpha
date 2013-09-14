@@ -41,7 +41,7 @@
 
 							<%= f.hidden_field :id, :value => @location.id %>
 							<%= f.file_field :file %>
-							<button type="submit" onclick="showProgressBar();">Submit</button>
+							<button type="submit" onclick="uploadNewInventory();">Submit</button>
 
 						<% end %>
 					</div>
@@ -198,7 +198,9 @@
 <script>
 	$(applyPopovers());
 
-	function showProgressBar(){
+	function uploadNewInventory(){
+
+		// Show progress bar
 		$( "#submitInventoryProgress" ).show();
 	}
 </script>

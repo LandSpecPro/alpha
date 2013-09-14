@@ -8,9 +8,6 @@
 			<div class="widget-box" style="min-width: 350px;">
 				<div class="widget-header header-color-green2">
 					<h5 class="bigger lighter"><i class="icon-briefcase"></i> Company Information</h5>
-					<div class="widget-toolbar">
-						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_logo').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
-					</div>
 				</div>
 
 				<div class="widget-body">
@@ -23,6 +20,10 @@
 							  <strong>Error! </strong> <%= msg %>
 							</div>
 						<% end %>
+
+						<div id="updateCompanyInfoProgress" class="progress progress-success progress-striped active hide" data-percent="Updating please wait...">
+							<div class="bar" style="width:100%;"></div>
+						</div>
 
 						<table id="table-company-logo" class="table">
 							<tbody>
@@ -64,6 +65,14 @@
 					</div>
 				</div>
 
+				<div class="widget-footer">
+					<div class="row-fluid">
+						<div class="span12">
+							<button class="btn btn-block btn-small btn-success" type="submit" onclick="updateCompanyInformation();"><i  class="icon-plus" id="fav_icon"></i> Update</button>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		<% end %>
 	</div>
@@ -77,6 +86,13 @@
 	$(applyChosenStyle());
 	$(applyMasks());
 	$(applyPopovers());
+
+	function updateCompanyInformation(){
+
+		// Show progres bar
+		$( "#updateCompanyInfoProgress" ).show();
+
+	}
 
 	// Success messages
 	<% if @update_company_info_success %>
