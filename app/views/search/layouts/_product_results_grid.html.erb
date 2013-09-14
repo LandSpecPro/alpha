@@ -17,12 +17,12 @@
 
 				<ul id="viewDropdown" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
 					<li>
-						<a href="<%= change_view_url('product', 'list') %>">
+						<a href="<%= change_view_url('product', 'list') %>" onclick="updateSearch();">
 							&nbsp;List View
 						</a>
 					</li>
 					<li>
-						<a href="<%= change_view_url('product', 'alt') %>">
+						<a href="<%= change_view_url('product', 'alt') %>" onclick="updateSearch();">
 							<i class="icon-ok"></i>
 							&nbsp;Grid View
 						</a>
@@ -48,25 +48,25 @@
 
 				<ul id="resultsPerPage" class="dropdown-menu dropdown-yellow pull-right dropdown-caret dropdown-close">
 					<li>
-						<a href="<%= per_page_url('product', '10') %>">
+						<a href="<%= per_page_url('product', '10') %>" onclick="updateSearch();">
 							<% if params[:per_page].to_i == 10 %><i class="icon-ok"></i><% end %>
 							&nbsp;10 Per Page
 						</a>
 					</li>
 					<li>
-						<a href="<%= per_page_url('product', '15') %>">
+						<a href="<%= per_page_url('product', '15') %>" onclick="updateSearch();">
 							<% if params[:per_page].to_i == 15 %><i class="icon-ok"></i><% end %>
 							&nbsp;15 Per Page
 						</a>
 					</li>
 					<li>
-						<a href="<%= per_page_url('product', '25') %>">
+						<a href="<%= per_page_url('product', '25') %>" onclick="updateSearch();">
 							<% if params[:per_page].to_i == 25 %><i class="icon-ok"></i><% end %>
 							&nbsp;25 Per Page
 						</a>
 					</li>
 					<li>
-						<a href="<%= per_page_url('product', '50') %>">
+						<a href="<%= per_page_url('product', '50') %>" onclick="updateSearch();">
 							<% if params[:per_page].to_i == 50 %><i class="icon-ok"></i><% end %>
 							&nbsp;50 Per Page
 						</a>
@@ -96,37 +96,37 @@
 
 				<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
 					<li>
-						<a href="<%= sort_by_url('product', 'dist_asc') %>">
+						<a href="<%= sort_by_url('product', 'dist_asc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Closest First
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('product', 'dist_desc') %>">
+						<a href="<%= sort_by_url('product', 'dist_desc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'dist_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Farthest First
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('product', 'name_asc') %>">
+						<a href="<%= sort_by_url('product', 'name_asc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'name_asc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Product Name (A to Z)
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('product', 'name_desc') %>">
+						<a href="<%= sort_by_url('product', 'name_desc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'name_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Product Name (Z to A)
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('product', 'busname_asc') %>">
+						<a href="<%= sort_by_url('product', 'busname_asc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'busname_asc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Business Name (A to Z)
 						</a>
 					</li>
 					<li>
-						<a href="<%= sort_by_url('product', 'busname_desc') %>">
+						<a href="<%= sort_by_url('product', 'busname_desc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'busname_desc' %><i class="icon-ok"></i><% end %>
 							&nbsp;Business Name (Z to A)
 						</a>

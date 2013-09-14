@@ -19,6 +19,12 @@
 						  depending on if this is the supplier or product search.
 				-->
 
+				<div clas="row-fluid">
+					<div id="searchProgress" class="progress progress-success progress-striped active hide" data-percent="Searching...">
+						<div class="bar" style="width:100%;"></div>
+					</div>
+				</div>
+
 				<div class="row-fluid">
 					<div class="span8">
 						<% if controller.action_name == 'supplier' %>
@@ -28,7 +34,7 @@
 						<% end %>
 					</div>
 					<div class="span4">
-						<%= submit_tag "Search", :class => "btn btn-success btn-small btn-block" %>
+						<%= submit_tag "Search", :class => "btn btn-success btn-small btn-block", :onclick => "search();" %>
 					</div>
 				</div>
 

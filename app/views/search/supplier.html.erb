@@ -10,6 +10,10 @@
 	<!-- Search Results -->
 	<div class="span9">
 
+		<div id="updateSearchProgress" class="progress progress-success progress-striped active hide" data-percent="Updating Results...">
+			<div class="bar" style="width:100%;"></div>
+		</div>
+		
 		<% if params[:result_count] == 0 %>
 			<%= render 'search/layouts/no_results' %>
 		<% elsif params[:view] == 'list' %>
@@ -25,6 +29,16 @@
 <%= render 'layouts/sidebarend' %>
 
 <script type="text/javascript">
+
+	function updateSearch(){
+		// Show progress bar
+		$('#updateSearchProgress').show();
+	}
+
+	function search(){
+		// Show progress bar
+		$('#searchProgress').show();
+	}
 
 	$(applyColorbox());
 	$(applyPopovers());
