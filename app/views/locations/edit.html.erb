@@ -174,6 +174,8 @@
 		$(showUpdateSuccessGritter('Your Featured Item was added to this location.'));
 	<% elsif params[:update_location_info_success] %>
 		$(showUpdateSuccessGritter('Location Information has been updated.'));
+	<% elsif params[:add_new_inventory_success] %>
+		$(showUpdateSuccessGritter('New Inventory added successfully.'));
 	<% end %>
 
 	// Cookies for popovers

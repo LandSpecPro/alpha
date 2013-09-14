@@ -56,6 +56,13 @@ function applyPopovers(){
 		trigger: 'focus hover'
 	});
 
+	$('#infoboxInventoryViews').popover({
+		content: "Here you can see how many people have viewed your inventory through LandSpec Pro.",
+		placement: "top",
+		trigger: 'hover',
+		container: 'body'
+	});
+
 	$('.profile-social-links > a').tooltip();
 	$('.tooltip-success').tooltip();
 	$('.tooltip-info').tooltip();

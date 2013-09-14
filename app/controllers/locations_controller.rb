@@ -126,8 +126,9 @@ class LocationsController < ApplicationController
           inv.save;
         end
       end
+      redirect_to locations_edit_url(:id => @location.id, :addons => true, :add_new_inventory_success => true)
     else
-      redirect_to locations_edit_url(:id => @location.id, :addons => true, :failed => true)      
+      redirect_to locations_edit_url(:id => @location.id, :addons => true, :add_new_inventory_failed => true)      
     end
 
   end

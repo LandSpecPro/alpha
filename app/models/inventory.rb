@@ -6,4 +6,6 @@ class Inventory < ActiveRecord::Base
   has_attached_file :file,
 		:path => 'vendors/:id/inventory/inventory_:basename.:extension'
 
+  validates_presence_of :file, :message => "No inventory file selected!"
+
 end

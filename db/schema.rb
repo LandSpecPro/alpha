@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907221431) do
+ActiveRecord::Schema.define(:version => 20130914023349) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20130907221431) do
     t.datetime "created_at",                                         :null => false
     t.datetime "updated_at",                                         :null => false
     t.boolean  "show_about",                      :default => true,  :null => false
+    t.boolean  "show_inventory",                  :default => false, :null => false
   end
 
   create_table "location_view_logs", :force => true do |t|
