@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130914023349) do
+ActiveRecord::Schema.define(:version => 20130915001922) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -283,6 +283,16 @@ ActiveRecord::Schema.define(:version => 20130914023349) do
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.string   "location_id"
+    t.string   "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "pg_search_documents", :force => true do |t|

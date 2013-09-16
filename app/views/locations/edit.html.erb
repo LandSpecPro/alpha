@@ -69,6 +69,19 @@
 
 			<div class="tab-content" style="overflow:hidden;">
 
+				<span class="hide" id="revertChanges">
+					<div class="row-fluid">
+						<div class="span3 pull-right">
+							<div class="pull-right">
+								<a class="btn btn-inverse" href="<%= locations_edit_url(:id => @location.id) %>" data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="This will clear all data from all forms and tabs without saving any updates you might have made.">
+									<strong>Revert Changes</strong>
+								</a>
+							</div>
+						</div>
+					</div>
+					<br/>
+				</span>
+
 				<% if not params[:products] and not params[:settings] and not params[:addons] %>
 				  <div id="locationInfo" class="tab-pane in active">
 				<% else %>
@@ -156,6 +169,36 @@
 
 <script type="text/javascript">
 
+	window.onbeforeunload = checkFormSubmissions;
+
+	function checkFormSubmissions(){
+		// 'loc_info' = Location Information
+		// 'loc_about' = About Section
+		// 'loc_cats' = Categories
+		// 'loc_fi' = Featured Items
+		// 'loc_profile' = Profile Settings
+		// 'loc_inventory' = New Inventory
+		// 'loc_multiple' = Multiple Fields Changed
+		if (form_change == 'loc_info')
+			return "You have unsaved changes to your location information!";
+		else if (form_change == 'loc_about')
+			return "You have unsaved changes to your About section!";
+		else if (form_change == 'loc_cats')
+			return "You have unsaved categories for this location!";
+		else if (form_change == 'loc_fi')
+			return "You have an unsaved featured item for this location!";
+		else if (form_change == 'loc_profile')
+			return "You have unsaved changes to your public profile settings!";
+		else if (form_change == 'loc_profile_url')
+			return "You have not saved your changes to your profile URL!";
+		else if (form_change == 'loc_inventory')
+			return "You have an unsaved inventory item for this location!";
+		else if (form_change == 'loc_multiple')
+			return "There are multiple unsaved changes to this location!";
+		else
+			return null;
+	};
+
 	$(applyChosenStyle());
 	$(applyMasks());
 	$(applyColorbox());	
@@ -194,6 +237,17 @@
 		<% cookies.permanent.signed[:new_tab_addons] = true %>
 	<% end %>
 
-	
+	var form_change = null;
+
+	function showRevertChanges(){
+		$('#revertChanges').fadeIn(500);
+	}
+
+	/*$('.loc_info_field').focus(function(){
+		if (checkFormSubmissions() != null){
+			alert(checkFormSubmissions());
+			$('.loc_info_field').blur();
+		}
+	})*/
 
 </script>

@@ -64,7 +64,7 @@
 
 					Name:
 					<div class="input-icon input-icon-right">
-						<%= f.text_field :commonName, :class => 'span12', :id => 'commonName', :value => @prodname %>
+						<%= f.text_field :commonName, :class => 'span12 loc_fi_field', :id => 'commonName', :value => @prodname %>
 					</div>
 
 
@@ -73,7 +73,7 @@
 							<div class="span6">
 								Size (optional): 
 								<div class="block input-icon input-icon-right">
-									<%= f2.text_field :size, :class => 'span12', :value => @size %>
+									<%= f2.text_field :size, :class => 'span12 loc_fi_field', :value => @size %>
 								</div>
 
 							</div>
@@ -81,7 +81,7 @@
 							<div class="span6">
 								Price (optional): 
 								<div class="block input-icon input-icon-right">
-									<%= f2.text_field :price, :class => 'span12 input-mask-price', :value => @price %>
+									<%= f2.text_field :price, :class => 'span12 input-mask-price loc_fi_field', :value => @price %>
 								</div>
 
 							</div>
@@ -91,7 +91,7 @@
 
 								Description (optional):
 								<div class="block input-icon input-icon-right">
-									<%= f2.text_area :description, :class => 'span12', :rows => '3', :style => 'resize: none;', :value => @description %>
+									<%= f2.text_area :description, :class => 'span12 loc_fi_field', :rows => '3', :style => 'resize: none;', :value => @description %>
 								</div>
 
 							</div>
@@ -100,7 +100,7 @@
 
 					Image: 
 					<div class="block input-icon input-icon-right">
-						<%= f.file_field :image, :class => 'span12', :id => 'image' %>
+						<%= f.file_field :image, :class => 'span12 loc_fi_field', :id => 'image' %>
 					</div>
 
 				</fieldset>
@@ -124,9 +124,27 @@
 
 	function addFeaturedItem(){
 
-		// Show Progress Bar
-		$( "#addFeaturedItemProgress" ).show();
+		if (form_change == 'loc_fi'){
+			form_change = null;
+			// Show Progress Bar
+			$( "#addFeaturedItemProgress" ).show();
+		} else if (form_change == null){
+			return null;
+		}
 	}
+
+	$('.loc_fi_field').change(function changeAboutInfo(){
+		if (form_change == null || form_change == 'loc_fi'){
+			form_change = 'loc_fi';
+		}
+		else{
+			form_change = 'loc_multiple';
+		}
+
+		$(this).css( "border-color", "orange");
+
+		showRevertChanges();
+	});
 
 	
 </script>

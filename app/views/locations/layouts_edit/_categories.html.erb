@@ -12,7 +12,7 @@
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-tasks"></i> Product Categories</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="document.getElementById('form_location_categories').submit();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<a href="javascript:{return true;}" onclick="submitLocationCategoriesForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
 			</div>
 		</div>
 
@@ -30,19 +30,19 @@
 
 							<div class="span6">
 								<h4>Plants:</h4>
-								<div class="block input-icon input-icon-right">
+								<div class="block input-icon input-icon-right" id="catPlantsBorder">
 									<%= select_tag :categories, options_from_collection_for_select(
-										    Category.where(:active => true, :parent_id => 1).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids),
+										    Category.where(:active => true, :parent_id => 1).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids), :onchange => 'changeLocCatInfo(\'plants\');',
 											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
 								</div>
 							</div>
 
 							<div class="span6">
 								<h4>Materials:</h4>
-								<div class="block input-icon input-icon-right">
+								<div class="block input-icon input-icon-right" id="catMaterialsBorder">
 									<%= select_tag :categories, options_from_collection_for_select(
-										    Category.where(:active => true, :parent_id => 2).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids),
-											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+										    Category.where(:active => true, :parent_id => 2).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids), :onchange => 'changeLocCatInfo(\'materials\');',
+											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"}%>
 								</div>
 							</div>
 
@@ -57,3 +57,36 @@
 	</div>
 
 <% end %>
+
+<script type="text/javascript">
+
+	function submitLocationCategoriesForm(){
+
+		if (form_change == 'loc_cats')
+			form_change = null;
+
+		document.getElementById('form_location_categories').submit();
+
+	}
+
+	function changeLocCatInfo(catType){
+
+		if (form_change == null || form_change == 'loc_cats'){
+			form_change = 'loc_cats';
+		}
+		else{
+			form_change = 'loc_multiple';
+		}
+
+		if (catType == 'plants'){
+			$('#catPlantsBorder').css( "border", "1px solid orange" );
+		}
+		else if (catType == 'materials'){
+			$('#catMaterialsBorder').css( "border", "1px solid orange" );
+		}
+
+		showRevertChanges();
+
+	}
+
+</script>

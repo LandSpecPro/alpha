@@ -2,7 +2,7 @@ LspAlpha::Application.routes.draw do
 
   match "location/inventory/view" => "locations#inventory_view"
 
-
+  match "locations/test" => "locations#test"
 
 
   get "search/product"
@@ -70,6 +70,8 @@ LspAlpha::Application.routes.draw do
   end
   resources :product_images
   resources :featured_items
+
+  resources :payment_notifications
 
   # Routes for favorites
   match 'favorites/products' => 'favorites#products'

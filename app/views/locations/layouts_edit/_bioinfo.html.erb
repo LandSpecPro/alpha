@@ -4,7 +4,7 @@
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-pencil"></i> About Location</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="document.getElementById('form_location_bio').submit();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<a href="javascript:{return true;}" onclick="submitLocationAboutForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 						<h4>About Location:</h4>
 						<div class="block input-icon input-icon-right">
 
-							<%= text_area_tag :bio, @location.bio, :class => 'span12', :style => 'resize: none;', :rows => '15' %>
+							<%= text_area_tag :bio, @location.bio, :class => 'span12 loc_about_field', :style => 'resize: none;', :rows => '15' %>
 							
 						</div>
 
@@ -31,3 +31,29 @@
 	</div>
 
 <% end %>
+
+<script type="text/javascript">
+
+	function submitLocationAboutForm(){
+
+		if (form_change == 'loc_about')
+			form_change = null;
+
+		document.getElementById('form_location_bio').submit();
+
+	}
+
+	$('.loc_about_field').change(function changeAboutInfo(){
+		if (form_change == null || form_change == 'loc_about'){
+			form_change = 'loc_about';
+		}
+		else{
+			form_change = 'loc_multiple';
+		}
+
+		$(this).css( "border-color", "orange");
+
+		showRevertChanges();
+	});
+
+</script>

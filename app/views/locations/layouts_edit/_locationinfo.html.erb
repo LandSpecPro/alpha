@@ -3,7 +3,7 @@
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-globe"></i> Location Address</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="document.getElementById('form_location_address').submit();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+				<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
 			</div>
 		</div>
 
@@ -34,37 +34,36 @@
 
 					Location Name: 
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :locName, :id => "locName", :class => 'span12 val-locname', :value => @location.locName %>
+						<%= f.text_field :locName, :id => "locName", :class => 'span12 val-locname loc_info_field', :value => @location.locName %>
 					</div>
-
 
 					Street 1:
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :address1, :class => 'span12', :value => @location.address1 %>
+						<%= f.text_field :address1, :class => 'span12 loc_info_field', :value => @location.address1 %>
 					</div>
 
 
 					Street 2:
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :address2, :class => 'span12', :value => @location.address2 %>
+						<%= f.text_field :address2, :class => 'span12 loc_info_field', :value => @location.address2 %>
 					</span>
 
 					City:
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :city, :class => 'span12', :value => @location.city %>
+						<%= f.text_field :city, :class => 'span12 loc_info_field', :value => @location.city %>
 					</span>
 
 					<div class="row-fluid">
 						<div class="span4">
 							State:
 							<div class="block input-icon input-icon-right">
-								<%= f.select(:state, get_states, {}, {:class => 'span10 chzn-select'}) %>
+								<%= f.select(:state, get_states, {}, {:class => 'span10 chzn-select loc_info_field', :onchange => 'changeLocationInfo();'}) %>
 							</div>
 						</div>
 						<div class="offset3 span5">
 							Zip Code:
 							<span class="block input-icon input-icon-right">
-								<%= f.text_field :zip, :class => 'span12 input-mask-zip', :value => @location.zip %>
+								<%= f.text_field :zip, :class => 'span12 input-mask-zip loc_info_field', :value => @location.zip %>
 							</span>	
 						</div>
 					</div>
@@ -73,40 +72,40 @@
 
 					Primary Phone: 
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone', :value => @location.primaryPhone %>
+						<%= f.text_field :primaryPhone, :class => 'span12 input-mask-phone loc_info_field', :value => @location.primaryPhone %>
 					</div>
 
 					Secondary Phone:
 					<div class="block input-icon input-icon-right">
-						<%= f.text_field :secondaryPhone, :class => 'span12 input-mask-fax', :value => @location.secondaryPhone %>
+						<%= f.text_field :secondaryPhone, :class => 'span12 input-mask-fax loc_info_field', :value => @location.secondaryPhone %>
 					</div>
 
 					Fax:
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :fax, :class => 'span12 input-mask-fax', :value => @location.fax %>
+						<%= f.text_field :fax, :class => 'span12 input-mask-fax loc_info_field', :value => @location.fax %>
 					</span>
 
 					Primary Email:
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :primaryEmail, :class => 'span12', :value => @location.primaryEmail %>
+						<%= f.text_field :primaryEmail, :class => 'span12 loc_info_field', :value => @location.primaryEmail %>
 					</span>
 
 					Secondary Email:
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :secondaryEmail, :class => 'span12', :value => @location.secondaryEmail %>
+						<%= f.text_field :secondaryEmail, :class => 'span12 loc_info_field', :value => @location.secondaryEmail %>
 					</span>
 
 					<div class="row-fluid">
 						<div class="span6">
 							Website:
 							<span class="block input-icon input-icon-right">
-								<%= f.text_field :websiteLink, :class => 'span12', :value => @location.websiteLink, :placeholder => 'http://' %>
+								<%= f.text_field :websiteLink, :class => 'span12 loc_info_field', :value => @location.websiteLink, :placeholder => 'http://' %>
 							</span>	
 						</div>
 						<div class="span6">
 							Facebook Link:
 							<span class="block input-icon input-icon-right">
-								<%= f.text_field :facebookLink, :class => 'span12', :value => @location.facebookLink, :placeholder => 'http://' %>
+								<%= f.text_field :facebookLink, :class => 'span12 loc_info_field', :value => @location.facebookLink, :placeholder => 'http://' %>
 							</span>	
 						</div>	
 
@@ -115,13 +114,13 @@
 						<div class="span6">
 							Twitter Link:
 							<span class="block input-icon input-icon-right">
-								<%= f.text_field :twitterLink, :class => 'span12', :value => @location.twitterLink, :placeholder => 'http://' %>
+								<%= f.text_field :twitterLink, :class => 'span12 loc_info_field', :value => @location.twitterLink, :placeholder => 'http://' %>
 							</span>	
 						</div>
 						<div class="span6">
 							Google+:
 							<span class="block input-icon input-icon-right">
-								<%= f.text_field :googleLink, :class => 'span12', :value => @location.googleLink, :placeholder => 'http://' %>
+								<%= f.text_field :googleLink, :class => 'span12 loc_info_field', :value => @location.googleLink, :placeholder => 'http://' %>
 							</span>
 						</div>
 					</div>	
@@ -129,7 +128,7 @@
 					<div class="row-fluid">
 						<div class="span12">
 							<div class="pull-right">
-								<a href="javascript:{return true;}" onclick="document.getElementById('form_location_address').submit();" class="btn btn-small btn-success"><i  class="icon-save" id="fav_icon"></i> Update</a>
+								<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="btn btn-small btn-success"><i  class="icon-save" id="fav_icon"></i> Update</a>
 							</div>
 						</div>
 					</div>
@@ -141,3 +140,28 @@
 		</div>
 	</div>
 <% end %>
+
+<script type="text/javascript">
+
+	function submitLocationInfoForm(){
+
+		if (form_change == 'loc_info')
+			form_change = null;
+
+		document.getElementById('form_location_address').submit();
+
+	}
+
+	$('.loc_info_field').change(function changeLocationInfo(){
+		if (form_change == null || form_change == 'loc_info'){
+			form_change = 'loc_info';
+		}
+		else{
+			form_change = 'loc_multiple';
+		}
+
+		$(this).css( "border-color", "orange");
+
+		showRevertChanges();
+	});
+</script>

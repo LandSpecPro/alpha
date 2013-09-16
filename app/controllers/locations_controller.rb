@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   
+  include PayPal::SDK::REST
+
   include LocationHelper
   include CategoryHelper
   include CustomerioHelper
@@ -15,6 +17,14 @@ class LocationsController < ApplicationController
   before_filter :require_business, :except => :view_public
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
   
+  def test
+    require 'paypal-sdk-rest'
+    @api = PayPal::SDK::REST.set_config(
+      :mode => :sandbox,
+      :client_id => "AUmRvhAClCwBkb-xXvVxvpNjRkTAZYJcsU_5y3o8O9WqreFjOHINBhdtKK0K",
+      :client_secret => "ELu4YhAqpzSX4qOWuJBSqOe33CeyIKeyVLn9dkrnJWyIF9aAT1LAOjpcpkNG" )
+  end
+
   def view_public
 
     @url = params[:public_url]
@@ -331,7 +341,9 @@ class LocationsController < ApplicationController
       redirect_to locations_edit_url(:id => params[:id], :update_location_info_success => true)
     else
       #@location = @location.reset_fields_keep_errors(params[:id])
+      @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
       render :action => :edit
+     
     end
   end
 
@@ -434,5 +446,7 @@ class LocationsController < ApplicationController
     redirect_to locations_edit_url(:id => @locid, :products => true)
 
   end
+
+  
 
 end

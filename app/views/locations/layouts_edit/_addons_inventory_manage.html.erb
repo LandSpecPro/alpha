@@ -6,8 +6,6 @@
 	</div>
 </div>
 
-<br/>
-
 <div class="row-fluid">
 	<div class="span6 offset3">
 
@@ -40,8 +38,8 @@
 						<%= form_for :location, :url => {:action => :inventory_upload, :controller => :locations} do |f| %>
 
 							<%= f.hidden_field :id, :value => @location.id %>
-							<%= f.file_field :file %>
-							<button type="submit" onclick="uploadNewInventory();">Submit</button>
+							<%= f.file_field :file, :class => 'loc_inventory_field' %>
+							<button type="submit" class="btn btn-small btn-success" onclick="uploadNewInventory();">Submit</button>
 
 						<% end %>
 					</div>
@@ -94,7 +92,7 @@
 										<td><%= "%10.2f" % (@cur_inventory.file_file_size / 1000.to_f) %> KB</td>
 									<% end %>
 									<td><%= @cur_inventory.created_at.strftime("%b %e, %Y - %l:%M%P") %></td>
-									<td><%= @cur_inventory.num_views.to_s %></td>
+									<td><span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Total views are approximate and only count views through your profile or by right-clicking the file name, copying the link, and sharing the provided address."><%= @cur_inventory.num_views.to_s %></span></td>
 								</tr>
 							</tbody>
 
@@ -193,14 +191,30 @@
 	</div>
 </div>
 
-
-
 <script>
 	$(applyPopovers());
 
 	function uploadNewInventory(){
 
-		// Show progress bar
-		$( "#submitInventoryProgress" ).show();
+		if (form_change == 'loc_inventory'){
+			form_change = null;
+			// Show Progress Bar
+			$( "#submitInventoryProgress" ).show();
+		} else if (form_change == null){
+			return null;
+		}
+
 	}
+
+	$('.loc_inventory_field').change(function uploadNewInventory(){
+		if (form_change == null || form_change == 'loc_inventory'){
+			form_change = 'loc_inventory';
+		}
+		else{
+			form_change = 'loc_multiple';
+		}
+
+		showRevertChanges();
+
+	});
 </script>

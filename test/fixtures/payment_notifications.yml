@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  params: 
+  status: MyString
+  transaction_id: MyString
+  location_id: MyString
+  user_id: MyString
+
+two:
+  params: 
+  status: MyString
+  transaction_id: MyString
+  location_id: MyString
+  user_id: MyString
