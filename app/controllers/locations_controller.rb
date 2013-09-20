@@ -1,5 +1,8 @@
 class LocationsController < ApplicationController
 
+include ActiveMerchant::Billing::Integrations
+require 'active_merchant/billing/integrations/action_view_helper'
+  ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
   include LocationHelper
   include CategoryHelper
   include CustomerioHelper

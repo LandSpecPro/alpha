@@ -18,6 +18,8 @@ class PaymentsController < ApplicationController
         end
     else
     	logger.error("Paypal didn't acknowledge!")
+    	# TODO - Need to send an error to me in case anything goes wrong here. That way I can check into it as soon as it happens
+    	# because we don't want users paying and then getting nothing.
     end
 
     render :nothing => true
