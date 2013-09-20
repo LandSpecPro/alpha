@@ -2,7 +2,7 @@ LspAlpha::Application.routes.draw do
 
   match "location/inventory/view" => "locations#inventory_view"
 
-  match "locations/test" => "locations#test"
+  match "payment/notify" => "locations#payment_notifier"
 
   get "search/product"
   get "search/supplier"

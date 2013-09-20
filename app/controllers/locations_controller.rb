@@ -1,6 +1,4 @@
 class LocationsController < ApplicationController
-  
-  include PayPal::SDK::REST
 
   include LocationHelper
   include CategoryHelper
@@ -17,12 +15,31 @@ class LocationsController < ApplicationController
   before_filter :require_business, :except => :view_public
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
   
-  def test
-    require 'paypal-sdk-rest'
-    @api = PayPal::SDK::REST.set_config(
-      :mode => :sandbox,
-      :client_id => "AUmRvhAClCwBkb-xXvVxvpNjRkTAZYJcsU_5y3o8O9WqreFjOHINBhdtKK0K",
-      :client_secret => "ELu4YhAqpzSX4qOWuJBSqOe33CeyIKeyVLn9dkrnJWyIF9aAT1LAOjpcpkNG" )
+  def payment_notifier
+
+    @location = Location.find(params[:invoice])
+    @location.is_subscribed_to_inventory = true
+    @location.save
+
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+    puts '**************************************************************************'
+
+    render :nothing => true
+
   end
 
   def view_public
