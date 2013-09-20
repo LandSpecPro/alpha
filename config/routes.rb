@@ -4,9 +4,6 @@ LspAlpha::Application.routes.draw do
 
   match "locations/test" => "locations#test"
 
-  match "purchase/start" => "payment_notifications#checkout"
-  match "purchase/inventory" => "payment_notifications#purchase"
-
   get "search/product"
   get "search/supplier"
   post "search/product"
@@ -72,8 +69,6 @@ LspAlpha::Application.routes.draw do
   end
   resources :product_images
   resources :featured_items
-
-  resources :payment_notifications
 
   # Routes for favorites
   match 'favorites/products' => 'favorites#products'
