@@ -4,9 +4,10 @@ class PaymentsController < ApplicationController
 	ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
 
 	def notify
+
     notify = Paypal::Notification.new(request.raw_post)
 
-    location = Location.find(params[:invoice])
+    location = Location.find(notify.invoice)
 
     if notify.acknowledge
         if notify.complete?
