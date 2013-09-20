@@ -25,6 +25,12 @@ gem 'newrelic_rpm'
 
 gem 'paypal-sdk-rest'
 
+
+
+gem 'activemerchant'
+gem 'paypal-recurring'
+
+
 gem 'customerio'
 
 #Used for MemCachier

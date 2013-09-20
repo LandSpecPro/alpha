@@ -233,6 +233,7 @@ class LocationsController < ApplicationController
   end
 
   def edit
+
     store_location
     @user = current_user
     @product = Product.new

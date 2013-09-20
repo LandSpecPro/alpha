@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
 
+  require 'paypal/recurring'
+
   def back
     redirect_back_or_default('/')
   end

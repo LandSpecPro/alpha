@@ -4,6 +4,8 @@ LspAlpha::Application.routes.draw do
 
   match "locations/test" => "locations#test"
 
+  match "purchase/start" => "payment_notifications#checkout"
+  match "purchase/inventory" => "payment_notifications#purchase"
 
   get "search/product"
   get "search/supplier"

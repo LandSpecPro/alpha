@@ -1,10 +1,10 @@
-module PaymentNotificationsHelper
+module PaypalHelper
 
 	include ActiveMerchant::Billing
 
 	private
 	def gateway
-		@gateway ||= PayflowExpressGateway.new(
+		@gateway ||= PaypalExpressGateway.new(
 			:login => ENV['PAYPAL_LOGIN'],
 			:password => ENV['PAYPAL_PASSWORD'],
 			:signature => ENV['PAYPAL_SIGNATURE']
