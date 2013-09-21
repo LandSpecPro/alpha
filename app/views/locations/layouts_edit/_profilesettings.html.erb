@@ -17,306 +17,397 @@
 <% else %>
 
 	<div class="span4 offset1">
-
+			
 		<%= form_for @publicsettings, :url => {:action => :update_public_settings, :controller => :locations}, :html => {:id => 'form_update_public_settings'}, :class => 'form-inline' do |f| %>
-			<div class="center">
-				<h2><strong>Public Profile Settings:</strong></h2>			
 
-				<%= hidden_field_tag(:id,  @location.id) %>
+			<%= hidden_field_tag(:id,  @location.id) %>
 
+			<div class="row-fluid">
+				<div class="span12">
 
-				<a class="btn btn-success btn-small"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
-					<i class="icon-save" id="update_public_settings"></i> Update
-				</a>
+					<div class="widget-box transparent">
+						<div class="widget-header widget-header-flat">
+							<h4 class="lighter">
+								<i class="icon-cogs"></i>
+								Public Profile Settings
+							</h4>
+						</div>
 
-				<br/><br/>
+						<div class="widget-body">
+							<div class="widget-main no-padding">
+			
+								<table class="table table-bordered table-striped">
+								<tbody>
 
-				<!-- SHOW COMPANY LOGO -->
-				<% unless BusVendor.find(@location.bus_vendor_id).logo.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your default company logo will be visible on your profile page. If you de-select this box a generic placeholder image will be used in its place." style="border-color: orange;" >
-						<%= f.check_box :show_company_logo, :id => 'show_company_logo', :class => 'loc_profile_field' %>
-						<label class="lbl" for="show_company_logo"> Show Company Logo</label>
-					</span>
+									<!-- Update Button -->
+									<tr>
+										<td colspan="2">
+											<a class="btn btn-success btn-small btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+												<i class="icon-save" id="update_public_settings"></i> Save Changes
+											</a>
+										</td>
+									</td>
 
-					<br/><br/>
-				<% end %>
+									<!-- SHOW COMPANY LOGO -->
+									<% unless BusVendor.find(@location.bus_vendor_id).logo.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_company_logo, :id => 'show_company_logo', :class => 'loc_profile_field' %>
+											<label class="lbl" for="show_company_logo"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your default company logo will be visible on your profile page. If you de-select this box a generic placeholder image will be used in its place.">
+											<label class="lbl">Show Company Logo</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW COMPANY TAGLINE -->
-				<% unless BusVendor.find(@location.bus_vendor_id).tagline.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your company tagline will be displayed above your contact information on your public profile." >
-						<%= f.check_box :show_tagline, :id => 'show_tagline', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_tagline"> Show Company Tagline</label>
-					</span>
+									<!-- SHOW COMPANY TAGLINE -->
+									<% unless BusVendor.find(@location.bus_vendor_id).tagline.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_tagline, :id => 'show_tagline', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_tagline"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your company tagline will be displayed above your contact information on your public profile.">
+											<label class="lbl">Show Company Tagline</label>
+										</td>
+									</tr>
+									<% end %>
 
-					<br/><br/>
-				<% end %>
+									<!-- SHOW COMPANY ABOUT -->
+									<% unless @location.bio.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_about, :id => 'show_about', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_about"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your company about section will be displayed on your public profile.">
+											<label class="lbl">Show About Company Section</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW COMPANY ABOUT -->
-				<% unless @location.bio.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your company about section will be displayed on your public profile." >
-						<%= f.check_box :show_about, :id => 'show_about', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_about"> Show About Company Section</label>
-					</span>
+									<!-- SHOW FULL ADDRESS -->
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_full_address, :onchange => "addressSelect('full_address');", :id => 'show_full_address', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_full_address"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Selecting this option makes your Full Address, City, State, and Zip visible.">
+											<label class="lbl">Show Full Address</label>
+										</td>
+									</tr>
 
-					<br/><br/>
-				<% end %>
+									<!-- SHOW CITY AND STATE ONLY -->
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_city_and_state, :onchange => "addressSelect('city_and_state');", :id => 'show_city_and_state', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_city_and_state"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Selecting this option will only allow the public to see the State and City of your address.">
+											<label class="lbl">Show City and State Only</label>
+										</td>
+									</tr>
 
-				<!-- SHOW FULL ADDRESS -->
-				<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-						data-content="Selecting this option makes your Full Address, City, State, and Zip visible." >
-					<%= f.check_box :show_full_address, :onchange => "addressSelect('full_address');", :id => 'show_full_address', :class => 'loc_profile_field'  %>
-					<label class="lbl" for="show_full_address"> Show Full Address</label>
-				</span>
+									<!-- SHOW STATE ONLY-->
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_state_only, :onchange => "addressSelect('state_only');", :id => 'show_state_only', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_state_only"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Selecting this option will only allow the public to see only the State you are located in.">
+											<label class="lbl">Show State Only</label>
+										</td>
+									</tr>
 
-				<br/><br/>
+									<!-- SHOW PRIMARY PHONE -->
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_primary_phone, :id => 'show_primary_phone', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_primary_phone"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your Primary Phone Number for this location will be visible to the public.">
+											<label class="lbl">Show Primary Phone</label>
+										</td>
+									</tr>
 
-				<!-- SHOW CITY AND STATE ONLY -->
-				<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-						data-content="Selecting this option will only allow the public to see the State and City of your address." >
-					<%= f.check_box :show_city_and_state, :onchange => "addressSelect('city_and_state');", :id => 'show_city_and_state', :class => 'loc_profile_field'  %>
-					<label class="lbl" for="show_city_and_state"> Show City and State Only</label>
-				</span>
+									<!-- SHOW SECONDARY PHONE -->
+									<% unless @location.secondaryPhone.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_secondary_phone, :id => 'show_secondary_phone', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_secondary_phone"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your Secondary Phone Number for this location will be visible to the public.">
+											<label class="lbl">Show Secondary Phone</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<br/><br/>
+									<!-- SHOW FAX -->
+									<% unless @location.fax.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_fax, :id => 'show_fax', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_fax"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your Fax Number for this location will be visible to the public.">
+											<label class="lbl">Show Fax Number</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW STATE ONLY-->
-				<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-						data-content="Selecting this option will only allow the public to see only the State you are located in." >
-					<%= f.check_box :show_state_only, :onchange => "addressSelect('state_only');", :id => 'show_state_only', :class => 'loc_profile_field'  %>
-					<label class="lbl" for="show_state_only"> Show State Only</label>
-				</span>
+									<!-- SHOW PRIMARY EMAIL -->
+									<% unless @location.primaryEmail.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_primary_email, :id => 'show_primary_email', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_primary_email"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your Primary Email Address for this location will be visible to the public.">
+											<label class="lbl">Show Primary Email</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<br/><br/>
+									<!-- SHOW SECONDARY EMAIL -->
+									<% unless @location.secondaryEmail.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_secondary_email, :id => 'show_secondary_email', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_secondary_email"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your Secondary Email Address for this location will be visible to the public.">
+											<label class="lbl">Show Secondary Email</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW PRIMARY PHONE -->
-				<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-						data-content="Your Primary Phone Number for this location will be visible to the public." >
-					<%= f.check_box :show_primary_phone, :id => 'show_primary_phone', :class => 'loc_profile_field'  %>
-					<label class="lbl" for="show_primary_phone"> Show Primary Phone</label>
-				</span>
+									<!-- SHOW WEBSITE LINK -->
+									<% unless @location.websiteLink.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_website, :id => 'show_website', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_website"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="A link to your website will be visible to the public on your profile.">
+											<label class="lbl">Show Link to Website</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<br/><br/>
+									<!-- SHOW FACEBOOK LINK -->
+									<% unless @location.facebookLink.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_facebook, :id => 'show_facebook', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_facebook"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="A link to your Facebook page will be visible to the public on your profile.">
+											<label class="lbl">Show Link to Facebook</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW SECONDARY PHONE -->
-				<% unless @location.secondaryPhone.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your Secondary Phone Number for this location will be visible to the public." >
-						<%= f.check_box :show_secondary_phone, :id => 'show_secondary_phone', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_secondary_phone"> Show Secondary Phone</label>
-					</span>
+									<!-- SHOW TWITTER LINK -->
+									<% unless @location.twitterLink.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_twitter, :id => 'show_twitter', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_twitter"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="A link to your Twitter page will be visible to the public on your profile.">
+											<label class="lbl">Show Link to Twitter</label>
+										</td>
+									</tr>
+									<% end %>
 
-					<br/><br/>
-				<% end %>
+									<!-- SHOW GOOGLE LINK -->
+									<% unless @location.googleLink.blank? %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_google, :id => 'show_google', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_google"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="A link to your Google+ page will be visible to the public on your profile.">
+											<label class="lbl">Show Link to Google+</label>
+										</td>
+									</tr>
+									<% end %>
 
-				<!-- SHOW FAX -->
-				<% unless @location.fax.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your Fax Number for this location will be visible to the public." >
-						<%= f.check_box :show_fax, :id => 'show_fax', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_fax"> Show Fax Number</label>
-					</span>
+									<!-- FEATURED ITEM OPTIONS -->
+									<% unless FeaturedItem.where(:location_id => @location.id, :active => true).count == 0 %>
+										<!-- SHOW FEATURED ITEMS -->
+										<tr>
+											<td class="center">
+												<%= f.check_box :show_featured_items, :id => 'show_featured_items', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
+												<label class="lbl" for="show_featured_items"></label>
+											</td>
+											<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="By selecting this you will make the Name and Image of all featured items for this location visible to the public.">
+												<label class="lbl">Show Featured Items</label>
+											</td>
+										</tr>
+										
 
-					<br/><br/>
-				<% end %>
+										<!-- SHOW FEATURED ITEM DESCRIPTIONS -->
+										<tr>
+											<td class="center">
+												<%= f.check_box :show_featured_items_description, :id => 'show_featured_items_description', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
+												<label class="lbl" for="show_featured_items_description"></label>
+											</td>
+											<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="By selecting this you will make the descriptions of all of your featured items visible to the public.">
+												<label class="lbl">Show Featured Item Descriptions</label>
+											</td>
+										</tr>
 
-				<!-- SHOW PRIMARY EMAIL -->
-				<% unless @location.primaryEmail.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your Primary Email Address for this location will be visible to the public." >
-						<%= f.check_box :show_primary_email, :id => 'show_primary_email', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_primary_email"> Show Primary Email</label>
-					</span>
+										<!-- SHOW FEATURED ITEM PRICES -->
+										<tr>
+											<td class="center">
+												<%= f.check_box :show_featured_items_price, :id => 'show_featured_items_price', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
+												<label class="lbl" for="show_featured_items_price"></label>
+											</td>
+											<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="By selecting this you will make the prices of all of your featured items visible to the public.">
+												<label class="lbl">Show Featured Item Prices</label>
+											</td>
+										</tr>
 
-					<br/><br/>
-				<% end %>
+										<!-- SHOW FEATURED ITEM SIZES -->
+										<tr>
+											<td class="center">
+												<%= f.check_box :show_featured_items_size, :id => 'show_featured_items_size', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
+												<label class="lbl" for="show_featured_items_size"></label>
+											</td>
+											<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="By selecting this you will make the sizes of all of your featured items visible to the public.">
+												<label class="lbl">Show Featured Item Sizes</label>
+											</td>
+										</tr>
+									<% end %> <!-- END FEATURED ITEM OPTIONS -->
 
-				<!-- SHOW SECONDARY EMAIL -->
-				<% unless @location.secondaryEmail.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="Your Secondary Email Address for this location will be visible to the public." >
-						<%= f.check_box :show_secondary_email, :id => 'show_secondary_email', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_secondary_email"> Show Secondary Email</label>
-					</span>
+									<!-- SHOW CATEGORIES -->
+									<% unless CategoryToLocation.where(:location_id => @location.id).count == 0 %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_categories, :id => 'show_categories', :class => 'loc_profile_field'  %>
+											<label class="lbl" for="show_categories"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="The Categories you have assigned to this location will be visible to the public.">
+											<label class="lbl">Show Location Categories</label>
+										</td>
+									</tr>
+									<% end %>
 
-					<br/><br/>
-				<% end %>
+									<!-- Update Button -->
+									<tr>
+										<td colspan="2">
+											<a class="btn btn-success btn-small btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+												<i class="icon-save" id="update_public_settings"></i> Save Changes
+											</a>
+										</td>
+									</td>
 
-				<!-- SHOW WEBSITE LINK -->
-				<% unless @location.websiteLink.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="A link to your website will be visible to the public on your profile." >
-						<%= f.check_box :show_website, :id => 'show_website', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_website"> Show Link to Website</label>
-					</span>
+								</tbody>
+								</table>
 
-					<br/><br/>
-				<% end %>
+							</div>
+						</div>
 
-				<!-- SHOW FACEBOOK LINK -->
-				<% unless @location.facebookLink.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="A link to your Facebook page will be visible to the public on your profile." >
-						<%= f.check_box :show_facebook, :id => 'show_facebook', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_facebook"> Show Link to Facebook</label>
-					</span>
+					</div>
 
-					<br/><br/>
-				<% end %>
-
-				<!-- SHOW TWITTER LINK -->
-				<% unless @location.twitterLink.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="A link to your Twitter page will be visible to the public on your profile." >
-						<%= f.check_box :show_twitter, :id => 'show_twitter', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_twitter"> Show Link to Twitter</label>
-					</span>
-
-					<br/><br/>
-				<% end %>
-
-				<!-- SHOW GOOGLE LINK -->
-				<% unless @location.googleLink.blank? %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="A link to your Google+ page will be visible to the public on your profile." >
-						<%= f.check_box :show_google, :id => 'show_google', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_google"> Show Link to Google+</label>
-					</span>
-
-					<br/><br/>
-				<% end %>
-
-				<!-- SHOW FEATURED ITEMS -->
-				<% unless FeaturedItem.where(:location_id => @location.id, :active => true).count == 0 %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="By selecting this you will make the Name and Image of all featured items for this location visible to the public." >
-						<%= f.check_box :show_featured_items, :id => 'show_featured_items', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_featured_items"> Show Featured Items</label>
-					</span>
-
-					<br/><br/>
-
-					<!-- SHOW FEATURED ITEM DESCRIPTIONS -->
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="By selecting this you will make the descriptions of all of your featured items visible to the public." >
-						<%= f.check_box :show_featured_items_description, :id => 'show_featured_items_description', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_featured_items_description"> Show Featured Item Descriptions</label>
-					</span>
-
-					<br/><br/>
-
-					<!-- SHOW FEATURED ITEM PRICES -->
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="By selecting this you will make the prices of all of your featured items visible to the public." >
-						<%= f.check_box :show_featured_items_price, :id => 'show_featured_items_price', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_featured_items_price"> Show Featured Item Prices</label>
-					</span>
-
-					<br/><br/>
-
-					<!-- SHOW FEATURED ITEM SIZES -->
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="By selecting this you will make the sizes of all of your featured items visible to the public." >
-						<%= f.check_box :show_featured_items_size, :id => 'show_featured_items_size', :onchange => "selectFeaturedItems();", :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_featured_items_size"> Show Featured Item Sizes</label>
-					</span>
-
-					<br/><br/>
-
-				<% end %>
-
-				<!-- SHOW CATEGORIES -->
-				<% unless CategoryToLocation.where(:location_id => @location.id).count == 0 %>
-					<span  data-rel="popover" data-placement="right" data-trigger="hover" data-container="body"
-							data-content="The Categories you have assigned to this location will be visible to the public."  >
-						<%= f.check_box :show_categories, :id => 'show_categories', :class => 'loc_profile_field'  %>
-						<label class="lbl" for="show_categories"> Show Location Categories</label>
-					</span>
-
-					<br/><br/>
-				<% end %>
-
-				<a class="btn btn-success btn-small"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm.submit();">
-					<i class="icon-save" id="update_public_settings"></i> Update
-				</a>
-
+				</div>
 			</div>
 
 		<% end %>
 
-	</div>
-
-	<div class="span5">
 		<div class="center">
 
 			<% if @location.public_url_active %>
 
-				<h2><strong>De-Activate Public Profile:</strong></h2>	
-
-				<a class="btn btn-large btn-primary" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">De-Activate</a>
+				<a class="btn btn-small btn-primary btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">De-Activate Public Profile</a>
 
 			<% else %>
 
-				<h2><strong>Activate Public Profile:</strong></h2>
-
-				<a class="btn btn-large btn-danger" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">Activate</a>
+				<a class="btn btn-large btn-danger btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">Activate Public Profile</a>
 
 			<% end %>
 		</div>
 
-		<br/><br/>
+	</div>
 
+	<div class="span5">
 
-		<div class="center">
-			<%= form_for @location, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
+		<%= form_for @location, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
 
-				<h2><strong>Public Profile URL:</strong></h2>	
+			<%= hidden_field_tag(:id,  @location.id) %>
 
-				<!-- Display error messages as alerts -->
-				<% @location.errors.each do |field, msg| %>
-					<div class="row-fluid">
-						<div class="span10 offset1">
-							<div class="alert alert-error center">
-							  <strong>Error! </strong> <%= msg %>
-							</div>
+			<div class="widget-box transparent">
+				<div class="widget-header widget-header-flat">
+					<h4 class="lighter">
+						<i class="icon-cogs"></i>
+						Public Profile URL
+					</h4>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main no-padding">
+
+						<div class="center">
+
+							<!-- Display error messages as alerts -->
+							<% @location.errors.each do |field, msg| %>
+								<div class="row-fluid">
+									<div class="span10 offset1">
+										<div class="alert alert-error center">
+										  <strong>Error! </strong> <%= msg %>
+										</div>
+									</div>
+								</div>
+							<% end %>
+							<% if params[:url_blank] %>
+								<div class="row-fluid">
+									<div class="span10 offset1">
+										<div class="alert alert-error center">
+											<strong>Error! </strong> Unique URL is required.
+										</div>
+									</div>
+								</div>
+							<% end %>
+
+							<table class="table">
+								
+								<thead>
+									<tr>
+										<th colspan="2" class="center">
+											<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">
+												<strong id="url_preview" style="font-size:15px;">www.landspecpro.com/profiles/<%= @location.public_url %></strong>
+											</a>
+										</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											<% @location.public_url = '' %>
+											<%= f.text_field :public_url, :class => 'span12 center loc_profile_url_field', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+										</td>
+										<td>
+											<a class="btn btn-success btn-small btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_warning_popover' %>" data-container="body">
+												<i class="icon-save" id=""></i> Update
+											</a>
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+
 						</div>
-					</div>
-				<% end %>
-				<% if params[:url_blank] %>
-					<div class="row-fluid">
-						<div class="span10 offset1">
-							<div class="alert alert-error center">
-								<strong>Error! </strong> Unique URL is required.
-							</div>
-						</div>
-					</div>
-				<% end %>
 
-				<%= hidden_field_tag(:id,  @location.id) %>
-				
-				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
-
-				<div class="row-fluid">
-					<div class="span10 offset1">
-						<% @location.public_url = '' %>
-						<%= f.text_field :public_url, :class => 'span12 center loc_profile_url_field', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
 					</div>
 				</div>
 
-				<div class="row-fluid">
-					<div class="span10 offset1">
-						<a class="btn btn-success btn-small btn-block" data-rel="popover" data-placement="bottom" data-trigger="click"
-						data-content="<%= render 'locations/layouts_edit/url_warning_popover' %>" data-container="body">
-							<i class="icon-save" id=""></i> Update
-						</a>
-					</div>
-				</div>
+			</div>
 
-
-			<% end %>
-		</div>
+		<% end %>
 		
 	</div>
 
