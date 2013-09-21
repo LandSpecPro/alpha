@@ -40,8 +40,18 @@
 
 	<br/>
 
-	<a class="btn btn-success btn-small center" style="width:250px;" href="javascript:{return true;}" onclick="document.getElementById('form_set_public_url').submit();">
+	<a class="btn btn-success btn-small center" style="width:250px;" href='javascript:{return true;}' onclick='submitProfileURLForm();'>
 		<i class="icon-save" id="submit_public_url"></i> Submit
 	</a>
 
 <% end %>
+
+<script>
+
+	function submitProfileURLForm(){
+		if (form_change == 'loc_profile_url')
+			form_change = null;
+
+		document.getElementById('form_set_public_url').submit();
+	}
+</script>
