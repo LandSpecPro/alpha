@@ -14,17 +14,6 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active_utils (2.0.0)
-      activesupport (>= 2.3.11)
-      i18n
-    activemerchant (1.38.0)
-      active_utils (~> 2.0)
-      activesupport (>= 2.3.14, < 5.0.0)
-      builder (>= 2.1.2, < 4.0.0)
-      i18n (~> 0.5)
-      json (~> 1.7)
-      money (< 6.0.0)
-      nokogiri (~> 1.4)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -94,8 +83,6 @@ GEM
       treetop (~> 1.4.8)
     memcachier (0.0.2)
     mime-types (1.23)
-    money (5.1.1)
-      i18n (~> 0.6.0)
     multi_json (1.7.2)
     multi_xml (0.5.4)
     newrelic_rpm (3.6.5.130)
@@ -112,13 +99,6 @@ GEM
       activesupport
       json
       rest-client
-    paypal-recurring (1.1.0)
-    paypal-sdk-core (0.2.6)
-      multi_json (~> 1.0)
-      xml-simple
-    paypal-sdk-rest (0.6.0)
-      paypal-sdk-core (~> 0.2.4)
-      uuidtools (~> 2.1)
     pg (0.15.1-x86-mingw32)
     pg_search (0.6.3)
       activerecord (>= 3.1)
@@ -174,13 +154,11 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
-    xml-simple (1.1.2)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  activemerchant
   authlogic
   aws-sdk
   bootstrap-sass
@@ -198,8 +176,6 @@ DEPENDENCIES
   nifty-generators
   paperclip
   parse_resource (~> 1.8.0)
-  paypal-recurring
-  paypal-sdk-rest
   pg
   pg_search
   rails (= 3.2.13)

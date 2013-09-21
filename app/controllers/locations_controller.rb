@@ -1,8 +1,5 @@
 class LocationsController < ApplicationController
 
-include ActiveMerchant::Billing::Integrations
-require 'active_merchant/billing/integrations/action_view_helper'
-  ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
   include LocationHelper
   include CategoryHelper
   include CustomerioHelper
@@ -14,8 +11,8 @@ require 'active_merchant/billing/integrations/action_view_helper'
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
-  before_filter :require_user, :except => :view_public
-  before_filter :require_business, :except => :view_public
+  before_filter :require_user, :except => [:view_public, :inventory_view]
+  before_filter :require_business, :except => [:view_public, :inventory_view]
   before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
 
   def view_public

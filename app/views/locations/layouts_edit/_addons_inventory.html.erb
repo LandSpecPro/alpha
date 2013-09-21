@@ -99,19 +99,6 @@
 
 									<p><small>*Although we are using PayPal as our secure payment option, you can also use your debit or credit card without a PayPal account when subscribing.</small></p>
 
-									<% payment_service_for @location.id, 'mattjohnson@landspecpro.com', :amount => 20, :currency => 'USD', :service => :paypal do |service|
-										service.customer :first_name => @location.busName, :email => @location.primaryEmail
-										service.billing_address :city => @location.city, :address1 => @location.address1, :state => @location.state, :country => 'USA', :zip => @location.zip
-										service.item_name "Inventory Subscription"
-										service.invoice @location.id
-										service.tax '0.00'
-
-										service.notify_url payment_notify_url
-										service.return_url locations_edit_url(:id => @location.id, :addons => true)
-										service.cancel_return_url oops_url
-
-										submit_tag 'Make Payment', :target => '_blank'
-									end %>
 							</div>
 						</div>
 

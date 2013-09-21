@@ -22,7 +22,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="orange icon-plus bigger-110"></i> Premium Features</a>
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
 					  	</li>
 					<% elsif params[:products] %>
 						<li id="tab_locationinfo">
@@ -35,7 +35,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>	
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
 					  	</li>				
 					<% elsif params[:settings] %>
 						<li id="tab_locationinfo">
@@ -48,7 +48,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
 					  	</li>
 					<% elsif params[:addons] %>
 						<li id="tab_locationinfo">
@@ -61,7 +61,7 @@
 					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Profile Settings</a>
 					  	</li>
 					  	<li class="active" id="tab_addons">
-					  		<a data-toggle="tab" href="#addons"><i class="yellow icon-plus bigger-110"></i> Premium Features</a>
+					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
 					  	</li>
 					<% end %>
 				  
@@ -195,8 +195,6 @@
 			return "You have an unsaved inventory item for this location!";
 		else if (form_change == 'loc_multiple')
 			return "There are multiple unsaved changes to this location!";
-		else
-			return function(){null;};
 	};
 
 	$(applyChosenStyle());
@@ -227,8 +225,8 @@
 			html: true,
 			placement: "bottom",
 			container: "body",
-			title: '<span class="text-info"><strong>New Premium Features!</strong></span>',
-			content: "We'll be rolling out new premium features to your profile over time, which you can access from here. The first of which allows you to upload your full inventory, click here to try it out!"
+			title: '<span class="text-info"><strong>Brand New Inventory!</strong></span>',
+			content: "You can now "
 		});
 
 		$('#tab_addons').popover('show');

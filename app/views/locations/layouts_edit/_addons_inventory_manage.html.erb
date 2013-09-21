@@ -85,7 +85,7 @@
 
 							<tbody>
 								<tr>
-									<td><a href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @cur_inventory.id) %>" target="_blank"><%= @cur_inventory.file_file_name %></a></td>
+									<td><a id="invFileName" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @cur_inventory.id) %>" target="_blank"><%= @cur_inventory.file_file_name %></a></td>
 									<% if (@cur_inventory.file_file_size / 1000) > 1000 %>
 										<td><%= "%4.2f" % ((@cur_inventory.file_file_size / 1000.0) / 1000.0) %> MB</td>
 									<% else %>
@@ -160,37 +160,6 @@
 
 <% end %>
 
-<!-- Unsubscribe from Inventory Management -->
-<div class="row-fluid">
-	<div class="span6 offset3">
-
-		<br/><br/><br/>
-
-		<div class="widget-box transparent">
-			<div class="widget-header widget-header-flat">
-				<h4 class="lighter">
-					<i class="icon-remove-circle"></i>
-					Unsubscribe
-				</h4>
-			</div>
-
-			<div class="widget-body">
-				<div class="widget-main no-padding">
-
-					<div class="center">
-
-						<a href="#" class="btn btn-danger btn-block">Unsubscribe</a>
-
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-
-	</div>
-</div>
-
 <script>
 	$(applyPopovers());
 
@@ -216,5 +185,13 @@
 
 		showRevertChanges();
 
+	});
+
+	$('#invFileName').popover({
+		html: true,
+		placement: "bottom",
+		container: "body",
+		trigger: 'hover',
+		content: "Right-click and choose 'Copy link address' to easily share a trackable link to your inventory."
 	});
 </script>
