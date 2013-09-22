@@ -297,6 +297,8 @@ module ApplicationHelper
 			return "Account Management"
 		elsif @controller == 'favorites'
 			return "Favorites"
+		elsif @controller == 'news_feed'
+			return "News Feed"
 		else
 			return ""
 		end

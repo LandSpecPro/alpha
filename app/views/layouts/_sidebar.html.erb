@@ -21,6 +21,17 @@
 
 			<ul class="nav nav-list">
 
+				<% if controller.controller_name == 'news_feed' %>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
+					<a href="<%= main_url %>">
+						<i class="icon-hdd"></i>
+						<span>News Feed</span>
+					</a>
+				</li>
+
 				<% if current_user.is_vendor %>
 
 					<% if controller.controller_name == 'locations' %>
