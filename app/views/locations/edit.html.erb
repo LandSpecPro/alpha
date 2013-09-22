@@ -116,19 +116,38 @@
 				
 					<div class="row-fluid">
 						<% if @location.featured_items.where(:active => true).count < 3 %>
-							<div class="span7">
+
+							<% if @location.featured_items.where(:active => true).count == 0 %>
+								<div class="row-fluid">
+									<div class="span6 offset3">
+										<div class="alert alert-info center">
+											<strong>
+												You have no featured items for this location. You can add up to 3 featured items here.
+											</strong>
+										</div>
+									</div>
+								</div>
+							<% end %>
+							<div class="row-fluid">
+								<div class="span6 offset3">
+									<%= render 'locations/layouts_edit/addfeatureditem' %>
+								</div>
+							</div>
+
+							<div class="row-fluid">
 								<%= render 'locations/layouts_edit/editfeatureditem' %>
 							</div>
-							<div class="span5">
-								<%= render 'locations/layouts_edit/addfeatureditem' %>
-							</div>
 						<% else %>
-							<div class="span4">
-								<h3 class="center">
-									Currently, each supplier location may only have three featured items. If you would like to add a new featured product, please remove an existing featured product first.
-								</h3>
+							<div class="row-fluid">
+								<div class="span6 offset3">
+									<div class="alert alert-info center">
+										<strong>
+											Currently, each supplier location may only have three featured items. If you would like to add a new featured product, please remove an existing featured product first.
+										</strong>
+									</div>
+								</div>
 							</div>
-							<div class="span8">
+							<div class="row-fluid">
 								<%= render 'locations/layouts_edit/editfeatureditem' %>
 							</div>
 							

@@ -183,6 +183,19 @@
 									</tr>
 									<% end %>
 
+									<!-- SHOW INVENTORY -->
+									<% if @location.inventories.count > 0 %>
+									<tr>
+										<td class="center">
+											<%= f.check_box :show_inventory, :id => 'show_inventory', :class => 'loc_profile_field' %>
+											<label class="lbl" for="show_secondary_email"></label>
+										</td>
+										<td data-rel="popover" data-placement="top" data-trigger="hover" data-container="body" data-content="Your must recently uploaded inventory will be visible on your public profile.">
+											<label class="lbl">Show Inventory</label>
+										</td>
+									</tr>
+									<% end %>
+
 									<!-- SHOW WEBSITE LINK -->
 									<% unless @location.websiteLink.blank? %>
 									<tr>
