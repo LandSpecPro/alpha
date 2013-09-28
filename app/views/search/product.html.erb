@@ -1,14 +1,38 @@
 <%= render 'layouts/sidebar' %>
 
-<div class="row-fluid">
+<style>
+
+	#search-bar-row{
+		margin-bottom: -70px;
+	}
+
+	@media (max-width: 979px) {
+		#search-bar-row{
+			margin-bottom: 0;
+		}
+	}
+
+	@media (max-width: 767px) {
+		#search-bar-row{
+			margin-bottom: 0;
+		}
+		
+	}
+
+</style>
+
+<div class="row-fluid" id="search-bar-row" >
 
 	<!-- Search Sidebar -->
-	<div class="span3">
+	<div class="span12">
 		<%= render 'search/layouts/sidebar' %>
 	</div>
 
+</div>
 
-	<div class="span9">
+<div class="row-fluid" style="margin-top:0;">
+
+	<div class="span12">
 
 		<div id="updateSearchProgress" class="progress progress-success progress-striped active hide" data-percent="Updating Results...">
 			<div class="bar" style="width:100%;"></div>
