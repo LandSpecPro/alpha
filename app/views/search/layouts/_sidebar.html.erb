@@ -50,13 +50,15 @@
 						<label class="lbl" for="current_location" data-rel="popover" data-placement="right" data-container="body" data-trigger="hover" data-content="Selecting this will use geolocation to determine an approximate location to use for searching. To search more precisely, or to search in a different area, just type in an address or city below." data-title="Search by Location"> Use My Location</label>
 					</div>
 				</div>
-			<% if params[:current_location] %>
-				<div class="row-fluid hide" id="setLocationRow">
-			<% else %>
+			
 				<div class="row-fluid" id="setLocationRow">
-			<% end %>
+			
 					<div class="span10 offset1 center">
-						<input id='location' name='location' type='text' class='input span12 center' placeholder="Location to search from..." value="<%= params[:location] %>" />
+						<% if params[:current_location] %>
+							<input id='location' name='location' type='text' class='input span12 center' placeholder="Location to search from..." value="<%= params[:location] %>" readonly="readonly" />
+						<% else %>
+							<input id='location' name='location' type='text' class='input span12 center' placeholder="Location to search from..." value="<%= params[:location] %>" />
+						<% end %>
 					</div>
 				</div>
 
@@ -142,10 +144,10 @@
 
 	$('#current_location').change(function(){
 		if(document.getElementById('current_location').checked){
-			$('#setLocationRow').addClass('hide');
+			$('#location').attr('readonly', 'readonly');
 		}	
 		else{
-			$('#setLocationRow').removeClass('hide');
+			$('#location').attr('readonly', false);
 		}
 	});
 
