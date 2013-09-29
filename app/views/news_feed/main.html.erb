@@ -1,49 +1,132 @@
 <%- title "News Feed | LandSpec Pro" %>
 <%= render 'layouts/sidebar' %>
 
-<div class="container">
-
-
 
 	<div id="timeline-1">
 		<div class="row-fluid">
-			<div class="offset1 span7">
+			<div class="span8">
 				<div class="timeline-container">
 
+					<!-- HEADER -->
+					<div class="timeline-label">
+						<span class="label label-primary arrowed-in-right label-large">
+							<b>All Updates</b>
+						</span>
+					</div>
 
+					<!-- Timeline Items -->
 					<div class="timeline-items">
+						<% NewsFeedItem.order('created_at DESC').all.each do |i| %>
 					
-						<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
-						<div class="timeline-item clearfix">
-							<div class="timeline-info">
-								<i class="timeline-indicator icon-food no-hover"></i>
-							</div>
 
+							<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
+							<div class="timeline-item clearfix">
 
-							<div class="widget-box transparent">
-								<div class="widget-header widget-header-small">
-									<h5><a href="#" class="blue">Paz Growers updated their profile information!</a></h5>
-
-									<span class="widget-toolbar no-border">
-										<i class="icon-time bigger-110"></i>
-										10:36pm
-									</span>
+								<!-- Icon to the side -->
+								<div class="timeline-info">
+									<% if i.item_type == FIRST_INVENTORY %>
+										<% @loc = Location.find(i.location_id) %>
+										<i class="timeline-indicator icon-cloud-upload no-hover btn btn-warning"></i>
+									<% elsif i.item_type == NEW_INVENTORY %>
+										<% @loc = Location.find(i.location_id) %>
+										<i class="timeline-indicator icon-cloud-upload no-hover btn btn-success"></i>
+									<% elsif i.item_type == NEW_SUPPLIER %>
+										<i class="timeline-indicator icon-user no-hover btn btn-primary"></i>
+									<% elsif i.item_type == NEW_FEATURED_ITEM %>
+										<% @loc = Location.find(i.location_id) %>
+										<i class="timeline-indicator icon-star no-hover btn btn-purple"></i>
+									<% end %>
 								</div>
 
-							</div>
+
+								<div class="widget-box transparent">
+									<div class="widget-header widget-header-small">
+										<% if i.item_type == FIRST_INVENTORY %>
+											<h5>
+												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
+													<%= @loc.busName %>
+												</a>
+												<span class="grey">just added their first inventory!</span>
+											</h5>
+										<% elsif i.item_type == NEW_INVENTORY %>
+											<h5>
+												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
+													<%= @loc.busName %>
+												</a>
+												<span class="grey">uploaded a new inventory.</span>
+											</h5>
+										<% elsif i.item_type == NEW_SUPPLIER %>
+											<h5>
+												<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
+												<span class="grey">just joined LandSpec Pro!</span>
+											</h5>
+										<% elsif i.item_type == NEW_FEATURED_ITEM %>
+											<h5>
+												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
+													<%= @loc.busName %>
+												</a>
+												<span class="grey">just added a new featured item.</span>
+											</h5>
+										<% end %>
+
+										<!-- Timestamp -->
+										<span class="widget-toolbar no-border" style="margin-right:10px;">
+											<i class="icon-time bigger-110"></i>
+											<%= format_date_and_time(i.created_at) %>
+										</span>
+
+									</div>
+
+									<div class="widget-body">
+										<div class="widget-main">
+											<% if i.item_type == FIRST_INVENTORY %>
+												<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id)%>" target="_blank">Click here</a> to view or download this supplier's inventory.
+											<% elsif i.item_type == NEW_INVENTORY %>
+												<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id) %>" target="_blank">Click here</a> to view or download this supplier's updated inventory.												
+											<% elsif i.item_type == NEW_SUPPLIER %>
+												
+											<% elsif i.item_type == NEW_FEATURED_ITEM %>
+
+												<% @fi = FeaturedItem.find(i.item_id) %>
+
+												<!-- TODO: Link the name to the popup -->
+
+												<div class="row-fluid">
+													<div class="span12">
+														<img class="pull-left" src="<%= @fi.get_image.url(:medium) %>" style="margin-right:20px;" />
+														<span>
+															<h2 class="blue"><u><%= @fi.commonName %></u></h2>
+															<span style="font-size:18px;">
+																<% unless @fi.price.blank? or @fi.price.to_f < 0.01 %>
+																	<strong>Price:</strong>&nbsp;<%= "$%8.2f" % @fi.price.to_f %>
+																<% end %>
+																<% unless @fi.size.blank? %>
+																	<br/><br/>
+																	<strong>Size:</strong>&nbsp;<%= @fi.size %>
+																<% end %>
+																<% unless @fi.description.blank? %>
+																	<br/><br/>
+																	<p style="max-height:160px; overflow:hidden; width:inherit; display:block;">
+																		<strong>Description:</strong>&nbsp;
+																		<%= @fi.description.gsub(/\n/,'<br/>').html_safe %>
+																	</p>
+																<% end %>
+															</span>
+														</span>
+													</div>
+												</div>
+														
+											<% end %>
+										</div>
+									</div>
+
+								</div>
 
 
+							</div><!-- timeline-item -->
 
 
-
-						</div>
-
-
-
-
-
-
-
+						<% end %>
 					</div> <!-- timeline-items -->
 
 
@@ -56,8 +139,6 @@
 
 
 
-
-</div>
 
 
 

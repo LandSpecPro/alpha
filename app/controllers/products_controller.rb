@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   include ProductHelper
   include CustomerioHelper
   include AnalyticsHelper
+  include NewsFeedHelper
 
   before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user, :only => [:edit, :new, :create, :set_as_favorite]
@@ -146,6 +147,10 @@ class ProductsController < ApplicationController
     if @productimage.save
       @featureditem = FeaturedItem.new(:description => description, :location_id => location_id, :product_id => product_id, :product_image_id => @productimage.id, :size => size, :price => price)
       if @featureditem.save
+
+        # Add news feed item
+        news_feed_new_featured_item(location_id, @featureditem.id)
+
         return true
       else
         @productimage.destroy

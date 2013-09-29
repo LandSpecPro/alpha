@@ -364,4 +364,8 @@ module ApplicationHelper
 		content_for(:description) { descript }
 	end
 
+	def format_date_and_time(datetime)
+		return datetime.strftime("%b %e, %Y - %l:%M%P")
+	end
+
 end

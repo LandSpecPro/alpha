@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130915001922) do
+ActiveRecord::Schema.define(:version => 20130928235512) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20130915001922) do
     t.datetime "created_at",                                         :null => false
     t.datetime "updated_at",                                         :null => false
     t.boolean  "show_about",                      :default => true,  :null => false
-    t.boolean  "show_inventory",                  :default => false, :null => false
+    t.boolean  "show_inventory",                  :default => true,  :null => false
   end
 
   create_table "location_view_logs", :force => true do |t|
@@ -278,6 +278,15 @@ ActiveRecord::Schema.define(:version => 20130915001922) do
   add_index "locations", ["busName"], :name => "index_locations_on_busName"
   add_index "locations", ["bus_vendor_id"], :name => "index_locations_on_bus_vendor_id"
   add_index "locations", ["id"], :name => "index_locations_on_id"
+
+  create_table "news_feed_items", :force => true do |t|
+    t.string   "item_type",   :null => false
+    t.integer  "item_id",     :null => false
+    t.integer  "user_id",     :null => false
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "newsletter_emails", :force => true do |t|
     t.string   "email"

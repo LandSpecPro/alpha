@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   include CustomerioHelper
   include AnalyticsHelper
   include ApplicationHelper
+  include NewsFeedHelper
   
   # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_location_id_active, :only => :set_as_favorite
@@ -120,6 +121,9 @@ class LocationsController < ApplicationController
     @inventory = @location.inventories.new(:location_id => @location.id, :file => params[:location][:file], :num_views => 0)
 
     if @inventory.save
+
+      news_feed_uploaded_inventory(@location.id, @inventory.id)
+
       Inventory.where(:location_id => @location).each do |inv|
         unless inv.id == @inventory.id
           inv.current = false;
