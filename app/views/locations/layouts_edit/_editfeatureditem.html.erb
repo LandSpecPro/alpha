@@ -1,80 +1,84 @@
-<% if @location.featured_items.where(:active => true).count == 0 %>
+<% @location.featured_items.where(:active => true).order("created_at ASC").each do |fi| %>
 
-	<div class="center">
-		<h4>You have no featured items for this location. You can add up to 3 featured items here.</h4><br/>
-	</div>
+	<div class="span4">
 
-<% else %>
+		<ul class="ace-thumbnails center" style="width: 50%; margin:auto;">
+			<li>
+				<div>
 
-	<% @location.featured_items.where(:active => true).order("created_at ASC").each do |fi| %>
+					<%= image_tag fi.get_image.url(:medium), :title => fi.get_product.commonName %>
 
-		<div class="row-fluid">
-
-			<div class="span6">
-				<ul class="ace-thumbnails pull-right">
-					<li>
-						<div>
-
-							<%= image_tag fi.get_image.url(:medium), :title => fi.get_product.commonName %>
-
-							<% if fi.is_favorited(current_user) %>
-								<div class="tags">
-									<span class="label label-info arrowed">Favorited!</span>
-								</div>
-							<% end %>
-
-							<div class="text">
-								<div class="inner">
-
-									<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
-
-									<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
-										<i class="icon-zoom-in" title="View Larger"></i>
-									</a>
-
-									<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
-										<i class="icon-trash" title="Delete"></i>
-									</a>
-
-									<a href=<%= products_edit_url(:id => fi.id) %>>
-										<i class="icon-pencil" title="Edit"></i>
-									</a>
-								</div>
-							</div>
-
+					<% if fi.is_favorited(current_user) %>
+						<div class="tags">
+							<span class="label label-info arrowed">Favorited!</span>
 						</div>
-					</li>
-				</ul>
-			</div>
+					<% end %>
 
-			<div class="span6">
+					<div class="text">
+						<div class="inner">
 
-				<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
+							<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-				<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
-					<p style="font-size:15px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
-				<% end %>
+							<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= fi.get_product.commonName %>">
+								<i class="icon-zoom-in" title="View Larger"></i>
+							</a>
 
-				<% unless fi.price.blank? or fi.price == '' or fi.price == 0 %>
-					<p style="font-size:15px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
-				<% end %>
+							<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>">
+								<i class="icon-trash" title="Delete"></i>
+							</a>
 
-				<% unless fi.size.blank? or fi.size == '' %>
-					<p style="font-size:15px;"><strong>Size: </strong><%= fi.size %></p>
-				<% end %>
+							<a href=<%= products_edit_url(:id => fi.id) %>>
+								<i class="icon-pencil" title="Edit"></i>
+							</a>
+						</div>
+					</div>
 
-				<% unless fi.description.blank? or fi.description == '' %>
-					<p style="font-size:15px;">
-						<strong>Description:</strong><br/>
-						<%= fi.description.gsub(/\n/,'<br/>').html_safe %>
-					</p>
-				<% end %>
+				</div>
+			</li>
+		</ul>
 
+		<div class="widget-box transparent">
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+
+					<table class="table table-bordered table-striped table-hover" style="padding-top:15px;">
+
+						<colgroup>
+							<col span="1" style="width: 20%">
+							<col span="1" style="width: 80%">
+						</colgroup>
+
+						<thead>
+							<tr>
+								<th class="table-header header-color-green2 center" colspan="2">
+									<%= fi.get_product.commonName %>
+								</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td><strong class="pull-right">Price</strong></td>
+								<td><%= fi.price %></td>
+							</tr>
+							<tr>
+								<td><strong class="pull-right">Size</strong></td>
+								<td><%= fi.size %></td>
+							</tr>
+							<tr>
+								<td><strong class="pull-right">Description</strong></td>
+								<td><%= fi.description.gsub(/\n/,'<br/>').html_safe %></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
 			</div>
 
 		</div>
-		
 
-	<% end %>
+	</div>
 
 <% end %>
