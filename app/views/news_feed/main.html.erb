@@ -5,20 +5,71 @@
 	<div id="timeline-1">
 		<div class="row-fluid">
 			<div class="span8">
+				
+				<strong>Filters:</strong>
+				<ul class="nav nav-pills">
+
+					<li id="filterAll">
+						<a href="<%= main_url %>">All</a>
+					</li>
+					<li id="filterFeaturedItems">
+						<a href="<%= main_url(:only_featured_items => true) %>">Only Featured Items</a>
+					</li>
+					<li id="filterSuppliers">
+						<a href="<%= main_url(:only_new_suppliers => true) %>">Only Suppliers</a>
+					</li>
+					<li id="filterLocations">
+						<a href="<%= main_url(:only_locations => true) %>">Only Locations</a>
+					</li>
+					<li id="filterInventories">
+						<a href="<%= main_url(:only_inventories => true) %>">Only Inventories</a>
+					</li>
+				</ul>
+
+				<script type="text/javascript">
+
+					<% if params[:only_featured_items] %>
+						$('#filterFeaturedItems').addClass('active');
+					<% elsif params[:only_new_suppliers] %>
+						$('#filterSuppliers').addClass('active');
+					<% elsif params[:only_inventories] %>
+						$('#filterInventories').addClass('active');
+					<% elsif params[:only_locations] %>
+						$('#filterLocations').addClass('active');
+					<% else %>
+						$('#filterAll').addClass('active');
+					<% end %>
+
+				</script>
+
 				<div class="timeline-container">
 
 					<!-- HEADER -->
 					<div class="timeline-label">
 						<span class="label label-primary arrowed-in-right label-large">
-							<b>All Updates</b>
+							<% if params[:only_featured_items] %>
+								<b>Featured Items</b>
+							<% elsif params[:only_new_suppliers] %>
+								<b>New Suppliers</b>
+							<% elsif params[:only_inventories] %>
+								<b>Inventories</b>
+							<% elsif params[:only_locations] %>
+								<b>Locations</b>
+							<% else %>
+								<b>All Updates</b>
+							<% end %>
 						</span>
 					</div>
 
 					<!-- Timeline Items -->
 					<div class="timeline-items">
-						<% NewsFeedItem.order('created_at DESC').all.each do |i| %>
+						<% @items.all.each do |i| %>
 					
-
+						<% unless (i.item_type == NEW_SUPPLIER and (User.find(i.user_id).verified == false or User.find(i.user_id).active == false)) \
+									or (i.item_type == NEW_FEATURED_ITEM and FeaturedItem.find(i.item_id).location.bus_vendor.user.verified == false) \
+									or (i.item_type == FIRST_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
+									or (i.item_type == NEW_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
+									or (i.item_type == NEW_LOCATION and Location.find(i.item_id).active == false) %>
 							<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
 							<div class="timeline-item clearfix">
 
@@ -26,15 +77,28 @@
 								<div class="timeline-info">
 									<% if i.item_type == FIRST_INVENTORY %>
 										<% @loc = Location.find(i.location_id) %>
-										<i class="timeline-indicator icon-cloud-upload no-hover btn btn-warning"></i>
+										<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
+											<i class="timeline-indicator icon-cloud-upload btn btn-warning"></i>
+										</a>
 									<% elsif i.item_type == NEW_INVENTORY %>
 										<% @loc = Location.find(i.location_id) %>
-										<i class="timeline-indicator icon-cloud-upload no-hover btn btn-success"></i>
+										<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
+											<i class="timeline-indicator icon-cloud-upload btn btn-pink"></i>
+										</a>
 									<% elsif i.item_type == NEW_SUPPLIER %>
-										<i class="timeline-indicator icon-user no-hover btn btn-primary"></i>
+										<a href="<%= main_url(:only_new_suppliers => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only New Suppliers">
+											<i class="timeline-indicator icon-user btn btn-primary"></i>
+										</a>
 									<% elsif i.item_type == NEW_FEATURED_ITEM %>
 										<% @loc = Location.find(i.location_id) %>
-										<i class="timeline-indicator icon-star no-hover btn btn-purple"></i>
+										<a href="<%= main_url(:only_featured_items => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Featured Items">
+											<i class="timeline-indicator icon-star btn btn-purple"></i>
+										</a>
+									<% elsif i.item_type == NEW_LOCATION %>
+										<% @loc = Location.find(i.location_id) %>
+										<a href="<%= main_url(:only_locations => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only New Locations">
+											<i class="timeline-indicator icon-globe btn btn-success"></i>
+										</a>
 									<% end %>
 								</div>
 
@@ -58,7 +122,7 @@
 										<% elsif i.item_type == NEW_SUPPLIER %>
 											<h5>
 												<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
-												<span class="grey">just joined LandSpec Pro!</span>
+												<span class="grey"><%= User.find(i.user_id).bus_vendor.busName %> just joined LandSpec Pro!</span>
 											</h5>
 										<% elsif i.item_type == NEW_FEATURED_ITEM %>
 											<h5>
@@ -66,6 +130,13 @@
 													<%= @loc.busName %>
 												</a>
 												<span class="grey">just added a new featured item.</span>
+											</h5>
+										<% elsif i.item_type == NEW_LOCATION %>
+											<h5>
+												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
+													<%= @loc.busName %>
+												</a>
+												<span class="grey">just added a new location.</span>
 											</h5>
 										<% end %>
 
@@ -93,29 +164,114 @@
 
 												<div class="row-fluid">
 													<div class="span12">
-														<img class="pull-left" src="<%= @fi.get_image.url(:medium) %>" style="margin-right:20px;" />
+														<ul class="ace-thumbnails pull-left" style="margin-right:20px;">
+							
+															<li>
+																<div>
+																	<img src="<%= @fi.get_image.url(:medium) %>"  title="<%= @fi.commonName %>" />
+
+																	<% if @fi.is_favorited(current_user) %>
+																		<div class="tags">
+																			<span class="label label-info arrowed">Favorited!</span>
+																		</div>
+																	<% end %>
+
+																	<div class="text">
+																		<div class="inner">
+
+																			<span>
+																				<p style="font-size:18px;">
+																					<%= @fi.commonName %>
+																				</p>
+																			</span>
+
+																			<span><p style="font-size:15px;"><%= "%8.1f" % @fi.distance_from(params[:location]) %> miles away</p></span>
+
+																			<span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Larger">
+																				<a href="<%= @fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= @fi.commonName %>">
+																					<i class="icon-zoom-in"></i>
+																				</a>
+																			</span>
+
+																			<% if @fi.is_favorited(current_user) %>
+																				<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
+																			<% else %>
+																				<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
+																			<% end %>
+
+																			<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Location" href=<%= locations_view_url(:id => @fi.location_id) %>>
+																				<i class="icon-globe"></i>
+																			</a>
+																			<% @featureditem = @fi %>
+																			<span data-container="body" >
+																			<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
+																				<i class="icon-info-sign"></i>
+																			</a></span>
+																		</div>
+																	</div>
+																</div>
+															</li>
+														</ul>
+
 														<span>
 															<h2 class="blue"><u><%= @fi.commonName %></u></h2>
-															<span style="font-size:18px;">
+															<span style="">
 																<% unless @fi.price.blank? or @fi.price.to_f < 0.01 %>
 																	<strong>Price:</strong>&nbsp;<%= "$%8.2f" % @fi.price.to_f %>
+																	<br/><br/>
 																<% end %>
 																<% unless @fi.size.blank? %>
-																	<br/><br/>
 																	<strong>Size:</strong>&nbsp;<%= @fi.size %>
+																	<br/><br/>
 																<% end %>
 																<% unless @fi.description.blank? %>
-																	<br/><br/>
-																	<p style="max-height:160px; overflow:hidden; width:inherit; display:block;">
+																	<p style="max-width:410px; overflow:hidden; display:block;">
 																		<strong>Description:</strong>&nbsp;
-																		<%= @fi.description.gsub(/\n/,'<br/>').html_safe %>
+																		<%= truncate(@fi.description.gsub(/\n/,'<br/>'), :length => 500, :omission => '<strong title="More"> ...</strong>').html_safe %>
 																	</p>
 																<% end %>
 															</span>
 														</span>
 													</div>
 												</div>
-														
+
+												<% @featureditem = @fi %>
+												<%= render 'products/productinfomodal' %>
+
+											<% elsif i.item_type == NEW_LOCATION %>
+												<div class="row-fluid">
+													<div class="span12">
+
+														<a href="<%= get_map_link_from_address(@loc.get_full_address) %>" title="View on Google Maps" target="_blank">
+															<img src="<%= get_static_map_custom(@loc.get_full_address, '300', '300') %>" class="pull-left" style="margin-right:20px;" title="<%= @loc.busName %>" height="300px" width="300px" />
+														</a>
+
+														<span>
+															<% unless @loc.locName.blank? %>
+																<h2><u>
+																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
+																		<%= @loc.locName %>
+																	</a>
+																</u></h2>
+															<% else %>
+																<h2><u>
+																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
+																		<%= @loc.busName %>
+																	</a>
+																</u></h2>
+															<% end %>
+															<span style="">
+																<strong>Primary Phone:</strong>&nbsp;<%= @loc.primaryPhone %>
+
+																<% unless @loc.primaryEmail.blank? %>
+																	<br/><br/>
+																	<strong>Primary Email:</strong>&nbsp;<%= @loc.primaryEmail %>
+																<% end %>
+															</span>
+														</span>
+
+													</div>
+												</div>
 											<% end %>
 										</div>
 									</div>
@@ -127,42 +283,22 @@
 
 
 						<% end %>
+						<% end %>
 					</div> <!-- timeline-items -->
 
 
 
 				</div> <!-- timeline-container -->
 			</div> <!-- span size -->
+
 		</div> <!-- row-fluid -->
 	</div> <!-- timeline-1 -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+	
+	$(applyColorbox());
+	$(applyPopovers());
+
+</script>

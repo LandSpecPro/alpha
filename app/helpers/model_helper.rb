@@ -1,11 +1,11 @@
 module ModelHelper
 	
 	def activate
-			if not self.active
-				self.active = true
-				self.save
-			end
+		if not self.active
+			self.active = true
+			self.save
 		end
+	end
 
 	def deactivate
 		if self.active

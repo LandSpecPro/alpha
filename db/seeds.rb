@@ -29,14 +29,14 @@ Category.create([
 #	{ id: 113, parent_id: 1, hierarchy_level: 2, cat_name: 'Trees Deciduous'},
 #	{ id: 114, parent_id: 1, hierarchy_level: 2, cat_name: 'Trees Evergreen'},
 #	{ id: 115, parent_id: 1, hierarchy_level: 2, cat_name: 'Vines'},
-	{ id: 116, parent_id: 1, hierarchy_level: 2, cat_name: 'Natives'},
-	{ id: 117, parent_id: 1, hierarchy_level: 2, cat_name: 'Wetland Plans'},
-	{ id: 118, parent_id: 1, hierarchy_level: 2, cat_name: 'Vegetables'},
-	{ id: 119, parent_id: 1, hierarchy_level: 2, cat_name: 'Bulbs'},
-	{ id: 120, parent_id: 1, hierarchy_level: 2, cat_name: 'Cacti & Succulents'},
-	{ id: 121, parent_id: 1, hierarchy_level: 2, cat_name: 'Balled and Burlapped'},
-	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
-	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'}
+#	{ id: 116, parent_id: 1, hierarchy_level: 2, cat_name: 'Natives'},
+#	{ id: 117, parent_id: 1, hierarchy_level: 2, cat_name: 'Wetland Plans'},
+#	{ id: 118, parent_id: 1, hierarchy_level: 2, cat_name: 'Vegetables'},
+#	{ id: 119, parent_id: 1, hierarchy_level: 2, cat_name: 'Bulbs'},
+#	{ id: 120, parent_id: 1, hierarchy_level: 2, cat_name: 'Cacti & Succulents'},
+#	{ id: 121, parent_id: 1, hierarchy_level: 2, cat_name: 'Balled and Burlapped'},
+#	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
+#	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'}
 #
 #	#MATERIALS
 #	{ id: 200, parent_id: 2, hierarchy_level: 2, cat_name: 'Block'},

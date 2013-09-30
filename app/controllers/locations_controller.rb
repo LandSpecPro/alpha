@@ -199,6 +199,8 @@ class LocationsController < ApplicationController
     if @location.save
       flash[:notice] = "New Location Added!"
 
+      news_feed_new_location(@location.id)
+
       cio_user_location(current_user, @location)
       update_weight_rank(@location)
 

@@ -1,7 +1,12 @@
 module BusVendorsHelper
 
 	def get_static_map_from_address(address)
-		staticmap = "http://maps.googleapis.com/maps/api/staticmap?markers=" + address + "&size=750x200&maptype=roadmap&sensor=false"
+		staticmap = "http://maps.googleapis.com/maps/api/staticmap?markers=" + address + "&size=750x200&maptype=roadmap&sensor=false&key={AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI}"
+		return staticmap
+	end
+
+	def get_static_map_custom(address, width, height)
+		staticmap = "http://maps.googleapis.com/maps/api/staticmap?markers=" + address + "&size=" + width + "x" + height + "&maptype=roadmap&sensor=false&key=AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI"
 		return staticmap
 	end
 

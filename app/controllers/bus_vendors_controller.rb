@@ -2,6 +2,7 @@ class BusVendorsController < ApplicationController
 	include BusVendorsHelper
 	include CustomerioHelper
 	include ApplicationHelper
+	include NewsFeedHelper
 	before_filter :require_user
 	before_filter :require_user_is_vendor
 	before_filter :require_business, :except => [:new, :create]
@@ -21,6 +22,8 @@ class BusVendorsController < ApplicationController
 
 	      # Update current_users Business-Vendor id
 		  @user.update_attribute(:bus_vendor_id, @busvendor.id)
+
+		  news_feed_new_supplier(@busvendor.id)
 
 		  if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
 		  	Mailers.new_user_activation_email(@user).deliver
