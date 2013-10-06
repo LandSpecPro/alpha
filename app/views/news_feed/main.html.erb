@@ -214,7 +214,7 @@
 														</ul>
 
 														<span>
-															<h2 class="blue"><u><%= @fi.commonName %></u></h2>
+															<h2 class="blue"><%= @fi.commonName %></h2>
 															<span style="">
 																<% unless @fi.price.blank? or @fi.price.to_f < 0.01 %>
 																	<strong>Price:</strong>&nbsp;<%= "$%8.2f" % @fi.price.to_f %>
@@ -248,17 +248,17 @@
 
 														<span>
 															<% unless @loc.locName.blank? %>
-																<h2><u>
+																<h2>
 																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
 																		<%= @loc.locName %>
 																	</a>
-																</u></h2>
+																</h2>
 															<% else %>
-																<h2><u>
+																<h2>
 																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
 																		<%= @loc.busName %>
 																	</a>
-																</u></h2>
+																</h2>
 															<% end %>
 															<span style="">
 																<strong>Primary Phone:</strong>&nbsp;<%= @loc.primaryPhone %>

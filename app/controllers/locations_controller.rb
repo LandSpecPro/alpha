@@ -361,7 +361,7 @@ class LocationsController < ApplicationController
           redirect_to locations_manage_url
         end
       elsif current_user.is_buyer
-        redirect_to dashboard_url
+        redirect_to main_url
       end
     end
 
