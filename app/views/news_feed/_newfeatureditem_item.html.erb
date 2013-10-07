@@ -63,8 +63,6 @@
 												</p>
 											</span>
 
-											<span><p style="font-size:15px;"><%= "%8.1f" % @fi.distance_from(params[:location]) %> miles away</p></span>
-
 											<span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Larger">
 												<a href="<%= @fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= @fi.commonName %>">
 													<i class="icon-zoom-in"></i>

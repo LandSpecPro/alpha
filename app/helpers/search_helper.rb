@@ -2,7 +2,7 @@ module SearchHelper
 
 	def default_search_values
 
-		if params[:query] == 'Search All'
+		if params[:query] == 'All Suppliers' or params[:query] == 'All Featured Items'
 			params[:query] = nil
 		end
 
