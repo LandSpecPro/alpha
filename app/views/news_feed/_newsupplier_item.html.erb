@@ -1,0 +1,41 @@
+<div class="timeline-item clearfix">
+
+	<!-- Icon to the side -->
+	<div class="timeline-info">
+
+		<a href="<%= main_url(:only_new_suppliers => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only New Suppliers">
+			<i class="timeline-indicator icon-user btn btn-primary"></i>
+		</a>
+
+	</div>
+
+	<!-- Main item -->
+	<div class="widget-box transparent">
+
+		<!-- Header -->
+		<div class="widget-header widget-header-small">
+
+			<!-- Text -->
+			<h5>
+				<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
+				<span class="grey"><%= User.find(i.user_id).bus_vendor.busName %> just joined LandSpec Pro!</span>
+			</h5>
+
+			<!-- Timestamp -->
+			<span class="widget-toolbar no-border" style="margin-right:10px;">
+				<i class="icon-time bigger-110"></i>
+				<%= format_date_and_time(i.created_at) %>
+			</span>
+
+		</div>
+
+		<!-- Main Content -->
+		<div class="widget-body">
+			<div class="widget-main">
+
+			</div>
+		</div>
+
+	</div> <!-- Main Item -->
+
+</div>

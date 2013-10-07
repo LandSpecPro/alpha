@@ -65,233 +65,27 @@
 					<div class="timeline-items">
 						<% @items.all.each do |i| %>
 					
-						<% unless (i.item_type == NEW_SUPPLIER and (User.find(i.user_id).verified == false or User.find(i.user_id).active == false)) \
+							<% unless (i.item_type == NEW_SUPPLIER and (User.find(i.user_id).verified == false or User.find(i.user_id).active == false)) \
 									or (i.item_type == NEW_FEATURED_ITEM and FeaturedItem.find(i.item_id).location.bus_vendor.user.verified == false) \
 									or (i.item_type == FIRST_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
 									or (i.item_type == NEW_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
 									or (i.item_type == NEW_LOCATION and Location.find(i.item_id).active == false) %>
-							<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
-							<div class="timeline-item clearfix">
 
-								<!-- Icon to the side -->
-								<div class="timeline-info">
-									<% if i.item_type == FIRST_INVENTORY %>
-										<% @loc = Location.find(i.location_id) %>
-										<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
-											<i class="timeline-indicator icon-cloud-upload btn btn-warning"></i>
-										</a>
-									<% elsif i.item_type == NEW_INVENTORY %>
-										<% @loc = Location.find(i.location_id) %>
-										<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
-											<i class="timeline-indicator icon-cloud-upload btn btn-pink"></i>
-										</a>
-									<% elsif i.item_type == NEW_SUPPLIER %>
-										<a href="<%= main_url(:only_new_suppliers => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only New Suppliers">
-											<i class="timeline-indicator icon-user btn btn-primary"></i>
-										</a>
-									<% elsif i.item_type == NEW_FEATURED_ITEM %>
-										<% @loc = Location.find(i.location_id) %>
-										<a href="<%= main_url(:only_featured_items => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Featured Items">
-											<i class="timeline-indicator icon-star btn btn-purple"></i>
-										</a>
-									<% elsif i.item_type == NEW_LOCATION %>
-										<% @loc = Location.find(i.location_id) %>
-										<a href="<%= main_url(:only_locations => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only New Locations">
-											<i class="timeline-indicator icon-globe btn btn-success"></i>
-										</a>
-									<% end %>
-								</div>
+								<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
 
+								<% if i.item_type == FIRST_INVENTORY %>
+									<%= render 'news_feed/firstinventory_item', :i => i %>
+								<% elsif i.item_type == NEW_INVENTORY %>
+									<%= render 'news_feed/newinventory_item', :i => i %>
+								<% elsif i.item_type == NEW_SUPPLIER %>
+									<%= render 'news_feed/newsupplier_item', :i => i %>
+								<% elsif i.item_type == NEW_FEATURED_ITEM %>
+									<%= render 'news_feed/newfeatureditem_item', :i => i %>
+								<% elsif i.item_type == NEW_LOCATION %>
+									<%= render 'news_feed/newlocation_item', :i => i %>
+								<% end %>
 
-								<div class="widget-box transparent">
-									<div class="widget-header widget-header-small">
-										<% if i.item_type == FIRST_INVENTORY %>
-											<h5>
-												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
-													<%= @loc.busName %>
-												</a>
-												<span class="grey">just added their first inventory!</span>
-											</h5>
-										<% elsif i.item_type == NEW_INVENTORY %>
-											<h5>
-												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
-													<%= @loc.busName %>
-												</a>
-												<span class="grey">uploaded a new inventory.</span>
-											</h5>
-										<% elsif i.item_type == NEW_SUPPLIER %>
-											<h5>
-												<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
-												<span class="grey"><%= User.find(i.user_id).bus_vendor.busName %> just joined LandSpec Pro!</span>
-											</h5>
-										<% elsif i.item_type == NEW_FEATURED_ITEM %>
-											<h5>
-												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
-													<%= @loc.busName %>
-												</a>
-												<span class="grey">just added a new featured item.</span>
-											</h5>
-										<% elsif i.item_type == NEW_LOCATION %>
-											<h5>
-												<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
-													<%= @loc.busName %>
-												</a>
-												<span class="grey">just added a new location.</span>
-											</h5>
-										<% end %>
-
-										<!-- Timestamp -->
-										<span class="widget-toolbar no-border" style="margin-right:10px;">
-											<i class="icon-time bigger-110"></i>
-											<%= format_date_and_time(i.created_at) %>
-										</span>
-
-									</div>
-
-									<div class="widget-body">
-										<div class="widget-main">
-											<% if i.item_type == FIRST_INVENTORY %>
-												<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id)%>" target="_blank">Click here</a> to view or download this supplier's inventory.
-											<% elsif i.item_type == NEW_INVENTORY %>
-												<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id) %>" target="_blank">Click here</a> to view or download this supplier's updated inventory.												
-											<% elsif i.item_type == NEW_SUPPLIER %>
-												
-											<% elsif i.item_type == NEW_FEATURED_ITEM %>
-
-												<% @fi = FeaturedItem.find(i.item_id) %>
-
-												<!-- TODO: Link the name to the popup -->
-
-												<div class="row-fluid">
-													<div class="span12">
-														<ul class="ace-thumbnails pull-left" style="margin-right:20px;">
-							
-															<li>
-																<div>
-																	<img src="<%= @fi.get_image.url(:medium) %>"  title="<%= @fi.commonName %>" />
-
-																	<% if @fi.is_favorited(current_user) %>
-																		<div class="tags">
-																			<span class="label label-info arrowed">Favorited!</span>
-																		</div>
-																	<% end %>
-
-																	<div class="text">
-																		<div class="inner">
-
-																			<span>
-																				<p style="font-size:18px;">
-																					<%= @fi.commonName %>
-																				</p>
-																			</span>
-
-																			<span><p style="font-size:15px;"><%= "%8.1f" % @fi.distance_from(params[:location]) %> miles away</p></span>
-
-																			<span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Larger">
-																				<a href="<%= @fi.get_image.url(:original) %>" data-rel="colorbox" title="<%= @fi.commonName %>">
-																					<i class="icon-zoom-in"></i>
-																				</a>
-																			</span>
-
-																			<% if @fi.is_favorited(current_user) %>
-																				<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-																			<% else %>
-																				<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
-																			<% end %>
-
-																			<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Location" href=<%= locations_view_url(:id => @fi.location_id) %>>
-																				<i class="icon-globe"></i>
-																			</a>
-																			<% @featureditem = @fi %>
-																			<span data-container="body" >
-																			<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="More Info" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
-																				<i class="icon-info-sign"></i>
-																			</a></span>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</ul>
-
-														<span>
-															<h2 class="blue"><%= @fi.commonName %></h2>
-															<span style="">
-																<% unless @fi.price.blank? or @fi.price.to_f < 0.01 %>
-																	<strong>Price:</strong>&nbsp;<%= "$%8.2f" % @fi.price.to_f %>
-																	<br/><br/>
-																<% end %>
-																<% unless @fi.size.blank? %>
-																	<strong>Size:</strong>&nbsp;<%= @fi.size %>
-																	<br/><br/>
-																<% end %>
-																<% unless @fi.description.blank? %>
-																	<p style="max-width:410px; overflow:hidden; display:block;">
-																		<strong>Description:</strong>&nbsp;
-																		<%= truncate(@fi.description.gsub(/\n/,'<br/>'), :length => 500, :omission => '<strong title="More"> ...</strong>').html_safe %>
-																	</p>
-																<% end %>
-															</span>
-														</span>
-													</div>
-												</div>
-
-												<% @featureditem = @fi %>
-												<%= render 'products/productinfomodal' %>
-
-											<% elsif i.item_type == NEW_LOCATION %>
-												<div class="row-fluid">
-													<div class="span12">
-
-														<a href="<%= get_map_link_from_address(@loc.get_full_address) %>" title="View on Google Maps" target="_blank">
-															<img src="<%= get_static_map_custom(@loc.get_full_address, '300', '300') %>" class="pull-left" style="margin-right:20px;" title="<%= @loc.busName %>" height="300px" width="300px" />
-														</a>
-
-														<span>
-															<% unless @loc.locName.blank? %>
-																<h2>
-																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
-																		<%= @loc.locName %>
-																	</a>
-																</h2>
-															<% else %>
-																<h2>
-																	<a href="<%= locations_view_url(:id => i.location_id) %>" style="color:green;">
-																		<%= @loc.busName %>
-																	</a>
-																</h2>
-															<% end %>
-															<span style="">
-																<strong>Phone:</strong>&nbsp;<%= @loc.primaryPhone %>
-
-																<% unless @loc.primaryEmail.blank? %>
-																	<br/><br/>
-																	<strong>Email:</strong>&nbsp;<%= @loc.primaryEmail %>
-																<% end %>
-
-																<br/><br/>
-																<strong>Address:</strong><br/>
-																<%= @loc.address1 %>
-																<% unless @loc.address2.blank? %>
-																	<%= "<br/>".html_safe + @loc.address2 %>
-																<% end %>
-																<br/>
-																<%= @loc.city + ", " + @loc.state + " " + @loc.zip %>
-															</span>
-														</span>
-
-													</div>
-												</div>
-											<% end %>
-										</div>
-									</div>
-
-								</div>
-
-
-							</div><!-- timeline-item -->
-
-
-						<% end %>
+							<% end %>
 						<% end %>
 					</div> <!-- timeline-items -->
 
