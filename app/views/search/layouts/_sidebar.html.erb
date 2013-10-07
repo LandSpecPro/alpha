@@ -24,11 +24,11 @@
 					<!-- Search Query -->
 					<div class="span3">
 
-						<label class="lbl" for="distance_from">Search For</label>
-
 						<% if controller.action_name == 'supplier' %>
+							<label class="lbl" for="distance_from">By Company Name</label>
 							<%= render 'search/layouts/supplier_search_box' %>
 						<% elsif controller.action_name == 'product' %>
+							<label class="lbl" for="distance_from">By Item Name</label>
 							<%= render 'search/layouts/product_search_box' %>
 						<% end %>
 

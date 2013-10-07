@@ -1,6 +1,6 @@
 <div class="block input-icon input-icon-right">
 	<select id="query" name="query" class="chzn-select input-large span12" data-placeholder="Leave blank to search all suppliers...">
-		<option selected="selected">Search All</option>
+		<option selected="selected">All Featured Items</option>
 
 		<% FeaturedItem.where(:active => true).select('"commonName"').uniq.select(:location_id).order('"commonName" ASC').each do |fi| %>
 			<% if fi.is_visible %>

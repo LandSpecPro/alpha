@@ -290,7 +290,7 @@ module ApplicationHelper
 		elsif @controller == 'bus_buyers' and (@action == 'manage_company' or @action == 'update')
 			return "Company Management"
 		elsif @controller == 'products'
-			return "Products"
+			return "Featured Items"
 		elsif @controller == 'users' and @action == 'password_reset'
 			return "Password Reset"
 		elsif @controller == 'users' and @action == 'update'
@@ -329,7 +329,7 @@ module ApplicationHelper
 			end
 		elsif controller.controller_name == 'favorites'
 			if controller.action_name == 'products'
-				return " Products"
+				return " Featured Items"
 			elsif controller.action_name == 'vendors'
 				return " Suppliers"
 			else

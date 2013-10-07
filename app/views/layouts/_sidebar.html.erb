@@ -41,7 +41,7 @@
 					<% end %>
 						<a href=<%= locations_manage_url %>>
 							<i class="icon-globe"></i>
-							<span>Manage</span>
+							<span>Profile</span>
 						</a>
 					</li>
 				<% end %>
@@ -64,7 +64,7 @@
 						<% else %>
 							<li>
 						<% end %>
-								<a href=<%= search_product_url(:current_location => true) %>><i class="icon-double-angle-right"></i> Products</a>
+								<a href=<%= search_product_url(:current_location => true) %>><i class="icon-double-angle-right"></i> Featured Products</a>
 							</li>
 						<% if controller.action_name == 'supplier' %>
 							<li class="active">
