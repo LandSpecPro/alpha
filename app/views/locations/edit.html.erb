@@ -188,34 +188,6 @@
 
 <script type="text/javascript">
 
-	window.onbeforeunload = checkFormSubmissions;
-
-	function checkFormSubmissions(){
-		// 'loc_info' = Location Information
-		// 'loc_about' = About Section
-		// 'loc_cats' = Categories
-		// 'loc_fi' = Featured Items
-		// 'loc_profile' = Profile Settings
-		// 'loc_inventory' = New Inventory
-		// 'loc_multiple' = Multiple Fields Changed
-		if (form_change == 'loc_info')
-			return "You have unsaved changes to your location information!";
-		else if (form_change == 'loc_about')
-			return "You have unsaved changes to your About section!";
-		else if (form_change == 'loc_cats')
-			return "You have unsaved categories for this location!";
-		else if (form_change == 'loc_fi')
-			return "You have an unsaved featured item for this location!";
-		else if (form_change == 'loc_profile')
-			return "You have unsaved changes to your public profile settings!";
-		else if (form_change == 'loc_profile_url')
-			return "You have not saved your changes to your profile URL!";
-		else if (form_change == 'loc_inventory')
-			return "You have an unsaved inventory item for this location!";
-		else if (form_change == 'loc_multiple')
-			return "There are multiple unsaved changes to this location!";
-	};
-
 	$(applyChosenStyle());
 	$(applyMasks());
 	$(applyColorbox());	
@@ -244,8 +216,8 @@
 			html: true,
 			placement: "bottom",
 			container: "body",
-			title: '<span class="text-info"><strong>Brand New Inventory!</strong></span>',
-			content: "You can now "
+			title: '<span class="text-info"><strong>Upload Your Inventory!</strong></span>',
+			content: "You can now upload your inventory (in whatever format you prefer) directly to LandSpec Pro to share with your customers."
 		});
 
 		$('#tab_addons').popover('show');
@@ -255,16 +227,5 @@
 	<% end %>
 
 	var form_change = null;
-
-	function showRevertChanges(){
-		$('#revertChanges').fadeIn(500);
-	}
-
-	/*$('.loc_info_field').focus(function(){
-		if (checkFormSubmissions() != null){
-			alert(checkFormSubmissions());
-			$('.loc_info_field').blur();
-		}
-	})*/
 
 </script>
