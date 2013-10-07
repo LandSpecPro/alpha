@@ -261,12 +261,21 @@
 																</h2>
 															<% end %>
 															<span style="">
-																<strong>Primary Phone:</strong>&nbsp;<%= @loc.primaryPhone %>
+																<strong>Phone:</strong>&nbsp;<%= @loc.primaryPhone %>
 
 																<% unless @loc.primaryEmail.blank? %>
 																	<br/><br/>
-																	<strong>Primary Email:</strong>&nbsp;<%= @loc.primaryEmail %>
+																	<strong>Email:</strong>&nbsp;<%= @loc.primaryEmail %>
 																<% end %>
+
+																<br/><br/>
+																<strong>Address:</strong><br/>
+																<%= @loc.address1 %>
+																<% unless @loc.address2.blank? %>
+																	<%= "<br/>".html_safe + @loc.address2 %>
+																<% end %>
+																<br/>
+																<%= @loc.city + ", " + @loc.state + " " + @loc.zip %>
 															</span>
 														</span>
 

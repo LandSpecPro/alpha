@@ -2,19 +2,19 @@
 // to display that gritter. This way each gritter is its own function that can be styled and updated independently.
 function showGritter(gritter){
 	if(gritter == 'new_user_add_location'){
-		gritterNewUserAddLocation();
+		//gritterNewUserAddLocation();
 	}
 	else if(gritter == 'multiple_location_names'){
-		gritterMultipleLocationNames();
+		//gritterMultipleLocationNames();
 	}
 	else if (gritter == 'update_helppage'){
-		gritterUpdateHelpPage();
+		//gritterUpdateHelpPage();
 	}
 	else if (gritter == 'update_publicprofiles'){
-		gritterUpdatePublicProfiles();
+		//gritterUpdatePublicProfiles();
 	}
 	else if (gritter == 'update_newsearch'){
-		gritterUpdateNewSearch();
+		//gritterUpdateNewSearch();
 	}
 }
 
@@ -64,10 +64,10 @@ function gritterUpdateNewSearch(){
 }
 
 function showUpdateSuccessGritter(updated){
-	$.gritter.add({
+	/*$.gritter.add({
 		title: 'Success!',
 		text: updated,
 		class_name: 'gritter-info gritter-dark', 
 		time: 1200
-	});
+	});*/
 }
