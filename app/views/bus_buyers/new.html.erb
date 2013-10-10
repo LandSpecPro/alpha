@@ -41,23 +41,12 @@
                     <i class="icon-briefcase"></i>
                   </span>
 
-                  <!--[if lt IE 10]>Business Tagline:<![endif]-->
-                  <span class="block input-icon input-icon-right">
-                    <%= f.text_field :tagline, :class => 'span12', :placeholder => "Business Tagline (optional)" %>
-                    <i class="icon-tag"></i>
-                  </span>
-
                   <!--[if lt IE 10]>Phone Number:<![endif]-->
                   <span class="block input-icon input-icon-right">
                     <%= f.text_field :busPhone, :class => 'span12 input-mask-phone popover-phone', :placeholder => "Phone Number" %>
                     <i class="icon-phone"></i>
                   </span>
 
-                  <i>Optional business logo:</i>
-                  <%= f.file_field :logo %>
-
-                  <br/><br/>
-                  
                   <div class="row-fluid">
                   <div class="pull-right">
                     <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
