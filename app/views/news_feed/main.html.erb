@@ -80,7 +80,10 @@
 								<% elsif i.item_type == NEW_SUPPLIER %>
 									<%= render 'news_feed/newsupplier_item', :i => i %>
 								<% elsif i.item_type == NEW_FEATURED_ITEM %>
-									<%= render 'news_feed/newfeatureditem_item', :i => i %>
+									<% @fi = FeaturedItem.find(i.item_id) %>
+									<% if @fi.active %>
+										<%= render 'news_feed/newfeatureditem_item', :i => i %>
+									<% end %>
 								<% elsif i.item_type == NEW_LOCATION %>
 									<%= render 'news_feed/newlocation_item', :i => i %>
 								<% end %>
