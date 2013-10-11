@@ -5,11 +5,7 @@ class HomeController < ApplicationController
 	def root
 
 		if current_user
-			if current_user.is_vendor
-				redirect_to locations_manage_url
-			else
-				redirect_to search_product_url
-			end
+			redirect_to main_url
 		else
 			redirect_to home_url
 		end
