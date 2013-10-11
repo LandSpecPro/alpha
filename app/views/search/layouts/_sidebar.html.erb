@@ -81,39 +81,47 @@
 								<select id="categories[]" name="categories[]" class="chzn-select input-large span12" multiple="multiple" data-placeholder="Leave blank to search all categories...">
 
 									<% if params[:categories].blank? %>
-										<option>Plants</option>
+										<option style="font-weight:bold;">Plants</option>
 									<% elsif params[:categories].include? 'Plants' %>
-										<option selected="selected">Plants</option>
+										<option style="font-weight:bold;" selected="selected">Plants</option>
 									<% else %>
-										<option>Plants</option>
+										<option style="font-weight:bold;">Plants</option>
 									<% end %>
 
 									<% Category.where(:active => true, :parent_id => 1).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
-										<% if params[:categories].blank? %>
-											<option><%= cat.cat_name %></option>
-										<% elsif params[:categories].include? cat.cat_name %>
-											<option selected="selected"><%= cat.cat_name %></option>
-										<% else %>
-											<option><%= cat.cat_name %></option>
+
+										<% if CategoryToLocation.where(:category_id => cat.id).count > 0 %>
+											<% if params[:categories].blank? %>
+												<option><%= cat.cat_name %></option>
+											<% elsif params[:categories].include? cat.cat_name %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
 										<% end %>
+
 									<% end %>
 
 									<% if params[:categories].blank? %>
-										<option>Materials</option>
+										<option style="font-weight:bold;">Materials</option>
 									<% elsif params[:categories].include? 'Materials' %>
-										<option selected="selected">Materials</option>
+										<option style="font-weight:bold;" selected="selected">Materials</option>
 									<% else %>
-										<option>Materials</option>
+										<option style="font-weight:bold;">Materials</option>
 									<% end %>
 
-									<% Category.where(:active => true, :parent_id => 2).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
-										<% if params[:categories].blank? %>
-											<option><%= cat.cat_name %></option>
-										<% elsif params[:categories].include? cat.cat_name %>
-											<option selected="selected"><%= cat.cat_name %></option>
-										<% else %>
-											<option><%= cat.cat_name %></option>
+									<% Category.where(:active => true, :parent_id => 2).order('"cat_name" ASC').each do |cat| %>
+
+										<% if CategoryToLocation.where(:category_id => cat.id).count > 0 %>
+											<% if params[:categories].blank? %>
+												<option><%= cat.cat_name %></option>
+											<% elsif params[:categories].include? cat.cat_name %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
 										<% end %>
+
 									<% end %>
 								</select>
 
