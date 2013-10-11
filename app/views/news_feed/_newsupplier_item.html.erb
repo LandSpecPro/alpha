@@ -15,10 +15,25 @@
 		<!-- Header -->
 		<div class="widget-header widget-header-small">
 
+			<% 
+				if User.find(i.user_id).bus_vendor.locations.count == 1
+					@supplierurl = locations_view_url(:id => User.find(i.user_id).bus_vendor.locations.first.id)
+				elsif User.find(i.user_id).bus_vendor.locations.count > 1
+					@supplierurl = search_supplier_url(:query => User.find(i.user_id).bus_vendor.busName, :view => 'list')
+				else
+					@supplierurl = '#'
+				end
+			%>
 			<!-- Text -->
 			<h5>
 				<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
-				<span class="grey"><%= User.find(i.user_id).bus_vendor.busName %> just joined LandSpec Pro!</span>
+				<span class="grey">
+					<% unless @supplierurl == '#' %>
+						<a href="<%= @supplierurl %>"><%= User.find(i.user_id).bus_vendor.busName %></a>
+					<% else %>
+						<%= User.find(i.user_id).bus_vendor.busName %>
+					<% end %>
+					&nbsp;just joined LandSpec Pro!</span>
 			</h5>
 
 			<!-- Timestamp 
