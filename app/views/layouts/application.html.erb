@@ -28,100 +28,31 @@
 
   </script>
 
-  <style>
-
-    #button-request-invite{
-      padding-top:10px;
-      margin-top:-12px;
-      padding-bottom:10px;
-      margin-bottom:-10px;
-    }
-
-    @media (max-width: 422px) {
-
-      #button-request-invite{
-        margin-top:0;
-        margin-bottom:0;
-        padding-top:0;
-        padding-bottom:0;
-      }
-
-    }
-
-  </style>
-
-
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI&sensor=true">
   </script>
 
 </head>
 <body>
-  
 
-  <div class="navbar navbar-inverse">
-    
-    <div class="navbar-inner">
-     <div class="container-fluid">
-<span id="top"></span>
+  <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="navbar-main">
 
-      <a class="brand" href=<%= home_url %>><%= image_tag("brand-image.png", :id => "brand-image") %> <span id="brand-title">LandSpec Pro</span></a>
-      <ul class="nav ace-nav pull-right">
-        <% if current_user %>
-          <li class="green">
+      <div class="navbar-header">
 
-            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-              <span class="user-info">
-                <small>Logged in as,</small>
-                <center><%= current_user.login %></center>
-              </span>
+        <span id="top"></span>
 
-              <i class="icon-caret-down"></i>
-            </a>
+        <a class="navbar-brand" href="<%= home_url %>">
+          <%= image_tag("brand-image.png", :id => "brand-image") %> <span id="brand-title"  style="color: #fff;">LandSpec Pro</span>
+        </a>
 
-            <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-              <% if current_user.is_vendor %>
-                <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Profile</a></li>
-              <% end %>
+        <ul class="nav ace-nav pull-right">
 
-              <li><a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a></li>
 
-              <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
 
-              <li class="dropdown-submenu">
-                <a href="#"><i class="icon-search"> Search</i></a>
-                <ul class="dropdown-menu">
-                  <li><a href="<%= search_product_url(:current_location => true) %>">Featured Products</a></li>
-                  <li><a href="<%= search_supplier_url(:current_location => true) %>">Suppliers</a></li>
-                </ul>
-              </li>
-
-              <li class="dropdown-submenu">
-                <a href="#"><i class="icon-star"> Favorites</i></a>
-                <ul class="dropdown-menu">
-                  <li><a href="<%= favorites_products_url %>">Products</a></li>
-                  <li><a href="<%= favorites_vendors_url %>">Suppliers</a></li>
-                </ul>
-              </li>
-
-              <li class="divider"></li>
-              <li><a href=<%= help_url %>><i class="icon-question-sign"></i> Help</a></li>
-              <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
-            </ul>
-          </li>
-        <% else %>
-          <li class="green">
-            <%= link_to "Login", login_url, :style => 'font-size:15px; margin-left:10px; margin-right:10px;' %>
-          </li>
-          <li class="blue" id="button-request-invite">
-            <%= link_to "Register", register_url, :style => 'font-size:15px; margin-left:10px; margin-right:10px;' %>
-          </li>
-
-        <% end %>
+        </ul>
 
       </ul><!--/.ace-nav-->
 
-     </div><!--/.container-fluid-->
     </div><!--/.navbar-inner-->
   </div><!--/.navbar-->
 
@@ -134,16 +65,17 @@
 
   <%= yield %>
 
-  <div id="feedbackFooter" class="navbar navbar-fixed-bottom">
+<!--
+  <div id="feedbackFooter" class="navbar navbar-default navbar-fixed-bottom" style="background:transparent;">
 
     <div class="pull-right" style="margin-right:10px;">
       
-      <a class="btn btn-mini btn-primary" data-toggle="modal" href="#feedbackModal"><i class='icon-comments'></i> Feedback</a>
+      <a class="btn btn-mini btn-primary" data-toggle="modal" ><i class='icon-comments'></i> Feedback</a>
     </div>
         
   </div>
-
-  <%= render 'layouts/feedbackmodal' %>
+-->
+  
 
 </div>
 

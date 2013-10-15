@@ -1,42 +1,57 @@
-<form id="feedbackForm" method="post" action="/feedback/submit">
+<form id="feedbackForm" method="post" action="/feedback/submit" class="form-horizontal" role="form">
 
-	<div id="feedbackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div id="feedbackModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	
-		<div class="modal-header header-color-green2">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3 style="color:#fff;">Feedback</h3>
-		</div>
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-		<div class="modal-body">
-			<p>Your feedback is very important to us. We'd love to hear from you whether it be requested features, problems with the site, things you don't like, or even if you just want to tell us you love the site right now. We appreciate hearing from you.</p>
-
-			<div class="row-fluid">
-
-				<%= hidden_field_tag(:page_title,  content_for?(:title) ? content_for(:title) : "Can't get page title...") %>
-				
-				<div class="block input-icon input-icon-right">
-					<strong>*Name:</strong> <%= text_field_tag :name, '', :id => "name", :class => 'span12' %>
+				<div class="modal-header header-color-green2">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" style="color:#fff;">Feedback</h4>
 				</div>
 
-				<div class="block input-icon input-icon-right">
-					<% if current_user %>
-						<strong>*Email:</strong><%= text_field_tag :email, current_user.email, :class => 'span12', :readonly => 'true' %>
-					<% else %>
-						<strong>*Email:</strong><%= text_field_tag :email, '', :class => 'span12' %>
-					<% end %>					
+				<div class="modal-body">
+					<p>Your feedback is very important to us. We'd love to hear from you whether it be requested features, problems with the site, things you don't like, or even if you just want to tell us you love the site right now. We appreciate hearing from you.</p>
+
+					<div class="row-fluid">
+
+						<%= hidden_field_tag(:page_title,  content_for?(:title) ? content_for(:title) : "Can't get page title...") %>
+
+						<div class="form-group">
+							<label for="name" class="col-md-2 control-label"><strong>*Name:</strong></label>
+							<div class="col-md-10">
+								<%= text_field_tag :name, '', :id => "name", :class => "form-control" %>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="col-md-2 control-label"><strong>*Email:</strong></label>
+							<div class="col-md-10">
+								<% if current_user %>
+									<%= text_field_tag :email, current_user.email, :readonly => 'true', :class => "form-control" %>
+								<% else %>
+									<%= text_field_tag :email, '' %>
+								<% end %>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="feedback" class="col-md-2 control-label"><strong>*Feedback:</strong></label>
+							<div class="col-md-10">
+								<%= text_area_tag :feedback, '', :class => "form-control", :style => 'resize: none;', :rows => '10' %>
+							</div>
+						</div>
+
+					</div>
+
 				</div>
 
-				<span class="block input-icon input-icon-right">
-					<strong>*Feedback:</strong><%= text_area_tag :feedback, '', :class => 'span12', :style => 'resize: none;', :rows => '6' %>
-				</span>
+				<div class="modal-footer header-color-green2" style="boder-radius:none; margin-bottom:-5px;">
+					<button class="btn btn-success" data-dismiss="modal">Close</button>
+					<button class="btn btn-info" type="submit">Submit</button>
+				</div>
 
 			</div>
-
-		</div>
-
-		<div class="modal-footer header-color-green2" style="boder-radius:none; margin-bottom:-5px;">
-			<button class="btn btn-success" data-dismiss="modal">Close</button>
-			<button class="btn btn-info" type="submit">Submit</button>
 		</div>
 
 	</div>
