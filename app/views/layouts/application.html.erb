@@ -35,7 +35,7 @@
 </head>
 <body>
 
-  <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="navbar-main">
+  <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="navbar-main" style="position: relative;">
 
       <div class="navbar-header">
 
@@ -45,15 +45,71 @@
           <%= image_tag("brand-image.png", :id => "brand-image") %> <span id="brand-title"  style="color: #fff;">LandSpec Pro</span>
         </a>
 
-        <ul class="nav ace-nav pull-right">
+      </div><!--/.navbar-header-->
 
+      <% if current_user %>
+      <div class="navbar-header pull-right" role="navigation">
+        <ul class="nav ace-nav navbar-right">
 
+          <li class="green" id="navbar-right-container-logged-in">
+
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="logged-in-dropdown">
+              <span class="user-info">
+                <small>Logged in as,</small>
+                <center><%= current_user.login %></center>
+              </span>
+
+              <i class="icon-caret-down"></i>
+            </a>
+
+            <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer" style="margin-right:12px; margin-top:10px;">
+              <% if current_user.is_vendor %>
+                <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
+              <% end %>
+
+              <li><a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a></li>
+
+              <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
+
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-search"> Search</i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= search_product_url(:current_location => true) %>">Products</a></li>
+                  <li><a href="<%= search_supplier_url(:current_location => true) %>">Suppliers</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-star"> Favorites</i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= favorites_products_url %>">Products</a></li>
+                  <li><a href="<%= favorites_vendors_url %>">Suppliers</a></li>
+                </ul>
+              </li>
+
+              <li class="divider"></li>
+              <li><a href=<%= help_url %>><i class="icon-question-sign"></i> Help</a></li>
+              <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </li>
 
         </ul>
+      </div>
+      <% else %>
+       <ul class="nav ace-nav navbar-nav navbar-right" id="navbar-right-container">
+            <li class="green" id="navbar-btn-login">
+              <a href="<%= login_url %>" style="font-size:15px;">Login</a>
+            </li>
+            <li class="blue" id="navbar-btn-register">
+              <a href="<%= register_url %>" style="font-size:15px;">Register</a>
+            </li>
 
-      </ul><!--/.ace-nav-->
 
-    </div><!--/.navbar-inner-->
+          </ul>
+
+        </ul><!--/.ace-nav-->
+      <% end %>
+
   </div><!--/.navbar-->
 
   <!-- Customer IO global variable. Make sure this works. -->

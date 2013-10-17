@@ -1,6 +1,6 @@
 
 html { height: 100% }
-body { height: 100%;  margin-bottom: -50px;}
+body { height: 100%; margin: 0; padding: 0 }
 #result-map { height: 100%;}
 
 $brand-color: #2e893f;
@@ -13,60 +13,18 @@ $brand-color-lighten-ten-percent: lighten($brand-color, 10%);
 
 #navbar-main{
 	background: $brand-color;
-	padding-top:10px;
-	padding-bottom:5px;
+	padding-top:12px;
+	padding-bottom:8px;
 	border: none;
 }
 
 #brand-image{
-	max-height: 30px;
+	max-height: 40px;
 	padding: 0;
+	margin-top:-11px;
+	margin-bottom:-6px;
 	padding-right: 5px;
-	margin-left: -15px;
-}
-.navbar-brand{
-	max-height: 50px;
-	margin-top: -5px;
-}
-
-#brand-title{
-	color: #fff;
-	font-size: 22px;
-	max-height: 22px;
-}
-
-// RIGHT SIDE OF NAVBAR IF LOGGED IN
-#logged-in-dropdown{
-	background-color: $brand-color;
-}
-
-// RIGHT SIDE OF NAVBAR
-#navbar-right-container{
-	margin-top:-12px; 
-	margin-right:20px;
-	margin-bottom:-8px;
-}
-
-// LOGIN BUTTON IN NAVBAR
-#navbar-btn-login{
-	padding-left:10px;
-	padding-right:10px;
-	padding-top:32px;
-	height:100%;
-	min-height:65px;
-}
-
-// REGISTER BUTTON IN NAVBAR
-#navbar-btn-register{
-	padding-left:10px;
-	padding-right:10px;
-	padding-top:32px;
-	min-height:65px;
-}
-
-#navbar-btn-register:hover,
-#navbar-btn-login:hover{
-	background-color: $brand-color-darken-five-percent;
+	padding-left: 20px;
 }
 
 .infobox-custom{

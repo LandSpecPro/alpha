@@ -1,187 +1,79 @@
-
-/* CUSTOMIZE THE CAROUSEL
-    -------------------------------------------------- */
-/* Carousel base class */
-.carousel {
-  margin-bottom: 15px;
-  margin-top: 50px;
-  box-shadow: 0 15px 30px #bfbfbf;
-
-  /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-
+body {
+  padding-bottom: 40px;
 }
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
+
+/*
+ Customize the Carousel
+*/
+.carousel{
+  margin-bottom: 15px;
+  margin-top: 0;
+  box-shadow: 0 15px 30px #bfbfbf;
+}
+
+.carousel-caption{
   z-index: 10;
 }
 
-/* Declare heights because of positioning of img element */
 .carousel .item {
   height: 500px;
-  background-color: #777;
 }
+
 .carousel-inner > .item > img {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 100%;
+  min-width: 1920px;
   min-height: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%
+  overflow: hidden;
 }
 
 .carousel-control {
-  font-size: 120px;
-  text-shadow: 0 1px 1px rgba(0,0,0,.4);
-  background-color: transparent;
-  border: 0;
-  z-index: 10;
-}
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .span4 {
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .span4 p {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-.featurette {
-  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
-  overflow: hidden; /* Vertically center images part 2: clear their floats. */
-}
-.featurette-image {
-  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
-}
-
-/* Give some space on the sides of the floated elements so text doesn't run right into it. */
-.featurette-image.pull-left {
-  margin-right: 40px;
-}
-.featurette-image.pull-right {
-  margin-left: 40px;
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-size: 50px;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
+  padding-top: 200px;
+  font-size: 100px;
+  width: 5%;
 }
 
 #content-over-carousel{
-    position:absolute; 
-    top:-20px; 
-    right:170px;
-  }
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (max-width: 979px) {
-
-  .carousel{
-    box-shadow: 0 15px 30px #bfbfbf;
-    margin-bottom: 15px;
-  }
-
-  .carousel .container{
-    box-shadow: none;
-    padding-bottom: -30px;
-  }
-
-  .container.navbar-wrapper {
-    margin-bottom: 0;
-    
-  }
-  .navbar-inner {
-    border-radius: 0;
-    margin: -20px 0;
-  }
-
-  .carousel .item {
-    height: 500px;
-  }
-  .carousel img {
-    top: 0px;
-    left: -150px;
-    width: auto;
-    box-shadow: 0 0 30px #000;
-  }
-
-  .featurette {
-    height: auto;
-    padding: 0;
-  }
-  .featurette-image.pull-left,
-  .featurette-image.pull-right {
-    display: block;
-    float: none;
-    max-width: 40%;
-    margin: 0 auto 20px;
-  }
-
-  #content-over-carousel{
-    position:absolute; 
-    top:-50px; 
-    right:70px;
-  }
+  position:absolute; 
+  top:100px; 
+  right:170px;
 }
 
+#carousel-header{
+  font-size:50px; 
+  text-align:right; 
+  text-shadow: 3px 3px 3px #000;
+}
 
-@media (max-width: 767px) {
+#carousel-newsletter-header{
+  font-size:27px; 
+  text-align:right; 
+  text-shadow: 3px 3px 3px #000;
+}
 
-  .carousel {
-    margin-left: -10px;
-    margin-right: -10px;
-    box-shadow: 0 15px 30px #bfbfbf;
-  }
-  .carousel .container {
-    width: 90%;
-    padding-top:10px;
-
-  }
-  .carousel .item {
-    height: 450px;
-
-  }
-  .carousel img {
-    height: 350px;
-    width: auto;
-    box-shadow: 0 0 30px #000;
-  }
-
-  .marketing .span4 + .span4 {
-    margin-top: 40px;
-  }
-
-  .featurette-heading {
-    font-size: 30px;
-  }
-  .featurette .lead {
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
+@media (max-width: 768px) {
   #content-over-carousel{
-    position:absolute; 
-    top:50px; 
-    right:20px;
+    position:absolute;
+    top:75px;
+    right:100px;
   }
 
+  #carousel-header{
+    font-size:35px; 
+    text-align:right; 
+    text-shadow: 3px 3px 3px #000;
+  }
+
+  #carousel-newsletter-header{
+    font-size:22px;
+    text-align:right; 
+    text-shadow: 3px 3px 3px #000;
+  }
+
+  #carousel-newsletter-button{
+    width: 100%;
+  }
 }
