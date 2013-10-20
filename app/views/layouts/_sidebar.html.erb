@@ -6,10 +6,10 @@
 			<!--
 			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 				<div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large">
-					<button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
-					<button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
-					<button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
-					<button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
+					<button class="btn btn-sm btn-success"><i class="icon-signal"></i></button>
+					<button class="btn btn-sm btn-info"><i class="icon-pencil"></i></button>
+					<button class="btn btn-sm btn-warning"><i class="icon-group"></i></button>
+					<button class="btn btn-sm btn-danger"><i class="icon-cogs"></i></button>
 				</div>
 				<div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
 					<span class="btn btn-success"></span>
@@ -28,7 +28,7 @@
 				<% end %>
 					<a href="<%= main_url %>">
 						<i class="icon-hdd"></i>
-						<span>News Feed</span>
+						<span class="menu-text">News Feed</span>
 					</a>
 				</li>
 
@@ -41,7 +41,7 @@
 					<% end %>
 						<a href=<%= locations_manage_url %>>
 							<i class="icon-globe"></i>
-							<span>Profile</span>
+							<span class="menu-text">Profile</span>
 						</a>
 					</li>
 				<% end %>
@@ -114,7 +114,7 @@
 				<% end %>
 					<a href=<%= account_company_url %>>
 						<i class="icon-briefcase"></i>
-						<span>Company</span>
+						<span class="menu-text">Company</span>
 					</a>
 				</li>
 
@@ -125,36 +125,9 @@
 				<% end %>
 					<a href=<%= account_url %>>
 						<i class="icon-cog"></i>
-						<span>Account</span>
+						<span class="menu-text">Account</span>
 					</a>
 				</li>
-								<!--
-					  <a href="#" class="dropdown-toggle" >
-						<i class="icon-globe"></i>
-						<span>Locations</span>
-						<b class="arrow icon-angle-down"></b>
-					  </a>
-					  <ul class="submenu">
-
-					<% if controller.controller_name == 'locations' and controller.action_name == 'manage' %>
-						<li class="active">
-					<% else %>
-						<li>
-					<% end %>
-							<a href=<%= locations_manage_url %>><i class="icon-double-angle-right"></i> Manage</a>
-						</li>
-					<% if controller.controller_name == 'locations' and controller.action_name == 'new' %>
-						<li class="active">
-					<% else %>
-						<li>
-					<% end %>
-							<a href=<%= locations_new_url %>><i class="icon-double-angle-right"></i> New</a>
-						</li>
-					  </ul>
-					</li>
-				-->
-
-				
 
 			</ul><!--/.nav-list-->
 
@@ -164,7 +137,7 @@
 		</div><!--/#sidebar-->
 
 	
-		<div id="main-content" class="main-content">
+		<div class="main-content">
 <!--
 			<div class="breadcrumbs" id="breadcrumbs">
 				<script type="text/javascript">
@@ -187,7 +160,7 @@
 				</ul>
 			</div>
 -->
-			<div id="page-content" class="page-content">
+			<div class="page-content">
 
 				<div class="page-header">
 
@@ -199,9 +172,7 @@
 							</small>
 						<% end %>
 
-						<%= render 'layouts/headeraction' %>
-
-					
+					<%= render 'layouts/headeraction' %>
 					
 				</div><!--/page-header-->
 

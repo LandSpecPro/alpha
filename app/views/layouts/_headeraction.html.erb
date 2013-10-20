@@ -4,9 +4,9 @@
 
 		<div class="pull-right">
 			<div class="btn-group">
-				<a href=<%= locations_view_url(:id => params[:id]) %>><button class="btn btn-success btn-small" style="margin-right:10px;">View Location</button></a>
+				<a href=<%= locations_view_url(:id => params[:id]) %>><button class="btn btn-success btn-sm" style="margin-right:10px;">View Location</button></a>
 				<% if @location.public_url_active and not @location.public_url.blank? %>
-					<a href="http://www.landspecpro.com/profiles/<%=@location.public_url %>" target="_blank"><button class="btn btn-primary btn-small" style="margin-right:10px;">View Public Profile</button></a>
+					<a href="http://www.landspecpro.com/profiles/<%=@location.public_url %>" target="_blank"><button class="btn btn-primary btn-sm" style="margin-right:10px;">View Public Profile</button></a>
 				<% end %>
 			</div>
 		</div>
@@ -18,10 +18,10 @@
 			<div class="pull-right">
 				<div class="btn-group">
 					<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
-						<a href=<%= locations_edit_url(:id => params[:id]) %>><button class="btn btn-success btn-small" style="margin-right:10px;">Edit Location</button></a>
+						<a href=<%= locations_edit_url(:id => params[:id]) %>><button class="btn btn-success btn-sm" style="margin-right:10px;">Edit Location</button></a>
 					<% end %>
 					<% if @location.public_url_active and not @location.public_url.blank? and @location.active %>
-						<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank"><button class="btn btn-primary btn-small" style="margin-right:10px;">View Public Profile</button></a>
+						<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank"><button class="btn btn-primary btn-sm" style="margin-right:10px;">View Public Profile</button></a>
 					<% end %>
 				</div>
 			</div>
@@ -37,10 +37,10 @@
 	<div class="pull-right">
 		<div class="btn-group">
 			<a href=<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %> title="Delete" class="white" id="white-link">
-				<button class="btn btn-success btn-small">Delete this Product</button>
+				<button class="btn btn-success btn-sm">Delete this Product</button>
 			</a>
 			<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" title="View" class="white" id="white-link">
-				<button class="btn btn-success btn-small">Preview</button>
+				<button class="btn btn-success btn-sm">Preview</button>
 			</a>
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 		<div class="pull-right">
 			<div class="btn-group">
 				<a href=<%= products_edit_url(:id => @featureditem.id) %> title="Edit" class="white" id="white-link">
-					<button class="btn btn-success btn-small">Edit</button>
+					<button class="btn btn-success btn-sm">Edit</button>
 				</a>
 			</div>
 		</div>
@@ -66,11 +66,11 @@
 		<div class="btn-group">
 			<% if params[:view] == 'list' %>
 				<a href=<%= favorites_products_url(params.merge(:view => 'grid')) %>>
-					<button class="btn btn-success btn-small" style="margin-right:10px;">Grid View</button>
+					<button class="btn btn-success btn-sm" style="margin-right:10px;">Grid View</button>
 				</a>
 			<% elsif params[:view] == 'grid' %>
 				<a href=<%= favorites_products_url(params.merge(:view => 'list')) %>>
-					<button class="btn btn-success btn-small" style="margin-right:10px;">List View</button>
+					<button class="btn btn-success btn-sm" style="margin-right:10px;">List View</button>
 				</a>
 			<% end %>
 		</div>

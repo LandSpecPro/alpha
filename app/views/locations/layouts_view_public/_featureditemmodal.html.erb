@@ -1,70 +1,75 @@
-<div id="<%= @featureditem.id.to_s + 'productInfoModal' %>" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="<%= @featureditem.id.to_s + 'productInfoModal' %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 
-	<div class="modal-header header-color-green2">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 style="color:#fff;"><%= @featureditem.get_product.commonName %>&nbsp;</h3>
-	</div>
-
-	<div class="modal-body">
-
-		<div class="center">
-			<%= image_tag @featureditem.get_image.url(:medium) %>
-		</div>
-
-		<br/>
-
-		<div class="profile-user-info profile-user-info-striped">
-
-
-			<!--
-				Do a check on categories here. If category is plant do the following. If it is not a plant, do
-				the alternate name and product name instead of common name and latin name
-			-->
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Name </div>
-
-				<div class="profile-info-value">
-					<span id="commonName"><%= @featureditem.get_product.commonName %>&nbsp;</span>
-				</div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header header-color-green2">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 class="modal-title" style="color:#fff;"><%= @featureditem.get_product.commonName %>&nbsp;</h3>
 			</div>
 
-			<% if @locsettings.show_featured_items_price %>
-				<div class="profile-info-row">
-					<div class="profile-info-name"> Price </div>
+			<div class="modal-body">
 
-					<div class="profile-info-value">
-						<span id="price">
-							<%= unless @featureditem.price.to_f < 0.01 
-									"$%8.2f" % @featureditem.price.to_f 
-								end %>
-							&nbsp;
-						</span>
-					</div>
+				<div class="center">
+					<%= image_tag @featureditem.get_image.url(:medium) %>
 				</div>
-			<% end %>
 
-			<% if @locsettings.show_featured_items_size %>
-				<div class="profile-info-row">
-					<div class="profile-info-name"> Size </div>
+				<br/>
 
-					<div class="profile-info-value">
-						<span id="size"><%= @featureditem.size %>&nbsp;</span>
+				<div class="profile-user-info profile-user-info-striped">
+
+
+					<!--
+						Do a check on categories here. If category is plant do the following. If it is not a plant, do
+						the alternate name and product name instead of common name and latin name
+					-->
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Name </div>
+
+						<div class="profile-info-value">
+							<span id="commonName"><%= @featureditem.get_product.commonName %>&nbsp;</span>
+						</div>
 					</div>
+
+					<% if @locsettings.show_featured_items_price %>
+						<div class="profile-info-row">
+							<div class="profile-info-name"> Price </div>
+
+							<div class="profile-info-value">
+								<span id="price">
+									<%= unless @featureditem.price.to_f < 0.01 
+											"$%8.2f" % @featureditem.price.to_f 
+										end %>
+									&nbsp;
+								</span>
+							</div>
+						</div>
+					<% end %>
+
+					<% if @locsettings.show_featured_items_size %>
+						<div class="profile-info-row">
+							<div class="profile-info-name"> Size </div>
+
+							<div class="profile-info-value">
+								<span id="size"><%= @featureditem.size %>&nbsp;</span>
+							</div>
+						</div>
+					<% end %>
+
+					<% if @locsettings.show_featured_items_description %>
+						<div class="profile-info-row">
+							<div class="profile-info-name"> Description </div>
+
+							<div class="profile-info-value">
+								<span id="description" style="word-wrap:break-word;"><%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>&nbsp;</span>
+							</div>
+						</div>
+					<% end %>
+
 				</div>
-			<% end %>
-
-			<% if @locsettings.show_featured_items_description %>
-				<div class="profile-info-row">
-					<div class="profile-info-name"> Description </div>
-
-					<div class="profile-info-value">
-						<span id="description" style="word-wrap:break-word;"><%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>&nbsp;</span>
-					</div>
-				</div>
-			<% end %>
-
+				
+			</div>
 		</div>
-		
+
 	</div>
 
 </div>

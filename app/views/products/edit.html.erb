@@ -1,9 +1,9 @@
 <%- title "Edit " + @featureditem.get_product.commonName + " | LandSpec Pro" %>
 <%= render 'layouts/sidebar' %>
 
-<div class="row-fluid">
+<div class="row">
 
-	<div class="span12 center">
+	<div class="col-lg-5 col-xs-12 col-xs-push-12 center">
 
 		<h1 class="font-marmelad-black"><%= @product.commonName %></h1>
 
@@ -13,13 +13,10 @@
 
 	</div>
 
-</div>
 
-<br/>
+	<div class="col-lg-5 col-md-10 col-md-offset-1 col-xs-12 col-xs-pull-12">
 
-<div class="row-fluid">
-
-	<div class="span6 offset3">
+		<br/><br/><br/><br/>
 
 		<%= form_for @featureditem, :url => {:action => :update_featured_item, :controller => :locations}, :html => {:id => 'form_update_featured_item'} do |f| %>
 			<div class="widget-box">
@@ -39,8 +36,8 @@
 
 						<!-- Display error messages as alerts -->
 						<% @featureditem.errors.full_messages.each do |msg| %>
-							<div class="alert alert-error center">
-							  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							<div class="alert alert-danger center">
+							  <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 							  <strong>Error! </strong> <%= msg %>
 							</div>
 						<% end %>
@@ -49,30 +46,39 @@
 
 							<%= hidden_field_tag(:id,  @featureditem.id) %>
 
-							Description (optional):
-							<div class="block input-icon input-icon-right">
-								<%= f.text_area :description, :class => 'span12', :id => 'description', :value => @featureditem.description, :rows => '3', :style => 'resize: none;' %>
-							</div>
-
-							<div class="row-fluid">
-								<div class="span6">
-									Size (optional):
-									<div class="block input-icon input-icon-right">
-										<%= f.text_field :size, :class => 'span12', :id => 'size', :value => @featureditem.size %>
-									</div>
-								</div>
-								<div class="span3 offset1">
-									Price (optional):
-									<div class="block">
-										<%= f.text_field :price, :class => 'span12 input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f %>
-										
-									</div>
+							<div class="form-group">
+								Description (optional):
+								<div class="block input-icon input-icon-right">
+									<%= f.text_area :description, :class => 'form-control', :id => 'description', :value => @featureditem.description, :rows => '3', :style => 'resize: none;' %>
 								</div>
 							</div>
 
-							Image: 
-							<div class="block input-icon input-icon-right">
-								<%= f.file_field :image, :class => 'span12', :id => 'image' %>
+							<div class="row">
+							
+								<div class="col-xs-6">
+									<div class="form-group">
+										Size (optional):
+										<div class="block input-icon input-icon-right">
+											<%= f.text_field :size, :class => 'form-control', :id => 'size', :value => @featureditem.size %>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-xs-3 col-xs-offset-1">
+									<div class="form-group">
+										Price (optional):
+										<div class="block">
+											<%= f.text_field :price, :class => 'form-control input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f %>
+											
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								Image: 
+								<%= f.file_field :image %>
 							</div>
 
 						</fieldset>
@@ -105,6 +111,15 @@
 	$(applyColorbox());
 	$(applyPopovers());
 	$(applyMasks());
+
+	$('#ace-file-upload').ace_file_input({
+      no_file:'Optional Business Logo Upload...',
+      btn_choose:'Choose',
+      btn_change:'Change',
+      icon_remove:null,
+      droppable:false,
+      thumbnail:false
+    });
 
 	// Success messages
 	<% if params[:update_featured_item_success] %>

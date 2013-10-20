@@ -8,17 +8,17 @@
 
 	<div class="widget-body">
 		<div class="widget-main">
-			<div class="row-fluid">
+			<div class="row">
 
 				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
 
-						<div class="span4">
+						<div class="col-sm-4 col-xs-12">
 
 							<ul class="ace-thumbnails">
 								<li>
 									<span>
 
-										<img src="<%= fi.get_image.url(:medium) %>" title="<%= fi.get_product.commonName %>"/>
+										<img src="<%= fi.get_image.url(:medium) %>" title="<%= fi.get_product.commonName %>" style="max-height:100%; max-width:100%; display:block; margin:auto;"/>
 
 										<div class="text">
 											<div class="inner">

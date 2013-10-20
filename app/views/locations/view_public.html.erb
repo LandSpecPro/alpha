@@ -27,8 +27,8 @@
 
 
 		<% unless current_user %>
-			<div class="row-fluid">
-				<div class="span12">
+			<div class="row">
+				<div class="col-xs-12">
 					<div class="center">
 						<div class="alert alert-success">
 							<strong>Use the link above to register for LandSpec Pro.</strong>
@@ -42,24 +42,21 @@
 		<!-- Main Page Content -->
 		<div>
 
-			<div id="user-profile-1" class="user-profile row-fluid">
+			<div id="user-profile-1" class="user-profile row">
 
 				<!-- LEFT SIDEBAR -->
-				<div class="span4 center">
+				<div class="col-lg-4 col-xm-12 center">
 
 					<!-- PROFILE IMAGE, SOCIAL LINKS, AND TITLE RIBBON THING -->
 					<div>
 
 						<%= render 'locations/layouts_view_public/profileimage' %>
 
-						<div class="space-10"></div>
+						<div class="space-3"></div>
 
 						<div class="width-90 label label-info label-large arrowed-in arrowed-in-right">
 							<div class="inline position-relative">
 									<span class="white middle bigger-120"><%= @location.busName %></span>
-									<% unless @location.locName.blank? %>
-										<br/><%= @location.locName %>
-									<% end %>
 							</div>
 						</div>
 
@@ -81,13 +78,8 @@
 						<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.original_url %>" data-text="View <%= @location.busName %> on LandSpec Pro!" data-via="landspecpro" data-related="landspecpro" style="margin:0;">Tweet</a>
 						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 						
-						
-						
-
-
 						<% if @locsettings.show_tagline and not @location.tagline.blank? %>
-							<div class="space-10"></div>
-							<div style="text-align:center; font-style:oblique; padding-bottom:10px;">
+							<div style="text-align:center; font-style:oblique; padding-top:6px;">
 								"<%= @location.tagline %>"
 							</div>
 						<% end %>
@@ -103,7 +95,7 @@
 				</div>
 
 				<!-- MAIN BODY -->
-				<div class="span8">
+				<div class="col-lg-8 col-sm-12">
 
 					<!-- ABOUT LOCATION -->
 					<% if @locsettings.show_about %>

@@ -1,6 +1,10 @@
 class NewsFeedController < ApplicationController
 
 	include BusVendorsHelper
+	include ApplicationHelper
+
+	before_filter :require_user
+	before_filter :require_business
 	
 	def main
 

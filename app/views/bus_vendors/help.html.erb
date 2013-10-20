@@ -9,9 +9,9 @@
 
 	<hr>
 
-	<div class="row-fluid">
+	<div class="row">
 
-		<div class="span8">
+		<div class="col-md-8">
 
 			<h2><strong>Contents</strong></h2>
 
@@ -120,25 +120,25 @@
 			<a href="#top" class="pull-right">Back to Top</a>
 		</div>
 
-		<div class="span4">
-				<h2><strong class="pull-right">Helpful Links</strong></h2><br/><br/>
-				<a href="<%= account_company_url %>" class="pull-right">Update your company information</a><br/>
-				<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
+		<div class="col-md-4">
+				<h2><strong class="pull-left">Helpful Links</strong></h2><br/><br/>
+				<a href="<%= account_company_url %>" class="pull-left">Update your company information</a><br/>
+				<a href="<%= account_url %>" class="pull-left">Update your account information</a><br/>
 				<% if Location.where(:bus_vendor_id => current_user.bus_vendor_id).count == 1 %>		
-					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id) %>" class="pull-right">Update location information</a><br/>
+					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id) %>" class="pull-left">Update location information</a><br/>
 <!-- #publicprofiles
-					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :settings => true) %>" class="pull-right">Update Public Profile</a><br/>
+					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :settings => true) %>" class="pull-left">Update Public Profile</a><br/>
 -->
-					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :products => true) %>" class="pull-right">Add Featured Items</a><br/>
+					<a href="<%= locations_edit_url(:id => current_user.bus_vendor.locations.first.id, :products => true) %>" class="pull-left">Add Featured Items</a><br/>
 				<% elsif Location.where(:bus_vendor_id => current_user.bus_vendor_id).count > 1 %>
-					<a href="<%= locations_manage_url %>" class="pull-right">Manage Locations</a><br/>
+					<a href="<%= locations_manage_url %>" class="pull-left">Manage Locations</a><br/>
 				<% else %>
-					<a href="<%= locations_new_url %>" class="pull-right">Add Your Location</a><br/>
+					<a href="<%= locations_new_url %>" class="pull-left">Add Your Location</a><br/>
 				<% end %>
-				<a href="<%= account_company_url %>" class="pull-right">Add a company logo</a><br/>
-				<a href="<%= search_supplier_url %>" class="pull-right">Search for Suppliers</a><br/>
-				<a href="<%= search_product_url %>" class="pull-right">Search for Products</a><br/>	
-				<a data-toggle="modal" href="#feedbackModal" class="pull-right">Send us Feedback</a><br/>
+				<a href="<%= account_company_url %>" class="pull-left">Add a company logo</a><br/>
+				<a href="<%= search_supplier_url %>" class="pull-left">Search for Suppliers</a><br/>
+				<a href="<%= search_product_url %>" class="pull-left">Search for Products</a><br/>	
+				<a data-toggle="modal" href="#feedbackModal" class="pull-left">Send us Feedback</a><br/>
 
 <!-- #publicprofiles
 				<br/><br/><br/>

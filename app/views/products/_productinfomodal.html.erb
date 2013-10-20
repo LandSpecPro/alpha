@@ -1,127 +1,135 @@
-<div id="<%= @featureditem.id.to_s + 'productInfoModal' %>" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="<%= @featureditem.id.to_s + 'productInfoModal' %>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 
-	<div class="modal-header header-color-green2">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 style="color:#fff;"><%= @featureditem.get_product.commonName %>&nbsp;</h3>
-	</div>
+	<div class="modal-dialog">
 
-	<div class="modal-body">
+		<div class="modal-content">
 
-		<div class="center">
-			<%= image_tag @featureditem.get_image.url(:medium) %>
+			<div class="modal-header header-color-green2">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+				<h3 class="modal-title" style="color:#fff;"><%= @featureditem.get_product.commonName %>&nbsp;</h3>
+			</div>
+
+			<div class="modal-body">
+
+				<div class="center">
+					<%= image_tag @featureditem.get_image.url(:medium) %>
+				</div>
+
+				<br/>
+
+				<div class="profile-user-info profile-user-info-striped">
+
+
+					<!--
+						Do a check on categories here. If category is plant do the following. If it is not a plant, do
+						the alternate name and product name instead of common name and latin name
+					-->
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Name </div>
+
+						<div class="profile-info-value">
+							<span id="commonName"><%= @featureditem.get_product.commonName %>&nbsp;</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Price </div>
+
+						<div class="profile-info-value">
+							<span id="price">
+								<%= unless @featureditem.price.to_f < 0.01 
+										"$%8.2f" % @featureditem.price.to_f 
+									end %>
+								&nbsp;
+							</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Size </div>
+
+						<div class="profile-info-value">
+							<span id="size"><%= @featureditem.size %>&nbsp;</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Description </div>
+
+						<div class="profile-info-value">
+							<span id="description" style="word-wrap:break-word;"><%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>&nbsp;</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Supplier </div>
+
+						<div class="profile-info-value">
+							<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>" title="" class="tooltip-success" data-original-title="View Profile" data-placement="right">
+								<span id="supplier" style="word-wrap:break-word;"><%= @featureditem.get_location.busName + ' ' %>&nbsp;</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Address </div>
+
+						<% @filoc = @featureditem.get_location %>
+						<div class="profile-info-value">
+							<a href="<%= get_map_link_from_address(concat_address(@filoc)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank" data-placement="right"> 
+								<i class="icon-map-marker light-orange bigger-110"></i>
+								<% unless @filoc.address2.blank? %>
+									<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+								<% else %>
+									<span id="address"><%= @filoc.address1 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
+								<% end %>
+							</a>
+						</div>
+					</div>
+
+
+
+					<!--
+						Show image
+						Show if user has favorited this item
+					-->
+
+				</div>
+
+			</div>
+
+			<div class="modal-footer header-color-green2" style="boder-radius:none; margin-bottom:-5px;">
+				<div class="row-fluid">
+
+					<% if current_user.owns_featured_item(@featureditem) and not @prodinfopreview %>
+
+						<div class="span6">
+							<a href="<%= products_edit_url(:id => @featureditem.id) %>">
+								<button class="btn btn-success btn-block">Edit Product</button>
+							</a>
+						</div>
+
+						<div class="span6">
+							<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>">
+								<button class="btn btn-success btn-block">View Supplier Location</button>
+							</a>
+						</div>
+
+					<% else %>
+
+						<div class="span12">
+							<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>">
+								<button class="btn btn-success btn-block">View Supplier Location</button>
+							</a>
+						</div>
+
+					<% end %>
+
+				</div>
+			</div>
+
 		</div>
 
-		<br/>
-
-		<div class="profile-user-info profile-user-info-striped">
-
-
-			<!--
-				Do a check on categories here. If category is plant do the following. If it is not a plant, do
-				the alternate name and product name instead of common name and latin name
-			-->
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Name </div>
-
-				<div class="profile-info-value">
-					<span id="commonName"><%= @featureditem.get_product.commonName %>&nbsp;</span>
-				</div>
-			</div>
-
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Price </div>
-
-				<div class="profile-info-value">
-					<span id="price">
-						<%= unless @featureditem.price.to_f < 0.01 
-								"$%8.2f" % @featureditem.price.to_f 
-							end %>
-						&nbsp;
-					</span>
-				</div>
-			</div>
-
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Size </div>
-
-				<div class="profile-info-value">
-					<span id="size"><%= @featureditem.size %>&nbsp;</span>
-				</div>
-			</div>
-
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Description </div>
-
-				<div class="profile-info-value">
-					<span id="description" style="word-wrap:break-word;"><%= @featureditem.description.gsub(/\n/,'<br/>').html_safe %>&nbsp;</span>
-				</div>
-			</div>
-
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Supplier </div>
-
-				<div class="profile-info-value">
-					<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>" title="" class="tooltip-success" data-original-title="View Profile" data-placement="right">
-						<span id="supplier" style="word-wrap:break-word;"><%= @featureditem.get_location.busName + ' ' %>&nbsp;</span>
-					</a>
-				</div>
-			</div>
-
-			<div class="profile-info-row">
-				<div class="profile-info-name"> Address </div>
-
-				<% @filoc = @featureditem.get_location %>
-				<div class="profile-info-value">
-					<a href="<%= get_map_link_from_address(concat_address(@filoc)) %>" title="" class="tooltip-success" data-original-title="View on Map" target="_blank" data-placement="right"> 
-						<i class="icon-map-marker light-orange bigger-110"></i>
-						<% unless @filoc.address2.blank? %>
-							<span id="address"><%= @filoc.address1 + " " + @filoc.address2 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
-						<% else %>
-							<span id="address"><%= @filoc.address1 + ", " + @filoc.city + ", " + @filoc.state + " " + @filoc.zip %>&nbsp;</span>
-						<% end %>
-					</a>
-				</div>
-			</div>
-
-
-
-			<!--
-				Show image
-				Show if user has favorited this item
-			-->
-
-		</div>
-
-	</div>
-
-	<div class="modal-footer header-color-green2" style="boder-radius:none; margin-bottom:-5px;">
-		<div class="row-fluid">
-
-			<% if current_user.owns_featured_item(@featureditem) and not @prodinfopreview %>
-
-				<div class="span6">
-					<a href="<%= products_edit_url(:id => @featureditem.id) %>">
-						<button class="btn btn-success btn-block">Edit Product</button>
-					</a>
-				</div>
-
-				<div class="span6">
-					<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>">
-						<button class="btn btn-success btn-block">View Supplier Location</button>
-					</a>
-				</div>
-
-			<% else %>
-
-				<div class="span12">
-					<a href="<%= locations_view_url(:id => @featureditem.get_location.id) %>">
-						<button class="btn btn-success btn-block">View Supplier Location</button>
-					</a>
-				</div>
-
-			<% end %>
-
-		</div>
 	</div>
 
 </div>

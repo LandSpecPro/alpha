@@ -2,26 +2,26 @@
 
 	<!-- Display error messages as alerts -->
 	<% @location.errors.each do |field, msg| %>
-		<div class="row-fluid">
-			<div class="span4 offset4">
-				<div class="alert alert-error center">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-xs-12">
+				<div class="alert alert-danger center">
 				  <strong>Error! </strong> <%= msg %>
 				</div>
 			</div>
 		</div>
 	<% end %>
 	<% if params[:url_blank] %>
-		<div class="row-fluid">
-			<div class="span4 offset4">
-				<div class="alert alert-error center">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-xs-12">
+				<div class="alert alert-danger center">
 					<strong>Error! </strong> Unique URL is required.
 				</div>
 			</div>
 		</div>
 	<% end %>
 
-	<div class="row-fluid">
-		<div class="span6 offset3">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-xs-12">
 			<div class="alert alert-info center">
 				<strong>Your Public Profile</strong><br/>
 				Your public profile allows you to share your LandSpec Pro Profile for this location with anyone, even if they are not members of LandSpec Pro. We've made it as simple as possible for you to share your page.<br/><br/>
@@ -34,13 +34,19 @@
 
 	<%= hidden_field_tag(:id,  @location.id) %>
 	<%= hidden_field_tag('location[public_url_active]', true) %>
-	<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
-	<% @location.public_url = '' %>
-	<%= f.text_field :public_url, :class => 'span3 center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+			<div class="form-group">
+				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
+				<% @location.public_url = '' %>
+				<%= f.text_field :public_url, :class => 'form-control center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+			</div>
+		</div>
+	</div>
 
 	<br/>
 
-	<button class="btn btn-success btn-small center" style="width:250px;" type="submit">
+	<button class="btn btn-success btn-sm center" style="width:250px;" type="submit">
 		<i class="icon-save" id="submit_public_url"></i> Submit
 	</button>
 

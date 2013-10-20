@@ -14,11 +14,11 @@
 		<div class="widget-body">
 			<div class="widget-main">
 
-				<div class="row-fluid">
+				<div class="row">
 
 					<!-- HAS PLANT AND MATERIAL CATEGORIES -->
 					<% if @location.categories.where(:id => 1).count > 0 and @location.categories.where(:id => 2).count > 0 %>
-						<div class="span6">
+						<div class="col-xs-6">
 							<div class="center">
 								<h2><strong>Plants</strong></h2>
 								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
@@ -28,7 +28,7 @@
 								<% end %>
 							</div>
 						</div>
-						<div class="span6">
+						<div class="col-xs-6">
 							<div class="center">
 								<h2><strong>Materials</strong></h2>
 								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
@@ -41,7 +41,7 @@
 
 					<!-- ONLY HAS PLANT CATEGORIES -->
 					<% elsif @location.categories.where(:id => 1).count > 0 %>
-						<div class="span12">
+						<div class="col-xs-12">
 							<div class="center">
 								<h2><strong>Plants</strong></h2>
 								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
@@ -54,7 +54,7 @@
 
 					<!-- ONLY HAS MATERIAL CATEGORIES -->
 					<% elsif @location.categories.where(:id => 2).count > 0 %>
-						<div class="span12">
+						<div class="col-xs-12">
 							<div class="center">
 								<h2><strong>Materials</strong></h2>
 								<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>

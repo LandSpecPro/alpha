@@ -6,8 +6,8 @@
 
 	<% else %>
 
-		<div class="row-fluid">
-			<div class="span8 offset2">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1 col-md-12">
 
 				<table id="table_report" class="table table-striped table-bordered table-hover">
 
@@ -54,13 +54,13 @@
 
 								<td class="center">
 									<a href=<%= locations_view_url(:id => l.id) %> title="View">
-										<span class="btn btn-mini btn-warning"><i class="icon-eye-open"></i> View</span>
+										<span class="btn btn-xs btn-warning"><i class="icon-eye-open"></i> View</span>
 									</a>
 									<a href=<%= 'edit/' + l.id.to_s %> title="Edit">
-										<span class="btn btn-mini btn-info"><i class="icon-edit"></i> Edit</span>
+										<span class="btn btn-xs btn-info"><i class="icon-edit"></i> Edit</span>
 									</a>
 									<a href=<%= locations_delete_url(:id => l.id) %> title="Delete" class="hide">
-										<span class="btn btn-mini btn-danger"><i class="icon-trash"></i> Delete</span>
+										<span class="btn btn-xs btn-danger"><i class="icon-trash"></i> Delete</span>
 									</a>
 								</td>
 

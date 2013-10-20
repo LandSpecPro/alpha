@@ -10,40 +10,51 @@
 
 				<!-- Display error messages as alerts -->
 				<% @user.errors.each do |field, msg| %>
-					<div class="alert alert-error">
-					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					<div class="alert alert-danger">
+					  <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 					  <strong>Error! </strong> <%= msg %>
 					</div>
 				<% end %>
 
-				<div id="updateAccountInfoProgress" class="progress progress-success progress-striped active hide" data-percent="Updating please wait...">
-					<div class="bar" style="width:100%;"></div>
+				<div id="updateAccountInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
+					<div class="progress-bar progress-bar-success" style="width:100%;"></div>
 				</div>
 
 				<fieldset>
 
 					<%= f.hidden_field :id, :value => @user.id %>
 
-					<%= f.label 'Username:' %>
-					<div class="block input-icon input-icon-right">
-						<%= f.text_field :login, :class => 'span12', :value => @user.login %>
+					<div class="form-group">
+						<%= f.label 'Username:' %>
+						<div class="block input-icon input-icon-right">
+							<%= f.text_field :login, :class => 'form-control', :value => @user.login %>
+						</div>
 					</div>
 
-					<%= f.label 'Email:' %>
-					<div class="block input-icon input-icon-right">
-						<%= f.text_field :email, :class => 'span12', :value => @user.email %>
+					<div class="form-group">
+						<%= f.label 'Email:' %>
+						<div class="block input-icon input-icon-right">
+							<%= f.text_field :email, :class => 'form-control', :value => @user.email %>
+						</div>
 					</div>
 
-					<%= f.label 'User Type:' %>
-					<span class="block input-icon input-icon-right">
-						<% if @usertype == 'Vendor' %>
-							<%= f.text_field :userType, :class => 'span12', :value => 'Supplier', :readonly => true %>
-						<% else %>
-							<%= f.text_field :userType, :class => 'span12', :value => @usertype, :readonly => true %>
-						<% end %>
-					</span>
-					<div class="pull-right">
-						<a href=<%= password_reset_url %>>Reset Password</a>
+					<div class="form-group">
+						<%= f.label 'User Type:' %>
+						<span class="block input-icon input-icon-right">
+							<% if @usertype == 'Vendor' %>
+								<%= f.text_field :userType, :class => 'form-control', :value => 'Supplier', :readonly => true %>
+							<% else %>
+								<%= f.text_field :userType, :class => 'form-control', :value => @usertype, :readonly => true %>
+							<% end %>
+						</span>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="pull-right">
+								<a href=<%= password_reset_url %>>Reset Password</a>
+							</div>
+						</div>
 					</div>
 
 				</fieldset>
@@ -53,9 +64,9 @@
 		</div> <!-- end widget-body -->
 
 		<div class="widget-footer">
-			<div class="row-fluid">
-				<div class="span12">
-					<button class="btn btn-block btn-small btn-success" type="submit" onclick="updateAccountInfo();"><i  class="icon-save" id="fav_icon"></i> Update</button>
+			<div class="row">
+				<div class="col-xs-12">
+					<button class="btn btn-block btn-sm btn-success" type="submit" onclick="updateAccountInfo();"><i  class="icon-save" id="fav_icon"></i> Update</button>
 				</div>
 			</div>
 		</div>
@@ -71,7 +82,7 @@
 	function updateAccountInfo(){
 
 		// Show progres bar
-		$( "#updateAccountInfoProgress" ).show();
+		$( "#updateAccountInfoProgress" ).removeClass('hide');
 		
 	}
 

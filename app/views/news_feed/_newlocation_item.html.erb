@@ -36,8 +36,8 @@
 		<div class="widget-body">
 			<div class="widget-main">
 
-				<div class="row-fluid">
-					<div class="span12">
+				<div class="row">
+					<div class="col-lg-11 col-sm-11">
 
 						<a href="<%= get_map_link_from_address(@loc.get_full_address) %>" title="View on Google Maps" target="_blank">
 							<img src="<%= get_static_map_custom(@loc.get_full_address, '300', '300') %>" class="pull-left" style="margin-right:20px;" title="<%= @loc.busName %>" height="300px" width="300px" />

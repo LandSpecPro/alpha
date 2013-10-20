@@ -1,5 +1,5 @@
 <div class="block input-icon input-icon-right">
-	<select id="query" name="query" class="chzn-select input-large span12" data-placeholder="Leave blank to search all suppliers...">
+	<select id="query" name="query" class="chzn-select input-large form-control" data-placeholder="Leave blank to search all suppliers...">
 		<option selected="selected">All Suppliers</option>
 
 		<% Location.where(:active => true).uniq.pluck('"busName"').sort.each do |busname| %>

@@ -1,7 +1,7 @@
 <%- title "Claim Account | LandSpec Pro" %>
-<div class="row-fluid" style="margin-top:20px;">
+<div class="row" style="margin-top:20px;">
 	<div class="container">
-		<div class="span6">
+		<div class="col-md-6">
 
 			<%= form_for @user, :html => {:id => 'claimProfileForm'}, :url => profile_buyer_claim_create_url do |f| %>
 				<div class="widget-box" style="min-width: 350px;">
@@ -14,22 +14,22 @@
 
 							<!-- Display error messages as alerts -->
 							<% @user.errors.full_messages.each do |msg| %>
-								<div class="alert alert-error">
-								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
+								  <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 								  <strong>Error! </strong> <%= msg %>
 								</div>
 							<% end %>
 
 							<% if @confirmemail %>
-								<div class="alert alert-error">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 									<strong>Error! </strong> Email confirmation does not match!
 								</div>
 							<% end %>
 
 							<% @busbuyer.errors.each do |field, msg| %>
-								<div class="alert alert-error">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 									<strong>Error! </strong> <%= msg %>
 								</div>
 							<% end %>
@@ -40,38 +40,40 @@
 
 								<!--[if lt IE 10]>Username:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :login, :value => @userlogin, :class => 'span12', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
+									<%= f.text_field :login, :value => @userlogin, :class => 'form-control', :placeholder => "Username", :maxlength => '15', :html => {:id => 'login'} %>
 									<i class="icon-user"></i>
 								</span>
 								<!--[if lt IE 10]>Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :email, :value => @useremail, :class => 'span12', :placeholder => "Email" %>
+									<%= f.text_field :email, :value => @useremail, :class => 'form-control', :placeholder => "Email" %>
 									<i class="icon-envelope-alt"></i>
 								</span>
 								<!--[if lt IE 10]>Confirm Email:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= text_field_tag :email_confirmation, params[:email_confirmation], :class => 'span12', :placeholder => "Confirm Email" %>
+									<%= text_field_tag :email_confirmation, params[:email_confirmation], :class => 'form-control', :placeholder => "Confirm Email" %>
 									<i class="icon-envelope-alt"></i>
 								</span>
 								<!--[if lt IE 10]>Password:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.password_field :password, :class => 'span12', :placeholder => "Password" %>
+									<%= f.password_field :password, :class => 'form-control', :placeholder => "Password" %>
 									<i class="icon-lock"></i>
 								</span>
 								<!--[if lt IE 10]>Confirm Password:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= f.password_field :password_confirmation, :class => 'span12', :placeholder => "Confirm Password" %>
+									<%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "Confirm Password" %>
 									<i class="icon-lock"></i>
 								</span>
 								<!-- [if lt IE 10]>Phone Number:<![endif]-->
 								<span class="block input-icon input-icon-right">
-									<%= text_field_tag :phone, @phone, :class => 'span12 input-mask-phone popover-phone', :placeholder => "Phone Number" %>
+									<%= text_field_tag :phone, @phone, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Phone Number" %>
 									<i class="icon-phone"></i>
 								</span>
 
-								<div class="row-fluid">
-									<div class="pull-right">
-										<button type="submit" class="btn btn-success"><i class="icon-key"></i> Claim Profile</button>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="pull-right">
+											<button type="submit" class="btn btn-success"><i class="icon-key"></i> Claim Profile</button>
+										</div>
 									</div>
 								</div>
 
@@ -86,7 +88,7 @@
 
 		</div>
 
-		<div class="span6">
+		<div class="col-md-6">
 
 			<div class="center">
 				<h2>Profile Information</h2>

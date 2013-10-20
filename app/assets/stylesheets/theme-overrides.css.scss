@@ -1,7 +1,11 @@
 
 html { height: 100% }
-body { height: 100%;  margin-bottom: -50px;}
+body { height: 100%;  margin-bottom: -50px; overflow-y:auto; overflow-x:auto; background-color: white;}
 #result-map { height: 100%;}
+
+.row-fluid {
+	padding: 0 15px;
+}
 
 $brand-color: #2e893f;
 $brand-color-darken-five-percent: darken($brand-color, 5%);
@@ -158,4 +162,9 @@ input[type="search"],
 input[type="tel"], 
 input[type="color"]{
 	color: #202020;
+}
+
+.modal {
+	overflow-y: auto;
+	overflow-x: auto;
 }

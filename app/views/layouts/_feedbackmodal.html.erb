@@ -6,39 +6,41 @@
 			<div class="modal-content">
 
 				<div class="modal-header header-color-green2">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
 					<h4 class="modal-title" style="color:#fff;">Feedback</h4>
 				</div>
 
 				<div class="modal-body">
 					<p>Your feedback is very important to us. We'd love to hear from you whether it be requested features, problems with the site, things you don't like, or even if you just want to tell us you love the site right now. We appreciate hearing from you.</p>
 
-					<div class="row-fluid">
+					<div class="row">
+						<div class="col-lg-11">
 
-						<%= hidden_field_tag(:page_title,  content_for?(:title) ? content_for(:title) : "Can't get page title...") %>
+							<%= hidden_field_tag(:page_title,  content_for?(:title) ? content_for(:title) : "Can't get page title...") %>
 
-						<div class="form-group">
-							<label for="name" class="col-md-2 control-label"><strong>*Name:</strong></label>
-							<div class="col-md-10">
-								<%= text_field_tag :name, '', :id => "name", :class => "form-control" %>
+							<div class="form-group">
+								<label for="name" class="col-md-2 control-label"><strong>*Name:</strong></label>
+								<div class="col-md-10">
+									<%= text_field_tag :name, '', :id => "name", :class => "form-control" %>
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label for="email" class="col-md-2 control-label"><strong>*Email:</strong></label>
-							<div class="col-md-10">
-								<% if current_user %>
-									<%= text_field_tag :email, current_user.email, :readonly => 'true', :class => "form-control" %>
-								<% else %>
-									<%= text_field_tag :email, '' %>
-								<% end %>
+							<div class="form-group">
+								<label for="email" class="col-md-2 control-label"><strong>*Email:</strong></label>
+								<div class="col-md-10">
+									<% if current_user %>
+										<%= text_field_tag :email, current_user.email, :readonly => 'true', :class => "form-control" %>
+									<% else %>
+										<%= text_field_tag :email, '' %>
+									<% end %>
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label for="feedback" class="col-md-2 control-label"><strong>*Feedback:</strong></label>
-							<div class="col-md-10">
-								<%= text_area_tag :feedback, '', :class => "form-control", :style => 'resize: none;', :rows => '10' %>
+							<div class="form-group">
+								<label for="feedback" class="col-md-2 control-label"><strong>*Feedback:</strong></label>
+								<div class="col-md-10">
+									<%= text_area_tag :feedback, '', :class => "form-control", :style => 'resize: none;', :rows => '10' %>
+								</div>
 							</div>
 						</div>
 

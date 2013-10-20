@@ -2,7 +2,8 @@
 <%= render 'layouts/sidebar' %>
 
 <!--[if lt IE 10]> <div style="font-size:14px;"><![endif]-->
-  <div class="span8 offset1">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
     <div class="table-header header-color-green2">
       You have <%= @favproducts.count + @favproductsinactive.count %> Favorite Products
     </div>
@@ -13,6 +14,7 @@
       <%= render 'productsgridview' %>
     <% end %>
   </div>
+</div>
 <!--[if lt IE 10]> </div><![endif]-->
 
 

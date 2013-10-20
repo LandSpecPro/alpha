@@ -9,9 +9,9 @@
 
 	<hr>
 
-	<div class="row-fluid">
+	<div class="row">
 
-		<div class="span8">
+		<div class="col-md-8">
 
 			<h2><strong>Contents</strong></h2>
 
@@ -92,26 +92,15 @@
 			<a href="#top" class="pull-right">Back to Top</a>
 		</div>
 
-		<div class="span4">
-			<h2><strong class="pull-right">Helpful Links</strong></h2><br/><br/>
-			<a href="<%= account_company_url %>" class="pull-right">Update your company information</a><br/>
-			<a href="<%= account_url %>" class="pull-right">Update your account information</a><br/>
-			<a href="<%= account_company_url %>" class="pull-right">Add a company logo</a><br/>
-			<a href="<%= search_supplier_url %>" class="pull-right">Search for Suppliers</a><br/>
-			<a href="<%= search_product_url %>" class="pull-right">Search for Products</a><br/>				
-			<a data-toggle="modal" href="#feedbackModal" class="pull-right">Send us Feedback</a><br/>
-
-<!-- #publicprofiles
-			<br/><br/><br/>
-
-			<h2><strong class="pull-right">What's New</strong></h2><br/><br/>
-			<div class="row-fluid">
-				<div class="span7 offset5">
-					<strong class="pull-right"><a href="#">Public Profiles:</a></strong><br/>
-					<p style="text-align: right;">Suppliers now have public profiles. When you're viewing a supplier's location page, look for a link in the top that will take you to their public profile. From there you can like the page on facebook, or share the supplier with other people that might be interested in it.</p>
-				</div>
-			</div>
--->
+		<!--<div class="col-md-4 col-md-push-8">   do this if we want to move it to the top-->
+		<div class="col-md-4">
+			<h2><strong class="pull-left">Helpful Links</strong></h2><br/><br/>
+			<a href="<%= account_company_url %>" class="pull-left">Update your company information</a><br/>
+			<a href="<%= account_url %>" class="pull-left">Update your account information</a><br/>
+			<a href="<%= account_company_url %>" class="pull-left">Add a company logo</a><br/>
+			<a href="<%= search_supplier_url %>" class="pull-left">Search for Suppliers</a><br/>
+			<a href="<%= search_product_url %>" class="pull-left">Search for Products</a><br/>				
+			<a data-toggle="modal" href="#feedbackModal" class="pull-left">Send us Feedback</a><br/>
 			<br/><br/>
 		</div>
 

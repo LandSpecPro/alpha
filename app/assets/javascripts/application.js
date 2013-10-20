@@ -16,9 +16,11 @@
 //= require theme/jquery-ui-1.10.3.custom.min
 //= require theme/chosen.jquery.min
 //= require theme/jquery.gritter.min
+//= require theme/jquery.maskedinput.min
 //= require theme/jquery.colorbox-min
 //= require theme/jquery.dataTables.min
 //= require theme/jquery.dataTables.bootstrap
+//= require theme/bootstrap-typehead
 //= require theme/ace-elements.min
 //= require theme/ace.min
 //= require masks

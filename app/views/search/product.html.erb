@@ -21,21 +21,21 @@
 
 </style>
 
-<div class="row-fluid" id="search-bar-row" >
+<div class="row" id="search-bar-row" >
 
 	<!-- Search Sidebar -->
-	<div class="span12">
+	<div class="col-xs-12">
 		<%= render 'search/layouts/sidebar' %>
 	</div>
 
 </div>
 
-<div class="row-fluid" style="margin-top:0;">
+<div class="row" style="margin-top:0;">
 
-	<div class="span12">
+	<div class="col-xs-12">
 
-		<div id="updateSearchProgress" class="progress progress-success progress-striped active hide" data-percent="Updating Results...">
-			<div class="bar" style="width:100%;"></div>
+		<div id="updateSearchProgress" class="progress progress-striped active hide" data-percent="Updating Results...">
+			<div class="progress-bar progress-bar-success" style="width:100%;"></div>
 		</div>
 
 		<% if params[:result_count] == 0 %>
@@ -58,12 +58,12 @@
 
 	function updateSearch(){
 		// Show progress bar
-		$('#updateSearchProgress').show();
+		$('#updateSearchProgress').removeClass('hide');
 	}
 
 	function search(){
 		// Show progress bar
-		$('#searchProgress').show();
+		$('#searchProgress').removeClass('hide');
 	}
 
 	$(applyColorbox());

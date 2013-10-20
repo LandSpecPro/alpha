@@ -63,6 +63,9 @@
             </a>
 
             <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer" style="margin-right:12px; margin-top:10px;">
+
+              <li><a href="<%= main_url %>"><i class="icon-hdd"></i> News Feed</a></li>
+              
               <% if current_user.is_vendor %>
                 <li><a href=<%= locations_manage_url %>><i class="icon-globe"></i> Manage</a></li>
               <% end %>
@@ -71,6 +74,7 @@
 
               <li><a href=<%= account_url %>><i class="icon-cog"></i> Account</a></li>
 
+<!--
               <li class="dropdown-submenu">
                 <a href="#"><i class="icon-search"> Search</i></a>
                 <ul class="dropdown-menu">
@@ -86,7 +90,7 @@
                   <li><a href="<%= favorites_vendors_url %>">Suppliers</a></li>
                 </ul>
               </li>
-
+-->
               <li class="divider"></li>
               <li><a href=<%= help_url %>><i class="icon-question-sign"></i> Help</a></li>
               <li><a href=<%= logout_url %>><i class="icon-off"></i> Logout</a></li>
@@ -126,7 +130,7 @@
 
     <div class="pull-right" style="margin-right:10px;">
       
-      <a class="btn btn-mini btn-primary" data-toggle="modal" ><i class='icon-comments'></i> Feedback</a>
+      <a class="btn btn-xs btn-primary" data-toggle="modal" ><i class='icon-comments'></i> Feedback</a>
     </div>
         
   </div>

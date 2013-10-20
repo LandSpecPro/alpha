@@ -19,8 +19,10 @@
 						<h4>About Location:</h4>
 						<div class="block input-icon input-icon-right">
 
-							<%= text_area_tag :bio, @location.bio, :class => 'span12 loc_about_field', :style => 'resize: none;', :rows => '15' %>
-							
+							<div class="form-group">
+								<%= text_area_tag :bio, @location.bio, :class => 'form-control loc_about_field', :style => 'resize: none;', :rows => '15' %>
+							</div>
+
 						</div>
 
 				</fieldset>

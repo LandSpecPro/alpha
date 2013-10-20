@@ -10,7 +10,7 @@
 		<div class="widget-toolbar">
 
 			<div class="dropdown">
-				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+				<button class="btn btn-xs bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					List View
 					<i class="icon-angle-down icon-on-right"></i>
 				</button>
@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="dropdown">
-				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+				<button class="btn btn-xs bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					<% if params[:per_page].to_i == 10 %>
 						10 Per Page
 					<% elsif params[:per_page].to_i == 15 %>
@@ -75,7 +75,7 @@
 			</div>
 
 			<div class="dropdown">
-				<button class="btn btn-mini bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
+				<button class="btn btn-xs bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
 					<% if params[:sort] == 'dist_asc' %>
 						Sort By - Closest First
 					<% elsif params[:sort] == 'dist_desc' %>
@@ -142,8 +142,10 @@
 
 			<% if last_page_number > 1 %>
 
-				<div class="row-fluid">
-					<%= render 'search/layouts/product_paginate_links' %>
+				<div class="row">
+					<div class="col-xs-12">
+						<%= render 'search/layouts/product_paginate_links' %>
+					</div>
 				</div>
 
 			<% end %>

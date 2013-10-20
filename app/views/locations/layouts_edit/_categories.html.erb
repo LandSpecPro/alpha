@@ -1,6 +1,7 @@
 <% if CategoryToLocation.where(:location_id => @location.id).count == 0 %>
+<br/>
 	<div class="alert alert-info">
-	  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  	<button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 	  	<strong>Categories </strong> <br/>
 	  	You can now add categories to your location to let other users know what kind of products you carry. You can add as many as you want from the dropdowns below, but make sure you only add categories you currently supply at this location. If we're missing any categories you'd like to add, feel free to let us know in the feedback form at the bottom right of your screen.
 	</div>
@@ -26,9 +27,9 @@
 
 					
 					<div class="center">
-						<div class="row-fluid">
+						<div class="row">
 
-							<div class="span6">
+							<div class="col-md-6 col-xs-12">
 								<h4>Plants:</h4>
 								<div class="block input-icon input-icon-right" id="catPlantsBorder">
 									<%= select_tag :categories, options_from_collection_for_select(
@@ -37,7 +38,7 @@
 								</div>
 							</div>
 
-							<div class="span6">
+							<div class="col-md-6 col-xs-12">
 								<h4>Materials:</h4>
 								<div class="block input-icon input-icon-right" id="catMaterialsBorder">
 									<%= select_tag :categories, options_from_collection_for_select(

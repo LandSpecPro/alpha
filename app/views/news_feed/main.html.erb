@@ -2,11 +2,11 @@
 <%= render 'layouts/sidebar' %>
 
 
-	<div id="timeline-1">
-		<div class="row-fluid">
-			<div class="span8">
-				
-				<strong>Filters:</strong>
+	<div id="timeline-1" style="margin-top:0; padding-top:0;">
+		<div class="row">
+			<div class="col-lg-9 col-xs-12">
+
+				<h4><strong>Filters:</strong></h4>
 				<ul class="nav nav-pills">
 
 					<li id="filterAll">
@@ -24,7 +24,10 @@
 					<li id="filterInventories">
 						<a href="<%= main_url(:only_inventories => true) %>">Only Inventories</a>
 					</li>
+
 				</ul>
+
+				<br/>
 
 				<script type="text/javascript">
 
@@ -46,17 +49,17 @@
 
 					<!-- HEADER -->
 					<div class="timeline-label">
-						<span class="label label-primary arrowed-in-right label-large">
+						<span class="label label-primary arrowed-in-right label-large" style="padding:3px;">
 							<% if params[:only_featured_items] %>
-								<b>Featured Items</b>
+								<span>Featured Items</span>
 							<% elsif params[:only_new_suppliers] %>
-								<b>New Suppliers</b>
+								<span>New Suppliers</span>
 							<% elsif params[:only_inventories] %>
-								<b>Inventories</b>
+								<span>Inventories</span>
 							<% elsif params[:only_locations] %>
-								<b>Locations</b>
+								<span>Locations</span>
 							<% else %>
-								<b>All Updates</b>
+								<span>All Updates</span>
 							<% end %>
 						</span>
 					</div>
