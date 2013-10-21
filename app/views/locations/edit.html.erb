@@ -89,13 +89,13 @@
 				<% end %>
 
 				  	<div class="row">
-				  		<div class="col-xs-6">
+				  		<div class="col-md-6 col-xs-12">
 							<%= render 'locations/layouts_edit/locationinfo' %>
 							<div class="center">
 								<a href="<%= locations_new_url %>" class="btn btn-sm btn-block btn-success">Add New Location</a>			
 							</div>	
 						</div>
-						<div class="col-xs-6">
+						<div class="col-md-6 col-xs-12">
 							<% if not @location.active %>
 								<%= render 'locations/layouts_edit/activate' %>
 								<%= render 'locations/layouts_edit/bioinfo' %>
