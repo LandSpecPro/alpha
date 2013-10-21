@@ -25,9 +25,11 @@
 	<!-- View Locations -->
 	<% elsif @cont == 'locations' and @act == 'view' %>
 		<!-- TODO: Add in follow/favorite button here -->
-		<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
-			<a href="<%= locations_edit_url(:id => params[:id]) %>">Edit Location</a>
-			|
+		<% if current_user.is_vendor %>
+			<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
+				<a href="<%= locations_edit_url(:id => params[:id]) %>">Edit Location</a>
+				|
+			<% end %>
 		<% end %>
 		<% if @location.public_url_active and not @location.public_url.blank? and @location.active %>
 			<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">View Public Profile</a>
