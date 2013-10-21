@@ -1,0 +1,167 @@
+<style>
+
+	#brand-image{
+		max-height: 30px;
+		padding-right: 5px;
+		margin-left: -15px;
+	}
+	.navbar-brand{
+		padding-top:20px;
+		margin-top:12px;
+		margin-bottom:10px;
+	}
+
+	#brand-title{
+		color: #fff;
+		font-size: 25px;
+	}
+
+	#navbar-btn-register{
+		font-size:15px;
+		padding-top:27px;
+		background: #2e6589;
+	}
+
+	#navbar-btn-login{
+		font-size:15px;
+		padding-top:27px;
+	}
+
+	@media (max-width:767px){
+		#navbar-btn-register{
+			padding-top:10px;
+		}
+
+		#navbar-btn-login{
+			padding-top:10px;
+			min-width:200px;
+		}
+	}
+
+	@media (max-width:401px){
+		#navbar-btn-login{
+			min-width:0;
+		}
+	}
+</style>
+
+<!-- Navbar -->
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id="navbar-main" style="position:relative; padding:0;">
+
+	<!-- Navbar Header -->
+	<% unless current_user %>
+		<div class="navbar-header">
+	<% else %>
+		<div class="navbar-header pull-left">
+	<% end %>
+
+		<!-- Used for scrolling to the top of the page in some situations -->
+		<span id="top"></span>
+
+		<% unless current_user %>
+			<!-- Collapsable Toggle - Only if user is not logged in -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin-top:15px;">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		<% end %>
+
+		<!-- Brand -->
+		<a class="navbar-brand" href="<%= home_url %>">
+			<%= image_tag("brand-image.png", :id => "brand-image") %>
+			<span id="brand-title" style="color:#fff;">LandSpec Pro</span>
+		</a>
+
+	</div> <!-- End navbar-header -->
+
+	<!-- If User is not logged in -->
+	<% unless current_user %>
+
+		<!-- Login and Register buttons -->
+		<div class="collapse navbar-collapse">
+			<div class="navbar-header pull-right" role="navigation">
+				<ul class="nav navbar-nav">
+					<li>
+						<a id="navbar-btn-login" href="<%= login_url %>">Login</a>
+					</li>
+					<li class="active">
+						<a id="navbar-btn-register" href="<%= register_url %>">Register</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+	<!-- If User is logged in -->
+	<% else %>
+
+		<div class="navbar-header pull-right" role="navigation" style="padding-top:10px;">
+
+			<!-- Dropdown menu for user -->
+			<ul class="nav ace-nav navbar-right">
+
+				<li class="green"> <!-- id='navbar-right-container-logged-in' -->
+
+					<a data-toggle="dropdown" href="#" class="dropdown-toggle" id="logged-in-dropdown">
+
+						<span class="user-info">
+							<small>Logged in as,</small>
+							<center><%= current_user.login %></center>
+						</span>
+
+						<i class="icon-caret-down"></i>
+
+					</a>
+
+					<!-- Submenu -->
+					<ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="margin-right:12px; margin-top:10px;">
+
+						<!-- News Feed Menu Item -->
+						<li>
+							<a href="<%= main_url %>"><i class="icon-hdd"></i> News Feed</a>
+						</li>
+
+						<!-- Location Manage Menu Item -->
+						<% if current_user.is_vendor %>
+
+							<li>
+								<a href="<%= locations_manage_url %>"><i class="icon-globe"></i> Manage</a>
+							</li>
+
+						<% end %>
+
+						<!-- Company Info Menu Item -->
+						<li>
+							<a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a>
+						</li>
+
+						<!-- Account Info Menu Item -->
+						<li>
+							<a href="<%= account_url %>"><i class="icon-cog"></i> Account</a></li>
+						</li>
+
+						<li class="divider"></li>
+
+						<!-- Help Menu Item -->
+						<li>
+							<a href="<%= help_url %>"><i class="icon-question-sign"></i> Help</a>
+						</li>
+
+						<!-- Logout Menu Item -->
+						<li>
+							<a href="<%= logout_url %>"><i class="icon-off"></i> Logout</a>
+						</li>
+
+					</ul> <!-- End Submenu -->
+
+				</li> <!-- end green list item -->
+
+			</ul> <!-- End Dropdown -->
+
+		</div>
+
+	<% end %>
+
+</div> <!-- End navbar -->
