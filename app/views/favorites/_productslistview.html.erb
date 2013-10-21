@@ -2,11 +2,10 @@
 	<thead>
 		<tr>
 			<th class="center">Common Name</th>
-			<th class="center">Latin Name</th>
 			<th class="center">Supplier</th>
-			<th class="hidden-phone center">Size</th>
-			<th class="hidden-phone center">Price</th>
-			<th class="hidden-phone center">Image</th>
+			<th class="hidden-480 center">Size</th>
+			<th class="hidden-480 center">Price</th>
+			<th class="hidden-480 center">Image</th>
 			<th class="center">Favorite</th>
 		</tr>
 	</thead>
@@ -24,9 +23,6 @@
 						<%= fi.get_product.commonName %>
 					</a>
 				</td>
-				<td class="hidden-phone center">
-					<%= fi.get_product.latinName %>
-				</td>
 				<td class="center">
 					<% if Location.find(fi.location_id).active %>
 						<a href=<%= locations_view_url(:id => fi.location_id) %>>
@@ -36,15 +32,15 @@
 						<%= Location.find(fi.location_id).busName %>
 					<% end %>
 				</td>
-				<td class='hidden-phone center'>
+				<td class='hidden-480 center'>
 					<%= fi.size %>
 				</td>
-				<td class='hidden-phone center'>
+				<td class='hidden-480 center'>
 					<% if fi.price.to_s != '' and fi.price != 0 %>
 						<%= "$%8.2f" % fi.price.to_f %>
 					<% end %>
 				</td>
-				<td class='center'>
+				<td class='hidden-480 center'>
 					<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"}, :class => 'colorbox-result' %>
 				</td>
 				<td class="center">
@@ -69,9 +65,6 @@
 				<td class="center">
 					<%= fi.get_product.commonName %>
 				</td>
-				<td class="hidden-phone center">
-					<%= fi.get_product.latinName %>
-				</td>
 				<td class="center">
 					<% if Location.find(fi.location_id).active %>
 						<a href=<%= locations_view_url(:id => fi.location_id) %>>
@@ -81,15 +74,15 @@
 						<%= Location.find(fi.location_id).busName %>
 					<% end %>
 				</td>
-				<td class="hidden-phone center">
+				<td class="hidden-480 center">
 					<%= fi.size %>
 				</td>
-				<td class="hidden-phone center">
+				<td class="hidden-480 center">
 					<% if fi.price.to_s != '' and fi.price != 0 %>
 						<%= "$%8.2f" % fi.price.to_f %>
 					<% end %>
 				</td>
-				<td class='center'>
+				<td class='hidden-480 center'>
 					<%= link_to '<i class="icon-picture"></i>'.html_safe, ProductImage.find(fi.product_image_id).image.url(:original), :title => "<span style='color:#000'><strong>".html_safe + fi.get_product.commonName + "</strong></span>".html_safe, :data => {:rel => "colorbox"}, :class => 'colorbox-result' %>
 				</td>
 				<td class="center">
@@ -111,7 +104,6 @@
 
 	$('#table_report').dataTable( {
 		"aoColumns": [
-			{"bSortable": true},
 			{"bSortable": true},
 			{"bSortable": true},
 			{"bSortable": true},

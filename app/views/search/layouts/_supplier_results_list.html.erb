@@ -138,11 +138,11 @@
 				
 				<thead>
 					<tr>
-						<th class="center hidden-phone">Logo</th>
+						<th class="center hidden-767">Logo</th>
 						<th class="center">Business Name</th>
 						<th class="center">Address</th>
 						<th class="center">Distance Away (miles)</th>
-						<th class="center">Favorite</th>
+						<th class="center hidden-480">Favorite</th>
 					</tr>
 				</thead>
 
@@ -150,7 +150,7 @@
 
 					<% @locations.each do |l| %>
 						<tr>
-							<td class="center hidden-phone">
+							<td class="center hidden-767">
 								<a href="<%= locations_view_url(:id => l.id) %>" title="" class="tooltip-info" data-rel="tooltip" data-original-title="View Profile" data-placement="bottom">
 									<%= image_tag l.bus_vendor.logo.url(:smthumb) %>
 								</a>
@@ -166,7 +166,7 @@
 							<td class="center">
 								<%= "%5.2f" % l.distance_from(params[:location]).to_f %>
 							</td>
-							<td class="center">
+							<td class="center hidden-480">
 								<% if l.is_favorited(current_user) %>
 									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
 										<i  class="icon-bookmark" id="fav_icon"></i>

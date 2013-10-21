@@ -157,9 +157,9 @@
 						<th class="center">Product Name</th>
 						<th class="center">Supplier</th>
 						<th class="center">Distance Away (miles)</th>
-						<th class="center">Size</th>
-						<th class="center">Price</th>
-						<th class="center">Favorite</th>
+						<th class="center hidden-480">Size</th>
+						<th class="center hidden-480">Price</th>
+						<th class="center hidden-400">Favorite</th>
 					</tr>
 				</thead>
 
@@ -182,15 +182,15 @@
 							<td class="center">
 								<%= "%5.2f" % fi.distance_from(params[:location]).to_f %>
 							</td>
-							<td class="center">
+							<td class="center hidden-480">
 								<%= fi.size %>
 							</td>
-							<td class="center">
+							<td class="center hidden-480">
 								<% unless fi.price.blank? or fi.price < 0.01 %>
 									<%= '$%8.2f' % fi.price %>
 								<% end %>
 							</td>
-							<td class="center">
+							<td class="center hidden-400">
 								<% if fi.is_favorited(current_user) %>
 									<a href=<%= products_favorite_set_url(:id => fi.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
 										<i  class="icon-bookmark" id="fav_icon"></i>

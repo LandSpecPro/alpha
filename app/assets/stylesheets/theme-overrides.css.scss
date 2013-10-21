@@ -121,6 +121,12 @@ input[type="color"]{
 	overflow-x: auto;
 }
 
+@media only screen and (max-width:400px){
+	.hidden-400{
+	display:none!important;
+	}
+}
+
 @media only screen and (max-width:767px){
 	.hidden-767 {
 		display:none!important;
