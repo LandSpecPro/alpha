@@ -1,7 +1,6 @@
 <style>
 
 	#brand-image{
-		max-height: 30px;
 		padding-right: 5px;
 		margin-left: -15px;
 	}
@@ -18,13 +17,13 @@
 
 	#navbar-btn-register{
 		font-size:15px;
-		padding-top:27px;
+		padding-top:30px;
 		background: #2e6589;
 	}
 
 	#navbar-btn-login{
 		font-size:15px;
-		padding-top:27px;
+		padding-top:30px;
 	}
 
 	@media (max-width:767px){
@@ -34,7 +33,10 @@
 
 		#navbar-btn-login{
 			padding-top:10px;
-			min-width:200px;
+		}
+
+		#login-register-container{
+			width: 100%;
 		}
 	}
 
@@ -81,7 +83,7 @@
 
 		<!-- Login and Register buttons -->
 		<div class="collapse navbar-collapse">
-			<div class="navbar-header pull-right" role="navigation">
+			<div class="navbar-header pull-right" role="navigation" id="login-register-container">
 				<ul class="nav navbar-nav">
 					<li>
 						<a id="navbar-btn-login" href="<%= login_url %>">Login</a>
@@ -102,7 +104,7 @@
 			<!-- Dropdown menu for user -->
 			<ul class="nav ace-nav navbar-right">
 
-				<li class="green"> <!-- id='navbar-right-container-logged-in' -->
+				<li class="green" style="min-width:100%;"> <!-- id='navbar-right-container-logged-in' -->
 
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle" id="logged-in-dropdown">
 

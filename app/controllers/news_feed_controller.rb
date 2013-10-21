@@ -30,6 +30,12 @@ class NewsFeedController < ApplicationController
 			@items = NewsFeedItem.where(:item_type => NEW_LOCATION).order('created_at DESC').offset(offset).limit(limit)
 		elsif params[:only_inventories]
 			@items = NewsFeedItem.where("item_type = ? or item_type = ?", FIRST_INVENTORY, NEW_INVENTORY).order('created_at DESC').offset(offset).limit(limit)
+		elsif params[:supplier]
+			if User.where(:bus_vendor_id => params[:supplier]).count >= 1
+				@items = NewsFeedItem.where(:user_id => User.where(:bus_vendor_id => params[:supplier]).first.id).order('created_at DESC').offset(offset).limit(limit)
+			else
+				@items = NewsFeedItem.where(:user_id => -1)
+			end
 		else
 			@items = NewsFeedItem.order('created_at DESC').offset(offset).limit(limit)
 		end

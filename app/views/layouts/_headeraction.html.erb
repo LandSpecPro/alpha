@@ -1,79 +1,65 @@
-<% if controller.controller_name == 'locations' %>
+<!-- Set variables for easier naming -->
+<% @cont = controller.controller_name %>
+<% @act = controller.action_name %>
 
-	<% if controller.action_name == 'edit' and current_user.is_vendor  %>
+<li style="font-weight:bold;">
 
-		<div class="pull-right">
-			<div class="btn-group">
-				<a href=<%= locations_view_url(:id => params[:id]) %>><button class="btn btn-success btn-sm" style="margin-right:10px;">View Location</button></a>
-				<% if @location.public_url_active and not @location.public_url.blank? %>
-					<a href="http://www.landspecpro.com/profiles/<%=@location.public_url %>" target="_blank"><button class="btn btn-primary btn-sm" style="margin-right:10px;">View Public Profile</button></a>
-				<% end %>
-			</div>
-		</div>
+	OPTIONS:
 
-	<% elsif controller.action_name == 'view' and current_user.is_vendor %>
+	<!-- Edit Location -->
+	<% if @cont == 'locations' and @act == 'edit' and current_user.is_vendor %>
+		<% if @location.public_url_active and not @location.public_url.blank? %>
+			<a href="http://www.landspecpro.com/profiles/<%=@location.public_url %>" target="_blank">View Public Profile</a>
+			|
+		<% end %>
+		<a href="<%= locations_view_url(:id => params[:id]) %>">View Location</a>
 
-		<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 or (@location.public_url_active and not @location.public_url.blank?) %>
+	<!-- Add New Location -->
+	<% elsif @cont == 'locations' and @act == 'new' and current_user.is_vendor %>
+		<a href="<%= session[:return_to] %>">Cancel</a>
 
-			<div class="pull-right">
-				<div class="btn-group">
-					<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
-						<a href=<%= locations_edit_url(:id => params[:id]) %>><button class="btn btn-success btn-sm" style="margin-right:10px;">Edit Location</button></a>
-					<% end %>
-					<% if @location.public_url_active and not @location.public_url.blank? and @location.active %>
-						<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank"><button class="btn btn-primary btn-sm" style="margin-right:10px;">View Public Profile</button></a>
-					<% end %>
-				</div>
-			</div>
+	<!-- Manage Locations -->
+	<% elsif @cont == 'locations' and @act == 'manage' and current_user.is_vendor %>
+		<a href="<%= locations_new_url %>">Add New Location</a>
 
+	<!-- View Locations -->
+	<% elsif @cont == 'locations' and @act == 'view' %>
+		<!-- TODO: Add in follow/favorite button here -->
+		<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
+			<a href="<%= locations_edit_url(:id => params[:id]) %>">Edit Location</a>
+			|
+		<% end %>
+		<% if @location.public_url_active and not @location.public_url.blank? and @location.active %>
+			<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">View Public Profile</a>
+			|
+		<% end %>
+		<a href="<%= main_url(:supplier => @location.bus_vendor_id) %>">View Updates</a>
+
+	<!-- Edit Featured Item -->
+	<% elsif @cont == 'products' and @act == 'edit' %>
+		<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" title="View">Preview</a>
+		|
+		<a href="<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %>">Delete this Product</a>
+
+	<!-- Favorite Products -->
+	<% elsif @cont == 'favorites' and @act == 'products' %>
+		<% if params[:view] == 'list' %>
+			<a href="<%= favorites_products_url(params.merge(:view => 'grid')) %>">Switch to Grid View</a>
+		<% else %>
+			<a href="<%= favorites_products_url(params.merge(:view => 'list')) %>">Switch to List View</a>
 		<% end %>
 
+	<!-- Delete Featured Item -->
+	<% elsif @cont == 'locations' and @act == 'delete_featureditem' %>
+		<a href="<%= session[:return_to] %>">Cancel</a>
+
+	<!-- Default to something for all other pages -->
+	<% else %>
+		<a href="<%= account_company_url %>">Manage Company</a>
+		|
+		<a href="<%= account_url %>">Manage Account</a>
+		|
+		<a href="<%= logout_url %>">Logout</a>
 	<% end %>
 
-<% end %>
-
-<% if controller.controller_name == 'products' and controller.action_name == 'edit' %>
-
-	<div class="pull-right">
-		<div class="btn-group">
-			<a href=<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %> title="Delete" class="white" id="white-link">
-				<button class="btn btn-success btn-sm">Delete this Product</button>
-			</a>
-			<a data-toggle="modal" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" title="View" class="white" id="white-link">
-				<button class="btn btn-success btn-sm">Preview</button>
-			</a>
-		</div>
-	</div>
-
-<% end %>
-
-<% if controller.controller_name == 'products' and controller.action_name == 'view' %>
-
-	<% if Location.where(:id => @featureditem.location_id, :bus_vendor_id => current_user.bus_vendor_id).count > 0 %>
-		<div class="pull-right">
-			<div class="btn-group">
-				<a href=<%= products_edit_url(:id => @featureditem.id) %> title="Edit" class="white" id="white-link">
-					<button class="btn btn-success btn-sm">Edit</button>
-				</a>
-			</div>
-		</div>
-	<% end %>
-<% end %>
-
-<% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
-
-	<div class="pull-right">
-		<div class="btn-group">
-			<% if params[:view] == 'list' %>
-				<a href=<%= favorites_products_url(params.merge(:view => 'grid')) %>>
-					<button class="btn btn-success btn-sm" style="margin-right:10px;">Grid View</button>
-				</a>
-			<% elsif params[:view] == 'grid' %>
-				<a href=<%= favorites_products_url(params.merge(:view => 'list')) %>>
-					<button class="btn btn-success btn-sm" style="margin-right:10px;">List View</button>
-				</a>
-			<% end %>
-		</div>
-	</div>
-
-<% end %>
+</li>

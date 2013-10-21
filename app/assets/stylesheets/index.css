@@ -77,3 +77,11 @@ body {
     width: 100%;
   }
 }
+
+@media (max-width: 501px) {
+  #content-over-carousel{
+    position:absolute;
+    top:25px;
+    right:50px;
+  }
+}

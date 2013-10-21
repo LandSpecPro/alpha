@@ -226,6 +226,8 @@ class LocationsController < ApplicationController
     else
       @vlocations = @user.bus_vendor.locations
     end
+
+    store_location
   end
 
   def edit

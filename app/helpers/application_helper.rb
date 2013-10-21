@@ -343,6 +343,16 @@ module ApplicationHelper
 			else
 				return ""
 			end
+		elsif controller.controller_name == 'news_feed'
+			if params[:supplier]
+				unless BusVendor.where(:id => params[:supplier].to_i).count < 1
+					return " viewing updates for " + BusVendor.find(params[:supplier]).busName 
+				else
+					return ""
+				end
+			else
+				return ""
+			end
 		else
 			return ""
 		end
