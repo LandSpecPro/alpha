@@ -64,10 +64,10 @@ function gritterUpdateNewSearch(){
 }
 
 function showUpdateSuccessGritter(updated){
-	/*$.gritter.add({
+	$.gritter.add({
 		title: 'Success!',
 		text: updated,
 		class_name: 'gritter-info gritter-dark', 
 		time: 1200
-	});*/
+	});
 }
