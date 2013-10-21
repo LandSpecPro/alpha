@@ -8,13 +8,16 @@ class LocationsController < ApplicationController
   include NewsFeedHelper
   
   # add in before filter to make sure user id matches for setting and removing favorites
-  before_filter :require_location_id_active, :only => :set_as_favorite
-  before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
-  before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
-  before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_user, :except => [:view_public, :inventory_view]
   before_filter :require_business, :except => [:view_public, :inventory_view]
-  before_filter :require_user_is_vendor, :only => [:new, :create, :edit, :update, :destroy, :confirm_destroy, :update_categories, :update_status, :update_featured_item]
+  before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
+  before_filter :require_business, :except => [:view_public, :inventory_view]
+  before_filter :require_location_id_active, :only => :set_as_favorite
+  before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
+  before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
+  
+  
+  before_filter :require_business, :except => [:view_public, :inventory_view]
 
   def view_public
 
