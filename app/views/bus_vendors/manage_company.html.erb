@@ -2,10 +2,10 @@
 <%= render 'layouts/sidebar' %>
 
 <div class="row">
-	<div class="col-lg-4 col-lg-offset-1 col-xs-12">
+	<div class="col-lg-5 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
 		<%= form_for @bus_vendor, :html => {:id => 'form_update_logo'}, :url => {:action => :update} do |f| %>
 			<%= f.hidden_field :id, :value => @bus_vendor.id %>
-			<div class="widget-box" style="min-width: 350px;">
+			<div class="widget-box">
 				<div class="widget-header header-color-green2">
 					<h5 class="bigger lighter"><i class="icon-briefcase"></i> Company Information</h5>
 				</div>
@@ -26,7 +26,7 @@
 								<div class="center">
 									<ul class="ace-thumbnails">
 										<li>
-											<div style="max-height: 100px; min-width: 100px;">
+											<div>
 												<%= image_tag @bus_vendor.logo.url(:thumb) %>
 
 												<% unless @bus_vendor.logo_file_name.blank? %>
@@ -53,11 +53,11 @@
 							<div class="progress-bar progress-bar-success" style="width:100%;"></div>
 						</div>
 
-						<fieldset>
+						<div class="form-group">
+							<%= f.file_field :logo %>
+						</div>
 
-							<div class="form-group">
-								<%= f.file_field :logo %>
-							</div>
+						<fieldset>
 
 							<div class="form-group">
 								<%= f.label 'Company Name:' %>

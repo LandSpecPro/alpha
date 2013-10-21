@@ -14,8 +14,8 @@
 					<thead>
 						<tr>
 							<th class="center">Location Name</th>
-							<th class="center hidden-phone">Address</th>
-							<th class="center hidden-phone">Public URL</th>
+							<th class="center hidden-480">Address</th>
+							<th class="center hidden-767">Public URL</th>
 							<th class="center"></th>
 							<th class="center">Inventory?</th>
 						</tr>
@@ -30,7 +30,7 @@
 									<%= l.locName  %>
 								</td>
 
-								<td class="center hidden-phone">
+								<td class="center hidden-480">
 									<%=
 										unless l.address2.blank?
 											l.address1 + " " + l.address2 + ", " + l.city + ", " + l.state + " " + l.zip 
@@ -40,7 +40,7 @@
 									%>
 								</td>
 
-								<td class="center hidden-phone">
+								<td class="center hidden-767">
 									<% if l.url_is_custom %>
 										<a href="http://www.landspecpro.com/profiles/<%= l.public_url %>" target="_blank">
 											<%= l.public_url %>
