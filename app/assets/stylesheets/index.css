@@ -57,8 +57,9 @@ body {
 @media (max-width: 768px) {
   #content-over-carousel{
     position:absolute;
+    width:100%;
     top:75px;
-    right:100px;
+    left:0;
   }
 
   #carousel-header{
@@ -76,6 +77,10 @@ body {
   #carousel-newsletter-button{
     width: 100%;
   }
+
+  .carousel-control{
+    visibility:hidden;
+  }
 }
 
 @media (max-width: 501px) {
@@ -84,4 +89,17 @@ body {
     top:25px;
     right:50px;
   }
+
+  #newsletterForm{
+    width:100%;
+  }
+
+  #carousel-newsletter-button{
+    width:100%;
+  }
+  #emailnewsletter{
+    width:100%;
+  }
+
+
 }
