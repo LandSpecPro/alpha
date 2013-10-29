@@ -13,7 +13,7 @@ module LspAlpha
   class Application < Rails::Application
 
    
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
     # For using Font Awesome
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
