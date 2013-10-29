@@ -36,13 +36,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bootstrap-sass (2.3.1.0)
-      sass (~> 3.2)
     builder (3.0.4)
-    chosen-rails (0.9.14)
-      coffee-rails (>= 3.2)
-      railties (>= 3.0)
-      sass-rails (>= 3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -64,8 +58,8 @@ GEM
     figaro (0.6.3)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    font-awesome-rails (3.0.2.0)
-      railties (>= 3.1)
+    font-awesome-rails (3.2.1.3)
+      railties (>= 3.2, < 5.0)
     geocoder (1.1.8)
     hike (1.2.2)
     httparty (0.11.0)
@@ -94,11 +88,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-    parse_resource (1.8.0)
-      activemodel
-      activesupport
-      json
-      rest-client
     pg (0.15.1-x86-mingw32)
     pg_search (0.6.3)
       activerecord (>= 3.1)
@@ -132,8 +121,6 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -161,8 +148,6 @@ PLATFORMS
 DEPENDENCIES
   authlogic
   aws-sdk
-  bootstrap-sass
-  chosen-rails
   coffee-rails (~> 3.2.1)
   customerio
   dalli
@@ -175,7 +160,6 @@ DEPENDENCIES
   newrelic_rpm
   nifty-generators
   paperclip
-  parse_resource (~> 1.8.0)
   pg
   pg_search
   rails (= 3.2.13)

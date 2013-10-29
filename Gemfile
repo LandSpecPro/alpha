@@ -14,7 +14,7 @@ gem 'dynamic_form'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro' #setting environment variables
-#gem 'font-awesome-rails'
+gem 'font-awesome-rails'
 gem 'geocoder'
 gem 'pg_search'
 gem 'rails3-jquery-autocomplete'
