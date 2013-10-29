@@ -8,19 +8,19 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'bootstrap-sass'
+#gem 'bootstrap-sass'
 gem "authlogic"
 gem 'dynamic_form'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro' #setting environment variables
-gem 'font-awesome-rails'
+#gem 'font-awesome-rails'
 gem 'geocoder'
 gem 'pg_search'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
-gem 'chosen-rails'
-gem 'parse_resource', "~> 1.8.0"
+#gem 'chosen-rails'
+#gem 'parse_resource', "~> 1.8.0"
 gem 'newrelic_rpm'
 
 gem 'customerio'
