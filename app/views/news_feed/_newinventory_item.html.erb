@@ -3,50 +3,54 @@
 
 <% if @user.active and @user.verified and @loc.active %>
 
-	<div class="timeline-item clearfix">
+	<% unless NewsFeedItem.where("location_id = ? and (item_type = ? or item_type = ?) and id > ?", i.location_id, FIRST_INVENTORY, NEW_INVENTORY, i.id).count > 0 %>
 
-		<!-- Icon to the side -->
-		<div class="timeline-info">
+		<div class="timeline-item clearfix">
 
-			<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
-				<i class="timeline-indicator icon-cloud-upload btn btn-pink"></i>
-			</a>
+			<!-- Icon to the side -->
+			<div class="timeline-info">
+
+				<a href="<%= main_url(:only_inventories => true) %>" data-rel="tooltip" class="tooltip-success" data-placement="right" data-original-title="Show Only Inventories">
+					<i class="timeline-indicator icon-cloud-upload btn btn-pink"></i>
+				</a>
+
+			</div>
+
+			<!-- Main item -->
+			<div class="widget-box transparent">
+
+				<!-- Header -->
+				<div class="widget-header widget-header-small">
+
+					<!-- Text -->
+					<h5>
+						<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
+							<%= @loc.busName %>
+						</a>
+						<span class="grey">uploaded a new inventory.</span>
+					</h5>
+
+					<!-- Timestamp 
+					<span class="widget-toolbar no-border" style="margin-right:10px;">
+						<i class="icon-time bigger-110"></i>
+						<%= format_date_and_time(i.created_at) %>
+					</span> -->
+
+				</div>
+
+				<!-- Main Content -->
+				<div class="widget-body">
+					<div class="widget-main">
+
+						<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id) %>" target="_blank">Click here</a> to view or download this supplier's updated inventory.
+
+					</div>
+				</div>
+
+			</div> <!-- Main Item -->
 
 		</div>
 
-		<!-- Main item -->
-		<div class="widget-box transparent">
-
-			<!-- Header -->
-			<div class="widget-header widget-header-small">
-
-				<!-- Text -->
-				<h5>
-					<a href="<%= locations_view_url(:id => i.location_id) %>" class="blue">
-						<%= @loc.busName %>
-					</a>
-					<span class="grey">uploaded a new inventory.</span>
-				</h5>
-
-				<!-- Timestamp 
-				<span class="widget-toolbar no-border" style="margin-right:10px;">
-					<i class="icon-time bigger-110"></i>
-					<%= format_date_and_time(i.created_at) %>
-				</span> -->
-
-			</div>
-
-			<!-- Main Content -->
-			<div class="widget-body">
-				<div class="widget-main">
-
-					<a href="<%= location_inventory_view_url(:id => i.location_id, :inv_id => i.item_id) %>" target="_blank">Click here</a> to view or download this supplier's updated inventory.
-
-				</div>
-			</div>
-
-		</div> <!-- Main Item -->
-
-	</div>
+	<% end %>
 
 <% end %>
