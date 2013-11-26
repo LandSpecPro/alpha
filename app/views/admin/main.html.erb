@@ -1,35 +1,101 @@
 <%= render 'layouts/sidebar' %>
 
-<div class="row-fluid">
-    <div class="span3">
+<div class="row">
+    <div class="col-lg-3 col-md-3">
 
-        <h3>User Totals</h3>
-        <p><strong>Total Users:</strong> <%= User.all.count.to_s %></p>
-        <p><strong>Total Active Users:</strong> <%= User.where(:active => true).count.to_s %></p>
-        <p><strong>Total Buyers:</strong> <%= User.where('lower("userType") = ?', 'buyer').count.to_s %></p>
-        <p><strong>Total Suppliers:</strong> <%= User.where('lower("userType") = ?', 'vendor').count.to_s %></p>
+        <h3>Running Totals</h3>
 
-        <h3>Product Totals</h3>
-        <p><strong>Total Products:</strong> <%= Product.all.count.to_s %></p>
-        <p><strong>Total Active Products:</strong> <%= Product.where(:active => true).count.to_s %></p>
-        <p><strong>Total Product Images:</strong> <%= ProductImage.all.count.to_s %></p>
-        <p><strong>Total Active Product Images:</strong> <%= ProductImage.where(:active => true).count.to_s %></p>
-        <p><strong>Total Featured Items:</strong> <%= FeaturedItem.all.count.to_s %></p>
-        <p><strong>Total Active Featured Items:</strong> <%= FeaturedItem.where(:active => true).count.to_s %></p>
-
-        <h3>Location Totals</h3>
-        <p><strong>Total Locations:</strong> <%= Location.all.count.to_s %></p>
-        <p><strong>Total Active Locations:</strong> <%= Location.where(:active => true).count.to_s %></p>
-        <p><strong>Total Locations Claimed:</strong> <%= ClaimLocation.where(:claimed => true).count.to_s %></p>
-        <p><strong>Total Locations UnClaimed:</strong> <%= ClaimLocation.where(:claimed => false).count.to_s %></p>
-
-        <h3>Claim Buyers</h3>
-        <p><strong>Total Buyer Profiles Claimed:</strong> <%= ClaimBuyer.where(:claimed => true).count.to_s %></p>
-        <p><strong>Total Buyer Profiles UnClaimed:</strong> <%= ClaimBuyer.where(:claimed => false).count.to_s %></p>
+        <table id="table_totals" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr><th colspan="2"><strong>User Totals<strong></th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><center><strong>Total Users</strong></center></td>
+                    <td><center><%= User.all.count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Active Users</strong></center></td>
+                    <td><center><%= User.where(:active => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Buyers</strong></center></td>
+                    <td><center><%= User.where('lower("userType") = ?', 'buyer').count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Suppliers</strong></center></td>
+                    <td><center><%= User.where('lower("userType") = ?', 'vendor').count.to_s %></center></td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr><th colspan="2"><strong>Product Totals</strong></th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><center><strong>Total Users</strong></center></td>
+                    <td><center><%= Product.all.count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Active Products</strong></center></td>
+                    <td><center><%= Product.where(:active => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Product Images</strong></center></td>
+                    <td><center><%= ProductImage.all.count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Active Product Images</strong></center></td>
+                    <td><center><%= ProductImage.where(:active => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Featured Items</strong></center></td>
+                    <td><center><%= FeaturedItem.all.count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Active Featured Items</strong></center></td>
+                    <td><center><%= FeaturedItem.where(:active => true).count.to_s %></center></td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr><th colspan="2"><strong>Location Totals</strong></th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><center><strong>Total Locations</strong></center></td>
+                    <td><center><%= Location.all.count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Active Locations</strong></center></td>
+                    <td><center><%= Location.where(:active => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Locations Claimed</strong></center></td>
+                    <td><center><%= ClaimLocation.where(:claimed => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Locations UnClaimed</strong></center></td>
+                    <td><center><%= ClaimLocation.where(:claimed => false).count.to_s %></center></td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr><th colspan="2"><strong>Claimed Buyers</strong></th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><center><strong>Total Buyer Profiles Claimed</strong></center></td>
+                    <td><center><%= ClaimBuyer.where(:claimed => true).count.to_s %></center></td>
+                </tr>
+                <tr>
+                    <td><center><strong>Total Buyer Profiles UnClaimed</strong></center></td>
+                    <td><center><%= ClaimBuyer.where(:claimed => false).count.to_s %></center></td>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
-    <div class="span9">
+    <div class="col-lg-9 col-md-9">
 
         <h3>New Users</h3>
 
