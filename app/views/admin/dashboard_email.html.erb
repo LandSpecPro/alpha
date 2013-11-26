@@ -1,0 +1,124 @@
+<%= render 'layouts/sidebar' %>
+
+
+
+<!-- Tables -->
+<div class="row">
+
+    <h3>Email Statistis</h3>
+    
+    <div class="col-lg-4">
+
+            <!-- Newsletter Emails -->
+            <div class="table-header header-color-blue">
+                    <strong><%= @newsletters.count.to_s %> Newsletter Emails</strong>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                            <tr>
+                                    <th class="center">Email</th>
+                                    <th class="center">Created At</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            <% @newsletters.each do |newsletter| %>
+                                    <tr>
+                                            <td class="center"><%= newsletter.email %></td>
+                                            <td class="center"><%= format_datetime_or_return_blank(newsletter.created_at, nil) %></td>
+                                    </tr>
+                            <% end %>
+                    </tbody>
+            </table>
+
+    </div>
+
+
+    <!-- User Emails -->
+    <div class="col-lg-8">
+
+            <!-- Supplier Emails -->
+            <div class="table-header header-color-blue center">
+                    <strong><%= @suppliers.count.to_s %> Supplier Emails</strong>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                            <tr>
+                                    <th class="center">Email</th>
+                                    <th class="center">Username</th>
+                                    <th class="center">Business Name</th>
+                                    <th class="center">Created At</th>
+                                    <th class="center">Is Active?</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            <% @suppliers.each do |supplier| %>
+                                    <tr>
+                                            <td class="center"><%= supplier.email %></td>
+                                            <td class="center">
+                                                    <a href="<%= admin_user_view_url(:id => supplier.id) %>"><%= supplier.login %></a>
+                                            </td>
+                                            <% unless supplier.get_business.blank? %>
+                                                    <td class="center"><%= supplier.get_business.busName %></td>
+                                            <% else %>
+                                                    <td class="center"></td>
+                                            <% end %>
+                                            <td class="center"><%= format_datetime_or_return_blank(supplier.created_at, nil) %></td>
+                                            <td class="center">
+                                                    <% if supplier.active %>
+                                                            <a href="<%= admin_user_deactivate_url(:id => supplier.id, :redirect_url => admin_email_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to deactivate">true</a>
+                                                    <% else %>
+                                                            <a href="<%= admin_user_activate_url(:id => supplier.id, :redirect_url => admin_email_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to activate">false</a>
+                                                    <% end %>
+                                            </td>
+                                    </tr>
+                            <% end %>
+                    </tbody>
+            </table>
+
+            <!-- Buyer Emails -->
+            <div class="table-header header-color-blue center">
+                    <strong><%= @buyers.count.to_s %> Buyer Emails</strong>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                            <tr>
+                                    <th class="center">Email</th>
+                                    <th class="center">Username</th>
+                                    <th class="center">Business Name</th>
+                                    <th class="center">Created At</th>
+                                    <th class="center">Is Active?</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            <% @buyers.each do |buyer| %>
+                                    <tr>
+                                            <td class="center"><%= buyer.email %></td>
+                                            <td class="center">
+                                                    <a href="<%= admin_user_view_url(:id => buyer.id) %>"><%= buyer.login %></a>
+                                            </td>
+                                            <% unless buyer.get_business.blank? %>
+                                                    <td class="center"><%= buyer.get_business.busName %></td>
+                                            <% else %>
+                                                    <td class="center"></td>
+                                            <% end %>
+                                            <td class="center"><%= format_datetime_or_return_blank(buyer.created_at, nil) %></td>
+                                            <td class="center">
+                                                    <% if buyer.active %>
+                                                            <a href="<%= admin_user_deactivate_url(:id => buyer.id, :redirect_url => admin_email_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to deactivate">true</a>
+                                                    <% else %>
+                                                            <a href="<%= admin_user_activate_url(:id => buyer.id, :redirect_url => admin_email_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to activate">false</a>
+                                                    <% end %>
+                                            </td>
+                                    </tr>
+                            <% end %>
+                    </tbody>
+            </table>
+
+    </div>
+
+</div>
+
+<%= render 'layouts/sidebarend' %>

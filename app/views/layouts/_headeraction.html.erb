@@ -55,6 +55,16 @@
 	<% elsif @cont == 'locations' and @act == 'delete_featureditem' %>
 		<a href="<%= session[:return_to] %>">Cancel</a>
 
+	<!-- Admin Pages -->
+	<% elsif @cont == 'admin' %>
+		<a href="<%= admin_url %>">Main Dashboard</a>
+		|
+		<a href="<%= admin_users_url %>">Users Dashboard</a>
+		|
+		<a href="<%= admin_weekly_url %>">Weekly Dashboard</a>
+		|
+		<a href="<%= admin_email_url %>">Email Dashboard</a>
+
 	<!-- Default to something for all other pages -->
 	<% else %>
 		<a href="<%= account_company_url %>">Manage Company</a>

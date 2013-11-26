@@ -1,0 +1,208 @@
+<%= render 'layouts/sidebar' %>
+
+        <div class="container">
+                <div class="row-fluid">
+                        <div class="span12">
+                                <div class="center">
+
+                                        <table id="userTable" class="table table-striped table-bordered table-hover">
+                                                <thead>
+
+                                                        <tr>
+                                                                <th class="center" colspan="2">
+                                                                        <h2><strong><%= @user.login %></strong></h2>
+                                                                        <div class="badge badge-success"><%= @user.userType %></div>
+                                                                        <div class="badge badge-primary"><%= 'id: ' + @user.id.to_s %></div>
+                                                                        <% if @user.verified %>
+                                                                                <div class="badge badge-success">Verified</div>
+                                                                        <% else %>
+                                                                                <div class="badge badge-important">Not Verified</div>
+                                                                        <% end %>
+                                                                </th>
+                                                        </tr>
+
+                                                        <tr>
+                                                                <th class="center" colspan="2">
+                                                                        <% if @user.active %>
+                                                                                <a href="<%= admin_user_deactivate_url(:id => @user.id, :redirect_url => admin_user_view_url(:id => @user.id)) %>" class="btn btn-block btn-primary">De-activate User</a>
+                                                                        <% else %>
+                                                                                <a href="<%= admin_user_activate_url(:id => @user.id, :redirect_url => admin_user_view_url(:id => @user.id)) %>" class="btn btn-block btn-danger">Activate User</a>
+                                                                        <% end %>
+                                                                        <% if @user.verified %>
+                                                                                <a href="<%= admin_user_verify_url(:id => @user.id, :newvalue => false, :redirect_url => admin_user_view_url(:id => @user.id)) %>" class="btn btn-block btn-primary">Un-Verify User</a>
+                                                                        <% else %>
+                                                                                <a href="<%= admin_user_verify_url(:id => @user.id, :newvalue => true, :redirect_url => admin_user_view_url(:id => @user.id)) %>" class="btn btn-block btn-danger">Verify User</a>
+                                                                        <% end %>
+                                                                </tr>
+                                                        </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                        <!-- Username and Email -->
+                                                        <tr>
+                                                                <td class="center">
+                                                                        <strong>Username:</strong> <%= @user.login %>
+                                                                </td>
+                                                                <td class="center">
+                                                                        <strong>Email:</strong> <%= @user.email %>
+                                                                </td>
+                                                        </tr>
+
+                                                        <!-- Login Count and Last Login -->
+                                                        <tr>
+                                                                <td class="center">
+                                                                        <strong>Login Count:</strong> <%= @user.login_count.to_s %>
+                                                                </td>
+                                                                <td class="center">
+                                                                        <strong>Last Login At:</strong> <%= format_datetime_or_return_blank(@user.last_login_at, nil) %>
+                                                                </td>
+                                                        </tr>
+
+                                                        <!-- Created and Updated At -->
+                                                        <tr>
+                                                                <td class="center">
+                                                                        <strong>Created At:</strong> <%= format_datetime_or_return_blank(@user.created_at, nil) %>
+                                                                </td>
+                                                                <td class="center">
+                                                                        <strong>Updated At:</strong> <%= format_datetime_or_return_blank(@user.updated_at, nil) %>
+                                                                </td>
+                                                        </tr>
+
+                                                        <!-- COMPANY INFO -->
+                                                        <% unless @user.bus_vendor_id.blank? and @user.bus_buyer_id.blank? %>
+
+                                                                <% @business = @user.get_business %>
+                                                                <tr>
+                                                                        <td class="center" colspan="2">
+                                                                                <h3><strong>Company Information</strong></h3>
+                                                                                <div class="badge badge-primary"><%= 'id: ' + @business.id.to_s %></div>
+                                                                                <% if @user.is_vendor %>
+                                                                                        <div class="badge badge-success"><%= @business.locations.count.to_s + ' location(s)' %></div>
+                                                                                <% end %>
+                                                                        </td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td class="center">
+                                                                                <strong>Company Name: </strong> <%= @business.busName %>
+                                                                        </td>
+                                                                        <td class="center">
+                                                                                <strong>Company Phone: </strong> <%= @business.busPhone %>
+                                                                        </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                        <td class="center" colspan="2">
+                                                                                <strong>Company Tagline: </strong> <%= @business.tagline %>
+                                                                        </td>
+                                                                </tr>
+
+                                                        <% end %>
+
+
+                                                        <!-- ALL LOCATION INFO -->
+                                                        <% if @user.is_vendor and not @user.bus_vendor_id.blank? %>
+
+                                                                <% @user.get_business.locations.each do |l| %>
+
+                                                                        <tr>
+                                                                                <th class="center" colspan="2">
+                                                                                        <% if l.locName.blank? %>
+                                                                                                <h3><strong>Location Info</strong></h3>
+                                                                                        <% else %>
+                                                                                                <h3><strong>Location Info - <%= l.locName %></strong></h3>
+                                                                                        <% end %>
+
+                                                                                        <div class="badge badge-primary"><%= 'id: ' + l.id.to_s %></div>
+                                                                                        <% if l.active %>
+                                                                                                <div class="badge badge-success">Active</div>
+                                                                                        <% else %>
+                                                                                                <div class="badge badge-important">Not Active</div>
+                                                                                        <% end %>
+                                                                                </th>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                                <th class="center" colspan="2">
+                                                                                        <% if l.active %>
+                                                                                        <a href="<%= location_user_deactivate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-primary">De-Activate This Location</a>
+                                                                                        <% else %>
+                                                                                        <a href="<%= location_user_activate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-danger">Activate This Location</a>
+                                                                                        <% end %>
+                                                                                </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Address:</strong> <%= l.get_full_address %>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Public URL: </strong> <a href="http://www.landspecpro.com/profiles/<%= l.public_url %>"><%= l.public_url %></a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Primary Phone:</strong> <%= l.primaryPhone %>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Secondary Phone:</strong> <%= l.secondaryPhone %>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Primary Email:</strong> <%= l.primaryEmail %>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Secondary Email:</strong> <%= l.secondaryEmail %>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Fax:</strong> <%= l.fax %>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Website:</strong> <a href="<%= l.websiteLink %>"><%= l.websiteLink %></a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Facebook:</strong> <a href="<%= l.facebookLink %>"><%= l.facebookLink %></a>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Twitter:</strong> <a href="<%= l.twitterLink %>"><%= l.twitterLink %></a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Google+:</strong> <a href="<%= l.googleLink %>"><%= l.googleLink %></a>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <% if l.bio.blank? %>
+                                                                                                <strong>Has Bio?:</strong> No
+                                                                                        <% else %>
+                                                                                                <strong>Has Bio?:</strong> Yes
+                                                                                        <% end %>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td class="center">
+                                                                                        <strong>Created At:</strong> <%= format_datetime_or_return_blank(l.created_at, nil) %>
+                                                                                </td>
+                                                                                <td class="center">
+                                                                                        <strong>Updated At:</strong> <%= format_datetime_or_return_blank(l.updated_at, nil) %>
+                                                                                </td>
+                                                                        </tr>
+
+                                                                <% end %>
+
+                                                        <% end %>
+
+                                                </tbody>
+                                        </table>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+
+<%= render 'layouts/sidebarend' %>

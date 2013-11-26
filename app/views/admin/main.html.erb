@@ -1,0 +1,275 @@
+<%= render 'layouts/sidebar' %>
+
+<div class="row-fluid">
+    <div class="span3">
+
+        <h3>User Totals</h3>
+        <p><strong>Total Users:</strong> <%= User.all.count.to_s %></p>
+        <p><strong>Total Active Users:</strong> <%= User.where(:active => true).count.to_s %></p>
+        <p><strong>Total Buyers:</strong> <%= User.where('lower("userType") = ?', 'buyer').count.to_s %></p>
+        <p><strong>Total Suppliers:</strong> <%= User.where('lower("userType") = ?', 'vendor').count.to_s %></p>
+
+        <h3>Product Totals</h3>
+        <p><strong>Total Products:</strong> <%= Product.all.count.to_s %></p>
+        <p><strong>Total Active Products:</strong> <%= Product.where(:active => true).count.to_s %></p>
+        <p><strong>Total Product Images:</strong> <%= ProductImage.all.count.to_s %></p>
+        <p><strong>Total Active Product Images:</strong> <%= ProductImage.where(:active => true).count.to_s %></p>
+        <p><strong>Total Featured Items:</strong> <%= FeaturedItem.all.count.to_s %></p>
+        <p><strong>Total Active Featured Items:</strong> <%= FeaturedItem.where(:active => true).count.to_s %></p>
+
+        <h3>Location Totals</h3>
+        <p><strong>Total Locations:</strong> <%= Location.all.count.to_s %></p>
+        <p><strong>Total Active Locations:</strong> <%= Location.where(:active => true).count.to_s %></p>
+        <p><strong>Total Locations Claimed:</strong> <%= ClaimLocation.where(:claimed => true).count.to_s %></p>
+        <p><strong>Total Locations UnClaimed:</strong> <%= ClaimLocation.where(:claimed => false).count.to_s %></p>
+
+        <h3>Claim Buyers</h3>
+        <p><strong>Total Buyer Profiles Claimed:</strong> <%= ClaimBuyer.where(:claimed => true).count.to_s %></p>
+        <p><strong>Total Buyer Profiles UnClaimed:</strong> <%= ClaimBuyer.where(:claimed => false).count.to_s %></p>
+
+    </div>
+
+    <div class="span9">
+
+        <h3>New Users</h3>
+
+        <table id="table_report" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center">Today</th>
+                    <th class="center">Yesterday</th>
+                    <th class="center">Last 7 Days</th>
+                    <th class="center">Last 14 Days</th>
+                    <th class="center">Last 30 Days</th>
+                    <th class="center">Last 60 Days</th>
+                    <th class="center">Last 90 Days</th>
+                </tr>
+            </thead>
+                                                            
+            <tbody>
+                <tr>
+                    <td class="center">
+                        <strong>Active</strong>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => DateTime.now.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 1.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 7.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 14.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 30.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 60.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= User.where(:created_at => 90.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>New Locations</h3>
+
+        <table id="table_report" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center">Today</th>
+                    <th class="center">Yesterday</th>
+                    <th class="center">Last 7 Days</th>
+                    <th class="center">Last 14 Days</th>
+                    <th class="center">Last 30 Days</th>
+                    <th class="center">Last 60 Days</th>
+                    <th class="center">Last 90 Days</th>
+                </tr>
+            </thead>
+                                                            
+            <tbody>
+                <tr>
+                    <td class="center">
+                        <strong>Active</strong>
+                    <td class="center">
+                        <%= Location.where(:created_at => DateTime.now.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 1.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 7.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 14.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 30.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 60.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 90.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center">
+                        <strong>Inactive</strong>
+                    <td class="center">
+                        <%= Location.where(:created_at => DateTime.now.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 1.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 7.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 14.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 30.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 60.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                    <td class="center">
+                        <%= Location.where(:created_at => 90.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => false).count %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>New Products</h3>
+
+        <table id="table_report" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center">Today</th>
+                    <th class="center">Yesterday</th>
+                    <th class="center">Last 7 Days</th>
+                    <th class="center">Last 14 Days</th>
+                    <th class="center">Last 30 Days</th>
+                    <th class="center">Last 60 Days</th>
+                    <th class="center">Last 90 Days</th>
+                </tr>
+            </thead>
+                                                            
+            <tbody>
+                <tr>
+                    <td class="center">
+                        <strong>Active</strong>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => DateTime.now.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 1.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 7.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 14.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 30.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 60.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= Product.where(:created_at => 90.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>New Featured Items</h3>
+
+        <table id="table_report" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center"></th>
+                    <th class="center">Today</th>
+                    <th class="center">Yesterday</th>
+                    <th class="center">Last 7 Days</th>
+                    <th class="center">Last 14 Days</th>
+                    <th class="center">Last 30 Days</th>
+                    <th class="center">Last 60 Days</th>
+                    <th class="center">Last 90 Days</th>
+                </tr>
+            </thead>
+                                                            
+            <tbody>
+                <tr>
+                    <td class="center">
+                        <strong>Active</strong>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => DateTime.now.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 1.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 7.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 14.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 30.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 60.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                    <td class="center">
+                        <%= FeaturedItem.where(:created_at => 90.days.ago.beginning_of_day...DateTime.now.end_of_day, :active => true).count %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<%= render 'layouts/sidebarend' %>
+
+
+<!--
+        Differentiate by Active vs. Inactive, Claimed vs. Unclaimed, Verified vs. Unverified, etc.
+
+        The main dashboard should just be for totals? Or maybe have the main dashboard be a big overview of Users and their usage. Stats that would be important to know on a weekly basis and stuff.
+
+
+
+        OTHER PAGES:
+
+        User - Drill down into weekly signups, statistics on types of users, user activity, number of logins, what information they've included, have a table with all users in it so you can view all their information.
+
+        Locations - Same as above, be able to drill down into all the information. This will be more complicated because it will need to link with the featured items and products and stuff
+
+        Products
+        Images
+        Categories
+        Claimed and Unclaimed
+        Favorites
+        Invites and Invite Codes
+        Newsletter Emails
+        Search Logs!!!!!!!!!
+        (payment, etc.? later)
+
+        etc......
+
+-->

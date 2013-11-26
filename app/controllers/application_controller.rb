@@ -127,4 +127,12 @@ class ApplicationController < ActionController::Base
   	session[:return_to] = nil
   end
 
+  def require_user_is_admin
+    if current_user.login != 'ohmatt' and current_user.login != 'timwolfedesign' and current_user.login != 'timwolfedesign1'
+      flash[:notice] = "Only site administrators can access this page."
+      redirect_back_or_default(main_url)
+      return false
+    end
+  end
+
 end

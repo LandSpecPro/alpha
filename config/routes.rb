@@ -1,5 +1,13 @@
 LspAlpha::Application.routes.draw do
 
+  get "admin/dashboard_main"
+
+  get "admin/dashboard_weekly"
+
+  get "admin/dashboard_email"
+
+  get "admin/user_view"
+
   match "location/inventory/view" => "locations#inventory_view"
 
   match "main" => "news_feed#main"
@@ -147,6 +155,22 @@ LspAlpha::Application.routes.draw do
   match "buyer/company" => 'bus_buyers#manage_company'
   #match "buyer/welcome" => 'bus_buyers#welcome_help'
   match "buyer/help" => 'bus_buyers#help'
+
+
+  #### ADMIN STUFF
+  match 'admin' => 'admin#main'
+  match 'admin/weekly' => 'admin#dashboard_weekly'
+  match 'admin/users' => 'admin#dashboard_users'
+  match 'admin/email' => 'admin#dashboard_email'
+
+  match 'admin/user/view' => 'admin#user_view'
+
+  match 'admin/user/verify' => 'admin#user_verify'
+  match 'admin/user/activate' => 'admin#user_activate'
+  match 'admin/user/deactivate' => 'admin#user_deactivate'
+
+  match 'admin/location/activate' => 'admin#location_activate'
+  match 'admin/location/deactivate' => 'admin#location_deactivate'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

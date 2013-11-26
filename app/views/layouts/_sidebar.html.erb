@@ -129,6 +129,19 @@
 					</a>
 				</li>
 
+				<% if current_user.login == 'ohmatt' or current_user.login == 'timwolfedesign' or current_user.login == 'timwolfedesign1' %>
+					<% if controller.controller_name == 'admin' %>
+						<li class="active">
+					<% else %>
+						<li>
+					<% end %>
+						<a href="<%= admin_url %>">
+							<i class="icon-bar-chart"></i>
+							<span class="menu-text">Admin Tools</span>
+						</a>
+					</li>
+				<% end %>
+
 			</ul><!--/.nav-list-->
 
 			<div class="sidebar-collapse" id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>

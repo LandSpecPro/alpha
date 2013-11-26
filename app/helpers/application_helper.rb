@@ -299,6 +299,8 @@ module ApplicationHelper
 			return "Favorites"
 		elsif @controller == 'news_feed'
 			return "News Feed"
+		elsif @controller == 'admin'
+			return "Admin Dashboard"
 		else
 			return ""
 		end
@@ -350,6 +352,18 @@ module ApplicationHelper
 				else
 					return ""
 				end
+			else
+				return ""
+			end
+		elsif controller.controller_name == 'admin'
+			if controller.action_name == 'main'
+				return " Main Dashboard"
+			elsif controller.action_name == 'dashboard_users'
+				return " Users Dashboard"
+			elsif controller.action_name == 'dashboard_weekly'
+				return " Weekly Dashboard"
+			elsif controller.action_name == 'dashboard_email'
+				return " Email Dashboard"
 			else
 				return ""
 			end
