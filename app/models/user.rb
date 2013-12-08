@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	include ModelHelper
 
-	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :currentState, :currentCity, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes, :fav_locations_attributes, :fav_products_attributes
+	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :currentState, :currentCity, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes
 
 	has_one :bus_vendor, :dependent => :destroy
 	accepts_nested_attributes_for :bus_vendor
@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
 	accepts_nested_attributes_for :bus_buyer
 	has_many :search_logs
 	accepts_nested_attributes_for :search_logs
-	has_many :fav_locations
-	accepts_nested_attributes_for :fav_locations
-	has_many :fav_products
-	accepts_nested_attributes_for :fav_products
 
 	validates_presence_of :userType, :message => "You must select a user type."
 

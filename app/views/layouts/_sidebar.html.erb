@@ -77,36 +77,6 @@
 
 					</li>
 
-				<% if controller.controller_name == 'favorites' %>
-					<li class="active open">
-				<% else %>
-					<li>
-				<% end %>
-						<a href="#" class="dropdown-toggle">
-							<i class="icon-star"></i>
-							<span class="menu-text">Favorites</span>
-							<b class="arrow icon-angle-down"></b>
-						</a>
-
-						<ul class="submenu">
-
-						<% if controller.controller_name == 'favorites' and controller.action_name == 'products' %>
-							<li class="active">
-						<% else %>
-							<li>
-						<% end %>
-								<a href=<%= favorites_products_url %>><i class="icon-double-angle-right"></i> Products</a>
-							</li>
-						<% if controller.controller_name == 'favorites' and controller.action_name == 'vendors' %>
-							<li class="active">
-						<% else %>
-							<li>
-						<% end %>
-								<a href=<%= favorites_vendors_url %>><i class="icon-double-angle-right"></i> Suppliers</a>
-							</li>
-						</ul>
-					</li>
-
 				<% if (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and (controller.action_name == 'manage_company' || controller.action_name == 'update') %>
 					<li class="active">
 				<% else %>

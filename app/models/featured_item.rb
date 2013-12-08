@@ -130,38 +130,5 @@ class FeaturedItem < ActiveRecord::Base
 
 		return @address1 + @address2 + @city + @state + @zip
 	end
-
-	def is_favorited(user)
-
-		if FavProduct.where(:user_id => user.id, :featured_item_id => self.id).count > 0
-			return true
-		else
-			return false
-		end
-	end
-
-	def set_favorite(userid, fid, product_id)
-		
-		if FavProduct.where(:user_id => userid, :featured_item_id => self.id).count > 0
-			FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.activate
-		else
-			@favprod = FavProduct.create(:user_id => userid, :featured_item_id => self.id, :product_id => product_id)
-			if @favprod.save
-				return true
-			else
-				return false
-			end
-		end
-
-	end
-
-	def remove_favorite(userid, fid)
-
-		if fid == self.id
-			FavProduct.destroy(FavProduct.where(:user_id => userid, :featured_item_id => self.id).first.id)
-			return
-		else
-			return false
-		end
-	end
+	
 end

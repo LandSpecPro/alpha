@@ -6,9 +6,6 @@ class Product < ActiveRecord::Base
 	has_many :product_images
 	accepts_nested_attributes_for :product_images
 
-	has_many :fav_products
-	accepts_nested_attributes_for :fav_products
-
 	has_many :featured_items
 	accepts_nested_attributes_for :featured_items
 

@@ -46,12 +46,6 @@
 								<div>
 									<img src="<%= @fi.get_image.url(:medium) %>"  title="<%= @fi.commonName %>" style="max-height:100%; max-width:100%; display:block; margin:auto;" />
 
-									<% if @fi.is_favorited(current_user) %>
-										<div class="tags">
-											<span class="label label-info arrowed">Favorited!</span>
-										</div>
-									<% end %>
-
 									<div class="text">
 										<div class="inner">
 
@@ -66,12 +60,6 @@
 													<i class="icon-zoom-in"></i>
 												</a>
 											</span>
-
-											<% if @fi.is_favorited(current_user) %>
-												<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Remove From Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark" id="fav_icon"></i></a>
-											<% else %>
-												<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Add To Favorites" id="fav_product" href=<%= products_favorite_set_url(:id => @fi.id) %>><i  class="icon-bookmark-empty" id="fav_icon"></i></a>
-											<% end %>
 
 											<a data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="View Location" href=<%= locations_view_url(:id => @fi.location_id) %>>
 												<i class="icon-globe"></i>
