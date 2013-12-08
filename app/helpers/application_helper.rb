@@ -295,8 +295,6 @@ module ApplicationHelper
 			return "Password Reset"
 		elsif @controller == 'users' and @action == 'update'
 			return "Account Management"
-		elsif @controller == 'favorites'
-			return "Favorites"
 		elsif @controller == 'news_feed'
 			return "News Feed"
 		elsif @controller == 'admin'
@@ -326,14 +324,6 @@ module ApplicationHelper
 				return " View Featured Item"
 			elsif controller.action_name == 'edit'
 				return " Edit " + @product.commonName
-			else
-				return ""
-			end
-		elsif controller.controller_name == 'favorites'
-			if controller.action_name == 'products'
-				return " Featured Items"
-			elsif controller.action_name == 'vendors'
-				return " Suppliers"
 			else
 				return ""
 			end

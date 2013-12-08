@@ -43,14 +43,6 @@
 		|
 		<a href="<%= locations_featureditem_delete_url(:featured_item_id => @featureditem.id, :location_id => @featureditem.location_id) %>">Delete this Product</a>
 
-	<!-- Favorite Products -->
-	<% elsif @cont == 'favorites' and @act == 'products' %>
-		<% if params[:view] == 'list' %>
-			<a href="<%= favorites_products_url(params.merge(:view => 'grid')) %>">Switch to Grid View</a>
-		<% else %>
-			<a href="<%= favorites_products_url(params.merge(:view => 'list')) %>">Switch to List View</a>
-		<% end %>
-
 	<!-- Delete Featured Item -->
 	<% elsif @cont == 'locations' and @act == 'delete_featureditem' %>
 		<a href="<%= session[:return_to] %>">Cancel</a>

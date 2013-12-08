@@ -1,13 +1,12 @@
 class ProductsController < ApplicationController
   
-  # add in before filter to make sure user id matches for setting and removing favorites
   include ProductHelper
   include CustomerioHelper
   include AnalyticsHelper
   include NewsFeedHelper
 
   before_filter :require_id_parameter, :only => [:view, :edit]
-  before_filter :require_user, :only => [:edit, :new, :create, :set_as_favorite]
+  before_filter :require_user, :only => [:edit, :new, :create]
   before_filter :require_user_is_vendor, :only => [:edit, :new, :create]
 
   def new
@@ -158,18 +157,6 @@ class ProductsController < ApplicationController
       end
     else
       return false
-    end
-  end
-
-  def set_as_favorite
-    @featureditem = FeaturedItem.find(params[:id])
-
-    if @featureditem.is_favorited(current_user)
-      FavProduct.where(:user_id => current_user.id, :featured_item_id => params[:id]).first.destroy
-      redirect_back_or_default('/')
-    else
-      @featureditem.set_favorite(current_user.id, @featureditem.id, @featureditem.get_product.id)
-      redirect_back_or_default('/')
     end
   end
 

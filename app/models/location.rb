@@ -21,9 +21,6 @@ class Location < ActiveRecord::Base
 	has_many :statuses
 	accepts_nested_attributes_for :statuses
 
-	has_many :fav_locations
-	accepts_nested_attributes_for :fav_locations
-
 	has_one :location_public_setting
 	accepts_nested_attributes_for :location_public_setting
 
@@ -162,30 +159,6 @@ class Location < ActiveRecord::Base
 	def get_featured_items
 
 		return FeaturedItem.where(:location_id => self.id, :active => true)
-
-	end
-
-	def is_favorited(user)
-
-		if FavLocation.where(:user_id => user.id, :location_id => self.id).count > 0
-			return true
-		else
-			return false
-		end
-	end
-
-	def set_favorite(userid, locid)
-
-		if FavLocation.where(:user_id => userid, :location_id => self.id, :active => false).count > 0
-			FavLocation.where(:user_id => userid, :location_id => self.id).first.activate
-		else
-			@favloc = FavLocation.create(:user_id => userid, :location_id => self.id)
-			if @favloc.save
-				return true
-			else
-				return false
-			end
-		end
 
 	end
 

@@ -142,7 +142,6 @@
 						<th class="center">Business Name</th>
 						<th class="center">Address</th>
 						<th class="center">Distance Away (miles)</th>
-						<th class="center hidden-480">Favorite</th>
 					</tr>
 				</thead>
 
@@ -165,17 +164,6 @@
 							</td>
 							<td class="center">
 								<%= "%5.2f" % l.distance_from(params[:location]).to_f %>
-							</td>
-							<td class="center hidden-480">
-								<% if l.is_favorited(current_user) %>
-									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Remove From Favorites" data-placement="bottom">
-										<i  class="icon-bookmark" id="fav_icon"></i>
-									</a>
-								<% else %>
-									<a href=<%= locations_favorite_set_url(:id => l.id) %> title="" class="tooltip-info" data-rel="tooltip" data-original-title="Add To Favorites" data-placement="bottom">
-										<i  class="icon-bookmark-empty" id="fav_icon"></i>
-									</a>
-								<% end %>
 							</td>
 						</tr>
 						

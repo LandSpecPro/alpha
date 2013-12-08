@@ -7,12 +7,10 @@ class LocationsController < ApplicationController
   include ApplicationHelper
   include NewsFeedHelper
   
-  # add in before filter to make sure user id matches for setting and removing favorites
   before_filter :require_user, :except => [:view_public, :inventory_view]
   before_filter :require_business, :except => [:view_public, :inventory_view]
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
   before_filter :require_business, :except => [:view_public, :inventory_view]
-  before_filter :require_location_id_active, :only => :set_as_favorite
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   
@@ -381,20 +379,6 @@ class LocationsController < ApplicationController
 
   end
 
-  def set_as_favorite
-
-    @location = Location.find(params[:id])
-
-    if @location.is_favorited(current_user)
-      FavLocation.where(:user_id => current_user.id, :location_id => params[:id]).first.destroy
-      redirect_back_or_default('/')
-    else
-      @location.set_favorite(current_user.id, @location.id)
-      redirect_back_or_default('/')
-    end
-
-  end
-
   def destroy
     
     @location = Location.find(params[:id])
@@ -404,11 +388,6 @@ class LocationsController < ApplicationController
   def confirm_destroy
 
       Location.find(params[:id]).deactivate
-
-      @favlocations = FavLocation.where(:location_id => params[:id])
-      @favlocations.each do |fl|
-        fl.deactivate
-      end
 
       @featureditems = FeaturedItem.where(:location_id => params[:id])
       @featureditems.each do |fi|
@@ -438,11 +417,6 @@ class LocationsController < ApplicationController
     @featureditem.deactivate
 
     @locid = @featureditem.location_id
-
-    @favproducts = FavProduct.where(:featured_item_id => params[:featured_item_id])
-    @favproducts.each do |fp|
-      fp.deactivate
-    end    
 
     cio_user_location(current_user, Location.find(@locid))
     redirect_to locations_edit_url(:id => @locid, :products => true)
