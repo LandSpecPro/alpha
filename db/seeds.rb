@@ -36,7 +36,8 @@ Category.create([
 #	{ id: 120, parent_id: 1, hierarchy_level: 2, cat_name: 'Cacti & Succulents'},
 #	{ id: 121, parent_id: 1, hierarchy_level: 2, cat_name: 'Balled and Burlapped'},
 #	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
-#	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'}
+#	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'},
+#   { id: 124, parent_id: 1, hierarchy_level: 2, cat_name: 'Groundcovers'},
 #
 #	#MATERIALS
 #	{ id: 200, parent_id: 2, hierarchy_level: 2, cat_name: 'Block'},
