@@ -12,6 +12,9 @@ LspAlpha::Application.routes.draw do
 
   match "main" => "news_feed#main"
 
+  match "follower/create" => 'followers#create'
+  match "follower/delete" => 'followers#delete'
+
   get "search/product"
   get "search/supplier"
   post "search/product"

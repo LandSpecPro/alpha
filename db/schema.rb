@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130928235512) do
+ActiveRecord::Schema.define(:version => 20131209185840) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -173,6 +173,14 @@ ActiveRecord::Schema.define(:version => 20130928235512) do
   add_index "featured_items", ["location_id"], :name => "index_featured_items_on_location_id"
   add_index "featured_items", ["product_id"], :name => "index_featured_items_on_product_id"
   add_index "featured_items", ["product_image_id"], :name => "index_featured_items_on_product_image_id"
+
+  create_table "follows", :force => true do |t|
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "location_id",                   :null => false
+    t.boolean  "active",      :default => true, :null => false
+  end
 
   create_table "inventories", :force => true do |t|
     t.integer  "location_id"
