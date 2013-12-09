@@ -1,7 +1,7 @@
 
 // Apply chosen style for text boxes
 function applyChosenStyle(){
-	$(".chzn-select").chosen({ width: '100%'});
+	$(".chzn-select").chosen({ width: '100%' });
 }
 
 // Apply colorbox style for viewing images
