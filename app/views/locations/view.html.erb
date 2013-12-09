@@ -14,6 +14,14 @@
 
 				<div class="space-10"></div>
 
+				<% if Follow.is_user_following(current_user.id, params[:id]) %>
+					<center>
+						<div class="alert alert-success" style="padding-top:5px; padding-bottom:5px; width:75%;">
+							<strong><i class="icon-ok icon-large"></i> You are currently following this location</strong>
+						</div>
+					</center>
+				<% end %>
+
 				<div class="width-90 label label-info label-large arrowed-in arrowed-in-right">
 					<div class="inline position-relative">
 							<span class="white middle bigger-120"><%= @location.busName %></span>
@@ -43,7 +51,7 @@
 				</div>
 			<% end %>
 
-			<%= render 'locations/layouts_view/bioinfo.html.erb' %>
+			<%= render 'locations/layouts_view/bioinfo' %>
 
 			<% unless FeaturedItem.where(:location_id => @location.id, :active => true).count == 0  and not @location.is_owner(current_user) %>
 				<%= render 'locations/layouts_view/featureditems' %>		

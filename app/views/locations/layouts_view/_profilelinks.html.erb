@@ -1,6 +1,20 @@
 <div class="profile-contact-info">
 	<div class="profile-contact-links center">
 
+		<% if Follow.is_user_following(current_user.id, params[:id]) %>
+			<a class="btn btn-link tooltip-info" href="<%= follower_delete_url(:location_id => params[:id]) %>" title="" data-original-title="Un-follow" data-placement="bottom">
+				<i class="icon-minus"></i>
+				Un-follow
+			</a>
+		<% else %>
+			<a class="btn btn-link tooltip-info" href="<%= follower_create_url(:location_id => params[:id]) %>" title="" data-original-title="Follow this location" data-placement="bottom">
+				<i class="icon-plus"></i>
+				Follow
+			</a>
+		<% end %>
+
+		<br/>
+
 		<% if @location.inventories.count > 0 %>
 			<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
 				<i class="icon-folder-close blue"></i>
