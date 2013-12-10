@@ -30,6 +30,8 @@ class NewsFeedController < ApplicationController
 			@items = NewsFeedItem.where(:item_type => NEW_LOCATION).order('created_at DESC').offset(offset).limit(limit)
 		elsif params[:only_inventories]
 			@items = NewsFeedItem.where("item_type = ? or item_type = ?", FIRST_INVENTORY, NEW_INVENTORY).order('created_at DESC').offset(offset).limit(limit)
+		elsif params[:only_following]
+			@items = NewsFeedItem.only_following(current_user.id).order('created_at DESC').offset(offset).limit(limit)
 		elsif params[:supplier]
 			if User.where(:bus_vendor_id => params[:supplier]).count >= 1
 				@items = NewsFeedItem.where(:user_id => User.where(:bus_vendor_id => params[:supplier]).first.id).order('created_at DESC').offset(offset).limit(limit)
@@ -39,6 +41,8 @@ class NewsFeedController < ApplicationController
 		else
 			@items = NewsFeedItem.order('created_at DESC').offset(offset).limit(limit)
 		end
+
+		@following = Follow.where(:user_id => current_user.id, :active => true)
 
 	end
 	
