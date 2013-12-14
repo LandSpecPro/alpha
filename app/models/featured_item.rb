@@ -27,7 +27,7 @@ class FeaturedItem < ActiveRecord::Base
 	end
 	
 	def zero_out_price
-		if self.price.to_i < 0.01
+		if self.price.to_d < 0.01
 			self.price = nil
 		end
 	end
