@@ -96,7 +96,7 @@
 										<option style="font-weight:bold;">Plants</option>
 									<% end %>
 
-									<% Category.where(:active => true, :parent_id => 1).select('"cat_name"').order('"cat_name" ASC').each do |cat| %>
+									<% Category.where(:active => true, :parent_id => 1).order('"cat_name" ASC').each do |cat| %>
 
 										<% if CategoryToLocation.where(:category_id => cat.id).count > 0 %>
 											<% if params[:categories].blank? %>
