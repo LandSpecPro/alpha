@@ -66,9 +66,6 @@ class Location < ActiveRecord::Base
 			CategoryToLocation.where(:category_id => cat_id).each do |catloc|
 				@locids << catloc.location_id
 			end
-			CategoryToLocation.where(:category_id => Category.find(cat_id).parent_id).each do |catloc|
-				@locids << catloc.location_id
-			end
 		end
 		return self.where('id IN(?)', @locids.uniq)
 
