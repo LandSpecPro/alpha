@@ -43,6 +43,8 @@ class NewsFeedController < ApplicationController
 		end
 
 		@following = Follow.where(:user_id => current_user.id, :active => true)
+			@followers = Follow.get_followers_for_user(current_user.id)
+
 
 	end
 	

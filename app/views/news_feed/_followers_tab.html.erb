@@ -1,0 +1,21 @@
+<% @followers.each do |f| %>
+
+	<% if User.find(f.user_id).is_vendor
+			usertype = "Supplier"
+		else
+			usertype = "Buyer"
+		end
+	%>
+
+	<center>
+		<div class="btn btn-white btn-block btn-not-clickable">
+			<a style="font-size:18px;" data-rel="popover" title="<%= usertype + ' Info' %>" data-placement="top" data-trigger="hover click"
+					data-content="<strong>Email:</strong> <%= User.find(f.user_id).email %>">
+				<%= User.find(f.user_id).get_business.busName %>
+			</a>
+		</div>
+	</center>
+
+	<br/>
+
+<% end %>

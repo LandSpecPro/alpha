@@ -14,4 +14,20 @@ class Follow < ActiveRecord::Base
 
 	end
 
+	def self.get_followers_for_user(user_id)
+
+		@locids = []
+
+		user = User.find(user_id)
+
+		if user.is_vendor
+			user.bus_vendor.locations.each do |l|
+				@locids << l.id
+			end
+		end
+
+		return self.where('location_id IN(?) AND active = true', @locids)
+
+	end
+
 end

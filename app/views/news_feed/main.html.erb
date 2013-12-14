@@ -4,7 +4,10 @@
 
 	<div id="timeline-1" style="margin-top:0; padding-top:0;">
 		<div class="row">
-			<div class="col-lg-8 col-sm-8">
+
+			<%= render 'news_feed/follow' %>
+
+			<div class="col-lg-8 col-lg-pull-4 col-md-8 col-md-pull-4 col-sm-8 col-sm-pull-4">
 
 				<h4><strong>Filters:</strong></h4>
 				<ul class="nav nav-pills">
@@ -107,37 +110,6 @@
 				</div> <!-- timeline-container -->
 			</div> <!-- span size -->
 
-			<% if @following.count > 0 %>
-				<div class="col-lg-4 col-sm-4">
-
-					<center>
-						<h2><strong>Following</strong></h2>
-					</center>
-
-					<br/>
-
-					<% @following.each do |f| %>
-
-						<center>
-							<div class="infobox infobox-green" style="width:100%; height:100%;" >
-
-								<div class="infobox-data">
-									<span class="infobox-data-number"><%= Location.find(f.location_id).busName %></span>
-									<span class="infobox-content"><%= Location.find(f.location_id).locName %></span>
-									<div class="infobox-content"style="font-size:15px;">
-										<a href="<%= locations_view_url(:id => f.location_id) %>">View Profile</a>|
-										<a href="<%= follower_delete_url(:location_id => f.location_id) %>">Unfollow</a>
-									</div>
-								</div>
-							</div>
-						</center>
-
-						<br/>
-
-					<% end %>
-
-				</div>
-			<% end %>
 		</div> <!-- row-fluid -->
 	</div> <!-- timeline-1 -->
 

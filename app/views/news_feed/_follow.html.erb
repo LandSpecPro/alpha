@@ -1,0 +1,101 @@
+<!-- If user has followers and is following people -->
+<% if @following.count > 0 and @followers.count > 0 %>
+	<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-4 col-sm-push-8">
+
+		<div class="tabbable">
+
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="followTabs">
+				<li class="active">
+					<a data-toggle="tab" href="#followers">Followers</a>
+				</li>
+				<li>
+					<a data-toggle="tab" href="#following">Following</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="followers" class="tab-pane in active">
+					<%= render 'news_feed/followers_tab' %>
+				</div>
+
+				<div id="following" class="tab-pane">
+					<%= render 'news_feed/following_tab' %>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+<!-- If user has followers but is not following anyone -->
+<% elsif @following.count == 0 and @followers.count > 0 %>
+	<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-4 col-sm-push-8">
+
+		<div class="tabbable">
+
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="followTabs">
+				<li class="active">
+					<a data-toggle="tab" href="#followers">Followers</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="followers" class="tab-pane in active">
+					<%= render 'news_feed/followers_tab' %>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+<!-- If user is following people but has no followers -->
+<% elsif @followers.count == 0 and @following.count > 0 %>
+	<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-4 col-sm-push-8">
+		<div class="tabbable">
+
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="followTabs">
+				<li class="active">
+					<a data-toggle="tab" href="#following">Following</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+
+				<div id="following" class="tab-pane in active">
+					<%= render 'news_feed/following_tab' %>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+<!-- If user has no followers and is not following anyone -->
+<% else %>
+
+	<div class="col-lg-4 col-lg-push-8 col-md-4 col-md-push-8 col-sm-4 col-sm-push-8">
+
+		<div class="tabbable">
+
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="followTabs">
+				<li class="active">
+					<a data-toggle="tab" href="#following">Following</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+
+				<div id="following" class="tab-pane in active">
+					<center>
+						<div class="alert alert-info"><strong>You are not currently following any suppliers.</strong><br/><br/>Visit your favorite supplier's profiles to follow them so you can more easily keep up with what their activity on LandSpec Pro.</div>
+					</center>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+<% end %>
