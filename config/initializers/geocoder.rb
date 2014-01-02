@@ -1,4 +1,4 @@
 Geocoder.configure(
-	:lookup => :yandex,
-  :timeout => 20
+	lookup: :google,
+  	timeout: 20
 )

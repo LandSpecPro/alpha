@@ -54,15 +54,6 @@ class UsersController < ApplicationController
       return
     end
 
-    # Set default city and state
-    if not request.location.city.empty? and not request.location.state.empty?
-      @user.currentCity = request.location.city
-      @user.currentState = get_state_abbr(request.location.state)
-    else
-      @user.currentCity = 'Atlanta'
-      @user.currentState = 'GA'
-    end
-
     if @user.save
 
       # Add new user to Customer.IO

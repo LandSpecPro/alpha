@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	include ModelHelper
 
-	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :currentState, :currentCity, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes
+	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :bus_vendor_attributes,    :bus_buyer_attributes, :search_logs_attributes
 
 	has_one :bus_vendor, :dependent => :destroy
 	accepts_nested_attributes_for :bus_vendor

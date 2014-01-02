@@ -46,14 +46,6 @@ module UsersHelper
 		@user = User.new(params[:user])
 	    @user.userType = claimprofile.user_type
 
-	    if not request.location.city.empty? and not request.location.state.empty?
-	      @user.currentCity = request.location.city
-	      @user.currentState = get_state_abbr(request.location.state)
-	    else
-	      @user.currentCity = 'Atlanta'
-	      @user.currentState = 'GA'
-	    end
-
 	    if @user.save
 	    	if @user.userType == 'Vendor'
 	      		claim_bus_vendor(@user, claimprofile)
