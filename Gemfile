@@ -8,7 +8,6 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-#gem 'bootstrap-sass'
 gem "authlogic"
 gem 'dynamic_form'
 gem 'paperclip'
@@ -19,9 +18,9 @@ gem 'geocoder'
 gem 'pg_search'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
-#gem 'chosen-rails'
-#gem 'parse_resource', "~> 1.8.0"
 gem 'newrelic_rpm'
+
+gem 'geoip'
 
 gem 'customerio'
 
