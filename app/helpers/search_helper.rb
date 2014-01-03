@@ -20,7 +20,11 @@ module SearchHelper
 
 		if params[:current_location]
 			geoip = GeoIP.new('lib/GeoLiteCity.dat').city(request.remote_ip)
-			params[:location] = geoip.city + ", " + geoip.state
+			if not geoip.blank?
+				params[:location] = geoip.city_name + ", " + geoip.region_name
+			else
+				params[:location] = 'Atlanta, GA'
+			end
 		elsif params[:location].blank?
 			params[:location] = 'Atlanta, GA'
 		end
@@ -123,23 +127,23 @@ module SearchHelper
 
 	def get_location_by_cache
 
-		if not Rails.cache.read('active_locations').blank?
-			return Rails.cache.read('active_locations')
-		else
-			Location.update_cache
+#		if not Rails.cache.read('active_locations').blank?
+#			return Rails.cache.read('active_locations')
+#		else
+#			Location.update_cache
 			return Location.where(:active => true)
-		end
+#		end
 
 	end
 
 	def get_featured_items_by_cache
 
-		if not Rails.cache.read('active_featured_items').blank?
-			return Rails.cache.read('active_featured_items')
-		else
-			FeaturedItem.update_cache
+#		if not Rails.cache.read('active_featured_items').blank?
+#			return Rails.cache.read('active_featured_items')
+#		else
+#			FeaturedItem.update_cache
 			return FeaturedItem.where(:active => true)
-		end
+#		end
 
 	end
 
