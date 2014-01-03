@@ -136,25 +136,6 @@
 					<!-- Submenu -->
 					<ul id="user_menu" class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="margin-right:12px; margin-top:10px;">
 
-						<!-- News Feed Menu Item -->
-						<li>
-							<a href="<%= main_url %>"><i class="icon-hdd"></i> News Feed</a>
-						</li>
-
-						<!-- Location Manage Menu Item -->
-						<% if current_user.is_vendor %>
-
-							<li>
-								<a href="<%= locations_manage_url %>"><i class="icon-globe"></i> Profile</a>
-							</li>
-
-						<% end %>
-
-						<!-- Company Info Menu Item -->
-						<li>
-							<a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a>
-						</li>
-
 						<!-- Account Info Menu Item -->
 						<li>
 							<a href="<%= account_url %>"><i class="icon-cog"></i> Account</a></li>

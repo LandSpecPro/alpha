@@ -73,7 +73,7 @@ class AdminController < ApplicationController
         @loc.active = true
         @loc.save
 
-        redirect_to user_view_url(:id => params[:user_id])
+        redirect_to admin_user_view_url(:id => params[:user_id])
     end
 
     def location_deactivate
@@ -82,7 +82,7 @@ class AdminController < ApplicationController
         @loc.active = false
         @loc.save
 
-        redirect_to user_view_url(:id => params[:user_id])
+        redirect_to admin_user_view_url(:id => params[:user_id])
     end
 
 end

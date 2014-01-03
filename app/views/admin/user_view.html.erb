@@ -125,9 +125,9 @@
                                                                         <tr>
                                                                                 <th class="center" colspan="2">
                                                                                         <% if l.active %>
-                                                                                        <a href="<%= location_user_deactivate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-primary">De-Activate This Location</a>
+                                                                                        <a href="<%= admin_location_deactivate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-primary">De-Activate This Location</a>
                                                                                         <% else %>
-                                                                                        <a href="<%= location_user_activate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-danger">Activate This Location</a>
+                                                                                        <a href="<%= admin_location_activate_url(:id => l.id, :user_id => @user.id) %>" class="btn btn-block btn-danger">Activate This Location</a>
                                                                                         <% end %>
                                                                                 </th>
                                                                         </tr>
