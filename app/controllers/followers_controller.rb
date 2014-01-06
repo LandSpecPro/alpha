@@ -1,5 +1,9 @@
 class FollowersController < ApplicationController
 
+	include FollowersHelper
+
+	before_filter :register_if_not_logged_in
+
 	def create
 		if Follow.where(:user_id => current_user.id, :location_id => params[:location_id]).count == 0
 			@follow = Follow.new(:user_id => current_user.id, :location_id => params[:location_id])
@@ -7,6 +11,7 @@ class FollowersController < ApplicationController
 			if @follow.save
 				#TODO: Show success message?
 				redirect_back_or_default('/')
+				# This takes you into the real site instead of the public profile
 			else
 				redirect_to oops_url
 			end
@@ -29,6 +34,7 @@ class FollowersController < ApplicationController
 			if @follow.save
 				#TODO: Show success message?
 				redirect_back_or_default('/')
+				# This takes you into the real site instead of the public profile
 			else
 				redirect_to oops_url
 			end
