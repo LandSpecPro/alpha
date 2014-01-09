@@ -132,3 +132,11 @@ input[type="color"]{
 		display:none!important;
 	}
 }
+
+a.anchorDestination{
+	position:relative;
+	top: -120px;
+	display: block;
+	height: 0;
+	width: 0;
+}
