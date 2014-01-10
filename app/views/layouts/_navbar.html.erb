@@ -133,12 +133,46 @@
 					<!-- Submenu -->
 					<ul id="user_menu" class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="margin-right:12px; margin-top:10px;">
 
-						<!-- Account Info Menu Item -->
-						<li>
-							<a href="<%= account_url %>"><i class="icon-cog"></i> Account</a></li>
+						<!-- News Feed Menu Item -->
+						<li class="hidden-md hidden-lg">
+							<a href="<%= main_url %>"><i class="icon-hdd"></i> News Feed</a>
 						</li>
 
-						<li class="divider"></li>
+						<!-- Profile Menu Item -->
+					<% if current_user.is_vendor %>
+						<li class="hidden-md hidden-lg">
+							<a href="<%= locations_manage_url %>"><i class="icon-globe"></i> Profile</a>
+						</li>
+					<% end %>
+
+						<!-- Search Products Menu Item -->
+						<li class="hidden-md hidden-lg">
+							<a href=<%= search_product_url(:current_location => true) %>><i class="icon-search"></i> Search Products</a>
+						</li>
+
+						<!-- Search Locations Menu Item -->
+						<li class="hidden-md hidden-lg">
+							<a href="<%= search_supplier_url(:current_location => true) %>"><i class="icon-search"></i> Search Suppliers</a>
+						</li>
+
+						<!-- Company Menu Item -->
+						<li class="hidden-md hidden-lg">
+							<a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a>
+						</li>
+
+						<!-- Account Info Menu Item -->
+						<li class="hidden-md hidden-lg">
+							<a href="<%= account_url %>"><i class="icon-cog"></i> Account</a>
+						</li>
+
+						<!-- Admin Tools Menu Item -->
+					<% if current_user.login == 'ohmatt' or current_user.login == 'timwolfedesign' or current_user.login == 'timwolfedesign1' %>
+						<li>
+							<a href="<%= admin_url %>"><i class="icon-bar-chart"></i> Admin Tools</a>
+						</li>
+					<% end %>
+
+						<li class="divider hidden-md hidden-lg"></li>
 
 						<!-- Help Menu Item -->
 						<li>

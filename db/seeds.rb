@@ -38,6 +38,11 @@ Category.create([
 #	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
 #	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'},
 #   { id: 124, parent_id: 1, hierarchy_level: 2, cat_name: 'Groundcovers'},
+	{ id: 125, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Trees'},
+	{ id: 126, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Shrubs'},
+	{ id: 127, parent_id: 1, hierarchy_level: 2, cat_name: 'Camellias'},
+	{ id: 128, parent_id: 1, hierarchy_level: 2, cat_name: 'Japanese Maples'},
+	{ id: 129, parent_id: 1, hierarchy_level: 2, cat_name: 'Bamboo'},
 #
 #	#MATERIALS
 #	{ id: 200, parent_id: 2, hierarchy_level: 2, cat_name: 'Block'},
@@ -87,7 +92,10 @@ Category.create([
 #	{ id: 245, parent_id: 2, hierarchy_level: 2, cat_name: 'Stone Treads'},
 #	{ id: 246, parent_id: 2, hierarchy_level: 2, cat_name: 'Veneer & Building Stone'},
 #	{ id: 247, parent_id: 2, hierarchy_level: 2, cat_name: 'Supplies'},
-#	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'}
+#	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'},
+	{ id: 249, parent_id: 2, hierarchy_level: 2, cat_name: 'Outdoor Lighting and Supplies'},
+	{ id: 250, parent_id: 2, hierarchy_level: 2, cat_name: 'Chemicals'},
+	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'}
 #
 ])
 
