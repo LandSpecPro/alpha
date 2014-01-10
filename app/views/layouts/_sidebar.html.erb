@@ -105,11 +105,48 @@
 					<% else %>
 						<li>
 					<% end %>
-						<a href="<%= admin_url %>">
-							<i class="icon-bar-chart"></i>
-							<span class="menu-text">Admin Tools</span>
-						</a>
-					</li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-bar-chart"></i>
+								<span class="menu-text">Admin Tools</span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+
+							<% if controller.controller_name == 'admin' and controller.action_name == 'main' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_url %>"><i class="icon-double-angle-right"></i> Main Dashboard</a>
+								</li>
+
+							<% if controller.action_name == 'dashboard_users' or controller.action_name == 'user_view' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_users_url %>"><i class="icon-double-angle-right"></i> Users Dashboard</a>
+								</li>
+
+							<% if controller.action_name == 'dashboard_weekly' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_weekly_url %>"><i class="icon-double-angle-right"></i> Weekly Dashboard</a>
+								</li>
+
+							<% if controller.action_name == 'dashboard_email' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_email_url %>"><i class="icon-double-angle-right"></i> Email Dashboard</a>
+								</li>
+
+							</ul>
+						</li>
 				<% end %>
 
 			</ul><!--/.nav-list-->

@@ -165,13 +165,6 @@
 							<a href="<%= account_url %>"><i class="icon-cog"></i> Account</a>
 						</li>
 
-						<!-- Admin Tools Menu Item -->
-					<% if current_user.login == 'ohmatt' or current_user.login == 'timwolfedesign' or current_user.login == 'timwolfedesign1' %>
-						<li>
-							<a href="<%= admin_url %>"><i class="icon-bar-chart"></i> Admin Tools</a>
-						</li>
-					<% end %>
-
 						<li class="divider hidden-md hidden-lg"></li>
 
 						<!-- Help Menu Item -->
@@ -183,6 +176,31 @@
 						<li>
 							<a href="<%= logout_url %>"><i class="icon-off"></i> Logout</a>
 						</li>
+
+						<!-- Admin Tools Menu Item -->
+					<% if current_user.login == 'ohmatt' or current_user.login == 'timwolfedesign' or current_user.login == 'timwolfedesign1' %>
+
+						<li class="divider"></li>
+
+						<li role="presentation" class="dropdown-header">Admin Tools</li>
+
+						<li>
+							<a href="<%= admin_url %>"> Main Dashboard</a>
+						</li>
+
+						<li>
+							<a href="<%= admin_users_url %>"> Users Dashboard</a>
+						</li>
+
+						<li>
+							<a href="<%= admin_weekly_url %>"> Weekly Dashboard</a>
+						</li>
+
+						<li>
+							<a href="<%= admin_email_url %>"> Email Dashboard</a>
+						</li>
+
+					<% end %>
 
 					</ul> <!-- End Submenu -->
 
