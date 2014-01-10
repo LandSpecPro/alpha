@@ -28,11 +28,11 @@ class AdminController < ApplicationController
   end
 
   def dashboard_users
-
+    store_location
   end
 
   def user_view
-
+    store_location
   	@user = User.find(params[:id])
 
   end
