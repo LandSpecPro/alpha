@@ -263,10 +263,10 @@ class LocationsController < ApplicationController
     if not params[:categories].nil?
       if params[:categories].count > 1
         params[:categories].each do |c|
-          add_category_to_location(Category.find(c), @location)
+          add_category_to_location(Category.where(:cat_name => c).first, @location)
         end
       else
-        add_category_to_location(Category.find(params[:categories].first), @location)
+        add_category_to_location(Category.where(:cat_name => params[:categories].first).first, @location)
       end
 
     end

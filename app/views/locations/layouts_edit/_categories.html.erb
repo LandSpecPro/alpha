@@ -7,7 +7,7 @@
 	</div>
 <% end %>
 
-<%= form_for :category_to_locations, :url => {:action => :update_categories, :controller => :locations}, :html => {:id => 'form_location_categories'} do |f| %>
+<%= form_for :category_to_location, :url => {:action => :update_categories, :controller => :locations}, :html => {:id => 'form_location_categories'} do |f| %>
 
 	<div class="widget-box">
 		<div class="widget-header header-color-green2">
@@ -21,36 +21,70 @@
 
 			<div class="widget-main">
 
-				<fieldset>
-
 					<%= hidden_field_tag(:id, @location.id) %>
 
-					
 					<div class="center">
 						<div class="row">
 
 							<div class="col-md-6 col-xs-12">
-								<h4>Plants:</h4>
+								<label class="lbl" for="categories"><h4>Plants:</h4></label>
 								<div class="block input-icon input-icon-right" id="catPlantsBorder">
-									<%= select_tag :categories, options_from_collection_for_select(
-										    Category.where(:active => true, :parent_id => 1).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids), :onchange => 'changeLocCatInfo(\'plants\');',
-											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"} %>
+									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
+									<% Category.where(:active => true, :parent_id => 1).order('"cat_name" ASC').each do |cat| %>
+
+										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+											<option selected="selected"><%= cat.cat_name %></option>
+										<% else %>
+											<option><%= cat.cat_name %></option>
+										<% end %>
+
+									<% end %>
+								</select>
 								</div>
 							</div>
 
 							<div class="col-md-6 col-xs-12">
-								<h4>Materials:</h4>
+								<label class="lbl" for="categories"><h4>Materials:</h4></label>
 								<div class="block input-icon input-icon-right" id="catMaterialsBorder">
-									<%= select_tag :categories, options_from_collection_for_select(
-										    Category.where(:active => true, :parent_id => 2).order('hierarchy_level ASC, cat_name ASC'), 'id', 'cat_name', :selected => @loccatids), :onchange => 'changeLocCatInfo(\'materials\');',
-											:multiple => true, :class => 'chzn-select', :data => {:placeholder => "No Categories Selected"}%>
+									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
+									<% Category.where(:active => true, :parent_id => 2).order('"cat_name" ASC').each do |cat| %>
+
+										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+											<option selected="selected"><%= cat.cat_name %></option>
+										<% else %>
+											<option><%= cat.cat_name %></option>
+										<% end %>
+
+									<% end %>
+								</select>
 								</div>
 							</div>
 
 						</div>
 					</div>
 
-				</fieldset>
+					<div class="center">
+						<div class="row">
+
+							<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
+								<label class="lbl" for="categories"><h4>Supplier Types:</h4></label>
+								<div class="block input-icon input-icon-right" id="catPlantsBorder">
+									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
+									<% Category.where(:active => true, :parent_id => 3).order('"cat_name" ASC').each do |cat| %>
+
+										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+											<option selected="selected"><%= cat.cat_name %></option>
+										<% else %>
+											<option><%= cat.cat_name %></option>
+										<% end %>
+
+									<% end %>
+								</select>
+								</div>
+							</div>
+
+						</div>
+					</div>
 
 			</div>
 		</div>
@@ -84,6 +118,9 @@
 		}
 		else if (catType == 'materials'){
 			$('#catMaterialsBorder').css( "border", "1px solid orange" );
+		}
+		else if (catType == 'supplierType'){
+			$('#catSupplierTypeBorder').css( "border", "1px solid orange" );
 		}
 
 		showRevertChanges();

@@ -11,6 +11,7 @@ Category.create([
 #	#TOPLEVEL
 #	{ id: 1, cat_name: 'Plants'},
 #	{ id: 2, cat_name: 'Materials'},
+	{ id: 3, cat_name: 'Supplier Types'},
 #
 #	#PLANTS
 #	{ id: 100, parent_id: 1, hierarchy_level: 2, cat_name: 'Annuals Cool Season'},
@@ -38,11 +39,13 @@ Category.create([
 #	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
 #	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'},
 #   { id: 124, parent_id: 1, hierarchy_level: 2, cat_name: 'Groundcovers'},
-	{ id: 125, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Trees'},
-	{ id: 126, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Shrubs'},
-	{ id: 127, parent_id: 1, hierarchy_level: 2, cat_name: 'Camellias'},
-	{ id: 128, parent_id: 1, hierarchy_level: 2, cat_name: 'Japanese Maples'},
-	{ id: 129, parent_id: 1, hierarchy_level: 2, cat_name: 'Bamboo'},
+
+#	{ id: 125, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Trees'},
+#	{ id: 126, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Shrubs'},
+#	{ id: 127, parent_id: 1, hierarchy_level: 2, cat_name: 'Camellias'},
+#	{ id: 128, parent_id: 1, hierarchy_level: 2, cat_name: 'Japanese Maples'},
+#	{ id: 129, parent_id: 1, hierarchy_level: 2, cat_name: 'Bamboo'},
+
 #
 #	#MATERIALS
 #	{ id: 200, parent_id: 2, hierarchy_level: 2, cat_name: 'Block'},
@@ -93,9 +96,17 @@ Category.create([
 #	{ id: 246, parent_id: 2, hierarchy_level: 2, cat_name: 'Veneer & Building Stone'},
 #	{ id: 247, parent_id: 2, hierarchy_level: 2, cat_name: 'Supplies'},
 #	{ id: 248, parent_id: 2, hierarchy_level: 2, cat_name: 'Millstones'},
-	{ id: 249, parent_id: 2, hierarchy_level: 2, cat_name: 'Outdoor Lighting and Supplies'},
-	{ id: 250, parent_id: 2, hierarchy_level: 2, cat_name: 'Chemicals'},
-	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'}
+
+#	{ id: 249, parent_id: 2, hierarchy_level: 2, cat_name: 'Outdoor Lighting and Supplies'},
+#	{ id: 250, parent_id: 2, hierarchy_level: 2, cat_name: 'Chemicals'},
+#	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'}
+
+#   #SUPPLIER TYPE
+	{ id: 500, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Grower'},
+	{ id: 501, parent_id: 3, hierarchy_level: 2, cat_name: 'Stone Center'},
+	{ id: 502, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Nursery'},
+	{ id: 503, parent_id: 3, hierarchy_level: 2, cat_name: 'Material Supplier'},
+	{ id: 504, parent_id: 3, hierarchy_level: 2, cat_name: 'Plant Liner Growers'}
 #
 ])
 

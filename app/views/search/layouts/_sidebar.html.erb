@@ -89,6 +89,28 @@
 								<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
 
 									<% if params[:categories].blank? %>
+										<option style="font-weight:bold;">Supplier Types</option>
+									<% elsif params[:categories].include? 'Supplier Types' %>
+										<option style="font-weight:bold;" selected="selected">Supplier Types</option>
+									<% else %>
+										<option style="font-weight:bold;">Supplier Types</option>
+									<% end %>
+
+									<% Category.where(:active => true, :parent_id => 3).order('"cat_name" ASC').each do |cat| %>
+
+										<% if CategoryToLocation.where(:category_id => cat.id).count > 0 %>
+											<% if params[:categories].blank? %>
+												<option><%= cat.cat_name %></option>
+											<% elsif params[:categories].include? cat.cat_name %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
+										<% end %>
+
+									<% end %>
+
+									<% if params[:categories].blank? %>
 										<option style="font-weight:bold;">Plants</option>
 									<% elsif params[:categories].include? 'Plants' %>
 										<option style="font-weight:bold;" selected="selected">Plants</option>

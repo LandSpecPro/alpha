@@ -90,6 +90,22 @@
 
 						<%= render 'locations/layouts_view_public/contactinfo' %>
 
+						<div class="space-10"></div>
+
+						<!-- SUPPLIER TYPES -->
+						<% if @location.categories.where(:id => 3).count > 0 %>
+							<div class="col-xs-12">
+								<div class="center">
+									<h2><strong>Supplier Type</strong></h2>
+									<% @location.categories.where('hierarchy_level > ?', 1).each do |cat| %>
+										<% if cat.is_descendant_of("Supplier Types") %>
+											<h4><%= cat.cat_name %></h4>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+						<% end %>
+
 					</div>
 
 				</div>
