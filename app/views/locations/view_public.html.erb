@@ -62,7 +62,7 @@
 
 						<div class="space-10"></div>
 
-						<div class="fb-like" data-href="<%= request.original_url %>" data-layout="button_count" data-show-faces="true" data-send="true"></div>
+						<div class="fb-like" data-href="<%= request.original_url %>" data-layout="standard" data-show-faces="true" data-send="true"></div>
 
 						<div class="g-plusone" data-size="medium" data-href="<%= request.original_url %>" data-annotation="none" style="margin:0;"></div>
 
@@ -75,9 +75,10 @@
 						  })();
 						</script>
 
-						<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.original_url %>" data-text="View <%= @location.busName %> on LandSpec Pro!" data-via="landspecpro" data-related="landspecpro" style="margin:0;">Tweet</a>
+						<!-- SHARE TO TWITTER -->
+						<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.original_url %>" data-text="View <%= @location.busName %> on LandSpec Pro!" data-via="landspecpro" data-related="landspecpro" data-count="none" style="margin:0;">Tweet</a>
 						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-						
+
 						<% if @locsettings.show_tagline and not @location.tagline.blank? %>
 							<div style="text-align:center; font-style:oblique; padding-top:6px;">
 								"<%= @location.tagline %>"
