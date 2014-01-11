@@ -232,7 +232,7 @@ end
 #<% if not cookies.signed[:update_helppage] %>
 #		$(showGritter('update_helppage'));
 #		<% cookies.permanent.signed[:update_helppage] = true %>
-#	<% elsif not cookies.signed[:update_publicprofiles] and current_user.is_vendor %>
+#	<% elsif not cookies.signed[:update_publicprofiles] and current_user.is_supplier %>
 #		$(showGritter('update_publicprofiles'));
 #		<% cookies.permanent.signed[:update_publicprofiles] = true %>
 #	<% end %>

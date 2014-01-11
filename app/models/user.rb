@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 	end
 
 	def get_business
-		if self.is_vendor
+		if self.is_supplier
 			return self.bus_vendor
 		elsif self.is_buyer
 			return self.bus_buyer
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 	
 
 	def get_bus_name
-		if self.is_vendor
+		if self.is_supplier
 			return self.bus_vendor.busName
 		elsif self.is_buyer
 			return self.bus_buyer.busName
@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def is_vendor
+	def is_supplier
 		if self.userType == STRING_VENDOR or self.userType == 'Vendor' or self.userType == 'supplier' or self.userType == 'Supplier'
 			return true
 		else
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
 	end
 
 	def owns_location(location)
-		if self.is_vendor
+		if self.is_supplier
 			if self.get_business.id == location.bus_vendor_id
 				return true
 			else
@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
 	end
 
 	def owns_featured_item(featureditem)
-		if self.is_vendor
+		if self.is_supplier
 			if self.get_business.id == featureditem.get_location.bus_vendor_id
 				return true
 			else
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 	end
 
   def get_logo
-    if self.is_vendor
+    if self.is_supplier
       return self.bus_vendor.logo
     elsif self.is_buyer
       return self.bus_buyer.logo

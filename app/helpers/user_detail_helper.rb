@@ -9,7 +9,7 @@ module UserDetailHelper
 	  		@userdetail.errors.add(:last_name, "Last Name is required!")
 	  	end
 
-	  	if par[:company_name].length == 0 and current_user.is_vendor
+	  	if par[:company_name].length == 0 and current_user.is_supplier
 	  		@userdetail.errors.add(:company_name, "Company Name is required!")
 	  	end
 

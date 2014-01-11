@@ -139,7 +139,7 @@
 						</li>
 
 						<!-- Profile Menu Item -->
-					<% if current_user.is_vendor %>
+					<% if current_user.is_supplier %>
 						<li class="hidden-md hidden-lg">
 							<a href="<%= locations_manage_url %>"><i class="icon-globe"></i> Profile</a>
 						</li>
@@ -157,7 +157,7 @@
 
 						<!-- Company Menu Item -->
 						<li class="hidden-md hidden-lg">
-							<a href="<%= account_company_url %>"><i class="icon-briefcase"></i> Company</a>
+							<a href="<%= user_details_edit_url %>"><i class="icon-briefcase"></i> Company</a>
 						</li>
 
 						<!-- Account Info Menu Item -->

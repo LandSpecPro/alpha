@@ -1,0 +1,10 @@
+<%- title "Help | LandSpec Pro" %>
+<%= render 'layouts/sidebar' %>
+
+	<% if current_user.is_buyer %>
+		<%= render 'users/help_buyer' %>
+	<% elsif current_user.is_supplier %>
+		<%= render 'users/help_supplier' %>
+	<% end %>
+
+<%= render 'layouts/sidebarend' %>

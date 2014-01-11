@@ -20,7 +20,7 @@ class Follow < ActiveRecord::Base
 
 		user = User.find(user_id)
 
-		if user.is_vendor
+		if user.is_supplier
 			user.bus_vendor.locations.each do |l|
 				@locids << l.id
 			end

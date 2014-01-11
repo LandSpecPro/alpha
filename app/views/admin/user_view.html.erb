@@ -80,7 +80,7 @@
                                 <td class="center" colspan="2">
                                     <h3><strong>Company Information</strong></h3>
                                     <div class="badge badge-primary"><%= 'id: ' + @business.id.to_s %></div>
-                                    <% if @user.is_vendor %>
+                                    <% if @user.is_supplier %>
                                         <div class="badge badge-success"><%= @business.locations.count.to_s + ' location(s)' %></div>
                                     <% end %>
                                 </td>
@@ -107,7 +107,7 @@
                         </td></tr>
 
                         <!-- ALL LOCATION INFO -->
-                        <% if @user.is_vendor and not @user.bus_vendor_id.blank? %>
+                        <% if @user.is_supplier and not @user.bus_vendor_id.blank? %>
 
                             <% @user.get_business.locations.each do |l| %>
 

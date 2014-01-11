@@ -39,6 +39,10 @@ class UsersController < ApplicationController
   def validation_failed
 
   end
+
+  def help
+
+  end
   
   def new
     @user = User.new
@@ -102,7 +106,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Account updated!"
       redirect_to account_url(:update_account_info_success => true)
     else
-      if current_user.is_vendor
+      if current_user.is_supplier
         @user = current_user
         @bus_vendor = @user.bus_vendor
         @usertype = "Vendor"
@@ -118,7 +122,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
-    if @user.is_vendor
+    if @user.is_supplier
       redirect_to locations_manage_url
     elsif @user.is_buyer
       redirect_to search_supplier_url

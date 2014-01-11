@@ -9,6 +9,36 @@ class UserDetail < ActiveRecord::Base
 
 	validates :phone_number, :format => { :with => /\A\([0-9]{3}\)\s[0-9]{3}\-[0-9]{4}\z/, :message => "A valid phone number is required." }
 
+	before_create :set_user_type
+
+	def set_user_type
+
+		userType = self.user.userType
+
+		if userType == 'Vendor' or userType == 'vendor' or userType == 'supplier' or userType == 'Supplier'
+			self.user_type = 'Supplier'
+		elsif userType == 'buyer' or userType == 'Buyer'
+			self.user_type = 'Buyer'
+		end
+
+	end
+
+	def is_buyer
+		if user_type == 'Buyer'
+			return true
+		else
+			return false
+		end
+	end
+
+	def is_supplier
+		if user_type == 'Supplier'
+			return true
+		else
+			return false
+		end
+	end
+
 	def has_state
 		if self.state == '' or self.state == 'N/A'
 			return false

@@ -150,7 +150,6 @@ LspAlpha::Application.routes.draw do
   match "logout" => 'user_sessions#destroy'
   match "dashboard" => 'users#dashboard'
   match "account" => 'account#manage'
-  match "account/company" => 'account#manage_company'
   match "products/browse/all" => 'products#browseall'
   match "profiles/:public_url" => "locations#view_public"
 
@@ -158,17 +157,13 @@ LspAlpha::Application.routes.draw do
   match "supplier/new" => 'bus_vendors#new'
   match "supplier/dashboard" => 'users#dashboard'
   match "supplier/account" => 'bus_vendors#manage'
-  match "supplier/company" => 'bus_vendors#manage_company'
-  #match "supplier/welcome" => 'bus_vendors#welcome_help'
-  match "supplier/help" => 'bus_vendors#help'
+  match "supplier/help" => 'users#help'
 
   # Routes for buyer's businesses
   match "buyer/new" => 'bus_buyers#new'
   match "buyer/dashboard" => 'users#dashboard'
   match "buyer/account" => 'bus_buyers#manage'
-  match "buyer/company" => 'bus_buyers#manage_company'
-  #match "buyer/welcome" => 'bus_buyers#welcome_help'
-  match "buyer/help" => 'bus_buyers#help'
+  match "buyer/help" => 'users#help'
 
 
   #### ADMIN STUFF

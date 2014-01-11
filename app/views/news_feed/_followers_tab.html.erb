@@ -1,6 +1,6 @@
 <% @followers.each do |f| %>
 
-	<% if User.find(f.user_id).is_vendor
+	<% if User.find(f.user_id).is_supplier
 			usertype = "Supplier"
 		else
 			usertype = "Buyer"

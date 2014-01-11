@@ -4,7 +4,7 @@ class AccountController < ApplicationController
 
 	def manage
 
-		if current_user.is_vendor
+		if current_user.is_supplier
 			redirect_to supplier_account_url(:password_update_success => params[:password_update_success], :update_account_info_success => params[:update_account_info_success])
 		elsif current_user.is_buyer
 			redirect_to buyer_account_url(:password_update_success => params[:password_update_success], :update_account_info_success => params[:update_account_info_success])
@@ -16,10 +16,10 @@ class AccountController < ApplicationController
 
 	def manage_company
 
-		if current_user.is_vendor
-			redirect_to supplier_company_url
+		if current_user.is_supplier
+			redirect_to user_details_edit_url
 		elsif current_user.is_buyer
-			redirect_to buyer_company_url
+			redirect_to user_details_edit_url
 		else
 			redirect_to home_url
 		end

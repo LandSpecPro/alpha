@@ -184,7 +184,7 @@ class Location < ActiveRecord::Base
 
 	def is_owner(user)
 
-		unless user.is_vendor
+		unless user.is_supplier
 			return false
 		end
 

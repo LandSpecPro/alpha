@@ -359,7 +359,7 @@ class LocationsController < ApplicationController
     if Location.where(:id => params[:id], :active => true).count > 0
       @location = Location.find(params[:id])
     else
-      if current_user.is_vendor
+      if current_user.is_supplier
         if Location.where(:id => params[:id]).count > 0
           @location = Location.find(params[:id])
           if @location.bus_vendor_id != current_user.bus_vendor_id

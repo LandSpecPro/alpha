@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
       cio_user_login(UserSession.find.user)
       
       flash[:notice] = "Login successful!"
-      if UserSession.find.user.is_vendor
+      if UserSession.find.user.is_supplier
         redirect_to main_url
       elsif UserSession.find.user.is_buyer
         redirect_to main_url

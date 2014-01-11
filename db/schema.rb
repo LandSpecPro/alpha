@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111181056) do
+ActiveRecord::Schema.define(:version => 20140111204416) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -280,6 +280,8 @@ ActiveRecord::Schema.define(:version => 20140111181056) do
     t.boolean  "url_is_custom",              :default => false, :null => false
     t.string   "busName"
     t.boolean  "is_subscribed_to_inventory", :default => false, :null => false
+    t.integer  "user_detail_id"
+    t.boolean  "claimed",                    :default => true,  :null => false
   end
 
   add_index "locations", ["active"], :name => "index_locations_on_active"

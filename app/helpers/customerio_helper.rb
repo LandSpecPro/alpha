@@ -4,7 +4,7 @@ module CustomerioHelper
 
 	def cio_user_new(user)
 
-		if user.is_vendor
+		if user.is_supplier
 			$customerio.identify(
 				id: user.id,
 				email: user.email,
@@ -22,7 +22,7 @@ module CustomerioHelper
 
 	def cio_user_login(user)
 
-		if user.is_vendor
+		if user.is_supplier
 			$customerio.identify(
 				id: user.id,
 				email: user.email,
@@ -39,7 +39,7 @@ module CustomerioHelper
 
 	def cio_user_update(user)
 
-		if user.is_vendor
+		if user.is_supplier
 			$customerio.identify(
 				id: user.id,
 				email: user.email,
@@ -52,7 +52,7 @@ module CustomerioHelper
 
 	def cio_user_company(user)
 
-		if user.is_vendor
+		if user.is_supplier
 
 			@busvendor = BusVendor.find(user.bus_vendor_id)
 
@@ -87,7 +87,7 @@ module CustomerioHelper
 
 	def cio_user_location(user, location)
 
-		if user.is_vendor
+		if user.is_supplier
 
 			if user.bus_vendor.locations.count > 1
 				cio_user_multiple_locations(user)
@@ -161,7 +161,7 @@ module CustomerioHelper
 	def cio_user_public_profile(user, location)
 
 		# This will not work exactly right for users with multiple locations
-		if user.is_vendor
+		if user.is_supplier
 
 			$customerio.identify(
 				id: user.id,

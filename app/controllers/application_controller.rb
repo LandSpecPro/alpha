@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def help
     if current_user
-      if current_user.is_vendor
+      if current_user.is_supplier
         redirect_to supplier_help_url
       elsif current_user.is_buyer 
         redirect_to buyer_help_url
