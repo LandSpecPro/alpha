@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111204416) do
+ActiveRecord::Schema.define(:version => 20140111212614) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -390,6 +390,10 @@ ActiveRecord::Schema.define(:version => 20140111204416) do
     t.decimal  "approx_material_cost_max"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "user_sessions", :force => true do |t|
