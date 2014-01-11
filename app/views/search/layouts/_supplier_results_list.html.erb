@@ -173,6 +173,18 @@
 
 			</table>
 
+			<% if last_page_number > 1 %>
+
+				<hr>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<%= render 'search/layouts/supplier_paginate_links' %>
+					</div>
+				</div>
+
+			<% end %>
+
 		</div>
 	</div>
 

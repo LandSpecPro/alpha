@@ -206,6 +206,17 @@
 				<% end %>
 			</div>
 
+			<% if last_page_number > 1 %>
+
+				<br/>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<%= render 'search/layouts/product_paginate_links' %>
+					</div>
+				</div>
+			<% end %>
+
 			<br/>
 
 		</div>
