@@ -62,6 +62,15 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def require_user_email_validated
+    if not current_user.is_email_verified
+      store_location
+      flash[:notice] = "You must validate your email to access this page."
+      redirect_to user_validationfailed_url
+      return false
+    end
+  end
+
   def require_business
     if current_user.bus_vendor_id.nil? and current_user.bus_buyer_id.nil?
       store_location
@@ -96,7 +105,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_user_is_vendor
+  def require_user_is_supplier
     if current_user.userType != STRING_VENDOR and current_user.userType != 'Vendor'
       flash[:notice] = "You must be a vendor to access this page."
       redirect_back_or_default(main_url)

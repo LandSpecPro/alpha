@@ -4,7 +4,7 @@ class BusVendorsController < ApplicationController
 	include ApplicationHelper
 	include NewsFeedHelper
 	before_filter :require_user
-	before_filter :require_user_is_vendor
+	before_filter :require_user_is_supplier
 	before_filter :require_business, :except => [:new, :create]
 
 	def new

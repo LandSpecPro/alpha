@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user, :only => [:edit, :new, :create]
-  before_filter :require_user_is_vendor, :only => [:edit, :new, :create]
+  before_filter :require_user_is_supplier, :only => [:edit, :new, :create]
 
   def new
     @product = Product.new

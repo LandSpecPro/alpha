@@ -36,6 +36,10 @@ class UsersController < ApplicationController
 
   end
 
+  def validation_failed
+
+  end
+  
   def new
     @user = User.new
     @invitecode = ''

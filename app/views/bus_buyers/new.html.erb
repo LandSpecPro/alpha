@@ -12,20 +12,13 @@
 
       <div class="visible widget-box">
         <div class="widget-header header-color-green2">
-          <h4 class="center">Add a Business</h4>
+          <h4 class="center">Buyer Information</h4>
         </div>
 
         <div class="widget-body">
           <div class="widget-main" id="login-widget-main">
 
             <%= form_for([@user, @busbuyer]) do |f| %>
-
-                <% if @no_company %>
-                  <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-                    <strong>Error!</strong> You must add a company first!
-                  </div>
-                <% end %>
 
                 <% @busbuyer.errors.each do |field, msg| %>
                   <div class="alert alert-danger">
@@ -36,9 +29,9 @@
 
                 <fieldset>
                   <div class="form-group">
-                    <!--[if lt IE 10]>Business Name:<![endif]-->
+                    <!--[if lt IE 10]>Company Name/Institution (optional):<![endif]-->
                     <span class="block input-icon input-icon-right">
-                      <%= f.text_field :busName, :class => 'form-control', :placeholder => "Business Name" %>
+                      <%= f.text_field :busName, :class => 'form-control', :placeholder => "Company Name/Institution (optional)" %>
                       <i class="icon-briefcase"></i>
                     </span>
                   </div>

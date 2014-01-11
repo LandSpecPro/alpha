@@ -1,5 +1,9 @@
 LspAlpha::Application.routes.draw do
 
+  get "user_detail/new"
+
+  get "user_detail/edit"
+
   get "admin/dashboard_main"
 
   get "admin/dashboard_weekly"
@@ -34,6 +38,12 @@ LspAlpha::Application.routes.draw do
   match "location/public/url/deactivate" => "locations#public_url_deactivate"
   match "location/public/url/activate" => "locations#public_url_activate"
 
+  match "user/details/new" => "user_details#new"
+  match "user/account/new" => "user_details#new"
+  match "user/details/edit" => "user_details#edit"
+  match "user/account/edit" => "user_details#edit"
+  match "user/validationfailed" => "users#validation_failed"
+
   get "favorites/products"
 
   get "favorites/vendors"
@@ -64,6 +74,7 @@ LspAlpha::Application.routes.draw do
   match "buyer/update" => "bus_buyers#update"
   resources :user_sessions
   resources :invites
+  resources :user_details
   resources :users do
     resources :bus_vendors
     resources :bus_buyers

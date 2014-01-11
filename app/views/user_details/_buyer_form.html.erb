@@ -1,0 +1,56 @@
+<%= form_for @userdetail do |f| %>
+
+	<!-- Display error messages as alerts -->
+	<% @userdetail.errors.each do |field, msg| %>
+		<div class="alert alert-danger">
+		  <strong>Error! </strong> <%= msg %>
+		</div>
+	<% end %>
+
+	<fieldset>
+
+		<!-- COMPANY NAME -->
+		<div class="form-group">
+			<!--[if lt IE 10]>Company Name/Institution (optional):<![endif]-->
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Company Name/Institution (optional)", :style => 'color: black;' %>
+				<i class="icon-briefcase"></i>
+			</span>
+		</div>
+
+		<!-- FIRST NAME -->
+		<div class="form-group">
+			<!--[if lt IE 10]>*First Name:<![endif]-->
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :first_name, :class => 'form-control', :placeholder => "*First Name" %>
+			</span>
+		</div>
+
+		<!-- LAST NAME -->
+		<div class="form-group">
+			<!--[if lt IE 10]>*Last Name:<![endif]-->
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :last_name, :class => 'form-control', :placeholder => "*Last Name" %>
+			</span>
+		</div>
+
+		<!-- PHONE NUMBER -->
+		<div class="form-group">
+            <!--[if lt IE 10]>*Phone Number:<![endif]-->
+            <span class="block input-icon input-icon-right">
+                <%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "*Phone Number" %>
+                <i class="icon-phone"></i>
+            </span>
+        </div>
+
+		<div class="row">
+            <div class="col-xs-12">
+            	<div class="pull-right">
+                	<button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+             	</div>
+            </div>
+        </div>
+
+	</fieldset>
+
+<% end %>

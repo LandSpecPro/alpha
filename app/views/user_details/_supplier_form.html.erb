@@ -1,0 +1,29 @@
+<%= form_for @userdetail do |f| %>
+
+	<!-- Display error messages as alerts -->
+	<% @userdetail.errors.each do |field, msg| %>
+		<div class="alert alert-danger">
+		  <strong>Error! </strong> <%= msg %>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<div class="form-group">
+			<!--[if lt IE 10]>*Company Name/Institution (optional):<![endif]-->
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "*Company Name/Institution" %>
+				<i class="icon-briefcase"></i>
+			</span>
+		</div>
+
+		<div class="row">
+            <div class="col-xs-12">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+              </div>
+            </div>
+          </div>
+
+	</fieldset>
+	
+<% end %>
