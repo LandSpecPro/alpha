@@ -59,6 +59,10 @@
 
 	<!-- Default to something for all other pages -->
 	<% else %>
+		<% if current_user.is_vendor %>
+			<a href="<%= locations_manage_url %>">Profile</a>
+			|
+		<% end %>
 		<a href="<%= account_company_url %>">Manage Company</a>
 		|
 		<a href="<%= account_url %>">Manage Account</a>

@@ -9,6 +9,24 @@
 
 			<%= render 'locations/layouts_view_public/sociallinks' %>
 
+			<% if @location.inventories.count > 0 %>
+				<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
+					<i class="icon-folder-close blue"></i>
+					<strong style="font-size:20px;">View Inventory</strong>
+				</a>
+
+				<br/>
+			<% end %>
+
+<% if @locsettings.show_website %>
+			<% unless @location.websiteLink.blank? %>
+				<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
+					<i class="icon-globe blue"></i>
+					View Website
+				</a>
+			<% end %>
+<% end %>
+
 			<% if current_user %>
 				<% if Follow.is_user_following(current_user.id, @location.id) %>
 					<a class="btn btn-link tooltip-info" href="<%= follower_delete_url(:location_id => @location.id) %>" title="" data-original-title="Un-follow" data-placement="bottom">
@@ -28,23 +46,6 @@
 				</a>
 			<% end %>
 
-			<% if @location.inventories.count > 0 %>
-				<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
-					<i class="icon-folder-close blue"></i>
-					View Inventory
-				</a>
-
-				<br/>
-			<% end %>
-
-<% if @locsettings.show_website %>
-			<% unless @location.websiteLink.blank? %>
-				<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
-					<i class="icon-globe blue"></i>
-					View Website
-				</a>
-			<% end %>
-<% end %>
 		</div>
 
 	</div>
