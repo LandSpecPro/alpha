@@ -1,7 +1,7 @@
 class UserDetail < ActiveRecord::Base
 
 	# Attributes
-	attr_accessible :first_name, :last_name, :company_name, :phone_number, :user_type, :user_category, :city, :state, :zip
+	attr_accessible :first_name, :last_name, :company_name, :phone_number, :user_type, :user_category, :city, :state, :zip, :logo
 
 	# Relations
 	has_many :locations

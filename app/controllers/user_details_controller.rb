@@ -9,7 +9,7 @@ class UserDetailsController < ApplicationController
   	def create
   		@userdetail = UserDetail.new(params[:user_detail])
 
-  		verify_fields(params[:user_detail][:first_name], params[:user_detail][:last_name], params[:user_detail][:company_name])
+  		verify_fields(params[:user_detail])
 
 	  	if @userdetail.errors.count > 0
 	  		render :action => :new

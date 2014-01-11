@@ -23,6 +23,10 @@
         <div class="widget-body">
           <div class="widget-main" id="user-details-widget-main">
 
+            <div id="updateCompanyInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
+              <div class="progress-bar progress-bar-success" style="width:100%;"></div>
+            </div>
+
           	<% if current_user.is_buyer %>
           		<%= render 'buyer_form' %>
           	<% elsif current_user.is_supplier %>
@@ -41,6 +45,14 @@
 </div> <!-- container-fluid -->
 
 <script type="text/javascript">
+
   $(applyMasks());
   $(applyPopovers());
+
+  function updateUserInfo(){
+    // Show progres bar
+    $( "#updateCompanyInfoProgress" ).removeClass('hide');
+    
+  }
+
 </script>

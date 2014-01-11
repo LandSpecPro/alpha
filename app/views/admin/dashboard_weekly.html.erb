@@ -26,10 +26,10 @@
                                                 <%= User.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
                                         </th>
                                         <th class="center">
-                                                <%= BusBuyer.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
+                                                <%= UserDetail.where(:user_type => 'Buyer', :created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
                                         </th>
                                         <th class="center">
-                                                <%= BusVendor.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
+                                                <%= UserDetail.where(:user_type => 'Supplier', :created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
                                         </th>
                                         <th class="center">
                                                 <%= Product.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>

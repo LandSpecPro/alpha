@@ -4,36 +4,32 @@
 <div class="row">
 	<div class="col-lg-5 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
 
-		<%= form_for @userdetail do |f| %>
-
-			<div class="widget-box">
-				<div class="widget-header header-color-green2">
-					<% if current_user.is_buyer %>
-						<h5 class="bigger lighter"><i class="icon-briefcase"></i> Buyer Information</h5>
-					<% elsif current_user.is_supplier %>
-						<h5 class="bigger lighter"><i class="icon-briefcase"></i> Supplier Information</h5>
-					<% end %>
-				</div>
-
-				<div class="widget-body">
-					<div class="widget-main">
-
-						<div id="updateCompanyInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
-							<div class="progress-bar progress-bar-success" style="width:100%;"></div>
-						</div>
-
-						<% if current_user.is_buyer %>
-			          		<%= render 'buyer_form' %>
-			          	<% elsif current_user.is_supplier %>
-			          		<%= render 'supplier_form' %>
-			          	<% end %>
-
-			        </div>
-			    </div>
-
+		<div class="widget-box">
+			<div class="widget-header header-color-green2">
+				<% if current_user.is_buyer %>
+					<h5 class="bigger lighter"><i class="icon-briefcase"></i> Buyer Information</h5>
+				<% elsif current_user.is_supplier %>
+					<h5 class="bigger lighter"><i class="icon-briefcase"></i> Supplier Information</h5>
+				<% end %>
 			</div>
 
-		<% end %>
+			<div class="widget-body">
+				<div class="widget-main">
+
+					<div id="updateCompanyInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
+						<div class="progress-bar progress-bar-success" style="width:100%;"></div>
+					</div>
+
+					<% if current_user.is_buyer %>
+		          		<%= render 'buyer_form' %>
+		          	<% elsif current_user.is_supplier %>
+		          		<%= render 'supplier_form' %>
+		          	<% end %>
+
+		        </div>
+		    </div>
+
+		</div>
 
 	</div>
 
