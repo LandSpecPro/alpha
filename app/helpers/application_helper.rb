@@ -279,8 +279,8 @@ module ApplicationHelper
 			return "Edit Location"
 		elsif @controller == 'locations' and @action == 'delete_featureditem'
 			return "Delete Featured Item Confirmation"
-		elsif @controller == 'locations'
-			return "Locations"
+		elsif @controller == 'locations' and @action == 'view'
+			return @location.busName
 		elsif @controller == 'bus_vendors' and @action == 'manage'
 			return "Account Management"
 		elsif @controller == 'bus_vendors' and (@action == 'manage_company' or @action == 'update')
@@ -314,6 +314,12 @@ module ApplicationHelper
 				return " Delete this location?"
 			elsif  controller.action_name == 'edit'
 				return get_location_name
+			elsif controller.action_name == 'view'
+				if @location.locName.blank?
+					return ""
+				else
+					return get_location_name
+				end
 			else
 				return ""
 			end
