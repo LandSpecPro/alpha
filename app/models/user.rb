@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
 	validates_presence_of :userType, :message => "You must select a user type."
 
-
   	# This method associates the attribute ":profileImage" with a file attachment
   	has_attached_file :profileImage, 
 		styles: {

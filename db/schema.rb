@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209185840) do
+ActiveRecord::Schema.define(:version => 20140111012448) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -367,6 +367,25 @@ ActiveRecord::Schema.define(:version => 20131209185840) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "location_id",                   :null => false
+  end
+
+  create_table "user_details", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "user_type"
+    t.string   "buyer_type"
+    t.string   "vendor_type"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "year_started_landscaping"
+    t.integer  "approx_jobs_completed"
+    t.decimal  "approx_job_price_min"
+    t.decimal  "approx_job_price_max"
+    t.decimal  "approx_material_cost_min"
+    t.decimal  "approx_material_cost_max"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "user_sessions", :force => true do |t|
