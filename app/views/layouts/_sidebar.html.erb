@@ -77,14 +77,14 @@
 
 					</li>
 
-				<% if (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and (controller.action_name == 'manage_company' || controller.action_name == 'update') %>
+				<% if controller.controller_name == 'user_details' and (controller.action_name == 'edit' or controller.action_name == 'update') %>
 					<li class="active">
 				<% else %>
 					<li>
 				<% end %>
-					<a href=<%= account_company_url %>>
+					<a href=<%= user_details_edit_url %>>
 						<i class="icon-briefcase"></i>
-						<span class="menu-text">Company</span>
+						<span class="menu-text">User Info</span>
 					</a>
 				</li>
 

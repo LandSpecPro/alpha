@@ -8,21 +8,94 @@
 	<% end %>
 
 	<fieldset>
+
+		<!-- COMPANY NAME -->
 		<div class="form-group">
-			<!--[if lt IE 10]>*Company Name/Institution (optional):<![endif]-->
+			<label for="first_name"><strong>*Company Name/Institution</strong></label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "*Company Name/Institution" %>
+				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Optional", :style => 'color: black;' %>
 				<i class="icon-briefcase"></i>
 			</span>
+		</div>
+		
+		<!-- PHONE NUMBER -->
+		<div class="form-group">
+            <label for="last_name"><strong>*Phone Number</strong></label>
+            <span class="block input-icon input-icon-right">
+                <%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Required" %>
+                <i class="icon-phone"></i>
+            </span>
+        </div>
+
+		<!-- FIRST NAME -->
+		<div class="form-group">
+			<label for="first_name">First Name <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required" %>
+			</span>
+		</div>
+
+		<!-- LAST NAME -->
+		<div class="form-group">
+			<label for="last_name">Last Name <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required" %>
+			</span>
+		</div>
+
+		<!-- USER CATEGORY -->
+		<div class="form-group">
+			<label for="user_category">Supplier Type <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.select(:user_category, get_supplier_types, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+			</span>
+		</div>
+
+		<!-- ADDRESS INFO -->
+		<div class="row">
+
+			<!-- CITY -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">City <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :city, :class => 'form-control', :placeholder => "Optional" %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
+			<!-- STATE -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">State <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
+			<!-- ZIP -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">Zip <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :zip, :class => 'form-control input-mask-zip', :placeholder => "Optional" %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
 		</div>
 
 		<div class="row">
             <div class="col-xs-12">
-              <div class="pull-right">
-                <button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
-              </div>
+            	<div class="pull-right">
+                	<button type="submit" class="btn btn-success" onclick="updateUserInfo();"><i class="icon-ok"></i> Submit</button>
+             	</div>
             </div>
-          </div>
+        </div>
 
 	</fieldset>
 	

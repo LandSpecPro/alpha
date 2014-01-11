@@ -1,5 +1,29 @@
 module ApplicationHelper
 
+	def get_buyer_types
+		return [
+			['Landscape Architect', 'Landscape Architect'],
+			['Landscape Contractor', 'Landscape Contractor'],
+			['Landscape Designer', 'Landscape Designer'],
+			['Golf Course Professional', 'Golf Course Professional'],
+			['Sports Complex Professional', 'Sports Complex Professional'],
+			['Horticulture Instructor', 'Horticulture Instructor'],
+			['Horticulture Student', 'Horticulture Student'],
+			['Governments and Municipalities', 'Governments and Municipalities'],
+			['Landscape Maintenance Professional', 'Landscape Maintenance Professional']
+		]
+	end
+
+	def get_supplier_types
+		return [
+			['Wholesale Grower', 'Wholesale Grower'],
+			['Wholesale Nursery', 'Wholesale Nursery'],
+			['Plant Liner Grower', 'Plant Liner Grower'],
+			['Material Supplier', 'Material Supplier'],
+			['Stone Center', 'Stone Center']			
+		]
+	end
+
 	def get_states
 		return [
 			['Alabama', 'AL'],
@@ -299,6 +323,8 @@ module ApplicationHelper
 			return "News Feed"
 		elsif @controller == 'admin'
 			return "Admin Dashboard"
+		elsif @controller == 'user_details'
+			return "User Info"
 		else
 			return ""
 		end
@@ -348,6 +374,12 @@ module ApplicationHelper
 				else
 					return ""
 				end
+			else
+				return ""
+			end
+		elsif controller.controller_name == 'user_details'
+			if controller.action_name == 'edit' or controller.action_name == 'update'
+				return " Edit"
 			else
 				return ""
 			end

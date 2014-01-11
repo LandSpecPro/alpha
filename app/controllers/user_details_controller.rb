@@ -15,7 +15,6 @@ class UserDetailsController < ApplicationController
 	  		render :action => :new
 	  		return
 	  	else
-	  		#@userdetail.user = current_user
 	  		if @userdetail.save
 	  			current_user.user_detail = @userdetail
 	  			redirect_to main_url
@@ -31,6 +30,36 @@ class UserDetailsController < ApplicationController
 	end
 
 	def edit
+
+		if current_user.user_detail.blank?
+			redirect_to user_details_new_url(:missing_details => true)
+			return
+		end
+
+		@userdetail = current_user.user_detail
+	end
+
+	def update
+		@userdetail = current_user.user_detail
+
+  		verify_fields(params[:user_detail])
+
+	  	if @userdetail.errors.count > 0
+	  		temporarily_set_user_detail_fields(params[:user_detail])
+	  		render :action => :edit
+	  		return
+	  	else
+	  		@userdetail = current_user.user_detail
+	  		if @userdetail.update_attributes(params[:user_detail])
+	  			current_user.user_detail = @userdetail
+	  			redirect_to user_details_edit_url(:success => true)
+	  			return
+	  		else
+	  			render :action => :edit
+	  			return
+	  		end
+	  	end
+
 	end
 
 end

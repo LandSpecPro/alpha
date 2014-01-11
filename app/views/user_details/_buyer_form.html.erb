@@ -9,44 +9,90 @@
 
 	<fieldset>
 
-		<!-- COMPANY NAME -->
-		<div class="form-group">
-			<!--[if lt IE 10]>Company Name/Institution (optional):<![endif]-->
-			<span class="block input-icon input-icon-right">
-				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Company Name/Institution (optional)", :style => 'color: black;' %>
-				<i class="icon-briefcase"></i>
-			</span>
-		</div>
-
 		<!-- FIRST NAME -->
 		<div class="form-group">
-			<!--[if lt IE 10]>*First Name:<![endif]-->
+			<label for="first_name"><strong>*First Name</strong></label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :first_name, :class => 'form-control', :placeholder => "*First Name" %>
+				<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required" %>
 			</span>
 		</div>
 
 		<!-- LAST NAME -->
 		<div class="form-group">
-			<!--[if lt IE 10]>*Last Name:<![endif]-->
+			<label for="last_name"><strong>*Last Name</strong></label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :last_name, :class => 'form-control', :placeholder => "*Last Name" %>
+				<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required" %>
 			</span>
 		</div>
 
 		<!-- PHONE NUMBER -->
 		<div class="form-group">
-            <!--[if lt IE 10]>*Phone Number:<![endif]-->
+            <label for="last_name"><strong>*Phone Number</strong></label>
             <span class="block input-icon input-icon-right">
-                <%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "*Phone Number" %>
+                <%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Required" %>
                 <i class="icon-phone"></i>
             </span>
         </div>
 
+        <!-- COMPANY NAME -->
+		<div class="form-group">
+			<label for="first_name">Company Name/Institution <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Optional" %>
+				<i class="icon-briefcase"></i>
+			</span>
+		</div>
+
+		<!-- USER CATEGORY -->
+		<div class="form-group">
+			<label for="user_category">Buyer Type <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.select(:user_category, get_buyer_types, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+			</span>
+		</div>
+
+		<!-- ADDRESS INFO -->
+		<div class="row">
+
+			<!-- CITY -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">City <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :city, :class => 'form-control', :placeholder => "Optional" %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
+			<!-- STATE -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">State <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
+			<!-- ZIP -->
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<label for="city">Zip <i>(optional)</i></label>
+					<span class="block input-icon input-icon-right">
+						<%= f.text_field :zip, :class => 'form-control input-mask-zip', :placeholder => "Optional" %>
+						<i class="icon-state"></i>
+					</span>
+				</div>
+			</div>
+
+		</div>
+
 		<div class="row">
             <div class="col-xs-12">
             	<div class="pull-right">
-                	<button type="submit" class="btn btn-success"><i class="icon-ok"></i> Submit</button>
+                	<button type="submit" class="btn btn-success" onclick="updateUserInfo();"><i class="icon-ok"></i> Submit</button>
              	</div>
             </div>
         </div>
