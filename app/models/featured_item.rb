@@ -86,6 +86,8 @@ class FeaturedItem < ActiveRecord::Base
 			return self.order('size ASC')
 		elsif criteria.to_s == 'size_desc'
 			return self.order('size DESC')
+		elsif criteria.to_s == 'newest_first'
+			return self.order('created_at DESC')
 		else
 			return self.order('distance ASC')
 		end

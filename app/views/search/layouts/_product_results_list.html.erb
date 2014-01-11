@@ -76,7 +76,9 @@
 
 			<div class="dropdown">
 				<button class="btn btn-xs bigger btn-inverse dropdown-toggle" data-toggle="dropdown">
-					<% if params[:sort] == 'dist_asc' %>
+					<% if params[:sort] == 'newest_first' %>
+						Sort By - Newest First
+					<% elsif params[:sort] == 'dist_asc' %>
 						Sort By - Closest First
 					<% elsif params[:sort] == 'dist_desc' %>
 						Sort By - Farthest First
@@ -95,6 +97,12 @@
 				</button>
 
 				<ul class="dropdown-menu dropdow-yellow pull-right dropdown-caret dropdown-close">
+					<li>
+						<a href="<%= sort_by_url('product', 'newest_first') %>" onclick="updateSearch();">
+							<% if params[:sort] == 'newest_first' %><i class="icon-ok"></i><% end %>
+							&nbsp;Newest First
+						</a>
+					</li>
 					<li>
 						<a href="<%= sort_by_url('product', 'dist_asc') %>" onclick="updateSearch();">
 							<% if params[:sort] == 'dist_asc' %><i class="icon-ok"></i><% end %>

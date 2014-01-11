@@ -15,7 +15,11 @@ module SearchHelper
 		end
 
 		if params[:sort].blank?
-			params[:sort] = 'dist_asc'
+			if params[:search_type] == 'product'
+				params[:sort] = 'newest_first'
+			else
+				params[:sort] = 'dist_asc'
+			end
 		end
 
 		if params[:current_location]
