@@ -83,10 +83,10 @@
 								</div>
 								<span class="block center">
 
-									<input class="ace" name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_VENDOR %> zindex='99999' onclick="checkUserType('supplier')"/><span class="lbl" onclick="checkUserType('supplier')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="I sell products to the wholesale landscape trade"> Supplier</span>
+									<input class="ace" name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_SUPPLIER %> zindex='99999' onclick="checkUserType('<%= STRING_SUPPLIER %>')"/><span class="lbl" onclick="checkUserType('<%= STRING_SUPPLIER %>')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="I sell products to the wholesale landscape trade"> Supplier</span>
 									&nbsp;&nbsp;&nbsp;&nbsp;
 										<span class="">
-									<input class="ace" name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('buyer')"/><span class="lbl" onclick="checkUserType('buyer')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="I am a landscape industry professional that is seeking landscape supply information"> Buyer</span>
+									<input class="ace" name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('<%= STRING_BUYER %>')"/><span class="lbl" onclick="checkUserType('<%= STRING_BUYER %>')" data-rel="popover" data-placement="top" data-trigger="hover" data-content="I am a landscape industry professional that is seeking landscape supply information"> Buyer</span>
 										</span>
 
 								</span>
@@ -155,16 +155,16 @@
 	});
 
 	function checkUserType(type){
-		if(type == 'buyer'){
+		if(type == <%= STRING_BUYER %>){
 			document.getElementById("userTypeBuyer").checked = true;
 		}
-		else if(type == 'supplier'){
+		else if(type == <%= STRING_SUPPLIER %>){
 			document.getElementById("userTypeSupplier").checked = true;
 		}
 	}
 
 	<% unless params[:user].blank? %>
-		<% if params[:user][:userType] == STRING_VENDOR %>
+		<% if params[:user][:userType] == STRING_SUPPLIER %>
 			$(document.getElementById("userTypeSupplier").checked = true);
 		<% elsif params[:user][:userType] == STRING_BUYER %>
 			$(document.getElementById("userTypeBuyer").checked = true);

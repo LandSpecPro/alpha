@@ -28,18 +28,12 @@ class UserDetail < ActiveRecord::Base
 
 	def set_user_type
 
-		userType = self.user.userType
-
-		if userType == 'Vendor' or userType == 'vendor' or userType == 'supplier' or userType == 'Supplier'
-			self.user_type = 'Supplier'
-		elsif userType == 'buyer' or userType == 'Buyer'
-			self.user_type = 'Buyer'
-		end
+		self.user_type = self.user.userType
 
 	end
 
 	def is_buyer
-		if user_type == 'Buyer'
+		if user_type == STRING_BUYER
 			return true
 		else
 			return false
@@ -47,7 +41,7 @@ class UserDetail < ActiveRecord::Base
 	end
 
 	def is_supplier
-		if user_type == 'Supplier'
+		if user_type == STRING_SUPPLIER
 			return true
 		else
 			return false

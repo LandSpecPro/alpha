@@ -26,7 +26,7 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                        <span class="infobox-data-number"><%= User.where('"userType" = ? or "userType" = ?', 'buyer', 'Buyer').count.to_s %></span>
+                                        <span class="infobox-data-number"><%= User.where(:userType => STRING_BUYER).count.to_s %></span>
                                         <div class="infobox-content">Total Buyers</div>
                                 </div>
 
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                        <span class="infobox-data-number"><%= User.where('"userType" = ? or "userType" = ? or "userType" = ? or "userType" = ?', 'Supplier', 'supplier', 'vendor', 'Vendor').count.to_s %></span>
+                                        <span class="infobox-data-number"><%= User.where(:userType => STRING_SUPPLIER).count.to_s %></span>
                                         <div class="infobox-content">Total Suppliers</div>
                                 </div>
 
@@ -91,9 +91,9 @@
                                         <%= u.email %>
                                 </td>
                                 <td class="center">
-                                        <% if u.userType == 'vendor' or u.userType == 'Vendor' or u.userType == 'supplier' or u.userType == 'Supplier' %>
+                                        <% if u.userType == STRING_SUPPLIER %>
                                                 Supplier
-                                        <% elsif u.userType == 'buyer' or u.userType == 'Buyer' %>
+                                        <% elsif u.userType == STRING_BUYER %>
                                                 Buyer
                                         <% else %>
                                                 N/A

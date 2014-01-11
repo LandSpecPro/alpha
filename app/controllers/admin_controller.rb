@@ -22,8 +22,8 @@ class AdminController < ApplicationController
   def dashboard_email
 
   	 @newsletters = NewsletterEmail.order("created_at DESC").all
-     @buyers = User.order("created_at DESC").where('"userType" = ? or "userType" = ?', 'buyer', 'Buyer')
-     @suppliers = User.order("created_at DESC").where('"userType" = ? or "userType" = ? or "userType" = ? or "userType" = ?', 'Supplier', 'supplier', 'vendor', 'Vendor')
+     @buyers = User.order("created_at DESC").where(:userType => STRING_BUYER)
+     @suppliers = User.order("created_at DESC").where(:userType => STRING_SUPPLIER)
 
   end
 

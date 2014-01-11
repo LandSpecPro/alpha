@@ -53,14 +53,14 @@ class BusVendorsController < ApplicationController
 		store_location
 		@user = current_user
 		@bus_vendor = @user.bus_vendor
-		@usertype = "Vendor"
+		@usertype = STRING_SUPPLIER
 	end
 
 	def manage_company
 		store_location
 		@user = current_user
 		@bus_vendor = @user.bus_vendor
-		@usertype = "Vendor"
+		@usertype = STRING_SUPPLIER
 	end
 
 	def help

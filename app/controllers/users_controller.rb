@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     @invite = Invite.new(params[:invite])
 
-    if @invite.userType == STRING_VENDOR
+    if @invite.userType == STRING_SUPPLIER
       @invite.busType = params[:supplierBusType]
     elsif @invite.userType == STRING_BUYER
       @invite.busType = params[:buyerBusType]
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
       # Add new user to Customer.IO
       cio_user_new(@user)
 
-      if @user.userType == STRING_VENDOR
+      if @user.userType == STRING_SUPPLIER
         redirect_to supplier_new_url
       elsif @user.userType == STRING_BUYER
         redirect_to buyer_new_url
@@ -94,10 +94,6 @@ class UsersController < ApplicationController
   def update
 
     @user = @current_user # makes our views "cleaner" and more consistent 
-    
-    if params[:user][:userType] == 'Supplier' || params[:user][:userType] == 'supplier'
-      params[:user][:userType] = 'Vendor'   
-    end
 
     if @user.update_attributes(params[:user])
 
@@ -109,12 +105,12 @@ class UsersController < ApplicationController
       if current_user.is_supplier
         @user = current_user
         @bus_vendor = @user.bus_vendor
-        @usertype = "Vendor"
+        @usertype = STRING_SUPPLIER
         render :template => "bus_vendors/manage"
       elsif current_user.is_buyer
         @user = current_user
         @bus_buyer = @user.bus_buyer
-        @usertype = "Buyer"
+        @usertype = STRING_BUYER
         render :template => "bus_buyers/manage"
       end
     end

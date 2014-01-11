@@ -1,6 +1,6 @@
 # Constant strings for user types
-STRING_VENDOR = 'vendor'
-STRING_BUYER = 'buyer'
+STRING_SUPPLIER = 'Supplier'
+STRING_BUYER = 'Buyer'
 STRING_ADMIN = 'admin'
 STRING_CONSUMER = 'consumer'
 

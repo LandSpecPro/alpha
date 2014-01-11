@@ -14,7 +14,7 @@ module CustomerioHelper
 				login_count: user.login_count,
 				last_login_at: format_as_unix_timestamp(user.last_login_at),
 				user_is_verified: user.verified,
-				user_type: "Supplier"
+				user_type: STRING_SUPPLIER
 			)
 		end
 

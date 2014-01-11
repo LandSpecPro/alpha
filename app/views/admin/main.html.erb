@@ -20,11 +20,11 @@
                 </tr>
                 <tr>
                     <td><center><strong>Total Buyers</strong></center></td>
-                    <td><center><%= User.where('lower("userType") = ?', 'buyer').count.to_s %></center></td>
+                    <td><center><%= User.where(:userType => STRING_BUYER).count.to_s %></center></td>
                 </tr>
                 <tr>
                     <td><center><strong>Total Suppliers</strong></center></td>
-                    <td><center><%= User.where('lower("userType") = ?', 'vendor').count.to_s %></center></td>
+                    <td><center><%= User.where(:userType => STRING_SUPPLIER).count.to_s %></center></td>
                 </tr>
             </tbody>
             <thead>

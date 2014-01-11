@@ -41,11 +41,7 @@
 					<div class="form-group">
 						<%= f.label 'User Type:' %>
 						<span class="block input-icon input-icon-right">
-							<% if @usertype == 'Vendor' %>
-								<%= f.text_field :userType, :class => 'form-control', :value => 'Supplier', :readonly => true %>
-							<% else %>
-								<%= f.text_field :userType, :class => 'form-control', :value => @usertype, :readonly => true %>
-							<% end %>
+							<%= f.text_field :userType, :class => 'form-control', :value => @usertype, :readonly => true %>
 						</span>
 					</div>
 

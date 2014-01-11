@@ -48,14 +48,14 @@ class BusBuyersController < ApplicationController
 		store_location
 		@user = current_user
 		@bus_buyer = @user.bus_buyer
-		@usertype = "Buyer"
+		@usertype = STRING_BUYER
 	end
 
 	def manage_company
 		store_location
 		@user = current_user
 		@bus_buyer = @user.bus_buyer
-		@usertype = "Buyer"
+		@usertype = STRING_BUYER
 	end
 
 	def help

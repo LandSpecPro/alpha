@@ -47,9 +47,9 @@ module UsersHelper
 	    @user.userType = claimprofile.user_type
 
 	    if @user.save
-	    	if @user.userType == 'Vendor'
+	    	if @user.userType == STRING_SUPPLIER
 	      		claim_bus_vendor(@user, claimprofile)
-	      	elsif @user.userType == 'Buyer'
+	      	elsif @user.userType == STRING_BUYER
 	      		claim_bus_buyer(@user, claimprofile)
 	      	end
 	    else
