@@ -2,19 +2,18 @@ class LocationsController < ApplicationController
 
   include LocationHelper
   include CategoryHelper
-  include CustomerioHelper
   include AnalyticsHelper
   include ApplicationHelper
   include NewsFeedHelper
   
   before_filter :require_user, :except => [:view_public, :inventory_view]
-  before_filter :require_business, :except => [:view_public, :inventory_view]
+  before_filter :require_user_email_validated, :except => [:view_public, :inventory_view]
+  before_filter :require_user_details, :except => [:view_public, :inventory_view]
+  
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
-  
-  
-  before_filter :require_business, :except => [:view_public, :inventory_view]
+  before_filter :require_location_active_unless_owner, :only => [:view_public, :view]
 
   def view_public
 
@@ -59,7 +58,6 @@ class LocationsController < ApplicationController
 
     if @location.update_attributes(params[:location])
       @location.user_has_set_url
-      cio_user_public_profile(current_user, @location)
       if params[:redirect_to_admin]
         redirect_back_or_default('/')
         return
@@ -109,7 +107,6 @@ class LocationsController < ApplicationController
     @publicsettings = LocationPublicSetting.where(:location_id => @location.id).first_or_create
 
     if @publicsettings.update_attributes(params[:location_public_setting])
-      cio_user_public_profile(current_user, @location)
       redirect_to locations_edit_url(:id => @location.id, :settings => true, :update_settings_success => true)
     else
       # DO SOME ERROR
@@ -191,8 +188,10 @@ class LocationsController < ApplicationController
   end
 
   def create
+
     @location = Location.new(params[:location])
-    @location.bus_vendor_id = current_user.bus_vendor_id
+    @location.user_detail_id = current_user.user_detail.id
+    @location.busName = current_user.user_detail.company_name
     @location.format_all_urls
 
     if not current_user.verified
@@ -206,7 +205,6 @@ class LocationsController < ApplicationController
 
       news_feed_new_location(@location.id)
 
-      cio_user_location(current_user, @location)
       update_weight_rank(@location)
 
       if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
@@ -223,13 +221,13 @@ class LocationsController < ApplicationController
   end
 
   def manage
-    @user = current_user
-    if Location.where(:bus_vendor_id => @user.bus_vendor_id).count == 0
+
+    if current_user.user_detail.locations.count == 0
       redirect_to locations_new_url
-    elsif @user.bus_vendor.locations.count == 1
-      redirect_to locations_view_url(:id => @user.bus_vendor.locations.first.id)
+    elsif current_user.user_detail.locations.count == 1
+      redirect_to locations_view_url(:id => current_user.user_detail.locations.first.id)
     else
-      @vlocations = @user.bus_vendor.locations
+      @vlocations = current_user.user_detail.locations
     end
 
     store_location
@@ -270,8 +268,6 @@ class LocationsController < ApplicationController
 
     end
 
-    cio_user_location(current_user, @location)
-
     # So this does not catch an error because it is using that helper method to do it.
     redirect_to locations_edit_url(:id => params[:id], :update_categories_success => true)
 
@@ -281,7 +277,6 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @location.bio = params[:bio]
     if @location.save
-      cio_user_location(current_user, @location)
       update_weight_rank(@location)
       redirect_to locations_edit_url(:id => params[:id], :update_about_success => true)
       return
@@ -323,7 +318,6 @@ class LocationsController < ApplicationController
 
     params[:featured_item][:price][0] = ''
     if @featureditem.update_attributes(params[:featured_item]) 
-      cio_user_location(current_user, Location.find(@featureditem.location_id))
       redirect_to products_edit_url(:id => @featureditem.id, :update_featured_item_success => true)
     else
       render template: "products/edit"
@@ -337,7 +331,6 @@ class LocationsController < ApplicationController
     @featureditem = FeaturedItem.new
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
-      cio_user_location(current_user, @location)
       update_weight_rank(@location)
       @location.format_all_urls
       @location.save
@@ -355,13 +348,13 @@ class LocationsController < ApplicationController
 
     store_location
 
-    if Location.where(:id => params[:id], :active => true).count > 0
+    if Location.where(:id => params[:id]).count > 0
       @location = Location.find(params[:id])
     else
       if current_user.is_supplier
         if Location.where(:id => params[:id]).count > 0
           @location = Location.find(params[:id])
-          if @location.bus_vendor_id != current_user.bus_vendor_id
+          if @location.user_detail_id == current_user.user_detail.id
             redirect_to locations_manage_url
           end
         else
@@ -422,7 +415,6 @@ class LocationsController < ApplicationController
 
     @locid = @featureditem.location_id
 
-    cio_user_location(current_user, Location.find(@locid))
     redirect_to locations_edit_url(:id => @locid, :products => true)
 
   end

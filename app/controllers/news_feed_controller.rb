@@ -4,7 +4,9 @@ class NewsFeedController < ApplicationController
 	include ApplicationHelper
 
 	before_filter :require_user
-	before_filter :require_business
+  	before_filter :require_user_email_validated
+  	before_filter :require_user_details
+  	before_filter :require_supplier_has_location
 	
 	def main
 
@@ -33,8 +35,8 @@ class NewsFeedController < ApplicationController
 		elsif params[:only_following]
 			@items = NewsFeedItem.only_following(current_user.id).order('created_at DESC').offset(offset).limit(limit)
 		elsif params[:supplier]
-			if User.where(:bus_vendor_id => params[:supplier]).count >= 1
-				@items = NewsFeedItem.where(:user_id => User.where(:bus_vendor_id => params[:supplier]).first.id).order('created_at DESC').offset(offset).limit(limit)
+			if UserDetail.where(:id => params[:supplier]).count >= 1
+				@items = NewsFeedItem.where(:user_id => UserDetail.where(:id => params[:supplier]).first.user_id).order('created_at DESC').offset(offset).limit(limit)
 			else
 				@items = NewsFeedItem.where(:user_id => -1)
 			end

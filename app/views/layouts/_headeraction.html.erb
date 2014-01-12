@@ -26,7 +26,7 @@
 	<% elsif @cont == 'locations' and @act == 'view' %>
 		<!-- TODO: Add in follow/favorite button here -->
 		<% if current_user.is_supplier %>
-			<% if current_user.bus_vendor.locations.where(:id => params[:id]).count > 0 %>
+			<% if current_user.user_detail.locations.where(:id => params[:id]).count > 0 %>
 				<a href="<%= locations_edit_url(:id => params[:id]) %>">Edit Location</a>
 				|
 			<% end %>
@@ -35,7 +35,7 @@
 			<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">View Public Profile</a>
 			|
 		<% end %>
-		<a href="<%= main_url(:supplier => @location.bus_vendor_id) %>">View Updates</a>
+		<a href="<%= main_url(:supplier => UserDetail.find(@location.user_detail_id).id) %>">View Updates</a>
 
 	<!-- Edit Featured Item -->
 	<% elsif @cont == 'products' and @act == 'edit' %>

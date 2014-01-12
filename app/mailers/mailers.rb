@@ -10,8 +10,10 @@ class Mailers < ActionMailer::Base
 
   end
 
-  def verify_email_address_email
-
+  def verify_email_address_email(email, token)
+    @email = email
+    @token = token
+    mail(:to => @email, :subject => "LandSpec Pro - Verify Your Email Address")
   end
 
   def new_user_activation_email(user)
@@ -19,8 +21,8 @@ class Mailers < ActionMailer::Base
     @username = user.login
     @email = user.email
     @userType = user.userType
-    @busName = user.get_business.busName
-    @busPhone = user.get_business.busPhone
+    @busName = user.user_detail.company_name
+    @busPhone = user.user_detail.phone_number
     mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New User!")
   end
 
@@ -31,7 +33,7 @@ class Mailers < ActionMailer::Base
     @userType = user.userType
     @verified = user.verified
     @busName = location.busName
-    @busPhone = user.get_business.busPhone
+    @busPhone = user.user_detail.phone_number
     @address = location.get_full_address
     mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New Location!")
   end

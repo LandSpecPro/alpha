@@ -27,6 +27,7 @@ module UserDetailHelper
 		@userdetail.state = par[:state]
 		@userdetail.zip = par[:zip]
 		@userdetail.user_category = par[:user_category]
+		@userdetail.tagline = par[:tagline]
 	end
 
 end

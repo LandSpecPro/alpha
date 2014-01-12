@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-
-	include CustomerioHelper
 	
 	def root
 

@@ -71,3 +71,12 @@ function showUpdateSuccessGritter(updated){
 		time: 1200
 	});
 }
+
+function showWarningMessageGritter(message){
+	$.gritter.add({
+		title: 'Warning!',
+		text: message,
+		class_name: 'gritter-warning gritter-dark',
+		time: 3000
+	});
+}

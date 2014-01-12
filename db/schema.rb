@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111212614) do
+ActiveRecord::Schema.define(:version => 20140112025844) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -251,7 +251,7 @@ ActiveRecord::Schema.define(:version => 20140111212614) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer  "bus_vendor_id",                                 :null => false
+    t.integer  "bus_vendor_id"
     t.string   "locName"
     t.string   "primaryPhone"
     t.string   "secondaryPhone"
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(:version => 20140111212614) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "tagline"
   end
 
   create_table "user_sessions", :force => true do |t|

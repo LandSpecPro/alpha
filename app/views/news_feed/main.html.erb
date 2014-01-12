@@ -80,29 +80,29 @@
 
 							<% unless User.find(i.user_id).verified == false or User.find(i.user_id).active == false %>
 					
-								<% unless (i.item_type == NEW_FEATURED_ITEM and FeaturedItem.find(i.item_id).location.bus_vendor.user.verified == false) \
-										or (i.item_type == FIRST_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
-										or (i.item_type == NEW_INVENTORY and Inventory.find(i.item_id).location.bus_vendor.user.verified == false) \
-										or (i.item_type == NEW_LOCATION and Location.find(i.item_id).active == false) %>
+									<% unless (i.item_type == NEW_FEATURED_ITEM and (User.find(UserDetail.find(FeaturedItem.find(i.item_id).location.user_detail_id).user_id).verified == false or Location.find(i.location_id).active == false)) \
+											or (i.item_type == FIRST_INVENTORY and (User.find(UserDetail.find(Inventory.find(i.item_id).location.user_detail_id).user_id).verified == false or Location.find(i.location_id).active == false)) \
+											or (i.item_type == NEW_INVENTORY and (User.find(UserDetail.find(Inventory.find(i.item_id).location.user_detail_id).user_id).verified == false or Location.find(i.location_id).active == false)) \
+											or (i.item_type == NEW_LOCATION and Location.find(i.item_id).active == false) %>
 
-									<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
+										<!-- TODO: This is where there would be a loop for all the news feed items. Something would need to be done with not loading them all at once also. Some way to paginate, but without paginating. Maybe AJAX to pull in 25 at a time or something. I'll figure it out -->
 
-									<% if i.item_type == FIRST_INVENTORY %>
-										<%= render 'news_feed/firstinventory_item', :i => i %>
-									<% elsif i.item_type == NEW_INVENTORY %>
-										<%= render 'news_feed/newinventory_item', :i => i %>
-									<% elsif i.item_type == NEW_SUPPLIER %>
-										<%= render 'news_feed/newsupplier_item', :i => i %>
-									<% elsif i.item_type == NEW_FEATURED_ITEM %>
-										<% @fi = FeaturedItem.find(i.item_id) %>
-										<% if @fi.active %>
-											<%= render 'news_feed/newfeatureditem_item', :i => i %>
+										<% if i.item_type == FIRST_INVENTORY %>
+											<%= render 'news_feed/firstinventory_item', :i => i %>
+										<% elsif i.item_type == NEW_INVENTORY %>
+											<%= render 'news_feed/newinventory_item', :i => i %>
+										<% elsif i.item_type == NEW_SUPPLIER %>
+											<%= render 'news_feed/newsupplier_item', :i => i %>
+										<% elsif i.item_type == NEW_FEATURED_ITEM %>
+											<% @fi = FeaturedItem.find(i.item_id) %>
+											<% if @fi.active %>
+												<%= render 'news_feed/newfeatureditem_item', :i => i %>
+											<% end %>
+										<% elsif i.item_type == NEW_LOCATION %>
+											<%= render 'news_feed/newlocation_item', :i => i %>
 										<% end %>
-									<% elsif i.item_type == NEW_LOCATION %>
-										<%= render 'news_feed/newlocation_item', :i => i %>
-									<% end %>
 
-								<% end %>
+									<% end %>
 							<% end %>
 						<% end %>
 					</div> <!-- timeline-items -->

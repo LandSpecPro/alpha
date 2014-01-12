@@ -1,7 +1,7 @@
 class UserDetail < ActiveRecord::Base
 
 	# Attributes
-	attr_accessible :first_name, :last_name, :company_name, :phone_number, :user_type, :user_category, :city, :state, :zip, :logo
+	attr_accessible :first_name, :last_name, :company_name, :phone_number, :user_type, :user_category, :city, :state, :zip, :logo, :tagline
 
 	# Relations
 	has_many :locations
@@ -23,13 +23,18 @@ class UserDetail < ActiveRecord::Base
 	validates :phone_number, :format => { :with => /\A\([0-9]{3}\)\s[0-9]{3}\-[0-9]{4}\z/, :message => "A valid phone number is required." }
 	validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'File type is not allowed (only jpeg/png/gif images)!'
 
-	# Default Methods
-	before_create :set_user_type
+	after_save :update_location_bus_name
 
-	def set_user_type
-
-		self.user_type = self.user.userType
-
+	def update_location_bus_name
+		if self.user_type == STRING_SUPPLIER
+			self.locations.each do |l|
+				l.busName = self.company_name
+				l.save
+				l.featured_items.each do |fi|
+					fi.set_bus_name
+				end
+			end
+		end
 	end
 
 	def is_buyer

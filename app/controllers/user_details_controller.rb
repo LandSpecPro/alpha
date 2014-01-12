@@ -4,6 +4,7 @@ class UserDetailsController < ApplicationController
 
 	before_filter :require_user
 	before_filter :require_user_email_validated
+	before_filter :require_no_user_details, :only => [:new, :create]
   
   	def new
   		@userdetail = UserDetail.new
@@ -18,9 +19,10 @@ class UserDetailsController < ApplicationController
 	  		render :action => :new
 	  		return
 	  	else
+	  		@userdetail.user_type = current_user.userType
 	  		if @userdetail.save
 	  			current_user.user_detail = @userdetail
-	  			redirect_to main_url
+	  			redirect_to locations_new_url
 	  			return
 	  		else
 	  			render :action => :new

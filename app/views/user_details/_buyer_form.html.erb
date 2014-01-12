@@ -43,6 +43,14 @@
 			</span>
 		</div>
 
+		<!-- TAGLINE -->
+		<div class="form-group">
+			<label for="first_name">Company Tagline <i>(optional)</i></label>
+			<span class="block input-icon input-icon-right">
+				<%= f.text_field :tagline, :class => 'form-control', :placeholder => "Optional" %>
+			</span>
+		</div>
+
 		<!-- USER CATEGORY -->
 		<div class="form-group">
 			<label for="user_category">Buyer Type <i>(optional)</i></label>
@@ -60,7 +68,6 @@
 					<label for="city">City <i>(optional)</i></label>
 					<span class="block input-icon input-icon-right">
 						<%= f.text_field :city, :class => 'form-control', :placeholder => "Optional" %>
-						<i class="icon-state"></i>
 					</span>
 				</div>
 			</div>
@@ -71,7 +78,6 @@
 					<label for="city">State <i>(optional)</i></label>
 					<span class="block input-icon input-icon-right">
 						<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
-						<i class="icon-state"></i>
 					</span>
 				</div>
 			</div>
@@ -82,7 +88,6 @@
 					<label for="city">Zip <i>(optional)</i></label>
 					<span class="block input-icon input-icon-right">
 						<%= f.text_field :zip, :class => 'form-control input-mask-zip', :placeholder => "Optional" %>
-						<i class="icon-state"></i>
 					</span>
 				</div>
 			</div>

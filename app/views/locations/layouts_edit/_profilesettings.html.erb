@@ -49,7 +49,7 @@
 									</td>
 
 									<!-- SHOW COMPANY LOGO -->
-									<% unless BusVendor.find(@location.bus_vendor_id).logo.blank? %>
+									<% unless UserDetail.find(@location.user_detail_id).logo.blank? %>
 									<tr>
 										<td class="center">
 											<%= f.check_box :show_company_logo, :id => 'show_company_logo', :class => 'loc_profile_field ace ace' %>
@@ -62,7 +62,7 @@
 									<% end %>
 
 									<!-- SHOW COMPANY TAGLINE -->
-									<% unless BusVendor.find(@location.bus_vendor_id).tagline.blank? %>
+									<% unless UserDetail.find(@location.user_detail_id).tagline.blank? %>
 									<tr>
 										<td class="center">
 											<%= f.check_box :show_tagline, :id => 'show_tagline', :class => 'loc_profile_field ace'  %>

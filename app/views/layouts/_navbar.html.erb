@@ -134,6 +134,7 @@
 					<ul id="user_menu" class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="margin-right:12px; margin-top:10px;">
 
 						<!-- News Feed Menu Item -->
+				<% if current_user.is_email_verified and not current_user.user_detail.blank? %>
 						<li>
 							<a href="<%= main_url %>"><i class="icon-hdd"></i> News Feed</a>
 						</li>
@@ -171,6 +172,7 @@
 						<li>
 							<a href="<%= help_url %>"><i class="icon-question-sign"></i> Help</a>
 						</li>
+				<% end %>
 
 						<!-- Logout Menu Item -->
 						<li>

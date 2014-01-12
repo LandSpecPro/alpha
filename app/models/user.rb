@@ -1,16 +1,12 @@
 class User < ActiveRecord::Base
 	include ModelHelper
 
-	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :user_detail_attributes, :bus_vendor_attributes, :bus_buyer_attributes, :search_logs_attributes
+	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :user_detail_attributes, :search_logs_attributes
 
 	#NEW
 	has_one :user_detail, :dependent => :destroy
 	accepts_nested_attributes_for :user_detail
 
-	has_one :bus_vendor, :dependent => :destroy
-	accepts_nested_attributes_for :bus_vendor
-	has_one :bus_buyer, :dependent => :destroy
-	accepts_nested_attributes_for :bus_buyer
 	has_many :search_logs
 	accepts_nested_attributes_for :search_logs
 
@@ -45,27 +41,10 @@ class User < ActiveRecord::Base
 
 	def self.find_by_username_or_email(login)
 		User.find_by_login(login.downcase) || User.find_by_email(login.downcase)
-	end
-
-	def get_business
-		if self.is_supplier
-			return self.bus_vendor
-		elsif self.is_buyer
-			return self.bus_buyer
-		else
-			return nil
-		end
-	end
-	
+	end	
 
 	def get_bus_name
-		if self.is_supplier
-			return self.bus_vendor.busName
-		elsif self.is_buyer
-			return self.bus_buyer.busName
-		else
-			return nil
-		end
+		return self.user_detail.company_name
 	end
 
 	def is_supplier
@@ -86,7 +65,7 @@ class User < ActiveRecord::Base
 
 	def owns_location(location)
 		if self.is_supplier
-			if self.get_business.id == location.bus_vendor_id
+			if self.user_detail.id == location.user_detail_id
 				return true
 			else
 				return false
@@ -98,7 +77,7 @@ class User < ActiveRecord::Base
 
 	def owns_featured_item(featureditem)
 		if self.is_supplier
-			if self.get_business.id == featureditem.get_location.bus_vendor_id
+			if self.user_detail.id == featureditem.get_location.user_detail_id
 				return true
 			else
 				return false
@@ -109,13 +88,7 @@ class User < ActiveRecord::Base
 	end
 
   def get_logo
-    if self.is_supplier
-      return self.bus_vendor.logo
-    elsif self.is_buyer
-      return self.bus_buyer.logo
-    else
-      return nil
-    end
+  	return self.user_detail.logo
   end  	
 
   def password_reset!

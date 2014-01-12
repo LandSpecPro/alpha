@@ -1,11 +1,11 @@
 class BusVendorsController < ApplicationController
+	
 	include BusVendorsHelper
-	include CustomerioHelper
 	include ApplicationHelper
 	include NewsFeedHelper
+
 	before_filter :require_user
 	before_filter :require_user_is_supplier
-	before_filter :require_business, :except => [:new, :create]
 
 	def new
 		@no_company = params[:no_company]
@@ -28,7 +28,6 @@ class BusVendorsController < ApplicationController
 		  if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
 		  	Mailers.new_user_activation_email(@user).deliver
 		  end
-		  cio_user_company(@user)
 
 	      redirect_to locations_new_url(:new_user_message => true)
 	    else
@@ -42,7 +41,6 @@ class BusVendorsController < ApplicationController
 	    if @bus_vendor.update_attributes(params[:bus_vendor])
 	      flash[:notice] = "Account updated!"
 	      @update_company_info_success = true
-	      cio_user_company(current_user)
 	      render :action => :manage_company
 	    else
 	      render :action => :manage_company

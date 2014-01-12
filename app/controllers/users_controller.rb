@@ -2,52 +2,14 @@ class UsersController < ApplicationController
 
   include UsersHelper
   include ApplicationHelper
-  include CustomerioHelper
 
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success]
-
-  def create_invite
-
-    @invite = Invite.new(params[:invite])
-
-    if @invite.userType == STRING_SUPPLIER
-      @invite.busType = params[:supplierBusType]
-    elsif @invite.userType == STRING_BUYER
-      @invite.busType = params[:buyerBusType]
-    end
-
-    if @invite.save
-      redirect_to invite_success_url(:id => @invite.id)
-    else
-      render :action => :request_invite
-    end
-
-  end
-
-  def invite_confirm
-    if params[:id]
-      @invite = Invite.find(params[:id])
-      Mailers.invite_success_email(@invite.email, @invite.busName).deliver
-      Mailers.admin_invite(@invite.email, @invite.busName, @invite.busType, @invite.userType, @invite.state).deliver
-    else
-      redirect_to invite_request_url
-    end
-
-  end
-
-  def validation_failed
-
-  end
-
-  def help
-
-  end
-
-  def account
-    @user = current_user
-  end
   
+  before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success, :help, :account, :validation_request]
+  before_filter :require_user_email_validated, :only => [:account, :help]
+  before_filter :require_user_email_not_validated, :only => [:validation_request]
+  before_filter :require_user_details, :only => [:account, :help]
+
   def new
     @user = User.new
     @invitecode = ''
@@ -66,8 +28,10 @@ class UsersController < ApplicationController
       return
     end
 
-    if @user.save
-      redirect_to user_details_new_url
+    if @user.save_without_session_maintenance
+      @user.reset_perishable_token!
+      Mailers.verify_email_address_email(@user.email, @user.perishable_token).deliver
+      redirect_to user_create_validate_url
     else
       flash[:notice] = "Not successful!"
       render :action => :new
@@ -94,6 +58,61 @@ class UsersController < ApplicationController
       render :action => :account
     end
 
+  end
+
+  def send_validation_request
+    @user = current_user
+    @user.email = params[:user][:email]
+    if @user.save
+      current_user.reset_perishable_token!
+      Mailers.verify_email_address_email(params[:user][:email], current_user.perishable_token).deliver
+      current_user_session.destroy
+      redirect_to user_create_validate_url
+    else
+      render :action => :validation_request
+    end
+  end
+
+  def verify_email
+    if current_user and current_user.is_email_verified and current_user.user_detail.blank?
+      redirect_to user_details_new_url
+    elsif current_user and current_user.is_email_verified and not current_user.user_detail.blank?
+      redirect_to main_url
+    else
+      if params[:token]
+        @user = User.find_using_perishable_token(params[:token])
+        if not @user
+          redirect_to oops_url(:err_code => 19)
+          return
+        else
+          @user.is_email_verified = true
+          if not @user.save
+            redirect_to oops_url
+            return
+          else
+            UserSession.create(@user)
+          end
+        end
+      else
+        @user = current_user
+      end
+    end
+  end
+
+  def validation_request
+    @user = current_user
+  end
+
+  def validation_sent
+
+  end
+
+  def help
+
+  end
+
+  def account
+    @user = current_user
   end
 
   def dashboard
@@ -151,157 +170,6 @@ class UsersController < ApplicationController
     else
       render :action => :password_reset_form
     end
-  end
-
-  def temp_claim_account
-    @user = User.where(:perishable_token => params[:token]).first
-    if @user
-      @user_session = UserSession.new(@user)
-      @user_session.save
-      render :action => :password_reset_form
-    else
-      redirect_to oops_url(:err_code => 19)
-    end
-  end
-
-  def claim_profile
-
-    @user = User.new
-    @location = Location.new
-    @claimlocation = nil
-
-    ClaimLocation.where(:claimed => false).each do |l|
-      if params[:token] == l.claim_token
-        @claimlocation = l
-        @userlogin = @claimlocation.user_login
-        @useremail = @claimlocation.user_email
-      end
-    end
-
-    if @claimlocation.blank?
-      redirect_to oops_url(:err_code => 20)
-    end
-
-  end
-
-  def claim_buyer_profile
-
-    @user = User.new
-    @busbuyer = @user.build_bus_buyer
-
-    ClaimBuyer.where(:claimed => false).each do |l|
-      if params[:token] == l.claim_token
-        @claimbuyer = l
-        @userlogin = @claimbuyer.user_login
-        @useremail = @claimbuyer.user_email
-      end
-    end
-
-    if @claimbuyer.blank?
-      redirect_to oops_url(:err_code => 20)
-      return
-    end
-
-    if params[:phone]
-      @phone = params[:phone]
-    elsif not @claimbuyer.bus_phone.blank?
-      @phone = @claimbuyer.bus_phone
-    end
-
-  end
-
-  def create_claimed_profile
-
-    # USER: login, email, userType, password
-    # BUS_VENDOR: busName
-    # LOCATION: primaryPhone, address1, address2, city, state, zip, website, ?latitude, ?longitude (automatic lat and long?)
-    @claimlocation = ClaimLocation.find(params[:user][:claim_location_id])
-    params[:user].delete :claim_location_id
-
-    @user = User.new(params[:user])
-    @location = Location.new
-
-    @userlogin = params[:user][:login]
-    @useremail = params[:user][:email]
-
-    @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
-
-    if @confirmemail
-      render 'claim_profile'
-      return
-    end
-
-    if claim_user(@claimlocation)
-
-      @claimlocation.claimed = true
-      if @claimlocation.save
-          redirect_to profile_claim_success_url
-          return
-      else
-        render :action => :claim_profile #CHANGE TO ERROR URL LATER
-        return
-      end
-
-    else
-      render 'claim_profile'
-      return
-    end
-
-  end
-
-  def create_claimed_buyer_profile
-
-    @claimbuyer = ClaimBuyer.find(params[:user][:claim_profile_id])
-    params[:user].delete :claim_profile_id
-
-    @user = User.new(params[:user])
-    @busbuyer = @user.build_bus_buyer
-
-    @userlogin = params[:user][:login]
-    @useremail = params[:user][:email]
-
-    if params[:phone]
-      @phone = params[:phone]
-    elsif not @claimbuyer.bus_phone.blank?
-      @phone = @claimbuyer.bus_phone
-    end
-
-    @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
-
-    if @confirmemail
-      render 'claim_buyer_profile'
-      return
-    end
-
-    if claim_user(@claimbuyer)
-
-      @claimbuyer.claimed = true
-      if @claimbuyer.save
-        redirect_to profile_buyer_claim_success_url
-        return
-      else
-        render :action => :claim_buyer_profile
-        return
-      end
-
-    else
-      render 'claim_buyer_profile'
-      return
-    end
-
-  end
-
-  def claim_profile_success
-
-    @location = current_user.get_business.locations.first
-
-  end
-
-  def claim_buyer_profile_success
-
-    @user = current_user
-    @business = current_user.get_business
-
   end
 
 end

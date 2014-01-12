@@ -114,12 +114,6 @@ class FeaturedItem < ActiveRecord::Base
 		return Location.find(self.location_id)
 	end
 
-	def get_user_owner
-		@loc = self.get_location
-		@vendor = @loc.bus_vendor
-		return @vendor.user
-	end
-
 	def get_full_address
 		@location = Location.find(self.location_id)
 		@address1 = @location.address1 + " "

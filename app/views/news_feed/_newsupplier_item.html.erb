@@ -16,10 +16,10 @@
 		<div class="widget-header widget-header-small">
 
 			<% 
-				if User.find(i.user_id).bus_vendor.locations.count == 1
-					@supplierurl = locations_view_url(:id => User.find(i.user_id).bus_vendor.locations.first.id)
-				elsif User.find(i.user_id).bus_vendor.locations.count > 1
-					@supplierurl = search_supplier_url(:query => User.find(i.user_id).bus_vendor.busName, :view => 'list')
+				if User.find(i.user_id).user_detail.locations.count == 1
+					@supplierurl = locations_view_url(:id => User.find(i.user_id).user_detail.locations.first.id)
+				elsif User.find(i.user_id).user_detail.locations.count > 1
+					@supplierurl = search_supplier_url(:query => User.find(i.user_id).user_detail.company_name, :view => 'list')
 				else
 					@supplierurl = '#'
 				end
@@ -29,9 +29,9 @@
 				<!-- TODO: Here, no location, so the item will probably be the user. But I'll need to pull in the business name instead of username here also. -->
 				<span class="grey">
 					<% unless @supplierurl == '#' %>
-						<a href="<%= @supplierurl %>"><%= User.find(i.user_id).bus_vendor.busName %></a>
+						<a href="<%= @supplierurl %>"><%= User.find(i.user_id).user_detail.company_name %></a>
 					<% else %>
-						<%= User.find(i.user_id).bus_vendor.busName %>
+						<%= User.find(i.user_id).user_detail.company_name %>
 					<% end %>
 					&nbsp;just joined LandSpec Pro!</span>
 			</h5>

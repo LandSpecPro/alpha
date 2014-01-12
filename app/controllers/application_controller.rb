@@ -75,7 +75,16 @@ class ApplicationController < ActionController::Base
     if not current_user.is_email_verified
       store_location
       flash[:notice] = "You must validate your email to access this page."
-      redirect_to user_validationfailed_url
+      redirect_to user_validationrequest_url
+      return false
+    end
+  end
+
+  def require_user_email_not_validated
+    if current_user.is_email_verified
+      store_location
+      flash[:notice] = "You can't request verification if you're already verified."
+      redirect_to user_details_new_url
       return false
     end
   end
@@ -98,18 +107,23 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_business
-    if current_user.bus_vendor_id.nil? and current_user.bus_buyer_id.nil?
+  def require_no_user_details
+    if not current_user.user_detail.blank?
       store_location
-      flash[:notice] = "You must add a company before you can do anything else!"
-      if current_user.userType == STRING_SUPPLIER
-        redirect_to supplier_new_url(:no_company => true)
-      elsif current_user.userType == STRING_BUYER
-        redirect_to buyer_new_url(:no_company => true)
-      else
-        redirect_to home_url
-      end
+      flash[:notice] = "You can't access this page because you've already registered."
+      redirect_to user_details_edit_url
       return false
+    end
+  end
+
+  def require_supplier_has_location
+    if current_user.is_supplier
+      if current_user.user_detail.locations.blank?
+        store_location
+        flash[:notice] = "You need to add a location before you can do anything else."
+        redirect_to locations_new_url(:location_required => true)
+        return false
+      end
     end
   end
 

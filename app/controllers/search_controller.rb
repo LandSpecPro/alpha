@@ -1,6 +1,11 @@
 class SearchController < ApplicationController
 
 	include SearchHelper
+
+	before_filter :require_user
+  	before_filter :require_user_email_validated
+  	before_filter :require_user_details
+  	before_filter :require_supplier_has_location
   
   	before_filter :default_search_values
 

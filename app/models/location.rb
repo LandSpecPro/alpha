@@ -6,10 +6,8 @@ class Location < ActiveRecord::Base
 	after_validation :geocode
 	after_initialize :initialize_public_url
 	after_save :update_cache
-	before_save :initialize_bus_name
 
-	attr_accessible :locName, :public_url, :is_subscribed_to_inventory, :public_url_active, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :bus_vendor_id, :featured_items_attributes, :categories_attributes, :inventories_attributes, :location_public_settings_attributes, :statuses_attributes
-	belongs_to :bus_vendor
+	attr_accessible :locName, :public_url, :is_subscribed_to_inventory, :public_url_active, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :featured_items_attributes, :categories_attributes, :inventories_attributes, :location_public_settings_attributes, :statuses_attributes
 	
 	has_many :featured_items
 	has_many :products, :through => :featured_items
@@ -28,7 +26,7 @@ class Location < ActiveRecord::Base
 	has_many :categories, :through => :category_to_locations
 	accepts_nested_attributes_for :categories
 
-	validates :locName, :uniqueness => { :scope => :bus_vendor_id, :message => "You have already added a location with this name!"}
+	validates :locName, :uniqueness => { :scope => :user_detail_id, :message => "You have already added a location with this name!"}
 	validates :public_url, :uniqueness => {:scope => :active, :message => "This URL is already in use!"}, :allow_nil => true
 
 	validates_presence_of :address1, :message => "Must provide a valid address!"
@@ -87,20 +85,6 @@ class Location < ActiveRecord::Base
 		if self.public_url.blank?
 			self.public_url = eight_digit_random_number
 		end
-	end
-
-	def initialize_bus_name
-		self.busName = self.bus_vendor.busName
-	end
-
-	def set_bus_name
-		self.busName = self.bus_vendor.busName
-		self.save
-
-		self.featured_items.each do |fi|
-			fi.set_bus_name
-		end
-
 	end
 
 	def set_public_url
@@ -188,7 +172,7 @@ class Location < ActiveRecord::Base
 			return false
 		end
 
-		if user.bus_vendor_id == self.bus_vendor_id
+		if user.user_detail.id == self.user_detail_id
 			return true
 		else
 			return false
@@ -198,7 +182,7 @@ class Location < ActiveRecord::Base
 
 	def tagline
 
-		return self.bus_vendor.tagline
+		return UserDetail.find(self.user_detail_id).tagline
 
 	end
 

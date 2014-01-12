@@ -1,12 +1,14 @@
 class ProductsController < ApplicationController
   
   include ProductHelper
-  include CustomerioHelper
   include AnalyticsHelper
   include NewsFeedHelper
 
-  before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user, :only => [:edit, :new, :create]
+  before_filter :require_user_email_validated, :only => [:edit, :new, :create]
+  before_filter :require_user_details, :only => [:edit, :new, :create]
+
+  before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user_is_supplier, :only => [:edit, :new, :create]
 
   def new
@@ -40,7 +42,6 @@ class ProductsController < ApplicationController
       if @product.save
         if save_product_relations(@product.id, @image, @description, @locationid, @size, @price)
           flash[:notice] = "Product Added!"
-          cio_user_location(current_user, Location.find(@locationid))
           redirect_to locations_edit_url(:id => @locationid, :products => true, :add_featured_item_success => true)
           return
         else
@@ -68,7 +69,7 @@ class ProductsController < ApplicationController
     if not @featureditem.active
       redirect_back_or_default('/')
     elsif not @featureditem.is_visible
-      unless Location.find(@featureditem.location_id).bus_vendor_id == current_user.bus_vendor_id
+      unless Location.find(@featureditem.location_id).user_detail_id == current_user.user_detail.id
         redirect_back_or_default('/')
       end
     end
@@ -85,7 +86,7 @@ class ProductsController < ApplicationController
 
     if not @featureditem.active
       redirect_back_or_default('/')
-    elsif not Location.where(:id => @featureditem.location_id, :bus_vendor_id => current_user.bus_vendor_id).count > 0
+    elsif not Location.where(:id => @featureditem.location_id, :user_detail_id => current_user.user_detail.id).count > 0
       redirect_back_or_default('/')
     end
 

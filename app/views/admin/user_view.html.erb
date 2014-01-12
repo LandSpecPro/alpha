@@ -73,30 +73,30 @@
                         </tr>
 
                         <!-- COMPANY INFO -->
-                        <% unless @user.bus_vendor_id.blank? and @user.bus_buyer_id.blank? %>
+                        <% unless @user.user_detail.blank? %>
 
-                            <% @business = @user.get_business %>
+                            <% @userdetail = @user.user_detail %>
                             <tr>
                                 <td class="center" colspan="2">
                                     <h3><strong>Company Information</strong></h3>
-                                    <div class="badge badge-primary"><%= 'id: ' + @business.id.to_s %></div>
+                                    <div class="badge badge-primary"><%= 'User Detail ID: ' + @userdetail.id.to_s %></div>
                                     <% if @user.is_supplier %>
-                                        <div class="badge badge-success"><%= @business.locations.count.to_s + ' location(s)' %></div>
+                                        <div class="badge badge-success"><%= @userdetail.locations.count.to_s + ' location(s)' %></div>
                                     <% end %>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="center">
-                                    <strong>Company Name: </strong> <%= @business.busName %>
+                                    <strong>Company Name: </strong> <%= @userdetail.company_name %>
                                 </td>
                                 <td class="center">
-                                    <strong>Company Phone: </strong> <%= @business.busPhone %>
+                                    <strong>Phone Number: </strong> <%= @userdetail.phone_number %>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="center" colspan="2">
-                                    <strong>Company Tagline: </strong> <%= @business.tagline %>
+                                    <strong>Company Tagline: </strong> <%= @userdetail.tagline %>
                                 </td>
                             </tr>
 
@@ -107,9 +107,9 @@
                         </td></tr>
 
                         <!-- ALL LOCATION INFO -->
-                        <% if @user.is_supplier and not @user.bus_vendor_id.blank? %>
+                        <% if @user.is_supplier and not @user.user_detail.blank? %>
 
-                            <% @user.get_business.locations.each do |l| %>
+                            <% @user.user_detail.locations.each do |l| %>
 
                                 <tr>
                                     <th class="center" colspan="2">

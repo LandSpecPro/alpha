@@ -305,14 +305,10 @@ module ApplicationHelper
 			return "Delete Featured Item Confirmation"
 		elsif @controller == 'locations' and @action == 'view'
 			return @location.busName
-		elsif @controller == 'bus_vendors' and @action == 'manage'
-			return "Account Management"
-		elsif @controller == 'bus_vendors' and (@action == 'manage_company' or @action == 'update')
-			return "Company Management"
-		elsif @controller == 'bus_buyers' and @action == 'manage'
-			return "Account Management"
-		elsif @controller == 'bus_buyers' and (@action == 'manage_company' or @action == 'update')
-			return "Company Management"
+		elsif @controller == 'locations' and @action == 'new'
+			return "Location Information"
+		elsif @controller == 'locations' and @action == 'manage'
+			return "Locations"
 		elsif @controller == 'products'
 			return "Featured Items"
 		elsif @controller == 'users' and @action == 'password_reset'

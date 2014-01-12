@@ -3,7 +3,6 @@ class BusBuyersController < ApplicationController
 	include ApplicationHelper
 	before_filter :require_user
 	before_filter :require_user_is_buyer
-	before_filter :require_business, :except => [:new, :create]
 
 	def new
 		@no_company = params[:no_company]

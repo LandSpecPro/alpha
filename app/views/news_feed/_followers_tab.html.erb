@@ -1,6 +1,8 @@
 <% @followers.each do |f| %>
 
-	<% if User.find(f.user_id).is_supplier
+	<% @userfollower = User.find(f.user_id) %>
+
+	<% if @userfollower.is_supplier
 			usertype = STRING_SUPPLIER
 		else
 			usertype = STRING_BUYER
@@ -11,7 +13,11 @@
 		<div class="btn btn-white btn-block btn-not-clickable">
 			<a style="font-size:18px;" data-rel="popover" title="<%= usertype + ' Info' %>" data-placement="top" data-trigger="hover click"
 					data-content="<strong>Email:</strong> <%= User.find(f.user_id).email %>">
-				<%= User.find(f.user_id).get_business.busName %>
+				<% if not @userfollower.user_detail.company_name.blank? %>
+					<%= @userfollower.user_detail.company_name %>
+				<% else %>
+					<%= @userfollower.user_detail.first_name + " " + @userfollower.user_detail.last_name %>
+				<% end %>
 			</a>
 		</div>
 	</center>

@@ -1,58 +1,72 @@
 <%- title "User Details | LandSpec Pro" %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
+<% if current_user.is_email_verified %>
 
-      <div class="login-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
 
-  <br/><br/><br/>
+                <div class="login-container">
 
-  <div class="row">
-    <div class="position-relative">
+                <br/><br/><br/>
 
-      <div class="visible widget-box">
-        <div class="widget-header header-color-green2">
-        	<% if current_user.is_buyer %>
-          		<h4 class="center">Buyer Information</h4>
-          	<% elsif current_user.is_supplier %>
-          		<h4 class="center">Supplier Information</h4>
-          	<% end %>
-        </div>
+                    <div class="row">
+                        <div class="position-relative">
 
-        <div class="widget-body">
-          <div class="widget-main" id="user-details-widget-main">
+                            <div class="visible widget-box">
 
-            <div id="updateCompanyInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
-              <div class="progress-bar progress-bar-success" style="width:100%;"></div>
-            </div>
+                                <div class="widget-header header-color-green2">
+                                  	<% if current_user.is_buyer %>
+                                    	<h4 class="center">Buyer Information</h4>
+                                    <% elsif current_user.is_supplier %>
+                                    	<h4 class="center">Supplier Information</h4>
+                                    <% end %>
+                                </div>
 
-          	<% if current_user.is_buyer %>
-          		<%= render 'buyer_form' %>
-          	<% elsif current_user.is_supplier %>
-          		<%= render 'supplier_form' %>
-          	<% end %>
+                                <div class="widget-body">
+                                    <div class="widget-main" id="user-details-widget-main">
 
-          </div> <!-- widget-main -->
-        </div> <!-- widget-body -->
-      </div> <!-- widget-box -->
+                                        <div id="updateCompanyInfoProgress" class="progress progress-striped active hide" data-percent="Updating please wait...">
+                                            <div class="progress-bar progress-bar-success" style="width:100%;"></div>
+                                        </div>
 
-    </div> <!-- position-relative -->
-  </div> <!-- row-fluid -->
-      </div> <!-- login-container -->
-    </div> <!-- span12 -->
-  </div> <!-- row-fluid -->
-</div> <!-- container-fluid -->
+                                    	<% if current_user.is_buyer %>
+                                    		<%= render 'buyer_form' %>
+                                    	<% elsif current_user.is_supplier %>
+                                    		<%= render 'supplier_form' %>
+                                    	<% end %>
+
+                                    </div> <!-- widget-main -->
+                                </div> <!-- widget-body -->
+
+                            </div> <!-- widget-box -->
+
+                        </div> <!-- position-relative -->
+                    </div> <!-- row-fluid -->
+
+                </div> <!-- login-container -->
+
+            </div> <!-- span12 -->
+        </div> <!-- row-fluid -->
+    </div> <!-- container-fluid -->
+
+<% else %>
+    
+    <div class="center">
+        <br/><br/>
+        <h1>Verification email has been sent!</h1>
+    </div>
+
+<% end %>
 
 <script type="text/javascript">
 
-  $(applyMasks());
-  $(applyPopovers());
+    $(applyMasks());
+    $(applyPopovers());
 
-  function updateUserInfo(){
-    // Show progres bar
-    $( "#updateCompanyInfoProgress" ).removeClass('hide');
-    
-  }
+    function updateUserInfo(){
+        // Show progres bar
+        $( "#updateCompanyInfoProgress" ).removeClass('hide'); 
+    }
 
 </script>

@@ -22,8 +22,6 @@ gem 'newrelic_rpm'
 
 gem 'geoip'
 
-gem 'customerio'
-
 #Used for MemCachier
 gem 'memcachier'
 gem 'dalli'

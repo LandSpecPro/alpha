@@ -6,7 +6,7 @@
 		<%= form_for @location, :html => {:id => 'form_add_new_location'} do |f| %>
 		<div class="widget-box">
 			<div class="widget-header header-color-green2">
-				<h5 class="bigger lighter"><i class="icon-globe"></i> New Location for <%= current_user.bus_vendor.busName %></h5>
+				<h5 class="bigger lighter"><i class="icon-globe"></i> New Location for <%= current_user.user_detail.company_name %></h5>
 				<div class="widget-toolbar">
 					<a href="javascript:{return true;}" onclick="document.getElementById('form_add_new_location').submit();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
 				</div>
@@ -19,7 +19,6 @@
 					<!-- Display error messages as alerts -->
 					<% @location.errors.each do |field, msg| %>
 						<div class="alert alert-danger center">
-						  <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 						  <strong>Error! </strong> <%= msg %>
 						</div>
 					<% end %>
@@ -29,18 +28,18 @@
 						<div class="row">
 							<div class="col-xs-6">
 
-								<% if Location.where(:bus_vendor_id => current_user.bus_vendor_id).count > 0 %>
+								<% if current_user.user_detail.locations.count > 0 %>
 									<div class="form-group">
 										<strong>Location Name*</strong>
 										<span class="block input-icon input-icon-right">
-											<%= f.text_field :locName, :class => 'form-control', :value => @location.locName %>
+											<%= f.text_field :locName, :class => 'form-control' %>
 										</span>	
 									</div>
 								<% else %>
 									<div class="form-group">
 										<strong>Primary Location for</strong>
 										<span class="block input-icon input-icon-right">
-											<%= text_field_tag :locNamePrimary, current_user.bus_vendor.busName, :class => 'form-control', :readonly => true %>
+											<%= text_field_tag :locNamePrimary, current_user.user_detail.company_name, :class => 'form-control', :readonly => true %>
 										</span>	
 									</div>
 								<% end %>
@@ -48,7 +47,7 @@
 								<div class="form-group">
 									<strong>Street 1*</strong>
 									<span class="block input-icon input-icon-right">
-										<%= f.text_field :address1, :class => 'form-control', :value => @location.address1 %>
+										<%= f.text_field :address1, :class => 'form-control' %>
 									</span>	
 								</div>
 
@@ -57,7 +56,7 @@
 										<div class="form-group">
 											Street 2
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :address2, :class => 'form-control', :value => @location.address2 %>
+												<%= f.text_field :address2, :class => 'form-control' %>
 											</span>	
 										</div>
 									</div>
@@ -65,7 +64,7 @@
 										<div class="form-group">
 											<strong>City*</strong>
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :city, :class => 'form-control', :value => @location.city %>
+												<%= f.text_field :city, :class => 'form-control' %>
 											</span>
 										</div>
 									</div>
@@ -76,7 +75,7 @@
 										<div class="form-group">
 											<strong>State*</strong>
 											<span class="block input-icon input-icon-right">
-												<%= f.select(:state, get_states, {:selected => current_user.currentState}, {:class => 'form-control chzn-select'}) %>
+												<%= f.select(:state, get_states, {:include_blank => '', :selected => @location.state}, {:class => 'form-control chzn-select'}) %>
 											</span>
 										</div>
 									</div>
@@ -84,7 +83,7 @@
 										<div class="form-group">
 											<strong>Zip Code*</strong>
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :zip, :class => 'form-control input-mask-zip', :value => @location.zip %>
+												<%= f.text_field :zip, :class => 'form-control input-mask-zip' %>
 											</span>
 										</div>
 									</div>
@@ -95,7 +94,7 @@
 										<div class="form-group">
 											<strong>Primary Phone*</strong>
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone', :value => @location.primaryPhone %>
+												<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone' %>
 											</span>
 										</div>
 									</div>
@@ -104,14 +103,14 @@
 								<div class="form-group">
 									Primary Email
 									<span class="block input-icon input-icon-right">
-										<%= f.text_field :primaryEmail, :class => 'form-control', :value => @location.primaryEmail %>
+										<%= f.text_field :primaryEmail, :class => 'form-control' %>
 									</span>	
 								</div>
 
 								<div class="form-group">
 									Secondary Email
 									<span class="block input-icon input-icon-right">
-										<%= f.text_field :secondaryEmail, :class => 'form-control', :value => @location.secondaryEmail %>
+										<%= f.text_field :secondaryEmail, :class => 'form-control' %>
 									</span>	
 								</div>
 
@@ -124,7 +123,7 @@
 										<div class="form-group">
 											Website Link
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :websiteLink, :class => 'form-control', :value => @location.websiteLink %>
+												<%= f.text_field :websiteLink, :class => 'form-control' %>
 											</span>	
 										</div>
 									</div>
@@ -135,7 +134,7 @@
 										<div class="form-group">
 											Facebook Link
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :facebookLink, :class => 'form-control', :value => @location.facebookLink %>
+												<%= f.text_field :facebookLink, :class => 'form-control' %>
 											</span>	
 										</div>
 									</div>
@@ -146,7 +145,7 @@
 										<div class="form-group">
 											Twitter Link
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :twitterLink, :class => 'form-control', :value => @location.twitterLink %>
+												<%= f.text_field :twitterLink, :class => 'form-control' %>
 											</span>	
 										</div>
 									</div>
@@ -157,7 +156,7 @@
 										<div class="form-group">
 											Google+ Link
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :googleLink, :class => 'form-control', :value => @location.googleLink %>
+												<%= f.text_field :googleLink, :class => 'form-control' %>
 											</span>	
 										</div>
 									</div>
@@ -169,7 +168,7 @@
 										<div class="form-group">
 											Secondary Phone
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-phone', :value => @location.secondaryPhone %>
+												<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-phone' %>
 											</span>
 										</div>
 									</div>
@@ -180,7 +179,7 @@
 										<div class="form-group">
 											Fax
 											<span class="block input-icon input-icon-right">
-												<%= f.text_field :fax, :class => 'form-control input-mask-fax', :value => @location.fax %>
+												<%= f.text_field :fax, :class => 'form-control input-mask-fax' %>
 											</span>	
 										</div>
 									</div>
@@ -233,5 +232,9 @@
 
 	$(applyChosenStyle());
 	$(applyMasks());
+
+	<% if params[:location_required] %>
+		$(showWarningMessageGritter('You need to add location information before you can access most features of LandSpec Pro.'));
+	<% end %>
 
 </script>

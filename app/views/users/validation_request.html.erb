@@ -1,0 +1,42 @@
+<div class="container">
+
+	<div class="row">
+
+		<center>
+
+			<br/><br/><br/>
+
+			<h1>Oops!</h1>
+
+			<br/>
+
+			<p>We already sent you a confirmation email, but don't worry, we can send you a new one. Because of the sensitive nature of registering information over the internet, the last email we sent you is now expired. But all you need to do is hit the button below to have us send you another email confirmation so you can finish registering and start using LandSpec Pro.</p>
+
+			<p>If you incorrectly entered your email when registering you can enter a new email in the field below and we'll send it to that email address instead.</p>
+
+			<br/><br/>
+
+			<%= form_for @user, :url => { :action => :send_validation_request } do |f| %>
+
+				<!-- Display error messages as alerts -->
+				<% @user.errors.each do |field, msg| %>
+					<div class="alert alert-danger">
+					  <strong>Error! </strong> <%= msg %>
+					</div>
+				<% end %>
+
+				<div class="form-group">
+					<label>What email adress should we send the confirmation to?</label>
+					<%= f.text_field :email, :class => 'form-control center', :style => 'width: 250px;', :value => @user.email %>
+				</div>
+				<br/>
+
+				<%= f.submit 'Send New Confirmation Email', :class => 'btn btn-small btn-success' %>
+
+			<% end %>
+
+		</center>
+
+	</div>
+
+</div>
