@@ -1,0 +1,33 @@
+<a href="http://www.landspecpro.com">
+	<img src="https://dl.dropboxusercontent.com/u/19501403/LandSpec%20Pro/logo_with_text.png" width="100%" height="100%">
+</a>
+
+<br/><br/>
+
+<% if not @first_name.blank? and not @last_name.blank? %>
+	<strong>Dear <%= @first_name + " " + @last_name %>,</strong>
+<% elsif not @first_name.blank? and @last_name.blank? %>
+	<strong>Dear <%= @first_name %>,</strong>
+<% elsif @first_name.blank? and @last_name.blank? and not @company_name.blank? %>
+	<strong>Welcome <%= @company_name %>,</strong>
+<% else %>
+	<strong>Dear New LandSpec Pro Member,</strong>
+<% end %>
+
+<p>Thank you for registering as a LandSpec Pro Supplier! We are excited to have you on and look forward to growing with you!</p>
+
+<p>Registrations are subject to approval before they go live. So we may call you or email you to verify your business because there are a lot of crazy people out there.</p>
+
+<p>If you need help, we are here for you. Just visit the Help page or you can contact us by email at <a href="mailto:tech@landspecpro.com">tech@landspecpro.com</a> or calling (404) 919-5779.</p>
+
+<p>Please make sure to whitelist our address by adding tech@landspecpro.com to receive updates and promotions from us in the future.</p>
+
+<p><strong>Regards!</strong></p>
+
+<p><strong>The LandSpec Pro Team</strong></p>
+
+<center>
+	<a href="http://www.facebook.com/landspecpro">Facebook</a>&nbsp;|&nbsp;
+	<a href="http://www.twitter.com/landspecpro">Twitter</a>&nbsp;|&nbsp;
+	<a href="http://www.landspecpro.com">Website</a>
+</center>

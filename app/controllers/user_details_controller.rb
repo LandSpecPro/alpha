@@ -22,6 +22,13 @@ class UserDetailsController < ApplicationController
 	  		@userdetail.user_type = current_user.userType
 	  		if @userdetail.save
 	  			current_user.user_detail = @userdetail
+
+	  			if @userdetail.user_type == STRING_SUPPLIER
+	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  			elsif @userdetail.user_type == STRING_BUYER
+	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  			end
+
 	  			redirect_to locations_new_url
 	  			return
 	  		else

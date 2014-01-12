@@ -1,0 +1,25 @@
+<% if not @first_name.blank? and not @last_name.blank? %>
+	Dear <%= @first_name + " " + @last_name %>,
+<% elsif not @first_name.blank? and @last_name.blank? %>
+	Dear <%= @first_name %>,
+<% elsif @first_name.blank? and @last_name.blank? and not @company_name.blank? %>
+	Welcome <%= @company_name %>,
+<% else %>
+	Dear New LandSpec Pro Member,
+<% end %>
+
+Thank you for registering as a LandSpec Pro Buyer! We are excited to have you on and look forward to growing with you!
+
+Registrations are subject to approval before they go live. So we may call you or email you to verify your business because there are a lot of crazy people out there.
+
+If you need help, we are here for you. Just visit the Help page or you can contact us by email at tech@landspecpro.com or calling (404) 919-5779.
+
+Please make sure to whitelist our address by adding tech@landspecpro.com to receive updates and promotions from us in the future.
+
+Regards!
+
+The LandSpec Pro Team
+
+Facebook: http://www.facebook.com/landspecpro
+Twitter: http://www.twitter.com/landspecpro
+Website: http://www.landspecpro.com

@@ -2,12 +2,20 @@ class Mailers < ActionMailer::Base
   default from: "LandSpec Pro <tech@landspecpro.com>"
   default_url_options[:host] = ENV['HOST']
 
-  def welcome_buyer_email
-
+  def welcome_buyer_email(email, first_name, last_name, company_name)
+    @email = email
+    @first_name = first_name
+    @last_name = last_name
+    @company_name = company_name
+    mail(:to => @email, :subject => "Welcome to the LandSpec Pro ecosystem!")
   end
 
-  def welcome_supplier_email
-
+  def welcome_supplier_email(email, first_name, last_name, company_name)
+    @email = email
+    @first_name = first_name
+    @last_name = last_name
+    @company_name = company_name
+    mail(:to => @email, :subject => "Welcome to the LandSpec Pro ecosystem!")
   end
 
   def verify_email_address_email(email, token)
