@@ -29,6 +29,8 @@ class UserDetailsController < ApplicationController
 	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
 	  			end
 
+	  			Mailers.new_user_activation_email(current_user).deliver
+
 	  			redirect_to locations_new_url
 	  			return
 	  		else
