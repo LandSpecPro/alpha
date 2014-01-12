@@ -39,9 +39,7 @@ LspAlpha::Application.routes.draw do
   match "location/public/url/activate" => "locations#public_url_activate"
 
   match "user/details/new" => "user_details#new"
-  match "user/account/new" => "user_details#new"
   match "user/details/edit" => "user_details#edit"
-  match "user/account/edit" => "user_details#edit"
   match "user/validationfailed" => "users#validation_failed"
 
   get "favorites/products"
@@ -149,20 +147,18 @@ LspAlpha::Application.routes.draw do
   match "login" => 'user_sessions#new'
   match "logout" => 'user_sessions#destroy'
   match "dashboard" => 'users#dashboard'
-  match "account" => 'account#manage'
+  match "account" => 'users#account'
   match "products/browse/all" => 'products#browseall'
   match "profiles/:public_url" => "locations#view_public"
 
   # Routes for vendor's businesses
   match "supplier/new" => 'bus_vendors#new'
   match "supplier/dashboard" => 'users#dashboard'
-  match "supplier/account" => 'bus_vendors#manage'
   match "supplier/help" => 'users#help'
 
   # Routes for buyer's businesses
   match "buyer/new" => 'bus_buyers#new'
   match "buyer/dashboard" => 'users#dashboard'
-  match "buyer/account" => 'bus_buyers#manage'
   match "buyer/help" => 'users#help'
 
 

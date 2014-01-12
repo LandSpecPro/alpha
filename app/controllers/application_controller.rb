@@ -44,6 +44,15 @@ class ApplicationController < ActionController::Base
   	@current_user = current_user_session && current_user_session.user
   end
 
+  def store_location
+    session[:return_to] = request.url
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
+
   def require_user
   	unless current_user
   		store_location
@@ -71,6 +80,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_buyer_has_first_and_last_name
+    if current_user.is_buyer and (current_user.user_detail.first_name.blank? or current_user.user_detail.last_name.blank?)
+      store_location
+      flash[:notice] = "You have not entered a first and last name yet!"
+      redirect_to user_details_edit_url
+      return false
+    end
+  end
+
+  def require_user_details
+    if current_user.user_detail.blank?
+      store_location
+      flash[:notice] = "You must add user details before you can do anything else!"
+      redirect_to user_details_new_url
+      return false
+    end
+  end
+
   def require_business
     if current_user.bus_vendor_id.nil? and current_user.bus_buyer_id.nil?
       store_location
@@ -83,25 +110,6 @@ class ApplicationController < ActionController::Base
         redirect_to home_url
       end
       return false
-    end
-  end
-
-  #Should redirect to the edit account/edit profile page, depending on userType
-  def require_no_business
-    if current_user.userType == STRING_SUPPLIER
-      unless current_user.bus_vendor_id.nil?
-        store_location
-        flash[:notice] = "Redirecting to account page."
-        redirect_to account_url
-        return false
-      end
-    elsif current_user.userType == STRING_BUYER
-      unless current_user.bus_buyer_id.nil?
-        store_location
-        flash[:notice] = "Redirecting to account page."
-        redirect_to account_url
-        return false
-      end
     end
   end
 
@@ -119,23 +127,6 @@ class ApplicationController < ActionController::Base
       redirect_back_or_default(main_url)
       return false
     end
-  end
-
-  def should_show_sidebar
-    if !current_user
-      return false
-    else
-      return true
-    end
-  end
-
-  def store_location
-  	session[:return_to] = request.url
-  end
-
-  def redirect_back_or_default(default)
-  	redirect_to(session[:return_to] || default)
-  	session[:return_to] = nil
   end
 
   def require_user_is_admin

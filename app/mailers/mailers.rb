@@ -2,6 +2,18 @@ class Mailers < ActionMailer::Base
   default from: "LandSpec Pro <tech@landspecpro.com>"
   default_url_options[:host] = ENV['HOST']
 
+  def welcome_buyer_email
+
+  end
+
+  def welcome_supplier_email
+
+  end
+
+  def verify_email_address_email
+
+  end
+
   def new_user_activation_email(user)
     @userid = user.id
     @username = user.login

@@ -88,7 +88,7 @@
 					</a>
 				</li>
 
-				<% if ( (controller.controller_name == 'bus_vendors' || controller.controller_name == 'bus_buyers') and controller.action_name == 'manage' ) or (controller.controller_name == 'users' and controller.action_name == 'update') %>
+				<% if controller.controller_name == 'users' and (controller.action_name == 'account' or controller.action_name == 'update') %>
 					<li class="active">
 				<% else %>
 					<li>

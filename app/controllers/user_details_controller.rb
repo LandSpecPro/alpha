@@ -1,6 +1,9 @@
 class UserDetailsController < ApplicationController
 
 	include UserDetailHelper
+
+	before_filter :require_user
+	before_filter :require_user_email_validated
   
   	def new
   		@userdetail = UserDetail.new

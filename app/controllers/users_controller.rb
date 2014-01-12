@@ -43,6 +43,10 @@ class UsersController < ApplicationController
   def help
 
   end
+
+  def account
+    @user = current_user
+  end
   
   def new
     @user = User.new
@@ -63,18 +67,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-
-      # Add new user to Customer.IO
-      cio_user_new(@user)
-
-      if @user.userType == STRING_SUPPLIER
-        redirect_to supplier_new_url
-      elsif @user.userType == STRING_BUYER
-        redirect_to buyer_new_url
-      else
-        redirect_to oops_url(:err_code => 185)
-      end
-
+      redirect_to user_details_new_url
     else
       flash[:notice] = "Not successful!"
       render :action => :new
@@ -84,36 +77,23 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @current_user
+    @user = current_user
   end
 
   def edit
-    @user = @current_user
+    @user = current_user
   end
   
   def update
 
-    @user = @current_user # makes our views "cleaner" and more consistent 
-
-    if @user.update_attributes(params[:user])
-
-      cio_user_update(@user)
-
-      flash[:notice] = "Account updated!"
+    @user = current_user
+    
+    if current_user.update_attributes(params[:user])
       redirect_to account_url(:update_account_info_success => true)
     else
-      if current_user.is_supplier
-        @user = current_user
-        @bus_vendor = @user.bus_vendor
-        @usertype = STRING_SUPPLIER
-        render :template => "bus_vendors/manage"
-      elsif current_user.is_buyer
-        @user = current_user
-        @bus_buyer = @user.bus_buyer
-        @usertype = STRING_BUYER
-        render :template => "bus_buyers/manage"
-      end
+      render :action => :account
     end
+
   end
 
   def dashboard
