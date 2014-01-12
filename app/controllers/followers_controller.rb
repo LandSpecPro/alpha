@@ -3,6 +3,7 @@ class FollowersController < ApplicationController
 	include FollowersHelper
 
 	before_filter :register_if_not_logged_in
+	before_filter :require_buyer_has_first_and_last_name
 
 	def create
 		if Follow.where(:user_id => current_user.id, :location_id => params[:location_id]).count == 0

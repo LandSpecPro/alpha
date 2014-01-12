@@ -39,6 +39,14 @@ class Location < ActiveRecord::Base
 	validates_format_of :secondaryEmail, :with => /(\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z)|^$/i, :message => "Secondary Email address is not valid."
 	validates_format_of :public_url, :with => /\A([a-zA-Z0-9_]){3,25}\z/, :message => "URL can only contain numbers, letters, and underscores. Must be between 3 and 25 characters long."
 
+	validates_exclusion_of :public_url, :in => ['search', 'follower', 'user_detail', 'user', 'users', 'inventory', 'view', \
+		'show', 'invite', 'account', 'create', 'email', 'verify', 'landscapers', 'buyers', 'suppliers', 'supplier', 'buyer', \
+		'seller', 'plants', 'materials', 'plant', 'material', 'claim', 'success', 'forgot', 'password', 'feedback', 'product', \
+		'products', 'favorites', 'set', 'submit_forgot', 'profile', 'profiles', 'location', 'locations', 'loc', 'locs', 'home', \
+		'index', 'about', 'contact', 'contact_us', 'feedback', 'subscribe', 'register', 'main', 'login', 'logout', 'dashboard' \
+		'account', 'back', 'terms', 'oops', 'help', 'admin', 'admins', 'registration', 'signup', 'more', 'info', 'about_us', 'links' \
+		'ask', 'faq', 'donate', 'buy', 'purchase', 'question', 'questions', 'session', 'sessions', 'user_session', 'user_sessions', 'user_details'], \
+		:message => "This URL is reserved."
    
 	def update_cache
 		Rails.cache.write('active_locations', Location.where(:active => true))

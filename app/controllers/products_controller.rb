@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
   before_filter :require_id_parameter, :only => [:view, :edit]
   before_filter :require_user_is_supplier, :only => [:edit, :new, :create]
 
+  before_filter :require_buyer_has_first_and_last_name
+
   def new
     @product = Product.new
     @productimage = ProductImage.new

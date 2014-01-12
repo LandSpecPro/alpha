@@ -8,8 +8,8 @@
 
 	<!-- Edit Location -->
 	<% if @cont == 'locations' and @act == 'edit' and current_user.is_supplier %>
-		<% if @location.public_url_active and not @location.public_url.blank? %>
-			<a href="http://www.landspecpro.com/profiles/<%=@location.public_url %>" target="_blank">View Public Profile</a>
+		<% if @location.public_url_active and @location.active and not @location.public_url.blank? %>
+			<a href="http://www.landspecpro.com/<%=@location.public_url %>" target="_blank">View Public Profile</a>
 			|
 		<% end %>
 		<a href="<%= locations_view_url(:id => params[:id]) %>">View Location</a>
@@ -31,8 +31,8 @@
 				|
 			<% end %>
 		<% end %>
-		<% if @location.public_url_active and not @location.public_url.blank? and @location.active %>
-			<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">View Public Profile</a>
+		<% if @location.public_url_active and @location.active and not @location.public_url.blank? %>
+			<a href="http://www.landspecpro.com/<%= @location.public_url %>" target="_blank">View Public Profile</a>
 			|
 		<% end %>
 		<a href="<%= main_url(:supplier => UserDetail.find(@location.user_detail_id).id) %>">View Updates</a>
@@ -63,7 +63,7 @@
 			<a href="<%= locations_manage_url %>">Profile</a>
 			|
 		<% end %>
-		<a href="<%= user_details_edit_url %>">Manage Company</a>
+		<a href="<%= user_details_edit_url %>">User Info</a>
 		|
 		<a href="<%= account_url %>">Manage Account</a>
 		|

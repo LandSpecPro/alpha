@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
     if current_user.is_buyer and (current_user.user_detail.first_name.blank? or current_user.user_detail.last_name.blank?)
       store_location
       flash[:notice] = "You have not entered a first and last name yet!"
-      redirect_to user_details_edit_url
+      redirect_to user_details_edit_url(:missing_name => true)
       return false
     end
   end

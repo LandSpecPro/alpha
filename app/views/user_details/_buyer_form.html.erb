@@ -7,6 +7,12 @@
 		</div>
 	<% end %>
 
+	<% if params[:missing_name] %>
+		<div class="alert alert-danger">
+			<strong>Error! </strong> We need your first and last name before you can continue
+		</div>
+	<% end %>
+
 	<fieldset>
 
 		<!-- FIRST NAME -->

@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
 			<div class="form-group">
-				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/profiles/<%= @location.public_url %></strong></label>
+				<label for="location_public_url"><strong id="url_preview">www.landspecpro.com/<%= @location.public_url %></strong></label>
 				<% @location.public_url = '' %>
 				<%= f.text_field :public_url, :class => 'form-control center', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
 			</div>

@@ -309,6 +309,8 @@ module ApplicationHelper
 			return "Location Information"
 		elsif @controller == 'locations' and @action == 'manage'
 			return "Locations"
+		elsif @controller == 'locations'
+			return "Location"
 		elsif @controller == 'products'
 			return "Featured Items"
 		elsif @controller == 'users' and @action == 'password_reset'
@@ -334,7 +336,7 @@ module ApplicationHelper
 				return " Add a new location"
 			elsif controller.action_name == 'destroy'
 				return " Delete this location?"
-			elsif  controller.action_name == 'edit'
+			elsif  controller.action_name == 'edit' or controller.action_name == 'set_public_url' or controller.action_name == 'update'
 				return get_location_name
 			elsif controller.action_name == 'view'
 				if @location.locName.blank?

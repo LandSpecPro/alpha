@@ -48,7 +48,7 @@ function gritterUpdateHelpPage(){
 function gritterUpdatePublicProfiles(){
 	$.gritter.add({
 		title: 'New Updates!',
-		text: "We have a HUGE update for all Suppliers! We're happy to introduce our new public profiles. You now have the ability to display a public version of your profile and share it with anyone, even if they aren't on LandSpec Pro. You can customize all the information people see, and you even get your own URL (http://www.landspecpro.com/profiles/your_custom_url). We've set up a temporary URL for you, but all you need to do is go to your Edit Location page and click the new tab for Profile Settings. Here you can set a custom URL and update what information is visible on your public profile.",
+		text: "We have a HUGE update for all Suppliers! We're happy to introduce our new public profiles. You now have the ability to display a public version of your profile and share it with anyone, even if they aren't on LandSpec Pro. You can customize all the information people see, and you even get your own URL (http://www.landspecpro.com/your_custom_url). We've set up a temporary URL for you, but all you need to do is go to your Edit Location page and click the new tab for Profile Settings. Here you can set a custom URL and update what information is visible on your public profile.",
 		sticky: true,
 		class_name: 'gritter-success gritter-light gritter-center'
 	});

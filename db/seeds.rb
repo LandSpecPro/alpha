@@ -11,7 +11,7 @@ Category.create([
 #	#TOPLEVEL
 #	{ id: 1, cat_name: 'Plants'},
 #	{ id: 2, cat_name: 'Materials'},
-	{ id: 3, cat_name: 'Supplier Types'},
+#	{ id: 3, cat_name: 'Supplier Types'},
 #
 #	#PLANTS
 #	{ id: 100, parent_id: 1, hierarchy_level: 2, cat_name: 'Annuals Cool Season'},
@@ -102,11 +102,11 @@ Category.create([
 #	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'}
 
 #   #SUPPLIER TYPE
-	{ id: 500, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Grower'},
-	{ id: 501, parent_id: 3, hierarchy_level: 2, cat_name: 'Stone Center'},
-	{ id: 502, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Nursery'},
-	{ id: 503, parent_id: 3, hierarchy_level: 2, cat_name: 'Material Supplier'},
-	{ id: 504, parent_id: 3, hierarchy_level: 2, cat_name: 'Plant Liner Growers'}
+#	{ id: 500, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Grower'},
+#	{ id: 501, parent_id: 3, hierarchy_level: 2, cat_name: 'Stone Center'},
+#	{ id: 502, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Nursery'},
+#	{ id: 503, parent_id: 3, hierarchy_level: 2, cat_name: 'Material Supplier'},
+#	{ id: 504, parent_id: 3, hierarchy_level: 2, cat_name: 'Plant Liner Growers'}
 #
 ])
 

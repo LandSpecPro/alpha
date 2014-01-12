@@ -203,7 +203,7 @@
                                     <td class="center" colspan="2">
                                         
                                         <strong>Public URL:</strong>&nbsp;
-                                        <a href="http://www.landspecpro.com/profiles/<%= l.public_url %>">www.landspecpro.com/profiles/<%= l.public_url %></a><br/>
+                                        <a href="http://www.landspecpro.com/<%= l.public_url %>">www.landspecpro.com/<%= l.public_url %></a><br/>
                                         <%= form_for l, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
                                             <%= hidden_field_tag(:id,  l.id) %>
                                             <%= hidden_field_tag(:redirect_to_admin, true) %>

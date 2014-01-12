@@ -7,6 +7,7 @@ class NewsFeedController < ApplicationController
   	before_filter :require_user_email_validated
   	before_filter :require_user_details
   	before_filter :require_supplier_has_location
+  	before_filter :require_buyer_has_first_and_last_name
 	
 	def main
 

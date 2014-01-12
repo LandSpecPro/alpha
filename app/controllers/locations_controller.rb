@@ -13,7 +13,9 @@ class LocationsController < ApplicationController
   before_filter :require_location_id, :only => [:edit, :update, :update_categories, :destroy, :confirm_destroy, :activate_location, :deactivate_location, :inventory_view]
   before_filter :require_business_location_matches, :only => [:edit, :update_status, :update, :destroy, :confirm_destroy]
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
-  before_filter :require_location_active_unless_owner, :only => [:view_public, :view]
+  before_filter :require_location_active_unless_owner, :only => [:view]
+
+  before_filter :require_buyer_has_first_and_last_name
 
   def view_public
 

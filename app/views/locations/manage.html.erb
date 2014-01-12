@@ -43,11 +43,11 @@
 
 								<td class="center hidden-767">
 									<% if l.url_is_custom %>
-										<a href="http://www.landspecpro.com/profiles/<%= l.public_url %>" target="_blank">
+										<a href="http://www.landspecpro.com/<%= l.public_url %>" target="_blank">
 											<%= l.public_url %>
 										</a>
 									<% else %>
-										<a href="http://www.landspecpro.com/profiles/<%= l.public_url %>" target="_blank" data-rel="popover" data-placement="top" data-trigger="hover" data-content="This Profile is still active, but you have not set a custom URL. You can do this from the Edit Location page.">
+										<a href="http://www.landspecpro.com/<%= l.public_url %>" target="_blank" data-rel="popover" data-placement="top" data-trigger="hover" data-content="This Profile is still active, but you have not set a custom URL. You can do this from the Edit Location page.">
 											temp
 										</a>
 									<% end %>

@@ -390,8 +390,8 @@
 								<thead>
 									<tr>
 										<th colspan="2" class="center">
-											<a href="http://www.landspecpro.com/profiles/<%= @location.public_url %>" target="_blank">
-												<strong id="url_preview" style="font-size:15px;">www.landspecpro.com/profiles/<%= @location.public_url %></strong>
+											<a href="http://www.landspecpro.com/<%= @location.public_url %>" target="_blank">
+												<strong id="url_preview" style="font-size:15px;">www.landspecpro.com/<%= @location.public_url %></strong>
 											</a>
 										</th>
 									</tr>
@@ -453,7 +453,7 @@
 	}
 
 	function updatePreviewURL(){
-		document.getElementById('url_preview').innerHTML = "www.landspecpro.com/profiles/" + $('#public_url').val();
+		document.getElementById('url_preview').innerHTML = "www.landspecpro.com/" + $('#public_url').val();
 		if (form_change == null || form_change == 'loc_profile_url'){
 			form_change = 'loc_profile_url';
 		}
