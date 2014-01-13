@@ -42,7 +42,7 @@ Location.create(
 	websiteLink: 'http://www.landspecpro.com',
 	facebookLink: 'http://www.facebook.com/landspecpro',
 	twitterLink: 'http://www.twitter.com/landspecpro',
-	active: true,
+	active: false,
 	verified: true,
 	public_url: 'guest_supplier',
 	public_url_active: true,
