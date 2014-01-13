@@ -2,7 +2,7 @@
 
 	<center>
 		<div class="btn btn-white btn-block btn-not-clickable">
-			<a href="<%= locations_view_url(:id => f.location_id) %>" style="font-size:18px;" class="tooltip-info" title="" data-original-title="View Profile" data-placement="top">
+			<a href="<%= locations_view_url(:id => f.location_id) %>" style="font-size:18px; z-index:99999;" class="tooltip-info" title="" data-original-title="View Profile" data-placement="bottom">
 				<%= Location.find(f.location_id).busName %>
 			</a> 
 			<br/>

@@ -6,7 +6,7 @@
 
 		<center>
 			<div class="btn btn-white btn-block">
-				<a style="font-size:18px;" data-rel="popover" title="Supplier Info" data-placement="top" data-trigger="hover click"
+				<a style="font-size:18px;" data-rel="popover" title="Supplier Info" data-placement="top" data-container="body" data-trigger="hover click"
 						data-content="<center><strong>Email:</strong> <%= @userfollower.email %><br/><small>Click to View Profile</small></center>" href="<%= locations_view_url(:id => f.location_id) %>">
 					<% if not @userfollower.user_detail.company_name.blank? %>
 						<%= @userfollower.user_detail.company_name %>
@@ -31,7 +31,7 @@
 
 		<center>
 			<div class="btn btn-white btn-block">
-				<span style="font-size:18px;" data-rel="popover" title="Buyer Info" data-placement="top" data-trigger="hover click"
+				<span style="font-size:18px;" data-rel="popover" title="Buyer Info" data-placement="top" data-trigger="hover click" data-container="body"
 						data-content="<strong>Email:</strong> <%= @userfollower.email %>">
 					<% if not @userfollower.user_detail.company_name.blank? %>
 						<%= @userfollower.user_detail.company_name %>

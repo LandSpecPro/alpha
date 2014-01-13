@@ -23,7 +23,7 @@ UserDetail.create(
 	first_name: 'John',
 	last_name: 'Doe',
 	company_name: 'My Company Name',
-	phone_number: '(000) 000-0000',
+	phone_number: '(404) 919-5778',
 	user_type: 'Supplier',
 	user_category: 'Wholesale Grower',
 	city: 'Atlanta',
