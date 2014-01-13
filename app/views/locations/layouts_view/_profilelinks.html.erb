@@ -2,6 +2,14 @@
 <div class="profile-contact-info">
 	<div class="profile-contact-links center">
 
+		<% if @location.is_owner(current_user) %>
+			<a class="btn btn-link tooltip-info" href="<%= locations_edit_url(:id => @location.id) %>" target="_blank" title="" data-original-title="Edit Location" data-placement="bottom">
+				<i class="icon-pencil blue"></i>
+				Edit Location
+			</a>
+			<br/>
+		<% end %>
+
 		<% if @location.inventories.count > 0 %>
 			<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
 				<i class="icon-folder-close blue"></i>
