@@ -70,6 +70,14 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def is_admin
+		if self.login == 'ohmatt' or self.login == 'timwolfedesign' or self.login == 'timwolfedesign1'
+			return true
+		else
+			return false
+		end
+	end
+
 	def owns_location(location)
 		if self.is_supplier
 			if self.user_detail.id == location.user_detail_id

@@ -113,7 +113,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_supplier_has_location
-    if current_user.is_supplier
+    if current_user.is_supplier and not current_user.is_admin
       if current_user.user_detail.locations.blank?
         store_location
         flash[:notice] = "You need to add a location before you can do anything else."
