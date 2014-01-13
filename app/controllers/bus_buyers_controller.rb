@@ -24,7 +24,7 @@ class BusBuyersController < ApplicationController
 	      	Mailers.new_user_activation_email(@user).deliver
 	      end
 
-	      redirect_to buyer_help_url
+	      redirect_to help_url
 	    else
 	      flash[:notice] = "Not successful!"
 	      render :action => :new

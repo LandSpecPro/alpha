@@ -27,11 +27,11 @@ class UserDetailsController < ApplicationController
 
 	  			if @userdetail.user_type == STRING_SUPPLIER
 	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
-	  				redirect_to supplier_help_url
+	  				redirect_to help_url
 	  				return
 	  			elsif @userdetail.user_type == STRING_BUYER
 	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
-	  				redirect_to buyer_help_url
+	  				redirect_to help_url
 	  				return
 	  			end
 	  		else

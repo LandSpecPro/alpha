@@ -10,18 +10,6 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default('/')
   end
 
-  def help
-    if current_user
-      if current_user.is_supplier
-        redirect_to supplier_help_url
-      elsif current_user.is_buyer 
-        redirect_to buyer_help_url
-      end
-    else
-      redirect_to home_url
-    end
-  end
-
   def submit_feedback
     if current_user
       @username = current_user.login

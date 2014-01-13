@@ -38,6 +38,9 @@ LspAlpha::Application.routes.draw do
   match "follower/create" => 'followers#create'
   match "follower/delete" => 'followers#delete'
 
+  # Routes for Help pages
+  match "help" => "users#help"
+
   # Routes for Search
   get "search/product"
   get "search/supplier"
@@ -136,11 +139,6 @@ LspAlpha::Application.routes.draw do
   # TODO: DELETE THESE
   match "supplier/new" => 'bus_vendors#new'
   match "buyer/new" => 'bus_buyers#new'
-
-  # Routes for Help pages
-  match "supplier/help" => 'users#help'
-  match "buyer/help" => 'users#help'
-  match "help" => "application#help"
 
   # Routes for Admin stuff
   match 'admin' => 'admin#main'
