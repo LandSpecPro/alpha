@@ -1,12 +1,23 @@
-<div class="center">
+<%- title "Email Confirmed | LandSpec Pro" %>
+<div class="container">
+	<div class="row" style="font-size:16px;">
+		<div class="col-xs-12">
+			<div class="center">
 
-	<br/><br/>
-	
-	<h3>Congratulations!</h3>
+				<br/><br/><br/>
+				<div class="alert alert-success">
+					<h3><strong>Congratulations!</strong> Your email address has been confirmed.</h3>
+				</div>
 
-	<p>Your email has been verified and you are now a part of the LandSpec Pro community. Click the button below to finish registering and start enjoying the site.</p>
+				<br/>
 
-	<br/>
-	<a href="<%= user_details_new_url %>" class="btn btn-success">Continue</a>
-	
+				<p>You are now a part of the LandSpec Pro community. All you have to do now is click the button below to enter the site and finish the registration process.</p>
+
+				<br/>
+
+	          	<a href="<%= user_details_new_url %>" class="btn btn-success">Continue</a>
+
+	          </div>
+		</div>
+	</div>
 </div>

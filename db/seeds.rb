@@ -33,7 +33,7 @@ UserDetail.create(
 
 Location.create(
 	id: 999,
-	primaryPhone: '(000) 000-0000',
+	primaryPhone: '(404) 919-5778',
 	address1: '828 West Peachtree St. NW',
 	city: 'Atlanta',
 	state: 'GA',
