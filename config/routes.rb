@@ -28,6 +28,10 @@ LspAlpha::Application.routes.draw do
   match "supplier/guest/login" => 'user_sessions#supplier_guest_login'
   match "supplier/guest/error" => 'user_sessions#supplier_guest_error'
   match "login/guest/supplier" => 'user_sessions#login_guest_supplier'
+
+  # Routes for More Info
+  match "supplier/whatsnew" => 'home#supplier_more_info'
+
   # Routes for Inventory
   match "location/inventory/view" => "locations#inventory_view"
 

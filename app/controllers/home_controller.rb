@@ -10,6 +10,10 @@ class HomeController < ApplicationController
 
 	end
 
+	def supplier_more_info
+
+	end
+
 	def terms
 
 	end
