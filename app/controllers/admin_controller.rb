@@ -6,7 +6,7 @@ class AdminController < ApplicationController
   before_filter :require_user_is_admin
   before_filter :require_user_id, :only => :user_view
   
-  def main
+  def dashboard_main
 
   end
 

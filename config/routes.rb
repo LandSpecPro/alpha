@@ -151,7 +151,7 @@ LspAlpha::Application.routes.draw do
   match 'admin/user/deactivate' => 'admin#user_deactivate'
   match 'admin/location/activate' => 'admin#location_activate'
   match 'admin/location/deactivate' => 'admin#location_deactivate'
-  get "admin/dashboard_main"
+  match "admin/dashboard_main" => 'admin#main'
   get "admin/dashboard_weekly"
   get "admin/dashboard_email"
   get "admin/user_view"
