@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 	include ModelHelper
 
-	attr_accessible :login, :email, :password, :password_confirmation, :profileImage, :userType, :user_detail_attributes, :search_logs_attributes, :bus_vendor_attributes, :bus_buyer_attributes
+	attr_accessible :id, :active, :verified, :is_email_verified, :login, :email, :password, \
+	:password_confirmation, :profileImage, :userType, :user_detail_attributes, :search_logs_attributes, \
+	:bus_vendor_attributes, :bus_buyer_attributes
 
 	#NEW
 	has_one :user_detail, :dependent => :destroy

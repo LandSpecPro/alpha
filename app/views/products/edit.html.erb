@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <%- title "Edit " + @featureditem.get_product.commonName + " | LandSpec Pro" %>
 <%= render 'layouts/sidebar' %>
 
@@ -23,9 +24,12 @@
 				<div class="widget-header header-color-green2">
 					<h5 class="bigger lighter"><i class="icon-star"></i> Edit Featured Item</h5>
 					<div class="widget-toolbar">
-						<a href="javascript:{return true;}" onclick="document.getElementById('form_update_featured_item').submit();" title="Update" class="white" id="white-link">
-							<i  class="icon-save" id="fav_icon"></i> Update</a>
-						</a>
+						<% if current_user.id == 999 %>
+						<% else %>
+							<a href="javascript:{return true;}" onclick="document.getElementById('form_update_featured_item').submit();" title="Update" class="white" id="white-link">
+								<i  class="icon-save" id="fav_icon"></i> Update</a>
+							</a>
+						<% end %>
 					</div>
 				</div>
 
@@ -49,7 +53,11 @@
 							<div class="form-group">
 								Description (optional):
 								<div class="block input-icon input-icon-right">
-									<%= f.text_area :description, :class => 'form-control', :id => 'description', :value => @featureditem.description, :rows => '3', :style => 'resize: none;' %>
+									<% if current_user.id == 999 %>
+										<%= f.text_area :description, :class => 'form-control', :id => 'description', :value => @featureditem.description, :rows => '3', :style => 'resize: none;', :readonly => true %>
+									<% else %>
+										<%= f.text_area :description, :class => 'form-control', :id => 'description', :value => @featureditem.description, :rows => '3', :style => 'resize: none;' %>
+									<% end %>
 								</div>
 							</div>
 
@@ -59,7 +67,11 @@
 									<div class="form-group">
 										Size (optional):
 										<div class="block input-icon input-icon-right">
-											<%= f.text_field :size, :class => 'form-control', :id => 'size', :value => @featureditem.size %>
+											<% if current_user.id == 999 %>
+												<%= f.text_field :size, :class => 'form-control', :id => 'size', :value => @featureditem.size, :readonly => true %>
+											<% else %>
+												<%= f.text_field :size, :class => 'form-control', :id => 'size', :value => @featureditem.size %>
+											<% end %>
 										</div>
 									</div>
 								</div>
@@ -68,7 +80,11 @@
 									<div class="form-group">
 										Price (optional):
 										<div class="block">
-											<%= f.text_field :price, :class => 'form-control input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f %>
+											<% if current_user.id == 999 %>
+												<%= f.text_field :price, :class => 'form-control input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f, :readonly => true %>
+											<% else %>
+												<%= f.text_field :price, :class => 'form-control input-mask-price', :id => 'price', :value => "$%8.2f" % @featureditem.price.to_f %>
+											<% end %>
 											
 										</div>
 									</div>
@@ -78,7 +94,10 @@
 
 							<div class="form-group">
 								Image: 
-								<%= f.file_field :image %>
+								<% if current_user.id == 999 %>
+								<% else %>
+									<%= f.file_field :image %>
+								<% end %>
 							</div>
 
 						</fieldset>

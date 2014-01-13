@@ -1,7 +1,8 @@
+<!-- GUESTCODE -->
 <div class="row">
 	<div class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 		<div class="center">
-			<h3 class="header small lighter blue">Manage Inventory</h3>
+			<h3 class="header lighter blue">Manage Inventory</h3>
 		</div>
 	</div>
 </div>
@@ -39,7 +40,11 @@
 
 							<%= f.hidden_field :id, :value => @location.id %>
 							<%= f.file_field :file, :class => 'loc_inventory_field' %>
-							<button type="submit" class="btn btn-sm btn-success" onclick="uploadNewInventory();">Submit</button>
+							<% if current_user.id == 999 %>
+								<button disabled='disabled' type="submit" class="btn btn-sm btn-success" onclick="uploadNewInventory();">Submit</button>
+							<% else %>
+								<button type="submit" class="btn btn-sm btn-success" onclick="uploadNewInventory();">Submit</button>
+							<% end %>
 
 						<% end %>
 					</div>

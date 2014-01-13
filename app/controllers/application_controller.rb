@@ -71,6 +71,14 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def require_user_is_not_guest
+    if current_user.id == 999
+      store_location
+      redirect_to main_url
+      return false
+    end
+  end
+
   def require_user_email_validated
     if not current_user.is_email_verified
       store_location

@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <%= form_for @userdetail, :html => {:multipart => true} do |f| %>
 
 	<!-- Display error messages as alerts -->
@@ -19,7 +20,11 @@
 		<div class="form-group">
 			<label for="first_name"><strong>*First Name</strong></label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required" %>
+				<% if current_user.id == 998 %>
+					<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required", :readonly => true %>
+				<% else %>
+					<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required" %>
+				<% end %>
 			</span>
 		</div>
 
@@ -27,7 +32,11 @@
 		<div class="form-group">
 			<label for="last_name"><strong>*Last Name</strong></label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required" %>
+				<% if current_user.id == 998 %>
+					<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required", :readonly => true %>
+				<% else %>
+					<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required" %>
+				<% end %>
 			</span>
 		</div>
 
@@ -35,33 +44,37 @@
 		<div class="form-group">
             <label for="last_name"><strong>*Phone Number</strong></label>
             <span class="block input-icon input-icon-right">
-                <%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Required" %>
+            	<% if current_user.id == 998 %>
+                	<%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Required", :readonly => true %>
+				<% else %>
+                	<%= f.text_field :phone_number, :class => 'form-control input-mask-phone popover-phone', :placeholder => "Required" %>
+				<% end %>
                 <i class="icon-phone"></i>
             </span>
         </div>
 
         <!-- COMPANY NAME -->
 		<div class="form-group">
-			<label for="first_name">Company Name/Institution <i>(optional)</i></label>
+			<label for="first_name">Company Name/Institution</label>
 			<span class="block input-icon input-icon-right">
-				<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Optional" %>
+				<% if current_user.id == 998 %>
+					<%= f.text_field :company_name, :class => 'form-control', :readonly => true %>
+				<% else %>
+					<%= f.text_field :company_name, :class => 'form-control' %>
+				<% end %>
 				<i class="icon-briefcase"></i>
-			</span>
-		</div>
-
-		<!-- TAGLINE -->
-		<div class="form-group">
-			<label for="first_name">Company Tagline <i>(optional)</i></label>
-			<span class="block input-icon input-icon-right">
-				<%= f.text_field :tagline, :class => 'form-control', :placeholder => "Optional" %>
 			</span>
 		</div>
 
 		<!-- USER CATEGORY -->
 		<div class="form-group">
-			<label for="user_category">Buyer Type <i>(optional)</i></label>
+			<label for="user_category">Buyer Type</label>
 			<span class="block input-icon input-icon-right">
-				<%= f.select(:user_category, get_buyer_types, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+				<% if current_user.id == 998 %>
+					<%= f.select(:user_category, get_supplier_types, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select', :disabled => true}) %>
+				<% else %>
+					<%= f.select(:user_category, get_buyer_types, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+				<% end %>
 			</span>
 		</div>
 
@@ -71,9 +84,13 @@
 			<!-- CITY -->
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<label for="city">City <i>(optional)</i></label>
+					<label for="city">City</label>
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :city, :class => 'form-control', :placeholder => "Optional" %>
+						<% if current_user.id == 998 %>
+							<%= f.text_field :city, :class => 'form-control', :readonly => true %>
+						<% else %>
+							<%= f.text_field :city, :class => 'form-control' %>
+						<% end %>
 					</span>
 				</div>
 			</div>
@@ -81,9 +98,13 @@
 			<!-- STATE -->
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<label for="city">State <i>(optional)</i></label>
+					<label for="city">State</label>
 					<span class="block input-icon input-icon-right">
-						<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+						<% if current_user.id == 998 %>
+							<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select', :disabled => true}) %>
+						<% else %>
+							<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+						<% end %>
 					</span>
 				</div>
 			</div>
@@ -91,9 +112,13 @@
 			<!-- ZIP -->
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<label for="city">Zip <i>(optional)</i></label>
+					<label for="city">Zip></label>
 					<span class="block input-icon input-icon-right">
-						<%= f.text_field :zip, :class => 'form-control input-mask-zip', :placeholder => "Optional" %>
+						<% if current_user.id == 998 %>
+							<%= f.text_field :zip, :class => 'form-control input-mask-zip', :readonly => true %>
+						<% else %>
+							<%= f.text_field :zip, :class => 'form-control input-mask-zip' %>
+						<% end %>
 					</span>
 				</div>
 			</div>
@@ -103,13 +128,16 @@
 		<!-- LOGO -->
 		<div class="row">
 			<div class="col-xs-12">
-				<label for="logo">Logo <i>(optional)</i></label>
+				<label for="logo">Logo</label>
 				<div class="center">
 					<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
 						<img src="<%= @userdetail.logo.url(:medium) %>"  title="Logo" style="max-height:100%; max-width:100%; display:block; margin:auto;" />
 						<br/>
 					<% end %>
-					<%= f.file_field :logo, :style => 'margin:auto;' %>
+					<% if current_user.id == 998 %>
+					<% else %>
+						<%= f.file_field :logo, :style => 'margin:auto;' %>
+					<% end %>
 					<br/>
 				</div>
 			</div>
@@ -119,7 +147,11 @@
 		<div class="row">
             <div class="col-xs-12">
             	<div class="pull-right">
-                	<button type="submit" class="btn btn-success" onclick="updateUserInfo();"><i class="icon-ok"></i> Update</button>
+            		<% if current_user.id == 998 %>
+            			<button disabled='disabled' type="submit" class="btn btn-success" onclick="updateUserInfo();"><i class="icon-ok"></i> Update</button>
+					<% else %>
+						<button type="submit" class="btn btn-success" onclick="updateUserInfo();"><i class="icon-ok"></i> Update</button>
+					<% end %>
              	</div>
             </div>
         </div>

@@ -7,7 +7,12 @@ class Location < ActiveRecord::Base
 	after_initialize :initialize_public_url
 	after_save :update_cache
 
-	attr_accessible :locName, :public_url, :is_subscribed_to_inventory, :public_url_active, :searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, :city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, :googleLink, :featured_items_attributes, :categories_attributes, :inventories_attributes, :location_public_settings_attributes, :statuses_attributes
+	attr_accessible :locName, :public_url, :is_subscribed_to_inventory, :public_url_active, \
+	:searchWeight, :busName, :bio, :primaryPhone, :secondaryPhone, :fax, :address1, :address2, \
+	:city, :state, :zip, :primaryEmail, :secondaryEmail, :websiteLink, :facebookLink, :twitterLink, \
+	:googleLink, :featured_items_attributes, :categories_attributes, :inventories_attributes, \
+	:location_public_settings_attributes, :statuses_attributes, :id, :active, :verified, :claimed, \
+	:url_is_custom, :user_detail_id
 	
 	has_many :featured_items
 	has_many :products, :through => :featured_items

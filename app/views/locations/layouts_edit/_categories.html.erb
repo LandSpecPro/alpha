@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <% if CategoryToLocation.where(:location_id => @location.id).count == 0 %>
 <br/>
 	<div class="alert alert-info">
@@ -13,7 +14,10 @@
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-tasks"></i> Product Categories</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="submitLocationCategoriesForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<% if current_user.id == 999 %>
+				<% else %>
+					<a href="javascript:{return true;}" onclick="submitLocationCategoriesForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<% end %>
 			</div>
 		</div>
 
@@ -29,34 +33,42 @@
 							<div class="col-md-6 col-xs-12">
 								<label class="lbl" for="categories"><h4>Plants:</h4></label>
 								<div class="block input-icon input-icon-right" id="catPlantsBorder">
-									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
-									<% Category.where(:active => true, :parent_id => 1).order('"cat_name" ASC').each do |cat| %>
+									<% if current_user.id == 999 %>
+										<select class="chzn-select input-large form-control" multiple="multiple" disabled="disabled" data-placeholder="No Categories Selected..."></select>
+									<% else %>
+										<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="No Categories Selected...">
+										<% Category.where(:active => true, :parent_id => 1).order('"cat_name" ASC').each do |cat| %>
 
-										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
-											<option selected="selected"><%= cat.cat_name %></option>
-										<% else %>
-											<option><%= cat.cat_name %></option>
+											<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
+
 										<% end %>
-
+										</select>
 									<% end %>
-								</select>
 								</div>
 							</div>
 
 							<div class="col-md-6 col-xs-12">
 								<label class="lbl" for="categories"><h4>Materials:</h4></label>
 								<div class="block input-icon input-icon-right" id="catMaterialsBorder">
-									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
-									<% Category.where(:active => true, :parent_id => 2).order('"cat_name" ASC').each do |cat| %>
+									<% if current_user.id == 999 %>
+										<select class="chzn-select input-large form-control" multiple="multiple" disabled="disabled" data-placeholder="No Categories Selected..."></select>
+									<% else %>
+										<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="No Categories Selected...">
+										<% Category.where(:active => true, :parent_id => 2).order('"cat_name" ASC').each do |cat| %>
 
-										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
-											<option selected="selected"><%= cat.cat_name %></option>
-										<% else %>
-											<option><%= cat.cat_name %></option>
+											<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
+
 										<% end %>
-
+										</select>
 									<% end %>
-								</select>
 								</div>
 							</div>
 
@@ -69,17 +81,21 @@
 							<div class="col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
 								<label class="lbl" for="categories"><h4>Supplier Types:</h4></label>
 								<div class="block input-icon input-icon-right" id="catPlantsBorder">
-									<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="Leave blank to search all categories...">
-									<% Category.where(:active => true, :parent_id => 3).order('"cat_name" ASC').each do |cat| %>
+									<% if current_user.id == 999 %>
+										<select class="chzn-select input-large form-control" multiple="multiple" disabled="disabled" data-placeholder="No Categories Selected..."></select>
+									<% else %>
+										<select id="categories[]" name="categories[]" class="chzn-select input-large form-control" multiple="multiple" data-placeholder="No Categories Selected...">
+										<% Category.where(:active => true, :parent_id => 3).order('"cat_name" ASC').each do |cat| %>
 
-										<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
-											<option selected="selected"><%= cat.cat_name %></option>
-										<% else %>
-											<option><%= cat.cat_name %></option>
+											<% if CategoryToLocation.where(:category_id => cat.id, :location_id => @location.id).count > 0 %>
+												<option selected="selected"><%= cat.cat_name %></option>
+											<% else %>
+												<option><%= cat.cat_name %></option>
+											<% end %>
+
 										<% end %>
-
+										</select>
 									<% end %>
-								</select>
 								</div>
 							</div>
 

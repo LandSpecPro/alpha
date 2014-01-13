@@ -23,16 +23,17 @@ class UserDetailsController < ApplicationController
 	  		if @userdetail.save
 	  			current_user.user_detail = @userdetail
 
-	  			if @userdetail.user_type == STRING_SUPPLIER
-	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
-	  			elsif @userdetail.user_type == STRING_BUYER
-	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
-	  			end
-
 	  			Mailers.new_user_activation_email(current_user).deliver
 
-	  			redirect_to locations_new_url
-	  			return
+	  			if @userdetail.user_type == STRING_SUPPLIER
+	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				redirect_to supplier_help_url
+	  				return
+	  			elsif @userdetail.user_type == STRING_BUYER
+	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				redirect_to buyer_help_url
+	  				return
+	  			end
 	  		else
 	  			render :action => :new
 	  			return

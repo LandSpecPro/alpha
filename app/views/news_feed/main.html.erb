@@ -1,6 +1,18 @@
+<!-- GUESTCODE -->
 <%- title "News Feed | LandSpec Pro" %>
 <%= render 'layouts/sidebar' %>
 
+	<% if current_user.id == 999 %>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<center>
+					<div class="alert alert-warning">
+						<strong>Alert!</strong> You are signed in as a guest and therefore you cannot update any account related fields. You can however still search and view other suppliers and buyers on the site. If you would like to join, just logout from the dropdown menu at the top of the page and you should find the register button on the home page. Enjoy this preview of LandSpec Pro!
+					</div>
+				</center>
+			</div>
+		</div>
+	<% end %>
 
 	<div id="timeline-1" style="margin-top:0; padding-top:0;">
 		<div class="row">

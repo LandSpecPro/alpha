@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <% if @location.locName.blank? %>
 	<%- title "Edit Location | LandSpec Pro" %>
 <% else %>
@@ -19,7 +20,7 @@
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
 						<li id="tab_publicsettings">
-					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Public Profile Settings</a>
+					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Share Your Profile</a>
 					  	</li>
 					  	<li id="tab_addons">
 					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
@@ -32,7 +33,7 @@
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
 					  	<li id="tab_publicsettings">
-					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Public Profile Settings</a>
+					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Share Your Profile</a>
 					  	</li>	
 					  	<li id="tab_addons">
 					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
@@ -45,7 +46,7 @@
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
 					  	<li class="active" id="tab_publicsettings">
-					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Public Profile Settings</a>
+					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Share Your Profile</a>
 					  	</li>
 					  	<li id="tab_addons">
 					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
@@ -58,7 +59,7 @@
 					  		<a data-toggle="tab" href="#featuredItems"><i class="red icon-star bigger-110"></i> Featured Items</a>
 					  	</li>
 					  	<li id="tab_publicsettings">
-					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Public Profile Settings</a>
+					  		<a data-toggle="tab" href="#publicSettings"><i class="purple icon-cog bigger-110"></i> Share Your Profile</a>
 					  	</li>
 					  	<li class="active" id="tab_addons">
 					  		<a data-toggle="tab" href="#addons"><i class="orange icon-folder-close bigger-110"></i> Inventory</a>
@@ -92,7 +93,11 @@
 				  		<div class="col-md-6 col-xs-12">
 							<%= render 'locations/layouts_edit/locationinfo' %>
 							<div class="center">
-								<a href="<%= locations_new_url %>" class="btn btn-sm btn-block btn-success">Add New Location</a>			
+								<% if current_user.id == 999 %>
+									<a disabled="disabled" href="<%= locations_new_url %>" class="btn btn-sm btn-block btn-success">Add New Location</a>
+								<% else %>
+									<a href="<%= locations_new_url %>" class="btn btn-sm btn-block btn-success">Add New Location</a>
+								<% end %>			
 							</div>	
 						</div>
 						<div class="col-md-6 col-xs-12">

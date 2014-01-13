@@ -1,9 +1,13 @@
+<!-- GUESTCODE -->
 <%= form_for @location, :html => {:id => 'form_location_address'} do |f| %>
 	<div class="widget-box">
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-globe"></i> Location Address</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+				<% if current_user.id == 999 %>
+				<% else %>
+					<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="white" id="white-link"><i  class="icon-save" id="fav_icon"></i> Update</a>
+				<% end %>
 			</div>
 		</div>
 
@@ -35,28 +39,44 @@
 					<div class="form-group">
 						Location Name: 
 						<div class="block input-icon input-icon-right">
-							<%= f.text_field :locName, :id => "locName", :class => 'form-control val-locname loc_info_field', :value => @location.locName %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :locName, :id => "locName", :class => 'form-control val-locname loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :locName, :id => "locName", :class => 'form-control val-locname loc_info_field' %>
+							<% end %>
 						</div>
 					</div>
 
 					<div class="form-group">
 						Street 1:
 						<div class="block input-icon input-icon-right">
-							<%= f.text_field :address1, :class => 'form-control loc_info_field', :value => @location.address1 %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :address1, :class => 'form-control loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :address1, :class => 'form-control loc_info_field' %>
+							<% end %>
 						</div>
 					</div>
 
 					<div class="form-group">
 						Street 2:
 						<span class="block input-icon input-icon-right">
-							<%= f.text_field :address2, :class => 'form-control loc_info_field', :value => @location.address2 %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :address2, :class => 'form-control loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :address2, :class => 'form-control loc_info_field' %>
+							<% end %>
 						</span>
 					</div>
 
 					<div class="form-group">
 						City:
 						<span class="block input-icon input-icon-right">
-							<%= f.text_field :city, :class => 'form-control loc_info_field', :value => @location.city %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :city, :class => 'form-control loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :city, :class => 'form-control loc_info_field' %>
+							<% end %>
 						</span>
 					</div>
 
@@ -65,7 +85,11 @@
 							<div class="form-group">
 								State:
 								<div class="block input-icon input-icon-right">
-									<%= f.select(:state, get_states, {}, {:class => 'form-control chzn-select loc_info_field', :onchange => 'changeLocationInfo();'}) %>
+									<% if current_user.id == 999 %>
+										<%= f.select(:state, get_states, {}, {:class => 'form-control chzn-select loc_info_field', :onchange => 'changeLocationInfo();', :disabled => true}) %>
+									<% else %>
+										<%= f.select(:state, get_states, {}, {:class => 'form-control chzn-select loc_info_field', :onchange => 'changeLocationInfo();'}) %>
+									<% end %>
 								</div>
 							</div>
 						</div>
@@ -73,7 +97,11 @@
 							<div class="form-group">
 								Zip Code:
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :zip, :class => 'form-control input-mask-zip loc_info_field', :value => @location.zip %>
+									<% if current_user.id == 999 %>
+										<%= f.text_field :zip, :class => 'form-control input-mask-zip loc_info_field', :readonly => true %>
+									<% else %>
+										<%= f.text_field :zip, :class => 'form-control input-mask-zip loc_info_field' %>
+									<% end %>
 								</span>	
 							</div>
 						</div>
@@ -84,35 +112,55 @@
 					<div class="form-group">
 						Primary Phone: 
 						<div class="block input-icon input-icon-right">
-							<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone loc_info_field', :value => @location.primaryPhone %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone loc_info_field' %>
+							<% end %>
 						</div>
 					</div>
 
 					<div class="form-group">
 						Secondary Phone:
 						<div class="block input-icon input-icon-right">
-							<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-fax loc_info_field', :value => @location.secondaryPhone %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-fax loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-fax loc_info_field' %>
+							<% end %>
 						</div>
 					</div>
 
 					<div class="form-group">
 						Fax:
 						<span class="block input-icon input-icon-right">
-							<%= f.text_field :fax, :class => 'form-control input-mask-fax loc_info_field', :value => @location.fax %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :fax, :class => 'form-control input-mask-fax loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :fax, :class => 'form-control input-mask-fax loc_info_field' %>
+							<% end %>
 						</span>
 					</div>
 
 					<div class="form-group">
 						Primary Email:
 						<span class="block input-icon input-icon-right">
-							<%= f.text_field :primaryEmail, :class => 'form-control loc_info_field', :value => @location.primaryEmail %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :primaryEmail, :class => 'form-control loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :primaryEmail, :class => 'form-control loc_info_field' %>
+							<% end %>
 						</span>
 					</div>
 
 					<div class="form-group">
 						Secondary Email:
 						<span class="block input-icon input-icon-right">
-							<%= f.text_field :secondaryEmail, :class => 'form-control loc_info_field', :value => @location.secondaryEmail %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :secondaryEmail, :class => 'form-control loc_info_field', :readonly => true %>
+							<% else %>
+								<%= f.text_field :secondaryEmail, :class => 'form-control loc_info_field' %>
+							<% end %>
 						</span>
 					</div>
 
@@ -121,7 +169,11 @@
 							<div class="form-group">
 								Website:
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :websiteLink, :class => 'form-control loc_info_field', :value => @location.websiteLink, :placeholder => 'http://' %>
+									<% if current_user.id == 999 %>
+										<%= f.text_field :websiteLink, :class => 'form-control loc_info_field', :placeholder => 'http://', :readonly => true %>
+									<% else %>
+										<%= f.text_field :websiteLink, :class => 'form-control loc_info_field', :placeholder => 'http://' %>
+									<% end %>
 								</span>	
 							</div>
 						</div>
@@ -129,7 +181,11 @@
 							<div class="form-group">
 								Facebook Link:
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :facebookLink, :class => 'form-control loc_info_field', :value => @location.facebookLink, :placeholder => 'http://' %>
+									<% if current_user.id == 999 %>
+										<%= f.text_field :facebookLink, :class => 'form-control loc_info_field', :placeholder => 'http://', :readonly => true %>
+									<% else %>
+										<%= f.text_field :facebookLink, :class => 'form-control loc_info_field', :placeholder => 'http://' %>
+									<% end %>
 								</span>	
 							</div>
 						</div>	
@@ -140,7 +196,11 @@
 							<div class="form-group">
 								Twitter Link:
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :twitterLink, :class => 'form-control loc_info_field', :value => @location.twitterLink, :placeholder => 'http://' %>
+									<% if current_user.id == 999 %>
+										<%= f.text_field :twitterLink, :class => 'form-control loc_info_field', :placeholder => 'http://', :readonly => true %>
+									<% else %>
+										<%= f.text_field :twitterLink, :class => 'form-control loc_info_field', :placeholder => 'http://' %>
+									<% end %>
 								</span>	
 							</div>
 						</div>
@@ -148,7 +208,11 @@
 							<div class="form-group">
 								Google+:
 								<span class="block input-icon input-icon-right">
-									<%= f.text_field :googleLink, :class => 'form-control loc_info_field', :value => @location.googleLink, :placeholder => 'http://' %>
+									<% if current_user.id == 999 %>
+										<%= f.text_field :googleLink, :class => 'form-control loc_info_field', :placeholder => 'http://', :readonly => true %>
+									<% else %>
+										<%= f.text_field :googleLink, :class => 'form-control loc_info_field', :placeholder => 'http://' %>
+									<% end %>
 								</span>
 							</div>
 						</div>
@@ -157,7 +221,12 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="pull-right">
-								<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="btn btn-sm btn-success"><i  class="icon-save" id="fav_icon"></i> Update</a>
+								<% if current_user.id == 999 %>
+									<a disabled="disabled" href="#" class="btn btn-sm btn-success"><i  class="icon-save" id="fav_icon"></i> Update</a>
+								<% else %>
+									<a href="javascript:{return true;}" onclick="submitLocationInfoForm();" class="btn btn-sm btn-success"><i  class="icon-save" id="fav_icon"></i> Update</a>
+								<% end %>
+								
 							</div>
 						</div>
 					</div>

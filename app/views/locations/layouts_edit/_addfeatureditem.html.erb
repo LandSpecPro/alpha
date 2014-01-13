@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <%= form_for @product, :html => {:id => 'form_add_featured_item'} do |f| %>
 	<div class="widget-box">
 		<div class="widget-header header-color-green2">
@@ -65,7 +66,11 @@
 					<div class="form-group">
 						Name:
 						<div class="input-icon input-icon-right">
-							<%= f.text_field :commonName, :class => 'form-control loc_fi_field', :id => 'commonName', :value => @prodname %>
+							<% if current_user.id == 999 %>
+								<%= f.text_field :commonName, :class => 'form-control loc_fi_field', :id => 'commonName', :value => @prodname, :readonly => true %>
+							<% else %>
+								<%= f.text_field :commonName, :class => 'form-control loc_fi_field', :id => 'commonName', :value => @prodname %>
+							<% end %>
 						</div>
 					</div>
 
@@ -77,7 +82,11 @@
 								<div class="form-group">
 									Size (optional): 
 									<div class="block input-icon input-icon-right">
-										<%= f2.text_field :size, :class => 'form-control loc_fi_field', :value => @size %>
+										<% if current_user.id == 999 %>
+											<%= f2.text_field :size, :class => 'form-control loc_fi_field', :value => @size, :readonly => true %>
+										<% else %>
+											<%= f2.text_field :size, :class => 'form-control loc_fi_field', :value => @size %>
+										<% end %>
 									</div>
 								</div>
 							</div>
@@ -86,7 +95,11 @@
 								<div class="form-group">
 									Price (optional): 
 									<div class="block input-icon input-icon-right">
-										<%= f2.text_field :price, :class => 'form-control input-mask-price loc_fi_field', :value => @price %>
+										<% if current_user.id == 999 %>
+											<%= f2.text_field :price, :class => 'form-control input-mask-price loc_fi_field', :value => @price, :readonly => true %>
+										<% else %>
+											<%= f2.text_field :price, :class => 'form-control input-mask-price loc_fi_field', :value => @price %>
+										<% end %>
 									</div>
 								</div>
 							</div>
@@ -98,7 +111,11 @@
 								<div class="form-group">
 									Description (optional):
 									<div class="block input-icon input-icon-right">
-										<%= f2.text_area :description, :class => 'form-control loc_fi_field', :rows => '3', :style => 'resize: none;', :value => @description %>
+										<% if current_user.id == 999 %>
+											<%= f2.text_area :description, :class => 'form-control loc_fi_field', :rows => '3', :style => 'resize: none;', :value => @description, :readonly => true %>
+										<% else %>
+											<%= f2.text_area :description, :class => 'form-control loc_fi_field', :rows => '3', :style => 'resize: none;', :value => @description %>
+										<% end %>
 									</div>
 								</div>
 
@@ -121,7 +138,11 @@
 		<div class="widget-footer">
 			<div class="row">
 				<div class="col-xs-12">
-					<button class="btn btn-block btn-sm btn-success" type="submit" onclick="addFeaturedItem();"><i  class="icon-plus" id="fav_icon"></i> Add</button>
+					<% if current_user.id == 999 %>
+						<button disabled='disabled' class="btn btn-block btn-sm btn-success"><i  class="icon-plus" id="fav_icon"></i> Add</button>
+					<% else %>
+						<button class="btn btn-block btn-sm btn-success" type="submit" onclick="addFeaturedItem();"><i  class="icon-plus" id="fav_icon"></i> Add</button>
+					<% end %>
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <!-- Set variables for easier naming -->
 <% @cont = controller.controller_name %>
 <% @act = controller.action_name %>
@@ -20,7 +21,9 @@
 
 	<!-- Manage Locations -->
 	<% elsif @cont == 'locations' and @act == 'manage' and current_user.is_supplier %>
-		<a href="<%= locations_new_url %>">Add New Location</a>
+		<% if current_user.id != 999 %>
+			<a href="<%= locations_new_url %>">Add New Location</a>
+		<% end %>
 
 	<!-- View Locations -->
 	<% elsif @cont == 'locations' and @act == 'view' %>

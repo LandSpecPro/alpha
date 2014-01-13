@@ -1,10 +1,14 @@
+<!-- GUESTCODE -->
 <%= form_for @location, :url => {:action => :update_bio, :controller => :locations}, :html => {:id => 'form_location_bio'} do |f| %>
 
 	<div class="widget-box">
 		<div class="widget-header header-color-green2">
 			<h5 class="bigger lighter"><i class="icon-pencil"></i> About Location</h5>
 			<div class="widget-toolbar">
-				<a href="javascript:{return true;}" onclick="submitLocationAboutForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<% if current_user.id == 999 %>
+				<% else %>
+					<a href="javascript:{return true;}" onclick="submitLocationAboutForm();" class="white" id="white-link"><i  class="icon-save"></i> Update</a>
+				<% end %>
 			</div>
 		</div>
 
@@ -20,7 +24,11 @@
 						<div class="block input-icon input-icon-right">
 
 							<div class="form-group">
-								<%= text_area_tag :bio, @location.bio, :class => 'form-control loc_about_field', :style => 'resize: none;', :rows => '15' %>
+								<% if current_user.id == 999 %>
+									<%= text_area_tag :bio, @location.bio, :class => 'form-control loc_about_field', :style => 'resize: none;', :rows => '15', :readonly => true %>
+								<% else %>
+									<%= text_area_tag :bio, @location.bio, :class => 'form-control loc_about_field', :style => 'resize: none;', :rows => '15' %>
+								<% end %>
 							</div>
 
 						</div>

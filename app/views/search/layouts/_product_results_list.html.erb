@@ -175,8 +175,9 @@
 					<% @featured_items.each do |fi| %>
 						<tr>
 							<td class="center">
-								<span class="tooltip-info" data-rel="tooltip" data-original-title="View Larger" data-placement="top">
-									<a href="<%= fi.get_image.url(:original) %>" title="<%= fi.commonName %>" class="colorbox-result colorbox">
+								<span data-container="body" >
+									<% @featureditem = fi %>
+									<a class="tooltip-info" data-rel="tooltip" data-original-title="More Info" data-placement="top" href="<%= '#' + @featureditem.id.to_s + 'productInfoModal' %>" data-toggle="modal">
 										<%= fi.commonName %>
 									</a>
 								</span>
@@ -198,7 +199,7 @@
 								<% end %>
 							</td>
 						</tr>
-						
+						<%= render 'products/productinfomodal' %>
 					<% end %>
 
 				</tbody>

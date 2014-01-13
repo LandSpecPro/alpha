@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <div class="widget-box transparent">
 	<div class="widget-header widget-header-large">
 		<h2 class="smaller">
@@ -9,118 +10,131 @@
 	<div class="widget-body">
 		<div class="widget-main">
 
-			<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
-
+			<% if current_user.id == 999 %>
 				<div class="row">
-					<div class="col-xs-6">
-						<div class="pull-right">
-							<ul class="ace-thumbnails">
-								<li>
-									<span>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="alert alert-warning">
+							<center>
+								<strong>Alert!</strong> Because you're signed in as a Guest there are no featured items on this profile. Once you register you can update your featured items and they will display here.
+							</center>
+						</div>
+					</div>
+				</div>
+			<% else %>
 
-										<img src="<%= fi.get_image.url(:large) %>" style="max-height:100%; max-width:100%; display:block; margin:auto;"/>
+				<% @location.featured_items.where(:active => true).order('created_at DESC').each do |fi| %>
 
-										<div class="text">
-											<div class="inner">
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="pull-right">
+								<ul class="ace-thumbnails">
+									<li>
+										<span>
 
-												<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
+											<img src="<%= fi.get_image.url(:large) %>" style="max-height:100%; max-width:100%; display:block; margin:auto;"/>
 
-												<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="<%= fi.get_product.commonName %>" data-placement="bottom">
-													<i class="icon-zoom-in"></i>
-												</a>
+											<div class="text">
+												<div class="inner">
 
+													<span><p style="font-size:15px;"><%= fi.get_product.commonName %></p></span>
 
-												<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
-													<i class="icon-info-sign"></i>
-												</a>
-
-												<% if @location.is_owner(current_user) %>
-
-													<a href=<%= products_edit_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Product Info">
-														<i class="icon-pencil"></i>
+													<a href="<%= fi.get_image.url(:original) %>" data-rel="colorbox" class="tooltip-success" title="<%= fi.get_product.commonName %>" data-placement="bottom">
+														<i class="icon-zoom-in"></i>
 													</a>
+
+
+													<a data-toggle="modal" href="<%= '#' + fi.id.to_s + 'productInfoModal' %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="More Info">
+														<i class="icon-info-sign"></i>
+													</a>
+
+													<% if @location.is_owner(current_user) %>
+
+														<a href=<%= products_edit_url(:id => fi.id) %> data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Edit Product Info">
+															<i class="icon-pencil"></i>
+														</a>
+														
+														<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>" data-rel="tooltip" class="tooltip-error" title="" data-placement="bottom" data-original-title="Delete Product">
+															<i class="icon-trash"></i>
+														</a>
+
+													<% end %>
 													
-													<a href="<%= locations_featureditem_delete_url(:featured_item_id => fi.id, :location_id => fi.location_id) %>" data-rel="tooltip" class="tooltip-error" title="" data-placement="bottom" data-original-title="Delete Product">
-														<i class="icon-trash"></i>
+												</div>
+											</div>
+
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<% @featureditem = fi %>
+						<%= render 'products/productinfomodal' %>
+
+						<div class="col-xs-6">
+							<br/>
+							<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
+							<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
+								<p style="font-size:15px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
+							<% end %>
+							<% unless fi.price.blank? or fi.price == '' or fi.price == 0 %>
+								<p style="font-size:15px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
+							<% end %>
+							<% unless fi.size.blank? or fi.size == '' %>
+								<p style="font-size:15px;"><strong>Size: </strong><%= fi.size %></p>
+							<% end %>
+							<% unless fi.description.blank? or fi.description == '' %>
+								<p style="font-size:15px;">
+									<strong>Description:</strong><br/>
+									<%= fi.description.gsub(/\n/,'<br/>').html_safe %>
+								</p>
+							<% end %>
+
+						</div>
+
+					</div>
+
+				<% end %>
+
+				<% @missingproducts.times { %>
+
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="pull-right">
+								<ul class="ace-thumbnails">
+									<li>
+
+										<span>
+
+											<img src="/images/default/featureditem.png" style="max-height:100%; max-width:100%; display:block; margin:auto;"/>
+
+											<div class="text">
+												<div class="inner">
+
+													<span><p style="font-size:15px;">No Product</p></span>
+
+													<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add Featured Item">
+														<i class="icon-plus"></i>
 													</a>
 
-												<% end %>
-												
+												</div>
 											</div>
-										</div>
 
-									</span>
-								</li>
-							</ul>
+										</span>
+
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<br/>
+							<p style="font-size:24px;"><strong>No Product</strong></p>
 						</div>
 					</div>
 
-					<% @featureditem = fi %>
-					<%= render 'products/productinfomodal' %>
-
-					<div class="col-xs-6">
-						<br/>
-						<p style="font-size:24px;"><strong><%= fi.get_product.commonName %></strong></p>
-						<% unless fi.get_product.latinName.blank? or fi.get_product.latinName == '' %>
-							<p style="font-size:15px;"><strong>Latin Name: </strong><%= fi.get_product.latinName %></p>
-						<% end %>
-						<% unless fi.price.blank? or fi.price == '' or fi.price == 0 %>
-							<p style="font-size:15px;"><strong>Price: </strong><%= '$%8.2f' % fi.price %></p>
-						<% end %>
-						<% unless fi.size.blank? or fi.size == '' %>
-							<p style="font-size:15px;"><strong>Size: </strong><%= fi.size %></p>
-						<% end %>
-						<% unless fi.description.blank? or fi.description == '' %>
-							<p style="font-size:15px;">
-								<strong>Description:</strong><br/>
-								<%= fi.description.gsub(/\n/,'<br/>').html_safe %>
-							</p>
-						<% end %>
-
-					</div>
-
-				</div>
-
+				<% } %>
 			<% end %>
-
-			<% @missingproducts.times { %>
-
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="pull-right">
-							<ul class="ace-thumbnails">
-								<li>
-
-									<span>
-
-										<img src="/images/default/featureditem.png" style="max-height:100%; max-width:100%; display:block; margin:auto;"/>
-
-										<div class="text">
-											<div class="inner">
-
-												<span><p style="font-size:15px;">No Product</p></span>
-
-												<a href="<%= locations_edit_url(:id => @location.id, :products => true) %>" data-rel="tooltip" class="tooltip-success" title="" data-placement="bottom" data-original-title="Add Featured Item">
-													<i class="icon-plus"></i>
-												</a>
-
-											</div>
-										</div>
-
-									</span>
-
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="col-xs-6">
-						<br/>
-						<p style="font-size:24px;"><strong>No Product</strong></p>
-					</div>
-				</div>
-
-			<% } %>
 
 		</div>
 	</div>

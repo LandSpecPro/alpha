@@ -2,26 +2,59 @@
 
 	<% @userfollower = User.find(f.user_id) %>
 
-	<% if @userfollower.is_supplier
-			usertype = STRING_SUPPLIER
-		else
-			usertype = STRING_BUYER
-		end
-	%>
+	<% if @userfollower.is_supplier %>
 
-	<center>
-		<div class="btn btn-white btn-block btn-not-clickable">
-			<a style="font-size:18px;" data-rel="popover" title="<%= usertype + ' Info' %>" data-placement="top" data-trigger="hover click"
-					data-content="<strong>Email:</strong> <%= User.find(f.user_id).email %>">
-				<% if not @userfollower.user_detail.company_name.blank? %>
-					<%= @userfollower.user_detail.company_name %>
-				<% else %>
-					<%= @userfollower.user_detail.first_name + " " + @userfollower.user_detail.last_name %>
+		<center>
+			<div class="btn btn-white btn-block">
+				<a style="font-size:18px;" data-rel="popover" title="Supplier Info" data-placement="top" data-trigger="hover click"
+						data-content="<center><strong>Email:</strong> <%= @userfollower.email %><br/><small>Click to View Profile</small></center>" href="<%= locations_view_url(:id => f.location_id) %>">
+					<% if not @userfollower.user_detail.company_name.blank? %>
+						<%= @userfollower.user_detail.company_name %>
+					<% else %>
+						<%= @userfollower.user_detail.first_name + " " + @userfollower.user_detail.last_name %>
+					<% end %>
+				</a>
+			</div>
+		</center>
+
+		<br/>
+
+	<% end %>
+
+<% end %>
+
+<% @followers.each do |f| %>
+
+	<% @userfollower = User.find(f.user_id) %>
+
+	<% if @userfollower.is_buyer %>
+
+		<center>
+			<div class="btn btn-white btn-block">
+				<span style="font-size:18px;" data-rel="popover" title="Buyer Info" data-placement="top" data-trigger="hover click"
+						data-content="<strong>Email:</strong> <%= @userfollower.email %>">
+					<% if not @userfollower.user_detail.company_name.blank? %>
+						<%= @userfollower.user_detail.company_name %>
+					<% else %>
+						<%= @userfollower.user_detail.first_name + " " + @userfollower.user_detail.last_name %>
+					<% end %>
+				</span>
+				<% if not @userfollower.user_detail.company_name.blank? and not @userfollower.user_detail.first_name.blank? %>
+					<br/>
+					<small>
+						<%= @userfollower.user_detail.first_name %>
+						<% if not @userfollower.user_detail.last_name.blank? %>
+							<%= " " + @userfollower.user_detail.last_name %>
+						<% end %>
+					</small>
 				<% end %>
-			</a>
-		</div>
-	</center>
+			</div>
+		</center>
 
-	<br/>
+		<br/>
+
+	<% end %>
+
+	
 
 <% end %>

@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <!--
 	Notes on public profiles
 	- public_url_active is used for allowing other people to view the profile. If this is false no one can view it, and the button won't show up. this should default to true and set to true initially if not already set. This still requires that the actual location be active. At least when trying to view the public profile the location must be active.
@@ -42,9 +43,15 @@
 									<!-- Update Button -->
 									<tr>
 										<td colspan="2">
-											<a class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
-												<i class="icon-save" id="update_public_settings"></i> Save Changes
-											</a>
+											<% if current_user.id == 999 %>
+												<a disabled="disabled" class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+													<i class="icon-save" id="update_public_settings"></i> Save Changes
+												</a>
+											<% else %>
+												<a class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+													<i class="icon-save" id="update_public_settings"></i> Save Changes
+												</a>
+											<% end %>
 										</td>
 									</td>
 
@@ -312,9 +319,15 @@
 									<!-- Update Button -->
 									<tr>
 										<td colspan="2">
-											<a class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
-												<i class="icon-save" id="update_public_settings"></i> Save Changes
-											</a>
+											<% if current_user.id == 999 %>
+												<a disabled="disabled" class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+													<i class="icon-save" id="update_public_settings"></i> Save Changes
+												</a>
+											<% else %>
+												<a class="btn btn-success btn-sm btn-block"  href="javascript:{return true;}" onclick="sumbitProfileSettingsForm();">
+													<i class="icon-save" id="update_public_settings"></i> Save Changes
+												</a>
+											<% end %>
 										</td>
 									</td>
 
@@ -335,7 +348,11 @@
 
 			<% if @location.public_url_active %>
 
-				<a class="btn btn-sm btn-primary btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">De-Activate Public Profile</a>
+				<% if current_user.id == 999 %>
+					<a disabled="disabled" class="btn btn-sm btn-primary btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">De-Activate Public Profile</a>
+				<% else %>
+					<a class="btn btn-sm btn-primary btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_activate_warning_popover' %>" data-container="body">De-Activate Public Profile</a>
+				<% end %>
 
 			<% else %>
 
@@ -346,83 +363,88 @@
 
 	</div>
 
-	<div class="col-lg-4 col-lg-offset-1">
+	<% if current_user.id == 999 %>
+	<% else %>
 
-		<%= form_for @location, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
+		<div class="col-lg-4 col-lg-offset-1">
 
-			<%= hidden_field_tag(:id,  @location.id) %>
+			<%= form_for @location, :url => {:action => :set_public_url, :controller => :locations}, :html => {:id => 'form_set_public_url'}, :class => 'form-inline' do |f| %>
 
-			<div class="widget-box transparent">
-				<div class="widget-header widget-header-flat">
-					<h4 class="lighter">
-						<i class="icon-cogs"></i>
-						Public Profile URL
-					</h4>
-				</div>
+				<%= hidden_field_tag(:id,  @location.id) %>
 
-				<div class="widget-body">
-					<div class="widget-main no-padding">
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-flat">
+						<h4 class="lighter">
+							<i class="icon-cogs"></i>
+							Public Profile URL
+						</h4>
+					</div>
 
-						<div class="center">
+					<div class="widget-body">
+						<div class="widget-main no-padding">
 
-							<!-- Display error messages as alerts -->
-							<% @location.errors.each do |field, msg| %>
-								<div class="row-fluid">
-									<div class="span10 offset1">
-										<div class="alert alert-danger center">
-										  <strong>Error! </strong> <%= msg %>
+							<div class="center">
+
+								<!-- Display error messages as alerts -->
+								<% @location.errors.each do |field, msg| %>
+									<div class="row-fluid">
+										<div class="span10 offset1">
+											<div class="alert alert-danger center">
+											  <strong>Error! </strong> <%= msg %>
+											</div>
 										</div>
 									</div>
-								</div>
-							<% end %>
-							<% if params[:url_blank] %>
-								<div class="row-fluid">
-									<div class="span10 offset1">
-										<div class="alert alert-danger center">
-											<strong>Error! </strong> Unique URL is required.
+								<% end %>
+								<% if params[:url_blank] %>
+									<div class="row-fluid">
+										<div class="span10 offset1">
+											<div class="alert alert-danger center">
+												<strong>Error! </strong> Unique URL is required.
+											</div>
 										</div>
 									</div>
-								</div>
-							<% end %>
+								<% end %>
 
-							<table class="table">
-								
-								<thead>
-									<tr>
-										<th colspan="2" class="center">
-											<a href="http://www.landspecpro.com/<%= @location.public_url %>" target="_blank">
-												<strong id="url_preview" style="font-size:15px;">www.landspecpro.com/<%= @location.public_url %></strong>
-											</a>
-										</th>
-									</tr>
-								</thead>
+								<table class="table">
+									
+									<thead>
+										<tr>
+											<th colspan="2" class="center">
+												<a href="http://www.landspecpro.com/<%= @location.public_url %>" target="_blank">
+													<strong id="url_preview" style="font-size:15px;">www.landspecpro.com/<%= @location.public_url %></strong>
+												</a>
+											</th>
+										</tr>
+									</thead>
 
-								<tbody>
-									<tr>
-										<td>
-											<% @location.public_url = '' %>
-											<%= f.text_field :public_url, :class => 'form-control center loc_profile_url_field', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
-										</td>
-										<td>
-											<a class="btn btn-success btn-sm btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_warning_popover' %>" data-container="body">
-												<i class="icon-save" id=""></i> Update
-											</a>
-										</td>
-									</tr>
-								</tbody>
+									<tbody>
+										<tr>
+											<td>
+												<% @location.public_url = '' %>
+												<%= f.text_field :public_url, :class => 'form-control center loc_profile_url_field', :id => 'public_url', :placeholder => 'Unique Public URL', :onkeyup => "updatePreviewURL();" %>
+											</td>
+											<td>
+												<a class="btn btn-success btn-sm btn-block" data-rel="popover" data-placement="bottom" data-trigger="click" data-content="<%= render 'locations/layouts_edit/url_warning_popover' %>" data-container="body">
+													<i class="icon-save" id=""></i> Update
+												</a>
+											</td>
+										</tr>
+									</tbody>
 
-							</table>
+								</table>
+
+							</div>
 
 						</div>
-
 					</div>
+
 				</div>
 
-			</div>
+			<% end %>
+			
+		</div>
 
-		<% end %>
-		
-	</div>
+	<% end %>
 
 <% end %>
 

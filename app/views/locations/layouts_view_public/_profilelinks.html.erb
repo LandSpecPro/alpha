@@ -1,3 +1,4 @@
+<!-- GUESTCODE -->
 <!-- IF ALL ITEMS IN THIS SECTION ARE BLANK DO NOT SHOW IT AT ALL -->
 
 
@@ -28,16 +29,18 @@
 <% end %>
 
 			<% if current_user %>
-				<% if Follow.is_user_following(current_user.id, @location.id) %>
-					<a class="btn btn-link tooltip-info" href="<%= follower_delete_url(:location_id => @location.id) %>" title="" data-original-title="Un-follow" data-placement="bottom">
-						<i class="icon-minus"></i>
-						Un-follow
-					</a>
-				<% else %>
-					<a class="btn btn-link tooltip-info" href="<%= follower_create_url(:location_id => @location.id) %>" title="" data-original-title="Follow this location" data-placement="bottom">
-						<i class="icon-plus"></i>
-						Follow
-					</a>
+				<% if current_user.id != 999 %>
+					<% if Follow.is_user_following(current_user.id, @location.id) %>
+						<a class="btn btn-link tooltip-info" href="<%= follower_delete_url(:location_id => @location.id) %>" title="" data-original-title="Un-follow" data-placement="bottom">
+							<i class="icon-minus"></i>
+							Un-follow
+						</a>
+					<% else %>
+						<a class="btn btn-link tooltip-info" href="<%= follower_create_url(:location_id => @location.id) %>" title="" data-original-title="Follow this location" data-placement="bottom">
+							<i class="icon-plus"></i>
+							Follow
+						</a>
+					<% end %>
 				<% end %>
 			<% else %>
 				<a class="btn btn-link tooltip-info" href="<%= follower_create_url(:location_id => @location.id) %>" title="" data-original-title="Follow this location" data-placement="bottom">

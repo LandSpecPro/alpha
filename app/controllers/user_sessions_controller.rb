@@ -46,4 +46,20 @@ class UserSessionsController < ApplicationController
 
   end
 
+  def supplier_guest_login
+    if current_user
+      redirect_to supplier_guest_error_url(:already_logged_in => true)
+    end
+  end
+
+  def login_guest_supplier
+    @usersession = UserSession.new(User.find(999))
+    @usersession.save
+    redirect_to main_url
+  end
+
+  def supplier_guest_error
+
+  end
+
 end
