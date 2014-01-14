@@ -21,12 +21,12 @@
 						<div class="alert alert-danger center">
 						  <strong>Error! </strong> <%= msg %>
 						</div>
-					<% end %>
+					<% end %>					
 
-					<fieldset>
+					<div class="row">
+						<div class="col-xs-6">
 
-						<div class="row">
-							<div class="col-xs-6">
+							<fieldset>
 
 								<% if current_user.user_detail.locations.count > 0 %>
 									<div class="form-group">
@@ -192,10 +192,10 @@
 									</div>
 								</div>
 
-							</div>	
-						</div>
+							</fieldset>
 
-					</fieldset>
+						</div>	
+					</div>
 
 				</div>
 

@@ -55,7 +55,7 @@ Location.create(
 
 Category.create([
 
-	#TOPLEVEL
+	#TOP LEVEL
 	{ id: 1, cat_name: 'Plants'},
 	{ id: 2, cat_name: 'Materials'},
 	{ id: 3, cat_name: 'Supplier Types'},
@@ -85,7 +85,7 @@ Category.create([
 	{ id: 121, parent_id: 1, hierarchy_level: 2, cat_name: 'Balled and Burlapped'},
 	{ id: 122, parent_id: 1, hierarchy_level: 2, cat_name: 'Plant Liners'},
 	{ id: 123, parent_id: 1, hierarchy_level: 2, cat_name: 'Container Stock'},
-   { id: 124, parent_id: 1, hierarchy_level: 2, cat_name: 'Groundcovers'},
+    { id: 124, parent_id: 1, hierarchy_level: 2, cat_name: 'Groundcovers'},
 
 	{ id: 125, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Trees'},
 	{ id: 126, parent_id: 1, hierarchy_level: 2, cat_name: 'Fruit Shrubs'},
@@ -146,9 +146,9 @@ Category.create([
 
 	{ id: 249, parent_id: 2, hierarchy_level: 2, cat_name: 'Outdoor Lighting and Supplies'},
 	{ id: 250, parent_id: 2, hierarchy_level: 2, cat_name: 'Chemicals'},
-	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'}
+	{ id: 251, parent_id: 2, hierarchy_level: 2, cat_name: 'Golf Course Irrigation Supplies'},
 
-   #SUPPLIER TYPE
+    #SUPPLIER TYPE
 	{ id: 500, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Grower'},
 	{ id: 501, parent_id: 3, hierarchy_level: 2, cat_name: 'Stone Center'},
 	{ id: 502, parent_id: 3, hierarchy_level: 2, cat_name: 'Wholesale Nursery'},
