@@ -11,8 +11,6 @@ LspAlpha::Application.routes.draw do
     resources :bus_vendors
     resources :bus_buyers
     resources :search_logs
-    resources :fav_locations
-    resources :fav_products
   end
   resources :locations, :except => ['show'] do
     get :autocomplete_products_commonName, :on => :collection
