@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
   before_filter :require_business_featured_item_matches, :only => [:delete_featureditem, :confirm_delete_featureditem]
   before_filter :require_location_active_unless_owner, :only => [:view]
 
-  before_filter :require_buyer_has_first_and_last_name
+  before_filter :require_buyer_has_first_and_last_name, :except => [:view_public, :inventory_view]
 
   def view_public
 
