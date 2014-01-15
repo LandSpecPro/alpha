@@ -15,10 +15,6 @@
 		<% end %>
 		<a href="<%= locations_view_url(:id => params[:id]) %>">View Location</a>
 
-	<!-- Add New Location -->
-	<% elsif @cont == 'locations' and @act == 'new' and current_user.is_supplier %>
-		<a href="<%= session[:return_to] %>">Cancel</a>
-
 	<!-- Manage Locations -->
 	<% elsif @cont == 'locations' and @act == 'manage' and current_user.is_supplier %>
 		<% if current_user.id != 999 %>
