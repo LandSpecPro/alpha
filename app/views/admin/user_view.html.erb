@@ -115,7 +115,11 @@
 
                             <tr>
                                 <td colspan="2" class="center">
-                                    <strong>General Location: </strong> <%= @userdetail.city + ", " + @userdetail.state + " " + @userdetail.zip %>
+                                    <strong>General Location: </strong>
+                                    <% if not @userdetail.city.blank? %>
+                                        <%= @userdetail.city + ", " %>
+                                    <% end %>
+                                    <%= @userdetail.state %>&nbsp;<%= @userdetail.zip %>
                                 </td>
                             </tr>
 

@@ -102,7 +102,7 @@
                             <% unless buyer.user_detail.company_name.blank? %>
                                 <td class="center"><%= buyer.user_detail.company_name %></td>
                             <% else %>
-                                <td class="center"></td>
+                                <td class="center"><%= buyer.first_name %>&nbsp;<%= buyer.last_name %></td>
                             <% end %>
                             <td class="center"><%= format_datetime_or_return_blank(buyer.created_at, nil) %></td>
                             <td class="center">
