@@ -19,6 +19,3 @@
 
 # Ignore database configurations
 /config/database.yml
-
-# Ignore database schema as it will be re-created on any migrations
-/db/schema.rb
