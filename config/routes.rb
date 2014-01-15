@@ -139,6 +139,7 @@ LspAlpha::Application.routes.draw do
   match "oops" => 'home#oops'
   match "products/browse/all" => 'products#browseall'
   match ":public_url" => "locations#view_public"
+  match "profiles/:public_url" => "locations#view_public"
 
   # TODO: DELETE THESE
   match "supplier/new" => 'bus_vendors#new'
