@@ -11,8 +11,6 @@ LspAlpha::Application.routes.draw do
     resources :bus_vendors
     resources :bus_buyers
     resources :search_logs
-    resources :fav_locations
-    resources :fav_products
   end
   resources :locations, :except => ['show'] do
     get :autocomplete_products_commonName, :on => :collection
@@ -157,6 +155,7 @@ LspAlpha::Application.routes.draw do
   match 'admin/location/activate' => 'admin#location_activate'
   match 'admin/location/deactivate' => 'admin#location_deactivate'
   match "admin/dashboard_main" => 'admin#main'
+  match "admin/signinas" => 'admin#sign_in_as_user'
   get "admin/dashboard_weekly"
   get "admin/dashboard_email"
   get "admin/user_view"

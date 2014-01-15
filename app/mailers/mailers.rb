@@ -21,7 +21,7 @@ class Mailers < ActionMailer::Base
   def verify_email_address_email(email, token)
     @email = email
     @token = token
-    mail(:to => @email, :subject => "LandSpec Pro - Verify Your Email Address")
+    mail(:to => @email, :subject => "LandSpec Pro - Complete Your Registration")
   end
 
   def new_user_activation_email(user)

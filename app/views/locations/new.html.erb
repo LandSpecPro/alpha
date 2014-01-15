@@ -1,14 +1,35 @@
+<!-- GUESTCODE -->
 <%- title "Add New Location | LandSpec Pro" %>
 <%= render 'layouts/sidebar' %>
 
 <div class="row">
+
+	<div class="col-lg-5">
+
+		<div class="center">
+			<h2>Adding a new location</h2>
+		</div>
+
+		<p>Your business location is the primary way that buyers can see who and where you are. After adding this information you will be able to start showcasing featured items for this location.</p>
+
+		<p>If this is your first location, you are not required to add a location name, the name of your company will be used instead. For any additional locations you add you will need to provide a store name (or number) that is visible to other users that will help identify each of your locations from each other.</p>
+
+		<p>All of this information can be updated later, and you'll have time to view and update your location profile before it goes live for other users to see. The more information you provide, the better your profile will look, and the easier it will be for landscapers to find and get in contact with you.</p>
+
+		<p>If you have any questions or feedback feel free to email <a href="mailto:tech@landspecpro.com">tech@landspecpro.com</a>.</p>
+
+	</div>
+
 	<div class="col-lg-6 col-md-12">
 		<%= form_for @location, :html => {:id => 'form_add_new_location'} do |f| %>
 		<div class="widget-box">
 			<div class="widget-header header-color-green2">
 				<h5 class="bigger lighter"><i class="icon-globe"></i> New Location for <%= current_user.user_detail.company_name %></h5>
 				<div class="widget-toolbar">
-					<a href="javascript:{return true;}" onclick="document.getElementById('form_add_new_location').submit();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
+					<% if current_user.id == 999 %>
+					<% else %>
+						<a href="javascript:{return true;}" onclick="submitNewLocationForm();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
+					<% end %>
 				</div>
 			</div>
 
@@ -21,12 +42,12 @@
 						<div class="alert alert-danger center">
 						  <strong>Error! </strong> <%= msg %>
 						</div>
-					<% end %>
+					<% end %>					
 
-					<fieldset>
+					<div class="row">
+						<div class="col-xs-6">
 
-						<div class="row">
-							<div class="col-xs-6">
+							<fieldset>
 
 								<% if current_user.user_detail.locations.count > 0 %>
 									<div class="form-group">
@@ -188,36 +209,24 @@
 								<div class="row">
 									<div class="col-xs-12">
 										&nbsp;
-										<button type='submit' class="btn btn-sm btn-success btn-block">Save</button>
+										<% if current_user.id == 999 %>
+											<button disabled="disabled" type='submit' class="btn btn-sm btn-success btn-block">Save</button>
+										<% else %>
+											<button type='submit' class="btn btn-sm btn-success btn-block">Save</button>
+										<% end %>
 									</div>
 								</div>
 
-							</div>	
-						</div>
+							</fieldset>
 
-					</fieldset>
+						</div>	
+					</div>
 
 				</div>
 
 			</div>
 
 		</div>
-
-	</div>
-
-	<div class="col-lg-5">
-
-		<div class="center">
-			<h2>Adding a new location</h2>
-		</div>
-
-		<p>Your business location is the primary way that buyers can see who and where you are. After adding this information you will be able to start showcasing featured items for this location.</p>
-
-		<p>If this is your first location, you are not required to add a location name, the name of your company will be used instead. For any additional locations you add you will need to provide a store name (or number) that is visible to other users that will help identify each of your locations from each other.</p>
-
-		<p>All of this information can be updated later, and you'll have time to view and update your location profile before it goes live for other users to see. The more information you provide, the better your profile will look, and the easier it will be for landscapers to find and get in contact with you.</p>
-
-		<p>If you have any questions or feedback feel free to email <a href="mailto:tech@landspecpro.com">tech@landspecpro.com</a>.</p>
 
 	</div>
 
@@ -236,5 +245,9 @@
 	<% if params[:location_required] %>
 		$(showWarningMessageGritter('You need to add location information before you can access most features of LandSpec Pro.'));
 	<% end %>
+
+	function submitNewLocationFormm(){
+		document.getElementById('form_add_new_location').submit();
+	}
 
 </script>

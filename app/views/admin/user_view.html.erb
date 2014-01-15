@@ -27,6 +27,10 @@
                                     <div class="badge badge-important">User Has NOT Verified Email</div>
                                 <% end %>
 
+                                <br/><br/>
+
+                                <a href="<%= admin_signinas_url(:id => @user.id) %>" class="btn btn-xs btn-inverse">Click to Sign In as User</a>
+
                             </th>
                         </tr>
 
@@ -102,7 +106,7 @@
 
                             <tr>
                                 <td class="center">
-                                    <strong>Name: </strong> <%= @userdetail.first_name + " " + @userdetail.last_name %>
+                                    <strong>Name: </strong> <%= @userdetail.first_name %>&nbsp;<%= @userdetail.last_name %>
                                 </td>
                                 <td class="center">
                                     <strong>Phone Number: </strong> <%= @userdetail.phone_number %>
@@ -111,7 +115,11 @@
 
                             <tr>
                                 <td colspan="2" class="center">
-                                    <strong>General Location: </strong> <%= @userdetail.city + ", " + @userdetail.state + " " + @userdetail.zip %>
+                                    <strong>General Location: </strong>
+                                    <% if not @userdetail.city.blank? %>
+                                        <%= @userdetail.city + ", " %>
+                                    <% end %>
+                                    <%= @userdetail.state %>&nbsp;<%= @userdetail.zip %>
                                 </td>
                             </tr>
 

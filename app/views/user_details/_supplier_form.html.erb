@@ -15,9 +15,9 @@
 			<label for="first_name"><strong>*Company Name/Institution</strong></label>
 			<span class="block input-icon input-icon-right">
 				<% if current_user.id == 999 %>
-					<%= f.text_field :company_name, :class => 'form-control', :readonly => true %>
+					<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Required", :readonly => true %>
 				<% else %>
-					<%= f.text_field :company_name, :class => 'form-control' %>
+					<%= f.text_field :company_name, :class => 'form-control', :placeholder => "Required" %>
 				<% end %>
 				<i class="icon-briefcase"></i>
 			</span>
@@ -41,9 +41,9 @@
 			<label for="first_name">First Name</label>
 			<span class="block input-icon input-icon-right">
 				<% if current_user.id == 999 %>
-					<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required", :readonly => true %>
+					<%= f.text_field :first_name, :class => 'form-control', :readonly => true %>
 				<% else %>
-					<%= f.text_field :first_name, :class => 'form-control', :placeholder => "Required" %>
+					<%= f.text_field :first_name, :class => 'form-control' %>
 				<% end %>
 			</span>
 		</div>
@@ -53,9 +53,9 @@
 			<label for="last_name">Last Name</label>
 			<span class="block input-icon input-icon-right">
 				<% if current_user.id == 999 %>
-					<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required", :readonly => true %>
+					<%= f.text_field :last_name, :class => 'form-control', :readonly => true %>
 				<% else %>
-					<%= f.text_field :last_name, :class => 'form-control', :placeholder => "Required" %>
+					<%= f.text_field :last_name, :class => 'form-control' %>
 				<% end %>
 			</span>
 		</div>

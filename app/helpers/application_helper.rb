@@ -305,8 +305,6 @@ module ApplicationHelper
 			return "Delete Featured Item Confirmation"
 		elsif @controller == 'locations' and @action == 'view'
 			return @location.busName
-		elsif @controller == 'locations' and @action == 'new'
-			return "Location Information"
 		elsif @controller == 'locations' and @action == 'manage'
 			return "Locations"
 		elsif @controller == 'locations'
