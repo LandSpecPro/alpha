@@ -6,52 +6,52 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(
-	id: 999,
-	login: 'guest_supplier',
-	email: 'tech@landspecpro.com',
-	userType: 'Supplier',
-	password: 'landspecpro',
-	active: true,
-	verified: true,
-	is_email_verified: true
-)
+#User.create(
+#	id: 999,
+#	login: 'guest_supplier',
+#	email: 'tech@landspecpro.com',
+#	userType: 'Supplier',
+#	password: 'landspecpro',
+#	active: true,
+#	verified: true,
+#	is_email_verified: true
+#)
 
-UserDetail.create(
-	id: 999,
-	user_id: 999,
-	first_name: 'John',
-	last_name: 'Doe',
-	company_name: 'My Company Name',
-	phone_number: '(404) 919-5778',
-	user_type: 'Supplier',
-	user_category: 'Wholesale Grower',
-	city: 'Atlanta',
-	state: 'GA',
-	zip: '30309'
-)
+#UserDetail.create(
+#	id: 999,
+#	user_id: 999,
+#	first_name: 'John',
+#	last_name: 'Doe',
+#	company_name: 'My Company Name',
+#	phone_number: '(404) 919-5778',
+#	user_type: 'Supplier',
+#	user_category: 'Wholesale Grower',
+#	city: 'Atlanta',
+#	state: 'GA',
+#	zip: '30309'
+#)
 
-Location.create(
-	id: 999,
-	primaryPhone: '(404) 919-5778',
-	address1: '828 West Peachtree St. NW',
-	city: 'Atlanta',
-	state: 'GA',
-	zip: '30308',
-	primaryEmail: 'tech@landspecpro.com',
-	websiteLink: 'http://www.landspecpro.com',
-	facebookLink: 'http://www.facebook.com/landspecpro',
-	twitterLink: 'http://www.twitter.com/landspecpro',
-	active: false,
-	verified: true,
-	public_url: 'guest_supplier',
-	public_url_active: true,
-	url_is_custom: true,
-	busName: 'My Company Name',
-	user_detail_id: 999,
-	claimed: true,
-	bio: 'This is a guest account that you can use to preview LandSpec Pro. This is normally where your company bio/about information would go. We have disabled all updating of this account because it is shared by multiple users, but feel free to play around and explore the site. When you are ready to register just click the logout link from the dropdown menu at the top of the page and you should find the register button on the home page. We hope you enjoy LandSpec Pro and hope for you to become a real member soon.'
-)
+#Location.create(
+#	id: 999,
+#	primaryPhone: '(404) 919-5778',
+#	address1: '828 West Peachtree St. NW',
+#	city: 'Atlanta',
+#	state: 'GA',
+#	zip: '30308',
+#	primaryEmail: 'tech@landspecpro.com',
+#	websiteLink: 'http://www.landspecpro.com',
+#	facebookLink: 'http://www.facebook.com/landspecpro',
+#	twitterLink: 'http://www.twitter.com/landspecpro',
+#	active: false,
+#	verified: true,
+#	public_url: 'guest_supplier',
+#	public_url_active: true,
+#	url_is_custom: true,
+#	busName: 'My Company Name',
+#	user_detail_id: 999,
+#	claimed: true,
+#	bio: 'This is a guest account that you can use to preview LandSpec Pro. This is normally where your company bio/about information would go. We have disabled all updating of this account because it is shared by multiple users, but feel free to play around and explore the site. When you are ready to register just click the logout link from the dropdown menu at the top of the page and you should find the register button on the home page. We hope you enjoy LandSpec Pro and hope for you to become a real member soon.'
+#)
 
 Category.create([
 
