@@ -85,4 +85,11 @@ class AdminController < ApplicationController
         redirect_to admin_user_view_url(:id => params[:user_id])
     end
 
+    def sign_in_as_user
+      current_user_session.destroy
+      @usersession = UserSession.new(User.find(params[:id]))
+      @usersession.save
+      redirect_to main_url
+    end
+
 end
