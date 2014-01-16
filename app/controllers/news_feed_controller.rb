@@ -1,6 +1,5 @@
 class NewsFeedController < ApplicationController
 
-	include BusVendorsHelper
 	include ApplicationHelper
 
 	before_filter :require_user

@@ -12,14 +12,13 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @invitecode = ''
   end
   
   def create
 
     @user = User.new(params[:user])
 
-    # Check invite code and agreement to terms and conditions
+    # Check agreement to terms and conditions
     @missingterms = is_missing_terms(params[:terms])
     @confirmemail = is_confirm_email_wrong(@user.email, params[:email_confirmation])
 

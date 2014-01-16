@@ -80,17 +80,17 @@ module LocationHelper
         @weight = @weight + 5
       end
 
-      #unless BusVendor.find(location.bus_vendor_id).tagline.blank?
-      #  @weight = @weight + 5
-      #end
+      unless UserDetail.find(location.user_detail_id).tagline.blank?
+        @weight = @weight + 5
+      end
 
       unless location.bio.blank?
         @weight = @weight + 8
       end
 
-      #unless BusVendor.find(location.bus_vendor_id).logo_file_name.blank?
-      #  @weight = @weight + 12
-      #end
+      unless UserDetail.find(location.user_detail_id).logo_file_name.blank?
+        @weight = @weight + 12
+      end
 
       unless FeaturedItem.where(:location_id => location.id).count == 0
         @weight = @weight + 15
