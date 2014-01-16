@@ -60,6 +60,7 @@ LspAlpha::Application.routes.draw do
   match "user/email/verify" => "users#verify_email"
   match "user/create/validate" => "users#validation_sent"
   match "user/email/sendverification" => "users#send_validation_request"
+  match "user/email/verify/error" => "users#validation_error"
   
   # Routes for Invites and Claiming accounts
   match "invite/create" => 'users#create_invite'

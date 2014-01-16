@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       if params[:token]
         @user = User.find_using_perishable_token(params[:token])
         if not @user
-          redirect_to oops_url(:err_code => 19)
+          redirect_to user_email_verify_error_url
           return
         else
           @user.is_email_verified = true
@@ -97,6 +97,9 @@ class UsersController < ApplicationController
         @user = current_user
       end
     end
+  end
+
+  def validation_error
   end
 
   def validation_request
