@@ -1,6 +1,7 @@
 class NewsFeedController < ApplicationController
 
 	include ApplicationHelper
+	include LocationHelper
 
 	before_filter :require_user
   	before_filter :require_user_email_validated

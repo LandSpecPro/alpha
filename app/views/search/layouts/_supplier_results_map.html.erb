@@ -19,7 +19,7 @@
 
   <div class="widget-header header-color-green2">
     <% if params[:query].blank? %>
-      <h5 class="lighter"><%= Location.geocoded.count %> Locations being displayed</h5>
+      <h5 class="lighter"><%= Location.geocoded.where(:active => true).count %> Locations being displayed</h5>
     <% else %>
       <h5 class="lighter"><%= params[:result_count] %> Locations for <%= params[:query] %></h5>
     <% end %>

@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   include ProductHelper
   include AnalyticsHelper
   include NewsFeedHelper
+  include LocationHelper
 
   before_filter :require_user, :only => [:edit, :new, :create]
   before_filter :require_user_email_validated, :only => [:edit, :new, :create]

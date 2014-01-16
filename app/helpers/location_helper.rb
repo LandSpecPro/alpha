@@ -51,6 +51,30 @@ module LocationHelper
 
     end
 
+    def get_static_map_from_address(address)
+      staticmap = "http://maps.googleapis.com/maps/api/staticmap?markers=" + address + "&size=750x200&maptype=roadmap&sensor=false&key={AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI}"
+      return staticmap
+    end
+
+    def get_static_map_custom(address, width, height)
+      staticmap = "http://maps.googleapis.com/maps/api/staticmap?markers=" + address + "&size=" + width + "x" + height + "&maptype=roadmap&sensor=false&key=AIzaSyBGSTtn0qJVuX30ZLet1Q39O-bVg4soYZI"
+      return staticmap
+    end
+
+    def get_map_link_from_address(address)
+      maplink = "http://maps.google.com/?q=" + address + " "
+      return maplink
+    end
+
+    def concat_address(loc)
+      unless loc.address2.blank?
+        address = loc.address1 + " " + loc.address2 + " " + loc.city + " " + loc.state + " " + loc.zip
+      else
+        address = loc.address1 + " " + loc.city + " " + loc.state + " " + loc.zip
+      end
+      return address
+    end
+
     def update_weight_rank(location)
 
       # 5 points for tagline, each link, and email

@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
 
 	include SearchHelper
+	include LocationHelper
 
 	before_filter :require_user
   	before_filter :require_user_email_validated
