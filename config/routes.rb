@@ -5,11 +5,8 @@ LspAlpha::Application.routes.draw do
 
   # Resources
   resources :user_sessions
-  resources :invites
   resources :user_details
   resources :users do
-    resources :bus_vendors
-    resources :bus_buyers
     resources :search_logs
   end
   resources :locations, :except => ['show'] do
@@ -61,18 +58,6 @@ LspAlpha::Application.routes.draw do
   match "user/create/validate" => "users#validation_sent"
   match "user/email/sendverification" => "users#send_validation_request"
   match "user/email/verify/error" => "users#validation_error"
-  
-  # Routes for Invites and Claiming accounts
-  match "invite/create" => 'users#create_invite'
-  match "invite/success" => 'users#invite_confirm'
-  match "invite/register" => "users#new"
-  match "account/claim" => "users#temp_claim_account"
-  match "profile/claim" => "users#claim_profile"
-  match "profile/claim/create" => "users#create_claimed_profile"
-  match "profile/claim/success" => "users#claim_profile_success"
-  match "profile/buyer/claim" => "users#claim_buyer_profile"
-  match "profile/buyer/claim/create" => "users#create_claimed_buyer_profile"
-  match "profile/buyer/claim/success" => "users#claim_buyer_profile_success"
   
   # Routes for Password Reset, Forgot, and Feedback
   match "feedback/success" => 'home#feedback_success'
@@ -141,10 +126,6 @@ LspAlpha::Application.routes.draw do
   match "products/browse/all" => 'products#browseall'
   match ":public_url" => "locations#view_public"
   match "profiles/:public_url" => "locations#view_public"
-
-  # TODO: DELETE THESE
-  match "supplier/new" => 'bus_vendors#new'
-  match "buyer/new" => 'bus_buyers#new'
 
   # Routes for Admin stuff
   match 'admin' => 'admin#main'

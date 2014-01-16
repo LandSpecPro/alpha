@@ -68,28 +68,6 @@
                     <td><center><strong>Total Active Locations</strong></center></td>
                     <td><center><%= Location.where(:active => true).count.to_s %></center></td>
                 </tr>
-                <tr>
-                    <td><center><strong>Total Locations Claimed</strong></center></td>
-                    <td><center><%= ClaimLocation.where(:claimed => true).count.to_s %></center></td>
-                </tr>
-                <tr>
-                    <td><center><strong>Total Locations UnClaimed</strong></center></td>
-                    <td><center><%= ClaimLocation.where(:claimed => false).count.to_s %></center></td>
-                </tr>
-            </tbody>
-            <thead>
-                <tr><th colspan="2"><strong>Claimed Buyers</strong></th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><center><strong>Total Buyer Profiles Claimed</strong></center></td>
-                    <td><center><%= ClaimBuyer.where(:claimed => true).count.to_s %></center></td>
-                </tr>
-                <tr>
-                    <td><center><strong>Total Buyer Profiles UnClaimed</strong></center></td>
-                    <td><center><%= ClaimBuyer.where(:claimed => false).count.to_s %></center></td>
-                </tr>
-                </tr>
             </tbody>
         </table>
 
@@ -329,9 +307,7 @@
         Products
         Images
         Categories
-        Claimed and Unclaimed
         Favorites
-        Invites and Invite Codes
         Newsletter Emails
         Search Logs!!!!!!!!!
         (payment, etc.? later)

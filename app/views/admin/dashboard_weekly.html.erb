@@ -14,7 +14,6 @@
                                 <th class="center">Products</th>
                                 <th class="center">Featured Items</th>
                                 <th class="center">Locations</th>
-                                <th class="center">Invite Requests</th>
                                 <th class="center">Newsletter Emails</th>
                         </tr>
                 </thead>
@@ -39,9 +38,6 @@
                                         </th>
                                         <th class="center">
                                                 <%= Location.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
-                                        </th>
-                                        <th class="center">
-                                                <%= Invite.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>
                                         </th>
                                         <th class="center">
                                                 <%= NewsletterEmail.where(:created_at => @countdate.beginning_of_day...(@countdate.end_of_day + 6.days)).count %>

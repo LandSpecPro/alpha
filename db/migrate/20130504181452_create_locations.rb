@@ -1,8 +1,6 @@
 class CreateLocations < ActiveRecord::Migration
   def change
     create_table :locations do |t|
-    	t.integer :bus_vendor_id, :null => false
-
     	t.string :locName, :null => false
     	t.integer :primaryPhone
     	t.integer :secondaryPhone

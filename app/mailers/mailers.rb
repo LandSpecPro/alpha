@@ -64,12 +64,6 @@ class Mailers < ActionMailer::Base
   	mail(:to => user.email, :subject => "LandSpec Pro - Password Reset")
   end
 
-  def invite_success_email(email, busName)
-  	@url = "http://www.landspecpro.com"
-  	@busName = busName
-  	mail(:to => email, :subject => "LandSpec Pro - Invitation Confirmation")
-  end
-
   def forgot_email(user, token)
     @username = user.login
     @email = user.email
@@ -83,25 +77,6 @@ class Mailers < ActionMailer::Base
     @subject = subject
     @message = message
     mail(:to => 'tech@landspecpro.com', :subject => "Contact - " + @reason + " - " + @email)
-  end
-
-  def admin_invite(email, busName, busType, userType, state)
-    @email = email
-    @busName = busName
-    @busType = busType
-    @userType = userType
-    @state = state
-    mail(:to => 'timwolfe@landspecpro.com', :subject => "New Invite Request - " + @busName)
-  end
-
-  def mass_buyer_claim_profile(login, email, busName, busPhone, claimToken)
-
-    @login = login
-    @email = email
-    @busName = busName
-    @claimToken = claimToken
-    mail(:to => @email, :subject => "Claim Your New Profile on LandSpec Pro!")
-
   end
 
 end

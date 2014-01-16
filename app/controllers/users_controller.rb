@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   before_filter :require_no_user, :only => [:new, :create]
   
-  before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :claim_profile_success, :help, :account, :validation_request]
+  before_filter :require_user, :only => [:show, :edit, :update, :password_reset, :help, :account, :validation_request]
   before_filter :require_user_email_validated, :only => [:account, :help]
   before_filter :require_user_email_not_validated, :only => [:validation_request]
   before_filter :require_user_details, :only => [:account, :help]

@@ -2,7 +2,6 @@ class AddMoreIndecesToLocationsAndFeaturedItems < ActiveRecord::Migration
   def up
 
   	add_index :locations, :id
-  	add_index :locations, :bus_vendor_id
   	add_index :locations, :active
   	add_index :locations, :busName
 
@@ -25,11 +24,6 @@ class AddMoreIndecesToLocationsAndFeaturedItems < ActiveRecord::Migration
   	add_index :category_to_locations, :category_id
   	add_index :category_to_locations, :location_id
 
-  	add_index :bus_vendors, :id
-  	add_index :bus_vendors, :user_id
-
-  	add_index :bus_buyers, :id
-
   	add_index :users, :id
   	add_index :users, :userType
 
@@ -43,7 +37,6 @@ class AddMoreIndecesToLocationsAndFeaturedItems < ActiveRecord::Migration
   def down
 
   	remove_index :locations, :id
-  	remove_index :locations, :bus_vendor_id
   	remove_index :locations, :active
   	remove_index :locations, :busName
 
@@ -65,11 +58,6 @@ class AddMoreIndecesToLocationsAndFeaturedItems < ActiveRecord::Migration
   	remove_index :category_to_locations, :id
   	remove_index :category_to_locations, :category_id
   	remove_index :category_to_locations, :location_id
-
-  	remove_index :bus_vendors, :id
-  	remove_index :bus_vendors, :user_id
-
-  	remove_index :bus_buyers, :id
 
   	remove_index :users, :id
   	remove_index :users, :userType
