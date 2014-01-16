@@ -122,7 +122,7 @@
 		<!-- LOGO -->
 		<div class="row">
 			<div class="col-xs-12">
-				<label for="logo">Logo</label>
+				<label for="logo">Logo <i>(optional)</i></label>
 				<div class="center">
 					<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
 						<img src="<%= @userdetail.logo.url(:medium) %>"  title="Logo" style="max-height:100%; max-width:100%; display:block; margin:auto;" />

@@ -112,7 +112,7 @@
 			<!-- ZIP -->
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<div class="form-group">
-					<label for="city">Zip></label>
+					<label for="city">Zip</label>
 					<span class="block input-icon input-icon-right">
 						<% if current_user.id == 998 %>
 							<%= f.text_field :zip, :class => 'form-control input-mask-zip', :readonly => true %>
@@ -126,22 +126,24 @@
 		</div>
 
 		<!-- LOGO -->
-		<div class="row">
-			<div class="col-xs-12">
-				<label for="logo">Logo</label>
-				<div class="center">
-					<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
-						<img src="<%= @userdetail.logo.url(:medium) %>"  title="Logo" style="max-height:100%; max-width:100%; display:block; margin:auto;" />
+		<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="logo">Logo <i>(optional)</i></label>
+					<div class="center">
+						<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
+							<img src="<%= @userdetail.logo.url(:medium) %>"  title="Logo" style="max-height:100%; max-width:100%; display:block; margin:auto;" />
+							<br/>
+						<% end %>
+						<% if current_user.id == 998 %>
+						<% else %>
+							<%= f.file_field :logo, :style => 'margin:auto;' %>
+						<% end %>
 						<br/>
-					<% end %>
-					<% if current_user.id == 998 %>
-					<% else %>
-						<%= f.file_field :logo, :style => 'margin:auto;' %>
-					<% end %>
-					<br/>
+					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
 
 		<!-- SUBMIT BUTTON -->
 		<div class="row">
