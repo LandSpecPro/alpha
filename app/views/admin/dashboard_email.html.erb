@@ -59,8 +59,12 @@
                                             <td class="center">
                                                     <a href="<%= admin_user_view_url(:id => supplier.id) %>"><%= supplier.login %></a>
                                             </td>
-                                            <% unless supplier.user_detail.company_name.blank? %>
+                                            <% unless supplier.user_detail.blank? %>
+                                                <% unless supplier.user_detail.company_name.blank? %>
                                                     <td class="center"><%= supplier.user_detail.company_name %></td>
+                                                <% else %>
+                                                    <td class="center"></td>
+                                                <% end %>
                                             <% else %>
                                                     <td class="center"></td>
                                             <% end %>
@@ -99,10 +103,14 @@
                             <td class="center">
                                 <a href="<%= admin_user_view_url(:id => buyer.id) %>"><%= buyer.login %></a>
                             </td>
-                            <% unless buyer.user_detail.company_name.blank? %>
-                                <td class="center"><%= buyer.user_detail.company_name %></td>
+                            <% unless buyer.user_detail.blank? %>
+                                <% unless buyer.user_detail.company_name.blank? %>
+                                    <td class="center"><%= buyer.user_detail.company_name %></td>
+                                <% else %>
+                                    <td class="center"><%= buyer.first_name %>&nbsp;<%= buyer.last_name %></td>
+                                <% end %>
                             <% else %>
-                                <td class="center"><%= buyer.first_name %>&nbsp;<%= buyer.last_name %></td>
+                                <td class="center"></td>
                             <% end %>
                             <td class="center"><%= format_datetime_or_return_blank(buyer.created_at, nil) %></td>
                             <td class="center">
