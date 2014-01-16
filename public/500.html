@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+  <title>Something went wrong (500)</title>
+  
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
 </head>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
+<body style="background-color:#2e893f;">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <center>
+
+          <img src="/images/logo_with_text.png" width="100%" style="margin-top:75px; margin-bottom:25px;" />
+
+          <div class="well">
+            <h1><strong>Something went wrong!</strong></h1>
+          </div>
+          <div class="well" style="margin-top:25px;">
+            <p style="font-size:18px;">You can use the links below to try to go back to where you were, go back to the home page, or email us and let us know what went wrong so we can try and fix it.</p>
+            <br/>
+            <a href="mailto:tech@landspecpro.com" class="btn btn-danger btn-block">Report Problem</a>
+            <small style="font-size:11px;">Email <a href="mailto:tech@landspecpro.com">tech@landspecpro.com</a> if the above link does not work.</small>
+            <br/><br/>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <a onclick="javascript:window.history.back();" class="btn btn-primary btn-block">Go Back</a>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <a href="http://www.landspecpro.com/home" class="btn btn-primary btn-block">Go Home</a>
+              </div>
+          </div>
+        </center>
+      </div>
+    </div>
   </div>
+
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </body>
 </html>

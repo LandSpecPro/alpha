@@ -22,6 +22,8 @@ LspAlpha::Application.routes.draw do
   resources :product_images
   resources :featured_items
 
+  match "404" => 'static#404'
+  
   # Routes for Guest Link
   match "supplier/guest/login" => 'user_sessions#supplier_guest_login'
   match "supplier/guest/error" => 'user_sessions#supplier_guest_error'

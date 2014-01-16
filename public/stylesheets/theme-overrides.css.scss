@@ -1,0 +1,142 @@
+
+html { height: 100% }
+body { height: 100%;  margin-bottom: -50px; overflow-y:auto; overflow-x:auto; background-color: white;}
+#result-map { height: 100%;}
+
+.row-fluid {
+	padding: 0 15px;
+}
+
+$navbar-blue: #2e6589;
+
+$brand-color: #2e893f;
+$brand-color-darken-five-percent: darken($brand-color, 5%);
+$brand-color-darken-ten-percent: darken($brand-color, 10%);
+$brand-color-lighten-five-percent: lighten($brand-color, 5%);
+$brand-color-lighten-ten-percent: lighten($brand-color, 10%);
+
+// RIGHT SIDE OF NAVBAR IF LOGGED IN
+#logged-in-dropdown{
+	background-color: $brand-color;
+}
+
+#navbar-btn-register:hover,
+#navbar-btn-login:hover{
+	background-color: $brand-color-darken-five-percent;
+}
+
+.infobox-custom{
+	background: $brand-color;
+}
+
+.infobox-custom:hover{
+	background-color: $brand-color-darken-five-percent;
+}
+
+.infobox-custom:active{
+	background-color: $brand-color-lighten-five-percent;
+}
+
+.green{
+	background-color: #22b14c;
+}
+.header-color-green{
+	//background: #22b14c;
+}
+
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#footer {
+   bottom:0;
+   width:100%;
+   height:auto;   /* Height of the footer */
+}
+
+
+/* FEEDBACK BUTTON IN FOOTER */
+#feedbackFooter{
+	visibility: visible;
+}
+
+@media (max-width: 767px) {
+	#feedbackFooter{
+		visibility:hidden;
+	}
+}
+
+
+/* GREENS */
+.btn-success{
+	background-color:#2e893f!important;
+	border-color:#2e893f;
+}
+
+.header-color-green2{
+	background-color:#2e893f!important;
+	border-color:#2e893f;
+}
+
+.green{
+	color:#2e893f!important;
+}
+
+.ace-nav>li.green{
+	background:#2e893f;
+}
+
+.badge-success,
+.label-success{
+	background-color:#2e893f!important;
+	border-color:#2e893f!important;
+}
+
+
+fieldset{
+	color:#000;
+}
+
+textarea, 
+input[type="text"], 
+input[type="password"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"], 
+input[type="number"], 
+input[type="email"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="color"]{
+	color: #202020;
+}
+
+.modal {
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+@media only screen and (max-width:400px){
+	.hidden-400{
+	display:none!important;
+	}
+}
+
+@media only screen and (max-width:767px){
+	.hidden-767 {
+		display:none!important;
+	}
+}
+
+a.anchorDestination{
+	position:relative;
+	top: -120px;
+	display: block;
+	height: 0;
+	width: 0;
+}

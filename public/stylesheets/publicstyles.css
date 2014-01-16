@@ -1,0 +1,64 @@
+<style>
+
+	#brand-image{
+		padding-right: 5px;
+		margin-left: -15px;
+	}
+	.navbar-brand{
+		padding-top:20px;
+		margin-top:12px;
+		margin-bottom:10px;
+	}
+
+	#brand-title{
+		color: #fff;
+		font-size: 25px;
+	}
+
+	#navbar-btn-register{
+		font-size:15px;
+		padding-top:30px;
+		background: #2e6589;
+	}
+
+	#navbar-btn-login{
+		font-size:15px;
+		padding-top:30px;
+	}
+
+	#logged-in-navbar{
+		 padding-top:10px;
+	}
+
+	.user-info{
+		text-align:left;
+
+	}
+
+	@media (max-width:767px){
+		
+		#navbar-btn-register{
+			padding-top:10px;
+		}
+
+		#navbar-btn-login{
+			padding-top:10px;
+		}
+
+		#login-register-container{
+			width: 100%;
+		}
+	}
+
+	@media (max-width:401px){
+		#logged-in-navbar{
+			 padding-top:0;
+		}
+		#navbar-btn-login{
+			min-width:0;
+		}
+		.user-info{
+			padding-top:5px;
+		}
+	}
+</style>
