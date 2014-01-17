@@ -213,7 +213,11 @@ class LocationsController < ApplicationController
         Mailers.new_location_activation_email(current_user, @location).deliver
       end
 
-      redirect_to locations_manage_url
+      if current_user.locations.count == 1
+        redirect_to locations_manage_url
+      else
+        redirect_to locations_manage_url
+      end
 
     else
       @user = current_user
