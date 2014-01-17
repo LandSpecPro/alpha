@@ -91,7 +91,8 @@
                     <tr>
                         <th class="center">Email</th>
                         <th class="center">Username</th>
-                        <th class="center">Business Name</th>
+                        <th class="center">Company Name</th>
+                        <th class="center">Full Name</th>
                         <th class="center">Created At</th>
                         <th class="center">Is Active?</th>
                     </tr>
@@ -107,11 +108,18 @@
                                 <% unless buyer.user_detail.company_name.blank? %>
                                     <td class="center"><%= buyer.user_detail.company_name %></td>
                                 <% else %>
-                                    <td class="center"><%= buyer.first_name %>&nbsp;<%= buyer.last_name %></td>
+                                    <td class="center"></td>
+                                <% end %>
+                                <% unless buyer.user_detail.first_name.blank? or buyer.user_detail.last_name.blank? %>
+                                    <td class="center"><%= buyer.user_detail.first_name %>&nbsp;<%= buyer.user_detail.last_name %></td>
+                                <% else %>
+                                    <td class="center"></td>
                                 <% end %>
                             <% else %>
                                 <td class="center"></td>
+                                <td class="center"></td>
                             <% end %>
+
                             <td class="center"><%= format_datetime_or_return_blank(buyer.created_at, nil) %></td>
                             <td class="center">
                                 <% if buyer.active %>
