@@ -214,7 +214,7 @@ class LocationsController < ApplicationController
       end
 
       if current_user.locations.count == 1
-        redirect_to help_url
+        redirect_to locations_manage_url
       else
         redirect_to locations_manage_url
       end
