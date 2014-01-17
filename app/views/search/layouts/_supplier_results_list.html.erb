@@ -151,7 +151,10 @@
 						<tr>
 							<td class="center hidden-767">
 								<a href="<%= locations_view_url(:id => l.id) %>" title="" class="tooltip-info" data-rel="tooltip" data-original-title="View Profile" data-placement="bottom">
-									<%= image_tag UserDetail.find(l.user_detail_id).logo.url(:smthumb) %>
+									<% if not l.user_detail_id == 0 %>
+										<%= image_tag UserDetail.find(l.user_detail_id).logo.url(:smthumb) %>
+									<% else %>
+									<% end %>
 								</a>
 							</td>
 							<td class="center">

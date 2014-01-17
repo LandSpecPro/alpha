@@ -82,15 +82,15 @@ class Location < ActiveRecord::Base
 	def self.sort_by_criteria(criteria)
 		# dist_asc, dist_desc, name_asc, name_desc
 		if criteria.to_s == 'dist_asc'
-			return self.order("distance")
+			return self.order("claimed DESC, distance")
 		elsif criteria.to_s == 'dist_desc'
-			return self.order('distance DESC')
+			return self.order('claimed DESC, distance DESC')
 		elsif criteria.to_s == 'name_asc'
-			return self.order('"busName" ASC')
+			return self.order('claimed DESC, "busName" ASC')
 		elsif criteria.to_s == 'name_desc'
-			return self.order('"busName" DESC')
+			return self.order('claimed DESC, "busName" DESC')
 		else
-			return self.order('distance ASC')
+			return self.order('claimed DESC, distance ASC')
 		end
 	end
 
