@@ -195,7 +195,11 @@ class Location < ActiveRecord::Base
 
 	def tagline
 
-		return UserDetail.find(self.user_detail_id).tagline
+		if not self.user_detail_id == 0
+			return UserDetail.find(self.user_detail_id).tagline
+		else
+			return nil
+		end
 
 	end
 

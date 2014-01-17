@@ -34,7 +34,9 @@
 			<a href="http://www.landspecpro.com/<%= @location.public_url %>" target="_blank">View Public Profile</a>
 			|
 		<% end %>
-		<a href="<%= main_url(:supplier => UserDetail.find(@location.user_detail_id).id) %>">View Updates</a>
+		<% unless @location.user_detail_id == 0 %>
+			<a href="<%= main_url(:supplier => UserDetail.find(@location.user_detail_id).id) %>">View Updates</a>
+		<% end %>
 
 	<!-- Edit Featured Item -->
 	<% elsif @cont == 'products' and @act == 'edit' %>

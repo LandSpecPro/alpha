@@ -16,6 +16,10 @@
 			</li>
 		</ul>
 	<% else %>
-		<%= image_tag UserDetail.find(@location.user_detail_id).logo.url(:medium), :max_width => '300px', :max_height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+		<% if not @location.user_detail_id == 0 %>
+			<%= image_tag UserDetail.find(@location.user_detail_id).logo.url(:medium), :max_width => '300px', :max_height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+		<% else %>
+			<%= image_tag image_path('logos_medium.png'), :max_width => '300px', :max_height => '300px', :title => 'Logo', :class => 'editable', :id => 'avatar' %>
+		<% end %>
 	<% end %>
 </span>

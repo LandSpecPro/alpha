@@ -53,6 +53,23 @@
 #	bio: 'This is a guest account that you can use to preview LandSpec Pro. This is normally where your company bio/about information would go. We have disabled all updating of this account because it is shared by multiple users, but feel free to play around and explore the site. When you are ready to register just click the logout link from the dropdown menu at the top of the page and you should find the register button on the home page. We hope you enjoy LandSpec Pro and hope for you to become a real member soon.'
 #)
 
+Location.create(
+	id: 1500,
+	primaryPhone: '(100) 100-1000',
+	address1: '100 North Avenue NW',
+	city: 'Atlanta',
+	state: 'GA',
+	zip: '30308',
+	primaryEmail: 'something@something.com',
+	active: true,
+	verified: true,
+	claimed: false,
+	public_url_active: true,
+	public_url: 'guest_tester',
+	busName: 'Something',
+	user_detail_id: 0
+)
+
 #Category.create([
 
 	#TOP LEVEL

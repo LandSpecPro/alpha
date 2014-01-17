@@ -72,13 +72,37 @@
     var map = new google.maps.Map(document.getElementById("result-map"),
         mapOptions);
 
-    // LOAD ACTUAL LOCATIONS //
-    <% @locations.each do |l| %>
+    // LOAD UNCLAIMED LOCATIONS //
+    <% @locations.where(:claimed => false).each do |l| %>
       var marker_<%= l.id.to_s %> = new google.maps.Marker({
         position: new google.maps.LatLng(<%= l.latitude.to_s %>,<%= l.longitude.to_s %>),
         map: map,
         title:"<%= l.busName.html_safe %>",
-        url:"<%= locations_view_url(:id => l.id) %>"
+        url:"<%= locations_view_url(:id => l.id) %>",
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+      });
+      var infowindow = new google.maps.InfoWindow({
+        size: new google.maps.Size(150,50)
+      });
+
+      google.maps.event.addListener(marker_<%= l.id.to_s %>, 'click', function(){
+        <% if not l.primaryPhone.blank? %>
+          infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><abbr title=\'Primary Phone\'>P:</abbr> <%= l.primaryPhone %><br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        <% else %>
+          infowindow.setContent("<%= ('<strong>' + l.busName + '</strong><br/>' + l.address1 + '<br/>' + l.city + ', ' + l.state + ' ' + l.zip).html_safe %>" + "<br/><a href='<%= locations_view_url(:id => l.id) %>'>View Profile</a>");
+        <% end %>
+        infowindow.open(map,marker_<%= l.id.to_s %>);
+      });
+    <% end %>
+
+    // LOAD ACTUAL LOCATIONS //
+    <% @locations.where(:claimed => true).each do |l| %>
+      var marker_<%= l.id.to_s %> = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= l.latitude.to_s %>,<%= l.longitude.to_s %>),
+        map: map,
+        title:"<%= l.busName.html_safe %>",
+        url:"<%= locations_view_url(:id => l.id) %>",
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
       });
 
       var infowindow = new google.maps.InfoWindow({
