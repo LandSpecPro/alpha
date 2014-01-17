@@ -56,32 +56,13 @@
 
 						<%= render 'locations/layouts_view_public/profileimage' %>
 
-						<div class="space-3"></div>
+						<div class="space-5"></div>
 
 						<div class="width-90 label label-info label-large arrowed-in arrowed-in-right">
 							<div class="inline position-relative">
 									<span class="white middle bigger-120"><%= @location.busName %></span>
 							</div>
 						</div>
-
-						<div class="space-10"></div>
-
-						<div class="fb-share-button" data-href="<%= request.original_url %>" data-type="button" style="margin:0;"></div>
-
-						<div class="g-plusone" data-size="medium" data-href="<%= request.original_url %>" data-annotation="none" style="margin:0;"></div>
-
-						<!-- Place this tag after the last +1 button tag. -->
-						<script type="text/javascript">
-						  (function() {
-						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-						    po.src = 'https://apis.google.com/js/plusone.js';
-						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-						  })();
-						</script>
-
-						<!-- SHARE TO TWITTER -->
-						<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= request.original_url %>" data-text="View <%= @location.busName %> on LandSpec Pro!" data-via="landspecpro" data-related="landspecpro" data-count="none" style="margin:0;">Tweet</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 						<% if @locsettings.show_tagline and not @location.tagline.blank? %>
 							<div style="text-align:center; font-style:oblique; padding-top:6px;">
@@ -118,6 +99,8 @@
 				<!-- MAIN BODY -->
 				<div class="col-lg-8 col-sm-12">
 
+					<%= render 'locations/layouts_view_public/socialsharing' %>
+					
 					<!-- ABOUT LOCATION -->
 					<% if @locsettings.show_about %>
 						<%= render 'locations/layouts_view/bioinfo' %>
