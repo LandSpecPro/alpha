@@ -132,6 +132,8 @@ LspAlpha::Application.routes.draw do
   match 'admin/weekly' => 'admin#dashboard_weekly'
   match 'admin/users' => 'admin#dashboard_users'
   match 'admin/email' => 'admin#dashboard_email'
+  match 'admin/users/add' => 'admin#dashboard_add_users'
+  match 'admin/locations/add' => 'admin#dashboard_add_locations'
   match 'admin/user/view' => 'admin#user_view'
   match 'admin/user/verify' => 'admin#user_verify'
   match 'admin/user/activate' => 'admin#user_activate'

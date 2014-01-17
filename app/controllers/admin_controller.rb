@@ -31,6 +31,14 @@ class AdminController < ApplicationController
     store_location
   end
 
+  def dashboard_add_users
+    @user = User.new
+  end
+
+  def dashboard_add_locations
+    @location = Location.new
+  end
+
   def user_view
     store_location
   	@user = User.find(params[:id])

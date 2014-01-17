@@ -145,6 +145,23 @@
 									<a href="<%= admin_email_url %>"><i class="icon-double-angle-right"></i> Email Dashboard</a>
 								</li>
 
+							<% if controller.action_name == 'dashboard_add_users' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_users_add_url %>"><i class="icon-double-angle-right"></i><i class="icon-plus"></i>&nbsp;&nbsp;Add Users</a>
+								</li>
+
+							<% if controller.action_name == 'dashboard_add_locations' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_locations_add_url %>"><i class="icon-double-angle-right"></i><i class="icon-plus"></i>&nbsp;&nbsp;Add Locations</a>
+								</li>
+
+
 							</ul>
 						</li>
 				<% end %>
