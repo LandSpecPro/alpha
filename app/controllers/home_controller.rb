@@ -40,17 +40,6 @@ class HomeController < ApplicationController
 
 	end
 
-	def subscribe
-
-		@email = params[:emailnewsletter]
-
-		pe = NewsletterEmail.new
-		pe.email = @email
-		pe.save
-		
-		redirect_to home_url(:subscribed => true)
-	end
-
 	def oops
 
 		@message = lookup_err_code(params[:err_code])

@@ -1,6 +1,7 @@
 body {
   padding-top: 70px;
-  padding-bottom: 40px;
+  padding-bottom: 0;
+  overflow:hidden;
 }
 
 /*
@@ -38,45 +39,35 @@ body {
 }
 
 #content-over-carousel{
-  position:absolute; 
-  top:100px; 
-  right:170px;
+  position: absolute;
+  top:100px;
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  overflow:hidden;
 }
 
 #carousel-header{
-  font-size:50px; 
-  text-align:right; 
-  text-shadow: 3px 3px 3px #000;
-}
-
-#carousel-newsletter-header{
-  font-size:27px; 
-  text-align:right; 
-  text-shadow: 3px 3px 3px #000;
+  font-size:75px; 
+  text-align:center; 
+  text-shadow: 4px 4px 4px #000;
 }
 
 @media (max-width: 768px) {
   #content-over-carousel{
-    position:absolute;
+    position: absolute;
+    top:100px;
+    margin-left:auto;
+    margin-right:auto;
     width:100%;
-    top:75px;
-    left:0;
+    overflow:hidden;
   }
 
   #carousel-header{
-    font-size:35px; 
-    text-align:right; 
+    font-size:60px; 
+    text-align:center; 
     text-shadow: 3px 3px 3px #000;
-  }
-
-  #carousel-newsletter-header{
-    font-size:22px;
-    text-align:right; 
-    text-shadow: 3px 3px 3px #000;
-  }
-
-  #carousel-newsletter-button{
-    width: 100%;
+    overflow:hidden;
   }
 
   .carousel-control{
@@ -85,22 +76,17 @@ body {
 }
 
 @media (max-width: 501px) {
+  #carousel-header{
+    font-size:50px;
+    overflow:hidden;
+  }
   #content-over-carousel{
-    position:absolute;
-    top:25px;
-    right:50px;
-  }
-
-  #newsletterForm{
+    position: absolute;
+    top:100px;
+    margin-left:auto;
+    margin-right:auto;
     width:100%;
+    overflow:hidden;
   }
-
-  #carousel-newsletter-button{
-    width:100%;
-  }
-  #emailnewsletter{
-    width:100%;
-  }
-
 
 }

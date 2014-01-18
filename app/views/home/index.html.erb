@@ -15,20 +15,39 @@
   <div class="carousel-inner">
 
     <div class="item active"> <!-- item one -->
-      <img class="active" src="/images/slide_seven.png" alt="">
-
+      <img class="active" src="/images/saul_nurseries_slide.jpg" alt="">
+      <span class="carousel-caption" style="display:block;background-color: rgba(0,0,0,0.6); width:100%; left:0;">
+        <p style="font-size: 17px;">
+          <a href="http://www.landspecpro.com/<%= Location.find(6).public_url %>">
+            <strong>Saul Nurseries Inc.</strong>
+          </a>
+        </p>
+        <p><i>Acer palmatum</i> 'Ryusen' PP#18,501</p>
+      </span>
     </div>
 
-    <div class="item"> <!-- item two -->
-      <img src="/images/slide_five.png" alt="" />
-      <!--<div class="carousel-caption">
-        <p>My Nursery</p>
-        <p><a href="http://www.google.com">Go To Google &raquo;</a></p>
-      </div>-->
+    <div class="item">
+      <img src="/images/slide_seven.png" alt="" />
+      <span class="carousel-caption" style="display:block;background-color: rgba(0,0,0,0.6); width:100%; left:0;">
+        <p style="font-size: 17px;">
+          <a href="#">
+            <strong>Your Featured Product Here</strong>
+          </a>
+        </p>
+        <p>Email <a href="mailto:timwolfe@landspecpro.com">timwolfe@landspecpro.com</a> to find out how!</p>
+      </span>
     </div>
 
     <div class="item"> <!-- item three -->
-      <img src="/images/slide_six.png" alt="" />
+      <img src="/images/slide_five.png" alt="" />
+      <span class="carousel-caption" style="display:block;background-color: rgba(0,0,0,0.6); width:100%; left:0;">
+        <p style="font-size: 17px;">
+          <a href="#">
+            <strong>Your Featured Product Here</strong>
+          </a>
+        </p>
+        <p>Email <a href="mailto:timwolfe@landspecpro.com">timwolfe@landspecpro.com</a> to find out how!</p>
+      </span>
     </div>
 
   </div>
@@ -37,43 +56,15 @@
   <a class="right carousel-control" href="#carousel" data-slide="next">&rsaquo;</a>
 
   <!-- TEXT OVERLAY -->
-  <div id="content-over-carousel" class="container">
-      <div class=""> <!-- center -->
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="pull-right">
-              <h1 class="font-marmelad-white" id="carousel-header">Supply network <br/>for the landscape industry</h1>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="pull-right">
-                <h1 class="font-marmelad-white" id="carousel-newsletter-header">Sign up for the newsletter:<br/></h1>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="pull-right">
-              
-                <form id="newsletterForm" method="post" action="subscribe" class="form-inline" role="form">
-                  <div class="form-group">
-                    <input id="emailnewsletter" name="emailnewsletter" type="text" placeholder="Enter your email" style="width:auto;" class="form-control"><button id="carousel-newsletter-button" class="btn btn-sm btn-success submit" type="submit">Subscribe &raquo;</button>
-                  </div>
-                </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-
-          </div>
-        </div>
-
+  <div id="content-over-carousel">
+    <div class="row">
+      <div class="col-xs-12">
+        <center>
+          <h1 class="font-marmelad-white" id="carousel-header">Supply network <br/>for the landscape industry</h1>
+        </center>
       </div>
-    </div><!-- content-over-carousel -->
+    </div>
+  </div><!-- content-over-carousel -->
 
 </div><!-- /.carousel -->
 
@@ -111,41 +102,14 @@
 
     </div><!-- /.row -->
     <br/><br/><br/><br/>
-    <!--
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="center">
-          <a href="http://flashpoint.gatech.edu" target="_blank"><img src="/images/flashpoint.png" style="max-width:150px;"></a>
-        </div>
-      </div>
-    </div>
-    -->
 
   </div>
 
 </div><!-- /.container -->
 
-<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
-<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-$('#carousel').carousel();
-});
-    $('#newsletterForm').validate({
-      rules: {
-        emailnewsletter: {
-          required: true,
-          email: true
-        }
-      }
-    });
-
-
-
+<script>
+  $('.carousel').carousel({ interval: 3500, cycle: true });
 </script>
 
 <%= render 'layouts/footer' %>
+
