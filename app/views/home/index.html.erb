@@ -45,7 +45,7 @@
       <img src="/images/slide_five.png" alt="" />
       <span class="carousel-caption">
         <p class="carousel-caption-header">
-          <strong>Your Featured Product Here</strong>
+          <strong>Your Company Here</strong>
         </p>
         <p class="carousel-caption-sub-header">
           Click <a data-toggle="modal" href="#coverPhotoInfoModal">here</a> to ask us how.
@@ -115,6 +115,9 @@
 <script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
 
 <script>
+
+  $(applyMasks());
+  
   $('.carousel').carousel({ interval: 3500, cycle: true });
 
   $("#coverPhotoInfoRequestForm").validate({

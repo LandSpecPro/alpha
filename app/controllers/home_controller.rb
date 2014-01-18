@@ -13,7 +13,7 @@ class HomeController < ApplicationController
 	end
 
 	def coverphoto_submit_request
-		Mailers.coverphoto_request_email(params[:name], params[:email], format_datetime_or_return_blank(DateTime.now, nil)).deliver
+		Mailers.coverphoto_request_email(params[:name], params[:email], params[:phone], format_datetime_or_return_blank(DateTime.now, nil)).deliver
 
 		redirect_to home_url(:request_sent => true)
 	end

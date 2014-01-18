@@ -4,6 +4,11 @@
 	<br/>
 
 	<strong>Name:</strong>&nbsp;<%= @name %><br/>
-	<strong>Email:</strong>&nbsp;<%= @email %><br/><br/>
+	<strong>Email:</strong>&nbsp;<%= @email %><br/>
+	<% if @phone.blank? %>
+		<strong>Phone Number:</strong>&nbsp;N/A<br/><br/>
+	<% else %>
+		<strong>Phone Number:</strong>&nbsp;<%= @phone %><br/><br/>
+	<% end %>
 	<strong>What time:</strong>&nbsp;<%= @when %><br/>
 </div>
