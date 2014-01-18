@@ -1,6 +1,6 @@
 body {
   padding-top: 70px;
-  padding-bottom: 40px;
+  overflow:hidden;
 }
 
 /*
@@ -43,6 +43,7 @@ body {
   margin-left:auto;
   margin-right:auto;
   width:100%;
+  overflow:hidden;
 }
 
 #carousel-header{
@@ -58,12 +59,14 @@ body {
     margin-left:auto;
     margin-right:auto;
     width:100%;
+    overflow:hidden;
   }
 
   #carousel-header{
     font-size:60px; 
     text-align:center; 
     text-shadow: 3px 3px 3px #000;
+    overflow:hidden;
   }
 
   .carousel-control{
@@ -74,12 +77,15 @@ body {
 @media (max-width: 501px) {
   #carousel-header{
     font-size:50px;
+    overflow:hidden;
   }
   #content-over-carousel{
     position: absolute;
     top:100px;
     margin-left:auto;
     margin-right:auto;
+    width:100%;
+    overflow:hidden;
   }
 
 }
