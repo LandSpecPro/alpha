@@ -12,14 +12,23 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       
-      flash[:notice] = "Login successful!"
-      if UserSession.find.user.is_supplier
-        redirect_to main_url
-      elsif UserSession.find.user.is_buyer
-        redirect_to main_url
+      if params[:redirect] == 'admin'
+        if not params[:userid].blank?
+          redirect_to admin_user_view_url(:id => params[:userid])
+        else
+          redirect_to admin_url
+        end
       else
-        redirect_to oops_url
-      end        
+        flash[:notice] = "Login successful!"
+        if UserSession.find.user.is_supplier
+          redirect_to main_url
+        elsif UserSession.find.user.is_buyer
+          redirect_to main_url
+        else
+          redirect_to oops_url
+        end 
+      end       
+
     else
       render :action => :new
     end
