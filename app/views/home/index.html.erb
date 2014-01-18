@@ -36,7 +36,7 @@
           <strong>Your Company Here</strong>
         </p>
         <p class="carousel-caption-sub-header">
-          Click <a data-toggle="modal" href="coverPhotoInfoModal">here</a> to ask us how.
+          Click <a data-toggle="modal" href="#coverPhotoInfoModal">here</a> to ask us how.
         </p>
       </span>
     </div>
@@ -48,7 +48,7 @@
           <strong>Your Featured Product Here</strong>
         </p>
         <p class="carousel-caption-sub-header">
-          Click <a data-toggle="modal" href="coverPhotoInfoModal">here</a> to ask us how.
+          Click <a data-toggle="modal" href="#coverPhotoInfoModal">here</a> to ask us how.
         </p>
       </span>
     </div>
@@ -110,8 +110,36 @@
 
 </div><!-- /.container -->
 
+<%= render 'home/coverPhotoInfoModal' %>
+
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+
 <script>
   $('.carousel').carousel({ interval: 3500, cycle: true });
+
+  $("#coverPhotoInfoRequestForm").validate({
+    rules: {
+      name: "required",
+      email: {
+        required: true,
+        email: true
+      },
+    },
+    errorElement: "span",
+    wrapper: "span",
+    errorPlacement: function(error, element){
+      offset = element.offset();
+      error.insertBefore(element);
+      error.css('top', offset.top);
+      error.css('color', '#CC0000');
+    }
+  });
+
+  // Success messages
+  <% if params[:request_sent] %>
+    $(showUpdateSuccessGritter('Your request has been sent! We\'ll be in contact soon with more information.'));
+  <% end %>
+
 </script>
 
 <%= render 'layouts/footer' %>

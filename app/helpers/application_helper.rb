@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+	def format_datetime_or_return_blank(datetime, format)
+		if datetime.blank?
+			return ""
+		elsif format.blank?
+			return datetime.strftime("%B %d, %Y - %I:%M %p")
+        else
+            return datetime.strftime(format)
+        end
+    end
+
 	def get_buyer_types
 		return [
 			['Landscape Architect', 'Landscape Architect'],

@@ -23,6 +23,9 @@ LspAlpha::Application.routes.draw do
   resources :featured_items
 
   match "404" => 'static#404'
+
+  # Routes for Cover Photo Things
+  match "coverphoto/request" => 'home#coverphoto_submit_request'
   
   # Routes for Guest Link
   match "supplier/guest/login" => 'user_sessions#supplier_guest_login'

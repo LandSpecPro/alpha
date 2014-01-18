@@ -46,6 +46,13 @@ class Mailers < ActionMailer::Base
     mail(:to => 'timwolfe@landspecpro.com', :subject => "LandSpec Pro - New Location!")
   end
 
+  def coverphoto_request_email(name, email, time)
+    @name = name
+    @email = email
+    @when = time
+    mail(:to => 'tech@landspecpro.com', :subject => 'New Cover Photo Information Request!')
+  end
+
   def basic_feedback_email(name, email, feedback, username, page_title)
     @name = name
     @email = email
