@@ -1,13 +1,13 @@
 <% @followers.each do |f| %>
 
-	<% @userfollower = User.find(f.user_id) %>
+	<% @userfollower = f %>
 
 	<% if @userfollower.is_supplier %>
 
 		<center>
-			<div class="btn btn-white btn-block">
+			<div class="well">
 				<a style="font-size:18px;" data-rel="popover" title="Supplier Info" data-placement="top" data-container="body" data-trigger="hover click"
-						data-content="<center><strong>Email:</strong> <%= @userfollower.email %><br/><small>Click to View Profile</small></center>" href="<%= locations_view_url(:id => f.location_id) %>">
+						data-content="<center><strong>Email:</strong> <%= @userfollower.email %><br/><small>Click to View Users Updates</small></center>" href="<%= main_url(:supplier => f.user_detail.id) %>">
 					<% if not @userfollower.user_detail.company_name.blank? %>
 						<%= @userfollower.user_detail.company_name %>
 					<% else %>
@@ -17,20 +17,18 @@
 			</div>
 		</center>
 
-		<br/>
-
 	<% end %>
 
 <% end %>
 
 <% @followers.each do |f| %>
 
-	<% @userfollower = User.find(f.user_id) %>
+	<% @userfollower = f %>
 
 	<% if @userfollower.is_buyer %>
 
 		<center>
-			<div class="btn btn-white btn-block">
+			<div class="well">
 				<span style="font-size:18px;" data-rel="popover" title="Buyer Info" data-placement="top" data-trigger="hover click" data-container="body"
 						data-content="<strong>Email:</strong> <%= @userfollower.email %>">
 					<% if not @userfollower.user_detail.company_name.blank? %>
@@ -50,8 +48,6 @@
 				<% end %>
 			</div>
 		</center>
-
-		<br/>
 
 	<% end %>
 

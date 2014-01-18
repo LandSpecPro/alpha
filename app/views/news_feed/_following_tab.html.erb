@@ -1,15 +1,15 @@
 <% @following.each do |f| %>
 
 	<center>
-		<div class="btn btn-white btn-block btn-not-clickable">
-			<a href="<%= locations_view_url(:id => f.location_id) %>" style="font-size:18px; z-index:99999;" class="tooltip-info" title="" data-original-title="View Profile" data-placement="bottom">
-				<%= Location.find(f.location_id).busName %>
-			</a> 
+		<div class="well">
+			<a href="<%= locations_view_url(:id => f.id) %>" style="font-size:18px; z-index:99999;" class="tooltip-info" title="" data-original-title="View Profile" data-placement="bottom">
+				<%= f.busName %>
+			</a>
 			<br/>
-			<span class="infobox-content" style="font-size:12px;"><%= Location.find(f.location_id).locName %></span>
+			<% unless f.locName.blank? %>
+				<span class="infobox-content" style="font-size:12px;"><%= f.locName %></span>
+			<% end %>
 		</div>
 	</center>
-
-	<br/>
 
 <% end %>

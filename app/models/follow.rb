@@ -14,7 +14,7 @@ class Follow < ActiveRecord::Base
 
 	end
 
-	def self.get_followers_for_user(user_id)
+	def self.get_followers_user_ids_for_current_user(user_id)
 
 		@locids = []
 
@@ -26,7 +26,7 @@ class Follow < ActiveRecord::Base
 			end
 		end
 
-		return self.where('location_id IN(?) AND active = true', @locids)
+		return self.where('location_id IN(?) AND active = true', @locids).uniq.pluck(:user_id)
 
 	end
 

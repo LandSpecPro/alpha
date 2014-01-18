@@ -45,8 +45,11 @@ class NewsFeedController < ApplicationController
 			@items = NewsFeedItem.order('created_at DESC').offset(offset).limit(limit)
 		end
 
-		@following = Follow.where(:user_id => current_user.id, :active => true)
-		@followers = Follow.get_followers_for_user(current_user.id)
+		@following_location_ids = Follow.where(:user_id => current_user.id, :active => true).pluck(:location_id)
+		@following = Location.where('id IN(?) AND active = true', @following_location_ids).order('"busName" ASC')
+
+		@follower_user_ids = Follow.get_followers_user_ids_for_current_user(current_user.id)
+		@followers = User.where('id IN(?) AND active = true', @follower_user_ids)
 
 	end
 	
