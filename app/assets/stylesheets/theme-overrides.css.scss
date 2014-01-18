@@ -1,5 +1,11 @@
 html { height:100%;}
 body { overflow:auto; background-color: white; position:absolute; bottom: 0; top: 0; right: 0; left: 0;}
+
+@media (max-width: 460px){
+	body{
+		top:60px;
+	}
+}
 #result-map { height: 100%;}
 
 .row-fluid {

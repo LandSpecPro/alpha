@@ -89,8 +89,8 @@
 
   #carousel-header{
     font-size:60px; 
-    margin-right:50px;
-    margin-left:38px;
+    margin-right:45px;
+    margin-left:30px;
   }
 
   .carousel-control{
@@ -111,6 +111,7 @@
   #carousel-header{
     font-size:50px;
     overflow:hidden;
+    text-align: center;
   }
   #content-over-carousel{
     position: absolute;
@@ -128,4 +129,10 @@
     margin-left:-405px;
   }
 
+}
+
+@media (max-width: 460px){
+  .carousel{
+    margin-top:-50px;
+  }
 }

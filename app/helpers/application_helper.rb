@@ -315,6 +315,8 @@ module ApplicationHelper
 			return "Password Reset"
 		elsif @controller == 'users' and @action == 'update'
 			return "Account Management"
+		elsif @controller == 'users' and @action == 'account'
+			return "Account Management"
 		elsif @controller == 'news_feed'
 			return "News Feed"
 		elsif @controller == 'admin'
