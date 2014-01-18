@@ -1,5 +1,12 @@
 <%- title "LandSpec Pro" %>
 
+<script>
+$(document).ready({
+  function(){
+    alert('This is stupid!');
+  }
+});
+</script>
 <link href="stylesheets/index.css" rel="stylesheet">
 
 <!-- Carousel
@@ -28,10 +35,26 @@
 
     <div class="item">
       <img src="/images/slide_seven.png" alt="" />
+      <span class="carousel-caption" style="display:block;background-color: rgba(0,0,0,0.6); width:100%; left:0;">
+        <p style="font-size: 17px;">
+          <a href="#">
+            <strong>Your Featured Product Here</strong>
+          </a>
+        </p>
+        <p>Email <a href="mailto:timwolfe@landspecpro.com">timwolfe@landspecpro.com</a> to find out how!</p>
+      </span>
     </div>
 
     <div class="item"> <!-- item three -->
       <img src="/images/slide_five.png" alt="" />
+      <span class="carousel-caption" style="display:block;background-color: rgba(0,0,0,0.6); width:100%; left:0;">
+        <p style="font-size: 17px;">
+          <a href="#">
+            <strong>Your Featured Product Here</strong>
+          </a>
+        </p>
+        <p>Email <a href="mailto:timwolfe@landspecpro.com">timwolfe@landspecpro.com</a> to find out how!</p>
+      </span>
     </div>
 
   </div>
@@ -86,30 +109,14 @@
 
     </div><!-- /.row -->
     <br/><br/><br/><br/>
-    <!--
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="center">
-          <a href="http://flashpoint.gatech.edu" target="_blank"><img src="/images/flashpoint.png" style="max-width:150px;"></a>
-        </div>
-      </div>
-    </div>
-    -->
 
   </div>
 
 </div><!-- /.container -->
 
-<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
-<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#carousel').carousel();
-  });
+<script>
+  $('.carousel').carousel({ interval: 3500, cycle: true });
 </script>
 
 <%= render 'layouts/footer' %>
+
