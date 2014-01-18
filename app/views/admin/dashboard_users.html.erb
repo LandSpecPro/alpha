@@ -76,6 +76,7 @@
                         <th class="center hidden-480">Created At</th>
                         <th class="center">Verified</th>
                         <th class="center">Active</th>
+                        <th class="center">Login As</th>
                         <!-- <th class="center">Business Phone</th> -->
                         <!-- <th class="center">Business Name</th> -->
                         <!-- <th class="center">Logo</th> -->
@@ -130,6 +131,9 @@
                                                 <a href="<%= admin_user_activate_url(:id => u.id, :redirect_url => admin_users_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to activate">false</a>
                                         <% end %>
                                 </td>
+                                <td class="center">
+                                        <a href="<%= admin_signinas_url(:id => u.id) %>" class="badge badge-inverse">Login</a>
+                                </td>
                         </tr>        
                 <% end %>
         </tbody>
@@ -158,7 +162,8 @@
                         {"bSortable": true},
                         {"bSortable": true},
                         {"bSortable": true},
-                        {"bSortable": true}
+                        {"bSortable": true},
+                        {"bSortable": false}
                 ],
 
         });
