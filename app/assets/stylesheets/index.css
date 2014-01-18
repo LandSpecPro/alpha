@@ -105,8 +105,12 @@
 }
 
 @media (max-width: 501px) {
+  .carousel{
+    overflow:hidden;
+  }
   #carousel-header{
     font-size:50px;
+    overflow:hidden;
   }
   #content-over-carousel{
     position: absolute;
