@@ -104,20 +104,9 @@
 <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-$('#carousel').carousel();
-});
-    $('#newsletterForm').validate({
-      rules: {
-        emailnewsletter: {
-          required: true,
-          email: true
-        }
-      }
-    });
-
-
-
+  $(document).ready(function() {
+    $('#carousel').carousel();
+  });
 </script>
 
 <%= render 'layouts/footer' %>
