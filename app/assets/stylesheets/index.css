@@ -30,26 +30,25 @@
 }
 
 .carousel .item {
-  height: 500px;
+  height: 700px;
 }
 
 .carousel-inner > .item > img {
   position: relative;
   background-position: left top;
   min-width: 1920px;
-  min-height: 500px;
   overflow: hidden;
 }
 
 .carousel-control {
-  padding-top: 200px;
+  padding-top: 325px;
   font-size: 100px;
   width: 5%;
 }
 
 #content-over-carousel{
   position: absolute;
-  top:100px;
+  top:10px;
   margin-left:auto;
   margin-right:auto;
   width:100%;
@@ -57,7 +56,7 @@
 }
 
 #carousel-header{
-  font-size:75px;
+  font-size:90px;
   text-shadow: 
     3px 3px 4px #000,
     3px 3px 4px #000; 
@@ -75,20 +74,9 @@
   }
 
 @media (max-width: 768px) {
-  #content-over-carousel{
-    position: absolute;
-    top:50px;
-    margin-left:auto;
-    margin-right:auto;
-    width:100%;
-    overflow:hidden;
-  }
-
-  .carousel-caption{
-  }
 
   #carousel-header{
-    font-size:60px; 
+    font-size:75px; 
     margin-right:45px;
     margin-left:30px;
   }
@@ -99,33 +87,28 @@
 
   .carousel-inner > .item > img {
     position:absolute;
-    margin-left:-300px;
+    margin-left:-250px;
   }
 }
 
 @media (max-width: 501px) {
+
   .carousel{
     overflow:hidden;
   }
+  .carousel-caption{
+    width:100%;
+  }
   #carousel-header{
-    font-size:50px;
+    font-size:60px;
     overflow:hidden;
     text-align: center;
-  }
-  #content-over-carousel{
-    position: absolute;
-    top:58px;
-    margin-left:auto;
-    margin-right:auto;
-    width:100%;
-    overflow:hidden;
-  }
-
-  .carousel-caption{
+    margin-right:30px;
+    margin-left:30px;
   }
 
   .carousel-inner > .item > img {
-    margin-left:-405px;
+    margin-left:-375px;
   }
 
 }
