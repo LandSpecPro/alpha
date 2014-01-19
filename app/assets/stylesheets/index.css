@@ -30,7 +30,7 @@
 }
 
 .carousel .item {
-  height: 700px;
+  height: 550px;
 }
 
 .carousel-inner > .item > img {
@@ -41,7 +41,7 @@
 }
 
 .carousel-control {
-  padding-top: 325px;
+  padding-top: 225px;
   font-size: 100px;
   width: 5%;
 }
