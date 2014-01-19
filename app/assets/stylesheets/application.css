@@ -17,7 +17,7 @@
  *= require 'theme/jquery.gritter'
  *= require 'theme/colorbox'
  *= require 'theme/ace-fonts'
- *= require 'theme/ace.min'
+ *= require 'theme/ace'
  *= require 'theme/ace-rtl.min'
  *= require 'theme/ace-skins.min'
  *= require 'fonts'

@@ -129,9 +129,3 @@
   }
 
 }
-
-@media (max-width: 460px){
-  .carousel{
-    margin-top:-70px;
-  }
-}
