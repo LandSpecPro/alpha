@@ -44,7 +44,7 @@ class UserSessionsController < ApplicationController
 
     @email = params[:email]
 
-    @user = User.where(:email => @email, :active => true).first
+    @user = User.where('lower(email) = ? AND active = true', @email.downcase).first
     if @user
       @user.reset_perishable_token!
       Mailers.forgot_email(@user, @user.perishable_token).deliver
