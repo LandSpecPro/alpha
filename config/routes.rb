@@ -20,6 +20,9 @@ LspAlpha::Application.routes.draw do
   resources :featured_items
 
   match "404" => 'static#404'
+
+  # Routes for Cover Photo Things
+  match "coverphoto/request" => 'home#coverphoto_submit_request'
   
   # Routes for Guest Link
   match "supplier/guest/login" => 'user_sessions#supplier_guest_login'
@@ -113,6 +116,23 @@ LspAlpha::Application.routes.draw do
   match "contact/submit" => 'home#contact_submit'
   match "feedback/submit" => 'application#submit_feedback'
 
+  # Routes for Admin stuff
+  match 'admin' => 'admin#main'
+  match 'admin/weekly' => 'admin#dashboard_weekly'
+  match 'admin/users' => 'admin#dashboard_users'
+  match 'admin/email' => 'admin#dashboard_email'
+  match 'admin/user/view' => 'admin#user_view'
+  match 'admin/user/verify' => 'admin#user_verify'
+  match 'admin/user/activate' => 'admin#user_activate'
+  match 'admin/user/deactivate' => 'admin#user_deactivate'
+  match 'admin/location/activate' => 'admin#location_activate'
+  match 'admin/location/deactivate' => 'admin#location_deactivate'
+  match "admin/dashboard_main" => 'admin#main'
+  match "admin/signinas" => 'admin#sign_in_as_user'
+  get "admin/dashboard_weekly"
+  get "admin/dashboard_email"
+  get "admin/user_view"
+
   # For account register, login, logout, etc.
   match "register" => 'users#new'
   match "login" => 'user_sessions#new'
@@ -144,7 +164,6 @@ LspAlpha::Application.routes.draw do
   get "admin/dashboard_weekly"
   get "admin/dashboard_email"
   get "admin/user_view"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

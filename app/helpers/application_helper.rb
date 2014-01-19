@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+	def format_datetime_or_return_blank(datetime, format)
+		if datetime.blank?
+			return ""
+		elsif format.blank?
+			return datetime.strftime("%B %d, %Y - %I:%M %p")
+        else
+            return datetime.strftime(format)
+        end
+    end
+
 	def get_buyer_types
 		return [
 			['Landscape Architect', 'Landscape Architect'],
@@ -314,6 +324,8 @@ module ApplicationHelper
 		elsif @controller == 'users' and @action == 'password_reset'
 			return "Password Reset"
 		elsif @controller == 'users' and @action == 'update'
+			return "Account Management"
+		elsif @controller == 'users' and @action == 'account'
 			return "Account Management"
 		elsif @controller == 'news_feed'
 			return "News Feed"

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+
+	include ApplicationHelper
 	
 	def root
 
@@ -8,6 +10,12 @@ class HomeController < ApplicationController
 			redirect_to home_url
 		end
 
+	end
+
+	def coverphoto_submit_request
+		Mailers.coverphoto_request_email(params[:name], params[:email], params[:phone], format_datetime_or_return_blank(DateTime.now, nil)).deliver
+
+		redirect_to home_url(:request_sent => true)
 	end
 
 	def supplier_more_info

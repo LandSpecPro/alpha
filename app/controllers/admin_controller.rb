@@ -52,6 +52,15 @@ class AdminController < ApplicationController
         @user = User.find(@id)
 
         @user.verified = @newvalue
+        if @user.is_supplier
+          if not @user.user_detail.blank?
+            if @user.user_detail.locations.count > 0
+              @user.user_detail.locations.each do |l|
+                l.active = @newvalue
+              end
+            end
+          end
+        end
         @user.save
 
         redirect_to params[:redirect_url]
@@ -61,6 +70,15 @@ class AdminController < ApplicationController
         @user = User.find(params[:id])
 
         @user.active = true
+        if @user.is_supplier
+          if not @user.user_detail.blank?
+            if @user.user_detail.locations.count > 0
+              @user.user_detail.locations.each do |l|
+                l.active = true
+              end
+            end
+          end
+        end
         @user.save
 
         redirect_to params[:redirect_url]
@@ -70,6 +88,15 @@ class AdminController < ApplicationController
         @user = User.find(params[:id])
 
         @user.active = false
+        if @user.is_supplier
+          if not @user.user_detail.blank?
+            if @user.user_detail.locations.count > 0
+              @user.user_detail.locations.each do |l|
+                l.active = false
+              end
+            end
+          end
+        end
         @user.save
 
         redirect_to params[:redirect_url]

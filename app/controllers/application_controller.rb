@@ -140,9 +140,14 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user_is_admin
-    if current_user.login != 'ohmatt' and current_user.login != 'timwolfedesign' and current_user.login != 'timwolfedesign1'
-      flash[:notice] = "Only site administrators can access this page."
-      redirect_back_or_default(main_url)
+    if current_user
+      if current_user.login != 'ohmatt' and current_user.login != 'timwolfedesign' and current_user.login != 'timwolfedesign1'
+        flash[:notice] = "Only site administrators can access this page."
+        redirect_back_or_default(main_url)
+        return false
+      end
+    else
+      redirect_to login_url(:login_error => true, :redirect => 'admin', :userid => params[:id])
       return false
     end
   end

@@ -1,6 +1,7 @@
 <%- title "LandSpec Pro" %>
 
 <link href="stylesheets/index.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
 
 <!-- Carousel
 ================================================== -->
@@ -32,12 +33,10 @@
       <img src="/images/slide_seven.png" alt="" />
       <span class="carousel-caption">
         <p class="carousel-caption-header">
-          <a href="#">
-            <strong>Your Company Here</strong>
-          </a>
+          <strong>Your Company Here</strong>
         </p>
         <p class="carousel-caption-sub-header">
-          Click <a href="#">here</a> to ask us how.
+          Click <a data-toggle="modal" href="#coverPhotoInfoModal">here</a> to ask us how.
         </p>
       </span>
     </div>
@@ -46,12 +45,10 @@
       <img src="/images/slide_five.png" alt="" />
       <span class="carousel-caption">
         <p class="carousel-caption-header">
-          <a href="#">
-            <strong>Your Featured Product Here</strong>
-          </a>
+          <strong>Your Company Here</strong>
         </p>
         <p class="carousel-caption-sub-header">
-          Click <a href="#">here</a> to ask us how.
+          Click <a data-toggle="modal" href="#coverPhotoInfoModal">here</a> to ask us how.
         </p>
       </span>
     </div>
@@ -65,8 +62,8 @@
   <div id="content-over-carousel">
     <div class="row">
       <div class="col-xs-12">
-        <div style="float:right; margin-right:25px; text-align:right;">
-          <h1 class="font-marmelad-white" id="carousel-header">Supply network <br/>for the landscape industry</h1>
+        <div>
+          <h1 id="carousel-header">Supply network <br/>for the landscape industry</h1>
         </div>
       </div>
     </div>
@@ -113,8 +110,39 @@
 
 </div><!-- /.container -->
 
+<%= render 'home/coverPhotoInfoModal' %>
+
+<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+
 <script>
+
+  $(applyMasks());
+  
   $('.carousel').carousel({ interval: 3500, cycle: true });
+
+  $("#coverPhotoInfoRequestForm").validate({
+    rules: {
+      name: "required",
+      email: {
+        required: true,
+        email: true
+      },
+    },
+    errorElement: "span",
+    wrapper: "span",
+    errorPlacement: function(error, element){
+      offset = element.offset();
+      error.insertBefore(element);
+      error.css('top', offset.top);
+      error.css('color', '#CC0000');
+    }
+  });
+
+  // Success messages
+  <% if params[:request_sent] %>
+    $(showUpdateSuccessGritter('Your request has been sent! We\'ll be in contact soon with more information.'));
+  <% end %>
+
 </script>
 
 <%= render 'layouts/footer' %>
