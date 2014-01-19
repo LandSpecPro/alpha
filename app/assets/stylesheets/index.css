@@ -87,7 +87,7 @@
 
   .carousel-inner > .item > img {
     position:absolute;
-    margin-left:-250px;
+    margin-left:-200px;
   }
 
 }
@@ -109,7 +109,7 @@
   }
 
   .carousel-inner > .item > img {
-    margin-left:-375px;
+    margin-left:-225px;
   }
 
 }
