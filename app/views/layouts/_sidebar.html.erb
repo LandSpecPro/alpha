@@ -145,7 +145,7 @@
 									<a href="<%= admin_email_url %>"><i class="icon-double-angle-right"></i> Email Dashboard</a>
 								</li>
 
-							<% if controller.action_name == 'dashboard_add_users' %>
+							<% if controller.action_name == 'dashboard_add_users' or controller.action_name == 'add_new_user' %>
 								<li class="active">
 							<% else %>
 								<li>

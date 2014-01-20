@@ -400,6 +400,8 @@ module ApplicationHelper
 				return " Weekly Dashboard"
 			elsif controller.action_name == 'dashboard_email'
 				return " Email Dashboard"
+			elsif controller.action_name == 'dashboard_add_users' or controller.action_name == 'add_new_user'
+				return " Add Users"
 			else
 				return ""
 			end

@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 
 	include AdminHelper
   include ApplicationHelper
+  include UsersHelper
 
   before_filter :require_user_is_admin
   before_filter :require_user_id, :only => :user_view
@@ -33,6 +34,20 @@ class AdminController < ApplicationController
 
   def dashboard_add_users
     @user = User.new
+  end
+
+  def add_new_user
+    @user = User.new(params[:user])
+    @user.is_email_verified = true
+    @user.verified = true
+
+    if @user.save_without_session_maintenance
+      redirect_to admin_users_url
+    else
+      flash[:notice] = "Not successful!"
+      render :action => :dashboard_add_users
+      return
+    end
   end
 
   def dashboard_add_locations

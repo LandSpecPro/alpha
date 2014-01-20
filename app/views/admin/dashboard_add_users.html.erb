@@ -1,0 +1,104 @@
+<%- title "Admin - Add New Users | LandSpec Pro" %>
+<%= render 'layouts/sidebar' %>
+
+<div class="row">
+
+	<div class="col-lg-4 col-lg-offset-1 col-xs-12">
+
+		<%= form_for @user, :url => {:action => :add_new_user, :controller => :admin}, :html => {:id => 'addUserForm'} do |f| %>
+			<div class="widget-box">
+				<div class="widget-header header-color-green2">
+					<h5 class="bigger lighter"><i class="icon-cog"></i> Add New User</h5>
+				</div>
+
+				<div class="widget-body">
+					<div class="widget-main">
+
+						<!-- Display error messages as alerts -->
+						<% @user.errors.each do |field, msg| %>
+							<div class="alert alert-danger">
+							  <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+							  <strong>Error! </strong> <%= msg %>
+							</div>
+						<% end %>
+
+						<fieldset>
+							<div class="form-group">
+								<!--[if lt IE 10]>Username:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :login, :class => 'form-control', :placeholder => "Username", :maxlength => '20', :html => {:id => 'login'} %>
+									<i class="icon-user"></i>
+								</span>
+							</div>
+							<div class="form-group">
+								<!--[if lt IE 10]>Email:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.text_field :email, :class => 'form-control', :placeholder => "Email" %>
+									<i class="icon-envelope-alt"></i>
+								</span>
+							</div>
+							<div class="form-group">
+								<!--[if lt IE 10]>Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password, :class => 'form-control', :placeholder => "Password" %>
+									<i class="icon-lock"></i>
+								</span>
+							</div>
+							<div class="form-group">
+								<!--[if lt IE 10]>Confirm Password:<![endif]-->
+								<span class="block input-icon input-icon-right">
+									<%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => "Confirm Password" %>
+									<i class="icon-lock"></i>
+								</span>
+							</div>
+							<span class="block center">
+
+								<input class="ace" name="user[userType]" id="userTypeSupplier" type="radio" value=<%= STRING_SUPPLIER %> zindex='99999' onclick="checkUserType('<%= STRING_SUPPLIER %>')"/><span class="lbl" onclick="checkUserType('<%= STRING_SUPPLIER %>')"> Supplier</span>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+									<span class="">
+								<input class="ace" name="user[userType]" id="userTypeBuyer" type="radio" value=<%= STRING_BUYER %> zindex='99999' onclick="checkUserType('<%= STRING_BUYER %>')"/><span class="lbl" onclick="checkUserType('<%= STRING_BUYER %>')"> Buyer</span>
+									</span>
+
+							</span>
+
+							<br/>
+
+							<div class="row">
+								<div class="col-xs-12">
+										<button type="submit" class="btn btn-success btn-block"><i class="icon-key"></i> Register</button>
+								</div>
+							</div>
+
+						</fieldset>
+
+					</div>
+				</div>
+
+			</div>
+		<% end %>
+
+	</div>
+</div>
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+
+	function checkUserType(type){
+		if(type == <%= STRING_BUYER %>){
+			document.getElementById("userTypeBuyer").checked = true;
+		}
+		else if(type == <%= STRING_SUPPLIER %>){
+			document.getElementById("userTypeSupplier").checked = true;
+		}
+	}
+
+	<% unless params[:user].blank? %>
+		<% if params[:user][:userType] == STRING_SUPPLIER %>
+			$(document.getElementById("userTypeSupplier").checked = true);
+		<% elsif params[:user][:userType] == STRING_BUYER %>
+			$(document.getElementById("userTypeBuyer").checked = true);
+		<% end %>
+	<% end %>
+
+</script>
