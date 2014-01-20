@@ -1,6 +1,7 @@
 class UserDetailsController < ApplicationController
 
 	include UserDetailHelper
+	include ApplicationHelper
 
 	before_filter :require_user
 	before_filter :require_user_email_validated
