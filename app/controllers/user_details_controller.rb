@@ -29,11 +29,15 @@ class UserDetailsController < ApplicationController
 	  			end
 
 	  			if @userdetail.user_type == STRING_SUPPLIER
-	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				unless current_user.verified
+	  					Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				end
 	  				redirect_to locations_new_url
 	  				return
 	  			elsif @userdetail.user_type == STRING_BUYER
-	  				Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				unless current_user.verified
+	  					Mailers.welcome_buyer_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver
+	  				end
 	  				redirect_to help_url
 	  				return
 	  			end
