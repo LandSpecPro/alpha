@@ -11,6 +11,10 @@ class AdminController < ApplicationController
 
   end
 
+  def dashboard_locations
+    store_location
+  end
+
   def dashboard_weekly
 
   	@startdate = DateTime.new(2013, 7, 1)
@@ -52,6 +56,30 @@ class AdminController < ApplicationController
 
   def dashboard_add_locations
     @location = Location.new
+  end
+
+  def add_new_location
+    @location = Location.new(params[:location])
+
+    @location.format_all_urls
+    @location.active = true
+    @location.verified = true
+    @location.claimed = false
+    @location.url_is_custom = true
+    @location.user_detail_id = 0
+
+    if @location.save
+      flash[:notice] = "New Location Added!"
+
+      #TODO: Do we want this in the news feed?
+      #news_feed_new_location(@location.id)
+
+      redirect_to admin_location_url
+
+    else
+      render :action => :dashboard_add_locations
+    end
+
   end
 
   def user_view

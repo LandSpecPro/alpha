@@ -23,7 +23,9 @@ class UserDetailsController < ApplicationController
 	  		if @userdetail.save
 	  			current_user.user_detail = @userdetail
 
-	  			Mailers.new_user_activation_email(current_user).deliver
+	  			if is_production_site
+	  				Mailers.new_user_activation_email(current_user).deliver
+	  			end
 
 	  			if @userdetail.user_type == STRING_SUPPLIER
 	  				Mailers.welcome_supplier_email(current_user.email, @userdetail.first_name, @userdetail.last_name, @userdetail.company_name).deliver

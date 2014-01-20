@@ -31,7 +31,7 @@ class Location < ActiveRecord::Base
 	has_many :categories, :through => :category_to_locations
 	accepts_nested_attributes_for :categories
 
-	validates :locName, :uniqueness => { :scope => :user_detail_id, :message => "You have already added a location with this name!"}
+	validates :locName, :uniqueness => { :scope => :user_detail_id, :message => "You have already added a location with this name!"}, :if => :not_unclaimed_location?
 	validates :public_url, :uniqueness => {:scope => :active, :message => "This URL is already in use!"}, :allow_nil => true
 
 	validates_presence_of :address1, :message => "Must provide a valid address!"
@@ -53,6 +53,14 @@ class Location < ActiveRecord::Base
 		'ask', 'faq', 'donate', 'buy', 'purchase', 'question', 'questions', 'session', 'sessions', 'user_session', 'user_sessions', 'user_details'], \
 		:message => "This URL is reserved."
    
+   	def not_unclaimed_location?
+   		if user_detail_id > 0
+   			return true
+   		else
+   			return false
+   		end
+   	end
+   	
 	def update_cache
 		Rails.cache.write('active_locations', Location.where(:active => true))
 	end

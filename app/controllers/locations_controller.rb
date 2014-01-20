@@ -209,7 +209,7 @@ class LocationsController < ApplicationController
 
       update_weight_rank(@location)
 
-      if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
+      if is_production_site
         Mailers.new_location_activation_email(current_user, @location).deliver
       end
 

@@ -125,10 +125,13 @@ LspAlpha::Application.routes.draw do
   match 'admin/user/verify' => 'admin#user_verify'
   match 'admin/user/activate' => 'admin#user_activate'
   match 'admin/user/deactivate' => 'admin#user_deactivate'
+  match 'admin/users/add' => 'admin#dashboard_add_users'
   match 'admin/location/activate' => 'admin#location_activate'
   match 'admin/location/deactivate' => 'admin#location_deactivate'
+  match "admin/locations/add" => 'admin#dashboard_add_locations'
   match "admin/dashboard_main" => 'admin#main'
   match "admin/signinas" => 'admin#sign_in_as_user'
+  post "admin/add_new_location"
   post "admin/add_new_user"
   get "admin/dashboard_weekly"
   get "admin/dashboard_email"
@@ -147,24 +150,6 @@ LspAlpha::Application.routes.draw do
   match ":public_url" => "locations#view_public"
   match "profiles/:public_url" => "locations#view_public"
 
-  # Routes for Admin stuff
-  match 'admin' => 'admin#main'
-  match 'admin/weekly' => 'admin#dashboard_weekly'
-  match 'admin/users' => 'admin#dashboard_users'
-  match 'admin/email' => 'admin#dashboard_email'
-  match 'admin/users/add' => 'admin#dashboard_add_users'
-  match 'admin/locations/add' => 'admin#dashboard_add_locations'
-  match 'admin/user/view' => 'admin#user_view'
-  match 'admin/user/verify' => 'admin#user_verify'
-  match 'admin/user/activate' => 'admin#user_activate'
-  match 'admin/user/deactivate' => 'admin#user_deactivate'
-  match 'admin/location/activate' => 'admin#location_activate'
-  match 'admin/location/deactivate' => 'admin#location_deactivate'
-  match "admin/dashboard_main" => 'admin#main'
-  match "admin/signinas" => 'admin#sign_in_as_user'
-  get "admin/dashboard_weekly"
-  get "admin/dashboard_email"
-  get "admin/user_view"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

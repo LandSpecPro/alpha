@@ -402,6 +402,8 @@ module ApplicationHelper
 				return " Email Dashboard"
 			elsif controller.action_name == 'dashboard_add_users' or controller.action_name == 'add_new_user'
 				return " Add Users"
+			elsif controller.action_name == 'dashboard_add_locations' or controller.action_name == 'add_new_location'
+				return " Add Locations"
 			else
 				return ""
 			end
@@ -428,6 +430,14 @@ module ApplicationHelper
 
 	def format_date_and_time(datetime)
 		return datetime.strftime("%b %e, %Y - %l:%M%P")
+	end
+
+	def is_production_site
+		if request.url[0..21] == 'http://www.landspecpro' or request.url[0..17] == 'http://landspecpro'
+			return true
+		else
+			return false
+		end
 	end
 
 end

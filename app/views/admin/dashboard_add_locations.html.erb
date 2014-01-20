@@ -1,1 +1,231 @@
 <%- title "Admin - Add New Locations | LandSpec Pro" %>
+<%= render 'layouts/sidebar' %>
+
+
+<%= form_for @location, :url => {:action => :add_new_location, :controller => :admin}, :html => {:id => 'form_add_new_location'} do |f| %>
+
+	<div class='col-lg-4 col-md-12'>
+		<!-- Display error messages as alerts -->
+		<% @location.errors.each do |field, msg| %>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-danger center">
+			  <strong>Error! </strong> <%= msg %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="col-lg-8 col-md-12">
+		<div class="widget-box">
+			<div class="widget-header header-color-green2">
+				<h5 class="bigger lighter"><i class="icon-globe"></i> New Unclaimed Location</h5>
+				<div class="widget-toolbar">
+					<% if current_user.id == 999 %>
+					<% else %>
+						<a href="javascript:{return true;}" onclick="submitNewLocationForm();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="widget-body">
+
+				<div class="widget-main">					
+
+					<div class="row">
+						<div class="col-xs-6">
+
+							<fieldset>
+
+								<div class="form-group">
+									<strong>Company Name*</strong>
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :busName, :class => 'form-control', :required => true %>
+									</span>
+								</div>
+								<div class="form-group">
+									Location Name
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :locName, :class => 'form-control' %>
+									</span>	
+								</div>
+								<div class="form-group">
+									<strong>Street 1*</strong>
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :address1, :class => 'form-control' %>
+									</span>	
+								</div>
+
+								<div class="row">
+									<div class="col-xs-6">
+										<div class="form-group">
+											Street 2
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :address2, :class => 'form-control' %>
+											</span>	
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="form-group">
+											<strong>City*</strong>
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :city, :class => 'form-control' %>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-6">
+										<div class="form-group">
+											<strong>State*</strong>
+											<span class="block input-icon input-icon-right">
+												<%= f.select(:state, get_states, {:include_blank => '', :selected => @location.state}, {:class => 'form-control chzn-select'}) %>
+											</span>
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="form-group">
+											<strong>Zip Code*</strong>
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :zip, :class => 'form-control input-mask-zip' %>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<strong>Primary Phone*</strong>
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :primaryPhone, :class => 'form-control input-mask-phone' %>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									Primary Email
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :primaryEmail, :class => 'form-control' %>
+									</span>	
+								</div>
+
+								<div class="form-group">
+									Secondary Email
+									<span class="block input-icon input-icon-right">
+										<%= f.text_field :secondaryEmail, :class => 'form-control' %>
+									</span>	
+								</div>
+
+							</div>
+
+							<div class="col-xs-6">
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<strong>Public URL*</strong>
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :public_url, :class => 'form-control', :required => true %>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											Website Link
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :websiteLink, :class => 'form-control' %>
+											</span>	
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											Facebook Link
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :facebookLink, :class => 'form-control' %>
+											</span>	
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											Twitter Link
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :twitterLink, :class => 'form-control' %>
+											</span>	
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											Google+ Link
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :googleLink, :class => 'form-control' %>
+											</span>	
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									
+									<div class="col-xs-12">
+										<div class="form-group">
+											Secondary Phone
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :secondaryPhone, :class => 'form-control input-mask-phone' %>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											Fax
+											<span class="block input-icon input-icon-right">
+												<%= f.text_field :fax, :class => 'form-control input-mask-fax' %>
+											</span>	
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										&nbsp;
+										<% if current_user.id == 999 %>
+											<button disabled="disabled" type='submit' class="btn btn-sm btn-success btn-block">Save</button>
+										<% else %>
+											<button type='submit' class="btn btn-sm btn-success btn-block">Save</button>
+										<% end %>
+									</div>
+								</div>
+
+							</fieldset>
+
+						</div>	
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+<% end %>
+
+<%= render 'layouts/sidebarend' %>
+
+<script type="text/javascript">
+	$(applyChosenStyle());
+	$(applyMasks());
+</script>
