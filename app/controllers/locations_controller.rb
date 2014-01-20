@@ -36,7 +36,11 @@ class LocationsController < ApplicationController
       return
     end
 
-    @locsettings = @location.location_public_setting
+    if @location.claimed == false
+      @locsettings = LocationPublicSetting.where(:location_id => 0).first
+    else
+      @locsettings = @location.location_public_setting
+    end
 
     #add_location_viewed(-1, params[:id])
 

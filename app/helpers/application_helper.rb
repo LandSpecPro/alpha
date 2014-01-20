@@ -396,6 +396,8 @@ module ApplicationHelper
 				return " Main Dashboard"
 			elsif controller.action_name == 'dashboard_users'
 				return " Users Dashboard"
+			elsif controller.action_name == 'dashboard_locations'
+				return " Locations Dashboard"
 			elsif controller.action_name == 'dashboard_weekly'
 				return " Weekly Dashboard"
 			elsif controller.action_name == 'dashboard_email'

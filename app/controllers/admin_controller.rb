@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 
 	include AdminHelper
   include ApplicationHelper
+  include LocationHelper
   include UsersHelper
 
   before_filter :require_user_is_admin
@@ -13,6 +14,23 @@ class AdminController < ApplicationController
 
   def dashboard_locations
     store_location
+
+    @c_locs = Location.where(:claimed => true)
+    @uc_locs = Location.where(:claimed => false)
+  end
+
+  def delete_unclaimed_location
+    if not params[:id]
+      redirect_to admin_locations_url(:delete_error => true)
+    else
+      if Location.find(params[:id]).user_detail_id > 0
+        # Show error if it is not an unclaimed location
+        redirect_to admin_locations_url(:delete_error => true)
+      else
+        Location.find(params[:id]).destroy
+        redirect_to admin_locations_url(:delete_success => true)
+      end
+    end
   end
 
   def dashboard_weekly
@@ -74,7 +92,7 @@ class AdminController < ApplicationController
       #TODO: Do we want this in the news feed?
       #news_feed_new_location(@location.id)
 
-      redirect_to admin_location_url
+      redirect_to admin_locations_url
 
     else
       render :action => :dashboard_add_locations
@@ -151,7 +169,13 @@ class AdminController < ApplicationController
         @loc.active = true
         @loc.save
 
-        redirect_to admin_user_view_url(:id => params[:user_id])
+        if params[:redirect_url]
+          redirect_to params[:redirect_url]
+          return
+        else
+          redirect_to admin_user_view_url(:id => params[:user_id])
+          return
+        end
     end
 
     def location_deactivate
@@ -160,7 +184,13 @@ class AdminController < ApplicationController
         @loc.active = false
         @loc.save
 
-        redirect_to admin_user_view_url(:id => params[:user_id])
+        if params[:redirect_url]
+          redirect_to params[:redirect_url]
+          return
+        else
+          redirect_to admin_user_view_url(:id => params[:user_id])
+          return
+        end
     end
 
     def sign_in_as_user

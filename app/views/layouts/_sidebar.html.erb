@@ -129,6 +129,14 @@
 									<a href="<%= admin_users_url %>"><i class="icon-double-angle-right"></i> Users Dashboard</a>
 								</li>
 
+							<% if controller.action_name == 'dashboard_locations' %>
+								<li class="active">
+							<% else %>
+								<li>
+							<% end %>
+									<a href="<%= admin_locations_url %>"><i class="icon-double-angle-right"></i> Locations Dashboard</a>
+								</li>
+
 							<% if controller.action_name == 'dashboard_weekly' %>
 								<li class="active">
 							<% else %>
@@ -153,7 +161,7 @@
 									<a href="<%= admin_users_add_url %>"><i class="icon-double-angle-right"></i><i class="icon-plus"></i>&nbsp;&nbsp;Add Users</a>
 								</li>
 
-							<% if controller.action_name == 'dashboard_add_locations' %>
+							<% if controller.action_name == 'dashboard_add_locations' or controller.action_name == 'add_new_location' %>
 								<li class="active">
 							<% else %>
 								<li>

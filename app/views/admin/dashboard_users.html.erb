@@ -66,75 +66,75 @@
 </div>
 
 <table id="table_report" class="table table-striped table-bordered table-hover">
-        <thead>
-                <tr>
-                        <th class="center">Id</th>  
-                        <th class="center">Username</th>
-                        <th class="center">Email</th>
-                        <th class="center">User Type</th>
-                        <th class="center">Company Name</th>
-                        <th class="center hidden-480">Last Login At</th>
-                        <th class="center hidden-480">Created At</th>
-                        <th class="center">Verified</th>
-                        <th class="center">Active</th>
-                        <th class="center"></th>
-                </tr>
-        </thead>
-                                                        
-        <tbody>
+    <thead>
+        <tr>
+            <th class="center">Id</th>  
+            <th class="center">Username</th>
+            <th class="center">Email</th>
+            <th class="center">User Type</th>
+            <th class="center">Company Name</th>
+            <th class="center hidden-480">Last Login At</th>
+            <th class="center hidden-480">Created At</th>
+            <th class="center">Verified</th>
+            <th class="center">Active</th>
+            <th class="center"></th>
+        </tr>
+    </thead>
+                                                    
+    <tbody>
 
-                <% User.all.each do |u| %>        
-                        <tr>
-                                <td class="center">
-                                        <%= u.id.to_s %>
-                                </td>
-                                <td class="center">
-                                        <a href="<%= admin_user_view_url(:id => u.id) %>"><%= u.login %></a>
-                                </td>
-                                <td class="center">
-                                        <%= u.email %>
-                                </td>
-                                <td class="center">
-                                        <%= u.userType.to_s %>
-                                </td>
-                                <td class="center">
-                                        <% if not u.user_detail.blank? %>
-                                                <% if not u.user_detail.company_name.blank? %>
-                                                        <%= u.user_detail.company_name %>
-                                                <% end %>
-                                        <% end %>
-                                </td>
-                                <td class="center hidden-480">
-                                        <%= format_datetime_or_return_blank(u.last_login_at, nil) %>
-                                </td>
-                                <td class="center hidden-480">
-                                        <%= format_datetime_or_return_blank(u.created_at, nil) %>
-                                </td>
-                                <td class="center">
-                                        <% if u.verified %>
-                                                <a href="<%= admin_user_verify_url(:id => u.id, :newvalue => false, :redirect_url => admin_users_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to un-verify">
-                                                        true
-                                                </a>
-                                        <% else %>
-                                                <a href="<%= admin_user_verify_url(:id => u.id, :newvalue => true, :redirect_url => admin_users_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to verify">
-                                                        false
-                                                </a>
-                                        <% end %>
-                                                
-                                </td>
-                                <td class="center">
-                                        <% if u.active %>
-                                                <a href="<%= admin_user_deactivate_url(:id => u.id, :redirect_url => admin_users_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to deactivate">true</a>
-                                        <% else %>
-                                                <a href="<%= admin_user_activate_url(:id => u.id, :redirect_url => admin_users_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to activate">false</a>
-                                        <% end %>
-                                </td>
-                                <td class="center">
-                                        <a href="<%= admin_signinas_url(:id => u.id) %>" class="badge badge-inverse">Login</a>
-                                </td>
-                        </tr>        
-                <% end %>
-        </tbody>
+        <% User.all.each do |u| %>        
+            <tr>
+                <td class="center">
+                    <%= u.id.to_s %>
+                </td>
+                <td class="center">
+                    <a href="<%= admin_user_view_url(:id => u.id) %>"><%= u.login %></a>
+                </td>
+                <td class="center">
+                    <%= u.email %>
+                </td>
+                <td class="center">
+                    <%= u.userType.to_s %>
+                </td>
+                <td class="center">
+                    <% if not u.user_detail.blank? %>
+                        <% if not u.user_detail.company_name.blank? %>
+                            <%= u.user_detail.company_name %>
+                        <% end %>
+                    <% end %>
+                </td>
+                <td class="center hidden-480">
+                    <%= format_datetime_or_return_blank(u.last_login_at, nil) %>
+                </td>
+                <td class="center hidden-480">
+                    <%= format_datetime_or_return_blank(u.created_at, nil) %>
+                </td>
+                <td class="center">
+                    <% if u.verified %>
+                        <a href="<%= admin_user_verify_url(:id => u.id, :newvalue => false, :redirect_url => admin_users_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to un-verify">
+                            true
+                        </a>
+                    <% else %>
+                        <a href="<%= admin_user_verify_url(:id => u.id, :newvalue => true, :redirect_url => admin_users_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to verify">
+                            false
+                        </a>
+                    <% end %>
+                                
+                </td>
+                <td class="center">
+                    <% if u.active %>
+                        <a href="<%= admin_user_deactivate_url(:id => u.id, :redirect_url => admin_users_url) %>" class="badge badge-success" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to deactivate">true</a>
+                    <% else %>
+                        <a href="<%= admin_user_activate_url(:id => u.id, :redirect_url => admin_users_url) %>" class="badge badge-important" data-placement="top" data-trigger="hover" data-rel="popover" data-content="Click to activate">false</a>
+                    <% end %>
+                </td>
+                <td class="center">
+                    <a href="<%= admin_signinas_url(:id => u.id) %>" class="badge badge-inverse">Login</a>
+                </td>
+            </tr>        
+        <% end %>
+    </tbody>
 </table>
 
 <%= render 'layouts/sidebarend' %>

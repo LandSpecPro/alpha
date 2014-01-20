@@ -50,13 +50,9 @@
 
 	<!-- Admin Pages -->
 	<% elsif @cont == 'admin' %>
-		<a href="<%= admin_dashboard_main_url %>">Main Dashboard</a>
+		<a href="<%= admin_users_add_url %>">Add New Users</a>
 		|
-		<a href="<%= admin_users_url %>">Users Dashboard</a>
-		|
-		<a href="<%= admin_weekly_url %>">Weekly Dashboard</a>
-		|
-		<a href="<%= admin_email_url %>">Email Dashboard</a>
+		<a href="<%= admin_locations_add_url %>">Add New Locations</a>
 
 	<!-- Default to something for all other pages -->
 	<% else %>

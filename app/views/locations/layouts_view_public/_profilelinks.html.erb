@@ -10,26 +10,25 @@
 
 			<%= render 'locations/layouts_view_public/sociallinks' %>
 
-<% if @locsettings.show_inventory %>
-			<% if @location.inventories.count > 0 %>
-				<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
-					<i class="icon-folder-close blue"></i>
-					<strong style="font-size:20px;">View Inventory</strong>
-				</a>
-
-				<br/>
+			<% unless @location.inventories.count <= 0 %>
+				<% if @locsettings.show_inventory %>
+					<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
+						<i class="icon-folder-close blue"></i>
+						<strong style="font-size:20px;">View Inventory</strong>
+					</a>
+					<br/>
+				<% end %>
 			<% end %>
-<% end %>
 
-<% if @locsettings.show_website %>
 			<% unless @location.websiteLink.blank? %>
-				<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
-					<i class="icon-globe blue"></i>
-					View Website
-				</a>
-				<br/>
+				<% if @locsettings.show_website %>
+					<a class="btn btn-link tooltip-info" href="<%= @location.websiteLink %>" target="_blank" title="" data-original-title="<%= @location.websiteLink %>" data-placement="bottom">
+						<i class="icon-globe blue"></i>
+						View Website
+					</a>
+					<br/>
+				<% end %>
 			<% end %>
-<% end %>
 
 			<% if current_user %>
 				<% if current_user.id != 999 %>
