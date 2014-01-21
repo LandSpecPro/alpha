@@ -20,7 +20,7 @@
 				<div class="widget-toolbar">
 					<% if current_user.id == 999 %>
 					<% else %>
-						<a href="javascript:{return true;}" onclick="submitNewLocationForm();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
+						<a href="javascript:{return true;}" onclick="addUnclaimedLocation();" class="white" id="white-link"><i  class="icon-save"></i> Save</a>
 					<% end %>
 				</div>
 			</div>
@@ -232,4 +232,9 @@
 <script type="text/javascript">
 	$(applyChosenStyle());
 	$(applyMasks());
+
+	function addUnclaimedLocation(){
+		document.getElementById('form_add_new_location').submit();
+	}
+
 </script>
