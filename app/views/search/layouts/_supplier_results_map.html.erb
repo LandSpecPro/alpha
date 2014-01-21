@@ -101,8 +101,7 @@
         position: new google.maps.LatLng(<%= l.latitude.to_s %>,<%= l.longitude.to_s %>),
         map: map,
         title:"<%= l.busName.html_safe %>",
-        url:"<%= locations_view_url(:id => l.id) %>",
-        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        url:"<%= locations_view_url(:id => l.id) %>"
       });
 
       var infowindow = new google.maps.InfoWindow({
