@@ -26,6 +26,9 @@ gem 'geoip'
 gem 'memcachier'
 gem 'dalli'
 
+#Use instead of Webrick
+gem 'thin'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

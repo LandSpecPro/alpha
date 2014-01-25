@@ -26,6 +26,9 @@ module SearchHelper
 			geoip = GeoIP.new('lib/GeoLiteCity.dat').city(request.remote_ip)
 			if not geoip.blank?
 				params[:location] = geoip.city_name + ", " + geoip.region_name
+				if params[:location] == ", "
+					params[:location] = 'Atlanta, GA'
+				end
 			else
 				params[:location] = 'Atlanta, GA'
 			end
