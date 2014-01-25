@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require theme/ace-extra.min
 //= require theme/jquery-2.0.3.min
 //= require theme/bootstrap.min
 //= require theme/jquery-ui-1.10.3.custom.min
@@ -20,8 +19,6 @@
 //= require theme/jquery.colorbox-min
 //= require theme/jquery.dataTables.min
 //= require theme/jquery.dataTables.bootstrap
-//= require theme/bootstrap-typehead
-//= require theme/ace-elements.min
 //= require theme/ace.min
 //= require masks
 //= require general

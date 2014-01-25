@@ -11,15 +11,12 @@
  *= require_self
  *= require 'theme-imports'
  *= require 'theme/bootstrap.min'
- *= require 'theme/font-awesome.min'
+ *= require font-awesome
  *= require 'theme/jquery-ui-1.10.3.custom.min'
  *= require 'theme/chosen.min'
  *= require 'theme/jquery.gritter'
  *= require 'theme/colorbox'
- *= require 'theme/ace-fonts'
  *= require 'theme/ace'
- *= require 'theme/ace-rtl.min'
- *= require 'theme/ace-skins.min'
  *= require 'fonts'
  *= require_tree .
  */
