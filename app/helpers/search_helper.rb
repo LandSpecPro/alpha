@@ -22,6 +22,9 @@ module SearchHelper
 			end
 		end
 
+		# TODO: Change this so if it can't get location by ip, it will use the city, state, zip in user details
+		# and if there are no user details, then it will default to Atlanta. Need to look into why it isn't doing the
+		# IP address anyway.
 		if params[:current_location]
 			geoip = GeoIP.new('lib/GeoLiteCity.dat').city(request.remote_ip)
 			if not geoip.blank?
