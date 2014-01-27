@@ -3,6 +3,10 @@ LspAlpha::Application.routes.draw do
   # Root application page
   root :to => 'home#root'
 
+  namespace :api, :defaults => {:format => :json} do
+    resources :users
+  end
+
   # Resources
   resources :user_sessions
   resources :user_details
