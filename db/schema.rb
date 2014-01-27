@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140117233501) do
+ActiveRecord::Schema.define(:version => 20140112025844) do
 
   create_table "bus_buyers", :force => true do |t|
     t.string   "busName",                              :null => false
@@ -126,23 +126,6 @@ ActiveRecord::Schema.define(:version => 20140117233501) do
     t.boolean  "active",         :default => true, :null => false
   end
 
-  create_table "fav_locations", :force => true do |t|
-    t.integer  "user_id",                       :null => false
-    t.integer  "location_id",                   :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "active",      :default => true, :null => false
-  end
-
-  create_table "fav_products", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.integer  "product_id",                         :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.integer  "featured_item_id"
-    t.boolean  "active",           :default => true, :null => false
-  end
-
   create_table "featured_item_view_logs", :force => true do |t|
     t.integer  "viewed_by_user_id", :null => false
     t.integer  "featured_item_id",  :null => false
@@ -175,12 +158,11 @@ ActiveRecord::Schema.define(:version => 20140117233501) do
   add_index "featured_items", ["product_image_id"], :name => "index_featured_items_on_product_image_id"
 
   create_table "follows", :force => true do |t|
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "user_id",                                  :null => false
-    t.integer  "location_id",                              :null => false
-    t.boolean  "active",                 :default => true, :null => false
-    t.integer  "location_owner_user_id", :default => 0,    :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "location_id",                   :null => false
+    t.boolean  "active",      :default => true, :null => false
   end
 
   create_table "inventories", :force => true do |t|
@@ -305,16 +287,6 @@ ActiveRecord::Schema.define(:version => 20140117233501) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "payment_notifications", :force => true do |t|
-    t.text     "params"
-    t.string   "status"
-    t.string   "transaction_id"
-    t.string   "location_id"
-    t.string   "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
   create_table "pg_search_documents", :force => true do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -408,9 +380,10 @@ ActiveRecord::Schema.define(:version => 20140117233501) do
   add_index "user_sessions", ["user_sessions_id"], :name => "index_user_sessions_on_user_sessions_id"
 
   create_table "users", :force => true do |t|
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "login",                                        :null => false
     t.string   "email",                                        :null => false
-    t.string   "userType",                  :default => "",    :null => false
     t.string   "crypted_password",                             :null => false
     t.string   "password_salt",                                :null => false
     t.string   "persistence_token",                            :null => false
@@ -420,8 +393,7 @@ ActiveRecord::Schema.define(:version => 20140117233501) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "userType",                  :default => "",    :null => false
     t.integer  "bus_vendor_id"
     t.integer  "bus_buyer_id"
     t.string   "profileImage_file_name"

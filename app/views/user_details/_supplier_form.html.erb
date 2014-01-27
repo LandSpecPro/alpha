@@ -72,52 +72,54 @@
 			</span>
 		</div>
 
-		<!-- ADDRESS INFO -->
-		<div class="row">
+		<% unless controller.action_name == 'new' or controller.action_name == 'create' %>
+			<!-- ADDRESS INFO -->
+			<div class="row">
 
-			<!-- CITY -->
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<label for="city">City</label>
-					<span class="block input-icon input-icon-right">
-						<% if current_user.id == 999 %>
-							<%= f.text_field :city, :class => 'form-control', :readonly => true %>
-						<% else %>
-							<%= f.text_field :city, :class => 'form-control' %>
-						<% end %>
-					</span>
+				<!-- CITY -->
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="form-group">
+						<label for="city">City</label>
+						<span class="block input-icon input-icon-right">
+							<% if current_user.id == 999 %>
+								<%= f.text_field :city, :class => 'form-control', :readonly => true %>
+							<% else %>
+								<%= f.text_field :city, :class => 'form-control' %>
+							<% end %>
+						</span>
+					</div>
 				</div>
-			</div>
 
-			<!-- STATE -->
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<label for="city">State</label>
-					<span class="block input-icon input-icon-right">
-						<% if current_user.id == 999 %>
-							<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select', :disabled => true}) %>
-						<% else %>
-							<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
-						<% end %>
-					</span>
+				<!-- STATE -->
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="form-group">
+						<label for="city">State</label>
+						<span class="block input-icon input-icon-right">
+							<% if current_user.id == 999 %>
+								<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select', :disabled => true}) %>
+							<% else %>
+								<%= f.select(:state, get_states, {:include_blank => 'N/A'}, {:class => 'form-control chzn-select'}) %>
+							<% end %>
+						</span>
+					</div>
 				</div>
-			</div>
 
-			<!-- ZIP -->
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<label for="city">Zip</label>
-					<span class="block input-icon input-icon-right">
-						<% if current_user.id == 999 %>
-							<%= f.text_field :zip, :class => 'form-control input-mask-zip', :readonly => true %>
-						<% else %>
-							<%= f.text_field :zip, :class => 'form-control input-mask-zip' %>
-						<% end %>
-					</span>
+				<!-- ZIP -->
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="form-group">
+						<label for="city">Zip</label>
+						<span class="block input-icon input-icon-right">
+							<% if current_user.id == 999 %>
+								<%= f.text_field :zip, :class => 'form-control input-mask-zip', :readonly => true %>
+							<% else %>
+								<%= f.text_field :zip, :class => 'form-control input-mask-zip' %>
+							<% end %>
+						</span>
+					</div>
 				</div>
-			</div>
 
-		</div>
+			</div>
+		<% end %>
 
 		<!-- LOGO -->
 		<div class="row">
