@@ -209,6 +209,12 @@ class LocationsController < ApplicationController
     if @location.save
       flash[:notice] = "New Location Added!"
 
+      # add in cateogry for supplier type
+      @user_cat = current_user.user_detail.user_category
+      unless @user_cat.blank? or @user_cat == 'N/A'
+        add_category_to_location(Category.where(:cat_name => @user_cat).first, @location)
+      end
+
       news_feed_new_location(@location.id)
 
       update_weight_rank(@location)
