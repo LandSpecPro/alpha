@@ -26,6 +26,14 @@ class UserDetail < ActiveRecord::Base
 
 	after_save :update_location_bus_name
 
+	before_validation :strip_whitespace
+
+	def strip_whitespace
+		self.first_name = self.first_name.strip
+		self.last_name = self.last_name.strip
+		self.company_name = self.company_name.strip
+	end
+	
 	def update_location_bus_name
 		if self.user_type == STRING_SUPPLIER
 			self.locations.each do |l|
