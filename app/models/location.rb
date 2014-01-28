@@ -52,6 +52,14 @@ class Location < ActiveRecord::Base
 		'account', 'back', 'terms', 'oops', 'help', 'admin', 'admins', 'registration', 'signup', 'more', 'info', 'about_us', 'links' \
 		'ask', 'faq', 'donate', 'buy', 'purchase', 'question', 'questions', 'session', 'sessions', 'user_session', 'user_sessions', 'user_details'], \
 		:message => "This URL is reserved."
+
+	before_validation :strip_whitespace
+
+	def strip_whitespace
+		self.locName = self.locName.strip
+		self.busName = self.busName.strip
+		self.public_url = self.public_url.strip
+	end
    
    	def not_unclaimed_location?
    		if user_detail_id > 0
