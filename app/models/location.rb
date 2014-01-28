@@ -56,9 +56,8 @@ class Location < ActiveRecord::Base
 	before_validation :strip_whitespace
 
 	def strip_whitespace
-		self.first_name = self.first_name.strip
-		self.last_name = self.last_name.strip
-		self.company_name = self.company_name.strip
+		self.busName = self.busName.strip
+		self.locName = self.locName.strip
 	end
    
    	def not_unclaimed_location?
