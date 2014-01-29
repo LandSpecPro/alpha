@@ -29,9 +29,15 @@ class UserDetail < ActiveRecord::Base
 	before_validation :strip_whitespace
 
 	def strip_whitespace
-		self.first_name = self.first_name.strip
-		self.last_name = self.last_name.strip
-		self.company_name = self.company_name.strip
+		unless self.first_name.blank?
+			self.first_name = self.first_name.strip
+		end
+		unless self.last_name.blank?
+			self.last_name = self.last_name.strip
+		end
+		unless self.company_name.blank?
+			self.company_name = self.company_name.strip
+		end
 	end
 	
 	def update_location_bus_name
