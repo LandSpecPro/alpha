@@ -78,6 +78,14 @@
 						<input id='distance_from' name='distance_from' type='text' class='input form-control center' value="<%= params[:distance_from] %>" />
 					<% end %>
 
+						<% if not params[:view] == 'list' %>
+						<br/>
+						<center>
+							<img src="<%= image_path('red-dot.png') %>" style="width:auto; height:20px;" />-&nbsp;Activated&nbsp;&nbsp;|
+        					<img src="<%= image_path('blue-dot.png') %>" style="width:auto; height:20px;" />-&nbsp;Not-Activated
+        				</center>
+        				<% end%>
+
 					</div>
 
 					<!-- Categories -->
