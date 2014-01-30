@@ -53,31 +53,31 @@
 #	bio: 'This is a guest account that you can use to preview LandSpec Pro. This is normally where your company bio/about information would go. We have disabled all updating of this account because it is shared by multiple users, but feel free to play around and explore the site. When you are ready to register just click the logout link from the dropdown menu at the top of the page and you should find the register button on the home page. We hope you enjoy LandSpec Pro and hope for you to become a real member soon.'
 #)
 
-LocationPublicSetting.create(
-	show_company_logo: false,
-	show_tagline: false,
-	show_full_address: true,
-	show_city_and_state: false,
-	show_state_only: false,
-	show_primary_phone: true,
-	show_secondary_phone: true,
-	show_fax: true,
-	show_primary_email: true,
-	show_secondary_email: true,
-	show_website: true,
-	show_facebook: true,
-	show_twitter: true,
-	show_google: true,
-	show_featured_items: false,
-	show_featured_items_price: false,
-	show_featured_items_size: false,
-	show_featured_items_description: false,
-	show_categories: true,
-	show_other_locations: false,
-	location_id: 0,
-	show_about: true,
-	show_inventory: false
-)
+#LocationPublicSetting.create(
+#	show_company_logo: false,
+#	show_tagline: false,
+#	show_full_address: true,
+#	show_city_and_state: false,
+#	show_state_only: false,
+#	show_primary_phone: true,
+#	show_secondary_phone: true,
+#	show_fax: true,
+#	show_primary_email: true,
+#	show_secondary_email: true,
+#	show_website: true,
+#	show_facebook: true,
+#	show_twitter: true,
+#	show_google: true,
+#	show_featured_items: false,
+#	show_featured_items_price: false,
+#	show_featured_items_size: false,
+#	show_featured_items_description: false,
+#	show_categories: true,
+#	show_other_locations: false,
+#	location_id: 0,
+#	show_about: true,
+#	show_inventory: false
+#)
 
 #Category.create([
 
