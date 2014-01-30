@@ -84,7 +84,11 @@
 									<th>File Name</th>
 									<th>File Size</th>
 									<th>Date Added</th>
+
+									<!--
 									<th>Total Views</th>
+									-->
+
 								</tr>
 							</thead>
 
@@ -97,7 +101,11 @@
 										<td><%= "%10.2f" % (@cur_inventory.file_file_size / 1000.to_f) %> KB</td>
 									<% end %>
 									<td><%= format_date_and_time(@cur_inventory.created_at) %></td>
+									
+									<!--
 									<td><span data-rel="popover" data-placement="bottom" data-container="body" data-trigger="hover" data-content="Total views are approximate and only count views through your profile or by right-clicking the file name, copying the link, and sharing the provided address."><%= @cur_inventory.num_views.to_s %></span></td>
+									-->
+
 								</tr>
 							</tbody>
 
@@ -134,7 +142,11 @@
 										<th>File Name</th>
 										<th>File Size</th>
 										<th>Date Added</th>
+
+										<!--
 										<th>Total Views</th>
+										-->
+
 									</tr>
 								</thead>
 
@@ -148,7 +160,11 @@
 												<td><%= "%10.2f" % (inv.file_file_size / 1000.to_f) %> KB</td>
 											<% end %>
 											<td><%= format_date_and_time(inv.created_at) %></td>
+
+											<!--
 											<td><%= inv.num_views.to_s %></td>
+											-->
+											
 										</tr>
 									<% end %>
 								</tbody>
