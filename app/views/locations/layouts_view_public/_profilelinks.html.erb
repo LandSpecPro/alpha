@@ -12,7 +12,7 @@
 
 			<% unless @location.inventories.count <= 0 %>
 				<% if @locsettings.show_inventory %>
-					<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
+					<a class="btn btn-link tooltip-info" href="<%= location_inventory_view_url(:id => @location.id, :inv_id => @location.inventories.where(:current => true, :active => true).first.id) %>" target="_blank" title="" data-original-title="View Inventory" data-placement="bottom">
 						<i class="icon-folder-close blue"></i>
 						<strong style="font-size:20px;">View Inventory</strong>
 					</a>
