@@ -20,9 +20,6 @@ gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem 'newrelic_rpm'
 
-# Redis caching
-gem 'redis-rails'
-
 gem 'geoip'
 
 #Used for MemCachier

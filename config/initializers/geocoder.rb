@@ -1,4 +1,3 @@
 Geocoder.configure(
-	:lookup => :yandex,
-	:cache => Redis.new
+	:lookup => :yandex
 )
