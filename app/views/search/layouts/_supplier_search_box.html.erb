@@ -2,7 +2,14 @@
 	<select id="query" name="query" class="chzn-select input-large form-control" data-placeholder="Leave blank to search all suppliers...">
 		<option selected="selected">All Suppliers</option>
 
-		<% Location.where(:active => true).uniq.pluck('"busName"').sort.each do |busname| %>
+		<% Location.where(:active => true, :claimed => true).uniq.pluck('"busName"').sort.each do |busname| %>
+			<% if params[:query] == busname %>
+				<option selected="selected"><%= busname %></option>
+			<% else %>
+				<option><%= busname %></option>
+			<% end %>
+		<% end %>
+		<% Location.where(:active => true, :claimed => false).uniq.pluck('"busName"').sort.each do |busname| %>
 			<% if params[:query] == busname %>
 				<option selected="selected"><%= busname %></option>
 			<% else %>
